@@ -147,6 +147,40 @@ public class APIClient {
 		}.resume()
 	}
 
+	public func listCanvases(collection: Collection, completion: APIResult<[Canvas]> -> Void) {
+		let request = self.request(path: "canvases", params: ["filter[collection]": collection.ID])
+		session.dataTaskWithRequest(request) { responseData, response, error in
+			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
+				dispatch_async(APIClient.completionQueue) {
+					completion(.Failure("Unauthorized"))
+				}
+				return
+			}
+
+			guard let responseData = responseData,
+				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
+				dictionary = json as? JSONDictionary
+				else {
+					dispatch_async(APIClient.completionQueue) {
+						completion(.Failure("Invalid JSON"))
+					}
+					return
+			}
+
+			if let data = dictionary["data"] as? [JSONDictionary] {
+				let canvases = data.flatMap({ Canvas(dictionary: $0) })
+				dispatch_async(APIClient.completionQueue) {
+					completion(.Success(canvases))
+				}
+				return
+			}
+
+			dispatch_async(APIClient.completionQueue) {
+				completion(.Failure("Invalid response"))
+			}
+		}.resume()
+	}
+
 
 	// MARK: - Uploading
 
