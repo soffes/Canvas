@@ -43,8 +43,9 @@ public class AuthorizationClient: NetworkClient {
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 		request.setValue("application/json", forHTTPHeaderField: "Accept")
 
-		session.dataTaskWithRequest(request) { [weak self] responseData, _, error in
-			guard let session = self?.session, responseData = responseData,
+		let session = self.session
+		session.dataTaskWithRequest(request) { responseData, _, error in
+			guard let responseData = responseData,
 				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
 				dictionary = json as? JSONDictionary
 			else {

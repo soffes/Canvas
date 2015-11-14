@@ -33,6 +33,6 @@ class AuthorizationClientTests: XCTestCase {
 			}
 		}
 
-		waitForExpectationsWithTimeout(2, handler: nil)
+		waitForExpectationsWithTimeout(1, handler: nil)
 	}
 }
