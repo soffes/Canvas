@@ -15,18 +15,25 @@ public struct Canvas {
 	public let collectionID: String
 	public let createdByID: String
 	public let readOnly: Bool
+	public let title: String?
 }
 
 
 extension Canvas: JSONSerializable, JSONDeserializable {
 	public var dictionary: JSONDictionary {
-		return [
+		var dictionary: [String: AnyObject] = [
 			"id": ID,
 			"shortID": shortID,
 			"collection_id": collectionID,
 			"created_by_id": createdByID,
 			"readonly": readOnly
 		]
+
+		if let title = title {
+			dictionary["title"] = title
+		}
+
+		return dictionary
 	}
 
 	public init?(dictionary: JSONDictionary) {
@@ -42,6 +49,7 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 		self.collectionID = collectionID
 		self.createdByID = createdByID
 		self.readOnly = readOnly
+		title = dictionary["title"] as? String
 	}
 }
 
