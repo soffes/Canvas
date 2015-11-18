@@ -16,6 +16,10 @@ public struct Canvas {
 	public let createdByID: String
 	public let readOnly: Bool
 	public let title: String?
+
+	public var displayTitle: String {
+		return title ?? "Untitled"
+	}
 }
 
 
