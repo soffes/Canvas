@@ -7,6 +7,9 @@
 //
 
 extension APIClient {
+
+	// MARK: - Create
+
 	public func createCanvas(collection collection: Collection, body: String, completion: Result<Canvas> -> Void) {
 		createCanvas(collectionID: collection.ID, body: body, completion: completion)
 	}
@@ -49,5 +52,28 @@ extension APIClient {
 				completion(.Failure("Invalid response"))
 			}
 		}.resume()
+	}
+
+
+	// MARK: - Destory
+
+	public func destroyCanvas(canvas: Canvas, completion: Result<Void> -> Void) {
+		destroyCanvas(canvas.ID, completion: completion)
+	}
+
+	public func destroyCanvas(canvasID: String, completion: Result<Void> -> Void) {
+		let request = self.request(method: .DELETE, path: "canvases/\(canvasID)")
+		session.dataTaskWithRequest(request) { _, response, _ in
+			if let res = response as? NSHTTPURLResponse where res.statusCode == 200 {
+				dispatch_async(networkCompletionQueue) {
+					completion(.Success())
+				}
+				return
+			}
+
+			dispatch_async(networkCompletionQueue) {
+				completion(.Failure("Failed to destory Canvas."))
+			}
+		}
 	}
 }

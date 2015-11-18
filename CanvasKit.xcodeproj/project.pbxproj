@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2118DB971BFCE902004054FA /* APIClientCanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2118DB961BFCE902004054FA /* APIClientCanvasTests.swift */; };
+		2118DB981BFCE902004054FA /* APIClientCanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2118DB961BFCE902004054FA /* APIClientCanvasTests.swift */; };
 		2119D3831BF6BBAF00E91D6F /* sign-in.json in Resources */ = {isa = PBXBuildFile; fileRef = 2119D3821BF6BBAF00E91D6F /* sign-in.json */; };
 		2119D3841BF6BBAF00E91D6F /* sign-in.json in Resources */ = {isa = PBXBuildFile; fileRef = 2119D3821BF6BBAF00E91D6F /* sign-in.json */; };
 		2129D2E41BF54FF90018F255 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129D2E31BF54FF90018F255 /* AccountController.swift */; };
@@ -34,8 +36,8 @@
 		216C4BB71BF54AEB00260B8E /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BB11BF54AEB00260B8E /* Collection.swift */; };
 		216C4BB81BF54AEB00260B8E /* JSONSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BB21BF54AEB00260B8E /* JSONSerialization.swift */; };
 		216C4BB91BF54AEB00260B8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BB31BF54AEB00260B8E /* User.swift */; };
-		216C4BC41BF54AFE00260B8E /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BBB1BF54AF100260B8E /* APIClientTests.swift */; };
-		216C4BC51BF54AFF00260B8E /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BBB1BF54AF100260B8E /* APIClientTests.swift */; };
+		216C4BC41BF54AFE00260B8E /* APIClientCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BBB1BF54AF100260B8E /* APIClientCollectionTests.swift */; };
+		216C4BC51BF54AFF00260B8E /* APIClientCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BBB1BF54AF100260B8E /* APIClientCollectionTests.swift */; };
 		216C4BC61BF54B0700260B8E /* list-collections.json in Resources */ = {isa = PBXBuildFile; fileRef = 216C4BBE1BF54AF100260B8E /* list-collections.json */; };
 		216C4BC81BF54B0800260B8E /* list-collections.json in Resources */ = {isa = PBXBuildFile; fileRef = 216C4BBE1BF54AF100260B8E /* list-collections.json */; };
 		216C4BCA1BF54B0D00260B8E /* CanvasKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 21FB6ABE1BF53C9D003C82BB /* CanvasKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -101,6 +103,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2118DB961BFCE902004054FA /* APIClientCanvasTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientCanvasTests.swift; sourceTree = "<group>"; };
 		2119D3821BF6BBAF00E91D6F /* sign-in.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sign-in.json"; sourceTree = "<group>"; };
 		2129D2E31BF54FF90018F255 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		2129D2E61BF550290018F255 /* SSKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSKeychain.framework; path = Carthage/Build/iOS/SSKeychain.framework; sourceTree = "<group>"; };
@@ -119,7 +122,7 @@
 		216C4BB11BF54AEB00260B8E /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		216C4BB21BF54AEB00260B8E /* JSONSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerialization.swift; sourceTree = "<group>"; };
 		216C4BB31BF54AEB00260B8E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		216C4BBB1BF54AF100260B8E /* APIClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientTests.swift; sourceTree = "<group>"; };
+		216C4BBB1BF54AF100260B8E /* APIClientCollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientCollectionTests.swift; sourceTree = "<group>"; };
 		216C4BBD1BF54AF100260B8E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		216C4BBE1BF54AF100260B8E /* list-collections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "list-collections.json"; sourceTree = "<group>"; };
 		216C4BD21BF54BB000260B8E /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/Mac/DVR.framework; sourceTree = "<group>"; };
@@ -187,7 +190,8 @@
 			isa = PBXGroup;
 			children = (
 				21450A1F1BF691B600345E4A /* AuthorizationClientTests.swift */,
-				216C4BBB1BF54AF100260B8E /* APIClientTests.swift */,
+				216C4BBB1BF54AF100260B8E /* APIClientCollectionTests.swift */,
+				2118DB961BFCE902004054FA /* APIClientCanvasTests.swift */,
 				216C4BBC1BF54AF100260B8E /* Resources */,
 			);
 			name = Tests;
@@ -470,8 +474,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2118DB981BFCE902004054FA /* APIClientCanvasTests.swift in Sources */,
 				21450A211BF691B600345E4A /* AuthorizationClientTests.swift in Sources */,
-				216C4BC51BF54AFF00260B8E /* APIClientTests.swift in Sources */,
+				216C4BC51BF54AFF00260B8E /* APIClientCollectionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,8 +503,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2118DB971BFCE902004054FA /* APIClientCanvasTests.swift in Sources */,
 				21450A201BF691B600345E4A /* AuthorizationClientTests.swift in Sources */,
-				216C4BC41BF54AFE00260B8E /* APIClientTests.swift in Sources */,
+				216C4BC41BF54AFE00260B8E /* APIClientCollectionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
