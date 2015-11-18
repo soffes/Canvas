@@ -64,7 +64,7 @@ extension APIClient {
 	public func destroyCanvas(canvasID: String, completion: Result<Void> -> Void) {
 		let request = self.request(method: .DELETE, path: "canvases/\(canvasID)")
 		session.dataTaskWithRequest(request) { _, response, _ in
-			if let res = response as? NSHTTPURLResponse where res.statusCode == 200 {
+			if let res = response as? NSHTTPURLResponse where res.statusCode == 204 {
 				dispatch_async(networkCompletionQueue) {
 					completion(.Success())
 				}
@@ -74,6 +74,6 @@ extension APIClient {
 			dispatch_async(networkCompletionQueue) {
 				completion(.Failure("Failed to destory Canvas."))
 			}
-		}
+		}.resume()
 	}
 }

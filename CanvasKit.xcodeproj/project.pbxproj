@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2118DB971BFCE902004054FA /* APIClientCanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2118DB961BFCE902004054FA /* APIClientCanvasTests.swift */; };
 		2118DB981BFCE902004054FA /* APIClientCanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2118DB961BFCE902004054FA /* APIClientCanvasTests.swift */; };
+		2118DB9A1BFCEA2F004054FA /* destroy-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 2118DB991BFCEA2F004054FA /* destroy-canvas.json */; };
+		2118DB9B1BFCEA2F004054FA /* destroy-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 2118DB991BFCEA2F004054FA /* destroy-canvas.json */; };
 		2119D3831BF6BBAF00E91D6F /* sign-in.json in Resources */ = {isa = PBXBuildFile; fileRef = 2119D3821BF6BBAF00E91D6F /* sign-in.json */; };
 		2119D3841BF6BBAF00E91D6F /* sign-in.json in Resources */ = {isa = PBXBuildFile; fileRef = 2119D3821BF6BBAF00E91D6F /* sign-in.json */; };
 		2129D2E41BF54FF90018F255 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129D2E31BF54FF90018F255 /* AccountController.swift */; };
@@ -104,6 +106,7 @@
 
 /* Begin PBXFileReference section */
 		2118DB961BFCE902004054FA /* APIClientCanvasTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientCanvasTests.swift; sourceTree = "<group>"; };
+		2118DB991BFCEA2F004054FA /* destroy-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "destroy-canvas.json"; sourceTree = "<group>"; };
 		2119D3821BF6BBAF00E91D6F /* sign-in.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sign-in.json"; sourceTree = "<group>"; };
 		2129D2E31BF54FF90018F255 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		2129D2E61BF550290018F255 /* SSKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSKeychain.framework; path = Carthage/Build/iOS/SSKeychain.framework; sourceTree = "<group>"; };
@@ -205,6 +208,7 @@
 				216C4BBE1BF54AF100260B8E /* list-collections.json */,
 				21E548F81BF6A1B6004855AE /* create-canvas.json */,
 				2119D3821BF6BBAF00E91D6F /* sign-in.json */,
+				2118DB991BFCEA2F004054FA /* destroy-canvas.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -427,6 +431,7 @@
 			files = (
 				216C4BC61BF54B0700260B8E /* list-collections.json in Resources */,
 				2119D3841BF6BBAF00E91D6F /* sign-in.json in Resources */,
+				2118DB9B1BFCEA2F004054FA /* destroy-canvas.json in Resources */,
 				21E548FA1BF6A1B6004855AE /* create-canvas.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +449,7 @@
 			files = (
 				216C4BC81BF54B0800260B8E /* list-collections.json in Resources */,
 				2119D3831BF6BBAF00E91D6F /* sign-in.json in Resources */,
+				2118DB9A1BFCEA2F004054FA /* destroy-canvas.json in Resources */,
 				21E548F91BF6A1B6004855AE /* create-canvas.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

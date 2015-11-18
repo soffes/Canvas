@@ -1,0 +1,39 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1447867029.039232,
+      "response" : {
+        "body" : "",
+        "status" : 204,
+        "url" : "https:\/\/api.usecanvas.com\/canvases\/d776c9ff-67b1-4f09-b762-acbaa2bbf124",
+        "headers" : {
+          "Access-Control-Allow-Origin" : "undefined",
+          "X-Xss-Protection" : "1; mode=block",
+          "Server" : "Cowboy",
+          "X-Download-Options" : "noopen",
+          "Access-Control-Allow-Methods" : "GET,HEAD,PUT,PATCH,POST,DELETE",
+          "Access-Control-Max-Age" : "3600",
+          "Via" : "1.1 vegur",
+          "Cache-Control" : "no-store, no-cache",
+          "Date" : "Wed, 18 Nov 2015 17:17:08 GMT",
+          "Strict-Transport-Security" : "max-age=15768000",
+          "Content-Length" : "0",
+          "Connection" : "keep-alive",
+          "X-Content-Type-Options" : "nosniff",
+          "X-Frame-Options" : "DENY",
+          "Vary" : "Accept-Encoding"
+        }
+      },
+      "request" : {
+        "method" : "DELETE",
+        "url" : "https:\/\/api.usecanvas.com\/canvases\/d776c9ff-67b1-4f09-b762-acbaa2bbf124",
+        "headers" : {
+          "Accept" : "application\/json",
+          "Authorization" : "Bearer REDCATED_TOKEN",
+          "Content-Type" : "application\/json"
+        }
+      }
+    }
+  ],
+  "name" : "destroy-canvas"
+}

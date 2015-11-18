@@ -29,5 +29,22 @@ class APIClientCanvasTests: XCTestCase {
 
 		waitForExpectationsWithTimeout(1, handler: nil)
 	}
+
+	func testDestroyCanvas() {
+		let expectation = expectationWithDescription("Networking")
+		let dvr = Session(cassetteName: "destroy-canvas")
+		let client = APIClient(accessToken: "REDCATED_TOKEN", session: dvr)
+
+		client.destroyCanvas("d776c9ff-67b1-4f09-b762-acbaa2bbf124") {
+			switch $0 {
+			case .Success(_):
+				expectation.fulfill()
+			default:
+				XCTFail()
+			}
+		}
+
+		waitForExpectationsWithTimeout(1, handler: nil)
+	}
 }
 
