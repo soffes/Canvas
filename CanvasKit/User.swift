@@ -12,6 +12,7 @@ public struct User {
 	
 	public let ID: String
 	public let username: String
+	public let email: String
 }
 
 
@@ -19,18 +20,19 @@ extension User: JSONSerializable, JSONDeserializable {
 	public var dictionary: JSONDictionary {
 		return [
 			"id": ID,
-			"username": username
+			"username": username,
+			"email": email
 		]
 	}
 	
 	public init?(dictionary: JSONDictionary) {
 		guard let ID = dictionary["id"] as? String,
-			username = dictionary["username"] as? String
+			username = dictionary["username"] as? String,
+			email = dictionary["email"] as? String
 		else { return nil }
 		
 		self.ID = ID
 		self.username = username
+		self.email = email
 	}
 }
-
-
