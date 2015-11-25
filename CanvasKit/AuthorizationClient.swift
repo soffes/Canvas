@@ -57,7 +57,7 @@ public class AuthorizationClient: NetworkClient {
 
 			if let data = dictionary["data"] as? JSONDictionary, accessToken = data["token"] as? String {
 				dispatch_async(networkCompletionQueue) {
-					let client = APIClient(accessToken: accessToken, session: session)
+					let client = APIClient(accessToken: accessToken, baseURL: baseURL, session: session)
 					client.me(completion)
 				}
 				return
