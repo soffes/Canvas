@@ -13,7 +13,6 @@ public struct Canvas {
 	public let ID: String
 	public let shortID: String
 	public let collectionID: String
-	public let createdByID: String
 	public let readOnly: Bool
 	public let title: String?
 
@@ -29,7 +28,6 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 			"id": ID,
 			"shortID": shortID,
 			"collection_id": collectionID,
-			"created_by_id": createdByID,
 			"readonly": readOnly
 		]
 
@@ -44,14 +42,12 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 		guard let ID = dictionary["id"] as? String,
 			shortID = dictionary["shortID"] as? String,
 			collectionID = dictionary["collection_id"] as? String,
-			createdByID = dictionary["created_by_id"] as? String,
 			readOnly = dictionary["readonly"] as? Bool
 		else { return nil }
 
 		self.ID = ID
 		self.shortID = shortID
 		self.collectionID = collectionID
-		self.createdByID = createdByID
 		self.readOnly = readOnly
 		title = dictionary["title"] as? String
 	}
