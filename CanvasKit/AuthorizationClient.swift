@@ -37,6 +37,7 @@ public class AuthorizationClient: NetworkClient {
 			]
 		]
 
+		let baseURL = self.baseURL
 		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("tokens"))
 		request.HTTPMethod = "POST"
 		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(body, options: [])
