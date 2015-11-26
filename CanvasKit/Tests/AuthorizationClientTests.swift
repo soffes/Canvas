@@ -11,7 +11,7 @@ import DVR
 import CanvasKit
 
 class AuthorizationClientTests: XCTestCase {
-	func testSignIn() {
+	func testLogin() {
 		let expectation = expectationWithDescription("Networking")
 
 		let dvr = Session(cassetteName: "sign-in")
@@ -19,7 +19,7 @@ class AuthorizationClientTests: XCTestCase {
 
 		let client = AuthorizationClient(session: dvr)
 
-		client.signIn(username: "soffes", password: "REDACTED_PASSWORD") {
+		client.login(username: "soffes", password: "REDACTED_PASSWORD") {
 			switch $0 {
 			case .Success(let account):
 				XCTAssertEqual("REDACTED_TOKEN", account.accessToken)

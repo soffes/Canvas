@@ -24,9 +24,9 @@ public class AuthorizationClient: NetworkClient {
 	}
 
 
-	// MARK: - Signing In
+	// MARK: - Logging in
 
-	public func signIn(username username: String, password: String, completion: Result<Account> -> Void) {
+	public func login(username username: String, password: String, completion: Result<Account> -> Void) {
 		let body = [
 			"data": [
 				"user": [
