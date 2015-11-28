@@ -54,6 +54,8 @@
 		216C4BD91BF54BF400260B8E /* DVR.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4BD21BF54BB000260B8E /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		216C4BE01BF54C3B00260B8E /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4BDF1BF54C3B00260B8E /* DVR.framework */; };
 		216C4BE11BF54C4100260B8E /* DVR.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4BDF1BF54C3B00260B8E /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		218B37021C09285500A065F3 /* list-canvases.json in Resources */ = {isa = PBXBuildFile; fileRef = 218B37001C09284600A065F3 /* list-canvases.json */; };
+		218B37031C09285600A065F3 /* list-canvases.json in Resources */ = {isa = PBXBuildFile; fileRef = 218B37001C09284600A065F3 /* list-canvases.json */; };
 		21E548F91BF6A1B6004855AE /* create-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 21E548F81BF6A1B6004855AE /* create-canvas.json */; };
 		21E548FA1BF6A1B6004855AE /* create-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 21E548F81BF6A1B6004855AE /* create-canvas.json */; };
 		21FB6ABF1BF53C9D003C82BB /* CanvasKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 21FB6ABE1BF53C9D003C82BB /* CanvasKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -130,6 +132,7 @@
 		216C4BBE1BF54AF100260B8E /* list-collections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "list-collections.json"; sourceTree = "<group>"; };
 		216C4BD21BF54BB000260B8E /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/Mac/DVR.framework; sourceTree = "<group>"; };
 		216C4BDF1BF54C3B00260B8E /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/iOS/DVR.framework; sourceTree = "<group>"; };
+		218B37001C09284600A065F3 /* list-canvases.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "list-canvases.json"; sourceTree = "<group>"; };
 		21E548F81BF6A1B6004855AE /* create-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "create-canvas.json"; sourceTree = "<group>"; };
 		21FB6ABB1BF53C9D003C82BB /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21FB6ABE1BF53C9D003C82BB /* CanvasKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasKit.h; sourceTree = "<group>"; };
@@ -209,6 +212,7 @@
 				21E548F81BF6A1B6004855AE /* create-canvas.json */,
 				2119D3821BF6BBAF00E91D6F /* sign-in.json */,
 				2118DB991BFCEA2F004054FA /* destroy-canvas.json */,
+				218B37001C09284600A065F3 /* list-canvases.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -430,6 +434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				216C4BC61BF54B0700260B8E /* list-collections.json in Resources */,
+				218B37021C09285500A065F3 /* list-canvases.json in Resources */,
 				2119D3841BF6BBAF00E91D6F /* sign-in.json in Resources */,
 				2118DB9B1BFCEA2F004054FA /* destroy-canvas.json in Resources */,
 				21E548FA1BF6A1B6004855AE /* create-canvas.json in Resources */,
@@ -448,6 +453,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				216C4BC81BF54B0800260B8E /* list-collections.json in Resources */,
+				218B37031C09285600A065F3 /* list-canvases.json in Resources */,
 				2119D3831BF6BBAF00E91D6F /* sign-in.json in Resources */,
 				2118DB9A1BFCEA2F004054FA /* destroy-canvas.json in Resources */,
 				21E548F91BF6A1B6004855AE /* create-canvas.json in Resources */,

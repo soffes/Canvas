@@ -19,6 +19,7 @@ class APIClientCanvasTests: XCTestCase {
 		client.createCanvas(collectionID: "test", body: "# From CanvasKit\nYay.") {
 			switch $0 {
 			case .Success(let canvas):
+				print("canvas: \(canvas)")
 				// TODO: Assert that the title is what we expect
 				XCTAssertEqual("4d9077a8-2f66-450a-9c51-db11b75f09fc", canvas.ID)
 			default:

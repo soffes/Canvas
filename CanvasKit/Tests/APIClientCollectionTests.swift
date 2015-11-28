@@ -28,4 +28,22 @@ class APIClientCollectionTests: XCTestCase {
 
 		waitForExpectationsWithTimeout(1, handler: nil)
 	}
+
+	func testListCanvases() {
+		let expectation = expectationWithDescription("Networking")
+		let dvr = Session(cassetteName: "list-canvases")
+		let client = APIClient(accessToken: "REDACTED_TOKEN", session: dvr)
+
+		client.listCanvases(collectionID: "soffes") {
+			switch $0 {
+			case .Success(let canvases):
+				XCTAssertEqual(["Canvas Things", "Swift Vitamins Ideas", "Swift Summit Presentation"], canvases.flatMap({ $0.title }))
+			default:
+				XCTFail()
+			}
+			expectation.fulfill()
+		}
+
+		waitForExpectationsWithTimeout(1, handler: nil)
+	}
 }
