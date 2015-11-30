@@ -80,27 +80,44 @@ extension APIClient {
 
 	// MARK: - Archive
 
-	public func archiveCanvas(canvas canvas: Canvas, completion: Result<Void> -> Void) {
+	public func archiveCanvas(canvas canvas: Canvas, completion: Result<Canvas> -> Void) {
 		archiveCanvas(canvasID: canvas.ID, completion: completion)
 	}
 
-	public func archiveCanvas(canvasID canvasID: String, completion: Result<Void> -> Void) {
+	public func archiveCanvas(canvasID canvasID: String, completion: Result<Canvas> -> Void) {
 		let request = self.request(method: .PATCH, path: "canvases/\(canvasID)", params: [
 			"data": [
 				"archived": true
 			]
 		])
 
-		session.dataTaskWithRequest(request) { _, response, _ in
-			if let res = response as? NSHTTPURLResponse where res.statusCode == 200 {
+		session.dataTaskWithRequest(request) { responseData, response, _ in
+			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
 				dispatch_async(networkCompletionQueue) {
-					completion(.Success())
+					completion(.Failure("Unauthorized"))
+				}
+				return
+			}
+
+			guard let responseData = responseData,
+				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
+				dictionary = json as? JSONDictionary
+			else {
+				dispatch_async(networkCompletionQueue) {
+					completion(.Failure("Invalid JSON"))
+				}
+				return
+			}
+
+			if let data = dictionary["data"] as? JSONDictionary, canvas = Canvas(dictionary: data) where canvas.archivedAt != nil {
+				dispatch_async(networkCompletionQueue) {
+					completion(.Success(canvas))
 				}
 				return
 			}
 
 			dispatch_async(networkCompletionQueue) {
-				completion(.Failure("Failed to archive Canvas."))
+				completion(.Failure("Invalid response"))
 			}
 		}.resume()
 	}

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ISO8601
 
 public struct Canvas {
 
@@ -19,6 +20,7 @@ public struct Canvas {
 	public let title: String?
 	public let createdAt: NSDate
 	public let updatedAt: NSDate
+	public let archivedAt: NSDate?
 
 	public var displayTitle: String {
 		return title ?? "Untitled"
@@ -66,6 +68,8 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 		title = dictionary["title"] as? String
 		self.createdAt = NSDate(timeIntervalSince1970: createdAt / 1000)
 		self.updatedAt = NSDate(timeIntervalSince1970: updatedAt / 1000)
+
+		let archivedAtString = dictionary["archived_at"] as? String
+		archivedAt = archivedAtString.flatMap { NSDate(ISO8601String: $0) }
 	}
 }
-

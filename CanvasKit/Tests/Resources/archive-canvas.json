@@ -1,48 +1,51 @@
 {
   "interactions" : [
     {
-      "recorded_at" : 1448917018.80723,
+      "recorded_at" : 1448921676.272362,
       "response" : {
         "body" : {
           "data" : {
             "collection_id" : "b29c5091-3959-4ca8-a39e-c3159f5f06c5",
-            "id" : "9448ee1c-0c57-48ea-abd7-20a00348be24",
+            "id" : "dd260994-2b82-4954-87b3-75698f19dbad",
             "data" : {
-              "data" : "⧙doc-heading⧘Please archive this\nSam is going to archive this with iOS.",
+              "data" : "⧙doc-heading⧘Archive me too\nYep.",
               "type" : "http:\/\/sharejs.org\/types\/textv1",
-              "v" : 63,
+              "v" : 8,
               "m" : {
-                "mtime" : 1448916236461,
-                "ctime" : 1448916218225
+                "mtime" : 1448921644128,
+                "ctime" : 1448921637396
               }
             },
             "readonly" : true,
             "created_by_id" : "ea8a6521-dc2b-4638-9c93-89ad79362f73",
-            "shortID" : "4vOc00naJvJfsGM162T8S8",
+            "shortID" : "6JiGCpAJdbw8jzitxst1E1",
             "source_id" : null,
             "type" : "canvases",
-            "title" : "Please archive this",
+            "title" : "Archive me too",
             "links" : {
-              "self" : "\/canvases\/9448ee1c-0c57-48ea-abd7-20a00348be24",
+              "self" : "\/canvases\/dd260994-2b82-4954-87b3-75698f19dbad",
               "collection" : "\/collections\/b29c5091-3959-4ca8-a39e-c3159f5f06c5"
-            }
+            },
+            "archived_at" : "2015-11-30T22:14:35.955Z"
           }
         },
         "status" : 200,
-        "url" : "https:\/\/api.usecanvas.com\/canvases\/9448ee1c-0c57-48ea-abd7-20a00348be24",
+        "url" : "https:\/\/api.usecanvas.com\/canvases\/dd260994-2b82-4954-87b3-75698f19dbad",
         "headers" : {
           "Access-Control-Allow-Origin" : "undefined",
+          "X-Content-Security-Policy" : "default-src 'self'",
           "Content-Type" : "application\/json; charset=utf-8",
+          "Content-Security-Policy" : "default-src 'self'",
           "X-Xss-Protection" : "1; mode=block",
           "Server" : "Cowboy",
-          "Access-Control-Allow-Methods" : "GET,HEAD,PUT,PATCH,POST,DELETE",
           "X-Download-Options" : "noopen",
+          "Access-Control-Allow-Methods" : "GET,HEAD,PUT,PATCH,POST,DELETE",
           "Access-Control-Max-Age" : "3600",
+          "X-Webkit-Csp" : "default-src 'self'",
           "Via" : "1.1 vegur",
-          "Cache-Control" : "no-store, no-cache",
-          "Date" : "Mon, 30 Nov 2015 20:56:58 GMT",
+          "Date" : "Mon, 30 Nov 2015 22:14:36 GMT",
           "Strict-Transport-Security" : "max-age=15768000",
-          "Content-Length" : "604",
+          "Content-Length" : "600",
           "Connection" : "keep-alive",
           "X-Content-Type-Options" : "nosniff",
           "X-Frame-Options" : "DENY",
@@ -56,7 +59,7 @@
             "archived" : true
           }
         },
-        "url" : "https:\/\/api.usecanvas.com\/canvases\/9448ee1c-0c57-48ea-abd7-20a00348be24",
+        "url" : "https:\/\/api.usecanvas.com\/canvases\/dd260994-2b82-4954-87b3-75698f19dbad",
         "headers" : {
           "Accept" : "application\/json",
           "Authorization" : "Bearer REDACTED_TOKEN",
