@@ -1,0 +1,69 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1448917018.80723,
+      "response" : {
+        "body" : {
+          "data" : {
+            "collection_id" : "b29c5091-3959-4ca8-a39e-c3159f5f06c5",
+            "id" : "9448ee1c-0c57-48ea-abd7-20a00348be24",
+            "data" : {
+              "data" : "⧙doc-heading⧘Please archive this\nSam is going to archive this with iOS.",
+              "type" : "http:\/\/sharejs.org\/types\/textv1",
+              "v" : 63,
+              "m" : {
+                "mtime" : 1448916236461,
+                "ctime" : 1448916218225
+              }
+            },
+            "readonly" : true,
+            "created_by_id" : "ea8a6521-dc2b-4638-9c93-89ad79362f73",
+            "shortID" : "4vOc00naJvJfsGM162T8S8",
+            "source_id" : null,
+            "type" : "canvases",
+            "title" : "Please archive this",
+            "links" : {
+              "self" : "\/canvases\/9448ee1c-0c57-48ea-abd7-20a00348be24",
+              "collection" : "\/collections\/b29c5091-3959-4ca8-a39e-c3159f5f06c5"
+            }
+          }
+        },
+        "status" : 200,
+        "url" : "https:\/\/api.usecanvas.com\/canvases\/9448ee1c-0c57-48ea-abd7-20a00348be24",
+        "headers" : {
+          "Access-Control-Allow-Origin" : "undefined",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Xss-Protection" : "1; mode=block",
+          "Server" : "Cowboy",
+          "Access-Control-Allow-Methods" : "GET,HEAD,PUT,PATCH,POST,DELETE",
+          "X-Download-Options" : "noopen",
+          "Access-Control-Max-Age" : "3600",
+          "Via" : "1.1 vegur",
+          "Cache-Control" : "no-store, no-cache",
+          "Date" : "Mon, 30 Nov 2015 20:56:58 GMT",
+          "Strict-Transport-Security" : "max-age=15768000",
+          "Content-Length" : "604",
+          "Connection" : "keep-alive",
+          "X-Content-Type-Options" : "nosniff",
+          "X-Frame-Options" : "DENY",
+          "Vary" : "Accept-Encoding"
+        }
+      },
+      "request" : {
+        "method" : "PATCH",
+        "body" : {
+          "data" : {
+            "archived" : true
+          }
+        },
+        "url" : "https:\/\/api.usecanvas.com\/canvases\/9448ee1c-0c57-48ea-abd7-20a00348be24",
+        "headers" : {
+          "Accept" : "application\/json",
+          "Authorization" : "Bearer REDACTED_TOKEN",
+          "Content-Type" : "application\/json"
+        }
+      }
+    }
+  ],
+  "name" : "archive-canvas"
+}

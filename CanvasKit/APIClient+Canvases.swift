@@ -57,11 +57,11 @@ extension APIClient {
 
 	// MARK: - Destory
 
-	public func destroyCanvas(canvas: Canvas, completion: Result<Void> -> Void) {
-		destroyCanvas(canvas.ID, completion: completion)
+	public func destroyCanvas(canvas canvas: Canvas, completion: Result<Void> -> Void) {
+		destroyCanvas(canvasID: canvas.ID, completion: completion)
 	}
 
-	public func destroyCanvas(canvasID: String, completion: Result<Void> -> Void) {
+	public func destroyCanvas(canvasID canvasID: String, completion: Result<Void> -> Void) {
 		let request = self.request(method: .DELETE, path: "canvases/\(canvasID)")
 		session.dataTaskWithRequest(request) { _, response, _ in
 			if let res = response as? NSHTTPURLResponse where res.statusCode == 204 {
@@ -73,6 +73,34 @@ extension APIClient {
 
 			dispatch_async(networkCompletionQueue) {
 				completion(.Failure("Failed to destory Canvas."))
+			}
+		}.resume()
+	}
+
+
+	// MARK: - Archive
+
+	public func archiveCanvas(canvas canvas: Canvas, completion: Result<Void> -> Void) {
+		archiveCanvas(canvasID: canvas.ID, completion: completion)
+	}
+
+	public func archiveCanvas(canvasID canvasID: String, completion: Result<Void> -> Void) {
+		let request = self.request(method: .PATCH, path: "canvases/\(canvasID)", params: [
+			"data": [
+				"archived": true
+			]
+		])
+
+		session.dataTaskWithRequest(request) { _, response, _ in
+			if let res = response as? NSHTTPURLResponse where res.statusCode == 200 {
+				dispatch_async(networkCompletionQueue) {
+					completion(.Success())
+				}
+				return
+			}
+
+			dispatch_async(networkCompletionQueue) {
+				completion(.Failure("Failed to archive Canvas."))
 			}
 		}.resume()
 	}

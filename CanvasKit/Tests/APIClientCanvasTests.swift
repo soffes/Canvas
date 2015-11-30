@@ -36,7 +36,24 @@ class APIClientCanvasTests: XCTestCase {
 		let dvr = Session(cassetteName: "destroy-canvas")
 		let client = APIClient(accessToken: "REDCATED_TOKEN", session: dvr)
 
-		client.destroyCanvas("d776c9ff-67b1-4f09-b762-acbaa2bbf124") {
+		client.destroyCanvas(canvasID: "d776c9ff-67b1-4f09-b762-acbaa2bbf124") {
+			switch $0 {
+			case .Success(_):
+				expectation.fulfill()
+			default:
+				XCTFail()
+			}
+		}
+
+		waitForExpectationsWithTimeout(1, handler: nil)
+	}
+
+	func testArchiveCanvas() {
+		let expectation = expectationWithDescription("Networking")
+		let dvr = Session(cassetteName: "archive-canvas")
+		let client = APIClient(accessToken: "REDACTED_TOKEN", session: dvr)
+
+		client.archiveCanvas(canvasID: "9448ee1c-0c57-48ea-abd7-20a00348be24") {
 			switch $0 {
 			case .Success(_):
 				expectation.fulfill()
@@ -48,4 +65,3 @@ class APIClientCanvasTests: XCTestCase {
 		waitForExpectationsWithTimeout(1, handler: nil)
 	}
 }
-
