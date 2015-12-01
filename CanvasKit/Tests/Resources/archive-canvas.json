@@ -1,36 +1,29 @@
 {
   "interactions" : [
     {
-      "recorded_at" : 1448921676.272362,
+      "recorded_at" : 1449009262.863114,
       "response" : {
         "body" : {
           "data" : {
-            "collection_id" : "b29c5091-3959-4ca8-a39e-c3159f5f06c5",
-            "id" : "dd260994-2b82-4954-87b3-75698f19dbad",
-            "data" : {
-              "data" : "⧙doc-heading⧘Archive me too\nYep.",
-              "type" : "http:\/\/sharejs.org\/types\/textv1",
-              "v" : 8,
-              "m" : {
-                "mtime" : 1448921644128,
-                "ctime" : 1448921637396
-              }
-            },
-            "readonly" : true,
+            "id" : "48565cf8-0471-4c6b-9655-aef5bcb0db8f",
             "created_by_id" : "ea8a6521-dc2b-4638-9c93-89ad79362f73",
-            "shortID" : "6JiGCpAJdbw8jzitxst1E1",
-            "source_id" : null,
+            "shortID" : "2cuULDdElqrpQ5z7VR2bZZ",
+            "archived_at" : "2015-12-01T22:34:22.227Z",
             "type" : "canvases",
-            "title" : "Archive me too",
+            "collection_id" : "b29c5091-3959-4ca8-a39e-c3159f5f06c5",
+            "title" : "Archive me",
+            "summary" : "",
+            "source_id" : null,
+            "updated_at" : "2015-12-01T22:29:55.058Z",
             "links" : {
-              "self" : "\/canvases\/dd260994-2b82-4954-87b3-75698f19dbad",
+              "self" : "\/canvases\/48565cf8-0471-4c6b-9655-aef5bcb0db8f",
               "collection" : "\/collections\/b29c5091-3959-4ca8-a39e-c3159f5f06c5"
             },
-            "archived_at" : "2015-11-30T22:14:35.955Z"
+            "readonly" : true
           }
         },
         "status" : 200,
-        "url" : "https:\/\/api.usecanvas.com\/canvases\/dd260994-2b82-4954-87b3-75698f19dbad",
+        "url" : "https:\/\/api.usecanvas.com\/canvases\/48565cf8-0471-4c6b-9655-aef5bcb0db8f",
         "headers" : {
           "Access-Control-Allow-Origin" : "undefined",
           "X-Content-Security-Policy" : "default-src 'self'",
@@ -43,9 +36,9 @@
           "Access-Control-Max-Age" : "3600",
           "X-Webkit-Csp" : "default-src 'self'",
           "Via" : "1.1 vegur",
-          "Date" : "Mon, 30 Nov 2015 22:14:36 GMT",
+          "Date" : "Tue, 01 Dec 2015 22:34:22 GMT",
           "Strict-Transport-Security" : "max-age=15768000",
-          "Content-Length" : "600",
+          "Content-Length" : "496",
           "Connection" : "keep-alive",
           "X-Content-Type-Options" : "nosniff",
           "X-Frame-Options" : "DENY",
@@ -59,7 +52,7 @@
             "archived" : true
           }
         },
-        "url" : "https:\/\/api.usecanvas.com\/canvases\/dd260994-2b82-4954-87b3-75698f19dbad",
+        "url" : "https:\/\/api.usecanvas.com\/canvases\/48565cf8-0471-4c6b-9655-aef5bcb0db8f",
         "headers" : {
           "Accept" : "application\/json",
           "Authorization" : "Bearer REDACTED_TOKEN",

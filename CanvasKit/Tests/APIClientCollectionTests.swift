@@ -37,7 +37,7 @@ class APIClientCollectionTests: XCTestCase {
 		client.listCanvases(collectionID: "soffes") {
 			switch $0 {
 			case .Success(let canvases):
-				XCTAssertEqual(["Canvas Things", "Swift Vitamins Ideas", "Swift Summit Presentation"], canvases.flatMap({ $0.title }))
+				XCTAssertEqual(["Sam’s Wish Lists", "New Headphone Stuff", "Canvas Things"], canvases.flatMap({ $0.title }))
 			default:
 				XCTFail()
 			}

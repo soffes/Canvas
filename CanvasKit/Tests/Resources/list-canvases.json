@@ -1,101 +1,86 @@
 {
   "interactions" : [
     {
-      "recorded_at" : 1448669232.140609,
+      "recorded_at" : 1449009730.605825,
       "response" : {
         "body" : {
           "data" : [
             {
+              "id" : "REDACTED",
+              "created_by_id" : "ea8a6521-dc2b-4638-9c93-89ad79362f73",
+              "shortID" : "0CRj8ZGyLhttXXeR8AtpEa",
+              "archived_at" : null,
+              "type" : "canvases",
               "collection_id" : "e37d16d8-4223-4ef5-bf8a-75e59a5ab1f5",
-              "id" : "REDACTED_ID",
-              "data" : {
-                "data" : "REDACTED",
-                "type" : "http:\/\/sharejs.org\/types\/textv1",
-                "v" : 3360,
-                "m" : {
-                  "mtime" : 1447444419534,
-                  "ctime" : 1445548043757
-                }
+              "title" : "Sam’s Wish Lists",
+              "summary" : "I don't really need more stuff. If you insist on getting me something, here's some lists of stuff I would enjoy. Amazon. My Amazon wishlist is in no particular order. There's a bunch of books on it toward the end. I'm less excited about those. Amazon Wish.",
+              "source_id" : null,
+              "updated_at" : "2015-11-30T17:40:32.129Z",
+              "links" : {
+                "self" : "\/canvases\/1497fee9-782d-4631-9b8d-316dc56e6fb6",
+                "collection" : "\/collections\/e37d16d8-4223-4ef5-bf8a-75e59a5ab1f5"
               },
-              "readonly" : false,
+              "readonly" : true
+            },
+            {
+              "id" : "REDACTED",
+              "created_by_id" : "ea8a6521-dc2b-4638-9c93-89ad79362f73",
+              "shortID" : "6SlQYSlkNgOjgpvHhPBHvi",
+              "archived_at" : null,
+              "type" : "canvases",
+              "collection_id" : "e37d16d8-4223-4ef5-bf8a-75e59a5ab1f5",
+              "title" : "New Headphone Stuff",
+              "summary" : "I'm looking to get a new cable and preamp for my desk headphones. I use these almost all day every work day. The preamp I had for awhile started crackling a bunch lately. Just discovered my headphones are only 16ohms  Might be time to upgarde if I get a.",
+              "source_id" : null,
+              "updated_at" : "2015-11-30T17:40:32.129Z",
+              "links" : {
+                "self" : "\/canvases\/e1f1f887-c00f-4ccb-85ec-5ddd8e44e868",
+                "collection" : "\/collections\/e37d16d8-4223-4ef5-bf8a-75e59a5ab1f5"
+              },
+              "readonly" : true
+            },
+            {
+              "id" : "REDACTED",
               "created_by_id" : "ea8a6521-dc2b-4638-9c93-89ad79362f73",
               "shortID" : "5enQBxuGB5YKQTES3LsAiq",
-              "source_id" : null,
+              "archived_at" : null,
               "type" : "canvases",
+              "collection_id" : "e37d16d8-4223-4ef5-bf8a-75e59a5ab1f5",
               "title" : "Canvas Things",
+              "summary" : "Bugs. If you're in a list, move to the first character, hit return, and press up, nothing happens. #380. Sign in 404s on success. Visit usecanvas.com after and it takes you to your signed in dashboard. #387. Content type icons  list bullets  and checkboxes.",
+              "source_id" : null,
+              "updated_at" : "2015-11-30T17:40:32.129Z",
               "links" : {
                 "self" : "\/canvases\/abe84c54-f055-46e6-b72f-9fe70c4c6b36",
                 "collection" : "\/collections\/e37d16d8-4223-4ef5-bf8a-75e59a5ab1f5"
-              }
-            },
-            {
-              "collection_id" : "e37d16d8-4223-4ef5-bf8a-75e59a5ab1f5",
-              "id" : "REDACTED_ID",
-              "data" : {
-                "data" : "REDACTED",
-                "type" : "http:\/\/sharejs.org\/types\/textv1",
-                "v" : 65,
-                "m" : {
-                  "mtime" : 1447091450707,
-                  "ctime" : 1447091422475
-                }
               },
-              "readonly" : false,
-              "created_by_id" : "ea8a6521-dc2b-4638-9c93-89ad79362f73",
-              "shortID" : "2IPsCbxca6iFLDJFgAp7PZ",
-              "source_id" : null,
-              "type" : "canvases",
-              "title" : "Swift Vitamins Ideas",
-              "links" : {
-                "self" : "\/canvases\/5978aa74-c7b6-49d9-b502-6aa82bbeb0eb",
-                "collection" : "\/collections\/e37d16d8-4223-4ef5-bf8a-75e59a5ab1f5"
-              }
-            },
-            {
-              "collection_id" : "e37d16d8-4223-4ef5-bf8a-75e59a5ab1f5",
-              "id" : "REDACTED_ID",
-              "data" : {
-                "data" : "REDACTED",
-                "type" : "http:\/\/sharejs.org\/types\/textv1",
-                "v" : 3883,
-                "m" : {
-                  "mtime" : 1446010178344,
-                  "ctime" : 1445983300232
-                }
-              },
-              "readonly" : false,
-              "created_by_id" : "ea8a6521-dc2b-4638-9c93-89ad79362f73",
-              "shortID" : "3Q7uXFdBydbuBLJFFt3DGL",
-              "source_id" : null,
-              "type" : "canvases",
-              "title" : "Swift Summit Presentation",
-              "links" : {
-                "self" : "\/canvases\/7e3128f7-1bc6-47ef-82cb-eca490388e4f",
-                "collection" : "\/collections\/e37d16d8-4223-4ef5-bf8a-75e59a5ab1f5"
-              }
+              "readonly" : false
             }
           ]
         },
         "status" : 200,
         "url" : "https:\/\/api.usecanvas.com\/canvases?filter%5Bcollection%5D=soffes",
         "headers" : {
-          "Access-Control-Allow-Origin" : "undefined",
-          "Content-Type" : "application\/json; charset=utf-8",
-          "X-Xss-Protection" : "1; mode=block",
-          "Server" : "Cowboy",
-          "Access-Control-Allow-Methods" : "GET,HEAD,PUT,PATCH,POST,DELETE",
-          "X-Download-Options" : "noopen",
-          "Access-Control-Max-Age" : "3600",
           "Content-Encoding" : "gzip",
-          "Transfer-Encoding" : "Identity",
-          "Cache-Control" : "no-store, no-cache",
-          "Date" : "Sat, 28 Nov 2015 00:07:12 GMT",
-          "Via" : "1.1 vegur",
+          "Access-Control-Allow-Methods" : "GET,HEAD,PUT,PATCH,POST,DELETE",
+          "Content-Security-Policy" : "default-src 'self'",
+          "Server" : "Cowboy",
           "Strict-Transport-Security" : "max-age=15768000",
+          "Access-Control-Allow-Origin" : "undefined",
+          "X-Download-Options" : "noopen",
+          "Via" : "1.1 vegur",
+          "X-Xss-Protection" : "1; mode=block",
+          "Date" : "Tue, 01 Dec 2015 22:42:10 GMT",
           "Connection" : "keep-alive",
-          "X-Content-Type-Options" : "nosniff",
+          "Vary" : "Accept-Encoding",
+          "X-Content-Security-Policy" : "default-src 'self'",
+          "Transfer-Encoding" : "Identity",
           "X-Frame-Options" : "DENY",
-          "Vary" : "Accept-Encoding"
+          "Access-Control-Max-Age" : "3600",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "Etag" : "MjAxNS0xMi0wMVQyMjoxODoxOS45MDla",
+          "X-Webkit-Csp" : "default-src 'self'",
+          "X-Content-Type-Options" : "nosniff"
         }
       },
       "request" : {

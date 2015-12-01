@@ -14,14 +14,13 @@ class APIClientCanvasTests: XCTestCase {
 	func testCreateCanvas() {
 		let expectation = expectationWithDescription("Networking")
 		let dvr = Session(cassetteName: "create-canvas")
-		let client = APIClient(accessToken: "REDCATED_TOKEN", session: dvr)
+		let client = APIClient(accessToken: "REDACTED_TOKEN", session: dvr)
 
 		client.createCanvas(collectionID: "test", body: "# From CanvasKit\nYay.") {
 			switch $0 {
 			case .Success(let canvas):
 				print("canvas: \(canvas)")
-				// TODO: Assert that the title is what we expect
-				XCTAssertEqual("4d9077a8-2f66-450a-9c51-db11b75f09fc", canvas.ID)
+				XCTAssertEqual("From CanvasKit", canvas.title)
 			default:
 				XCTFail()
 			}
@@ -34,9 +33,9 @@ class APIClientCanvasTests: XCTestCase {
 	func testDestroyCanvas() {
 		let expectation = expectationWithDescription("Networking")
 		let dvr = Session(cassetteName: "destroy-canvas")
-		let client = APIClient(accessToken: "REDCATED_TOKEN", session: dvr)
+		let client = APIClient(accessToken: "REDACTED_TOKEN", session: dvr)
 
-		client.destroyCanvas(canvasID: "d776c9ff-67b1-4f09-b762-acbaa2bbf124") {
+		client.destroyCanvas(canvasID: "89480a5c-94fe-4fca-9a3d-faeff9f57154") {
 			switch $0 {
 			case .Success(_):
 				expectation.fulfill()
@@ -53,7 +52,7 @@ class APIClientCanvasTests: XCTestCase {
 		let dvr = Session(cassetteName: "archive-canvas")
 		let client = APIClient(accessToken: "REDACTED_TOKEN", session: dvr)
 
-		client.archiveCanvas(canvasID: "dd260994-2b82-4954-87b3-75698f19dbad") {
+		client.archiveCanvas(canvasID: "48565cf8-0471-4c6b-9655-aef5bcb0db8f") {
 			switch $0 {
 			case .Success(_):
 				expectation.fulfill()

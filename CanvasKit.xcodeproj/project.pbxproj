@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		2118DB971BFCE902004054FA /* APIClientCanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2118DB961BFCE902004054FA /* APIClientCanvasTests.swift */; };
 		2118DB981BFCE902004054FA /* APIClientCanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2118DB961BFCE902004054FA /* APIClientCanvasTests.swift */; };
-		2118DB9A1BFCEA2F004054FA /* destroy-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 2118DB991BFCEA2F004054FA /* destroy-canvas.json */; };
-		2118DB9B1BFCEA2F004054FA /* destroy-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 2118DB991BFCEA2F004054FA /* destroy-canvas.json */; };
 		2119D3831BF6BBAF00E91D6F /* sign-in.json in Resources */ = {isa = PBXBuildFile; fileRef = 2119D3821BF6BBAF00E91D6F /* sign-in.json */; };
 		2119D3841BF6BBAF00E91D6F /* sign-in.json in Resources */ = {isa = PBXBuildFile; fileRef = 2119D3821BF6BBAF00E91D6F /* sign-in.json */; };
 		2129D2E41BF54FF90018F255 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129D2E31BF54FF90018F255 /* AccountController.swift */; };
@@ -52,8 +50,14 @@
 		216C4BD51BF54BB000260B8E /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4BD21BF54BB000260B8E /* DVR.framework */; };
 		216C4BD91BF54BF400260B8E /* DVR.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4BD21BF54BB000260B8E /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		216C4BE11BF54C4100260B8E /* DVR.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4BDF1BF54C3B00260B8E /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		218B37021C09285500A065F3 /* list-canvases.json in Resources */ = {isa = PBXBuildFile; fileRef = 218B37001C09284600A065F3 /* list-canvases.json */; };
-		218B37031C09285600A065F3 /* list-canvases.json in Resources */ = {isa = PBXBuildFile; fileRef = 218B37001C09284600A065F3 /* list-canvases.json */; };
+		219DAC6F1C0E582500F39A6F /* archive-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC6E1C0E582500F39A6F /* archive-canvas.json */; };
+		219DAC701C0E582500F39A6F /* archive-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC6E1C0E582500F39A6F /* archive-canvas.json */; };
+		219DAC721C0E584E00F39A6F /* create-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC711C0E584E00F39A6F /* create-canvas.json */; };
+		219DAC731C0E584E00F39A6F /* create-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC711C0E584E00F39A6F /* create-canvas.json */; };
+		219DAC751C0E595000F39A6F /* destroy-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC741C0E595000F39A6F /* destroy-canvas.json */; };
+		219DAC761C0E595000F39A6F /* destroy-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC741C0E595000F39A6F /* destroy-canvas.json */; };
+		219DAC781C0E59FD00F39A6F /* list-canvases.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC771C0E59FD00F39A6F /* list-canvases.json */; };
+		219DAC791C0E59FD00F39A6F /* list-canvases.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC771C0E59FD00F39A6F /* list-canvases.json */; };
 		21D2B1811C0D00DE003652B7 /* ISO8601.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D2B1801C0D00DE003652B7 /* ISO8601.framework */; };
 		21D2B1851C0D00EB003652B7 /* ISO8601.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D2B1831C0D00EB003652B7 /* ISO8601.framework */; };
 		21D2B1861C0D010F003652B7 /* ISO8601.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D2B1831C0D00EB003652B7 /* ISO8601.framework */; };
@@ -61,10 +65,6 @@
 		21D2B1891C0D0127003652B7 /* ISO8601.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D2B1801C0D00DE003652B7 /* ISO8601.framework */; };
 		21D2B18A1C0D0127003652B7 /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4BDF1BF54C3B00260B8E /* DVR.framework */; };
 		21D2B18B1C0D012D003652B7 /* ISO8601.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21D2B1801C0D00DE003652B7 /* ISO8601.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		21D2B1901C0D01E3003652B7 /* archive-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 21D2B18F1C0D01E3003652B7 /* archive-canvas.json */; };
-		21D2B1911C0D01E3003652B7 /* archive-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 21D2B18F1C0D01E3003652B7 /* archive-canvas.json */; };
-		21E548F91BF6A1B6004855AE /* create-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 21E548F81BF6A1B6004855AE /* create-canvas.json */; };
-		21E548FA1BF6A1B6004855AE /* create-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 21E548F81BF6A1B6004855AE /* create-canvas.json */; };
 		21FB6ABF1BF53C9D003C82BB /* CanvasKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 21FB6ABE1BF53C9D003C82BB /* CanvasKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21FB6AC61BF53C9D003C82BB /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FB6ABB1BF53C9D003C82BB /* CanvasKit.framework */; };
 /* End PBXBuildFile section */
@@ -117,7 +117,6 @@
 
 /* Begin PBXFileReference section */
 		2118DB961BFCE902004054FA /* APIClientCanvasTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientCanvasTests.swift; sourceTree = "<group>"; };
-		2118DB991BFCEA2F004054FA /* destroy-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "destroy-canvas.json"; sourceTree = "<group>"; };
 		2119D3821BF6BBAF00E91D6F /* sign-in.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sign-in.json"; sourceTree = "<group>"; };
 		2129D2E31BF54FF90018F255 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		2129D2E61BF550290018F255 /* SSKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSKeychain.framework; path = Carthage/Build/iOS/SSKeychain.framework; sourceTree = "<group>"; };
@@ -141,11 +140,12 @@
 		216C4BBE1BF54AF100260B8E /* list-collections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "list-collections.json"; sourceTree = "<group>"; };
 		216C4BD21BF54BB000260B8E /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/Mac/DVR.framework; sourceTree = "<group>"; };
 		216C4BDF1BF54C3B00260B8E /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/iOS/DVR.framework; sourceTree = "<group>"; };
-		218B37001C09284600A065F3 /* list-canvases.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "list-canvases.json"; sourceTree = "<group>"; };
+		219DAC6E1C0E582500F39A6F /* archive-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "archive-canvas.json"; sourceTree = "<group>"; };
+		219DAC711C0E584E00F39A6F /* create-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "create-canvas.json"; sourceTree = "<group>"; };
+		219DAC741C0E595000F39A6F /* destroy-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "destroy-canvas.json"; sourceTree = "<group>"; };
+		219DAC771C0E59FD00F39A6F /* list-canvases.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "list-canvases.json"; sourceTree = "<group>"; };
 		21D2B1801C0D00DE003652B7 /* ISO8601.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ISO8601.framework; path = Carthage/Build/iOS/ISO8601.framework; sourceTree = "<group>"; };
 		21D2B1831C0D00EB003652B7 /* ISO8601.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ISO8601.framework; path = Carthage/Build/Mac/ISO8601.framework; sourceTree = "<group>"; };
-		21D2B18F1C0D01E3003652B7 /* archive-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "archive-canvas.json"; sourceTree = "<group>"; };
-		21E548F81BF6A1B6004855AE /* create-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "create-canvas.json"; sourceTree = "<group>"; };
 		21FB6ABB1BF53C9D003C82BB /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21FB6ABE1BF53C9D003C82BB /* CanvasKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasKit.h; sourceTree = "<group>"; };
 		21FB6AC01BF53C9D003C82BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -224,11 +224,11 @@
 			children = (
 				216C4BBD1BF54AF100260B8E /* Info.plist */,
 				216C4BBE1BF54AF100260B8E /* list-collections.json */,
-				21E548F81BF6A1B6004855AE /* create-canvas.json */,
 				2119D3821BF6BBAF00E91D6F /* sign-in.json */,
-				2118DB991BFCEA2F004054FA /* destroy-canvas.json */,
-				218B37001C09284600A065F3 /* list-canvases.json */,
-				21D2B18F1C0D01E3003652B7 /* archive-canvas.json */,
+				219DAC6E1C0E582500F39A6F /* archive-canvas.json */,
+				219DAC711C0E584E00F39A6F /* create-canvas.json */,
+				219DAC741C0E595000F39A6F /* destroy-canvas.json */,
+				219DAC771C0E59FD00F39A6F /* list-canvases.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -452,11 +452,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				216C4BC61BF54B0700260B8E /* list-collections.json in Resources */,
-				218B37021C09285500A065F3 /* list-canvases.json in Resources */,
+				219DAC761C0E595000F39A6F /* destroy-canvas.json in Resources */,
+				219DAC731C0E584E00F39A6F /* create-canvas.json in Resources */,
+				219DAC791C0E59FD00F39A6F /* list-canvases.json in Resources */,
 				2119D3841BF6BBAF00E91D6F /* sign-in.json in Resources */,
-				2118DB9B1BFCEA2F004054FA /* destroy-canvas.json in Resources */,
-				21D2B1911C0D01E3003652B7 /* archive-canvas.json in Resources */,
-				21E548FA1BF6A1B6004855AE /* create-canvas.json in Resources */,
+				219DAC701C0E582500F39A6F /* archive-canvas.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,11 +472,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				216C4BC81BF54B0800260B8E /* list-collections.json in Resources */,
-				218B37031C09285600A065F3 /* list-canvases.json in Resources */,
+				219DAC751C0E595000F39A6F /* destroy-canvas.json in Resources */,
+				219DAC721C0E584E00F39A6F /* create-canvas.json in Resources */,
+				219DAC781C0E59FD00F39A6F /* list-canvases.json in Resources */,
 				2119D3831BF6BBAF00E91D6F /* sign-in.json in Resources */,
-				2118DB9A1BFCEA2F004054FA /* destroy-canvas.json in Resources */,
-				21D2B1901C0D01E3003652B7 /* archive-canvas.json in Resources */,
-				21E548F91BF6A1B6004855AE /* create-canvas.json in Resources */,
+				219DAC6F1C0E582500F39A6F /* archive-canvas.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

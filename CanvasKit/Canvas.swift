@@ -18,7 +18,7 @@ public struct Canvas {
 	public let collectionID: String
 	public let readOnly: Bool
 	public let title: String?
-	public let createdAt: NSDate
+	public let summary: String?
 	public let updatedAt: NSDate
 	public let archivedAt: NSDate?
 
@@ -35,16 +35,15 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 			"shortID": shortID,
 			"collection_id": collectionID,
 			"readonly": readOnly,
-			"data": [
-				"m": [
-					"ctime": createdAt.timeIntervalSince1970 * 1000,
-					"mtime": updatedAt.timeIntervalSince1970 * 1000
-				]
-			]
+			"updated_at": updatedAt.ISO8601String()
 		]
 
 		if let title = title {
 			dictionary["title"] = title
+		}
+
+		if let archivedAt = archivedAt {
+			dictionary["archived_at"] = archivedAt.ISO8601String()
 		}
 
 		return dictionary
@@ -55,10 +54,8 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 			shortID = dictionary["shortID"] as? String,
 			collectionID = dictionary["collection_id"] as? String,
 			readOnly = dictionary["readonly"] as? Bool,
-			data = dictionary["data"] as? JSONDictionary,
-			m = data["m"] as? JSONDictionary,
-			createdAt = m["ctime"] as? NSTimeInterval,
-			updatedAt = m["mtime"] as? NSTimeInterval
+			updatedAtString = dictionary["updated_at"] as? String,
+			updatedAt = NSDate(ISO8601String: updatedAtString)
 		else { return nil }
 
 		self.ID = ID
@@ -66,8 +63,8 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 		self.collectionID = collectionID
 		self.readOnly = readOnly
 		title = dictionary["title"] as? String
-		self.createdAt = NSDate(timeIntervalSince1970: createdAt / 1000)
-		self.updatedAt = NSDate(timeIntervalSince1970: updatedAt / 1000)
+		summary = dictionary["summary"] as? String
+		self.updatedAt = updatedAt
 
 		let archivedAtString = dictionary["archived_at"] as? String
 		archivedAt = archivedAtString.flatMap { NSDate(ISO8601String: $0) }
