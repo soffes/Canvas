@@ -50,6 +50,10 @@
 		216C4BD51BF54BB000260B8E /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4BD21BF54BB000260B8E /* DVR.framework */; };
 		216C4BD91BF54BF400260B8E /* DVR.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4BD21BF54BB000260B8E /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		216C4BE11BF54C4100260B8E /* DVR.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4BDF1BF54C3B00260B8E /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2193340D1C0FD76B000A974B /* SearchCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2193340C1C0FD76B000A974B /* SearchCredential.swift */; };
+		2193340E1C0FD76B000A974B /* SearchCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2193340C1C0FD76B000A974B /* SearchCredential.swift */; };
+		219334101C0FD897000A974B /* search-credential.json in Resources */ = {isa = PBXBuildFile; fileRef = 2193340F1C0FD897000A974B /* search-credential.json */; };
+		219334111C0FD897000A974B /* search-credential.json in Resources */ = {isa = PBXBuildFile; fileRef = 2193340F1C0FD897000A974B /* search-credential.json */; };
 		219DAC6F1C0E582500F39A6F /* archive-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC6E1C0E582500F39A6F /* archive-canvas.json */; };
 		219DAC701C0E582500F39A6F /* archive-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC6E1C0E582500F39A6F /* archive-canvas.json */; };
 		219DAC721C0E584E00F39A6F /* create-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC711C0E584E00F39A6F /* create-canvas.json */; };
@@ -140,6 +144,8 @@
 		216C4BBE1BF54AF100260B8E /* list-collections.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "list-collections.json"; sourceTree = "<group>"; };
 		216C4BD21BF54BB000260B8E /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/Mac/DVR.framework; sourceTree = "<group>"; };
 		216C4BDF1BF54C3B00260B8E /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/iOS/DVR.framework; sourceTree = "<group>"; };
+		2193340C1C0FD76B000A974B /* SearchCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCredential.swift; sourceTree = "<group>"; };
+		2193340F1C0FD897000A974B /* search-credential.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "search-credential.json"; sourceTree = "<group>"; };
 		219DAC6E1C0E582500F39A6F /* archive-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "archive-canvas.json"; sourceTree = "<group>"; };
 		219DAC711C0E584E00F39A6F /* create-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "create-canvas.json"; sourceTree = "<group>"; };
 		219DAC741C0E595000F39A6F /* destroy-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "destroy-canvas.json"; sourceTree = "<group>"; };
@@ -229,6 +235,7 @@
 				219DAC711C0E584E00F39A6F /* create-canvas.json */,
 				219DAC741C0E595000F39A6F /* destroy-canvas.json */,
 				219DAC771C0E59FD00F39A6F /* list-canvases.json */,
+				2193340F1C0FD897000A974B /* search-credential.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -262,6 +269,42 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		219334081C0FD74E000A974B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				216C4BAE1BF54AEB00260B8E /* Account.swift */,
+				216C4BB01BF54AEB00260B8E /* Canvas.swift */,
+				216C4BB11BF54AEB00260B8E /* Collection.swift */,
+				216C4BB31BF54AEB00260B8E /* User.swift */,
+				2193340C1C0FD76B000A974B /* SearchCredential.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		219334091C0FD755000A974B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2129D2E31BF54FF90018F255 /* AccountController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		2193340A1C0FD75C000A974B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				216C4BB21BF54AEB00260B8E /* JSONSerialization.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		2193340B1C0FD762000A974B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				21FB6AC01BF53C9D003C82BB /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		21FB6AB11BF53C9D003C82BB = {
 			isa = PBXGroup;
 			children = (
@@ -287,14 +330,11 @@
 			isa = PBXGroup;
 			children = (
 				21FB6ABE1BF53C9D003C82BB /* CanvasKit.h */,
-				216C4BAE1BF54AEB00260B8E /* Account.swift */,
-				2129D2E31BF54FF90018F255 /* AccountController.swift */,
+				219334081C0FD74E000A974B /* Models */,
 				213C2BD61BF688B600F6BF50 /* Networking */,
-				216C4BB01BF54AEB00260B8E /* Canvas.swift */,
-				216C4BB11BF54AEB00260B8E /* Collection.swift */,
-				216C4BB21BF54AEB00260B8E /* JSONSerialization.swift */,
-				216C4BB31BF54AEB00260B8E /* User.swift */,
-				21FB6AC01BF53C9D003C82BB /* Info.plist */,
+				219334091C0FD755000A974B /* Controllers */,
+				2193340A1C0FD75C000A974B /* Protocols */,
+				2193340B1C0FD762000A974B /* Resources */,
 			);
 			path = CanvasKit;
 			sourceTree = "<group>";
@@ -457,6 +497,7 @@
 				219DAC791C0E59FD00F39A6F /* list-canvases.json in Resources */,
 				2119D3841BF6BBAF00E91D6F /* sign-in.json in Resources */,
 				219DAC701C0E582500F39A6F /* archive-canvas.json in Resources */,
+				219334111C0FD897000A974B /* search-credential.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +518,7 @@
 				219DAC781C0E59FD00F39A6F /* list-canvases.json in Resources */,
 				2119D3831BF6BBAF00E91D6F /* sign-in.json in Resources */,
 				219DAC6F1C0E582500F39A6F /* archive-canvas.json in Resources */,
+				219334101C0FD897000A974B /* search-credential.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +533,7 @@
 				216C4BCB1BF54B0D00260B8E /* Account.swift in Sources */,
 				213C2BDF1BF68B2D00F6BF50 /* AuthorizationClient.swift in Sources */,
 				216C4BCC1BF54B0D00260B8E /* APIClient.swift in Sources */,
+				2193340E1C0FD76B000A974B /* SearchCredential.swift in Sources */,
 				213C2BD91BF688C900F6BF50 /* APIClient+Canvases.swift in Sources */,
 				216C4BD01BF54B0D00260B8E /* User.swift in Sources */,
 				216C4BCD1BF54B0D00260B8E /* Canvas.swift in Sources */,
@@ -520,6 +563,7 @@
 				216C4BB41BF54AEB00260B8E /* Account.swift in Sources */,
 				213C2BDE1BF68B2D00F6BF50 /* AuthorizationClient.swift in Sources */,
 				216C4BB51BF54AEB00260B8E /* APIClient.swift in Sources */,
+				2193340D1C0FD76B000A974B /* SearchCredential.swift in Sources */,
 				213C2BD81BF688C900F6BF50 /* APIClient+Canvases.swift in Sources */,
 				216C4BB91BF54AEB00260B8E /* User.swift in Sources */,
 				216C4BB61BF54AEB00260B8E /* Canvas.swift in Sources */,

@@ -7,6 +7,9 @@
 //
 
 extension APIClient {
+
+	// MARK: - Listing Collections
+
 	public func listCollections(completion: Result<[Collection]> -> Void) {
 		let request = self.request(path: "collections")
 		session.dataTaskWithRequest(request) { responseData, response, error in
@@ -41,12 +44,26 @@ extension APIClient {
 		}.resume()
 	}
 
-	public func listCanvases(collection: Collection, completion: Result<[Canvas]> -> Void) {
-		listCanvases(collectionID: collection.ID, completion: completion)
+
+	// MARK: - Getting a Collection's Search Token
+
+	public func getCollectionSearchCredential(collection collection: Collection, completion: Result<SearchCredential> -> Void) {
+		getCollectionSearchCredential(collectionID: collection.ID, completion: completion)
 	}
 
-	public func listCanvases(collectionID collectionID: String, completion: Result<[Canvas]> -> Void) {
-		let request = self.request(path: "canvases", params: ["filter[collection]": collectionID])
+	public func getCollectionSearchCredential(collectionID collectionID: String, completion: Result<SearchCredential> -> Void) {
+		let params = [
+			"data": [
+				"collection": [
+					"id": collectionID,
+					"type": "collections"
+				],
+				"type": "search-keys"
+			]
+		]
+
+		let request = self.request(method: .POST, path: "search-tokens", params: params)
+
 		session.dataTaskWithRequest(request) { responseData, response, error in
 			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
 				dispatch_async(networkCompletionQueue) {
@@ -65,10 +82,9 @@ extension APIClient {
 					return
 			}
 
-			if let data = dictionary["data"] as? [JSONDictionary] {
-				let canvases = data.flatMap({ Canvas(dictionary: $0) })
+			if let data = dictionary["data"] as? JSONDictionary, credential = SearchCredential(dictionary: data) {
 				dispatch_async(networkCompletionQueue) {
-					completion(.Success(canvases))
+					completion(.Success(credential))
 				}
 				return
 			}

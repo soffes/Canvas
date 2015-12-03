@@ -8,7 +8,48 @@
 
 extension APIClient {
 
-	// MARK: - Create
+	// MARK: - Listing Canvases
+
+	public func listCanvases(collection: Collection, completion: Result<[Canvas]> -> Void) {
+		listCanvases(collectionID: collection.ID, completion: completion)
+	}
+
+	public func listCanvases(collectionID collectionID: String, completion: Result<[Canvas]> -> Void) {
+		let request = self.request(path: "canvases", params: ["filter[collection]": collectionID])
+		session.dataTaskWithRequest(request) { responseData, response, error in
+			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
+				dispatch_async(networkCompletionQueue) {
+					completion(.Failure("Unauthorized"))
+				}
+				return
+			}
+
+			guard let responseData = responseData,
+				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
+				dictionary = json as? JSONDictionary
+				else {
+					dispatch_async(networkCompletionQueue) {
+						completion(.Failure("Invalid JSON"))
+					}
+					return
+			}
+
+			if let data = dictionary["data"] as? [JSONDictionary] {
+				let canvases = data.flatMap({ Canvas(dictionary: $0) })
+				dispatch_async(networkCompletionQueue) {
+					completion(.Success(canvases))
+				}
+				return
+			}
+
+			dispatch_async(networkCompletionQueue) {
+				completion(.Failure("Invalid response"))
+			}
+			}.resume()
+	}
+
+
+	// MARK: - Creating a Canvas
 
 	public func createCanvas(collection collection: Collection, body: String, completion: Result<Canvas> -> Void) {
 		createCanvas(collectionID: collection.ID, body: body, completion: completion)
@@ -55,7 +96,7 @@ extension APIClient {
 	}
 
 
-	// MARK: - Destory
+	// MARK: - Destorying a Canvas
 
 	public func destroyCanvas(canvas canvas: Canvas, completion: Result<Void> -> Void) {
 		destroyCanvas(canvasID: canvas.ID, completion: completion)
@@ -78,7 +119,7 @@ extension APIClient {
 	}
 
 
-	// MARK: - Archive
+	// MARK: - Archiving a Canvas
 
 	public func archiveCanvas(canvas canvas: Canvas, completion: Result<Canvas> -> Void) {
 		archiveCanvas(canvasID: canvas.ID, completion: completion)

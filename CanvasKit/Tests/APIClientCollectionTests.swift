@@ -29,15 +29,16 @@ class APIClientCollectionTests: XCTestCase {
 		waitForExpectationsWithTimeout(1, handler: nil)
 	}
 
-	func testListCanvases() {
+	func testGetCollectionSearchCredential() {
 		let expectation = expectationWithDescription("Networking")
-		let dvr = Session(cassetteName: "list-canvases")
+		let dvr = Session(cassetteName: "search-credential")
 		let client = APIClient(accessToken: "REDACTED_TOKEN", session: dvr)
 
-		client.listCanvases(collectionID: "soffes") {
+		client.getCollectionSearchCredential(collectionID: "soffes") {
 			switch $0 {
-			case .Success(let canvases):
-				XCTAssertEqual(["Sam’s Wish Lists", "New Headphone Stuff", "Canvas Things"], canvases.flatMap({ $0.title }))
+			case .Success(let searchCredential):
+				XCTAssertEqual("REDACTED_APPLICATION_ID", searchCredential.applicationID)
+				XCTAssertEqual("REDACTED_SEARCH_KEY", searchCredential.searchKey)
 			default:
 				XCTFail()
 			}

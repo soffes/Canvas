@@ -11,6 +11,24 @@ import DVR
 import CanvasKit
 
 class APIClientCanvasTests: XCTestCase {
+	func testListCanvases() {
+		let expectation = expectationWithDescription("Networking")
+		let dvr = Session(cassetteName: "list-canvases")
+		let client = APIClient(accessToken: "REDACTED_TOKEN", session: dvr)
+
+		client.listCanvases(collectionID: "soffes") {
+			switch $0 {
+			case .Success(let canvases):
+				XCTAssertEqual(["Sam’s Wish Lists", "New Headphone Stuff", "Canvas Things"], canvases.flatMap({ $0.title }))
+			default:
+				XCTFail()
+			}
+			expectation.fulfill()
+		}
+
+		waitForExpectationsWithTimeout(1, handler: nil)
+	}
+	
 	func testCreateCanvas() {
 		let expectation = expectationWithDescription("Networking")
 		let dvr = Session(cassetteName: "create-canvas")
