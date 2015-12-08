@@ -36,3 +36,15 @@ extension User: JSONSerializable, JSONDeserializable {
 		self.email = email
 	}
 }
+
+
+extension User: Hashable {
+	public var hashValue: Int {
+		return ID.hashValue
+	}
+}
+
+
+public func ==(lhs: User, rhs: User) -> Bool {
+	return lhs.ID == rhs.ID
+}

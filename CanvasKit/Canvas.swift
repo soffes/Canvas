@@ -70,3 +70,15 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 		archivedAt = archivedAtString.flatMap { NSDate(ISO8601String: $0) }
 	}
 }
+
+
+extension Canvas: Hashable {
+	public var hashValue: Int {
+		return ID.hashValue
+	}
+}
+
+
+public func ==(lhs: Canvas, rhs: Canvas) -> Bool {
+	return lhs.ID == rhs.ID
+}

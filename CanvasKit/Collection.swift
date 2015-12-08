@@ -32,3 +32,15 @@ extension Collection: JSONSerializable, JSONDeserializable {
 		self.name = name
 	}
 }
+
+
+extension Collection: Hashable {
+	public var hashValue: Int {
+		return ID.hashValue
+	}
+}
+
+
+public func ==(lhs: Collection, rhs: Collection) -> Bool {
+	return lhs.ID == rhs.ID
+}
