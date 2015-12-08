@@ -6,7 +6,7 @@
 //  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
 //
 
-public struct Collection {
+public struct Collection: Model {
 
 	// MARK: - Properties
 
