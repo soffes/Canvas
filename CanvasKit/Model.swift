@@ -6,6 +6,6 @@
 //  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
 //
 
-protocol Model: Hashable {
+public protocol Model: Hashable {
 	var ID: String { get }
 }
