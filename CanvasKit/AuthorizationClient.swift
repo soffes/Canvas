@@ -27,10 +27,11 @@ public class AuthorizationClient: NetworkClient {
 	// MARK: - Logging in
 
 	public func login(username username: String, password: String, completion: Result<Account> -> Void) {
+		let usernameKey = username.containsString("@") ? "email" : "username"
 		let body = [
 			"data": [
 				"user": [
-					"username": username,
+					usernameKey: username,
 					"password": password
 				],
 				"long_lived": true
