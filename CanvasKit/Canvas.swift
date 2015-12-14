@@ -35,7 +35,7 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 			"shortID": shortID,
 			"collection_id": organizationID,
 			"readonly": readOnly,
-			"updated_at": updatedAt.ISO8601String()
+			"updated_at": updatedAt.ISO8601String()!
 		]
 
 		if let title = title {
