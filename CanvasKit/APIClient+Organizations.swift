@@ -1,5 +1,5 @@
 //
-//  APIClient+Collections.swift
+//  APIClient+Organizations.swift
 //  CanvasKit
 //
 //  Created by Sam Soffes on 11/13/15.
@@ -8,9 +8,9 @@
 
 extension APIClient {
 
-	// MARK: - Listing Collections
+	// MARK: - Listing Organizations
 
-	public func listCollections(completion: Result<[Collection]> -> Void) {
+	public func listOrganizations(completion: Result<[Organization]> -> Void) {
 		let request = self.request(path: "collections")
 		session.dataTaskWithRequest(request) { responseData, response, error in
 			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
@@ -31,9 +31,9 @@ extension APIClient {
 			}
 
 			if let data = dictionary["data"] as? [JSONDictionary] {
-				let collections = data.flatMap({ Collection(dictionary: $0) })
+				let organizations = data.flatMap({ Organization(dictionary: $0) })
 				dispatch_async(networkCompletionQueue) {
-					completion(.Success(collections))
+					completion(.Success(organizations))
 				}
 				return
 			}
@@ -45,17 +45,17 @@ extension APIClient {
 	}
 
 
-	// MARK: - Getting a Collection's Search Token
+	// MARK: - Getting a Organization's Search Token
 
-	public func getCollectionSearchCredential(collection collection: Collection, completion: Result<SearchCredential> -> Void) {
-		getCollectionSearchCredential(collectionID: collection.ID, completion: completion)
+	public func getOrganizationSearchCredential(organization organization: Organization, completion: Result<SearchCredential> -> Void) {
+		getOrganizationSearchCredential(organizationID: organization.ID, completion: completion)
 	}
 
-	public func getCollectionSearchCredential(collectionID collectionID: String, completion: Result<SearchCredential> -> Void) {
+	public func getOrganizationSearchCredential(organizationID organizationID: String, completion: Result<SearchCredential> -> Void) {
 		let params = [
 			"data": [
 				"collection": [
-					"id": collectionID,
+					"id": organizationID,
 					"type": "collections"
 				],
 				"type": "search-keys"

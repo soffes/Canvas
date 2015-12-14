@@ -19,8 +19,8 @@ public class AccountController {
 				SSKeychain.setPasswordData(data, forService: "Canvas", account: "Account")
 			} else {
 				SSKeychain.deletePasswordForService("Canvas", account: "Account")
-				NSUserDefaults.standardUserDefaults().removeObjectForKey("Collections")
-				NSUserDefaults.standardUserDefaults().removeObjectForKey("SelectedCollection")
+				NSUserDefaults.standardUserDefaults().removeObjectForKey("Organizations")
+				NSUserDefaults.standardUserDefaults().removeObjectForKey("SelectedOrganization")
 			}
 
 			NSNotificationCenter.defaultCenter().postNotificationName(self.dynamicType.accountDidChangeNotificationName, object: nil)

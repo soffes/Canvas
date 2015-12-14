@@ -15,7 +15,7 @@ public struct Canvas: Model {
 
 	public let ID: String
 	public let shortID: String
-	public let collectionID: String
+	public let organizationID: String
 	public let readOnly: Bool
 	public let title: String?
 	public let summary: String?
@@ -33,7 +33,7 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 		var dictionary: [String: AnyObject] = [
 			"id": ID,
 			"shortID": shortID,
-			"collection_id": collectionID,
+			"collection_id": organizationID,
 			"readonly": readOnly,
 			"updated_at": updatedAt.ISO8601String()
 		]
@@ -52,7 +52,7 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 	public init?(dictionary: JSONDictionary) {
 		guard let ID = dictionary["id"] as? String,
 			shortID = dictionary["shortID"] as? String,
-			collectionID = dictionary["collection_id"] as? String,
+			organizationID = dictionary["collection_id"] as? String,
 			readOnly = dictionary["readonly"] as? Bool,
 			updatedAtString = dictionary["updated_at"] as? String,
 			updatedAt = NSDate(ISO8601String: updatedAtString)
@@ -60,7 +60,7 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 
 		self.ID = ID
 		self.shortID = shortID
-		self.collectionID = collectionID
+		self.organizationID = organizationID
 		self.readOnly = readOnly
 		title = dictionary["title"] as? String
 		summary = dictionary["summary"] as? String

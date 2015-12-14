@@ -1,5 +1,5 @@
 //
-//  APIClientCollectionTests.swift
+//  APIClientOrganizationTests.swift
 //  CanvasKitTests
 //
 //  Created by Sam Soffes on 11/2/15.
@@ -10,16 +10,16 @@ import XCTest
 import DVR
 import CanvasKit
 
-class APIClientCollectionTests: XCTestCase {
-	func testListCollections() {
+class APIClientOrganizationTests: XCTestCase {
+	func testListOrganizations() {
 		let expectation = expectationWithDescription("Networking")
-		let dvr = Session(cassetteName: "list-collections")
+		let dvr = Session(cassetteName: "list-organizations")
 		let client = APIClient(accessToken: "REDACTED_TOKEN", session: dvr)
 
-		client.listCollections {
+		client.listOrganizations {
 			switch $0 {
-			case .Success(let collections):
-				XCTAssertEqual(["soffes", "canvas"], collections.map({ $0.name }))
+			case .Success(let organizations):
+				XCTAssertEqual(["soffes", "canvas"], organizations.map({ $0.name }))
 			default:
 				XCTFail()
 			}
@@ -29,12 +29,12 @@ class APIClientCollectionTests: XCTestCase {
 		waitForExpectationsWithTimeout(1, handler: nil)
 	}
 
-	func testGetCollectionSearchCredential() {
+	func testGetOrganizationSearchCredential() {
 		let expectation = expectationWithDescription("Networking")
 		let dvr = Session(cassetteName: "search-credential")
 		let client = APIClient(accessToken: "REDACTED_TOKEN", session: dvr)
 
-		client.getCollectionSearchCredential(collectionID: "soffes") {
+		client.getOrganizationSearchCredential(organizationID: "soffes") {
 			switch $0 {
 			case .Success(let searchCredential):
 				XCTAssertEqual("REDACTED_APPLICATION_ID", searchCredential.applicationID)

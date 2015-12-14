@@ -1,12 +1,12 @@
 //
-//  Collection.swift
+//  Organization.swift
 //  CanvasKit
 //
 //  Created by Sam Soffes on 11/3/15.
 //  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
 //
 
-public struct Collection: Model {
+public struct Organization: Model {
 
 	// MARK: - Properties
 
@@ -15,7 +15,7 @@ public struct Collection: Model {
 }
 
 
-extension Collection: JSONSerializable, JSONDeserializable {
+extension Organization: JSONSerializable, JSONDeserializable {
 	public var dictionary: JSONDictionary {
 		return [
 			"id": ID,
@@ -34,13 +34,13 @@ extension Collection: JSONSerializable, JSONDeserializable {
 }
 
 
-extension Collection: Hashable {
+extension Organization: Hashable {
 	public var hashValue: Int {
 		return ID.hashValue
 	}
 }
 
 
-public func ==(lhs: Collection, rhs: Collection) -> Bool {
+public func ==(lhs: Organization, rhs: Organization) -> Bool {
 	return lhs.ID == rhs.ID
 }

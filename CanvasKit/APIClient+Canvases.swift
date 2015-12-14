@@ -10,12 +10,12 @@ extension APIClient {
 
 	// MARK: - Listing Canvases
 
-	public func listCanvases(collection: Collection, completion: Result<[Canvas]> -> Void) {
-		listCanvases(collectionID: collection.ID, completion: completion)
+	public func listCanvases(organization organization: Organization, completion: Result<[Canvas]> -> Void) {
+		listCanvases(organizationID: organization.ID, completion: completion)
 	}
 
-	public func listCanvases(collectionID collectionID: String, completion: Result<[Canvas]> -> Void) {
-		let request = self.request(path: "canvases", params: ["filter[collection]": collectionID])
+	public func listCanvases(organizationID organizationID: String, completion: Result<[Canvas]> -> Void) {
+		let request = self.request(path: "canvases", params: ["filter[collection]": organizationID])
 		session.dataTaskWithRequest(request) { responseData, response, error in
 			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
 				dispatch_async(networkCompletionQueue) {
@@ -51,12 +51,12 @@ extension APIClient {
 
 	// MARK: - Creating a Canvas
 
-	public func createCanvas(collection collection: Collection, body: String, completion: Result<Canvas> -> Void) {
-		createCanvas(collectionID: collection.ID, body: body, completion: completion)
+	public func createCanvas(organization organization: Organization, body: String, completion: Result<Canvas> -> Void) {
+		createCanvas(organizationID: organization.ID, body: body, completion: completion)
 	}
 
-	public func createCanvas(collectionID collectionID: String, body: String, completion: Result<Canvas> -> Void) {
-		let request = self.request(method: .GET, path: "canvases", params: ["collection": collectionID], contentType: "text/plain")
+	public func createCanvas(organizationID organizationID: String, body: String, completion: Result<Canvas> -> Void) {
+		let request = self.request(method: .GET, path: "canvases", params: ["collection": organizationID], contentType: "text/plain")
 
 		// Switch method to POST. We originally use GET since there are GET params.
 		request.HTTPMethod = "POST"
