@@ -23,9 +23,18 @@ public struct Account {
 // Account actually serializes and deserializes as AccessToken which is hidden from the consumer.
 extension Account: JSONSerializable, JSONDeserializable {
 	public var dictionary: JSONDictionary {
+		var account: JSONDictionary = [
+			"email": email,
+			"user": user.dictionary
+		]
+
+		if let verifiedAt = verifiedAt?.ISO8601String() {
+			account["verified_at"] = verifiedAt
+		}
+
 		return [
 			"access_token": accessToken,
-			"user": user.dictionary
+			"account": account
 		]
 	}
 
