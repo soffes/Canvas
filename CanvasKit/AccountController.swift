@@ -35,11 +35,15 @@ public class AccountController {
 	// MARK: - Initializers
 
 	init() {
-		guard let data = SSKeychain.passwordDataForService("Canvas", account: "Account"),
-			json = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
+		guard let data = SSKeychain.passwordDataForService("Canvas", account: "Account") else { return }
+
+		guard let json = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
 			dictionary = json as? JSONDictionary,
 			account = Account(dictionary: dictionary)
-			else { return }
+		else {
+			SSKeychain.deletePasswordForService("Canvas", account: "Account")
+			return
+		}
 
 		currentAccount = account
 	}
