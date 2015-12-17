@@ -14,17 +14,17 @@ class AuthorizationClientTests: XCTestCase {
 	func testLogin() {
 		let expectation = expectationWithDescription("Networking")
 
-		let dvr = Session(cassetteName: "sign-in")
+		let dvr = Session(cassetteName: "access-token")
 		dvr.beginRecording()
 
-		let client = AuthorizationClient(session: dvr)
+		let client = AuthorizationClient(clientID: "REDACTED_CLIENT_ID", clientSecret: "REDCATED_CLIENT_SECRET", session: dvr)
 
-		client.login(username: "soffes", password: "REDACTED_PASSWORD") {
+		client.createAccessToken(username: "soffes", password: "REDACTED_PASSWORD") {
 			switch $0 {
 			case .Success(let account):
 				XCTAssertEqual("REDACTED_TOKEN", account.accessToken)
 				XCTAssertEqual("soffes", account.user.username)
-				XCTAssertEqual("sam@soff.es", account.user.email)
+				XCTAssertEqual("sam@soff.es", account.email)
 			case .Failure(let message):
 				XCTFail(message)
 			}

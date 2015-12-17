@@ -6,34 +6,40 @@
 //  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
 //
 
+import Foundation
+
 public struct User: Model {
 	
 	// MARK: - Properties
 	
 	public let ID: String
 	public let username: String
-	public let email: String
+	public let avatarURL: NSURL?
 }
 
 
 extension User: JSONSerializable, JSONDeserializable {
 	public var dictionary: JSONDictionary {
-		return [
+		var dictionary = [
 			"id": ID,
 			"username": username,
-			"email": email
 		]
+
+		if let avatarURL = avatarURL {
+			dictionary["avatar_url"] = avatarURL.absoluteString
+		}
+
+		return dictionary
 	}
 	
 	public init?(dictionary: JSONDictionary) {
 		guard let ID = dictionary["id"] as? String,
-			username = dictionary["username"] as? String,
-			email = dictionary["email"] as? String
+			username = dictionary["username"] as? String
 		else { return nil }
 		
 		self.ID = ID
 		self.username = username
-		self.email = email
+		avatarURL = (dictionary["avatar_url"] as? String).flatMap { NSURL(string: $0) }
 	}
 }
 

@@ -8,42 +8,51 @@
 
 import Foundation
 
-public class AuthorizationClient: NetworkClient {
+public struct AuthorizationClient: NetworkClient {
 
 	// MARK: - Properties
 
+	public let clientID: String
+	private let clientSecret: String
 	public let baseURL: NSURL
 	public let session: NSURLSession
 
 
 	// MARK: - Initializers
 
-	public init(baseURL: NSURL = CanvasKit.baseURL, session: NSURLSession = NSURLSession.sharedSession()) {
+	public init(clientID: String, clientSecret: String, baseURL: NSURL = CanvasKit.baseURL, session: NSURLSession = NSURLSession.sharedSession()) {
+		self.clientID = clientID
+		self.clientSecret = clientSecret
 		self.baseURL = baseURL
 		self.session = session
 	}
 
 
-	// MARK: - Logging in
+	// MARK: - Obtaining an Account with Access Token
 
-	public func login(username username: String, password: String, completion: Result<Account> -> Void) {
-		let usernameKey = username.containsString("@") ? "email" : "username"
-		let body = [
-			"data": [
-				"user": [
-					usernameKey: username,
-					"password": password
-				],
-				"long_lived": true
-			]
+	public func createAccessToken(username username: String, password: String, completion: Result<Account> -> Void) {
+		let queryItems = [
+			NSURLQueryItem(name: "username", value: username),
+			NSURLQueryItem(name: "password", value: password),
+			NSURLQueryItem(name: "scope", value: "global"),
+			NSURLQueryItem(name: "grant_type", value: "password")
 		]
 
 		let baseURL = self.baseURL
-		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("tokens"))
+		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("oauth/access-tokens"))
 		request.HTTPMethod = "POST"
-		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(body, options: [])
-		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-		request.setValue("application/json", forHTTPHeaderField: "Accept")
+		request.HTTPBody = formEncode(queryItems).dataUsingEncoding(NSUTF8StringEncoding)
+		request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+		request.setValue("application/vnd.canvas+json; version=1; charset=utf-8", forHTTPHeaderField: "Accept")
+
+		if let authorization = authorizationHeader(username: clientID, password: clientSecret) {
+			request.setValue(authorization, forHTTPHeaderField: "Authorization")
+		} else {
+			dispatch_async(networkCompletionQueue) {
+				completion(.Failure("Failed to create request"))
+			}
+			return
+		}
 
 		let session = self.session
 		session.dataTaskWithRequest(request) { responseData, _, error in
@@ -57,10 +66,9 @@ public class AuthorizationClient: NetworkClient {
 				return
 			}
 
-			if let data = dictionary["data"] as? JSONDictionary, accessToken = data["token"] as? String {
+			if let account = Account(dictionary: dictionary) {
 				dispatch_async(networkCompletionQueue) {
-					let client = APIClient(accessToken: accessToken, baseURL: baseURL, session: session)
-					client.me(completion)
+					completion(.Success(account))
 				}
 				return
 			}
@@ -76,5 +84,33 @@ public class AuthorizationClient: NetworkClient {
 				completion(.Failure("Invalid response"))
 			}
 		}.resume()
+	}
+
+
+	// MARK: - Private
+
+	private func formEncode(queryItems: [NSURLQueryItem]) -> String {
+		let characterSet = NSMutableCharacterSet.alphanumericCharacterSet()
+		characterSet.addCharactersInString("-._~")
+
+		return queryItems.flatMap { item -> String? in
+			guard var output = item.name.stringByAddingPercentEncodingWithAllowedCharacters(characterSet) else { return nil }
+
+			output += "="
+
+			if let value = item.value?.stringByAddingPercentEncodingWithAllowedCharacters(characterSet) {
+				output += value
+			}
+
+			return output
+		}.joinWithSeparator("&")
+	}
+
+	private func authorizationHeader(username username: String, password: String) -> String? {
+		guard let data = "\(username):\(password)".dataUsingEncoding(NSUTF8StringEncoding)
+		else { return nil }
+
+		let base64 = data.base64EncodedStringWithOptions([])
+		return "Basic \(base64)"
 	}
 }

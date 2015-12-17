@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		2118DB971BFCE902004054FA /* APIClientCanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2118DB961BFCE902004054FA /* APIClientCanvasTests.swift */; };
 		2118DB981BFCE902004054FA /* APIClientCanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2118DB961BFCE902004054FA /* APIClientCanvasTests.swift */; };
-		2119D3831BF6BBAF00E91D6F /* sign-in.json in Resources */ = {isa = PBXBuildFile; fileRef = 2119D3821BF6BBAF00E91D6F /* sign-in.json */; };
-		2119D3841BF6BBAF00E91D6F /* sign-in.json in Resources */ = {isa = PBXBuildFile; fileRef = 2119D3821BF6BBAF00E91D6F /* sign-in.json */; };
+		212404D21C2330A800BF0C91 /* access-token.json in Resources */ = {isa = PBXBuildFile; fileRef = 212404D01C23300800BF0C91 /* access-token.json */; };
+		212404D31C2330A800BF0C91 /* access-token.json in Resources */ = {isa = PBXBuildFile; fileRef = 212404D01C23300800BF0C91 /* access-token.json */; };
 		2129D2E41BF54FF90018F255 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129D2E31BF54FF90018F255 /* AccountController.swift */; };
 		2129D2E51BF54FF90018F255 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129D2E31BF54FF90018F255 /* AccountController.swift */; };
 		2129D2E81BF550290018F255 /* SSKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2129D2E61BF550290018F255 /* SSKeychain.framework */; };
@@ -27,8 +27,6 @@
 		213C2BE71BF6902200F6BF50 /* SSKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2129D2EA1BF550350018F255 /* SSKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		21450A201BF691B600345E4A /* AuthorizationClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21450A1F1BF691B600345E4A /* AuthorizationClientTests.swift */; };
 		21450A211BF691B600345E4A /* AuthorizationClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21450A1F1BF691B600345E4A /* AuthorizationClientTests.swift */; };
-		21450A231BF6934B00345E4A /* APIClient+Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21450A221BF6934B00345E4A /* APIClient+Accounts.swift */; };
-		21450A241BF6934B00345E4A /* APIClient+Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21450A221BF6934B00345E4A /* APIClient+Accounts.swift */; };
 		216C4BA11BF54AB100260B8E /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4B971BF54AB100260B8E /* CanvasKit.framework */; };
 		216C4BB41BF54AEB00260B8E /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BAE1BF54AEB00260B8E /* Account.swift */; };
 		216C4BB51BF54AEB00260B8E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BAF1BF54AEB00260B8E /* APIClient.swift */; };
@@ -123,7 +121,7 @@
 
 /* Begin PBXFileReference section */
 		2118DB961BFCE902004054FA /* APIClientCanvasTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientCanvasTests.swift; sourceTree = "<group>"; };
-		2119D3821BF6BBAF00E91D6F /* sign-in.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sign-in.json"; sourceTree = "<group>"; };
+		212404D01C23300800BF0C91 /* access-token.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "access-token.json"; sourceTree = "<group>"; };
 		2129D2E31BF54FF90018F255 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		2129D2E61BF550290018F255 /* SSKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSKeychain.framework; path = Carthage/Build/iOS/SSKeychain.framework; sourceTree = "<group>"; };
 		2129D2EA1BF550350018F255 /* SSKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSKeychain.framework; path = Carthage/Build/Mac/SSKeychain.framework; sourceTree = "<group>"; };
@@ -132,7 +130,6 @@
 		213C2BDD1BF68B2D00F6BF50 /* AuthorizationClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationClient.swift; sourceTree = "<group>"; };
 		213C2BE31BF68C2800F6BF50 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		21450A1F1BF691B600345E4A /* AuthorizationClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationClientTests.swift; sourceTree = "<group>"; };
-		21450A221BF6934B00345E4A /* APIClient+Accounts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Accounts.swift"; sourceTree = "<group>"; };
 		216C4B971BF54AB100260B8E /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		216C4BA01BF54AB100260B8E /* CanvasKit-OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CanvasKit-OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		216C4BAE1BF54AEB00260B8E /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -209,7 +206,6 @@
 				213C2BE31BF68C2800F6BF50 /* NetworkClient.swift */,
 				213C2BDD1BF68B2D00F6BF50 /* AuthorizationClient.swift */,
 				216C4BAF1BF54AEB00260B8E /* APIClient.swift */,
-				21450A221BF6934B00345E4A /* APIClient+Accounts.swift */,
 				213C2BDA1BF688F000F6BF50 /* APIClient+Organizations.swift */,
 				213C2BD71BF688C900F6BF50 /* APIClient+Canvases.swift */,
 			);
@@ -233,12 +229,12 @@
 			children = (
 				216C4BBD1BF54AF100260B8E /* Info.plist */,
 				216C4BBE1BF54AF100260B8E /* list-organizations.json */,
-				2119D3821BF6BBAF00E91D6F /* sign-in.json */,
 				219DAC6E1C0E582500F39A6F /* archive-canvas.json */,
 				219DAC711C0E584E00F39A6F /* create-canvas.json */,
 				219DAC741C0E595000F39A6F /* destroy-canvas.json */,
 				219DAC771C0E59FD00F39A6F /* list-canvases.json */,
 				2193340F1C0FD897000A974B /* search-credential.json */,
+				212404D01C23300800BF0C91 /* access-token.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -499,9 +495,9 @@
 				219DAC761C0E595000F39A6F /* destroy-canvas.json in Resources */,
 				219DAC731C0E584E00F39A6F /* create-canvas.json in Resources */,
 				219DAC791C0E59FD00F39A6F /* list-canvases.json in Resources */,
-				2119D3841BF6BBAF00E91D6F /* sign-in.json in Resources */,
 				219DAC701C0E582500F39A6F /* archive-canvas.json in Resources */,
 				219334111C0FD897000A974B /* search-credential.json in Resources */,
+				212404D21C2330A800BF0C91 /* access-token.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,9 +516,9 @@
 				219DAC751C0E595000F39A6F /* destroy-canvas.json in Resources */,
 				219DAC721C0E584E00F39A6F /* create-canvas.json in Resources */,
 				219DAC781C0E59FD00F39A6F /* list-canvases.json in Resources */,
-				2119D3831BF6BBAF00E91D6F /* sign-in.json in Resources */,
 				219DAC6F1C0E582500F39A6F /* archive-canvas.json in Resources */,
 				219334101C0FD897000A974B /* search-credential.json in Resources */,
+				212404D31C2330A800BF0C91 /* access-token.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,7 +538,6 @@
 				216C4BD01BF54B0D00260B8E /* User.swift in Sources */,
 				21EDFB1A1C17502300EC80BD /* Model.swift in Sources */,
 				216C4BCD1BF54B0D00260B8E /* Canvas.swift in Sources */,
-				21450A241BF6934B00345E4A /* APIClient+Accounts.swift in Sources */,
 				216C4BCF1BF54B0D00260B8E /* JSONSerialization.swift in Sources */,
 				213C2BDC1BF688F000F6BF50 /* APIClient+Organizations.swift in Sources */,
 				216C4BCE1BF54B0D00260B8E /* Organization.swift in Sources */,
@@ -573,7 +568,6 @@
 				216C4BB91BF54AEB00260B8E /* User.swift in Sources */,
 				21EDFB191C17502300EC80BD /* Model.swift in Sources */,
 				216C4BB61BF54AEB00260B8E /* Canvas.swift in Sources */,
-				21450A231BF6934B00345E4A /* APIClient+Accounts.swift in Sources */,
 				216C4BB81BF54AEB00260B8E /* JSONSerialization.swift in Sources */,
 				213C2BDB1BF688F000F6BF50 /* APIClient+Organizations.swift in Sources */,
 				216C4BB71BF54AEB00260B8E /* Organization.swift in Sources */,

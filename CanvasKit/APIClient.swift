@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class APIClient: NetworkClient {
+public struct APIClient: NetworkClient {
 	
 	// MARK: - Types
 
@@ -43,7 +43,7 @@ public class APIClient: NetworkClient {
 	
 	// MARK: - Internal
 	
-	func request(method method: Method = .GET, path: String, params: JSONDictionary? = nil, contentType: String = "application/json") -> NSMutableURLRequest {
+	func request(method method: Method = .GET, path: String, params: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8") -> NSMutableURLRequest {
 		// Create URL
 		var URL = baseURL.URLByAppendingPathComponent(path)
 
@@ -80,7 +80,7 @@ public class APIClient: NetworkClient {
 		}
 
 		// Accept JSON
-		request.setValue("application/json", forHTTPHeaderField: "Accept")
+		request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
 
 		// Add access token
 		request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")

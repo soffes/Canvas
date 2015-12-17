@@ -1,0 +1,48 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1450375232.255865,
+      "response" : {
+        "body" : {
+          "scope" : "global",
+          "account" : {
+            "email" : "sam@soff.es",
+            "user" : {
+              "id" : "ea8a6521-dc2b-4638-9c93-89ad79362f73",
+              "avatar_url" : "https:\/\/www.gravatar.com\/avatar\/eb02c1cdbc2e1b474051b5c622e1d539?d=https%3A%2F%2Fd3tp5plu9dfsfn.cloudfront.net%2Favatars%2F6.png",
+              "username" : "soffes"
+            },
+            "verified_at" : "2015-10-21T20:47:14.086Z"
+          },
+          "token_type" : "bearer",
+          "access_token" : "REDACTED_TOKEN"
+        },
+        "status" : 201,
+        "url" : "https:\/\/api.usecanvas.com\/oauth\/access-tokens",
+        "headers" : {
+          "Pragma" : "no-cache",
+          "Content-Type" : "application\/json; charset=utf-8",
+          "Connection" : "keep-alive",
+          "Server" : "Cowboy",
+          "Transfer-Encoding" : "Identity",
+          "Via" : "1.1 vegur",
+          "Date" : "Thu, 17 Dec 2015 18:00:32 GMT",
+          "Content-Encoding" : "gzip",
+          "Cache-Control" : "no-store",
+          "Vary" : "origin,accept-encoding"
+        }
+      },
+      "request" : {
+        "method" : "POST",
+        "body" : "dXNlcm5hbWU9c29mZmVzJnBhc3N3b3JkPVJFREFDVEVEX1BBU1NXT1JEJnNjb3BlPWdsb2JhbCZncmFudF90eXBlPXBhc3N3b3Jk",
+        "url" : "https:\/\/api.usecanvas.com\/oauth\/access-tokens",
+        "headers" : {
+          "Accept" : "application\/vnd.canvas+json; version=1; charset=utf-8",
+          "Authorization" : "Basic REDACTED_CLIENT_AUTHORIZATION",
+          "Content-Type" : "application\/x-www-form-urlencoded"
+        }
+      }
+    }
+  ],
+  "name" : "access-token"
+}
