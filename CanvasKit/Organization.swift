@@ -12,10 +12,6 @@ public struct Organization: Model {
 
 	public let ID: String
 	public let name: String
-
-	public var displayName: String {
-		return name.capitalizedString
-	}
 }
 
 
