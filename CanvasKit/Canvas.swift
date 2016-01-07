@@ -14,6 +14,7 @@ public struct Canvas: Model {
 	// MARK: - Properties
 
 	public let ID: String
+	public let UUID: String
 	public let organizationID: String
 	public let readOnly: Bool
 	public let title: String?
@@ -35,6 +36,7 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 	public var dictionary: JSONDictionary {
 		var dictionary: [String: AnyObject] = [
 			"id": ID,
+			"uuid": UUID,
 			"collection_id": organizationID,
 			"readonly": readOnly,
 			"updated_at": updatedAt.ISO8601String()!
@@ -53,6 +55,7 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 
 	public init?(dictionary: JSONDictionary) {
 		guard let ID = dictionary["id"] as? String,
+			UUID = dictionary["uuid"] as? String,
 			org = dictionary["org"] as? JSONDictionary,
 			organizationID = org["id"] as? String,
 			readOnly = dictionary["readonly"] as? Bool,
@@ -61,6 +64,7 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 		else { return nil }
 
 		self.ID = ID
+		self.UUID = UUID
 		self.organizationID = organizationID
 		self.readOnly = readOnly
 		title = dictionary["title"] as? String
