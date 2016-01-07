@@ -15,7 +15,7 @@ extension APIClient {
 	}
 
 	public func listCanvases(organizationID organizationID: String, completion: Result<[Canvas]> -> Void) {
-		let request = self.request(path: "canvases", params: ["filter[collection]": organizationID])
+		let request = self.request(path: "orgs/\(organizationID)/canvases")
 		session.dataTaskWithRequest(request) { responseData, response, error in
 			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
 				dispatch_async(networkCompletionQueue) {
@@ -26,26 +26,19 @@ extension APIClient {
 
 			guard let responseData = responseData,
 				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
-				dictionary = json as? JSONDictionary
-				else {
-					dispatch_async(networkCompletionQueue) {
-						completion(.Failure("Invalid JSON"))
-					}
-					return
-			}
-
-			if let data = dictionary["data"] as? [JSONDictionary] {
-				let canvases = data.flatMap({ Canvas(dictionary: $0) })
+				dictionaries = json as? [JSONDictionary]
+			else {
 				dispatch_async(networkCompletionQueue) {
-					completion(.Success(canvases))
+					completion(.Failure("Invalid JSON"))
 				}
 				return
 			}
 
+			let canvases = dictionaries.flatMap({ Canvas(dictionary: $0) })
 			dispatch_async(networkCompletionQueue) {
-				completion(.Failure("Invalid response"))
+				completion(.Success(canvases))
 			}
-			}.resume()
+		}.resume()
 	}
 
 
@@ -56,10 +49,12 @@ extension APIClient {
 	}
 
 	public func createCanvas(organizationID organizationID: String, body: String, completion: Result<Canvas> -> Void) {
-		let request = self.request(method: .GET, path: "canvases", params: ["collection": organizationID], contentType: "text/plain")
-
-		// Switch method to POST. We originally use GET since there are GET params.
-		request.HTTPMethod = "POST"
+		let params = [
+			"orgs": [
+				"id": organizationID
+			]
+		]
+		let request = self.request(method: .POST, path: "canvases", params: params, contentType: "text/plain")
 
 		// Attach the contents
 		request.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding)
@@ -74,7 +69,8 @@ extension APIClient {
 
 			guard let responseData = responseData,
 				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
-				dictionary = json as? JSONDictionary
+				dictionary = json as? JSONDictionary,
+				canvas = Canvas(dictionary: dictionary)
 				else {
 					dispatch_async(networkCompletionQueue) {
 						completion(.Failure("Invalid JSON"))
@@ -82,15 +78,8 @@ extension APIClient {
 					return
 			}
 
-			if let data = dictionary["data"] as? JSONDictionary, canvas = Canvas(dictionary: data) {
-				dispatch_async(networkCompletionQueue) {
-					completion(.Success(canvas))
-				}
-				return
-			}
-
 			dispatch_async(networkCompletionQueue) {
-				completion(.Failure("Invalid response"))
+				completion(.Success(canvas))
 			}
 		}.resume()
 	}
@@ -126,11 +115,7 @@ extension APIClient {
 	}
 
 	public func archiveCanvas(canvasID canvasID: String, completion: Result<Canvas> -> Void) {
-		let request = self.request(method: .PATCH, path: "canvases/\(canvasID)", params: [
-			"data": [
-				"archived": true
-			]
-		])
+		let request = self.request(method: .POST, path: "canvases/\(canvasID)/actions/archive")
 
 		session.dataTaskWithRequest(request) { responseData, response, _ in
 			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
@@ -142,7 +127,9 @@ extension APIClient {
 
 			guard let responseData = responseData,
 				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
-				dictionary = json as? JSONDictionary
+				dictionary = json as? JSONDictionary,
+				canvas = Canvas(dictionary: dictionary)
+			where canvas.archivedAt != nil
 			else {
 				dispatch_async(networkCompletionQueue) {
 					completion(.Failure("Invalid JSON"))
@@ -150,15 +137,8 @@ extension APIClient {
 				return
 			}
 
-			if let data = dictionary["data"] as? JSONDictionary, canvas = Canvas(dictionary: data) where canvas.archivedAt != nil {
-				dispatch_async(networkCompletionQueue) {
-					completion(.Success(canvas))
-				}
-				return
-			}
-
 			dispatch_async(networkCompletionQueue) {
-				completion(.Failure("Invalid response"))
+				completion(.Success(canvas))
 			}
 		}.resume()
 	}

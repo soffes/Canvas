@@ -11,7 +11,7 @@ extension APIClient {
 	// MARK: - Listing Organizations
 
 	public func listOrganizations(completion: Result<[Organization]> -> Void) {
-		let request = self.request(path: "collections")
+		let request = self.request(path: "orgs")
 		session.dataTaskWithRequest(request) { responseData, response, error in
 			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
 				dispatch_async(networkCompletionQueue) {
@@ -22,24 +22,17 @@ extension APIClient {
 
 			guard let responseData = responseData,
 				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
-				dictionary = json as? JSONDictionary
-				else {
-					dispatch_async(networkCompletionQueue) {
-						completion(.Failure("Invalid JSON"))
-					}
-					return
-			}
-
-			if let data = dictionary["data"] as? [JSONDictionary] {
-				let organizations = data.flatMap({ Organization(dictionary: $0) })
+				dictionaries = json as? [JSONDictionary]
+			else {
 				dispatch_async(networkCompletionQueue) {
-					completion(.Success(organizations))
+					completion(.Failure("Invalid JSON"))
 				}
 				return
 			}
 
+			let organizations = dictionaries.flatMap({ Organization(dictionary: $0) })
 			dispatch_async(networkCompletionQueue) {
-				completion(.Failure("Invalid response"))
+				completion(.Success(organizations))
 			}
 		}.resume()
 	}
@@ -53,16 +46,12 @@ extension APIClient {
 
 	public func getOrganizationSearchCredential(organizationID organizationID: String, completion: Result<SearchCredential> -> Void) {
 		let params = [
-			"data": [
-				"collection": [
-					"id": organizationID,
-					"type": "collections"
-				],
-				"type": "search-keys"
+			"org": [
+				"id": organizationID
 			]
 		]
 
-		let request = self.request(method: .POST, path: "search-tokens", params: params)
+		let request = self.request(method: .POST, path: "search-keys", params: params)
 
 		session.dataTaskWithRequest(request) { responseData, response, error in
 			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
@@ -82,7 +71,7 @@ extension APIClient {
 					return
 			}
 
-			if let data = dictionary["data"] as? JSONDictionary, credential = SearchCredential(dictionary: data) {
+			if let credential = SearchCredential(dictionary: dictionary) {
 				dispatch_async(networkCompletionQueue) {
 					completion(.Success(credential))
 				}
