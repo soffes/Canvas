@@ -37,7 +37,6 @@ class APIClientCanvasTests: XCTestCase {
 		client.createCanvas(organizationID: "test", body: "# From CanvasKit\nYay.") {
 			switch $0 {
 			case .Success(let canvas):
-				print("canvas: \(canvas)")
 				XCTAssertEqual("From CanvasKit", canvas.title)
 			default:
 				XCTFail()
