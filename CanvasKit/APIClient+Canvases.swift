@@ -44,20 +44,17 @@ extension APIClient {
 
 	// MARK: - Creating a Canvas
 
-	public func createCanvas(organization organization: Organization, body: String, completion: Result<Canvas> -> Void) {
-		createCanvas(organizationID: organization.ID, body: body, completion: completion)
+	public func createCanvas(organization organization: Organization, completion: Result<Canvas> -> Void) {
+		createCanvas(organizationID: organization.ID, completion: completion)
 	}
 
-	public func createCanvas(organizationID organizationID: String, body: String, completion: Result<Canvas> -> Void) {
+	public func createCanvas(organizationID organizationID: String, completion: Result<Canvas> -> Void) {
 		let params = [
-			"orgs": [
+			"org": [
 				"id": organizationID
 			]
 		]
-		let request = self.request(method: .POST, path: "canvases", params: params, contentType: "text/plain")
-
-		// Attach the contents
-		request.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding)
+		let request = self.request(method: .POST, path: "canvases", params: params)
 
 		session.dataTaskWithRequest(request) { responseData, response, error in
 			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
