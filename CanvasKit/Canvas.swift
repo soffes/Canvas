@@ -15,7 +15,7 @@ public struct Canvas: Model {
 
 	public let ID: String
 	public let UUID: String
-	public let organizationID: String
+	public let organization: Organization
 	public let readOnly: Bool
 	public let title: String?
 	public let summary: String?
@@ -27,7 +27,7 @@ public struct Canvas: Model {
 	}
 
 	public var URL: NSURL? {
-		return NSURL(string: "https://usecanvas.com/\(organizationID)/-/\(ID)")
+		return NSURL(string: "https://usecanvas.com/\(organization.slug)/-/\(ID)")
 	}
 }
 
@@ -37,7 +37,7 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 		var dictionary: [String: AnyObject] = [
 			"id": ID,
 			"uuid": UUID,
-			"collection_id": organizationID,
+			"collection": organization.dictionary,
 			"readonly": readOnly,
 			"updated_at": updatedAt.ISO8601String()!
 		]
@@ -57,7 +57,7 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 		guard let ID = dictionary["id"] as? String,
 			UUID = dictionary["uuid"] as? String,
 			org = dictionary["org"] as? JSONDictionary,
-			organizationID = org["id"] as? String,
+			organization = Organization(dictionary: org),
 			readOnly = dictionary["readonly"] as? Bool,
 			updatedAtString = dictionary["updated_at"] as? String,
 			updatedAt = NSDate(ISO8601String: updatedAtString)
@@ -65,7 +65,7 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 
 		self.ID = ID
 		self.UUID = UUID
-		self.organizationID = organizationID
+		self.organization = organization
 		self.readOnly = readOnly
 		title = dictionary["title"] as? String
 		summary = dictionary["summary"] as? String
