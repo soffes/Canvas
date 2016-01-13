@@ -6,7 +6,7 @@
 //  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
 //
 
-public struct Organization: Model {
+public struct Organization {
 
 	// MARK: - Properties
 

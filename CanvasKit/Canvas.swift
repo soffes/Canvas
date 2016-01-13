@@ -9,7 +9,7 @@
 import Foundation
 import ISO8601
 
-public struct Canvas: Model {
+public struct Canvas {
 
 	// MARK: - Properties
 
