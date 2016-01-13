@@ -139,4 +139,38 @@ extension APIClient {
 			}
 		}.resume()
 	}
+
+
+	// MARK: - Searching for Canvases
+
+	public func searchCanvases(organization organization: Organization, query: String, completion: Result<[Canvas]> -> Void) {
+		searchCanvases(organizationID: organization.ID, query: query, completion: completion)
+	}
+
+	public func searchCanvases(organizationID organizationID: String, query: String, completion: Result<[Canvas]> -> Void) {
+		let request = self.request(path: "orgs/\(organizationID)/canvases/search", params: ["query": query])
+		session.dataTaskWithRequest(request) { responseData, response, error in
+			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
+				dispatch_async(networkCompletionQueue) {
+					completion(.Failure("Unauthorized"))
+				}
+				return
+			}
+
+			guard let responseData = responseData,
+				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
+				dictionaries = json as? [JSONDictionary]
+			else {
+				dispatch_async(networkCompletionQueue) {
+					completion(.Failure("Invalid JSON"))
+				}
+				return
+			}
+
+			let canvases = dictionaries.flatMap({ Canvas(dictionary: $0) })
+			dispatch_async(networkCompletionQueue) {
+				completion(.Success(canvases))
+			}
+		}.resume()
+	}
 }
