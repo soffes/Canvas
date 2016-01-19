@@ -26,6 +26,10 @@ public struct Canvas {
 		return title ?? "Untitled"
 	}
 
+	public var isEmpty: Bool {
+		return summary?.isEmpty ?? true
+	}
+
 	public var URL: NSURL? {
 		return NSURL(string: "https://usecanvas.com/\(organization.slug)/-/\(ID)")
 	}
