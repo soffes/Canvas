@@ -13,6 +13,7 @@ public struct Organization {
 	public let ID: String
 	public let name: String
 	public let slug: String
+	public let membersCount: UInt
 }
 
 
@@ -21,19 +22,22 @@ extension Organization: JSONSerializable, JSONDeserializable {
 		return [
 			"id": ID,
 			"name": name,
-			"slug": slug
+			"slug": slug,
+			"members_count": membersCount
 		]
 	}
 
 	public init?(dictionary: JSONDictionary) {
 		guard let ID = dictionary["id"] as? String,
 			name = dictionary["name"] as? String,
-			slug = dictionary["slug"] as? String
+			slug = dictionary["slug"] as? String,
+			membersCount = dictionary["members_count"] as? UInt
 		else { return nil }
 
 		self.ID = ID
 		self.name = name
 		self.slug = slug
+		self.membersCount = membersCount
 	}
 }
 
