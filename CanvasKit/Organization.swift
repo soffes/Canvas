@@ -38,8 +38,6 @@ extension Organization: JSONSerializable, JSONDeserializable {
 			color = Color(hex: colorHex)
 		else { return nil }
 
-		print("\(name): \(colorHex)")
-
 		self.ID = ID
 		self.name = name
 		self.slug = slug
