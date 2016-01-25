@@ -30,7 +30,7 @@ extension APIClient {
 				return
 			}
 
-			let organizations = dictionaries.flatMap({ Organization(dictionary: $0) })
+			let organizations = dictionaries.flatMap(Organization.init)
 			dispatch_async(networkCompletionQueue) {
 				completion(.Success(organizations))
 			}

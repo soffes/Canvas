@@ -67,6 +67,8 @@
 		21D2B1891C0D0127003652B7 /* ISO8601.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D2B1801C0D00DE003652B7 /* ISO8601.framework */; };
 		21D2B18A1C0D0127003652B7 /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4BDF1BF54C3B00260B8E /* DVR.framework */; };
 		21D2B18B1C0D012D003652B7 /* ISO8601.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21D2B1801C0D00DE003652B7 /* ISO8601.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		21E39CEB1C56D9B6005C1FF3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E39CEA1C56D9B6005C1FF3 /* Color.swift */; };
+		21E39CEC1C56D9B6005C1FF3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E39CEA1C56D9B6005C1FF3 /* Color.swift */; };
 		21FB6ABF1BF53C9D003C82BB /* CanvasKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 21FB6ABE1BF53C9D003C82BB /* CanvasKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21FB6AC61BF53C9D003C82BB /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FB6ABB1BF53C9D003C82BB /* CanvasKit.framework */; };
 /* End PBXBuildFile section */
@@ -149,6 +151,7 @@
 		219DAC771C0E59FD00F39A6F /* list-canvases.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "list-canvases.json"; sourceTree = "<group>"; };
 		21D2B1801C0D00DE003652B7 /* ISO8601.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ISO8601.framework; path = Carthage/Build/iOS/ISO8601.framework; sourceTree = "<group>"; };
 		21D2B1831C0D00EB003652B7 /* ISO8601.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ISO8601.framework; path = Carthage/Build/Mac/ISO8601.framework; sourceTree = "<group>"; };
+		21E39CEA1C56D9B6005C1FF3 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		21FB6ABB1BF53C9D003C82BB /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21FB6ABE1BF53C9D003C82BB /* CanvasKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasKit.h; sourceTree = "<group>"; };
 		21FB6AC01BF53C9D003C82BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -273,6 +276,7 @@
 				216C4BB11BF54AEB00260B8E /* Organization.swift */,
 				216C4BB31BF54AEB00260B8E /* User.swift */,
 				2193340C1C0FD76B000A974B /* SearchCredential.swift */,
+				21E39CEA1C56D9B6005C1FF3 /* Color.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -529,6 +533,7 @@
 				216C4BCB1BF54B0D00260B8E /* Account.swift in Sources */,
 				213C2BDF1BF68B2D00F6BF50 /* AuthorizationClient.swift in Sources */,
 				216C4BCC1BF54B0D00260B8E /* APIClient.swift in Sources */,
+				21E39CEC1C56D9B6005C1FF3 /* Color.swift in Sources */,
 				2193340E1C0FD76B000A974B /* SearchCredential.swift in Sources */,
 				213C2BD91BF688C900F6BF50 /* APIClient+Canvases.swift in Sources */,
 				216C4BD01BF54B0D00260B8E /* User.swift in Sources */,
@@ -558,6 +563,7 @@
 				216C4BB41BF54AEB00260B8E /* Account.swift in Sources */,
 				213C2BDE1BF68B2D00F6BF50 /* AuthorizationClient.swift in Sources */,
 				216C4BB51BF54AEB00260B8E /* APIClient.swift in Sources */,
+				21E39CEB1C56D9B6005C1FF3 /* Color.swift in Sources */,
 				2193340D1C0FD76B000A974B /* SearchCredential.swift in Sources */,
 				213C2BD81BF688C900F6BF50 /* APIClient+Canvases.swift in Sources */,
 				216C4BB91BF54AEB00260B8E /* User.swift in Sources */,

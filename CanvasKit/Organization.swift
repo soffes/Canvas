@@ -14,6 +14,7 @@ public struct Organization {
 	public let name: String
 	public let slug: String
 	public let membersCount: UInt
+	public let color: Color
 }
 
 
@@ -23,7 +24,8 @@ extension Organization: JSONSerializable, JSONDeserializable {
 			"id": ID,
 			"name": name,
 			"slug": slug,
-			"members_count": membersCount
+			"members_count": membersCount,
+			"color": color.hex
 		]
 	}
 
@@ -31,13 +33,18 @@ extension Organization: JSONSerializable, JSONDeserializable {
 		guard let ID = dictionary["id"] as? String,
 			name = dictionary["name"] as? String,
 			slug = dictionary["slug"] as? String,
-			membersCount = dictionary["members_count"] as? UInt
+			membersCount = dictionary["members_count"] as? UInt,
+			colorHex = dictionary["color"] as? String,
+			color = Color(hex: colorHex)
 		else { return nil }
+
+		print("\(name): \(colorHex)")
 
 		self.ID = ID
 		self.name = name
 		self.slug = slug
 		self.membersCount = membersCount
+		self.color = color
 	}
 }
 
