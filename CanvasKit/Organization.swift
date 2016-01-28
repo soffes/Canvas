@@ -14,35 +14,43 @@ public struct Organization {
 	public let name: String
 	public let slug: String
 	public let membersCount: UInt
-	public let color: Color
+	public let color: Color?
 }
 
 
 extension Organization: JSONSerializable, JSONDeserializable {
 	public var dictionary: JSONDictionary {
-		return [
+		var dictionary: JSONDictionary = [
 			"id": ID,
 			"name": name,
 			"slug": slug,
-			"members_count": membersCount,
-			"color": color.hex
+			"members_count": membersCount
 		]
+
+		if let color = color {
+			dictionary["hex"] = color.hex
+		}
+
+		return dictionary
 	}
 
 	public init?(dictionary: JSONDictionary) {
 		guard let ID = dictionary["id"] as? String,
 			name = dictionary["name"] as? String,
 			slug = dictionary["slug"] as? String,
-			membersCount = dictionary["members_count"] as? UInt,
-			colorHex = dictionary["color"] as? String,
-			color = Color(hex: colorHex)
+			membersCount = dictionary["members_count"] as? UInt
 		else { return nil }
 
 		self.ID = ID
 		self.name = name
 		self.slug = slug
 		self.membersCount = membersCount
-		self.color = color
+
+		if let colorHex = dictionary["color"] as? String, color = Color(hex: colorHex) {
+			self.color = color
+		} else {
+			self.color = nil
+		}
 	}
 }
 
