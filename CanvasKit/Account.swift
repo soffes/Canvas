@@ -52,4 +52,3 @@ extension Account: JSONSerializable, JSONDeserializable {
 		verifiedAt = (accountDictionary["verified_at"] as? String).flatMap { NSDate(ISO8601String: $0) }
 	}
 }
-
