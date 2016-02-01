@@ -221,7 +221,7 @@
 				216C4BBC1BF54AF100260B8E /* Resources */,
 			);
 			name = Tests;
-			path = CanvasKit/Tests;
+			path = Source/CanvasKitTests;
 			sourceTree = "<group>";
 		};
 		216C4BBC1BF54AF100260B8E /* Resources */ = {
@@ -336,7 +336,8 @@
 				2193340A1C0FD75C000A974B /* Protocols */,
 				2193340B1C0FD762000A974B /* Resources */,
 			);
-			path = CanvasKit;
+			name = CanvasKit;
+			path = Source/CanvasKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,6 +370,7 @@
 				216C4B931BF54AB100260B8E /* Frameworks */,
 				216C4B941BF54AB100260B8E /* Headers */,
 				216C4B951BF54AB100260B8E /* Resources */,
+				21CEC8541C601FEF001AEA10 /* Swift Lint */,
 			);
 			buildRules = (
 			);
@@ -406,6 +408,7 @@
 				21FB6AB71BF53C9D003C82BB /* Frameworks */,
 				21FB6AB81BF53C9D003C82BB /* Headers */,
 				21FB6AB91BF53C9D003C82BB /* Resources */,
+				21CEC8531C601FE5001AEA10 /* Swift Lint */,
 			);
 			buildRules = (
 			);
@@ -524,6 +527,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		21CEC8531C601FE5001AEA10 /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		21CEC8541C601FEF001AEA10 /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		216C4B921BF54AB100260B8E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -613,10 +647,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = CanvasKit/Info.plist;
+				INFOPLIST_FILE = Source/CanvasKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvaskit;
@@ -638,10 +671,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = CanvasKit/Info.plist;
+				INFOPLIST_FILE = Source/CanvasKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvaskit;
@@ -660,7 +692,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = CanvasKit/Tests/Resources/Info.plist;
+				INFOPLIST_FILE = Source/CanvasKitTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasKitTests;
@@ -678,7 +710,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = CanvasKit/Tests/Resources/Info.plist;
+				INFOPLIST_FILE = Source/CanvasKitTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasKitTests;
@@ -790,7 +822,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = CanvasKit/Info.plist;
+				INFOPLIST_FILE = Source/CanvasKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvaskit;
@@ -814,7 +846,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = CanvasKit/Info.plist;
+				INFOPLIST_FILE = Source/CanvasKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvaskit;
@@ -830,7 +862,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = CanvasKit/Tests/Resources/Info.plist;
+				INFOPLIST_FILE = Source/CanvasKitTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -844,7 +876,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = CanvasKit/Tests/Resources/Info.plist;
+				INFOPLIST_FILE = Source/CanvasKitTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -57,9 +57,9 @@ public struct Color {
 			return Float(value / 255.0)
 		}
 
-		red = hexValue(hex.substringWithRange(NSMakeRange(0, 2)))
-		green = hexValue(hex.substringWithRange(NSMakeRange(2, 2)))
-		blue = hexValue(hex.substringWithRange(NSMakeRange(4, 2)))
-		alpha = hexValue(hex.substringWithRange(NSMakeRange(6, 2)))
+		red = hexValue(hex.substringWithRange(NSRange(location: 0, length: 2)))
+		green = hexValue(hex.substringWithRange(NSRange(location: 2, length: 2)))
+		blue = hexValue(hex.substringWithRange(NSRange(location: 4, length: 2)))
+		alpha = hexValue(hex.substringWithRange(NSRange(location: 6, length: 2)))
 	}
 }
