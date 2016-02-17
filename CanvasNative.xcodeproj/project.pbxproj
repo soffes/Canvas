@@ -71,6 +71,7 @@
 		215BABEF1C52B46B00118C8C /* ListableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE61C52B46B00118C8C /* ListableTests.swift */; };
 		215BABF01C52B46B00118C8C /* SpanLevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE71C52B46B00118C8C /* SpanLevelTests.swift */; };
 		215BABF11C52B46B00118C8C /* SpanLevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE71C52B46B00118C8C /* SpanLevelTests.swift */; };
+		215E6D711C7534CC00126FE9 /* Positionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2109989B1C62E268000C34B2 /* Positionable.swift */; };
 		21AB4EB01C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */; };
 		21AB4EB11C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */; };
 /* End PBXBuildFile section */
@@ -327,6 +328,7 @@
 				215BAB481C52B18B00118C8C /* Frameworks */,
 				215BAB491C52B18B00118C8C /* Headers */,
 				215BAB4A1C52B18B00118C8C /* Resources */,
+				215E6D6E1C75348200126FE9 /* Swift Lint */,
 			);
 			buildRules = (
 			);
@@ -431,6 +433,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		215E6D6E1C75348200126FE9 /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 		21BD86A51C62DD6500FDED29 /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -506,6 +522,7 @@
 				215BABCA1C52B42F00118C8C /* NativePrefixable.swift in Sources */,
 				215BABD61C52B42F00118C8C /* Image.swift in Sources */,
 				215BABD81C52B42F00118C8C /* Paragraph.swift in Sources */,
+				215E6D711C7534CC00126FE9 /* Positionable.swift in Sources */,
 				215BABD41C52B42F00118C8C /* CodeBlock.swift in Sources */,
 				215BABDC1C52B42F00118C8C /* DoubleEmphasis.swift in Sources */,
 				215BABDF1C52B42F00118C8C /* Text.swift in Sources */,
