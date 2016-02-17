@@ -1,12 +1,12 @@
 //
-//  TransportMessage.swift
+//  Message.swift
 //  OperationTransport
 //
 //  Created by Sam Soffes on 2/2/16.
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
-public enum TransportMessage {
+enum Message {
 	case Operation(operation: OperationTransport.Operation)
 	case Snapshot(content: String)
 	case Error(message: String?, lineNumber: UInt?, columnNumber: UInt?)

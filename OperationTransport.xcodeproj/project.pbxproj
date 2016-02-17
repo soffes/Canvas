@@ -11,11 +11,11 @@
 		215E6D301C7520BD00126FE9 /* OperationTransport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215E6D251C7520BD00126FE9 /* OperationTransport.framework */; };
 		215E6D351C7520BD00126FE9 /* OperationTransportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D341C7520BD00126FE9 /* OperationTransportTests.swift */; };
 		215E6D411C75210200126FE9 /* TransportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D3F1C75210200126FE9 /* TransportController.swift */; };
-		215E6D421C75210200126FE9 /* TransportMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D401C75210200126FE9 /* TransportMessage.swift */; };
+		215E6D421C75210200126FE9 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D401C75210200126FE9 /* Message.swift */; };
 		215E6D4B1C75212900126FE9 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D4A1C75212900126FE9 /* Operation.swift */; };
 		215E6D5D1C7532E200126FE9 /* OperationTransport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215E6D531C7532E200126FE9 /* OperationTransport.framework */; };
 		215E6D6A1C75336C00126FE9 /* TransportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D3F1C75210200126FE9 /* TransportController.swift */; };
-		215E6D6B1C75336C00126FE9 /* TransportMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D401C75210200126FE9 /* TransportMessage.swift */; };
+		215E6D6B1C75336C00126FE9 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D401C75210200126FE9 /* Message.swift */; };
 		215E6D6C1C75336C00126FE9 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D4A1C75212900126FE9 /* Operation.swift */; };
 		215E6D6D1C75337900126FE9 /* OperationTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 215E6D281C7520BD00126FE9 /* OperationTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		215E6D781C7539CB00126FE9 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 215E6D771C7539CB00126FE9 /* index.html */; };
@@ -45,7 +45,7 @@
 		215E6D341C7520BD00126FE9 /* OperationTransportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationTransportTests.swift; sourceTree = "<group>"; };
 		215E6D361C7520BD00126FE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		215E6D3F1C75210200126FE9 /* TransportController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportController.swift; sourceTree = "<group>"; };
-		215E6D401C75210200126FE9 /* TransportMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportMessage.swift; sourceTree = "<group>"; };
+		215E6D401C75210200126FE9 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		215E6D4A1C75212900126FE9 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
 		215E6D4C1C7521DE00126FE9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		215E6D531C7532E200126FE9 /* OperationTransport.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OperationTransport.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,7 +112,7 @@
 			children = (
 				215E6D281C7520BD00126FE9 /* OperationTransport.h */,
 				215E6D3F1C75210200126FE9 /* TransportController.swift */,
-				215E6D401C75210200126FE9 /* TransportMessage.swift */,
+				215E6D401C75210200126FE9 /* Message.swift */,
 				215E6D4A1C75212900126FE9 /* Operation.swift */,
 				215E6D431C75210500126FE9 /* Resources */,
 			);
@@ -346,7 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				215E6D411C75210200126FE9 /* TransportController.swift in Sources */,
-				215E6D421C75210200126FE9 /* TransportMessage.swift in Sources */,
+				215E6D421C75210200126FE9 /* Message.swift in Sources */,
 				215E6D4B1C75212900126FE9 /* Operation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,7 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				215E6D6A1C75336C00126FE9 /* TransportController.swift in Sources */,
-				215E6D6B1C75336C00126FE9 /* TransportMessage.swift in Sources */,
+				215E6D6B1C75336C00126FE9 /* Message.swift in Sources */,
 				215E6D6C1C75336C00126FE9 /* Operation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -629,6 +629,7 @@
 				215E6D3B1C7520BD00126FE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		215E6D3C1C7520BD00126FE9 /* Build configuration list for PBXNativeTarget "OperationTransportTests-iOS" */ = {
 			isa = XCConfigurationList;
@@ -637,6 +638,7 @@
 				215E6D3E1C7520BD00126FE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		215E6D641C7532E200126FE9 /* Build configuration list for PBXNativeTarget "OperationTransport-OSX" */ = {
 			isa = XCConfigurationList;
@@ -645,6 +647,7 @@
 				215E6D661C7532E200126FE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		215E6D671C7532E200126FE9 /* Build configuration list for PBXNativeTarget "OperationTransportTests-OSX" */ = {
 			isa = XCConfigurationList;
@@ -653,6 +656,7 @@
 				215E6D691C7532E200126FE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

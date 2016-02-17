@@ -112,7 +112,7 @@ public class TransportController: NSObject {
 extension TransportController: WKScriptMessageHandler {
 	public func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage scriptMessage: WKScriptMessage) {
 		guard let dictionary = scriptMessage.body as? [String: AnyObject],
-			message = TransportMessage(dictionary: dictionary)
+			message = Message(dictionary: dictionary)
 		else {
 			print("[TransportController] Unknown message: \(scriptMessage.body)")
 			return
