@@ -9,6 +9,7 @@
 import WebKit
 
 public protocol TransportControllerDelegate: class {
+	func transportController(controller: TransportController, willConnectWithWebView webView: WKWebView)
 	func transportController(controller: TransportController, didReceiveSnapshot text: String)
 	func transportController(controller: TransportController, didReceiveOperation operation: Operation)
 	func transportController(controller: TransportController, didReceiveWebErrorMessage errorMessage: String?, lineNumber: UInt?, columnNumber: UInt?)
@@ -79,6 +80,11 @@ public class TransportController: NSObject {
 
 	public func connect() {
 		guard let html = indexHTML else { return }
+
+		if webView.superview == nil {
+			delegate?.transportController(self, willConnectWithWebView: webView)
+		}
+		
 		webView.loadHTMLString(html, baseURL: serverURL)
 	}
 	
