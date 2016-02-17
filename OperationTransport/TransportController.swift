@@ -15,9 +15,9 @@ public protocol TransportControllerDelegate: class {
 	func transportController(controller: TransportController, didDisconnectWithErrorMessage errorMessage: String?)
 }
 
-private let editorHTML: String? = {
+private let indexHTML: String? = {
 	let bundle = NSBundle(forClass: TransportController.self)
-	guard let editorPath = bundle.pathForResource("editor", ofType: "html"),
+	guard let editorPath = bundle.pathForResource("index", ofType: "html"),
 		html = try? String(contentsOfFile: editorPath, encoding: NSUTF8StringEncoding)
 	else { return nil }
 
@@ -78,7 +78,7 @@ public class TransportController: NSObject {
 	// MARK: - Connecting
 
 	public func connect() {
-		guard let html = editorHTML else { return }
+		guard let html = indexHTML else { return }
 		webView.loadHTMLString(html, baseURL: serverURL)
 	}
 	

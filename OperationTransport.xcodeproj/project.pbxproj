@@ -12,13 +12,13 @@
 		215E6D351C7520BD00126FE9 /* OperationTransportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D341C7520BD00126FE9 /* OperationTransportTests.swift */; };
 		215E6D411C75210200126FE9 /* TransportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D3F1C75210200126FE9 /* TransportController.swift */; };
 		215E6D421C75210200126FE9 /* TransportMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D401C75210200126FE9 /* TransportMessage.swift */; };
-		215E6D471C75210500126FE9 /* editor.html in Resources */ = {isa = PBXBuildFile; fileRef = 215E6D441C75210500126FE9 /* editor.html */; };
 		215E6D4B1C75212900126FE9 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D4A1C75212900126FE9 /* Operation.swift */; };
 		215E6D5D1C7532E200126FE9 /* OperationTransport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215E6D531C7532E200126FE9 /* OperationTransport.framework */; };
 		215E6D6A1C75336C00126FE9 /* TransportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D3F1C75210200126FE9 /* TransportController.swift */; };
 		215E6D6B1C75336C00126FE9 /* TransportMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D401C75210200126FE9 /* TransportMessage.swift */; };
 		215E6D6C1C75336C00126FE9 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D4A1C75212900126FE9 /* Operation.swift */; };
 		215E6D6D1C75337900126FE9 /* OperationTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 215E6D281C7520BD00126FE9 /* OperationTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		215E6D781C7539CB00126FE9 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 215E6D771C7539CB00126FE9 /* index.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,11 +46,11 @@
 		215E6D361C7520BD00126FE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		215E6D3F1C75210200126FE9 /* TransportController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportController.swift; sourceTree = "<group>"; };
 		215E6D401C75210200126FE9 /* TransportMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportMessage.swift; sourceTree = "<group>"; };
-		215E6D441C75210500126FE9 /* editor.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = editor.html; sourceTree = "<group>"; };
 		215E6D4A1C75212900126FE9 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
 		215E6D4C1C7521DE00126FE9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		215E6D531C7532E200126FE9 /* OperationTransport.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OperationTransport.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		215E6D5C1C7532E200126FE9 /* OperationTransportTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OperationTransportTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		215E6D771C7539CB00126FE9 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,8 +131,8 @@
 		215E6D431C75210500126FE9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				215E6D441C75210500126FE9 /* editor.html */,
 				215E6D4C1C7521DE00126FE9 /* Info.plist */,
+				215E6D771C7539CB00126FE9 /* index.html */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -282,7 +282,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				215E6D471C75210500126FE9 /* editor.html in Resources */,
+				215E6D781C7539CB00126FE9 /* index.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

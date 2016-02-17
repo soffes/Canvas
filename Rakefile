@@ -1,9 +1,9 @@
 require 'open-uri'
 
-desc 'Compile editor.html'
-task :editor do
+desc 'Compile index.html'
+task :html do
   sharejs = open('https://github.com/usecanvas/sharejs-wrapper/raw/master/dist/index.js').read.chomp
-  editor = File.read('CanvasText/Resources/editor.js').chomp
+  editor = File.read('OperationTransport/Resources/index.js').chomp
 
   html = %Q{<!DOCTYPE html>
 <html lang="en-US">
@@ -22,7 +22,7 @@ task :editor do
 </html>
 }
 
-  file = File.new('CanvasText/Resources/editor.html', 'w')
+  file = File.new('OperationTransport/Resources/index.html', 'w')
   file.write(html)
   file.close
 end
