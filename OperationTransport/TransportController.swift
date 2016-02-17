@@ -15,6 +15,15 @@ public protocol TransportControllerDelegate: class {
 	func transportController(controller: TransportController, didDisconnectWithErrorMessage errorMessage: String?)
 }
 
+private let editorHTML: String? = {
+	let bundle = NSBundle(forClass: TransportController.self)
+	guard let editorPath = bundle.pathForResource("editor", ofType: "html"),
+		html = try? String(contentsOfFile: editorPath, encoding: NSUTF8StringEncoding)
+	else { return nil }
+
+	return html
+}()
+
 
 public class TransportController: NSObject {
 	
@@ -27,7 +36,7 @@ public class TransportController: NSObject {
 	public weak var delegate: TransportControllerDelegate?
 
 	var webView: WKWebView!
-	
+
 	
 	// MARK: - Initializers
 	
@@ -38,7 +47,7 @@ public class TransportController: NSObject {
 		self.canvasID = canvasID
 		
 		super.init()
-		
+
 		let configuration = WKWebViewConfiguration()
 		configuration.allowsAirPlayForMediaPlayback = false
 
@@ -50,12 +59,12 @@ public class TransportController: NSObject {
 		// Setup script handler
 		let userContentController = WKUserContentController()
 		userContentController.addScriptMessageHandler(self, name: "share")
-		
+
 		// Connect
 		let js = "Canvas.connect('\(serverURL.absoluteString)', '\(accessToken)', '\(organizationID)', '\(canvasID)');"
 		userContentController.addUserScript(WKUserScript(source: js, injectionTime: .AtDocumentEnd, forMainFrameOnly: true))
 		configuration.userContentController = userContentController
-		
+
 		// Load file
 		webView = WKWebView(frame: .zero, configuration: configuration)
 
@@ -63,19 +72,14 @@ public class TransportController: NSObject {
 			webView.scrollView.scrollsToTop = false
 		#endif
 
-		reload()
 	}
 
 
 	// MARK: - Connecting
 
-	public func reload() {
-		let bundle = NSBundle(forClass: TransportController.self)
-		guard let editorPath = bundle.pathForResource("editor", ofType: "html"),
-			editor = try? String(contentsOfFile: editorPath, encoding: NSUTF8StringEncoding)
-		else { return }
-
-		webView.loadHTMLString(editor, baseURL: serverURL)
+	public func connect() {
+		guard let html = editorHTML else { return }
+		webView.loadHTMLString(html, baseURL: serverURL)
 	}
 	
 	
