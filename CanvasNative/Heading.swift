@@ -74,7 +74,10 @@ public struct Heading: BlockNode, NodeContainer, Foldable {
 		foldableRanges = [leadingDelimiterRange]
 
 		// Content
-		textRange = NSRange(location: enclosingRange.location + scanner.scanLocation, length: enclosingRange.length - scanner.scanLocation)
+		textRange = NSRange(
+			location: enclosingRange.location + scanner.scanLocation,
+			length: enclosingRange.length - scanner.scanLocation
+		)
 		range = enclosingRange
 		displayRange = range
 	}

@@ -42,9 +42,10 @@ public struct LinkTitle {
 		textRange = match.rangeAtIndex(7)
 		trailingDelimiterRange = match.rangeAtIndex(8)
 
-		if leadingDelimiterRange.location == NSNotFound || textRange.location == NSNotFound || trailingDelimiterRange.location == NSNotFound {
-			return nil
-		}
+		guard leadingDelimiterRange.location != NSNotFound &&
+			textRange.location != NSNotFound &&
+			trailingDelimiterRange.location != NSNotFound
+		else { return nil }
 	}
 }
 

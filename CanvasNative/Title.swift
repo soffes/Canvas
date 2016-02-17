@@ -22,7 +22,11 @@ public struct Title: NativePrefixable {
 	// MARK: - Initializers
 
 	public init?(string: String, enclosingRange: NSRange) {
-		guard let (nativePrefixRange, displayRange) = parseBlockNode(string: string, enclosingRange: enclosingRange, delimiter: "doc-heading") else { return nil }
+		guard let (nativePrefixRange, displayRange) = parseBlockNode(
+			string: string,
+			enclosingRange: enclosingRange,
+			delimiter: "doc-heading"
+		) else { return nil }
 
 		range = enclosingRange
 		self.nativePrefixRange = nativePrefixRange

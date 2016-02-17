@@ -110,7 +110,10 @@ public struct ChecklistItem: Listable, NodeContainer {
 
 		// Content
 		self.completedRange = completedRange
-		displayRange = NSRange(location: enclosingRange.location + scanner.scanLocation, length: enclosingRange.length - scanner.scanLocation)
+		displayRange = NSRange(
+			location: enclosingRange.location + scanner.scanLocation,
+			length: enclosingRange.length - scanner.scanLocation
+		)
 
 		range = enclosingRange
 	}

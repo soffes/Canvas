@@ -33,7 +33,12 @@ public struct UnorderedListItem: Listable, NodeContainer {
 	// MARK: - Initializers
 
 	public init?(string: String, enclosingRange: NSRange) {
-		guard let (nativePrefixRange, indentationRange, indentation, prefixRange, displayRange) = parseListable(string: string, enclosingRange: enclosingRange, delimiter: "unordered-list", prefix: "- ") else { return nil }
+		guard let (nativePrefixRange, indentationRange, indentation, prefixRange, displayRange) = parseListable(
+			string: string,
+			enclosingRange: enclosingRange,
+			delimiter: "unordered-list",
+			prefix: "- "
+		) else { return nil }
 
 		range = enclosingRange
 		self.nativePrefixRange = nativePrefixRange.union(prefixRange)

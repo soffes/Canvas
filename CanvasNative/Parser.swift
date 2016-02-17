@@ -51,7 +51,8 @@ public struct Parser {
 
 		// Enumerate the string blocks of the `backingText`.
 		let text = string as NSString
-		text.enumerateSubstringsInRange(NSRange(location: 0, length: text.length), options: [.ByLines]) { substring, substringRange, _, _ in
+		let bounds = NSRange(location: 0, length: text.length)
+		text.enumerateSubstringsInRange(bounds, options: [.ByLines]) { substring, substringRange, _, _ in
 			// Ensure we have a substring to work with
 			guard let substring = substring else { return }
 
@@ -81,48 +82,7 @@ public struct Parser {
 			}
 		}
 
-		// Add position information
-		var positionableType: Positionable.Type?
-		var	positionables = [Positionable]()
-
-		func applyPositions(index: Int) {
-			let count = positionables.count
-			for (i, p) in positionables.enumerate() {
-				var positionable = p
-
-				if count == 1 {
-					positionable.position = .Single
-				} else if i == 0 {
-					positionable.position = .Top
-				} else if i == count - 1 {
-					positionable.position = .Bottom
-				} else {
-					positionable.position = .Middle
-				}
-
-				guard let node = positionable as? BlockNode else { continue }
-				nodes[index - count + i] = node
-			}
-
-			positionableType = nil
-			positionables.removeAll()
-		}
-
-		for (i, node) in nodes.enumerate() {
-			guard let positionable = node as? Positionable else {
-				applyPositions(i)
-				continue
-			}
-
-			if positionableType != positionable.dynamicType {
-				applyPositions(i)
-				positionableType = positionable.dynamicType
-			}
-
-			positionables.append(positionable)
-		}
-
-		applyPositions(nodes.count)
+		nodes = calculatePositions(nodes)
 
 		return nodes
 	}
@@ -180,5 +140,54 @@ public struct Parser {
 		}
 
 		return output
+	}
+
+	private func calculatePositions(nodes: [BlockNode]) -> [BlockNode] {
+		var nodes = nodes
+
+		// Add position information
+		var positionableType: Positionable.Type?
+		var	positionables = [Positionable]()
+
+		func applyPositions(index: Int) {
+			let count = positionables.count
+			for (i, p) in positionables.enumerate() {
+				var positionable = p
+
+				if count == 1 {
+					positionable.position = .Single
+				} else if i == 0 {
+					positionable.position = .Top
+				} else if i == count - 1 {
+					positionable.position = .Bottom
+				} else {
+					positionable.position = .Middle
+				}
+
+				guard let node = positionable as? BlockNode else { continue }
+				nodes[index - count + i] = node
+			}
+
+			positionableType = nil
+			positionables.removeAll()
+		}
+
+		for (i, node) in nodes.enumerate() {
+			guard let positionable = node as? Positionable else {
+				applyPositions(i)
+				continue
+			}
+
+			if positionableType != positionable.dynamicType {
+				applyPositions(i)
+				positionableType = positionable.dynamicType
+			}
+
+			positionables.append(positionable)
+		}
+
+		applyPositions(nodes.count)
+
+		return nodes
 	}
 }

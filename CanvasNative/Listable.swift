@@ -84,7 +84,10 @@ func parseListable(string string: String, enclosingRange: NSRange, delimiter: St
 	let prefixRange = NSRange(location: enclosingRange.location + startPrefix, length: scanner.scanLocation - startPrefix)
 
 	// Content
-	let displayRange = NSRange(location: enclosingRange.location + scanner.scanLocation, length: enclosingRange.length - scanner.scanLocation)
+	let displayRange = NSRange(
+		location: enclosingRange.location + scanner.scanLocation,
+		length: enclosingRange.length - scanner.scanLocation
+	)
 
 	return (nativePrefixRange, indentationRange, indentation, prefixRange, displayRange)
 }

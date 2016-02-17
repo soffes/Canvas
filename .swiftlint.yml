@@ -1,7 +1,3 @@
-excluded:
-  - Carthage
-  - Vendor/CanvasKit
-
 disabled_rules:
   # I really like putting else one a new line in long guard statements.
   - statement_position
@@ -13,13 +9,8 @@ disabled_rules:
 
   # TODO: Remove these
   - todo
-  - function_body_length
   - variable_name
-  - cyclomatic_complexity
   - function_parameter_count
 
 # TODO: Change to 120
-line_length: 260
-
-# TODO: Remove
-file_length: 550
+line_length: 256

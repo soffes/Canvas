@@ -25,7 +25,12 @@ public struct Blockquote: NativePrefixable, Positionable {
 	// MARK: - Initializers
 
 	public init?(string: String, enclosingRange: NSRange) {
-		guard let (nativePrefixRange, prefixRange, displayRange) = parseBlockNode(string: string, enclosingRange: enclosingRange, delimiter: "blockquote", prefix: "> ") else { return nil }
+		guard let (nativePrefixRange, prefixRange, displayRange) = parseBlockNode(
+			string: string,
+			enclosingRange: enclosingRange,
+			delimiter: "blockquote",
+			prefix: "> "
+		) else { return nil }
 
 		range = enclosingRange
 		self.nativePrefixRange = nativePrefixRange.union(prefixRange)

@@ -34,7 +34,10 @@ func parseBlockNode(string string: String, enclosingRange: NSRange, delimiter: S
 	let prefixRange = NSRange(location: enclosingRange.location + startPrefix, length: scanner.scanLocation - startPrefix)
 
 	// Content
-	let displayRange = NSRange(location: enclosingRange.location + scanner.scanLocation, length: enclosingRange.length - scanner.scanLocation)
+	let displayRange = NSRange(
+		location: enclosingRange.location + scanner.scanLocation,
+		length: enclosingRange.length - scanner.scanLocation
+	)
 
 	return (nativePrefixRange, prefixRange, displayRange)
 }
@@ -51,7 +54,10 @@ func parseBlockNode(string string: String, enclosingRange: NSRange, delimiter: S
 	let nativePrefixRange = NSRange(location: enclosingRange.location, length: scanner.scanLocation)
 
 	// Content
-	let displayRange = NSRange(location: enclosingRange.location + scanner.scanLocation, length: enclosingRange.length - scanner.scanLocation)
+	let displayRange = NSRange(
+		location: enclosingRange.location + scanner.scanLocation,
+		length: enclosingRange.length - scanner.scanLocation
+	)
 
 	return (nativePrefixRange, displayRange)
 }
