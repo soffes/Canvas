@@ -110,13 +110,13 @@ public struct Parser {
 					}
 				}
 
-				if skip {
-					continue
-				}
+				guard !skip, let node = type.init(match: match) else { continue }
 
-				if var node = type.init(match: match) {
-					// Recurse
+				// Recurse
+				if var node = node as? NodeContainer {
 					node.subnodes = parseInline(node)
+					subnodes.append(node)
+				} else {
 					subnodes.append(node)
 				}
 			}
