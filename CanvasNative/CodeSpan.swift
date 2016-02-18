@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct CodeSpan: SpanNode, Foldable, NodeContainer {
+public struct CodeSpan: SpanNode, Foldable {
 
 	// MARK: - Properties
 
