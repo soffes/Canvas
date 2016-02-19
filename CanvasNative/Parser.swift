@@ -13,9 +13,7 @@ public struct Parser {
 
 	// MARK: - Properties
 
-	public let string: String
-
-	private let blockParseOrder: [BlockNode.Type] = [
+	private static let blockParseOrder: [BlockNode.Type] = [
 		Blockquote.self,
 		ChecklistItem.self,
 		CodeBlock.self,
@@ -28,7 +26,7 @@ public struct Parser {
 		Paragraph.self
 	]
 
-	private let spanParseOrder: [SpanNodeParseable.Type] = [
+	private static let spanParseOrder: [SpanNodeParseable.Type] = [
 		CodeSpan.self,
 		Link.self,
 //		ReferenceLink.self,
@@ -37,16 +35,13 @@ public struct Parser {
 	]
 
 
-	// MARK: - Initializers
-
-	public init(string: String) {
-		self.string = string
-	}
-
-
 	// MARK: - Parsing
 
-	public func parse() -> [BlockNode] {
+	public static func parse(string string: NSString, offset: Int = 0) -> [BlockNode] {
+		return parse(string: string as String, offset: UInt(offset))
+	}
+
+	public static func parse(string string: String, offset: UInt = 0) -> [BlockNode] {
 		var nodes = [BlockNode]()
 
 		// Enumerate the string blocks of the `backingText`.
@@ -56,11 +51,14 @@ public struct Parser {
 			// Ensure we have a substring to work with
 			guard let substring = substring else { return }
 
+			var range = substringRange
+			range.location += Int(offset)
+
 			for type in self.blockParseOrder {
-				guard var node = type.init(string: substring, enclosingRange: substringRange) else { continue }
+				guard var node = type.init(string: substring, enclosingRange: range) else { continue }
 
 				if var container = node as? NodeContainer {
-					container.subnodes = self.parseInline(container)
+					container.subnodes = self.parseInline(string: string, offset: offset, container: container)
 
 					// TODO: There has to be a better way to do this
 					if let container = container as? BlockNode {
@@ -73,13 +71,7 @@ public struct Parser {
 				return
 			}
 
-			// Unsupported range
-			var range = substringRange
-
-			// Account for new line
-			if range.max + 1 < text.length {
-				range.length += 1
-			}
+			// TODO: Unsupported range
 		}
 
 		nodes = calculatePositions(nodes)
@@ -90,7 +82,7 @@ public struct Parser {
 
 	// MARK: - Private
 
-	private func parseInline(container: NodeContainer) -> [Node] {
+	private static func parseInline(string string: String, offset: UInt, container: NodeContainer) -> [Node] {
 		var subnodes = [Node]()
 
 		for type in spanParseOrder {
@@ -114,7 +106,7 @@ public struct Parser {
 
 				// Recurse
 				if var node = node as? NodeContainer {
-					node.subnodes = parseInline(node)
+					node.subnodes = parseInline(string: string, offset: offset, container: node)
 					subnodes.append(node)
 				} else {
 					subnodes.append(node)
@@ -142,7 +134,7 @@ public struct Parser {
 		return output
 	}
 
-	private func calculatePositions(nodes: [BlockNode]) -> [BlockNode] {
+	private static func calculatePositions(nodes: [BlockNode]) -> [BlockNode] {
 		var nodes = nodes
 
 		// Add position information
