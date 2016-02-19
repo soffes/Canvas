@@ -40,6 +40,15 @@ public struct Title: NativePrefixable {
 	}
 
 
+	// MARK: - Node
+
+	public mutating func offset(delta: Int) {
+		range.location += delta
+		nativePrefixRange.location += delta
+		displayRange.location += delta
+	}
+
+
 	// MARK: - Native
 
 	public static func nativeRepresentation(string: String? = nil) -> String {

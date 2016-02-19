@@ -51,4 +51,17 @@ public struct Paragraph: BlockNode, NodeContainer {
 		self.range = range
 		self.subnodes = subnodes
 	}
+
+
+	// MARK: - Node
+
+	public mutating func offset(delta: Int) {
+		range.location += delta
+		
+		subnodes = subnodes.map {
+			var node = $0
+			node.offset(delta)
+			return node
+		}
+	}
 }

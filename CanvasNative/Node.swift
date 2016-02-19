@@ -20,6 +20,11 @@ public protocol Node {
 	var dictionary: [String: AnyObject] { get }
 
 	func contentInString(string: String) -> String
+
+	/// Adjust all range locations by a delta.
+	///
+	/// - parameter delta: Amount to offset range locations
+	mutating func offset(delta: Int)
 }
 
 

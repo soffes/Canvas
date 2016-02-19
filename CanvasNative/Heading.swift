@@ -42,7 +42,9 @@ public struct Heading: BlockNode, NodeContainer, Foldable {
 
 	public var range: NSRange
 	public var displayRange: NSRange
-	public var foldableRanges: [NSRange]
+	public var foldableRanges: [NSRange] {
+		return [leadingDelimiterRange]
+	}
 	public var leadingDelimiterRange: NSRange
 	public var textRange: NSRange
 	public var level: Level
@@ -71,7 +73,6 @@ public struct Heading: BlockNode, NodeContainer, Foldable {
 		}
 
 		leadingDelimiterRange = NSRange(location: enclosingRange.location, length: scanner.scanLocation)
-		foldableRanges = [leadingDelimiterRange]
 
 		// Content
 		textRange = NSRange(
@@ -80,6 +81,22 @@ public struct Heading: BlockNode, NodeContainer, Foldable {
 		)
 		range = enclosingRange
 		displayRange = range
+	}
+
+
+	// MARK: - Node
+
+	public mutating func offset(delta: Int) {
+		range.location += delta
+		displayRange.location += delta
+		leadingDelimiterRange.location += delta
+		textRange.location += delta
+
+		subnodes = subnodes.map {
+			var node = $0
+			node.offset(delta)
+			return node
+		}
 	}
 
 

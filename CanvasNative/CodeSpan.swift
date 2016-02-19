@@ -54,6 +54,15 @@ public struct CodeSpan: SpanNode, Foldable {
 		self.trailingDelimiterRange = trailingDelimiterRange
 		self.subnodes = subnodes
 	}
+
+
+	// MARK: - Node
+
+	public mutating func offset(delta: Int) {
+		leadingDelimiterRange.location += delta
+		textRange.location += delta
+		trailingDelimiterRange.location += delta
+	}
 }
 
 

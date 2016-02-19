@@ -47,6 +47,15 @@ public struct LinkTitle {
 			trailingDelimiterRange.location != NSNotFound
 		else { return nil }
 	}
+
+
+	// MARK: - Mutating
+
+	public mutating func offset(delta: Int) {
+		leadingDelimiterRange.location += delta
+		textRange.location += delta
+		trailingDelimiterRange.location += delta
+	}
 }
 
 
@@ -124,6 +133,27 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 		self.title = title
 		self.trailingURLDelimiterRange = trailingURLDelimiterRange
 		self.subnodes = subnodes
+	}
+
+
+	// MARK: - Node
+
+	public mutating func offset(delta: Int) {
+		range.location += delta
+		leadingTextDelimiterRange.location += delta
+		textRange.location += delta
+		trailingTextDelimiterRange.location += delta
+		leadingURLDelimiterRange.location += delta
+		URLRange.location += delta
+		trailingURLDelimiterRange.location += delta
+
+		title?.offset(delta)
+
+		subnodes = subnodes.map {
+			var node = $0
+			node.offset(delta)
+			return node
+		}
 	}
 }
 

@@ -83,6 +83,14 @@ public struct Image: Attachable, Hashable {
 			size = nil
 		}
 	}
+
+
+	// MARK: - Node
+
+	public mutating func offset(delta: Int) {
+		range.location += delta
+		nativePrefixRange.location += delta
+	}
 }
 
 

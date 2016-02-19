@@ -119,6 +119,23 @@ public struct ChecklistItem: Listable, NodeContainer {
 	}
 
 
+	// MARK: - Node
+
+	public mutating func offset(delta: Int) {
+		range.location += delta
+		nativePrefixRange.location += delta
+		displayRange.location += delta
+		indentationRange.location += delta
+		completedRange.location += delta
+
+		subnodes = subnodes.map {
+			var node = $0
+			node.offset(delta)
+			return node
+		}
+	}
+
+
 	// MARK: - Native
 
 	public static func nativeRepresentation(indentation indentation: Indentation = .Zero, completion: Completion = .Incomplete) -> String {

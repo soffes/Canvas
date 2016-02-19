@@ -54,6 +54,21 @@ public struct Emphasis: SpanNode, Foldable, NodeContainer {
 		self.trailingDelimiterRange = trailingDelimiterRange
 		self.subnodes = subnodes
 	}
+
+
+	// MARK: - Node
+
+	public mutating func offset(delta: Int) {
+		leadingDelimiterRange.location += delta
+		textRange.location += delta
+		trailingDelimiterRange.location += delta
+
+		subnodes = subnodes.map {
+			var node = $0
+			node.offset(delta)
+			return node
+		}
+	}
 }
 
 

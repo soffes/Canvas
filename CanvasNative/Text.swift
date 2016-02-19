@@ -36,4 +36,11 @@ public struct Text: Node {
 	public init(range: NSRange) {
 		self.range = range
 	}
+
+
+	// MARK: - Node
+
+	public mutating func offset(delta: Int) {
+		range.location += delta
+	}
 }
