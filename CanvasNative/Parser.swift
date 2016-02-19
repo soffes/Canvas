@@ -37,28 +37,29 @@ public struct Parser {
 
 	// MARK: - Parsing
 
-	public static func parse(string string: NSString, offset: Int = 0) -> [BlockNode] {
-		return parse(string: string as String, offset: UInt(offset))
+	public static func parse(string string: NSString, range: NSRange? = nil) -> [BlockNode] {
+		return parse(string: string as String, range: range)
 	}
 
-	public static func parse(string string: String, offset: UInt = 0) -> [BlockNode] {
+	public static func parse(string string: String, range: NSRange? = nil) -> [BlockNode] {
 		var nodes = [BlockNode]()
 
-		// Enumerate the string blocks of the `backingText`.
 		let text = string as NSString
-		let bounds = NSRange(location: 0, length: text.length)
-		text.enumerateSubstringsInRange(bounds, options: [.ByLines]) { substring, substringRange, _, _ in
+		let parseRange = range ?? NSRange(location: 0, length: text.length)
+
+		// Enumerate the string blocks of the `backingText`.
+		text.enumerateSubstringsInRange(parseRange, options: [.ByLines]) { substring, substringRange, _, _ in
 			// Ensure we have a substring to work with
 			guard let substring = substring else { return }
 
 			var range = substringRange
-			range.location += Int(offset)
+			range.location += parseRange.location
 
 			for type in self.blockParseOrder {
 				guard var node = type.init(string: substring, enclosingRange: range) else { continue }
 
 				if var container = node as? NodeContainer {
-					container.subnodes = self.parseInline(string: string, offset: offset, container: container)
+					container.subnodes = self.parseInline(string: string, offset: UInt(parseRange.location), container: container)
 
 					// TODO: There has to be a better way to do this
 					if let container = container as? BlockNode {

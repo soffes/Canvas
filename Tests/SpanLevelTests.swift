@@ -226,6 +226,6 @@ class SpanLevelTests: XCTestCase {
 	// MARK: - Private
 
 	private func parse(markdown: String) -> [[String: AnyObject]] {
-		return Parser(string: markdown).parse().map { $0.dictionary }
+		return Parser.parse(string: markdown).map { $0.dictionary }
 	}
 }
