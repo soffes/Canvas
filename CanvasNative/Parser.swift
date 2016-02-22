@@ -52,14 +52,13 @@ public struct Parser {
 			// Ensure we have a substring to work with
 			guard let substring = substring else { return }
 
-			var range = substringRange
-			range.location += parseRange.location
+			let range = substringRange
 
 			for type in self.blockParseOrder {
 				guard var node = type.init(string: substring, enclosingRange: range) else { continue }
 
 				if var container = node as? NodeContainer {
-					container.subnodes = self.parseInline(string: string, offset: UInt(parseRange.location), container: container)
+					container.subnodes = self.parseInline(string: string, container: container)
 
 					// TODO: There has to be a better way to do this
 					if let container = container as? BlockNode {
@@ -83,7 +82,7 @@ public struct Parser {
 
 	// MARK: - Private
 
-	private static func parseInline(string string: String, offset: UInt, container: NodeContainer) -> [Node] {
+	private static func parseInline(string string: String, container: NodeContainer) -> [Node] {
 		var subnodes = [Node]()
 
 		for type in spanParseOrder {
@@ -107,7 +106,7 @@ public struct Parser {
 
 				// Recurse
 				if var node = node as? NodeContainer {
-					node.subnodes = parseInline(string: string, offset: offset, container: node)
+					node.subnodes = parseInline(string: string, container: node)
 					subnodes.append(node)
 				} else {
 					subnodes.append(node)
