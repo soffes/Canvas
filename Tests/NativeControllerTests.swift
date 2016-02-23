@@ -89,4 +89,49 @@ class NativeControllerTests: XCTestCase {
 		// Wait for expectations
 		waitForExpectationsWithTimeout(0.5, handler: nil)
 	}
+
+	func testChangingOne() {
+		// Initial state
+		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nOne\nTwo")
+		XCTAssertEqual(NSRange(location: 19, length: 3), controller.blocks[1].range)
+		XCTAssertEqual(NSRange(location: 23, length: 3), controller.blocks[2].range)
+
+		// Will update
+		let will = expectationWithDescription("nativeControllerWillUpdateNodes")
+		delegate.willUpdateNodes = { will.fulfill() }
+
+		// Replace
+		let replace = expectationWithDescription("nativeController:didReplaceContentForBlock:atIndex:withBlock:")
+		delegate.didReplaceContentForBlockAtIndexWithBlock = { before, index, after in
+			XCTAssert(before is Paragraph)
+			XCTAssertEqual(NSRange(location: 19, length: 3), before.range)
+
+			XCTAssert(after is Paragraph)
+			XCTAssertEqual(NSRange(location: 19, length: 4), after.range)
+
+			replace.fulfill()
+		}
+
+		// Update
+		let update = expectationWithDescription("nativeController:didUpdateLocationForBlock:atIndex:withBlock:")
+		delegate.didUpdateLocationForBlockAtIndexWithBlock = { before, index, after in
+			XCTAssert(before is Paragraph)
+			XCTAssertEqual(NSRange(location: 23, length: 3), before.range)
+
+			XCTAssert(after is Paragraph)
+			XCTAssertEqual(NSRange(location: 24, length: 3), after.range)
+
+			update.fulfill()
+		}
+
+		// Did update
+		let did = expectationWithDescription("nativeControllerDidUpdateNodes")
+		delegate.didUpdateNodes = { did.fulfill() }
+
+		// Edit characters
+		controller.replaceCharactersInRange(NSRange(location: 22, length: 0), withString: "!")
+
+		// Wait for expectations
+		waitForExpectationsWithTimeout(0.5, handler: nil)
+	}
 }

@@ -65,6 +65,7 @@ public final class NativeController {
 		// Overlapping range
 		if let blockRange = blockRangeForCharacterRange(invalidRange) {
 			let updatedBlocks = [BlockNode](blocks[blockRange])
+			let indexOffset = parsedBlocks.count - blockRange.count
 
 			var workingBlocks = blocks
 
@@ -72,7 +73,7 @@ public final class NativeController {
 			workingBlocks.replaceRange(blockRange, with: parsedBlocks)
 
 			for i in blockRange {
-				let before = workingBlocks[i]
+				let before = blocks[i + indexOffset]
 				let after = workingBlocks[i]
 				delegate?.nativeController(self, didReplaceContentForBlock: before, atIndex: UInt(i), withBlock: after)
 			}
@@ -80,8 +81,7 @@ public final class NativeController {
 			// TODO: Currently add and remove are not supported
 
 			// After updated blocks
-			let afterDelta = Int(lengthOfBlocks(updatedBlocks)) - Int(lengthOfBlocks(parsedBlocks))
-			let indexOffset = parsedBlocks.count - blockRange.count
+			let afterDelta = Int(lengthOfBlocks(parsedBlocks)) - Int(lengthOfBlocks(updatedBlocks))
 			let afterRange = (blockRange.endIndex + indexOffset)..<workingBlocks.endIndex
 
 			for i in afterRange {
