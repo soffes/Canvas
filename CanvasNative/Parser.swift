@@ -45,7 +45,13 @@ public struct Parser {
 		var nodes = [BlockNode]()
 
 		let text = string as NSString
-		let parseRange = range ?? NSRange(location: 0, length: text.length)
+		let bounds = NSRange(location: 0, length: text.length)
+		var parseRange = range ?? bounds
+
+		// If the range is zero, use the bounds.
+		if NSEqualRanges(parseRange, NSRange(location: 0, length: 0)) {
+			parseRange = bounds
+		}
 
 		// Enumerate the string blocks of the `backingText`.
 		text.enumerateSubstringsInRange(parseRange, options: [.ByLines]) { substring, substringRange, _, _ in
