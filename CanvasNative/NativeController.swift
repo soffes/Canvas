@@ -23,6 +23,10 @@ public protocol NativeControllerDelegate: class {
 }
 
 
+// - [ ] Insert
+// - [ ] Delete
+// - [ ] Change type
+// - [ ] Positionable
 public final class NativeController {
 
 	// MARK: - Properties
@@ -58,7 +62,8 @@ public final class NativeController {
 		text.replaceCharactersInRange(range, withString: string)
 
 		// Reparse the invalid range of document
-		let parsedBlocks = Parser.parse(string: text, range: invalidRange)
+		let parseRange = NSRange(location: invalidRange.location, length: min(text.length, invalidRange.length + (string as NSString).length))
+		let parsedBlocks = Parser.parse(string: text, range: parseRange)
 
 		let newBlocks: [BlockNode]
 
@@ -69,30 +74,37 @@ public final class NativeController {
 
 			var workingBlocks = blocks
 
-			// Replace blocks
+			// Update blocks
 			workingBlocks.replaceRange(blockRange, with: parsedBlocks)
 
-			for i in blockRange {
-				let before = blocks[i + indexOffset]
-				let after = workingBlocks[i]
-				delegate?.nativeController(self, didReplaceContentForBlock: before, atIndex: UInt(i), withBlock: after)
+			// Replacing
+			for index in blockRange {
+				didReplace(before: blocks[index + indexOffset], index: index, after: workingBlocks[index])
 			}
 
-			// TODO: Currently add and remove are not supported
+			if blockRange.endIndex < blockRange.startIndex + parsedBlocks.count {
+				for index in blockRange.endIndex..<(blockRange.startIndex + parsedBlocks.count) {
+					let block = parsedBlocks[index - blockRange.endIndex]
+					workingBlocks.insert(block, atIndex: index)
+					delegate?.nativeController(self, didInsertBlock: block, atIndex: UInt(index))
+				}
+			}
 
-			// After updated blocks
-			let afterDelta = Int(lengthOfBlocks(parsedBlocks)) - Int(lengthOfBlocks(updatedBlocks))
+			// Update blocks after edit
+			let afterDelta = Int(lengthOfBlocks(parsedBlocks)) - Int(lengthOfBlocks(updatedBlocks)) + indexOffset
 			let afterRange = (blockRange.endIndex + indexOffset)..<workingBlocks.endIndex
 
-			for i in afterRange {
-				let b = workingBlocks[i]
-				var block = b
-				block.offset(afterDelta)
-				workingBlocks[i] = block
-				delegate?.nativeController(self, didUpdateLocationForBlock: b, atIndex: UInt(i), withBlock: block)
+			for index in afterRange {
+				let before = workingBlocks[index]
+				var after = before
+				after.offset(afterDelta)
+				workingBlocks[index] = after
+				didUpdate(before: before, index: index, after: after)
 			}
 
 			newBlocks = workingBlocks
+
+			// TODO: Recalculate positionable
 		}
 
 		// Non-overlapping range. Replace blocks (not totally sure this is correct)
@@ -140,5 +152,21 @@ public final class NativeController {
 
 		guard let rangeStart = start, rangeEnd = end else { return nil }
 		return rangeStart...rangeEnd
+	}
+
+	private func didReplace(before before: BlockNode, index: Int, after: BlockNode) {
+		let i = UInt(index)
+
+		if before.dynamicType == after.dynamicType {
+			delegate?.nativeController(self, didReplaceContentForBlock: before, atIndex: i, withBlock: after)
+			return
+		}
+
+		delegate?.nativeController(self, didRemoveBlock: before, atIndex: i)
+		delegate?.nativeController(self, didInsertBlock: after, atIndex: i)
+	}
+
+	private func didUpdate(before before: BlockNode, index: Int, after: BlockNode) {
+		delegate?.nativeController(self, didUpdateLocationForBlock: before, atIndex: UInt(index), withBlock: after)
 	}
 }
