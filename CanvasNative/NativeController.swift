@@ -83,7 +83,10 @@ public final class NativeController {
 			}
 
 			// Update blocks after edit
-			let afterCharacterDelta = Int(characterLengthOfBlocks(parsedBlocks)) - Int(characterLengthOfBlocks(updatedBlocks))
+			//
+			// TODO: Adding `blockDelta` here probably isn't right. We need to account for new lines between blocks in
+			// a better way.
+			let afterCharacterDelta = Int(characterLengthOfBlocks(parsedBlocks)) - Int(characterLengthOfBlocks(updatedBlocks)) + blockDelta
 			let afterRange = (blockRange.endIndex + blockDelta)..<workingBlocks.endIndex
 
 			for index in afterRange {

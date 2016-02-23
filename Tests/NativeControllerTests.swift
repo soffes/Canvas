@@ -160,33 +160,33 @@ class NativeControllerTests: XCTestCase {
 
 	func testInsert() {
 		// Initial state
-		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nOne\nTwo")
-		let beforeParagraph2 = controller.blocks[2]
+		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
+		let blockquote = controller.blocks[2]
 
 		// Will update
 		let will = expectationWithDescription("nativeControllerWillUpdateNodes")
 		delegate.willUpdateNodes = { will.fulfill() }
 
-		// Insert
-		let insert = expectationWithDescription("nativeController:didInsertBlock:atIndex:")
-		delegate.didInsertBlockAtIndex = { block, index in
-			XCTAssert(block is CodeBlock)
-			XCTAssertEqual(NSRange(location: 23, length: 10), block.range)
-			XCTAssertEqual(2, index)
-
-			insert.fulfill()
-		}
+//		// Insert
+//		let insert = expectationWithDescription("nativeController:didInsertBlock:atIndex:")
+//		delegate.didInsertBlockAtIndex = { block, index in
+//			XCTAssert(block is CodeBlock)
+//			XCTAssertEqual(NSRange(location: 23, length: 10), block.range)
+//			XCTAssertEqual(2, index)
+//
+//			insert.fulfill()
+//		}
 
 		// Update
 		let update = expectationWithDescription("nativeController:didUpdateLocationForBlock:atIndex:withBlock:")
 		delegate.didUpdateLocationForBlockAtIndexWithBlock = { before, index, after in
-			XCTAssert(before is Paragraph)
-			XCTAssertEqual(beforeParagraph2.range, before.range)
+			XCTAssert(before is Blockquote)
+			XCTAssertEqual(blockquote.range, before.range)
 
 			XCTAssertEqual(3, index)
 
-			XCTAssert(after is Paragraph)
-			XCTAssertEqual(NSRange(location: 34, length: 3), after.range)
+			XCTAssert(after is Blockquote)
+			XCTAssertEqual(NSRange(location: 34, length: 17), after.range)
 
 			update.fulfill()
 		}
@@ -202,6 +202,45 @@ class NativeControllerTests: XCTestCase {
 		waitForExpectationsWithTimeout(0.5, handler: nil)
 
 		// Check blocks
-		XCTAssertEqual(["Title", "Paragraph", "CodeBlock", "Paragraph"], blockTypes)
+		XCTAssertEqual(["Title", "Paragraph", "CodeBlock", "Blockquote"], blockTypes)
+	}
+
+	func testRemove() {
+		// Initial state
+		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
+		let blockquote = controller.blocks[2]
+
+		// Will update
+		let will = expectationWithDescription("nativeControllerWillUpdateNodes")
+		delegate.willUpdateNodes = { will.fulfill() }
+
+		// TODO: Test remove message
+
+		// Update
+		let update = expectationWithDescription("nativeController:didUpdateLocationForBlock:atIndex:withBlock:")
+		delegate.didUpdateLocationForBlockAtIndexWithBlock = { before, index, after in
+			XCTAssert(before is Blockquote)
+			XCTAssertEqual(blockquote.range, before.range)
+
+			XCTAssertEqual(1, index)
+
+			XCTAssert(after is Blockquote)
+			XCTAssertEqual(NSRange(location: 19, length: 17), after.range)
+
+			update.fulfill()
+		}
+
+		// Did update
+		let did = expectationWithDescription("nativeControllerDidUpdateNodes")
+		delegate.didUpdateNodes = { did.fulfill() }
+
+		// Edit characters
+		controller.replaceCharactersInRange(NSRange(location: 19, length: 4), withString: "")
+
+		// Wait for expectations
+		waitForExpectationsWithTimeout(0.5, handler: nil)
+
+		// Check blocks
+		XCTAssertEqual(["Title", "Blockquote"], blockTypes)
 	}
 }
