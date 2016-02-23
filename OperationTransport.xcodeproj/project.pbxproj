@@ -95,6 +95,7 @@
 				215E6D261C7520BD00126FE9 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		215E6D261C7520BD00126FE9 /* Products */ = {
 			isa = PBXGroup;
@@ -241,7 +242,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
-				ORGANIZATIONNAME = "Canvas Labs Inc.";
+				ORGANIZATIONNAME = "Canvas Labs, Inc.";
 				TargetAttributes = {
 					215E6D241C7520BD00126FE9 = {
 						CreatedOnToolsVersion = 7.3;
