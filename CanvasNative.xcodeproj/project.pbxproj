@@ -76,6 +76,9 @@
 		215BABF01C52B46B00118C8C /* SpanLevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE71C52B46B00118C8C /* SpanLevelTests.swift */; };
 		215BABF11C52B46B00118C8C /* SpanLevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE71C52B46B00118C8C /* SpanLevelTests.swift */; };
 		215E6D711C7534CC00126FE9 /* Positionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2109989B1C62E268000C34B2 /* Positionable.swift */; };
+		21A9F0D01C7CFD01009B40A0 /* NativeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0CF1C7CFD01009B40A0 /* NativeController.swift */; };
+		21A9F0D21C7CFD1C009B40A0 /* NativeControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* NativeControllerTests.swift */; };
+		21A9F0D31C7CFD1C009B40A0 /* NativeControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* NativeControllerTests.swift */; };
 		21A9F0D81C7D3D0A009B40A0 /* Annotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D71C7D3D0A009B40A0 /* Annotatable.swift */; };
 		21A9F0D91C7D3D0A009B40A0 /* Annotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D71C7D3D0A009B40A0 /* Annotatable.swift */; };
 		21A9F0DB1C7D41B1009B40A0 /* ReturnCompletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0DA1C7D41B1009B40A0 /* ReturnCompletable.swift */; };
@@ -146,6 +149,8 @@
 		215BABE71C52B46B00118C8C /* SpanLevelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanLevelTests.swift; sourceTree = "<group>"; };
 		21A9F0D71C7D3D0A009B40A0 /* Annotatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotatable.swift; sourceTree = "<group>"; };
 		21A9F0DA1C7D41B1009B40A0 /* ReturnCompletable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnCompletable.swift; sourceTree = "<group>"; };
+		21A9F0CF1C7CFD01009B40A0 /* NativeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeController.swift; sourceTree = "<group>"; };
+		21A9F0D11C7CFD1C009B40A0 /* NativeControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeControllerTests.swift; sourceTree = "<group>"; };
 		21A9F0DD1C7D46D3009B40A0 /* SpanNodeContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanNodeContainer.swift; sourceTree = "<group>"; };
 		21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+CanvasNativeTests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,6 +224,7 @@
 			children = (
 				215BAB301C52B0C400118C8C /* CanvasNative.h */,
 				215BABA71C52B32B00118C8C /* Parser.swift */,
+				21A9F0CF1C7CFD01009B40A0 /* NativeController.swift */,
 				215BABC31C52B33A00118C8C /* Protocols */,
 				215BABC41C52B35100118C8C /* Block Level */,
 				215BABC51C52B35C00118C8C /* Span Level */,
@@ -236,6 +242,7 @@
 				215BABE51C52B46B00118C8C /* ImageTests.swift */,
 				215BABE61C52B46B00118C8C /* ListableTests.swift */,
 				215BABE71C52B46B00118C8C /* SpanLevelTests.swift */,
+				21A9F0D11C7CFD1C009B40A0 /* NativeControllerTests.swift */,
 				21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */,
 				21341C8A1C85089400C9EF39 /* NodeTests.swift */,
 				215BAB901C52B28900118C8C /* Info.plist */,
@@ -511,6 +518,7 @@
 				215BABBA1C52B32B00118C8C /* Node.swift in Sources */,
 				215BABBB1C52B32B00118C8C /* NodeContainer.swift in Sources */,
 				215BABC01C52B32B00118C8C /* Text.swift in Sources */,
+				21A9F0D01C7CFD01009B40A0 /* NativeController.swift in Sources */,
 				215BABBC1C52B32B00118C8C /* OrderedListItem.swift in Sources */,
 				215BABC71C52B3C500118C8C /* NSRange+CanvasNative.swift in Sources */,
 				21A9F0DE1C7D46D3009B40A0 /* SpanNodeContainer.swift in Sources */,
@@ -540,6 +548,7 @@
 				21AB4EB01C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */,
 				21341C8B1C85089400C9EF39 /* NodeTests.swift in Sources */,
 				215BABEE1C52B46B00118C8C /* ListableTests.swift in Sources */,
+				21A9F0D21C7CFD1C009B40A0 /* NativeControllerTests.swift in Sources */,
 				215BABEA1C52B46B00118C8C /* HeadingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -591,6 +600,7 @@
 				21AB4EB11C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */,
 				21341C8C1C85089400C9EF39 /* NodeTests.swift in Sources */,
 				215BABEF1C52B46B00118C8C /* ListableTests.swift in Sources */,
+				21A9F0D31C7CFD1C009B40A0 /* NativeControllerTests.swift in Sources */,
 				215BABEB1C52B46B00118C8C /* HeadingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
