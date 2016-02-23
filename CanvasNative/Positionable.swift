@@ -3,7 +3,7 @@
 //  CanvasNative
 //
 //  Created by Sam Soffes on 2/3/16.
-//  Copyright © 2016 Canvas Labs Inc. All rights reserved.
+//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
 public enum Position: String {

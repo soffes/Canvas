@@ -177,6 +177,7 @@
 				215BAB2E1C52B0C400118C8C /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		215BAB2E1C52B0C400118C8C /* Products */ = {
 			isa = PBXGroup;
@@ -365,7 +366,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
-				ORGANIZATIONNAME = "Canvas Labs Inc.";
+				ORGANIZATIONNAME = "Canvas Labs, Inc.";
 				TargetAttributes = {
 					215BAB2C1C52B0C400118C8C = {
 						CreatedOnToolsVersion = 7.3;
