@@ -80,6 +80,7 @@
 		21A9F0D21C7CFD1C009B40A0 /* NativeControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* NativeControllerTests.swift */; };
 		21A9F0D31C7CFD1C009B40A0 /* NativeControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* NativeControllerTests.swift */; };
 		21A9F0D81C7D3D0A009B40A0 /* Annotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D71C7D3D0A009B40A0 /* Annotatable.swift */; };
+		21A9F0D61C7D23D2009B40A0 /* NativeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0CF1C7CFD01009B40A0 /* NativeController.swift */; };
 		21A9F0D91C7D3D0A009B40A0 /* Annotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D71C7D3D0A009B40A0 /* Annotatable.swift */; };
 		21A9F0DB1C7D41B1009B40A0 /* ReturnCompletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0DA1C7D41B1009B40A0 /* ReturnCompletable.swift */; };
 		21A9F0DC1C7D41B1009B40A0 /* ReturnCompletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0DA1C7D41B1009B40A0 /* ReturnCompletable.swift */; };
@@ -237,12 +238,12 @@
 		215BAB8E1C52B28900118C8C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				21A9F0D11C7CFD1C009B40A0 /* NativeControllerTests.swift */,
 				215BABE31C52B46B00118C8C /* BlockquoteTests.swift */,
 				215BABE41C52B46B00118C8C /* HeadingTests.swift */,
 				215BABE51C52B46B00118C8C /* ImageTests.swift */,
 				215BABE61C52B46B00118C8C /* ListableTests.swift */,
 				215BABE71C52B46B00118C8C /* SpanLevelTests.swift */,
-				21A9F0D11C7CFD1C009B40A0 /* NativeControllerTests.swift */,
 				21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */,
 				21341C8A1C85089400C9EF39 /* NodeTests.swift */,
 				215BAB901C52B28900118C8C /* Info.plist */,
@@ -571,6 +572,7 @@
 				215BABDC1C52B42F00118C8C /* DoubleEmphasis.swift in Sources */,
 				215BABDF1C52B42F00118C8C /* Text.swift in Sources */,
 				215BABCF1C52B42F00118C8C /* Node.swift in Sources */,
+				21A9F0D61C7D23D2009B40A0 /* NativeController.swift in Sources */,
 				215BABD51C52B42F00118C8C /* Heading.swift in Sources */,
 				215BABDE1C52B42F00118C8C /* Link.swift in Sources */,
 				21A9F0DF1C7D46D3009B40A0 /* SpanNodeContainer.swift in Sources */,

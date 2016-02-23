@@ -6,6 +6,8 @@
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
+import Foundation
+
 public protocol NativeControllerDelegate: class {
 	func nativeControllerWillUpdateNodes(nativeController: NativeController)
 
@@ -23,10 +25,6 @@ public protocol NativeControllerDelegate: class {
 }
 
 
-// - [ ] Insert
-// - [ ] Delete
-// - [ ] Change type
-// - [ ] Positionable
 public final class NativeController {
 
 	// MARK: - Properties
@@ -53,7 +51,7 @@ public final class NativeController {
 
 	public func replaceCharactersInRange(range: NSRange, withString string: String) {
 
-		delegate?.nativeControllerWillUpdateNodes(self)
+		willUpdate()
 
 		// Calculate the range we need to invalidate
 		let invalidRange = text.lineRangeForRange(range)
@@ -62,69 +60,65 @@ public final class NativeController {
 		text.replaceCharactersInRange(range, withString: string)
 
 		// Reparse the invalid range of document
-		let parseRange = NSRange(location: invalidRange.location, length: min(text.length, invalidRange.length + (string as NSString).length))
+		let parseRange = NSRange(
+			location: invalidRange.location,
+			length: min(text.length, invalidRange.length + (string as NSString).length)
+		)
 		let parsedBlocks = Parser.parse(string: text, range: parseRange)
 
-		let newBlocks: [BlockNode]
+		// Start to calculate the new blocks
+		var workingBlocks = blocks
 
-		// Overlapping range
-		if let blockRange = blockRangeForCharacterRange(invalidRange) {
+		// There were existing blocks. Calculate replacements.
+		if let blockRange = blockRangeForCharacterRange(parseRange) {
 			let updatedBlocks = [BlockNode](blocks[blockRange])
-			let indexOffset = parsedBlocks.count - blockRange.count
-
-			var workingBlocks = blocks
+			let blockDelta = parsedBlocks.count - blockRange.count
 
 			// Update blocks
 			workingBlocks.replaceRange(blockRange, with: parsedBlocks)
 
 			// Replacing
 			for index in blockRange {
-				didReplace(before: blocks[index + indexOffset], index: index, after: workingBlocks[index])
-			}
-
-			if blockRange.endIndex < blockRange.startIndex + parsedBlocks.count {
-				for index in blockRange.endIndex..<(blockRange.startIndex + parsedBlocks.count) {
-					let block = parsedBlocks[index - blockRange.endIndex]
-					workingBlocks.insert(block, atIndex: index)
-					delegate?.nativeController(self, didInsertBlock: block, atIndex: UInt(index))
-				}
+				didReplace(before: blocks[index + blockDelta], index: index, after: workingBlocks[index])
 			}
 
 			// Update blocks after edit
-			let afterDelta = Int(lengthOfBlocks(parsedBlocks)) - Int(lengthOfBlocks(updatedBlocks)) + indexOffset
-			let afterRange = (blockRange.endIndex + indexOffset)..<workingBlocks.endIndex
+			let afterCharacterDelta = Int(characterLengthOfBlocks(parsedBlocks)) - Int(characterLengthOfBlocks(updatedBlocks))
+			let afterRange = (blockRange.endIndex + blockDelta)..<workingBlocks.endIndex
 
 			for index in afterRange {
 				let before = workingBlocks[index]
 				var after = before
-				after.offset(afterDelta)
+				after.offset(afterCharacterDelta)
 				workingBlocks[index] = after
 				didUpdate(before: before, index: index, after: after)
 			}
-
-			newBlocks = workingBlocks
-
-			// TODO: Recalculate positionable
 		}
 
-		// Non-overlapping range. Replace blocks (not totally sure this is correct)
+		// There weren't any blocks in the edited range. Append them to the end (not totally sure this is correct).
 		else {
-			newBlocks = parsedBlocks
+			let offset = workingBlocks.count
 
-			for (i, block) in newBlocks.enumerate() {
-				delegate?.nativeController(self, didInsertBlock: block, atIndex: UInt(i))
+			for (i, block) in parsedBlocks.enumerate() {
+				let index = offset + i
+				workingBlocks.insert(block, atIndex: index)
+				didInsert(block: block, index: index)
 			}
 		}
 
-		blocks = newBlocks
+		// TODO: Recalculate positionable
 
-		delegate?.nativeControllerDidUpdateNodes(self)
+		// Finalize the new blocks
+		blocks = workingBlocks
+
+		// Notify the delegate we're done
+		didUpdate()
 	}
 
 
 	// MARK: - Private
 
-	private func lengthOfBlocks(blocks: [BlockNode]) -> UInt {
+	private func characterLengthOfBlocks(blocks: [BlockNode]) -> UInt {
 		return blocks.map { UInt($0.range.length) }.reduce(0, combine: +)
 	}
 
@@ -141,7 +135,7 @@ public final class NativeController {
 			}
 
 			// If the index is in range, add it to the output
-			if block.range.location >= location && block.range.location < max {
+			if block.range.location >= location && NSMaxRange(block.range) < max {
 				if start == nil {
 					start = i
 				}
@@ -152,6 +146,18 @@ public final class NativeController {
 
 		guard let rangeStart = start, rangeEnd = end else { return nil }
 		return rangeStart...rangeEnd
+	}
+
+	private func willUpdate() {
+		delegate?.nativeControllerWillUpdateNodes(self)
+	}
+
+	private func didUpdate() {
+		delegate?.nativeControllerDidUpdateNodes(self)
+	}
+
+	private func didInsert(block block: BlockNode, index: Int) {
+		delegate?.nativeController(self, didInsertBlock: block, atIndex: UInt(index))
 	}
 
 	private func didReplace(before before: BlockNode, index: Int, after: BlockNode) {

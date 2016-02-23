@@ -161,35 +161,35 @@ class NativeControllerTests: XCTestCase {
 	func testInsert() {
 		// Initial state
 		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nOne\nTwo")
-//		let beforeParagraph2 = controller.blocks[2]
+		let beforeParagraph2 = controller.blocks[2]
 
 		// Will update
 		let will = expectationWithDescription("nativeControllerWillUpdateNodes")
 		delegate.willUpdateNodes = { will.fulfill() }
 
-//		// Insert
-//		let insert = expectationWithDescription("nativeController:didInsertBlock:atIndex:")
-//		delegate.didInsertBlockAtIndex = { block, index in
-//			XCTAssert(block is CodeBlock)
-//			XCTAssertEqual(NSRange(location: 23, length: 10), block.range)
-//			XCTAssertEqual(2, index)
-//
-//			insert.fulfill()
-//		}
-//
-//		// Update
-//		let update = expectationWithDescription("nativeController:didUpdateLocationForBlock:atIndex:withBlock:")
-//		delegate.didUpdateLocationForBlockAtIndexWithBlock = { before, index, after in
-//			XCTAssert(before is Paragraph)
-//			XCTAssertEqual(beforeParagraph2.range, before.range)
-//
-//			XCTAssertEqual(3, index)
-//
-//			XCTAssert(after is Paragraph)
-//			XCTAssertEqual(NSRange(location: 34, length: 3), after.range)
-//
-//			update.fulfill()
-//		}
+		// Insert
+		let insert = expectationWithDescription("nativeController:didInsertBlock:atIndex:")
+		delegate.didInsertBlockAtIndex = { block, index in
+			XCTAssert(block is CodeBlock)
+			XCTAssertEqual(NSRange(location: 23, length: 10), block.range)
+			XCTAssertEqual(2, index)
+
+			insert.fulfill()
+		}
+
+		// Update
+		let update = expectationWithDescription("nativeController:didUpdateLocationForBlock:atIndex:withBlock:")
+		delegate.didUpdateLocationForBlockAtIndexWithBlock = { before, index, after in
+			XCTAssert(before is Paragraph)
+			XCTAssertEqual(beforeParagraph2.range, before.range)
+
+			XCTAssertEqual(3, index)
+
+			XCTAssert(after is Paragraph)
+			XCTAssertEqual(NSRange(location: 34, length: 3), after.range)
+
+			update.fulfill()
+		}
 
 		// Did update
 		let did = expectationWithDescription("nativeControllerDidUpdateNodes")
