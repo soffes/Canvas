@@ -33,6 +33,10 @@ public final class NativeController {
 
 	public private(set) var blocks = [BlockNode]()
 
+	public var string: String {
+		return text as String
+	}
+
 	private let text: NSMutableString = ""
 
 

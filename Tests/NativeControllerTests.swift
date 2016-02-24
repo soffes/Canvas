@@ -109,6 +109,7 @@ class NativeControllerTests: XCTestCase {
 
 		// Check blocks
 		XCTAssertEqual(["Title", "Paragraph"], blockTypes)
+		XCTAssertEqual("⧙doc-heading⧘Title\nParagraph", controller.string)
 	}
 
 	func testChange() {
@@ -161,6 +162,7 @@ class NativeControllerTests: XCTestCase {
 
 		// Check blocks
 		XCTAssertEqual(["Title", "Paragraph", "Paragraph"], blockTypes)
+		XCTAssertEqual("⧙doc-heading⧘Title\nOne!\nTwo", controller.string)
 	}
 
 	func testInsert() {
@@ -209,6 +211,7 @@ class NativeControllerTests: XCTestCase {
 
 		// Check blocks
 		XCTAssertEqual(["Title", "Paragraph", "CodeBlock", "Blockquote"], blockTypes)
+		XCTAssertEqual("⧙doc-heading⧘Title\nOne\n⧙code⧘Half\n⧙blockquote⧘> Two", controller.string)
 	}
 
 	func testRemove() {
@@ -255,5 +258,6 @@ class NativeControllerTests: XCTestCase {
 
 		// Check blocks
 		XCTAssertEqual(["Title", "Blockquote"], blockTypes)
+		XCTAssertEqual("⧙doc-heading⧘Title\n⧙blockquote⧘> Two", controller.string)
 	}
 }
