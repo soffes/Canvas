@@ -126,6 +126,12 @@ public final class NativeController {
 				workingBlocks[index] = after
 				didUpdate(before: before, index: index, after: after)
 			}
+
+			// TODO: Recalculate positionable
+			// We can probably just mark something as it needs to be updated and then recalculate positionable on the
+			// whole tree (for now) so we make sure not to call updated twice. That said, maybe we need to do that for
+			// all of the messages and then play them all in order one we've figured everything out. That might allow
+			// for some crazy analysis later to do the least changes. Just an idea.
 		}
 
 			// There weren't any blocks in the edited range. Append them to the end (not totally sure this is correct).
@@ -138,8 +144,6 @@ public final class NativeController {
 				didInsert(block: block, index: index)
 			}
 		}
-
-		// TODO: Recalculate positionable
 
 		return workingBlocks
 	}
