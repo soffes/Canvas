@@ -40,10 +40,6 @@ public struct ChecklistItem: Listable, NodeContainer {
 	public var completion: Completion
 	public var position: Position = .Single
 
-	public var hasAnnotation: Bool {
-		return true
-	}
-
 	public var textRange: NSRange {
 		return displayRange
 	}

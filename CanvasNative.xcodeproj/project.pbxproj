@@ -72,6 +72,8 @@
 		215BABF01C52B46B00118C8C /* SpanLevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE71C52B46B00118C8C /* SpanLevelTests.swift */; };
 		215BABF11C52B46B00118C8C /* SpanLevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE71C52B46B00118C8C /* SpanLevelTests.swift */; };
 		215E6D711C7534CC00126FE9 /* Positionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2109989B1C62E268000C34B2 /* Positionable.swift */; };
+		21A9F0D81C7D3D0A009B40A0 /* Annotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D71C7D3D0A009B40A0 /* Annotatable.swift */; };
+		21A9F0D91C7D3D0A009B40A0 /* Annotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D71C7D3D0A009B40A0 /* Annotatable.swift */; };
 		21AB4EB01C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */; };
 		21AB4EB11C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */; };
 /* End PBXBuildFile section */
@@ -132,6 +134,7 @@
 		215BABE51C52B46B00118C8C /* ImageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTests.swift; sourceTree = "<group>"; };
 		215BABE61C52B46B00118C8C /* ListableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListableTests.swift; sourceTree = "<group>"; };
 		215BABE71C52B46B00118C8C /* SpanLevelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanLevelTests.swift; sourceTree = "<group>"; };
+		21A9F0D71C7D3D0A009B40A0 /* Annotatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotatable.swift; sourceTree = "<group>"; };
 		21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+CanvasNativeTests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -223,6 +226,7 @@
 			children = (
 				215BABA21C52B32B00118C8C /* NativePrefixable.swift */,
 				215BAB951C52B32B00118C8C /* Attachable.swift */,
+				21A9F0D71C7D3D0A009B40A0 /* Annotatable.swift */,
 				215BAB961C52B32B00118C8C /* BlockNode.swift */,
 				215BAB9D1C52B32B00118C8C /* Foldable.swift */,
 				215BABA11C52B32B00118C8C /* Listable.swift */,
@@ -474,6 +478,7 @@
 				215BABC11C52B32B00118C8C /* Title.swift in Sources */,
 				215BABB21C52B32B00118C8C /* DoubleEmphasis.swift in Sources */,
 				215BABB71C52B32B00118C8C /* Link.swift in Sources */,
+				21A9F0D81C7D3D0A009B40A0 /* Annotatable.swift in Sources */,
 				215BABAC1C52B32B00118C8C /* Attachable.swift in Sources */,
 				215BABBF1C52B32B00118C8C /* SpanNode.swift in Sources */,
 				215BABB51C52B32B00118C8C /* Heading.swift in Sources */,
@@ -520,6 +525,7 @@
 				215BABCB1C52B42F00118C8C /* Attachable.swift in Sources */,
 				215BABCC1C52B42F00118C8C /* BlockNode.swift in Sources */,
 				215BABD21C52B42F00118C8C /* Blockquote.swift in Sources */,
+				21A9F0D91C7D3D0A009B40A0 /* Annotatable.swift in Sources */,
 				215BABCA1C52B42F00118C8C /* NativePrefixable.swift in Sources */,
 				215BABD61C52B42F00118C8C /* Image.swift in Sources */,
 				215BABD81C52B42F00118C8C /* Paragraph.swift in Sources */,
