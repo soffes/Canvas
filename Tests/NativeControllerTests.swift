@@ -119,12 +119,10 @@ class NativeControllerTests: XCTestCase {
 		// Replace
 		let replace = expectationWithDescription("nativeController:didReplaceContentForBlock:atIndex:withBlock:")
 		delegate.didReplaceContentForBlockAtIndexWithBlock = { before, index, after in
-			XCTAssert(before is Paragraph)
+			XCTAssertEqual("Paragraph", String(before.dynamicType))
 			XCTAssertEqual(beforeParagraph1.range, before.range)
-
 			XCTAssertEqual(1, index)
-
-			XCTAssert(after is Paragraph)
+			XCTAssertEqual("Paragraph", String(after.dynamicType))
 			XCTAssertEqual(NSRange(location: 19, length: 4), after.range)
 
 			replace.fulfill()
@@ -133,12 +131,10 @@ class NativeControllerTests: XCTestCase {
 		// Update
 		let update = expectationWithDescription("nativeController:didUpdateLocationForBlock:atIndex:withBlock:")
 		delegate.didUpdateLocationForBlockAtIndexWithBlock = { before, index, after in
-			XCTAssert(before is Paragraph)
+			XCTAssertEqual("Paragraph", String(before.dynamicType))
 			XCTAssertEqual(beforeParagraph2.range, before.range)
-
 			XCTAssertEqual(2, index)
-
-			XCTAssert(after is Paragraph)
+			XCTAssertEqual("Paragraph", String(after.dynamicType))
 			XCTAssertEqual(NSRange(location: 24, length: 3), after.range)
 
 			update.fulfill()
@@ -170,7 +166,7 @@ class NativeControllerTests: XCTestCase {
 //		// Insert
 //		let insert = expectationWithDescription("nativeController:didInsertBlock:atIndex:")
 //		delegate.didInsertBlockAtIndex = { block, index in
-//			XCTAssert(block is CodeBlock)
+//			XCTAssertEqual("CodeBlock", String(block.dynamicType))
 //			XCTAssertEqual(NSRange(location: 23, length: 10), block.range)
 //			XCTAssertEqual(2, index)
 //
@@ -180,12 +176,10 @@ class NativeControllerTests: XCTestCase {
 		// Update
 		let update = expectationWithDescription("nativeController:didUpdateLocationForBlock:atIndex:withBlock:")
 		delegate.didUpdateLocationForBlockAtIndexWithBlock = { before, index, after in
-			XCTAssert(before is Blockquote)
+			XCTAssertEqual("Blockquote", String(before.dynamicType))
 			XCTAssertEqual(blockquote.range, before.range)
-
 			XCTAssertEqual(3, index)
-
-			XCTAssert(after is Blockquote)
+			XCTAssertEqual("Blockquote", String(after.dynamicType))
 			XCTAssertEqual(NSRange(location: 34, length: 17), after.range)
 
 			update.fulfill()
@@ -214,17 +208,21 @@ class NativeControllerTests: XCTestCase {
 		let will = expectationWithDescription("nativeControllerWillUpdateNodes")
 		delegate.willUpdateNodes = { will.fulfill() }
 
-		// TODO: Test remove message
+		// Remove
+		let remove = expectationWithDescription("nativeController:didRemoveBlock:atIndex:")
+		delegate.didRemoveBlockAtIndex = { block, index in
+			XCTAssertEqual("Paragraph", String(block.dynamicType))
+			XCTAssertEqual(1, index)
+			remove.fulfill()
+		}
 
 		// Update
 		let update = expectationWithDescription("nativeController:didUpdateLocationForBlock:atIndex:withBlock:")
 		delegate.didUpdateLocationForBlockAtIndexWithBlock = { before, index, after in
-			XCTAssert(before is Blockquote)
+			XCTAssertEqual("Blockquote", String(before.dynamicType))
 			XCTAssertEqual(blockquote.range, before.range)
-
 			XCTAssertEqual(1, index)
-
-			XCTAssert(after is Blockquote)
+			XCTAssertEqual("Blockquote", String(after.dynamicType))
 			XCTAssertEqual(NSRange(location: 19, length: 17), after.range)
 
 			update.fulfill()

@@ -79,7 +79,7 @@ public final class NativeController {
 
 			// Replacing
 			for index in blockRange {
-				didReplace(before: blocks[index + blockDelta], index: index, after: workingBlocks[index])
+				didReplace(before: blocks[index], index: index, after: workingBlocks[index])
 			}
 
 			// Update blocks after edit
