@@ -50,7 +50,7 @@ public struct Paragraph: BlockNode, NodeContainer {
 
 	public init(range: NSRange, enclosingRange: NSRange? = nil, subnodes: [SpanNode]) {
 		self.range = range
-		self.enclosingRange = enclosingRange ?? NSRange(location: range.location, length: range.length + 1)
+		self.enclosingRange = enclosingRange ?? range
 		self.subnodes = subnodes
 	}
 
