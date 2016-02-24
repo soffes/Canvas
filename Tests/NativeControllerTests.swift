@@ -92,6 +92,11 @@ class NativeControllerTests: XCTestCase {
 			}
 		}
 
+		// Ignored
+		delegate.didRemoveBlockAtIndex = { _, _ in XCTFail("Shouldn't remove.") }
+		delegate.didReplaceContentForBlockAtIndexWithBlock = { _, _, _ in XCTFail("Shouldn't replace.") }
+		delegate.didUpdateLocationForBlockAtIndexWithBlock = { _, _, _ in XCTFail("Shouldn't update.") }
+
 		// Did update
 		let did = expectationWithDescription("nativeControllerDidUpdateNodes")
 		delegate.didUpdateNodes = { did.fulfill() }
@@ -140,6 +145,10 @@ class NativeControllerTests: XCTestCase {
 			update.fulfill()
 		}
 
+		// Ignored
+		delegate.didInsertBlockAtIndex = { _, _ in XCTFail("Shouldn't insert.") }
+		delegate.didRemoveBlockAtIndex = { _, _ in XCTFail("Shouldn't remove.") }
+
 		// Did update
 		let did = expectationWithDescription("nativeControllerDidUpdateNodes")
 		delegate.didUpdateNodes = { did.fulfill() }
@@ -163,15 +172,15 @@ class NativeControllerTests: XCTestCase {
 		let will = expectationWithDescription("nativeControllerWillUpdateNodes")
 		delegate.willUpdateNodes = { will.fulfill() }
 
-//		// Insert
-//		let insert = expectationWithDescription("nativeController:didInsertBlock:atIndex:")
-//		delegate.didInsertBlockAtIndex = { block, index in
-//			XCTAssertEqual("CodeBlock", String(block.dynamicType))
-//			XCTAssertEqual(NSRange(location: 23, length: 10), block.range)
-//			XCTAssertEqual(2, index)
-//
-//			insert.fulfill()
-//		}
+		// Insert
+		let insert = expectationWithDescription("nativeController:didInsertBlock:atIndex:")
+		delegate.didInsertBlockAtIndex = { block, index in
+			XCTAssertEqual("CodeBlock", String(block.dynamicType))
+			XCTAssertEqual(NSRange(location: 23, length: 10), block.range)
+			XCTAssertEqual(2, index)
+
+			insert.fulfill()
+		}
 
 		// Update
 		let update = expectationWithDescription("nativeController:didUpdateLocationForBlock:atIndex:withBlock:")
@@ -184,6 +193,9 @@ class NativeControllerTests: XCTestCase {
 
 			update.fulfill()
 		}
+
+		// Ignored
+		delegate.didRemoveBlockAtIndex = { _, _ in XCTFail("Shouldn't remove.") }
 
 		// Did update
 		let did = expectationWithDescription("nativeControllerDidUpdateNodes")
@@ -215,6 +227,9 @@ class NativeControllerTests: XCTestCase {
 			XCTAssertEqual(1, index)
 			remove.fulfill()
 		}
+
+		// Insert
+		delegate.didInsertBlockAtIndex = { _, _ in XCTFail("Shouldn't insert.") }
 
 		// Update
 		let update = expectationWithDescription("nativeController:didUpdateLocationForBlock:atIndex:withBlock:")
