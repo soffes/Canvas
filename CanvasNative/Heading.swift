@@ -48,7 +48,6 @@ public struct Heading: BlockNode, NodeContainer, Foldable {
 	public var leadingDelimiterRange: NSRange
 	public var textRange: NSRange
 	public var level: Level
-	public let allowsReturnCompletion = false
 
 	public var subnodes = [Node]()
 

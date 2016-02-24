@@ -9,14 +9,5 @@
 import Foundation
 
 public protocol BlockNode: Node {
-	var allowsReturnCompletion: Bool { get }
-
 	init?(string: String, enclosingRange: NSRange)
-}
-
-
-extension BlockNode {
-	public var allowsReturnCompletion: Bool {
-		return true
-	}
 }

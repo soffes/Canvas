@@ -74,6 +74,8 @@
 		215E6D711C7534CC00126FE9 /* Positionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2109989B1C62E268000C34B2 /* Positionable.swift */; };
 		21A9F0D81C7D3D0A009B40A0 /* Annotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D71C7D3D0A009B40A0 /* Annotatable.swift */; };
 		21A9F0D91C7D3D0A009B40A0 /* Annotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D71C7D3D0A009B40A0 /* Annotatable.swift */; };
+		21A9F0DB1C7D41B1009B40A0 /* ReturnCompletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0DA1C7D41B1009B40A0 /* ReturnCompletable.swift */; };
+		21A9F0DC1C7D41B1009B40A0 /* ReturnCompletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0DA1C7D41B1009B40A0 /* ReturnCompletable.swift */; };
 		21AB4EB01C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */; };
 		21AB4EB11C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */; };
 /* End PBXBuildFile section */
@@ -135,6 +137,7 @@
 		215BABE61C52B46B00118C8C /* ListableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListableTests.swift; sourceTree = "<group>"; };
 		215BABE71C52B46B00118C8C /* SpanLevelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanLevelTests.swift; sourceTree = "<group>"; };
 		21A9F0D71C7D3D0A009B40A0 /* Annotatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotatable.swift; sourceTree = "<group>"; };
+		21A9F0DA1C7D41B1009B40A0 /* ReturnCompletable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnCompletable.swift; sourceTree = "<group>"; };
 		21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+CanvasNativeTests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -232,9 +235,10 @@
 				215BABA11C52B32B00118C8C /* Listable.swift */,
 				215BABA31C52B32B00118C8C /* Node.swift */,
 				215BABA41C52B32B00118C8C /* NodeContainer.swift */,
+				2109989B1C62E268000C34B2 /* Positionable.swift */,
+				21A9F0DA1C7D41B1009B40A0 /* ReturnCompletable.swift */,
 				215BABA81C52B32B00118C8C /* SpanNode.swift */,
 				215BABE01C52B44800118C8C /* SpanNodeParseable.swift */,
-				2109989B1C62E268000C34B2 /* Positionable.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -491,6 +495,7 @@
 				215BABC71C52B3C500118C8C /* NSRange+CanvasNative.swift in Sources */,
 				215BABB31C52B32B00118C8C /* Emphasis.swift in Sources */,
 				215BABB11C52B32B00118C8C /* CodeSpan.swift in Sources */,
+				21A9F0DB1C7D41B1009B40A0 /* ReturnCompletable.swift in Sources */,
 				215BABB81C52B32B00118C8C /* Listable.swift in Sources */,
 				215BABB01C52B32B00118C8C /* CodeBlock.swift in Sources */,
 				215BABB91C52B32B00118C8C /* NativePrefixable.swift in Sources */,
@@ -538,6 +543,7 @@
 				215BABDE1C52B42F00118C8C /* Link.swift in Sources */,
 				215BABD91C52B42F00118C8C /* Title.swift in Sources */,
 				215BABC81C52B42F00118C8C /* Parser.swift in Sources */,
+				21A9F0DC1C7D41B1009B40A0 /* ReturnCompletable.swift in Sources */,
 				215BABD11C52B42F00118C8C /* SpanNode.swift in Sources */,
 				215BABD31C52B42F00118C8C /* ChecklistItem.swift in Sources */,
 				215BABDB1C52B42F00118C8C /* CodeSpan.swift in Sources */,

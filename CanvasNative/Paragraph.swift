@@ -33,8 +33,6 @@ public struct Paragraph: BlockNode, NodeContainer {
 		]
 	}
 
-	public let allowsReturnCompletion = false
-
 
 	// MARK: - Initializers
 

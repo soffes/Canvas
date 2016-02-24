@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct CodeBlock: NativePrefixable, Positionable, Annotatable {
+public struct CodeBlock: NativePrefixable, Positionable, Annotatable, ReturnCompletable {
 
 	// MARK: - Properties
 

@@ -16,8 +16,6 @@ public struct Title: NativePrefixable {
 	public var nativePrefixRange: NSRange
 	public var displayRange: NSRange
 
-	public let allowsReturnCompletion = false
-
 
 	// MARK: - Initializers
 

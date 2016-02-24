@@ -15,7 +15,6 @@ public struct Image: Attachable, Hashable {
 
 	public var range: NSRange
 	public var nativePrefixRange: NSRange
-	public let allowsReturnCompletion = false
 
 	public var ID: String
 	public var URL: NSURL
