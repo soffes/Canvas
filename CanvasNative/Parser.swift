@@ -86,8 +86,8 @@ public struct Parser {
 
 	// MARK: - Private
 
-	private static func parseInline(string string: String, container: NodeContainer) -> [Node] {
-		var subnodes = [Node]()
+	private static func parseInline(string string: String, container: NodeContainer) -> [SpanNode] {
+		var subnodes = [SpanNode]()
 
 		for type in spanParseOrder {
 			let regularExpression = type.regularExpression
@@ -109,7 +109,7 @@ public struct Parser {
 				guard !skip, let node = type.init(match: match) else { continue }
 
 				// Recurse
-				if var node = node as? NodeContainer {
+				if var node = node as? SpanNodeContainer {
 					node.subnodes = parseInline(string: string, container: node)
 					subnodes.append(node)
 				} else {
@@ -119,7 +119,7 @@ public struct Parser {
 		}
 
 		// Add text nodes
-		var output = [Node]()
+		var output = [SpanNode]()
 
 		var last = container.textRange.location
 

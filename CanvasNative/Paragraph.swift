@@ -23,7 +23,7 @@ public struct Paragraph: BlockNode, NodeContainer {
 		return range
 	}
 
-	public var subnodes = [Node]()
+	public var subnodes = [SpanNode]()
 
 	public var dictionary: [String: AnyObject] {
 		return [
@@ -47,7 +47,7 @@ public struct Paragraph: BlockNode, NodeContainer {
 		self.enclosingRange = enclosingRange
 	}
 
-	public init(range: NSRange, enclosingRange: NSRange? = nil, subnodes: [Node]) {
+	public init(range: NSRange, enclosingRange: NSRange? = nil, subnodes: [SpanNode]) {
 		self.range = range
 		self.enclosingRange = enclosingRange ?? NSRange(location: range.location, length: range.length + 1)
 		self.subnodes = subnodes

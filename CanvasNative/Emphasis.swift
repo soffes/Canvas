@@ -43,12 +43,12 @@ public struct Emphasis: SpanNode, Foldable, NodeContainer {
 		]
 	}
 
-	public var subnodes = [Node]()
+	public var subnodes = [SpanNode]()
 
 
 	// MARK: - Initializers
 
-	public init(leadingDelimiterRange: NSRange, textRange: NSRange, trailingDelimiterRange: NSRange, subnodes: [Node] = []) {
+	public init(leadingDelimiterRange: NSRange, textRange: NSRange, trailingDelimiterRange: NSRange, subnodes: [SpanNode] = []) {
 		self.leadingDelimiterRange = leadingDelimiterRange
 		self.textRange = textRange
 		self.trailingDelimiterRange = trailingDelimiterRange

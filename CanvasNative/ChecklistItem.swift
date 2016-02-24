@@ -45,7 +45,7 @@ public struct ChecklistItem: Listable, NodeContainer {
 		return displayRange
 	}
 
-	public var subnodes = [Node]()
+	public var subnodes = [SpanNode]()
 
 
 	// MARK: - Initializers

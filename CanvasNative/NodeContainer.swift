@@ -13,5 +13,5 @@ public protocol NodeContainer: Node {
 	var textRange: NSRange { get }
 
 	/// Nodes for inline elements
-	var subnodes: [Node] { get set }
+	var subnodes: [SpanNode] { get set }
 }

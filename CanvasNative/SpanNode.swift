@@ -8,4 +8,4 @@
 
 import Foundation
 
-public protocol SpanNode: Foldable {}
+public protocol SpanNode: Node {}

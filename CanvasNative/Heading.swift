@@ -50,7 +50,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable {
 	public var textRange: NSRange
 	public var level: Level
 
-	public var subnodes = [Node]()
+	public var subnodes = [SpanNode]()
 
 
 	// MARK: - Initializers

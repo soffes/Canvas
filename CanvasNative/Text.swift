@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Text: Node {
+public struct Text: SpanNode {
 
 	// MARK: - Properties
 

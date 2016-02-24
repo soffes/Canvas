@@ -13,4 +13,4 @@ disabled_rules:
   - function_parameter_count
 
 # TODO: Change to 120
-line_length: 256
+line_length: 260

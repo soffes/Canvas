@@ -118,12 +118,12 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 		return dictionary
 	}
 
-	public var subnodes = [Node]()
+	public var subnodes = [SpanNode]()
 
 
 	// MARK: - Initializers
 
-	public init(range: NSRange, leadingTextDelimiterRange: NSRange, textRange: NSRange, trailingTextDelimiterRange: NSRange, leadingURLDelimiterRange: NSRange, URLRange: NSRange, title: LinkTitle? = nil, trailingURLDelimiterRange: NSRange, subnodes: [Node]) {
+	public init(range: NSRange, leadingTextDelimiterRange: NSRange, textRange: NSRange, trailingTextDelimiterRange: NSRange, leadingURLDelimiterRange: NSRange, URLRange: NSRange, title: LinkTitle? = nil, trailingURLDelimiterRange: NSRange, subnodes: [SpanNode]) {
 		self.range = range
 		self.leadingTextDelimiterRange = leadingTextDelimiterRange
 		self.textRange = textRange
