@@ -85,3 +85,6 @@ extension DoubleEmphasis: SpanNodeParseable {
 		trailingDelimiterRange = match.rangeAtIndex(3)
 	}
 }
+
+
+extension DoubleEmphasis: SpanNodeContainer {}

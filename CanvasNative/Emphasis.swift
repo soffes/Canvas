@@ -85,3 +85,6 @@ extension Emphasis: SpanNodeParseable {
 		trailingDelimiterRange = match.rangeAtIndex(3)
 	}
 }
+
+
+extension Emphasis: SpanNodeContainer {}

@@ -176,3 +176,6 @@ extension Link: SpanNodeParseable {
 		trailingURLDelimiterRange = match.rangeAtIndex(9)
 	}
 }
+
+
+extension Link: SpanNodeContainer {}
