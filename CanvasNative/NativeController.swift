@@ -54,26 +54,54 @@ public final class NativeController {
 		// Notify the delegate we're beginning
 		willUpdate()
 
+		let isEntireLine = text.lineRangeForRange(range).equals(range)
+
 		// Update the text representation
 		text.replaceCharactersInRange(range, withString: string)
 
-		// Reparse the invalid range of document
-		let invalidRange = parseRange(range: range, stringLength: (string as NSString).length)
-		let parsedBlocks = Parser.parse(string: text, range: invalidRange)
+		// Removing entire line(s)
+		if isEntireLine && string.isEmpty {
+			var workingBlocks = blocks
+			var indexOffset = 0
+			var characterOffset = 0
 
-		// Finalize the new blocks
-		blocks = applyParsedBlocks(parsedBlocks, parseRange: invalidRange)
+			if let blockRange = blockRangeForCharacterRange(range) {
+				for i in blockRange {
+					let index = i - indexOffset
+					let block = workingBlocks[index]
+					workingBlocks.removeAtIndex(index)
+					didRemove(block: block, index: index)
+					indexOffset += 1
+					characterOffset -= block.enclosingRange.length
+				}
+
+				let afterRange = blockRange.startIndex..<workingBlocks.endIndex
+				blocks = offsetBlocks(blocks: workingBlocks, blockRange: afterRange, offset: characterOffset)
+			} else {
+				fatalError("[CanvasNative] Expected a block range while deleting.")
+			}
+		}
+
+		// Reparse the invalid range of document
+		else {
+			let invalidRange = parseRange(range: range, stringLength: (string as NSString).length)
+			let parsedBlocks = Parser.parse(string: text, range: invalidRange)
+			blocks = applyParsedBlocks(parsedBlocks, parseRange: invalidRange)
+		}
 
 		// Notify the delegate we're done
 		didUpdate()
 	}
 
 
-	// MARK: - Private
+	// MARK: - Applying Changes to the Tree
 
 	private func applyParsedBlocks(parsedBlocks: [BlockNode], parseRange: NSRange) -> [BlockNode] {
 		// Start to calculate the new blocks
 		var workingBlocks = blocks
+
+		let afterRange: Range<Int>
+		let afterOffset: Int
 
 		// There were existing blocks. Calculate replacements.
 		if let blockRange = blockRangeForCharacterRange(parseRange) {
@@ -92,9 +120,13 @@ public final class NativeController {
 				}
 			}
 
-			// TODO: Deleting
+			// Deleting
 			if blockDelta < 0 {
-
+				for i in (blockRange.startIndex + blockDelta)..<blockRange.startIndex {
+					let block = workingBlocks[i]
+					workingBlocks.removeAtIndex(i)
+					didRemove(block: block, index: i)
+				}
 			}
 
 			// Replace the remaining blocks
@@ -107,20 +139,8 @@ public final class NativeController {
 				didReplace(before: before, index: index, after: after)
 			}
 
-			// Update blocks after edit
-			//
-			// TODO: Adding `blockDelta` here probably isn't right. We need to account for new lines between blocks in
-			// a better way.
-			let afterCharacterDelta = Int(characterLengthOfBlocks(parsedBlocks)) - Int(characterLengthOfBlocks(updatedBlocks)) + blockDelta
-			let afterRange = (blockRange.endIndex + blockDelta)..<workingBlocks.endIndex
-
-			for index in afterRange {
-				let before = workingBlocks[index]
-				var after = before
-				after.offset(afterCharacterDelta)
-				workingBlocks[index] = after
-				didUpdate(before: before, index: index, after: after)
-			}
+			afterOffset = Int(characterLengthOfBlocks(parsedBlocks)) - Int(characterLengthOfBlocks(updatedBlocks)) + blockDelta
+			afterRange = (blockRange.endIndex + blockDelta)..<workingBlocks.endIndex
 		}
 
 		// There weren't any blocks in the edited range. Append them after the last block before the edit or at the end.
@@ -133,22 +153,34 @@ public final class NativeController {
 				didInsert(block: block, index: index)
 			}
 
-			let afterCharacterDelta = parsedBlocks.map { $0.enclosingRange.length }.reduce(0, combine: +)
-
-			for index in (offset + parsedBlocks.count)..<workingBlocks.count {
-				let before = workingBlocks[index]
-				var after = before
-				after.offset(afterCharacterDelta)
-				workingBlocks[index] = after
-				didUpdate(before: before, index: index, after: after)
-			}
+			afterOffset = parsedBlocks.map { $0.enclosingRange.length }.reduce(0, combine: +)
+			afterRange = (offset + parsedBlocks.count)..<workingBlocks.count
 		}
 
-		// TODO: Unify updating locations
+		// Update blocks after edit
+		workingBlocks = offsetBlocks(blocks: workingBlocks, blockRange: afterRange, offset: afterOffset)
+
 		// TODO: Recalculate positionable
 
 		return workingBlocks
 	}
+
+	private func offsetBlocks(blocks blocks: [BlockNode], blockRange: Range<Int>, offset: Int) -> [BlockNode] {
+		var workingBlocks = blocks
+
+		for index in blockRange {
+			let before = workingBlocks[index]
+			var after = before
+			after.offset(offset)
+			workingBlocks[index] = after
+			didUpdate(before: before, index: index, after: after)
+		}
+
+		return workingBlocks
+	}
+
+
+	// MARK: - Range Calculations
 
 	private func parseRange(range range: NSRange, stringLength: Int) -> NSRange {
 		var invalidRange = range
@@ -170,6 +202,9 @@ public final class NativeController {
 
 		return text.lineRangeForRange(invalidRange)
 	}
+
+
+	// MARK: - Block Calculations
 
 	private func characterLengthOfBlocks(blocks: [BlockNode]) -> UInt {
 		return blocks.map { UInt($0.range.length) }.reduce(0, combine: +)
@@ -196,13 +231,16 @@ public final class NativeController {
 		var start: Int?
 		var end: Int?
 
+		print("location: \(location), max: \(max)")
+
 		for (i, block) in blocks.enumerate() {
+			print("block \(block.enclosingRange)")
 			if block.enclosingRange.location >= max {
 				break
 			}
 
 			// If the index is in range, add it to the output
-			if block.enclosingRange.location >= location && block.enclosingRange.max < max {
+			if block.enclosingRange.location >= location && block.enclosingRange.max <= max {
 				if start == nil {
 					start = i
 				}
@@ -215,6 +253,9 @@ public final class NativeController {
 		return rangeStart...rangeEnd
 	}
 
+
+	// MARK: - Delegate Calls
+
 	private func willUpdate() {
 		delegate?.nativeControllerWillUpdateNodes(self)
 	}
@@ -225,6 +266,10 @@ public final class NativeController {
 
 	private func didInsert(block block: BlockNode, index: Int) {
 		delegate?.nativeController(self, didInsertBlock: block, atIndex: UInt(index))
+	}
+
+	private func didRemove(block block: BlockNode, index: Int) {
+		delegate?.nativeController(self, didRemoveBlock: block, atIndex: UInt(index))
 	}
 
 	private func didReplace(before before: BlockNode, index: Int, after: BlockNode) {
