@@ -32,9 +32,4 @@ extension Node {
 	public func contentInString(string: String) -> String {
 		return (string as NSString).substringWithRange(displayRange)
 	}
-
-	// TODO: Remove this
-	public var dictionary: [String: AnyObject] {
-		return [:]
-	}
 }

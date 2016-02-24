@@ -64,7 +64,6 @@ public struct Parser {
 				if var container = node as? NodeContainer {
 					container.subnodes = self.parseInline(string: string, container: container)
 
-					// TODO: There has to be a better way to do this
 					if let container = container as? BlockNode {
 						node = container
 					}
@@ -75,7 +74,7 @@ public struct Parser {
 				return
 			}
 
-			// TODO: Unsupported range
+			// Future: Add support for unknown node types #8
 		}
 
 		nodes = calculatePositions(nodes)

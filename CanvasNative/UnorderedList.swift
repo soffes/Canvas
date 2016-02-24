@@ -26,6 +26,20 @@ public struct UnorderedListItem: Listable, NodeContainer {
 
 	public var subnodes = [SpanNode]()
 
+	public var dictionary: [String: AnyObject] {
+		return [
+			"type": "unordered-list",
+			"range": range.dictionary,
+			"enclosingRange": enclosingRange.dictionary,
+			"nativePrefixRange": nativePrefixRange.dictionary,
+			"displayRange": displayRange.dictionary,
+			"indentationRange": indentationRange.dictionary,
+			"indentation": indentation.rawValue,
+			"position": position.rawValue,
+			"subnodes": subnodes.map { $0.dictionary }
+		]
+	}
+
 
 	// MARK: - Initializers
 

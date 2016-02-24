@@ -8,7 +8,6 @@ disabled_rules:
   - operator_whitespace
 
   # TODO: Remove these
-  - todo
   - variable_name
   - function_parameter_count
 

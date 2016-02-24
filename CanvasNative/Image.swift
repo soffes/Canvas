@@ -9,7 +9,7 @@
 import Foundation
 import CoreGraphics
 
-public struct Image: Attachable, Hashable {
+public struct Image: Attachable {
 
 	// MARK: - Properties
 
@@ -21,8 +21,21 @@ public struct Image: Attachable, Hashable {
 	public var URL: NSURL
 	public var size: CGSize?
 
-	public var hashValue: Int {
-		return ID.hashValue
+	public var dictionary: [String: AnyObject] {
+		var dictionary: [String: AnyObject] = [
+			"type": "ordered-list",
+			"range": range.dictionary,
+			"enclosingRange": enclosingRange.dictionary,
+			"nativePrefixRange": nativePrefixRange.dictionary,
+			"ID": ID,
+			"URL": URL.absoluteString
+		]
+
+		if let size = size {
+			dictionary["size"] = size.dictionary
+		}
+
+		return dictionary
 	}
 
 
@@ -92,6 +105,13 @@ public struct Image: Attachable, Hashable {
 		range.location += delta
 		enclosingRange.location += delta
 		nativePrefixRange.location += delta
+	}
+}
+
+
+extension Image: Hashable {
+	public var hashValue: Int {
+		return ID.hashValue
 	}
 }
 

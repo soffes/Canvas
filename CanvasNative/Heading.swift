@@ -52,6 +52,19 @@ public struct Heading: BlockNode, NodeContainer, Foldable {
 
 	public var subnodes = [SpanNode]()
 
+	public var dictionary: [String: AnyObject] {
+		return [
+			"type": "heading",
+			"range": range.dictionary,
+			"enclosingRange": enclosingRange.dictionary,
+			"displayRange": displayRange.dictionary,
+			"leadingDelimiterRange": leadingDelimiterRange.dictionary,
+			"textRange": textRange.dictionary,
+			"level": level.rawValue,
+			"subnodes": subnodes.map { $0.dictionary }
+		]
+	}
+
 
 	// MARK: - Initializers
 

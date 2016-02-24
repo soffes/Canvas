@@ -18,6 +18,17 @@ public struct CodeBlock: NativePrefixable, Positionable, Annotatable, ReturnComp
 	public var displayRange: NSRange
 	public var position: Position = .Single
 
+	public var dictionary: [String: AnyObject] {
+		return [
+			"type": "code-block",
+			"range": range.dictionary,
+			"enclosingRange": enclosingRange.dictionary,
+			"nativePrefixRange": nativePrefixRange.dictionary,
+			"displayRange": displayRange.dictionary,
+			"position": position.rawValue
+		]
+	}
+
 
 	// MARK: - Initializers
 

@@ -17,6 +17,16 @@ public struct Title: NativePrefixable {
 	public var nativePrefixRange: NSRange
 	public var displayRange: NSRange
 
+	public var dictionary: [String: AnyObject] {
+		return [
+			"type": "title",
+			"range": range.dictionary,
+			"enclosingRange": enclosingRange.dictionary,
+			"nativePrefixRange": nativePrefixRange.dictionary,
+			"displayRange": displayRange.dictionary
+		]
+	}
+
 
 	// MARK: - Initializers
 

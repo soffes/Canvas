@@ -29,6 +29,7 @@ public struct Paragraph: BlockNode, NodeContainer {
 		return [
 			"type": "paragraph",
 			"range": range.dictionary,
+			"enclosingRange": enclosingRange.dictionary,
 			"displayRange": displayRange.dictionary,
 			"subnodes": subnodes.map { $0.dictionary }
 		]
