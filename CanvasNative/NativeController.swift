@@ -54,18 +54,15 @@ public final class NativeController {
 		// Notify the delegate we're beginning
 		willUpdate()
 
-		// Calculate the range we need to invalidate
-		let invalidRange = text.lineRangeForRange(range)
-
 		// Update the text representation
 		text.replaceCharactersInRange(range, withString: string)
 
 		// Reparse the invalid range of document
-		let parseRange = parseRangeForInvalidRange(invalidRange, stringLength: (string as NSString).length)
-		let parsedBlocks = Parser.parse(string: text, range: parseRange)
+		let invalidRange = parseRange(range: range, stringLength: (string as NSString).length)
+		let parsedBlocks = Parser.parse(string: text, range: invalidRange)
 
 		// Finalize the new blocks
-		blocks = applyParsedBlocks(parsedBlocks, parseRange: parseRange)
+		blocks = applyParsedBlocks(parsedBlocks, parseRange: invalidRange)
 
 		// Notify the delegate we're done
 		didUpdate()
@@ -146,25 +143,25 @@ public final class NativeController {
 		return workingBlocks
 	}
 
-	private func parseRangeForInvalidRange(invalidRange: NSRange, stringLength: Int) -> NSRange {
-		var parseRange = invalidRange
-		parseRange.length = min(text.length, invalidRange.length + stringLength)
+	private func parseRange(range range: NSRange, stringLength: Int) -> NSRange {
+		var invalidRange = range
+		invalidRange.length = stringLength
 
-		let max = NSMaxRange(invalidRange)
+		let rangeMax = range.max
+
 		for block in blocks {
-			if block.enclosingRange.location >= max {
+			if block.enclosingRange.location >= rangeMax {
 				break
 			}
 
-			let blockMax = NSMaxRange(block.enclosingRange)
-			if blockMax == max {
-				parseRange.length -= blockMax - parseRange.location
-				parseRange.location = blockMax
+			if block.enclosingRange.max - 1 == range.location {
+				invalidRange.location += 1
+				invalidRange.length -= 1
 				break
 			}
 		}
 
-		return parseRange
+		return text.lineRangeForRange(invalidRange)
 	}
 
 	private func characterLengthOfBlocks(blocks: [BlockNode]) -> UInt {
@@ -173,18 +170,18 @@ public final class NativeController {
 
 	private func blockRangeForCharacterRange(range: NSRange) -> Range<Int>? {
 		let location = range.location
-		let max = NSMaxRange(range)
+		let max = range.max
 
 		var start: Int?
 		var end: Int?
 
 		for (i, block) in blocks.enumerate() {
-			if block.range.location >= max {
+			if block.enclosingRange.location >= max {
 				break
 			}
 
 			// If the index is in range, add it to the output
-			if block.range.location >= location && NSMaxRange(block.range) < max {
+			if block.enclosingRange.location >= location && block.enclosingRange.max < max {
 				if start == nil {
 					start = i
 				}
