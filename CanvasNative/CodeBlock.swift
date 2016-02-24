@@ -13,6 +13,7 @@ public struct CodeBlock: NativePrefixable, Positionable, Annotatable, ReturnComp
 	// MARK: - Properties
 
 	public var range: NSRange
+	public var enclosingRange: NSRange
 	public var nativePrefixRange: NSRange
 	public var displayRange: NSRange
 	public var position: Position = .Single
@@ -20,14 +21,15 @@ public struct CodeBlock: NativePrefixable, Positionable, Annotatable, ReturnComp
 
 	// MARK: - Initializers
 
-	public init?(string: String, enclosingRange: NSRange) {
+	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
 		guard let (nativePrefixRange, displayRange) = parseBlockNode(
 			string: string,
-			enclosingRange: enclosingRange,
+			range: range,
 			delimiter: "code"
 		) else { return nil }
 
-		range = enclosingRange
+		self.range = range
+		self.enclosingRange = enclosingRange
 		self.nativePrefixRange = nativePrefixRange
 		self.displayRange = displayRange
 	}
@@ -37,6 +39,7 @@ public struct CodeBlock: NativePrefixable, Positionable, Annotatable, ReturnComp
 
 	public mutating func offset(delta: Int) {
 		range.location += delta
+		enclosingRange.location += delta
 		nativePrefixRange.location += delta
 		displayRange.location += delta
 	}

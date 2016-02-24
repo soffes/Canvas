@@ -13,6 +13,7 @@ public struct Blockquote: NativePrefixable, Positionable, Annotatable, ReturnCom
 	// MARK: - Properties
 
 	public var range: NSRange
+	public var enclosingRange: NSRange
 	public var nativePrefixRange: NSRange
 	public var displayRange: NSRange
 	public var position: Position = .Single
@@ -20,15 +21,16 @@ public struct Blockquote: NativePrefixable, Positionable, Annotatable, ReturnCom
 
 	// MARK: - Initializers
 
-	public init?(string: String, enclosingRange: NSRange) {
+	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
 		guard let (nativePrefixRange, prefixRange, displayRange) = parseBlockNode(
 			string: string,
-			enclosingRange: enclosingRange,
+			range: range,
 			delimiter: "blockquote",
 			prefix: "> "
 		) else { return nil }
 
-		range = enclosingRange
+		self.range = range
+		self.enclosingRange = enclosingRange
 		self.nativePrefixRange = nativePrefixRange.union(prefixRange)
 		self.displayRange = displayRange
 	}
@@ -38,6 +40,7 @@ public struct Blockquote: NativePrefixable, Positionable, Annotatable, ReturnCom
 
 	public mutating func offset(delta: Int) {
 		range.location += delta
+		enclosingRange.location += delta
 		nativePrefixRange.location += delta
 		displayRange.location += delta
 	}

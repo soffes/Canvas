@@ -9,5 +9,6 @@
 import Foundation
 
 public protocol BlockNode: Node {
-	init?(string: String, enclosingRange: NSRange)
+	var enclosingRange: NSRange { get }
+	init?(string: String, range: NSRange, enclosingRange: NSRange)
 }

@@ -16,7 +16,7 @@ public protocol NativePrefixable: BlockNode {
 }
 
 
-func parseBlockNode(string string: String, enclosingRange: NSRange, delimiter: String, prefix: String) -> (nativePrefixRange: NSRange, prefixRange: NSRange, displayRange: NSRange)? {
+func parseBlockNode(string string: String, range: NSRange, delimiter: String, prefix: String) -> (nativePrefixRange: NSRange, prefixRange: NSRange, displayRange: NSRange)? {
 	let scanner = NSScanner(string: string)
 	scanner.charactersToBeSkipped = nil
 
@@ -24,26 +24,26 @@ func parseBlockNode(string string: String, enclosingRange: NSRange, delimiter: S
 	if !scanner.scanString("\(leadingNativePrefix)\(delimiter)\(trailingNativePrefix)", intoString: nil) {
 		return nil
 	}
-	let nativePrefixRange = NSRange(location: enclosingRange.location, length: scanner.scanLocation)
+	let nativePrefixRange = NSRange(location: range.location, length: scanner.scanLocation)
 
 	// Prefix
 	let startPrefix = scanner.scanLocation
 	if !scanner.scanString(prefix, intoString: nil) {
 		return nil
 	}
-	let prefixRange = NSRange(location: enclosingRange.location + startPrefix, length: scanner.scanLocation - startPrefix)
+	let prefixRange = NSRange(location: range.location + startPrefix, length: scanner.scanLocation - startPrefix)
 
 	// Content
 	let displayRange = NSRange(
-		location: enclosingRange.location + scanner.scanLocation,
-		length: enclosingRange.length - scanner.scanLocation
+		location: range.location + scanner.scanLocation,
+		length: range.length - scanner.scanLocation
 	)
 
 	return (nativePrefixRange, prefixRange, displayRange)
 }
 
 
-func parseBlockNode(string string: String, enclosingRange: NSRange, delimiter: String) -> (nativePrefixRange: NSRange, displayRange: NSRange)? {
+func parseBlockNode(string string: String, range: NSRange, delimiter: String) -> (nativePrefixRange: NSRange, displayRange: NSRange)? {
 	let scanner = NSScanner(string: string)
 	scanner.charactersToBeSkipped = nil
 
@@ -51,12 +51,12 @@ func parseBlockNode(string string: String, enclosingRange: NSRange, delimiter: S
 	if !scanner.scanString("\(leadingNativePrefix)\(delimiter)\(trailingNativePrefix)", intoString: nil) {
 		return nil
 	}
-	let nativePrefixRange = NSRange(location: enclosingRange.location, length: scanner.scanLocation)
+	let nativePrefixRange = NSRange(location: range.location, length: scanner.scanLocation)
 
 	// Content
 	let displayRange = NSRange(
-		location: enclosingRange.location + scanner.scanLocation,
-		length: enclosingRange.length - scanner.scanLocation
+		location: range.location + scanner.scanLocation,
+		length: range.length - scanner.scanLocation
 	)
 
 	return (nativePrefixRange, displayRange)

@@ -54,14 +54,12 @@ public struct Parser {
 		}
 
 		// Enumerate the string blocks of the `backingText`.
-		text.enumerateSubstringsInRange(parseRange, options: [.ByLines]) { substring, substringRange, _, _ in
+		text.enumerateSubstringsInRange(parseRange, options: [.ByLines]) { substring, range, enclosingRange, _ in
 			// Ensure we have a substring to work with
 			guard let substring = substring else { return }
 
-			let range = substringRange
-
 			for type in self.blockParseOrder {
-				guard var node = type.init(string: substring, enclosingRange: range) else { continue }
+				guard var node = type.init(string: substring, range: range, enclosingRange: enclosingRange) else { continue }
 
 				if var container = node as? NodeContainer {
 					container.subnodes = self.parseInline(string: string, container: container)

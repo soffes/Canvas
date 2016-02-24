@@ -41,6 +41,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable {
 	// MARK: - Properties
 
 	public var range: NSRange
+	public var enclosingRange: NSRange
 	public var displayRange: NSRange
 	public var foldableRanges: [NSRange] {
 		return [leadingDelimiterRange]
@@ -54,7 +55,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable {
 
 	// MARK: - Initializers
 
-	public init?(string: String, enclosingRange: NSRange) {
+	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
 		let scanner = NSScanner(string: string)
 		scanner.charactersToBeSkipped = nil
 
@@ -71,14 +72,16 @@ public struct Heading: BlockNode, NodeContainer, Foldable {
 			return nil
 		}
 
-		leadingDelimiterRange = NSRange(location: enclosingRange.location, length: scanner.scanLocation)
+		leadingDelimiterRange = NSRange(location: range.location, length: scanner.scanLocation)
 
 		// Content
 		textRange = NSRange(
-			location: enclosingRange.location + scanner.scanLocation,
-			length: enclosingRange.length - scanner.scanLocation
+			location: range.location + scanner.scanLocation,
+			length: range.length - scanner.scanLocation
 		)
-		range = enclosingRange
+
+		self.range = range
+		self.enclosingRange = enclosingRange
 		displayRange = range
 	}
 
@@ -87,6 +90,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable {
 
 	public mutating func offset(delta: Int) {
 		range.location += delta
+		enclosingRange.location += delta
 		displayRange.location += delta
 		leadingDelimiterRange.location += delta
 		textRange.location += delta

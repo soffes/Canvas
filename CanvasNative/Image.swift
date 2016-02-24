@@ -14,6 +14,7 @@ public struct Image: Attachable, Hashable {
 	// MARK: - Properties
 
 	public var range: NSRange
+	public var enclosingRange: NSRange
 	public var nativePrefixRange: NSRange
 
 	public var ID: String
@@ -27,9 +28,10 @@ public struct Image: Attachable, Hashable {
 
 	// MARK: - Initializers
 
-	public init?(string: String, enclosingRange: NSRange) {
-		range = enclosingRange
-		nativePrefixRange = NSRange(location: enclosingRange.location, length: enclosingRange.length - 1)
+	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
+		self.range = range
+		self.enclosingRange = enclosingRange
+		nativePrefixRange = NSRange(location: range.location, length: range.length - 1)
 		
 		let scanner = NSScanner(string: string)
 		scanner.charactersToBeSkipped = nil
@@ -88,6 +90,7 @@ public struct Image: Attachable, Hashable {
 
 	public mutating func offset(delta: Int) {
 		range.location += delta
+		enclosingRange.location += delta
 		nativePrefixRange.location += delta
 	}
 }

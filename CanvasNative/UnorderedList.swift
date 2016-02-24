@@ -13,6 +13,7 @@ public struct UnorderedListItem: Listable, NodeContainer {
 	// MARK: - Properties
 
 	public var range: NSRange
+	public var enclosingRange: NSRange
 	public var nativePrefixRange: NSRange
 	public var displayRange: NSRange
 	public var indentationRange: NSRange
@@ -28,15 +29,16 @@ public struct UnorderedListItem: Listable, NodeContainer {
 
 	// MARK: - Initializers
 
-	public init?(string: String, enclosingRange: NSRange) {
+	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
 		guard let (nativePrefixRange, indentationRange, indentation, prefixRange, displayRange) = parseListable(
 			string: string,
-			enclosingRange: enclosingRange,
+			range: range,
 			delimiter: "unordered-list",
 			prefix: "- "
 		) else { return nil }
 
-		range = enclosingRange
+		self.range = range
+		self.enclosingRange = enclosingRange
 		self.nativePrefixRange = nativePrefixRange.union(prefixRange)
 		self.displayRange = displayRange
 		self.indentationRange = indentationRange
@@ -48,6 +50,7 @@ public struct UnorderedListItem: Listable, NodeContainer {
 
 	public mutating func offset(delta: Int) {
 		range.location += delta
+		enclosingRange.location += delta
 		nativePrefixRange.location += delta
 		displayRange.location += delta
 		indentationRange.location += delta

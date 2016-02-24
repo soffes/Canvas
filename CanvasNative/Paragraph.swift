@@ -13,6 +13,7 @@ public struct Paragraph: BlockNode, NodeContainer {
 	// MARK: - Properties
 
 	public var range: NSRange
+	public var enclosingRange: NSRange
 
 	public var displayRange: NSRange {
 		return range
@@ -36,17 +37,19 @@ public struct Paragraph: BlockNode, NodeContainer {
 
 	// MARK: - Initializers
 
-	public init?(string: String, enclosingRange: NSRange) {
+	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
 		// Prevent any Canvas Native from appearing in the documment
 		if string.hasPrefix(leadingNativePrefix) {
 			return nil
 		}
 
-		range = enclosingRange
+		self.range = range
+		self.enclosingRange = enclosingRange
 	}
 
-	public init(range: NSRange, subnodes: [Node]) {
+	public init(range: NSRange, enclosingRange: NSRange? = nil, subnodes: [Node]) {
 		self.range = range
+		self.enclosingRange = enclosingRange ?? NSRange(location: range.location, length: range.length + 1)
 		self.subnodes = subnodes
 	}
 
@@ -55,6 +58,7 @@ public struct Paragraph: BlockNode, NodeContainer {
 
 	public mutating func offset(delta: Int) {
 		range.location += delta
+		enclosingRange.location += delta
 		
 		subnodes = subnodes.map {
 			var node = $0

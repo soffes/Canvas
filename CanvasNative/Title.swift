@@ -13,26 +13,22 @@ public struct Title: NativePrefixable {
 	// MARK: - Properties
 
 	public var range: NSRange
+	public var enclosingRange: NSRange
 	public var nativePrefixRange: NSRange
 	public var displayRange: NSRange
 
 
 	// MARK: - Initializers
 
-	public init?(string: String, enclosingRange: NSRange) {
+	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
 		guard let (nativePrefixRange, displayRange) = parseBlockNode(
 			string: string,
-			enclosingRange: enclosingRange,
+			range: range,
 			delimiter: "doc-heading"
 		) else { return nil }
 
-		range = enclosingRange
-		self.nativePrefixRange = nativePrefixRange
-		self.displayRange = displayRange
-	}
-
-	public init(nativePrefixRange: NSRange, displayRange: NSRange) {
-		range = nativePrefixRange.union(displayRange)
+		self.range = range
+		self.enclosingRange = enclosingRange
 		self.nativePrefixRange = nativePrefixRange
 		self.displayRange = displayRange
 	}
@@ -42,6 +38,7 @@ public struct Title: NativePrefixable {
 
 	public mutating func offset(delta: Int) {
 		range.location += delta
+		enclosingRange.location += delta
 		nativePrefixRange.location += delta
 		displayRange.location += delta
 	}

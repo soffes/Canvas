@@ -32,6 +32,7 @@ public struct ChecklistItem: Listable, NodeContainer {
 	// MARK: - Properties
 
 	public var range: NSRange
+	public var enclosingRange: NSRange
 	public var nativePrefixRange: NSRange
 	public var displayRange: NSRange
 	public var indentationRange: NSRange
@@ -49,7 +50,7 @@ public struct ChecklistItem: Listable, NodeContainer {
 
 	// MARK: - Initializers
 
-	public init?(string: String, enclosingRange: NSRange) {
+	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
 		let scanner = NSScanner(string: string)
 		scanner.charactersToBeSkipped = nil
 
@@ -63,7 +64,7 @@ public struct ChecklistItem: Listable, NodeContainer {
 			return nil
 		}
 
-		let indentationRange = NSRange(location:  enclosingRange.location + scanner.scanLocation, length: 1)
+		let indentationRange = NSRange(location:  range.location + scanner.scanLocation, length: 1)
 		guard indent != -1, let indentation = Indentation(rawValue: UInt(indent)) else {
 			return nil
 		}
@@ -75,7 +76,7 @@ public struct ChecklistItem: Listable, NodeContainer {
 			return nil
 		}
 
-		let nativePrefixRange = NSRange(location: enclosingRange.location, length: scanner.scanLocation)
+		let nativePrefixRange = NSRange(location: range.location, length: scanner.scanLocation)
 
 
 		// Prefix
@@ -86,7 +87,7 @@ public struct ChecklistItem: Listable, NodeContainer {
 
 		let set = NSCharacterSet(charactersInString: "x ")
 		var completionString: NSString? = ""
-		let completedRange = NSRange(location: enclosingRange.location + scanner.scanLocation, length: 1)
+		let completedRange = NSRange(location: range.location + scanner.scanLocation, length: 1)
 		if !scanner.scanCharactersFromSet(set, intoString: &completionString) {
 			return nil
 		}
@@ -101,17 +102,18 @@ public struct ChecklistItem: Listable, NodeContainer {
 			return nil
 		}
 
-		let prefixRange = NSRange(location: enclosingRange.location + startPrefix, length: scanner.scanLocation - startPrefix)
+		let prefixRange = NSRange(location: range.location + startPrefix, length: scanner.scanLocation - startPrefix)
 		self.nativePrefixRange = nativePrefixRange.union(prefixRange)
 
 		// Content
 		self.completedRange = completedRange
 		displayRange = NSRange(
-			location: enclosingRange.location + scanner.scanLocation,
-			length: enclosingRange.length - scanner.scanLocation
+			location: range.location + scanner.scanLocation,
+			length: range.length - scanner.scanLocation
 		)
 
-		range = enclosingRange
+		self.range = range
+		self.enclosingRange = enclosingRange
 	}
 
 
