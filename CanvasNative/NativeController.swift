@@ -51,6 +51,7 @@ public final class NativeController {
 
 	public func replaceCharactersInRange(range: NSRange, withString string: String) {
 
+		// Notify the delegate we're beginning
 		willUpdate()
 
 		// Calculate the range we need to invalidate
@@ -60,10 +61,7 @@ public final class NativeController {
 		text.replaceCharactersInRange(range, withString: string)
 
 		// Reparse the invalid range of document
-		let parseRange = NSRange(
-			location: invalidRange.location,
-			length: min(text.length, invalidRange.length + (string as NSString).length)
-		)
+		let parseRange = parseRangeForInvalidRange(invalidRange, stringLength: (string as NSString).length)
 		let parsedBlocks = Parser.parse(string: text, range: parseRange)
 
 		// Finalize the new blocks
@@ -146,6 +144,27 @@ public final class NativeController {
 		}
 
 		return workingBlocks
+	}
+
+	private func parseRangeForInvalidRange(invalidRange: NSRange, stringLength: Int) -> NSRange {
+		var parseRange = invalidRange
+		parseRange.length = min(text.length, invalidRange.length + stringLength)
+
+		let max = NSMaxRange(invalidRange)
+		for block in blocks {
+			if block.enclosingRange.location >= max {
+				break
+			}
+
+			let blockMax = NSMaxRange(block.enclosingRange)
+			if blockMax == max {
+				parseRange.length -= blockMax - parseRange.location
+				parseRange.location = blockMax
+				break
+			}
+		}
+
+		return parseRange
 	}
 
 	private func characterLengthOfBlocks(blocks: [BlockNode]) -> UInt {
