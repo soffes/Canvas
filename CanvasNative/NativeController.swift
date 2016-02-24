@@ -66,6 +66,17 @@ public final class NativeController {
 		)
 		let parsedBlocks = Parser.parse(string: text, range: parseRange)
 
+		// Finalize the new blocks
+		blocks = applyParsedBlocks(parsedBlocks, parseRange: parseRange)
+
+		// Notify the delegate we're done
+		didUpdate()
+	}
+
+
+	// MARK: - Private
+
+	private func applyParsedBlocks(parsedBlocks: [BlockNode], parseRange: NSRange) -> [BlockNode] {
 		// Start to calculate the new blocks
 		var workingBlocks = blocks
 
@@ -73,13 +84,32 @@ public final class NativeController {
 		if let blockRange = blockRangeForCharacterRange(parseRange) {
 			let updatedBlocks = [BlockNode](blocks[blockRange])
 			let blockDelta = parsedBlocks.count - blockRange.count
+			var replaced = 0
 
-			// Update blocks
-			workingBlocks.replaceRange(blockRange, with: parsedBlocks)
+			// Inserting
+			if blockDelta > 0 {
+				for i in 0..<blockDelta {
+					let block = parsedBlocks[i]
+					let index = i + blockRange.startIndex
+					workingBlocks.insert(block, atIndex: index)
+					replaced += 1
+					didInsert(block: block, index: index)
+				}
+			}
 
-			// Replacing
-			for index in blockRange {
-				didReplace(before: blocks[index], index: index, after: workingBlocks[index])
+			// TODO: Deleting
+			if blockDelta < 0 {
+
+			}
+
+			// Replace the remaining blocks
+			for i in replaced..<parsedBlocks.count {
+				let after = parsedBlocks[i]
+				let index = i + blockRange.startIndex
+				let before = workingBlocks[index]
+				workingBlocks.removeAtIndex(index)
+				workingBlocks.insert(after, atIndex: index)
+				didReplace(before: before, index: index, after: after)
 			}
 
 			// Update blocks after edit
@@ -98,7 +128,7 @@ public final class NativeController {
 			}
 		}
 
-		// There weren't any blocks in the edited range. Append them to the end (not totally sure this is correct).
+			// There weren't any blocks in the edited range. Append them to the end (not totally sure this is correct).
 		else {
 			let offset = workingBlocks.count
 
@@ -111,15 +141,8 @@ public final class NativeController {
 
 		// TODO: Recalculate positionable
 
-		// Finalize the new blocks
-		blocks = workingBlocks
-
-		// Notify the delegate we're done
-		didUpdate()
+		return workingBlocks
 	}
-
-
-	// MARK: - Private
 
 	private func characterLengthOfBlocks(blocks: [BlockNode]) -> UInt {
 		return blocks.map { UInt($0.range.length) }.reduce(0, combine: +)
