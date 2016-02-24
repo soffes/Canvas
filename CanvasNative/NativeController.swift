@@ -129,14 +129,24 @@ public final class NativeController {
 			// for some crazy analysis later to do the least changes. Just an idea.
 		}
 
-			// There weren't any blocks in the edited range. Append them to the end (not totally sure this is correct).
+		// There weren't any blocks in the edited range. Append them after the last block before the edit or at the end.
 		else {
-			let offset = workingBlocks.count
+			let offset = lastBlockIndexForCharacterRange(parseRange)
 
 			for (i, block) in parsedBlocks.enumerate() {
 				let index = offset + i
 				workingBlocks.insert(block, atIndex: index)
 				didInsert(block: block, index: index)
+			}
+
+			let afterCharacterDelta = parsedBlocks.map { $0.enclosingRange.length }.reduce(0, combine: +)
+
+			for index in (offset + parsedBlocks.count)..<workingBlocks.count {
+				let before = workingBlocks[index]
+				var after = before
+				after.offset(afterCharacterDelta)
+				workingBlocks[index] = after
+				didUpdate(before: before, index: index, after: after)
 			}
 		}
 
@@ -166,6 +176,20 @@ public final class NativeController {
 
 	private func characterLengthOfBlocks(blocks: [BlockNode]) -> UInt {
 		return blocks.map { UInt($0.range.length) }.reduce(0, combine: +)
+	}
+
+	private func lastBlockIndexForCharacterRange(range: NSRange) -> Int {
+		var index: Int?
+
+		for (i, block) in blocks.enumerate() {
+			if block.enclosingRange.location < range.location {
+				index = i
+			} else if block.enclosingRange.location > range.location {
+				break
+			}
+		}
+
+		return (index ?? -1) + 1
 	}
 
 	private func blockRangeForCharacterRange(range: NSRange) -> Range<Int>? {
