@@ -175,19 +175,6 @@ class NativeControllerTests: XCTestCase {
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\n⧙code⧘Half\n⧙blockquote⧘> Two", controller.string)
 	}
 
-	// Splitting doesn't send the smallest set of desired messages. This is on hold until we go nuts with this later.
-	func testSplit() {
-		// Initial state
-		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
-
-		// Edit characters
-		controller.replaceCharactersInRange(NSRange(location: 21, length: 0), withString: "\n⧙code⧘T")
-
-		// Check blocks
-		XCTAssertEqual(["Title", "Paragraph", "CodeBlock", "Blockquote"], blockTypes)
-		XCTAssertEqual("⧙doc-heading⧘Title\nOn\n⧙code⧘Te\n⧙blockquote⧘> Two", controller.string)
-	}
-
 	func testRemove() {
 		// Initial state
 		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
@@ -234,5 +221,30 @@ class NativeControllerTests: XCTestCase {
 		// Check blocks
 		XCTAssertEqual(["Title", "Blockquote"], blockTypes)
 		XCTAssertEqual("⧙doc-heading⧘Title\n⧙blockquote⧘> Two", controller.string)
+	}
+
+	// Splitting doesn't send the smallest set of desired messages. This is on hold until we go nuts with this later.
+	func testSplit() {
+		// Initial state
+		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
+
+		// Edit characters
+		controller.replaceCharactersInRange(NSRange(location: 21, length: 0), withString: "\n⧙code⧘T")
+
+		// Check blocks
+		XCTAssertEqual(["Title", "Paragraph", "CodeBlock", "Blockquote"], blockTypes)
+		XCTAssertEqual("⧙doc-heading⧘Title\nOn\n⧙code⧘Te\n⧙blockquote⧘> Two", controller.string)
+	}
+
+	func testMultipleInsert() {
+		// Initial state
+		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nOne")
+
+		// Edit characters
+		controller.replaceCharactersInRange(NSRange(location: 22, length: 0), withString: "\nHello\nWorld")
+
+		// Check blocks
+		XCTAssertEqual(["Title", "Paragraph", "Paragraph", "Paragraph"], blockTypes)
+		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nHello\nWorld", controller.string)
 	}
 }
