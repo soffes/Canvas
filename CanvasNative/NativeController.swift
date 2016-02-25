@@ -58,40 +58,13 @@ public final class NativeController {
 		// Notify the delegate we're beginning
 		willUpdate()
 
-		let isEntireLine = text.lineRangeForRange(range).equals(range)
-
 		// Update the text representation
 		text.replaceCharactersInRange(range, withString: string)
 
-		// Removing entire line(s)
-		if isEntireLine && string.isEmpty {
-			var workingBlocks = blocks
-			var indexOffset = 0
-			var characterOffset = 0
-
-			if let blockRange = blockRangeForCharacterRange(range) {
-				for i in blockRange {
-					let index = i - indexOffset
-					let block = workingBlocks[index]
-					workingBlocks.removeAtIndex(index)
-					didRemove(block: block, index: index)
-					indexOffset += 1
-					characterOffset -= block.enclosingRange.length
-				}
-
-				let afterRange = blockRange.startIndex..<workingBlocks.endIndex
-				blocks = offsetBlocks(blocks: workingBlocks, blockRange: afterRange, offset: characterOffset)
-			} else {
-				fatalError("[CanvasNative] Expected a block range while deleting.")
-			}
-		}
-
 		// Reparse the invalid range of document
-		else {
-			let invalidRange = parseRange(range: range, stringLength: (string as NSString).length)
-			let parsedBlocks = Parser.parse(string: text, range: invalidRange)
-			blocks = applyParsedBlocks(parsedBlocks, parseRange: invalidRange)
-		}
+		let invalidRange = parseRange(range: range, stringLength: (string as NSString).length)
+		let parsedBlocks = Parser.parse(string: text, range: invalidRange)
+		blocks = applyParsedBlocks(parsedBlocks, parseRange: invalidRange)
 
 		// Notify the delegate we're done
 		didUpdate()

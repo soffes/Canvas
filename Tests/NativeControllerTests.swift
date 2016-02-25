@@ -157,7 +157,7 @@ class NativeControllerTests: XCTestCase {
 		}
 
 		// Ignored
-		delegate.didReplaceContentForBlockAtIndexWithBlock = { _, _, _ in XCTFail("Shouldn't reokace.") }
+		delegate.didReplaceContentForBlockAtIndexWithBlock = { _, _, _ in XCTFail("Shouldn't replace.") }
 		delegate.didRemoveBlockAtIndex = { _, _ in XCTFail("Shouldn't remove.") }
 
 		// Did update
@@ -210,7 +210,7 @@ class NativeControllerTests: XCTestCase {
 
 		// Ignored
 		delegate.didInsertBlockAtIndex = { _, _ in XCTFail("Shouldn't insert.") }
-		delegate.didReplaceContentForBlockAtIndexWithBlock = { _, _, _ in XCTFail("Shouldn't reokace.") }
+		delegate.didReplaceContentForBlockAtIndexWithBlock = { _, _, _ in XCTFail("Shouldn't replace.") }
 
 		// Edit characters
 		controller.replaceCharactersInRange(NSRange(location: 19, length: 4), withString: "")
@@ -246,5 +246,17 @@ class NativeControllerTests: XCTestCase {
 		// Check blocks
 		XCTAssertEqual(["Title", "Paragraph", "Paragraph", "Paragraph"], blockTypes)
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nHello\nWorld", controller.string)
+	}
+
+	func testMultipleRemove() {
+		// Initial state
+		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nOne\nTwo\nThree")
+
+		// Edit characters
+		controller.replaceCharactersInRange(NSRange(location: 22, length: 10), withString: "")
+
+		// Check blocks
+		XCTAssertEqual(["Title", "Paragraph"], blockTypes)
+		XCTAssertEqual("⧙doc-heading⧘Title\nOne", controller.string)
 	}
 }
