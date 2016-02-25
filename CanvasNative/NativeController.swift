@@ -235,10 +235,7 @@ public final class NativeController {
 		var start: Int?
 		var end: Int?
 
-		print("location: \(location), max: \(max)")
-
 		for (i, block) in blocks.enumerate() {
-			print("block \(block.enclosingRange)")
 			if block.enclosingRange.location >= max {
 				break
 			}
