@@ -80,33 +80,40 @@ public final class NativeController {
 		let afterRange: Range<Int>
 		let afterOffset: Int
 
-		// There were existing blocks. Calculate replacements.
-		if let blockRange = blockRangeForCharacterRange(parseRange) {
-			let updatedBlocks = [BlockNode](blocks[blockRange])
-			let blockDelta = parsedBlocks.count - blockRange.count
-			var replaced = 0
+		let updatedBlocks: [BlockNode]
+		let blockRange = blockRangeForCharacterRange(parseRange)
 
-			// Inserting
-			if blockDelta > 0 {
-				for i in 0..<blockDelta {
-					let block = parsedBlocks[i]
-					let index = i + blockRange.startIndex
-					workingBlocks.insert(block, atIndex: index)
-					replaced += 1
-					didInsert(block: block, index: index)
-				}
+		if let blockRange = blockRange {
+			updatedBlocks = [BlockNode](blocks[blockRange])
+		} else {
+			updatedBlocks = []
+		}
+
+		let blockDelta = parsedBlocks.count - (blockRange?.count ?? 0)
+		var replaced = 0
+
+		// Inserting
+		if blockDelta > 0 {
+			for i in 0..<blockDelta {
+				let block = parsedBlocks[i]
+				let index = i + (blockRange?.startIndex ?? 0)
+				workingBlocks.insert(block, atIndex: index)
+				replaced += 1
+				didInsert(block: block, index: index)
 			}
+		}
 
-			// Deleting
-			if blockDelta < 0 {
-				for i in (blockRange.startIndex)..<(blockRange.startIndex - blockDelta) {
-					let block = workingBlocks[i]
-					workingBlocks.removeAtIndex(i)
-					didRemove(block: block, index: i)
-				}
+		// Deleting
+		if blockDelta < 0, let blockRange = blockRange {
+			for i in (blockRange.startIndex)..<(blockRange.startIndex - blockDelta) {
+				let block = workingBlocks[i]
+				workingBlocks.removeAtIndex(i)
+				didRemove(block: block, index: i)
 			}
+		}
 
-			// Replace the remaining blocks
+		// Replace the remaining blocks
+		if let blockRange = blockRange {
 			for i in replaced..<parsedBlocks.count {
 				let after = parsedBlocks[i]
 				let index = i + blockRange.startIndex
@@ -115,25 +122,10 @@ public final class NativeController {
 				workingBlocks.insert(after, atIndex: index)
 				didReplace(before: before, index: index, after: after)
 			}
-
-			afterOffset = Int(characterLengthOfBlocks(parsedBlocks)) - Int(characterLengthOfBlocks(updatedBlocks)) + blockDelta
-			afterRange = (blockRange.endIndex + blockDelta)..<workingBlocks.endIndex
 		}
 
-		// There weren't any blocks in the edited range. Append them after the last block before the edit or at the end.
-		// TODO: Remove this branch when blockRange calculation is better.
-		else {
-			let offset = lastBlockIndexForCharacterRange(parseRange)
-
-			for (i, block) in parsedBlocks.enumerate() {
-				let index = offset + i
-				workingBlocks.insert(block, atIndex: index)
-				didInsert(block: block, index: index)
-			}
-
-			afterOffset = parsedBlocks.map { $0.enclosingRange.length }.reduce(0, combine: +)
-			afterRange = (offset + parsedBlocks.count)..<workingBlocks.count
-		}
+		afterOffset = Int(characterLengthOfBlocks(parsedBlocks)) - Int(characterLengthOfBlocks(updatedBlocks)) + blockDelta
+		afterRange = ((blockRange?.endIndex ?? 0) + blockDelta)..<workingBlocks.endIndex
 
 		// Update blocks after edit
 		workingBlocks = offsetBlocks(blocks: workingBlocks, blockRange: afterRange, offset: afterOffset)
@@ -190,20 +182,6 @@ public final class NativeController {
 
 	private func characterLengthOfBlocks(blocks: [BlockNode]) -> UInt {
 		return blocks.map { UInt($0.range.length) }.reduce(0, combine: +)
-	}
-
-	private func lastBlockIndexForCharacterRange(range: NSRange) -> Int {
-		var index: Int?
-
-		for (i, block) in blocks.enumerate() {
-			if block.enclosingRange.location < range.location {
-				index = i
-			} else if block.enclosingRange.location > range.location {
-				break
-			}
-		}
-
-		return (index ?? -1) + 1
 	}
 
 	private func blockRangeForCharacterRange(range: NSRange) -> Range<Int>? {
