@@ -63,7 +63,7 @@ public final class NativeController {
 
 		// Reparse the invalid range of document
 		let invalidRange = parseRange(range: range, stringLength: (string as NSString).length)
-		let parsedBlocks = Parser.parse(string: text, range: invalidRange)
+		let parsedBlocks = invalidRange.length == 0 ? [] : Parser.parse(string: text, range: invalidRange)
 		blocks = applyParsedBlocks(parsedBlocks, parseRange: invalidRange)
 
 		// Notify the delegate we're done
@@ -163,6 +163,10 @@ public final class NativeController {
 		var invalidRange = range
 		invalidRange.length = stringLength
 
+		if stringLength == 0 {
+			return invalidRange
+		}
+
 		let rangeMax = range.max
 
 		for block in blocks {
@@ -202,29 +206,23 @@ public final class NativeController {
 	}
 
 	private func blockRangeForCharacterRange(range: NSRange) -> Range<Int>? {
-		let location = range.location
-		let max = range.max
-
 		var start: Int?
 		var end: Int?
 
 		for (i, block) in blocks.enumerate() {
-			if block.enclosingRange.location >= max {
-				break
-			}
-
 			// If the index is in range, add it to the output
-			if block.enclosingRange.location >= location && block.enclosingRange.max <= max {
+			if block.enclosingRange.intersection(range) != nil {
 				if start == nil {
 					start = i
 				}
-
 				end = i
+			} else if start != nil {
+				break
 			}
 		}
 
 		guard let rangeStart = start, rangeEnd = end else { return nil }
-		return rangeStart...rangeEnd
+		return rangeStart..<rangeEnd
 	}
 
 
