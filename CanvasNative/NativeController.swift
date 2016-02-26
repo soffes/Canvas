@@ -231,15 +231,13 @@ public final class NativeController {
 	}
 
 	private func didReplace(before before: BlockNode, index: Int, after: BlockNode) {
-		let i = UInt(index)
-
 		if before.dynamicType == after.dynamicType {
-			delegate?.nativeController(self, didReplaceContentForBlock: before, atIndex: i, withBlock: after)
+			delegate?.nativeController(self, didReplaceContentForBlock: before, atIndex: UInt(index), withBlock: after)
 			return
 		}
 
-		delegate?.nativeController(self, didRemoveBlock: before, atIndex: i)
-		delegate?.nativeController(self, didInsertBlock: after, atIndex: i)
+		didRemove(block: before, index: index)
+		didInsert(block: after, index: index)
 	}
 
 	private func didUpdate(before before: BlockNode, index: Int, after: BlockNode) {
