@@ -67,8 +67,8 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 	public var leadingTextDelimiterRange: NSRange
 	public var textRange: NSRange
 	public var trailingTextDelimiterRange: NSRange
-	public var leadingURLDelimiterRange: NSRange
-	public var URLRange: NSRange
+	public var leadingUrlDelimiterRange: NSRange
+	public var urlRange: NSRange
 	public var title: LinkTitle?
 	public var trailingURLDelimiterRange: NSRange
 
@@ -80,10 +80,10 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 		var ranges = [
 			leadingTextDelimiterRange,
 			trailingTextDelimiterRange,
-			leadingURLDelimiterRange,
+			leadingUrlDelimiterRange,
 		]
 
-		var URLTitle = URLRange
+		var URLTitle = urlRange
 
 		if let title = title {
 			URLTitle = URLTitle.union(title.range)
@@ -103,8 +103,8 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 			"leadingTextDelimiterRange": leadingTextDelimiterRange.dictionary,
 			"textRange": textRange.dictionary,
 			"trailingTextDelimiterRange": trailingTextDelimiterRange.dictionary,
-			"leadingURLDelimiterRange": leadingURLDelimiterRange.dictionary,
-			"URLRange": URLRange.dictionary,
+			"leadingUrlDelimiterRange": leadingUrlDelimiterRange.dictionary,
+			"urlRange": urlRange.dictionary,
 			"trailingURLDelimiterRange": trailingURLDelimiterRange.dictionary,
 			"subnodes": subnodes.map { $0.dictionary }
 		]
@@ -123,13 +123,13 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 
 	// MARK: - Initializers
 
-	public init(range: NSRange, leadingTextDelimiterRange: NSRange, textRange: NSRange, trailingTextDelimiterRange: NSRange, leadingURLDelimiterRange: NSRange, URLRange: NSRange, title: LinkTitle? = nil, trailingURLDelimiterRange: NSRange, subnodes: [SpanNode]) {
+	public init(range: NSRange, leadingTextDelimiterRange: NSRange, textRange: NSRange, trailingTextDelimiterRange: NSRange, leadingUrlDelimiterRange: NSRange, urlRange: NSRange, title: LinkTitle? = nil, trailingURLDelimiterRange: NSRange, subnodes: [SpanNode]) {
 		self.range = range
 		self.leadingTextDelimiterRange = leadingTextDelimiterRange
 		self.textRange = textRange
 		self.trailingTextDelimiterRange = trailingTextDelimiterRange
-		self.leadingURLDelimiterRange = leadingURLDelimiterRange
-		self.URLRange = URLRange
+		self.leadingUrlDelimiterRange = leadingUrlDelimiterRange
+		self.urlRange = urlRange
 		self.title = title
 		self.trailingURLDelimiterRange = trailingURLDelimiterRange
 		self.subnodes = subnodes
@@ -143,8 +143,8 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 		leadingTextDelimiterRange.location += delta
 		textRange.location += delta
 		trailingTextDelimiterRange.location += delta
-		leadingURLDelimiterRange.location += delta
-		URLRange.location += delta
+		leadingUrlDelimiterRange.location += delta
+		urlRange.location += delta
 		trailingURLDelimiterRange.location += delta
 
 		title?.offset(delta)
@@ -170,8 +170,8 @@ extension Link: SpanNodeParseable {
 		leadingTextDelimiterRange = match.rangeAtIndex(1)
 		textRange = match.rangeAtIndex(2)
 		trailingTextDelimiterRange = match.rangeAtIndex(3)
-		leadingURLDelimiterRange = match.rangeAtIndex(4)
-		URLRange = match.rangeAtIndex(5)
+		leadingUrlDelimiterRange = match.rangeAtIndex(4)
+		urlRange = match.rangeAtIndex(5)
 		title = LinkTitle(match: match)
 		trailingURLDelimiterRange = match.rangeAtIndex(9)
 	}

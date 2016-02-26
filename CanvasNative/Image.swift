@@ -17,8 +17,8 @@ public struct Image: Attachable {
 	public var enclosingRange: NSRange
 	public var nativePrefixRange: NSRange
 
-	public var ID: String
-	public var URL: NSURL
+	public var identifier: String
+	public var url: NSURL
 	public var size: CGSize?
 
 	public var dictionary: [String: AnyObject] {
@@ -27,8 +27,8 @@ public struct Image: Attachable {
 			"range": range.dictionary,
 			"enclosingRange": enclosingRange.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
-			"ID": ID,
-			"URL": URL.absoluteString
+			"identifier": identifier,
+			"url": url.absoluteString
 		]
 
 		if let size = size {
@@ -49,16 +49,16 @@ public struct Image: Attachable {
 		let scanner = NSScanner(string: string)
 		scanner.charactersToBeSkipped = nil
 
-		// URL image
+		// url image
 		if scanner.scanString("\(leadingNativePrefix)image\(trailingNativePrefix)", intoString: nil) {
 			var urlString: NSString? = ""
 			if !scanner.scanUpToString("\n", intoString: &urlString) {
 				return nil
 			}
 
-			if let urlString = urlString as? String, URL = NSURL(string: urlString) {
-				self.ID = urlString
-				self.URL = URL
+			if let urlString = urlString as? String, url = NSURL(string: urlString) {
+				self.identifier = urlString
+				self.url = url
 				self.size = nil
 				return
 			}
@@ -81,15 +81,15 @@ public struct Image: Attachable {
 		guard let data = json?.dataUsingEncoding(NSUTF8StringEncoding),
 			raw = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
 			dictionary = raw as? [String: AnyObject],
-			ID = dictionary["ci"] as? String,
-			URLString = (dictionary["url"] as? String)?.stringByReplacingOccurrencesOfString(" ", withString: "%20"),
-			URL = NSURL(string: URLString)
+			identifier = dictionary["ci"] as? String,
+			urlString = (dictionary["url"] as? String)?.stringByReplacingOccurrencesOfString(" ", withString: "%20"),
+			url = NSURL(string: urlString)
 		else {
 			return nil
 		}
 
-		self.ID = ID
-		self.URL = URL
+		self.identifier = identifier
+		self.url = url
 
 		if let width = dictionary["width"] as? UInt, height = dictionary["height"] as? UInt {
 			size = CGSize(width: Int(width), height: Int(height))
@@ -111,11 +111,11 @@ public struct Image: Attachable {
 
 extension Image: Hashable {
 	public var hashValue: Int {
-		return ID.hashValue
+		return identifier.hashValue
 	}
 }
 
 
 public func == (lhs: Image, rhs: Image) -> Bool {
-	return lhs.ID == rhs.ID
+	return lhs.identifier == rhs.identifier
 }
