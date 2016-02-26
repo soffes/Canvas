@@ -99,7 +99,7 @@ public final class NativeController {
 
 			// Deleting
 			if blockDelta < 0 {
-				for i in (blockRange.startIndex + blockDelta)..<blockRange.startIndex {
+				for i in (blockRange.startIndex)..<(blockRange.startIndex - blockDelta) {
 					let block = workingBlocks[i]
 					workingBlocks.removeAtIndex(i)
 					didRemove(block: block, index: i)
@@ -121,6 +121,7 @@ public final class NativeController {
 		}
 
 		// There weren't any blocks in the edited range. Append them after the last block before the edit or at the end.
+		// TODO: Remove this branch when blockRange calculation is better.
 		else {
 			let offset = lastBlockIndexForCharacterRange(parseRange)
 
@@ -209,9 +210,16 @@ public final class NativeController {
 		var start: Int?
 		var end: Int?
 
+		// For now, calculate things differently if we're deleting
+		func match(block: BlockNode) -> Bool {
+			if range.length == 0 {
+				return block.enclosingRange.max > range.location
+			}
+			return block.enclosingRange.intersection(range) != nil
+		}
+
 		for (i, block) in blocks.enumerate() {
-			// If the index is in range, add it to the output
-			if block.enclosingRange.intersection(range) != nil {
+			if match(block) {
 				if start == nil {
 					start = i
 				}
