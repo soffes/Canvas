@@ -49,7 +49,7 @@ public struct Parser {
 		var parseRange = range ?? bounds
 
 		// If the range is zero, use the bounds.
-		if NSEqualRanges(parseRange, NSRange(location: 0, length: 0)) {
+		if parseRange.equals(.zero) {
 			parseRange = bounds
 		}
 

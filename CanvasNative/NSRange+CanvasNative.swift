@@ -16,9 +16,7 @@ extension NSRange {
 		return NSMaxRange(self)
 	}
 
-	static var zero: NSRange {
-		return NSRange(location: 0, length: 0)
-	}
+	static let zero = NSRange(location: 0, length: 0)
 
 	var dictionary: [String: AnyObject] {
 		return [
@@ -71,5 +69,9 @@ extension NSRange {
 
 		let length = NSIntersectionRange(self, range).length
 		return length > 0 ? length : nil
+	}
+
+	func equals(range: NSRange) -> Bool {
+		return NSEqualRanges(self, range)
 	}
 }
