@@ -18,7 +18,9 @@ class ControllerTests: XCTestCase {
 	private let delegate = TestControllerDelegate()
 
 	private var blockDictionaries: [[String: AnyObject]] {
-		return controller.blocks.map { $0.dictionary }
+		// Note that we're checking what the delegate thinks the blocks are. This makes sure all of the delegate
+		// messages fire in the right order. If they didn't, this would be wrong and the test would fail. Yay.
+		return delegate.blocks.map { $0.dictionary }
 	}
 
 
@@ -35,12 +37,12 @@ class ControllerTests: XCTestCase {
 	func testLoading() {
 		// Will update
 		let will = expectationWithDescription("controllerWillUpdateNodes")
-		delegate.willUpdateNodes = { will.fulfill() }
+		delegate.willUpdate = { will.fulfill() }
 
 		// Insert
 		let insertTitle = expectationWithDescription("controller:didInsertBlock:atIndex: Title")
 		let insertParagraph = expectationWithDescription("controller:didInsertBlock:atIndex: Paragraph")
-		delegate.didInsertBlockAtIndex = { node, index in
+		delegate.didInsert = { node, index in
 			if node is Title {
 				XCTAssertEqual(0, index)
 				insertTitle.fulfill()
@@ -53,13 +55,13 @@ class ControllerTests: XCTestCase {
 		}
 
 		// Ignored
-		delegate.didRemoveBlockAtIndex = { _, _ in XCTFail("Shouldn't remove.") }
-		delegate.didReplaceContentForBlockAtIndexWithBlock = { _, _, _ in XCTFail("Shouldn't replace.") }
-		delegate.didUpdateLocationForBlockAtIndexWithBlock = { _, _, _ in XCTFail("Shouldn't update.") }
+		delegate.didRemove = { _, _ in XCTFail("Shouldn't remove.") }
+		delegate.didReplaceContent = { _, _, _ in XCTFail("Shouldn't replace.") }
+		delegate.didUpdateLocation = { _, _, _ in XCTFail("Shouldn't update.") }
 
 		// Did update
 		let did = expectationWithDescription("controllerDidUpdateNodes")
-		delegate.didUpdateNodes = { did.fulfill() }
+		delegate.didUpdate = { did.fulfill() }
 
 		// Edit characters
 		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nParagraph")
@@ -80,11 +82,11 @@ class ControllerTests: XCTestCase {
 
 		// Will update
 		let will = expectationWithDescription("controllerWillUpdateNodes")
-		delegate.willUpdateNodes = { will.fulfill() }
+		delegate.willUpdate = { will.fulfill() }
 
 		// Replace
 		let replace = expectationWithDescription("controller:didReplaceContentForBlock:atIndex:withBlock:")
-		delegate.didReplaceContentForBlockAtIndexWithBlock = { before, index, after in
+		delegate.didReplaceContent = { before, index, after in
 			XCTAssertEqual("Paragraph", String(before.dynamicType))
 			XCTAssertEqual(beforeParagraph1.range, before.range)
 			XCTAssertEqual(1, index)
@@ -96,7 +98,7 @@ class ControllerTests: XCTestCase {
 
 		// Update
 		let update = expectationWithDescription("controller:didUpdateLocationForBlock:atIndex:withBlock:")
-		delegate.didUpdateLocationForBlockAtIndexWithBlock = { before, index, after in
+		delegate.didUpdateLocation = { before, index, after in
 			XCTAssertEqual("Paragraph", String(before.dynamicType))
 			XCTAssertEqual(beforeParagraph2.range, before.range)
 			XCTAssertEqual(2, index)
@@ -107,12 +109,12 @@ class ControllerTests: XCTestCase {
 		}
 
 		// Ignored
-		delegate.didInsertBlockAtIndex = { _, _ in XCTFail("Shouldn't insert.") }
-		delegate.didRemoveBlockAtIndex = { _, _ in XCTFail("Shouldn't remove.") }
+		delegate.didInsert = { _, _ in XCTFail("Shouldn't insert.") }
+		delegate.didRemove = { _, _ in XCTFail("Shouldn't remove.") }
 
 		// Did update
 		let did = expectationWithDescription("controllerDidUpdateNodes")
-		delegate.didUpdateNodes = { did.fulfill() }
+		delegate.didUpdate = { did.fulfill() }
 
 		// Edit characters
 		controller.replaceCharactersInRange(NSRange(location: 22, length: 0), withString: "!")
@@ -132,11 +134,11 @@ class ControllerTests: XCTestCase {
 
 		// Will update
 		let will = expectationWithDescription("controllerWillUpdateNodes")
-		delegate.willUpdateNodes = { will.fulfill() }
+		delegate.willUpdate = { will.fulfill() }
 
 		// Insert
 		let insert = expectationWithDescription("controller:didInsertBlock:atIndex:")
-		delegate.didInsertBlockAtIndex = { block, index in
+		delegate.didInsert = { block, index in
 			XCTAssertEqual("CodeBlock", String(block.dynamicType))
 			XCTAssertEqual(NSRange(location: 23, length: 10), block.range)
 			XCTAssertEqual(2, index)
@@ -146,7 +148,7 @@ class ControllerTests: XCTestCase {
 
 		// Update
 		let update = expectationWithDescription("controller:didUpdateLocationForBlock:atIndex:withBlock:")
-		delegate.didUpdateLocationForBlockAtIndexWithBlock = { before, index, after in
+		delegate.didUpdateLocation = { before, index, after in
 			XCTAssertEqual("Blockquote", String(before.dynamicType))
 			XCTAssertEqual(blockquote.range, before.range)
 			XCTAssertEqual(3, index)
@@ -157,12 +159,12 @@ class ControllerTests: XCTestCase {
 		}
 
 		// Ignored
-		delegate.didReplaceContentForBlockAtIndexWithBlock = { _, _, _ in XCTFail("Shouldn't replace.") }
-		delegate.didRemoveBlockAtIndex = { _, _ in XCTFail("Shouldn't remove.") }
+		delegate.didReplaceContent = { _, _, _ in XCTFail("Shouldn't replace.") }
+		delegate.didRemove = { _, _ in XCTFail("Shouldn't remove.") }
 
 		// Did update
 		let did = expectationWithDescription("controllerDidUpdateNodes")
-		delegate.didUpdateNodes = { did.fulfill() }
+		delegate.didUpdate = { did.fulfill() }
 
 		// Edit characters
 		controller.replaceCharactersInRange(NSRange(location: 22, length: 0), withString: "\n⧙code⧘Half")
@@ -182,11 +184,11 @@ class ControllerTests: XCTestCase {
 
 		// Will update
 		let will = expectationWithDescription("controllerWillUpdateNodes")
-		delegate.willUpdateNodes = { will.fulfill() }
+		delegate.willUpdate = { will.fulfill() }
 
 		// Remove
 		let remove = expectationWithDescription("controller:didRemoveBlock:atIndex:")
-		delegate.didRemoveBlockAtIndex = { block, index in
+		delegate.didRemove = { block, index in
 			XCTAssertEqual("Paragraph", String(block.dynamicType))
 			XCTAssertEqual(1, index)
 			remove.fulfill()
@@ -194,7 +196,7 @@ class ControllerTests: XCTestCase {
 
 		// Update
 		let update = expectationWithDescription("controller:didUpdateLocationForBlock:atIndex:withBlock:")
-		delegate.didUpdateLocationForBlockAtIndexWithBlock = { before, index, after in
+		delegate.didUpdateLocation = { before, index, after in
 			XCTAssertEqual("Blockquote", String(before.dynamicType))
 			XCTAssertEqual(blockquote.range, before.range)
 			XCTAssertEqual(1, index)
@@ -206,11 +208,11 @@ class ControllerTests: XCTestCase {
 
 		// Did update
 		let did = expectationWithDescription("controllerDidUpdateNodes")
-		delegate.didUpdateNodes = { did.fulfill() }
+		delegate.didUpdate = { did.fulfill() }
 
 		// Ignored
-		delegate.didInsertBlockAtIndex = { _, _ in XCTFail("Shouldn't insert.") }
-		delegate.didReplaceContentForBlockAtIndexWithBlock = { _, _, _ in XCTFail("Shouldn't replace.") }
+		delegate.didInsert = { _, _ in XCTFail("Shouldn't insert.") }
+		delegate.didReplaceContent = { _, _, _ in XCTFail("Shouldn't replace.") }
 
 		// Edit characters
 		controller.replaceCharactersInRange(NSRange(location: 19, length: 4), withString: "")

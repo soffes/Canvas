@@ -12,37 +12,45 @@ final class TestControllerDelegate: ControllerDelegate {
 
 	// MARK: - Properties
 
-	var willUpdateNodes: (Void -> Void)?
-	var didInsertBlockAtIndex: ((BlockNode, UInt) -> Void)?
-	var didRemoveBlockAtIndex: ((BlockNode, UInt) -> Void)?
-	var didReplaceContentForBlockAtIndexWithBlock: ((BlockNode, UInt, BlockNode) -> Void)?
-	var didUpdateLocationForBlockAtIndexWithBlock: ((BlockNode, UInt, BlockNode) -> Void)?
-	var didUpdateNodes: (Void -> Void)?
+	var blocks = [BlockNode]()
+
+	var willUpdate: (Void -> Void)?
+	var didInsert: ((BlockNode, UInt) -> Void)?
+	var didRemove: ((BlockNode, UInt) -> Void)?
+	var didReplaceContent: ((BlockNode, UInt, BlockNode) -> Void)?
+	var didUpdateLocation: ((BlockNode, UInt, BlockNode) -> Void)?
+	var didUpdate: (Void -> Void)?
 
 
 	// MARK: - ControllerDelegate
 
 	func controllerWillUpdateNodes(controller: Controller) {
-		willUpdateNodes?()
+		willUpdate?()
 	}
 
 	func controller(controller: Controller, didInsertBlock block: BlockNode, atIndex index: UInt) {
-		didInsertBlockAtIndex?(block, index)
+		blocks.insert(block, atIndex: Int(index))
+		didInsert?(block, index)
 	}
 
 	func controller(controller: Controller, didRemoveBlock block: BlockNode, atIndex index: UInt) {
-		didRemoveBlockAtIndex?(block, index)
+		blocks.removeAtIndex(Int(index))
+		didRemove?(block, index)
 	}
 
 	func controller(controller: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: UInt, withBlock after: BlockNode) {
-		didReplaceContentForBlockAtIndexWithBlock?(before, index, after)
+		blocks.removeAtIndex(Int(index))
+		blocks.insert(after, atIndex: Int(index))
+		didReplaceContent?(before, index, after)
 	}
 
 	func controller(controller: Controller, didUpdateLocationForBlock before: BlockNode, atIndex index: UInt, withBlock after: BlockNode) {
-		didUpdateLocationForBlockAtIndexWithBlock?(before, index, after)
+		blocks.removeAtIndex(Int(index))
+		blocks.insert(after, atIndex: Int(index))
+		didUpdateLocation?(before, index, after)
 	}
 
 	func controllerDidUpdateNodes(controller: Controller) {
-		didUpdateNodes?()
+		didUpdate?()
 	}
 }
