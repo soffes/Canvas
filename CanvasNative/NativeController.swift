@@ -188,16 +188,8 @@ public final class NativeController {
 		var start: Int?
 		var end: Int?
 
-		// For now, calculate things differently if we're deleting
-		func match(block: BlockNode) -> Bool {
-			if range.length == 0 {
-				return block.enclosingRange.max > range.location
-			}
-			return block.enclosingRange.intersection(range) != nil
-		}
-
 		for (i, block) in blocks.enumerate() {
-			if match(block) {
+			if block.enclosingRange.intersection(range) != nil {
 				if start == nil {
 					start = i
 				}
@@ -208,7 +200,7 @@ public final class NativeController {
 		}
 
 		guard let rangeStart = start, rangeEnd = end else { return nil }
-		return rangeStart..<rangeEnd
+		return rangeStart...rangeEnd
 	}
 
 
