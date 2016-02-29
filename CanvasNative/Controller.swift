@@ -59,14 +59,14 @@ public final class Controller {
 		willUpdate()
 
 		// Calculate blocks changed by the edit
-		let beforeCharacterRange = parseRangeForRange(range: text.lineRangeForRange(range))
+		let beforeCharacterRange = parseRangeForRange(text.lineRangeForRange(range))
 		let blockRange = blockRangeForCharacterRange(beforeCharacterRange)
 
 		// Update the text representation
 		text.replaceCharactersInRange(range, withString: string)
 
 		// Reparse the invalid range of document
-		let invalidRange = NSRange(location: range.location, length: (string as NSString).length)
+		let invalidRange = parseRangeForRange(NSRange(location: range.location, length: (string as NSString).length))
 		let parsedBlocks = invalidRange.length == 0 ? [] : Parser.parse(text, range: invalidRange)
 		blocks = applyParsedBlocks(parsedBlocks, parseRange: invalidRange, blockRange: blockRange)
 
@@ -156,7 +156,7 @@ public final class Controller {
 
 	// MARK: - Range Calculations
 
-	private func parseRangeForRange(range range: NSRange) -> NSRange {
+	private func parseRangeForRange(range: NSRange) -> NSRange {
 		var invalidRange = range
 
 		if invalidRange.length == 0 {
