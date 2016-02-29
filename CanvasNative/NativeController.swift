@@ -58,13 +58,16 @@ public final class NativeController {
 		// Notify the delegate we're beginning
 		willUpdate()
 
+		// Calculate blocks changed by the edit
+		let blockRange = blockRangeForCharacterRange(text.lineRangeForRange(range))
+
 		// Update the text representation
 		text.replaceCharactersInRange(range, withString: string)
 
 		// Reparse the invalid range of document
 		let invalidRange = parseRange(range: range, stringLength: (string as NSString).length)
 		let parsedBlocks = invalidRange.length == 0 ? [] : Parser.parse(string: text, range: invalidRange)
-		blocks = applyParsedBlocks(parsedBlocks, parseRange: invalidRange)
+		blocks = applyParsedBlocks(parsedBlocks, parseRange: invalidRange, blockRange: blockRange)
 
 		// Notify the delegate we're done
 		didUpdate()
@@ -73,7 +76,7 @@ public final class NativeController {
 
 	// MARK: - Applying Changes to the Tree
 
-	private func applyParsedBlocks(parsedBlocks: [BlockNode], parseRange: NSRange) -> [BlockNode] {
+	private func applyParsedBlocks(parsedBlocks: [BlockNode], parseRange: NSRange, blockRange: Range<Int>?) -> [BlockNode] {
 		// Start to calculate the new blocks
 		var workingBlocks = blocks
 
@@ -81,7 +84,6 @@ public final class NativeController {
 		let afterOffset: Int
 
 		let updatedBlocks: [BlockNode]
-		let blockRange = blockRangeForCharacterRange(parseRange)
 
 		if let blockRange = blockRange {
 			updatedBlocks = [BlockNode](blocks[blockRange])
