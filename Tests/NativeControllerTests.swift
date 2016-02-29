@@ -17,8 +17,8 @@ class NativeControllerTests: XCTestCase {
 
 	private let delegate = ControllerDelegate()
 
-	private var blockTypes: [String] {
-		return controller.blocks.map { String($0.dynamicType) }
+	private var blockDictionaries: [[String: AnyObject]] {
+		return controller.blocks.map { $0.dictionary }
 	}
 
 
@@ -62,19 +62,19 @@ class NativeControllerTests: XCTestCase {
 		delegate.didUpdateNodes = { did.fulfill() }
 
 		// Edit characters
-		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nParagraph")
+		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nParagraph")
 
 		// Wait for expectations
 		waitForExpectationsWithTimeout(0.5, handler: nil)
 
 		// Check blocks
-		XCTAssertEqual(["Title", "Paragraph"], blockTypes)
 		XCTAssertEqual("⧙doc-heading⧘Title\nParagraph", controller.string)
+		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
 	func testChange() {
 		// Initial state
-		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nOne\nTwo")
+		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\nTwo")
 		let beforeParagraph1 = controller.blocks[1]
 		let beforeParagraph2 = controller.blocks[2]
 
@@ -121,13 +121,13 @@ class NativeControllerTests: XCTestCase {
 		waitForExpectationsWithTimeout(0.5, handler: nil)
 
 		// Check blocks
-		XCTAssertEqual(["Title", "Paragraph", "Paragraph"], blockTypes)
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne!\nTwo", controller.string)
+		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
 	func testInsert() {
 		// Initial state
-		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
+		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
 		let blockquote = controller.blocks[2]
 
 		// Will update
@@ -171,13 +171,13 @@ class NativeControllerTests: XCTestCase {
 		waitForExpectationsWithTimeout(0.5, handler: nil)
 
 		// Check blocks
-		XCTAssertEqual(["Title", "Paragraph", "CodeBlock", "Blockquote"], blockTypes)
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\n⧙code⧘Half\n⧙blockquote⧘> Two", controller.string)
+		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
 	func testRemove() {
 		// Initial state
-		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
+		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
 		let blockquote = controller.blocks[2]
 
 		// Will update
@@ -219,44 +219,51 @@ class NativeControllerTests: XCTestCase {
 		waitForExpectationsWithTimeout(0.5, handler: nil)
 
 		// Check blocks
-		XCTAssertEqual(["Title", "Blockquote"], blockTypes)
 		XCTAssertEqual("⧙doc-heading⧘Title\n⧙blockquote⧘> Two", controller.string)
+		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
 	// Splitting doesn't send the smallest set of desired messages. This is on hold until we go nuts with this later.
 	func testSplit() {
 		// Initial state
-		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
+		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
 
 		// Edit characters
 		controller.replaceCharactersInRange(NSRange(location: 21, length: 0), withString: "\n⧙code⧘T")
 
 		// Check blocks
-		XCTAssertEqual(["Title", "Paragraph", "CodeBlock", "Blockquote"], blockTypes)
 		XCTAssertEqual("⧙doc-heading⧘Title\nOn\n⧙code⧘Te\n⧙blockquote⧘> Two", controller.string)
+		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
 	func testMultipleInsert() {
 		// Initial state
-		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nOne")
+		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne")
 
 		// Edit characters
 		controller.replaceCharactersInRange(NSRange(location: 22, length: 0), withString: "\nHello\nWorld")
 
 		// Check blocks
-		XCTAssertEqual(["Title", "Paragraph", "Paragraph", "Paragraph"], blockTypes)
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nHello\nWorld", controller.string)
+		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
 	func testMultipleRemove() {
 		// Initial state
-		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour")
+		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour")
 
 		// Edit characters
-		controller.replaceCharactersInRange(NSRange(location: 22, length: 15), withString: "")
+		controller.replaceCharactersInRange(NSRange(location: 22, length: 10), withString: "")
 
 		// Check blocks
-		XCTAssertEqual(["Title", "Paragraph"], blockTypes)
-		XCTAssertEqual("⧙doc-heading⧘Title\nOne", controller.string)
+		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nFour", controller.string)
+		XCTAssertEqual(parse(controller.string), blockDictionaries)
+	}
+
+
+	// MARK: - Private
+
+	private func parse(string: String) -> [[String: AnyObject]] {
+		return Parser.parse(string).map { $0.dictionary }
 	}
 }

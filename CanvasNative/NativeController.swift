@@ -67,7 +67,7 @@ public final class NativeController {
 
 		// Reparse the invalid range of document
 		let invalidRange = NSRange(location: range.location, length: (string as NSString).length)
-		let parsedBlocks = invalidRange.length == 0 ? [] : Parser.parse(string: text, range: invalidRange)
+		let parsedBlocks = invalidRange.length == 0 ? [] : Parser.parse(text, range: invalidRange)
 		blocks = applyParsedBlocks(parsedBlocks, parseRange: invalidRange, blockRange: blockRange)
 
 		// Notify the delegate we're done
