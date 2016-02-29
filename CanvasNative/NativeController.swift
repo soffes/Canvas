@@ -59,13 +59,14 @@ public final class NativeController {
 		willUpdate()
 
 		// Calculate blocks changed by the edit
-		let blockRange = blockRangeForCharacterRange(text.lineRangeForRange(range))
+		let beforeCharacterRange = parseRangeForRange(range: text.lineRangeForRange(range))
+		let blockRange = blockRangeForCharacterRange(beforeCharacterRange)
 
 		// Update the text representation
 		text.replaceCharactersInRange(range, withString: string)
 
 		// Reparse the invalid range of document
-		let invalidRange = parseRange(range: range, stringLength: (string as NSString).length)
+		let invalidRange = NSRange(location: range.location, length: (string as NSString).length)
 		let parsedBlocks = invalidRange.length == 0 ? [] : Parser.parse(string: text, range: invalidRange)
 		blocks = applyParsedBlocks(parsedBlocks, parseRange: invalidRange, blockRange: blockRange)
 
@@ -107,10 +108,11 @@ public final class NativeController {
 
 		// Deleting
 		if blockDelta < 0, let blockRange = blockRange {
-			for i in (blockRange.startIndex)..<(blockRange.startIndex - blockDelta) {
-				let block = workingBlocks[i]
-				workingBlocks.removeAtIndex(i)
-				didRemove(block: block, index: i)
+			for _ in (blockRange.startIndex)..<(blockRange.startIndex - blockDelta) {
+				let index = blockRange.startIndex
+				let block = workingBlocks[index]
+				workingBlocks.removeAtIndex(index)
+				didRemove(block: block, index: index)
 			}
 		}
 
@@ -154,22 +156,21 @@ public final class NativeController {
 
 	// MARK: - Range Calculations
 
-	private func parseRange(range range: NSRange, stringLength: Int) -> NSRange {
+	private func parseRangeForRange(range range: NSRange) -> NSRange {
 		var invalidRange = range
-		invalidRange.length = stringLength
 
-		if stringLength == 0 {
+		if invalidRange.length == 0 {
 			return invalidRange
 		}
 
-		let rangeMax = range.max
+		let rangeMax = invalidRange.max
 
 		for block in blocks {
 			if block.enclosingRange.location >= rangeMax {
 				break
 			}
 
-			if block.enclosingRange.max - 1 == range.location {
+			if block.enclosingRange.max - 1 == invalidRange.location {
 				invalidRange.location += 1
 				invalidRange.length -= 1
 				break

@@ -248,15 +248,15 @@ class NativeControllerTests: XCTestCase {
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nHello\nWorld", controller.string)
 	}
 
-//	func testMultipleRemove() {
-//		// Initial state
-//		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nOne\nTwo\nThree")
-//
-//		// Edit characters
-//		controller.replaceCharactersInRange(NSRange(location: 22, length: 10), withString: "")
-//
-//		// Check blocks
-//		XCTAssertEqual(["Title", "Paragraph"], blockTypes)
-//		XCTAssertEqual("⧙doc-heading⧘Title\nOne", controller.string)
-//	}
+	func testMultipleRemove() {
+		// Initial state
+		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour")
+
+		// Edit characters
+		controller.replaceCharactersInRange(NSRange(location: 22, length: 15), withString: "")
+
+		// Check blocks
+		XCTAssertEqual(["Title", "Paragraph"], blockTypes)
+		XCTAssertEqual("⧙doc-heading⧘Title\nOne", controller.string)
+	}
 }
