@@ -1,5 +1,5 @@
 //
-//  NativeController.swift
+//  Controller.swift
 //  CanvasNative
 //
 //  Created by Sam Soffes on 2/18/16.
@@ -8,28 +8,28 @@
 
 import Foundation
 
-public protocol NativeControllerDelegate: class {
-	func nativeControllerWillUpdateNodes(nativeController: NativeController)
+public protocol ControllerDelegate: class {
+	func controllerWillUpdateNodes(controller: Controller)
 
-	func nativeController(nativeController: NativeController, didInsertBlock block: BlockNode, atIndex index: UInt)
+	func controller(controller: Controller, didInsertBlock block: BlockNode, atIndex index: UInt)
 
-	func nativeController(nativeController: NativeController, didRemoveBlock block: BlockNode, atIndex index: UInt)
+	func controller(controller: Controller, didRemoveBlock block: BlockNode, atIndex index: UInt)
 
 	// The block's content changed.
-	func nativeController(nativeController: NativeController, didReplaceContentForBlock before: BlockNode, atIndex index: UInt, withBlock after: BlockNode)
+	func controller(controller: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: UInt, withBlock after: BlockNode)
 
 	// The block's metadata changed.
-	func nativeController(nativeController: NativeController, didUpdateLocationForBlock before: BlockNode, atIndex index: UInt, withBlock after: BlockNode)
+	func controller(controller: Controller, didUpdateLocationForBlock before: BlockNode, atIndex index: UInt, withBlock after: BlockNode)
 
-	func nativeControllerDidUpdateNodes(nativeController: NativeController)
+	func controllerDidUpdateNodes(controller: Controller)
 }
 
 
-public final class NativeController {
+public final class Controller {
 
 	// MARK: - Properties
 
-	public weak var delegate: NativeControllerDelegate?
+	public weak var delegate: ControllerDelegate?
 
 	public private(set) var blocks = [BlockNode]()
 
@@ -42,7 +42,7 @@ public final class NativeController {
 
 	// MARK: - Initializers
 
-	public init(text: String? = nil, delegate: NativeControllerDelegate? = nil) {
+	public init(text: String? = nil, delegate: ControllerDelegate? = nil) {
 		self.delegate = delegate
 
 		if let text = text {
@@ -210,24 +210,24 @@ public final class NativeController {
 	// MARK: - Delegate Calls
 
 	private func willUpdate() {
-		delegate?.nativeControllerWillUpdateNodes(self)
+		delegate?.controllerWillUpdateNodes(self)
 	}
 
 	private func didUpdate() {
-		delegate?.nativeControllerDidUpdateNodes(self)
+		delegate?.controllerDidUpdateNodes(self)
 	}
 
 	private func didInsert(block block: BlockNode, index: Int) {
-		delegate?.nativeController(self, didInsertBlock: block, atIndex: UInt(index))
+		delegate?.controller(self, didInsertBlock: block, atIndex: UInt(index))
 	}
 
 	private func didRemove(block block: BlockNode, index: Int) {
-		delegate?.nativeController(self, didRemoveBlock: block, atIndex: UInt(index))
+		delegate?.controller(self, didRemoveBlock: block, atIndex: UInt(index))
 	}
 
 	private func didReplace(before before: BlockNode, index: Int, after: BlockNode) {
 		if before.dynamicType == after.dynamicType {
-			delegate?.nativeController(self, didReplaceContentForBlock: before, atIndex: UInt(index), withBlock: after)
+			delegate?.controller(self, didReplaceContentForBlock: before, atIndex: UInt(index), withBlock: after)
 			return
 		}
 
@@ -236,6 +236,6 @@ public final class NativeController {
 	}
 
 	private func didUpdate(before before: BlockNode, index: Int, after: BlockNode) {
-		delegate?.nativeController(self, didUpdateLocationForBlock: before, atIndex: UInt(index), withBlock: after)
+		delegate?.controller(self, didUpdateLocationForBlock: before, atIndex: UInt(index), withBlock: after)
 	}
 }
