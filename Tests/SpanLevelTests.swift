@@ -55,8 +55,8 @@ class SpanLevelTests: XCTestCase {
 				leadingTextDelimiterRange: NSRange(location: 6, length: 1),
 				textRange: NSRange(location: 7, length: 5),
 				trailingTextDelimiterRange: NSRange(location: 12, length: 1),
-				leadingURLDelimiterRange: NSRange(location: 13, length: 1),
-				URLRange: NSRange(location: 14, length: 18),
+				leadingUrlDelimiterRange: NSRange(location: 13, length: 1),
+				urlRange: NSRange(location: 14, length: 18),
 				trailingURLDelimiterRange: NSRange(location: 32, length: 1),
 				subnodes: [
 					Text(range: NSRange(location: 7, length: 5))
@@ -78,8 +78,8 @@ class SpanLevelTests: XCTestCase {
 				leadingTextDelimiterRange: NSRange(location: 6, length: 1),
 				textRange: NSRange(location: 7, length: 5),
 				trailingTextDelimiterRange: NSRange(location: 12, length: 1),
-				leadingURLDelimiterRange: NSRange(location: 13, length: 1),
-				URLRange: NSRange(location: 14, length: 18),
+				leadingUrlDelimiterRange: NSRange(location: 13, length: 1),
+				urlRange: NSRange(location: 14, length: 18),
 				title: LinkTitle(
 					leadingDelimiterRange:  NSRange(location: 33, length: 1),
 					textRange:  NSRange(location: 34, length: 7),
@@ -220,6 +220,6 @@ class SpanLevelTests: XCTestCase {
 	// MARK: - Private
 
 	private func parse(markdown: String) -> [[String: AnyObject]] {
-		return Parser.parse(string: markdown).map { $0.dictionary }
+		return Parser.parse(markdown).map { $0.dictionary }
 	}
 }

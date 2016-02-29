@@ -37,11 +37,11 @@ public struct Parser {
 
 	// MARK: - Parsing
 
-	public static func parse(string string: NSString, range: NSRange? = nil) -> [BlockNode] {
-		return parse(string: string as String, range: range)
+	public static func parse(string: NSString, range: NSRange? = nil) -> [BlockNode] {
+		return parse(string as String, range: range)
 	}
 
-	public static func parse(string string: String, range: NSRange? = nil) -> [BlockNode] {
+	public static func parse(string: String, range: NSRange? = nil) -> [BlockNode] {
 		var nodes = [BlockNode]()
 
 		let text = string as NSString

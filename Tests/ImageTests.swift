@@ -17,8 +17,8 @@ class ImageTests: XCTestCase {
 
 		XCTAssertEqual(NSRange(location: 0, length: length - 1), image.nativePrefixRange)
 		XCTAssertEqual(NSRange(location: length - 1, length: 1), image.displayRange)
-		XCTAssertEqual("1-a-b", image.ID)
+		XCTAssertEqual("1-a-b", image.identifier)
 		XCTAssertEqual(CGSize(width: 1011, height: 679), image.size)
-		XCTAssertEqual(NSURL(string: "https://example.com/cover.jpg")!, image.URL)
+		XCTAssertEqual(NSURL(string: "https://example.com/cover.jpg")!, image.url)
 	}
 }

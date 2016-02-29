@@ -5,7 +5,7 @@ Swift implementation of CanvasNative parsing.
 ## Usage
 
 ``` swift
-let blockNodes = Parser(string: "⧙doc-title⧘Hello\nThis is some content.")
+let blockNodes = Parser("⧙doc-title⧘Hello\nThis is some content.")
 ```
 
 ## Unimplemented
