@@ -92,7 +92,7 @@ public final class Controller {
 			updatedBlocks = []
 		}
 
-		let blockDelta = parsedBlocks.count - (blockRange?.count ?? 0)
+		let blockDelta = parsedBlocks.count - updatedBlocks.count
 		var replaced = 0
 
 		// Inserting
