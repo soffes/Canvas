@@ -53,20 +53,26 @@ public final class Controller {
 
 	// MARK: - Changing Text
 
-	public func replaceCharactersInRange(range: NSRange, withString string: String) {
+	public func replaceCharactersInRange(inRange: NSRange, withString inString: String) {
+		var range = inRange
+		var string = inString as NSString
 
 		// Notify the delegate we're beginning
 		willUpdate()
 
+		if string.hasPrefix("\n") && text.length > range.max && text.substringWithRange(NSRange(location: range.max, length: 1)) == "\n" {
+			range.location += 1
+			string = string.substringFromIndex(1) + "\n"
+		}
+
 		// Calculate blocks changed by the edit
-		let beforeCharacterRange = parseRangeForRange(text.lineRangeForRange(range))
-		let blockRange = blockRangeForCharacterRange(beforeCharacterRange)
+		let blockRange = blockRangeForCharacterRange(range)
 
 		// Update the text representation
-		text.replaceCharactersInRange(range, withString: string)
+		text.replaceCharactersInRange(range, withString: string as String)
 
 		// Reparse the invalid range of document
-		let invalidRange = parseRangeForRange(NSRange(location: range.location, length: (string as NSString).length))
+		let invalidRange = parseRangeForRange(NSRange(location: range.location, length: string.length))
 		let parsedBlocks = invalidRange.length == 0 ? [] : Parser.parse(text, range: invalidRange)
 		blocks = applyParsedBlocks(parsedBlocks, parseRange: invalidRange, blockRange: blockRange)
 
