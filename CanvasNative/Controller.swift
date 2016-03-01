@@ -60,6 +60,7 @@ public final class Controller {
 		// Notify the delegate we're beginning
 		willUpdate()
 
+		// Special case for inserting a new block at the end of an existing block for cleaner messages
 		if string.hasPrefix("\n") && text.length > range.max && text.substringWithRange(NSRange(location: range.max, length: 1)) == "\n" {
 			range.location += 1
 			string = string.substringFromIndex(1) + "\n"
