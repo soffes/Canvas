@@ -50,7 +50,7 @@ public final class Controller {
 		self.delegate = delegate
 
 		if let text = text {
-			replaceCharactersInRange(NSRange(location: 0, length: self.text.length), withString: text)
+			replaceCharactersInRange(NSRange(location: 0, length: length), withString: text)
 		}
 	}
 
