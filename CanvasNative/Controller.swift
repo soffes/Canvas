@@ -84,7 +84,7 @@ public final class Controller {
 
 	// MARK: - Applying Changes to the Tree
 
-	private func applyParsedBlocks(parsedBlocks: [BlockNode], parseRange: NSRange, blockRange: Range<Int>?) -> [BlockNode] {
+	private func applyParsedBlocks(parsedBlocks: [BlockNode], parseRange: NSRange, blockRange: NSRange?) -> [BlockNode] {
 		// Start to calculate the new blocks
 		var workingBlocks = blocks
 
@@ -94,7 +94,7 @@ public final class Controller {
 		let updatedBlocks: [BlockNode]
 
 		if let blockRange = blockRange {
-			updatedBlocks = [BlockNode](blocks[blockRange])
+			updatedBlocks = [BlockNode](blocks[blockRange.range])
 		} else {
 			updatedBlocks = []
 		}
@@ -106,7 +106,7 @@ public final class Controller {
 		if blockDelta > 0 {
 			for i in 0..<blockDelta {
 				let block = parsedBlocks[i]
-				let index = i + (blockRange?.startIndex ?? 0)
+				let index = i + (blockRange?.location ?? 0)
 				workingBlocks.insert(block, atIndex: index)
 				replaced += 1
 				didInsert(block: block, index: index)
@@ -115,8 +115,8 @@ public final class Controller {
 
 		// Deleting
 		if blockDelta < 0, let blockRange = blockRange {
-			for _ in (blockRange.startIndex)..<(blockRange.startIndex - blockDelta) {
-				let index = blockRange.startIndex
+			for _ in (blockRange.location)..<(blockRange.location - blockDelta) {
+				let index = blockRange.location
 				let block = workingBlocks[index]
 				workingBlocks.removeAtIndex(index)
 				didRemove(block: block, index: index)
@@ -127,7 +127,7 @@ public final class Controller {
 		if let blockRange = blockRange {
 			for i in replaced..<parsedBlocks.count {
 				let after = parsedBlocks[i]
-				let index = i + blockRange.startIndex
+				let index = i + blockRange.location
 				let before = workingBlocks[index]
 				workingBlocks.removeAtIndex(index)
 				workingBlocks.insert(after, atIndex: index)
@@ -136,7 +136,7 @@ public final class Controller {
 		}
 
 		afterOffset = Int(characterLengthOfBlocks(parsedBlocks)) - Int(characterLengthOfBlocks(updatedBlocks)) + blockDelta
-		afterRange = ((blockRange?.endIndex ?? 0) + blockDelta)..<workingBlocks.endIndex
+		afterRange = ((blockRange?.max ?? 0) + blockDelta)..<workingBlocks.endIndex
 
 		// Update blocks after edit
 		workingBlocks = offsetBlocks(blocks: workingBlocks, blockRange: afterRange, offset: afterOffset)
@@ -194,23 +194,23 @@ public final class Controller {
 		return blocks.map { UInt($0.range.length) }.reduce(0, combine: +)
 	}
 
-	private func blockRangeForCharacterRange(range: NSRange) -> Range<Int>? {
-		var start: Int?
-		var end: Int?
+	private func blockRangeForCharacterRange(range: NSRange) -> NSRange? {
+		var location: Int?
+		var length = 0
 
 		for (i, block) in blocks.enumerate() {
 			if block.enclosingRange.intersection(range) != nil {
-				if start == nil {
-					start = i
+				if location == nil {
+					location = i
 				}
-				end = i
-			} else if start != nil {
+				length += 1
+			} else if location != nil {
 				break
 			}
 		}
 
-		guard let rangeStart = start, rangeEnd = end else { return nil }
-		return rangeStart...rangeEnd
+		guard let loc = location else { return nil }
+		return NSRange(location: loc, length: length)
 	}
 
 
