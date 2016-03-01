@@ -37,6 +37,10 @@ public final class Controller {
 		return text as String
 	}
 
+	public var length: Int {
+		return text.length
+	}
+
 	private let text: NSMutableString = ""
 
 
