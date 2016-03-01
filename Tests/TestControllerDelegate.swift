@@ -15,10 +15,10 @@ final class TestControllerDelegate: ControllerDelegate {
 	var blocks = [BlockNode]()
 
 	var willUpdate: (Void -> Void)?
-	var didInsert: ((BlockNode, UInt) -> Void)?
-	var didRemove: ((BlockNode, UInt) -> Void)?
-	var didReplaceContent: ((BlockNode, UInt, BlockNode) -> Void)?
-	var didUpdateLocation: ((BlockNode, UInt, BlockNode) -> Void)?
+	var didInsert: ((BlockNode, Int) -> Void)?
+	var didRemove: ((BlockNode, Int) -> Void)?
+	var didReplaceContent: ((BlockNode, Int, BlockNode) -> Void)?
+	var didUpdateLocation: ((BlockNode, Int, BlockNode) -> Void)?
 	var didUpdate: (Void -> Void)?
 
 
@@ -28,25 +28,25 @@ final class TestControllerDelegate: ControllerDelegate {
 		willUpdate?()
 	}
 
-	func controller(controller: Controller, didInsertBlock block: BlockNode, atIndex index: UInt) {
-		blocks.insert(block, atIndex: Int(index))
+	func controller(controller: Controller, didInsertBlock block: BlockNode, atIndex index: Int) {
+		blocks.insert(block, atIndex: index)
 		didInsert?(block, index)
 	}
 
-	func controller(controller: Controller, didRemoveBlock block: BlockNode, atIndex index: UInt) {
-		blocks.removeAtIndex(Int(index))
+	func controller(controller: Controller, didRemoveBlock block: BlockNode, atIndex index: Int) {
+		blocks.removeAtIndex(index)
 		didRemove?(block, index)
 	}
 
-	func controller(controller: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: UInt, withBlock after: BlockNode) {
-		blocks.removeAtIndex(Int(index))
-		blocks.insert(after, atIndex: Int(index))
+	func controller(controller: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
+		blocks.removeAtIndex(index)
+		blocks.insert(after, atIndex: index)
 		didReplaceContent?(before, index, after)
 	}
 
-	func controller(controller: Controller, didUpdateLocationForBlock before: BlockNode, atIndex index: UInt, withBlock after: BlockNode) {
-		blocks.removeAtIndex(Int(index))
-		blocks.insert(after, atIndex: Int(index))
+	func controller(controller: Controller, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
+		blocks.removeAtIndex(index)
+		blocks.insert(after, atIndex: index)
 		didUpdateLocation?(before, index, after)
 	}
 

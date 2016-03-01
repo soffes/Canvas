@@ -11,15 +11,15 @@ import Foundation
 public protocol ControllerDelegate: class {
 	func controllerWillUpdateNodes(controller: Controller)
 
-	func controller(controller: Controller, didInsertBlock block: BlockNode, atIndex index: UInt)
+	func controller(controller: Controller, didInsertBlock block: BlockNode, atIndex index: Int)
 
-	func controller(controller: Controller, didRemoveBlock block: BlockNode, atIndex index: UInt)
+	func controller(controller: Controller, didRemoveBlock block: BlockNode, atIndex index: Int)
 
 	// The block's content changed.
-	func controller(controller: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: UInt, withBlock after: BlockNode)
+	func controller(controller: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
 
 	// The block's metadata changed.
-	func controller(controller: Controller, didUpdateLocationForBlock before: BlockNode, atIndex index: UInt, withBlock after: BlockNode)
+	func controller(controller: Controller, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
 
 	func controllerDidUpdateNodes(controller: Controller)
 }
@@ -221,16 +221,16 @@ public final class Controller {
 	}
 
 	private func didInsert(block block: BlockNode, index: Int) {
-		delegate?.controller(self, didInsertBlock: block, atIndex: UInt(index))
+		delegate?.controller(self, didInsertBlock: block, atIndex: index)
 	}
 
 	private func didRemove(block block: BlockNode, index: Int) {
-		delegate?.controller(self, didRemoveBlock: block, atIndex: UInt(index))
+		delegate?.controller(self, didRemoveBlock: block, atIndex: index)
 	}
 
 	private func didReplace(before before: BlockNode, index: Int, after: BlockNode) {
 		if before.dynamicType == after.dynamicType {
-			delegate?.controller(self, didReplaceContentForBlock: before, atIndex: UInt(index), withBlock: after)
+			delegate?.controller(self, didReplaceContentForBlock: before, atIndex: index, withBlock: after)
 			return
 		}
 
@@ -239,6 +239,6 @@ public final class Controller {
 	}
 
 	private func didUpdate(before before: BlockNode, index: Int, after: BlockNode) {
-		delegate?.controller(self, didUpdateLocationForBlock: before, atIndex: UInt(index), withBlock: after)
+		delegate?.controller(self, didUpdateLocationForBlock: before, atIndex: index, withBlock: after)
 	}
 }
