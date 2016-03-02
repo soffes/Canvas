@@ -57,27 +57,18 @@ public final class Controller {
 
 	// MARK: - Changing Text
 
-	public func replaceCharactersInRange(inRange: NSRange, withString inString: String) {
-		var range = inRange
-		var string = inString as NSString
-
+	public func replaceCharactersInRange(range: NSRange, withString string: String) {
 		// Notify the delegate we're beginning
 		willUpdate()
 
-		// Special case for inserting a new block at the end of an existing block for cleaner messages
-		if string.hasPrefix("\n") && text.length > range.max && text.substringWithRange(NSRange(location: range.max, length: 1)) == "\n" {
-			range.location += 1
-			string = string.substringFromIndex(1) + "\n"
-		}
-
 		// Calculate blocks changed by the edit
-		let blockRange = blockRangeForCharacterRange(range)
+		let blockRange = blockRangeForCharacterRange(range, string: string)
 
 		// Update the text representation
 		text.replaceCharactersInRange(range, withString: string as String)
 
 		// Reparse the invalid range of document
-		let invalidRange = parseRangeForRange(NSRange(location: range.location, length: string.length))
+		let invalidRange = parseRangeForRange(NSRange(location: range.location, length: (string as NSString).length))
 		let parsedBlocks = invalidRange.length == 0 ? [] : Parser.parse(text, range: invalidRange)
 		blocks = applyParsedBlocks(parsedBlocks, parseRange: invalidRange, blockRange: blockRange)
 
@@ -190,12 +181,17 @@ public final class Controller {
 		return blocks.map { UInt($0.range.length) }.reduce(0, combine: +)
 	}
 
-	private func blockRangeForCharacterRange(range: NSRange) -> NSRange {
+	func blockRangeForCharacterRange(range: NSRange, string: String) -> NSRange {
 		var location: Int?
 		var length = 0
 
 		for (i, block) in blocks.enumerate() {
 			if block.enclosingRange.intersection(range) != nil {
+				// Detect inserting at the end vs inserting a new block
+				if range.location == block.range.max && !string.isEmpty && string.hasPrefix("\n") {
+					return NSRange(location: min(i + 1, blocks.endIndex), length: 0)
+				}
+				
 				if location == nil {
 					location = i
 				}

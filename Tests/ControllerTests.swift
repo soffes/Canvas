@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import CanvasNative
+@testable import CanvasNative
 
 class ControllerTests: XCTestCase {
 
@@ -33,6 +33,15 @@ class ControllerTests: XCTestCase {
 
 
 	// MARK: - Tests
+
+	func testBlockRange() {
+		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
+		var blockRange = controller.blockRangeForCharacterRange(NSRange(location: 22, length: 0), string: "\n⧙code⧘Half")
+		XCTAssertEqual(NSRange(location: 2, length: 0), blockRange)
+
+		blockRange = controller.blockRangeForCharacterRange(NSRange(location: 22, length: 0), string: "!")
+		XCTAssertEqual(NSRange(location: 1, length: 1), blockRange)
+	}
 
 	func testLoading() {
 		// Will update
