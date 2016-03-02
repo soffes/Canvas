@@ -236,7 +236,6 @@ class ControllerTests: XCTestCase {
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
-	// Splitting doesn't send the smallest set of desired messages. This is on hold until we go nuts with this later.
 	func testSplit() {
 		// Initial state
 		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
@@ -246,6 +245,23 @@ class ControllerTests: XCTestCase {
 
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nOn\n⧙code⧘Te\n⧙blockquote⧘> Two", controller.string)
+		XCTAssertEqual(parse(controller.string), blockDictionaries)
+	}
+
+	func testJoin() {
+		// Initial state
+		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\nTwo")
+
+		let range = NSRange(location: 22, length: 1)
+		let replacement = ""
+		let blockRange = controller.blockRangeForCharacterRange(range, string: replacement)
+		XCTAssertEqual(NSRange(location: 1, length: 2), blockRange)
+
+		// Edit characters
+		controller.replaceCharactersInRange(range, withString: replacement)
+
+		// Check blocks
+		XCTAssertEqual("⧙doc-heading⧘Title\nOneTwo", controller.string)
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
@@ -280,6 +296,23 @@ class ControllerTests: XCTestCase {
 
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nFour", controller.string)
+		XCTAssertEqual(parse(controller.string), blockDictionaries)
+	}
+
+	func testMultipleInsertRemove() {
+		// Initial state
+		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour")
+
+		let range = NSRange(location: 19, length: 18)
+		let replacement = "Hello\nWorld"
+		let blockRange = controller.blockRangeForCharacterRange(range, string: replacement)
+		XCTAssertEqual(NSRange(location: 1, length: 4), blockRange)
+
+		// Edit characters
+		controller.replaceCharactersInRange(range, withString: replacement)
+
+		// Check blocks
+		XCTAssertEqual("⧙doc-heading⧘Title\nHello\nWorld", controller.string)
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
