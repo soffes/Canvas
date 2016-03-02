@@ -25,8 +25,17 @@ extension NSRange {
 		]
 	}
 
+	var range: Range<Int> {
+		return location..<max
+	}
+
 	
 	// MARK: - Initializers
+
+	init(_ range: Range<Int>) {
+		location = range.startIndex
+		length = range.count
+	}
 
 	init(location: UInt, length: UInt) {
 		self.init(location: Int(location), length: Int(length))
