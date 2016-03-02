@@ -34,22 +34,6 @@ class ControllerTests: XCTestCase {
 
 	// MARK: - Tests
 
-	func testBlockRange() {
-		// Insert a block after a block
-		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
-		var blockRange = controller.blockRangeForCharacterRange(NSRange(location: 22, length: 0), string: "\n⧙code⧘Half")
-		XCTAssertEqual(NSRange(location: 2, length: 0), blockRange)
-
-		// Insert at the end
-		blockRange = controller.blockRangeForCharacterRange(NSRange(location: 22, length: 0), string: "!")
-		XCTAssertEqual(NSRange(location: 1, length: 1), blockRange)
-
-		// At the end of the document
-		controller.replaceCharactersInRange(NSRange(location: 0, length: controller.length), withString: "⧙doc-heading⧘Title\nOne")
-		blockRange = controller.blockRangeForCharacterRange(NSRange(location: 22, length: 0), string: "\nHello\nWorld")
-		XCTAssertEqual(NSRange(location: 2, length: 0), blockRange)
-	}
-
 	func testLoading() {
 		// Will update
 		let will = expectationWithDescription("controllerWillUpdateNodes")
@@ -93,6 +77,12 @@ class ControllerTests: XCTestCase {
 	func testChange() {
 		// Initial state
 		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\nTwo")
+
+		let range = NSRange(location: 22, length: 0)
+		let replacement = "!"
+		let blockRange = controller.blockRangeForCharacterRange(range, string: replacement)
+		XCTAssertEqual(NSRange(location: 1, length: 1), blockRange)
+
 		let beforeParagraph1 = controller.blocks[1]
 		let beforeParagraph2 = controller.blocks[2]
 
@@ -133,7 +123,7 @@ class ControllerTests: XCTestCase {
 		delegate.didUpdate = { did.fulfill() }
 
 		// Edit characters
-		controller.replaceCharactersInRange(NSRange(location: 22, length: 0), withString: "!")
+		controller.replaceCharactersInRange(range, withString: replacement)
 
 		// Wait for expectations
 		waitForExpectationsWithTimeout(0.5, handler: nil)
@@ -147,6 +137,11 @@ class ControllerTests: XCTestCase {
 		// Initial state
 		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
 		let blockquote = controller.blocks[2]
+
+		let range = NSRange(location: 22, length: 0)
+		let replacement = "\n⧙code⧘Half"
+		let blockRange = controller.blockRangeForCharacterRange(range, string: replacement)
+		XCTAssertEqual(NSRange(location: 2, length: 0), blockRange)
 
 		// Will update
 		let will = expectationWithDescription("controllerWillUpdateNodes")
@@ -183,7 +178,7 @@ class ControllerTests: XCTestCase {
 		delegate.didUpdate = { did.fulfill() }
 
 		// Edit characters
-		controller.replaceCharactersInRange(NSRange(location: 22, length: 0), withString: "\n⧙code⧘Half")
+		controller.replaceCharactersInRange(range, withString: replacement)
 
 		// Wait for expectations
 		waitForExpectationsWithTimeout(0.5, handler: nil)
@@ -258,8 +253,13 @@ class ControllerTests: XCTestCase {
 		// Initial state
 		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne")
 
+		let range = NSRange(location: 22, length: 0)
+		let replacement = "\nHello\nWorld"
+		let blockRange = controller.blockRangeForCharacterRange(range, string: replacement)
+		XCTAssertEqual(NSRange(location: 2, length: 0), blockRange)
+
 		// Edit characters
-		controller.replaceCharactersInRange(NSRange(location: 22, length: 0), withString: "\nHello\nWorld")
+		controller.replaceCharactersInRange(range, withString: replacement)
 
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nHello\nWorld", controller.string)
@@ -270,8 +270,13 @@ class ControllerTests: XCTestCase {
 		// Initial state
 		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour")
 
+		let range = NSRange(location: 22, length: 10)
+		let replacement = ""
+		let blockRange = controller.blockRangeForCharacterRange(range, string: replacement)
+		XCTAssertEqual(NSRange(location: 2, length: 2), blockRange)
+
 		// Edit characters
-		controller.replaceCharactersInRange(NSRange(location: 22, length: 10), withString: "")
+		controller.replaceCharactersInRange(range, withString: replacement)
 
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nFour", controller.string)
