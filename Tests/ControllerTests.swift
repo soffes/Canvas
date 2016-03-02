@@ -243,13 +243,8 @@ class ControllerTests: XCTestCase {
 	}
 
 	func testSplit() {
-		// Initial state
 		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two"
-
-		// Edit characters
 		controller.replaceCharactersInRange(NSRange(location: 21, length: 0), withString: "\n⧙code⧘T")
-
-		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nOn\n⧙code⧘Te\n⧙blockquote⧘> Two", controller.string)
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}

@@ -197,7 +197,7 @@ public final class Controller {
 
 	func blockRangeForCharacterRange(range: NSRange, string: String) -> NSRange {
 		var location: Int?
-		var length = 0
+		var matchingBlocks = [BlockNode]()
 
 		let hasNewLinePrefix = string.hasPrefix("\n")
 
@@ -213,7 +213,7 @@ public final class Controller {
 					location = i
 				}
 
-				length += 1
+				matchingBlocks.append(block)
 			} else if location != nil {
 				// This block didn't match and we've already started, so end the range.
 				break
@@ -221,7 +221,14 @@ public final class Controller {
 		}
 
 		// If we didn't find anything, assume we're inserting at the very end.
-		return NSRange(location: location ?? blocks.endIndex, length: length)
+		var blockRange = NSRange(location: location ?? blocks.endIndex, length: matchingBlocks.count)
+
+		// If we delete the new line in the last block, extend the length if possible.
+//		if string.isEmpty, let lastNewLine = matchingBlocks.last?.newLineRange where lastNewLine.intersection(range) == 1 {
+//			blockRange.length = min(blockRange.length + 1, blocks.count - blockRange.location)
+//		}
+
+		return blockRange
 	}
 
 
