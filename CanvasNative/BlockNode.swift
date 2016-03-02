@@ -12,3 +12,10 @@ public protocol BlockNode: Node {
 	var enclosingRange: NSRange { get }
 	init?(string: String, range: NSRange, enclosingRange: NSRange)
 }
+
+
+extension BlockNode {
+	var hasTrailingNewLine: Bool {
+		return range.max < enclosingRange.max
+	}
+}

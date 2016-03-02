@@ -191,10 +191,12 @@ public final class Controller {
 		var location: Int?
 		var length = 0
 
+		let hasNewLinePrefix = string.hasPrefix("\n")
+
 		for (i, block) in blocks.enumerate() {
-			if block.enclosingRange.intersection(range) != nil {
-				// Detect inserting at the end vs inserting a new block
-				if range.location == block.range.max && !string.isEmpty && string.hasPrefix("\n") {
+			if block.enclosingRange.intersection(range) != nil || block.enclosingRange.max == range.location && hasNewLinePrefix {
+				// Detect inserting at the end of a line vs inserting a new block
+				if block.hasTrailingNewLine && range.location == block.range.max && hasNewLinePrefix {
 					return NSRange(location: min(i + 1, blocks.endIndex), length: 0)
 				}
 				

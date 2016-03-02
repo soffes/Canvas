@@ -272,7 +272,7 @@ class ControllerTests: XCTestCase {
 		let range = NSRange(location: 22, length: 0)
 		let replacement = "\nHello\nWorld"
 		let blockRange = controller.blockRangeForCharacterRange(range, string: replacement)
-		XCTAssertEqual(NSRange(location: 2, length: 0), blockRange)
+		XCTAssertEqual(NSRange(location: 1, length: 1), blockRange)
 
 		// Edit characters
 		controller.replaceCharactersInRange(range, withString: replacement)
