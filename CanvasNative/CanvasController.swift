@@ -1,5 +1,5 @@
 //
-//  Controller.swift
+//  CanvasController.swift
 //  CanvasNative
 //
 //  Created by Sam Soffes on 2/18/16.
@@ -8,28 +8,28 @@
 
 import Foundation
 
-public protocol ControllerDelegate: class {
-	func controllerWillUpdateNodes(controller: Controller)
+public protocol CanvasControllerDelegate: class {
+	func canvasControllerWillUpdateNodes(canvasController: CanvasController)
 
-	func controller(controller: Controller, didInsertBlock block: BlockNode, atIndex index: Int)
+	func canvasController(canvasController: CanvasController, didInsertBlock block: BlockNode, atIndex index: Int)
 
-	func controller(controller: Controller, didRemoveBlock block: BlockNode, atIndex index: Int)
+	func canvasController(canvasController: CanvasController, didRemoveBlock block: BlockNode, atIndex index: Int)
 
 	// The block's content changed.
-	func controller(controller: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
+	func canvasController(canvasController: CanvasController, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
 
 	// The block's metadata changed.
-	func controller(controller: Controller, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
+	func canvasController(canvasController: CanvasController, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
 
-	func controllerDidUpdateNodes(controller: Controller)
+	func canvasControllerDidUpdateNodes(canvasController: CanvasController)
 }
 
 
-public final class Controller {
+public final class CanvasController {
 
 	// MARK: - Properties
 
-	public weak var delegate: ControllerDelegate?
+	public weak var delegate: CanvasControllerDelegate?
 
 	public private(set) var blocks = [BlockNode]()
 
@@ -52,7 +52,7 @@ public final class Controller {
 
 	// MARK: - Initializers
 
-	public init(string: String? = nil, delegate: ControllerDelegate? = nil) {
+	public init(string: String? = nil, delegate: CanvasControllerDelegate? = nil) {
 		self.delegate = delegate
 
 		if let string = string {
@@ -235,24 +235,24 @@ public final class Controller {
 	// MARK: - Delegate Calls
 
 	private func willUpdate() {
-		delegate?.controllerWillUpdateNodes(self)
+		delegate?.canvasControllerWillUpdateNodes(self)
 	}
 
 	private func didUpdate() {
-		delegate?.controllerDidUpdateNodes(self)
+		delegate?.canvasControllerDidUpdateNodes(self)
 	}
 
 	private func didInsert(block block: BlockNode, index: Int) {
-		delegate?.controller(self, didInsertBlock: block, atIndex: index)
+		delegate?.canvasController(self, didInsertBlock: block, atIndex: index)
 	}
 
 	private func didRemove(block block: BlockNode, index: Int) {
-		delegate?.controller(self, didRemoveBlock: block, atIndex: index)
+		delegate?.canvasController(self, didRemoveBlock: block, atIndex: index)
 	}
 
 	private func didReplace(before before: BlockNode, index: Int, after: BlockNode) {
 		if before.dynamicType == after.dynamicType {
-			delegate?.controller(self, didReplaceContentForBlock: before, atIndex: index, withBlock: after)
+			delegate?.canvasController(self, didReplaceContentForBlock: before, atIndex: index, withBlock: after)
 			return
 		}
 
@@ -261,6 +261,6 @@ public final class Controller {
 	}
 
 	private func didUpdate(before before: BlockNode, index: Int, after: BlockNode) {
-		delegate?.controller(self, didUpdateLocationForBlock: before, atIndex: index, withBlock: after)
+		delegate?.canvasController(self, didUpdateLocationForBlock: before, atIndex: index, withBlock: after)
 	}
 }

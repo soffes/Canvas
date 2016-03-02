@@ -1,5 +1,5 @@
 //
-//  TestControllerDelegate.swift
+//  TestCanvasControllerDelegate.swift
 //  CanvasNative
 //
 //  Created by Sam Soffes on 2/23/16.
@@ -8,7 +8,7 @@
 
 import CanvasNative
 
-final class TestControllerDelegate: ControllerDelegate {
+final class TestCanvasControllerDelegate: CanvasControllerDelegate {
 
 	// MARK: - Properties
 
@@ -22,35 +22,35 @@ final class TestControllerDelegate: ControllerDelegate {
 	var didUpdate: (Void -> Void)?
 
 
-	// MARK: - ControllerDelegate
+	// MARK: - CanvasControllerDelegate
 
-	func controllerWillUpdateNodes(controller: Controller) {
+	func canvasControllerWillUpdateNodes(canvasController: CanvasController) {
 		willUpdate?()
 	}
 
-	func controller(controller: Controller, didInsertBlock block: BlockNode, atIndex index: Int) {
+	func canvasController(canvasController: CanvasController, didInsertBlock block: BlockNode, atIndex index: Int) {
 		blocks.insert(block, atIndex: index)
 		didInsert?(block, index)
 	}
 
-	func controller(controller: Controller, didRemoveBlock block: BlockNode, atIndex index: Int) {
+	func canvasController(canvasController: CanvasController, didRemoveBlock block: BlockNode, atIndex index: Int) {
 		blocks.removeAtIndex(index)
 		didRemove?(block, index)
 	}
 
-	func controller(controller: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
+	func canvasController(canvasController: CanvasController, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
 		blocks.removeAtIndex(index)
 		blocks.insert(after, atIndex: index)
 		didReplaceContent?(before, index, after)
 	}
 
-	func controller(controller: Controller, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
+	func canvasController(canvasController: CanvasController, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
 		blocks.removeAtIndex(index)
 		blocks.insert(after, atIndex: index)
 		didUpdateLocation?(before, index, after)
 	}
 
-	func controllerDidUpdateNodes(controller: Controller) {
+	func canvasControllerDidUpdateNodes(canvasController: CanvasController) {
 		didUpdate?()
 	}
 }

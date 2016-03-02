@@ -1,5 +1,5 @@
 //
-//  ControllerTests.swift
+//  CanvasControllerTests.swift
 //  CanvasNative
 //
 //  Created by Sam Soffes on 2/23/16.
@@ -9,13 +9,13 @@
 import XCTest
 @testable import CanvasNative
 
-class ControllerTests: XCTestCase {
+class CanvasControllerTests: XCTestCase {
 
 	// MARK: - Properties
 
-	private let controller = Controller()
+	private let controller = CanvasController()
 
-	private let delegate = TestControllerDelegate()
+	private let delegate = TestCanvasControllerDelegate()
 
 	private var blockDictionaries: [[String: AnyObject]] {
 		// Note that we're checking what the delegate thinks the blocks are. This makes sure all of the delegate
