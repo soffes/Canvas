@@ -15,7 +15,10 @@ public protocol BlockNode: Node {
 
 
 extension BlockNode {
-	var hasTrailingNewLine: Bool {
-		return range.max < enclosingRange.max
+	var newLineRange: NSRange? {
+		let delta = enclosingRange.max - range.max
+		guard delta == 1 else { return nil }
+
+		return NSRange(location: range.max, length: 1)
 	}
 }

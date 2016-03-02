@@ -196,22 +196,27 @@ public final class Controller {
 		for (i, block) in blocks.enumerate() {
 			if block.enclosingRange.intersection(range) != nil || block.enclosingRange.max == range.location && hasNewLinePrefix {
 				// Detect inserting at the end of a line vs inserting a new block
-				if block.hasTrailingNewLine && range.location == block.range.max && hasNewLinePrefix {
+				if block.newLineRange != nil && range.location == block.range.max && hasNewLinePrefix {
 					return NSRange(location: min(i + 1, blocks.endIndex), length: 0)
 				}
-				
+
+				// Start if we haven't already
 				if location == nil {
 					location = i
 				}
+
+				// Increment the length
 				length += 1
 			} else if location != nil {
+				// This block didn't match and we've already started, so end the range.
 				break
 			}
 		}
 
-		// If we didn't find anything, assume we're inserting at the very end
+		// If we didn't find anything, assume we're inserting at the very end.
 		guard let loc = location else { return NSRange(location: blocks.endIndex, length: 0) }
-		
+
+		// Return the range
 		return NSRange(location: loc, length: length)
 	}
 
