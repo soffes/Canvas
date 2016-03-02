@@ -64,7 +64,7 @@ class ControllerTests: XCTestCase {
 		delegate.didUpdate = { did.fulfill() }
 
 		// Edit characters
-		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nParagraph")
+		controller.string = "⧙doc-heading⧘Title\nParagraph"
 
 		// Wait for expectations
 		waitForExpectationsWithTimeout(0.5, handler: nil)
@@ -76,7 +76,7 @@ class ControllerTests: XCTestCase {
 
 	func testChange() {
 		// Initial state
-		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\nTwo")
+		controller.string = "⧙doc-heading⧘Title\nOne\nTwo"
 
 		let range = NSRange(location: 22, length: 0)
 		let replacement = "!"
@@ -135,7 +135,7 @@ class ControllerTests: XCTestCase {
 
 	func testInsert() {
 		// Initial state
-		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
+		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two"
 		let blockquote = controller.blocks[2]
 
 		let range = NSRange(location: 22, length: 0)
@@ -190,7 +190,7 @@ class ControllerTests: XCTestCase {
 
 	func testRemove() {
 		// Initial state
-		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
+		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two"
 		let blockquote = controller.blocks[2]
 
 		// Will update
@@ -238,7 +238,7 @@ class ControllerTests: XCTestCase {
 
 	func testSplit() {
 		// Initial state
-		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
+		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two"
 
 		// Edit characters
 		controller.replaceCharactersInRange(NSRange(location: 21, length: 0), withString: "\n⧙code⧘T")
@@ -250,7 +250,7 @@ class ControllerTests: XCTestCase {
 
 	func testJoin() {
 		// Initial state
-		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\nTwo")
+		controller.string = "⧙doc-heading⧘Title\nOne\nTwo"
 
 		let range = NSRange(location: 22, length: 1)
 		let replacement = ""
@@ -267,7 +267,7 @@ class ControllerTests: XCTestCase {
 
 	func testMultipleInsert() {
 		// Initial state
-		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne")
+		controller.string = "⧙doc-heading⧘Title\nOne"
 
 		let range = NSRange(location: 22, length: 0)
 		let replacement = "\nHello\nWorld"
@@ -284,7 +284,7 @@ class ControllerTests: XCTestCase {
 
 	func testMultipleRemove() {
 		// Initial state
-		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour")
+		controller.string = "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour"
 
 		let range = NSRange(location: 22, length: 10)
 		let replacement = ""
@@ -301,7 +301,7 @@ class ControllerTests: XCTestCase {
 
 	func testMultipleInsertRemove() {
 		// Initial state
-		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour")
+		controller.string = "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour"
 
 		let range = NSRange(location: 19, length: 18)
 		let replacement = "Hello\nWorld"

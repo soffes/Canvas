@@ -34,7 +34,13 @@ public final class Controller {
 	public private(set) var blocks = [BlockNode]()
 
 	public var string: String {
-		return text as String
+		get {
+			return text as String
+		}
+
+		set {
+			replaceCharactersInRange(NSRange(location: 0, length: length), withString: newValue)
+		}
 	}
 
 	public var length: Int {
@@ -46,11 +52,11 @@ public final class Controller {
 
 	// MARK: - Initializers
 
-	public init(text: String? = nil, delegate: ControllerDelegate? = nil) {
+	public init(string: String? = nil, delegate: ControllerDelegate? = nil) {
 		self.delegate = delegate
 
-		if let text = text {
-			replaceCharactersInRange(NSRange(location: 0, length: length), withString: text)
+		if let string = string {
+			self.string = string
 		}
 	}
 
