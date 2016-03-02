@@ -191,6 +191,12 @@ class ControllerTests: XCTestCase {
 	func testRemove() {
 		// Initial state
 		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two"
+
+		let range = NSRange(location: 19, length: 4)
+		let replacement = ""
+		let blockRange = controller.blockRangeForCharacterRange(range, string: replacement)
+		XCTAssertEqual(NSRange(location: 1, length: 1), blockRange)
+
 		let blockquote = controller.blocks[2]
 
 		// Will update
@@ -226,7 +232,7 @@ class ControllerTests: XCTestCase {
 		delegate.didReplaceContent = { _, _, _ in XCTFail("Shouldn't replace.") }
 
 		// Edit characters
-		controller.replaceCharactersInRange(NSRange(location: 19, length: 4), withString: "")
+		controller.replaceCharactersInRange(range, withString: replacement)
 
 		// Wait for expectations
 		waitForExpectationsWithTimeout(0.5, handler: nil)
@@ -265,6 +271,23 @@ class ControllerTests: XCTestCase {
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
+	func testMultipleJoin() {
+		// Initial state
+		controller.string = "⧙doc-heading⧘Title\nOne\nTwo\nThree"
+
+		let range = NSRange(location: 22, length: 5)
+		let replacement = ""
+		let blockRange = controller.blockRangeForCharacterRange(range, string: replacement)
+		XCTAssertEqual(NSRange(location: 1, length: 3), blockRange)
+
+		// Edit characters
+		controller.replaceCharactersInRange(range, withString: replacement)
+
+		// Check blocks
+		XCTAssertEqual("⧙doc-heading⧘Title\nOneThree", controller.string)
+		XCTAssertEqual(parse(controller.string), blockDictionaries)
+	}
+
 	func testMultipleInsert() {
 		// Initial state
 		controller.string = "⧙doc-heading⧘Title\nOne"
@@ -283,20 +306,16 @@ class ControllerTests: XCTestCase {
 	}
 
 	func testMultipleRemove() {
-		// Initial state
 		controller.string = "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour"
-
-		let range = NSRange(location: 22, length: 10)
-		let replacement = ""
-		let blockRange = controller.blockRangeForCharacterRange(range, string: replacement)
-		XCTAssertEqual(NSRange(location: 2, length: 2), blockRange)
-
-		// Edit characters
-		controller.replaceCharactersInRange(range, withString: replacement)
-
-		// Check blocks
+		controller.replaceCharactersInRange(NSRange(location: 22, length: 10), withString: "")
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nFour", controller.string)
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
+
+		controller.string = "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour"
+		controller.replaceCharactersInRange(NSRange(location: 23, length: 10), withString: "")
+		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nFour", controller.string)
+		XCTAssertEqual(parse(controller.string), blockDictionaries)
+
 	}
 
 	func testMultipleInsertRemove() {

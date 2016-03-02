@@ -63,18 +63,26 @@ public final class Controller {
 
 	// MARK: - Changing Text
 
-	public func replaceCharactersInRange(range: NSRange, withString string: String) {
+	public func replaceCharactersInRange(inRange: NSRange, withString inString: String) {
+		var range = inRange
+		let string = inString as NSString
+
+		if range.length > 1 && text.substringWithRange(NSRange(location: range.location, length: 1)) == "\n" {
+			range.location += 1
+			range.length = min(length - range.location, range.length)
+		}
+
 		// Notify the delegate we're beginning
 		willUpdate()
 
 		// Calculate blocks changed by the edit
-		let blockRange = blockRangeForCharacterRange(range, string: string)
+		let blockRange = blockRangeForCharacterRange(range, string: string as String)
 
 		// Update the text representation
 		text.replaceCharactersInRange(range, withString: string as String)
 
 		// Reparse the invalid range of document
-		let invalidRange = parseRangeForRange(NSRange(location: range.location, length: (string as NSString).length))
+		let invalidRange = parseRangeForRange(NSRange(location: range.location, length: string.length))
 		let parsedBlocks = invalidRange.length == 0 ? [] : Parser.parse(text, range: invalidRange)
 		blocks = applyParsedBlocks(parsedBlocks, parseRange: invalidRange, blockRange: blockRange)
 
@@ -205,7 +213,6 @@ public final class Controller {
 					location = i
 				}
 
-				// Increment the length
 				length += 1
 			} else if location != nil {
 				// This block didn't match and we've already started, so end the range.
@@ -214,10 +221,7 @@ public final class Controller {
 		}
 
 		// If we didn't find anything, assume we're inserting at the very end.
-		guard let loc = location else { return NSRange(location: blocks.endIndex, length: 0) }
-
-		// Return the range
-		return NSRange(location: loc, length: length)
+		return NSRange(location: location ?? blocks.endIndex, length: length)
 	}
 
 
