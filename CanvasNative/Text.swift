@@ -14,7 +14,7 @@ public struct Text: SpanNode {
 
 	public var range: NSRange
 
-	public var displayRange: NSRange {
+	public var visibleRange: NSRange {
 		return range
 	}
 
@@ -22,7 +22,7 @@ public struct Text: SpanNode {
 		return [
 			"type": "text",
 			"range": range.dictionary,
-			"displayRange": displayRange.dictionary
+			"visibleRange": visibleRange.dictionary
 		]
 	}
 

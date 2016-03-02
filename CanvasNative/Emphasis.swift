@@ -20,7 +20,7 @@ public struct Emphasis: SpanNode, Foldable, NodeContainer {
 		return leadingDelimiterRange.union(textRange).union(trailingDelimiterRange)
 	}
 
-	public var displayRange: NSRange {
+	public var visibleRange: NSRange {
 		return range
 	}
 
@@ -35,7 +35,7 @@ public struct Emphasis: SpanNode, Foldable, NodeContainer {
 		return [
 			"type": "emphasis",
 			"range": range.dictionary,
-			"displayRange": displayRange.dictionary,
+			"visibleRange": visibleRange.dictionary,
 			"leadingDelimiterRange": leadingDelimiterRange.dictionary,
 			"textRange": textRange.dictionary,
 			"trailingDelimiterRange": trailingDelimiterRange.dictionary,

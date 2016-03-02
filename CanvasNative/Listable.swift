@@ -46,7 +46,7 @@ public protocol Listable: NativePrefixable, Positionable, Annotatable, ReturnCom
 }
 
 
-func parseListable(string string: String, range: NSRange, delimiter: String, prefix: String) -> (nativePrefixRange: NSRange, indentationRange: NSRange, indentation: Indentation, prefixRange: NSRange, displayRange: NSRange)? {
+func parseListable(string string: String, range: NSRange, delimiter: String, prefix: String) -> (nativePrefixRange: NSRange, indentationRange: NSRange, indentation: Indentation, prefixRange: NSRange, visibleRange: NSRange)? {
 	let scanner = NSScanner(string: string)
 	scanner.charactersToBeSkipped = nil
 
@@ -84,10 +84,10 @@ func parseListable(string string: String, range: NSRange, delimiter: String, pre
 	let prefixRange = NSRange(location: range.location + startPrefix, length: scanner.scanLocation - startPrefix)
 
 	// Content
-	let displayRange = NSRange(
+	let visibleRange = NSRange(
 		location: range.location + scanner.scanLocation,
 		length: range.length - scanner.scanLocation
 	)
 
-	return (nativePrefixRange, indentationRange, indentation, prefixRange, displayRange)
+	return (nativePrefixRange, indentationRange, indentation, prefixRange, visibleRange)
 }

@@ -34,7 +34,7 @@ public struct ChecklistItem: Listable, NodeContainer {
 	public var range: NSRange
 	public var enclosingRange: NSRange
 	public var nativePrefixRange: NSRange
-	public var displayRange: NSRange
+	public var visibleRange: NSRange
 	public var indentationRange: NSRange
 	public var indentation: Indentation
 	public var completedRange: NSRange
@@ -42,7 +42,7 @@ public struct ChecklistItem: Listable, NodeContainer {
 	public var position: Position = .Single
 
 	public var textRange: NSRange {
-		return displayRange
+		return visibleRange
 	}
 
 	public var subnodes = [SpanNode]()
@@ -53,7 +53,7 @@ public struct ChecklistItem: Listable, NodeContainer {
 			"range": range.dictionary,
 			"enclosingRange": enclosingRange.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
-			"displayRange": displayRange.dictionary,
+			"visibleRange": visibleRange.dictionary,
 			"indentationRange": indentationRange.dictionary,
 			"indentation": indentation.rawValue,
 			"position": position.rawValue,
@@ -121,7 +121,7 @@ public struct ChecklistItem: Listable, NodeContainer {
 
 		// Content
 		self.completedRange = completedRange
-		displayRange = NSRange(
+		visibleRange = NSRange(
 			location: range.location + scanner.scanLocation,
 			length: range.length - scanner.scanLocation
 		)
@@ -136,7 +136,7 @@ public struct ChecklistItem: Listable, NodeContainer {
 	public mutating func offset(delta: Int) {
 		range.location += delta
 		nativePrefixRange.location += delta
-		displayRange.location += delta
+		visibleRange.location += delta
 		indentationRange.location += delta
 		completedRange.location += delta
 

@@ -15,7 +15,7 @@ public struct Blockquote: NativePrefixable, Positionable, Annotatable, ReturnCom
 	public var range: NSRange
 	public var enclosingRange: NSRange
 	public var nativePrefixRange: NSRange
-	public var displayRange: NSRange
+	public var visibleRange: NSRange
 	public var position: Position = .Single
 
 	public var dictionary: [String: AnyObject] {
@@ -24,7 +24,7 @@ public struct Blockquote: NativePrefixable, Positionable, Annotatable, ReturnCom
 			"range": range.dictionary,
 			"enclosingRange": enclosingRange.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
-			"displayRange": displayRange.dictionary,
+			"visibleRange": visibleRange.dictionary,
 			"position": position.rawValue
 		]
 	}
@@ -33,7 +33,7 @@ public struct Blockquote: NativePrefixable, Positionable, Annotatable, ReturnCom
 	// MARK: - Initializers
 
 	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
-		guard let (nativePrefixRange, prefixRange, displayRange) = parseBlockNode(
+		guard let (nativePrefixRange, prefixRange, visibleRange) = parseBlockNode(
 			string: string,
 			range: range,
 			delimiter: "blockquote",
@@ -43,7 +43,7 @@ public struct Blockquote: NativePrefixable, Positionable, Annotatable, ReturnCom
 		self.range = range
 		self.enclosingRange = enclosingRange
 		self.nativePrefixRange = nativePrefixRange.union(prefixRange)
-		self.displayRange = displayRange
+		self.visibleRange = visibleRange
 	}
 
 
@@ -53,7 +53,7 @@ public struct Blockquote: NativePrefixable, Positionable, Annotatable, ReturnCom
 		range.location += delta
 		enclosingRange.location += delta
 		nativePrefixRange.location += delta
-		displayRange.location += delta
+		visibleRange.location += delta
 	}
 
 

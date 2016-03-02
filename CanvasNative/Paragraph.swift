@@ -15,7 +15,7 @@ public struct Paragraph: BlockNode, NodeContainer {
 	public var range: NSRange
 	public var enclosingRange: NSRange
 
-	public var displayRange: NSRange {
+	public var visibleRange: NSRange {
 		return range
 	}
 
@@ -30,7 +30,7 @@ public struct Paragraph: BlockNode, NodeContainer {
 			"type": "paragraph",
 			"range": range.dictionary,
 			"enclosingRange": enclosingRange.dictionary,
-			"displayRange": displayRange.dictionary,
+			"visibleRange": visibleRange.dictionary,
 			"subnodes": subnodes.map { $0.dictionary }
 		]
 	}

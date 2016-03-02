@@ -11,7 +11,7 @@ import Foundation
 public protocol Attachable: NativePrefixable {}
 
 extension Attachable {
-	public var displayRange: NSRange {
+	public var visibleRange: NSRange {
 		return NSRange(location: nativePrefixRange.max, length: 1)
 	}
 }

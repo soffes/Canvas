@@ -42,7 +42,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable {
 
 	public var range: NSRange
 	public var enclosingRange: NSRange
-	public var displayRange: NSRange
+	public var visibleRange: NSRange
 	public var foldableRanges: [NSRange] {
 		return [leadingDelimiterRange]
 	}
@@ -57,7 +57,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable {
 			"type": "heading",
 			"range": range.dictionary,
 			"enclosingRange": enclosingRange.dictionary,
-			"displayRange": displayRange.dictionary,
+			"visibleRange": visibleRange.dictionary,
 			"leadingDelimiterRange": leadingDelimiterRange.dictionary,
 			"textRange": textRange.dictionary,
 			"level": level.rawValue,
@@ -95,7 +95,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable {
 
 		self.range = range
 		self.enclosingRange = enclosingRange
-		displayRange = range
+		visibleRange = range
 	}
 
 
@@ -104,7 +104,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable {
 	public mutating func offset(delta: Int) {
 		range.location += delta
 		enclosingRange.location += delta
-		displayRange.location += delta
+		visibleRange.location += delta
 		leadingDelimiterRange.location += delta
 		textRange.location += delta
 

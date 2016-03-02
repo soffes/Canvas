@@ -15,7 +15,7 @@ public struct Title: NativePrefixable {
 	public var range: NSRange
 	public var enclosingRange: NSRange
 	public var nativePrefixRange: NSRange
-	public var displayRange: NSRange
+	public var visibleRange: NSRange
 
 	public var dictionary: [String: AnyObject] {
 		return [
@@ -23,7 +23,7 @@ public struct Title: NativePrefixable {
 			"range": range.dictionary,
 			"enclosingRange": enclosingRange.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
-			"displayRange": displayRange.dictionary
+			"visibleRange": visibleRange.dictionary
 		]
 	}
 
@@ -31,7 +31,7 @@ public struct Title: NativePrefixable {
 	// MARK: - Initializers
 
 	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
-		guard let (nativePrefixRange, displayRange) = parseBlockNode(
+		guard let (nativePrefixRange, visibleRange) = parseBlockNode(
 			string: string,
 			range: range,
 			delimiter: "doc-heading"
@@ -40,7 +40,7 @@ public struct Title: NativePrefixable {
 		self.range = range
 		self.enclosingRange = enclosingRange
 		self.nativePrefixRange = nativePrefixRange
-		self.displayRange = displayRange
+		self.visibleRange = visibleRange
 	}
 
 
@@ -50,7 +50,7 @@ public struct Title: NativePrefixable {
 		range.location += delta
 		enclosingRange.location += delta
 		nativePrefixRange.location += delta
-		displayRange.location += delta
+		visibleRange.location += delta
 	}
 
 

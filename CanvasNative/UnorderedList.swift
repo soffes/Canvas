@@ -15,13 +15,13 @@ public struct UnorderedListItem: Listable, NodeContainer {
 	public var range: NSRange
 	public var enclosingRange: NSRange
 	public var nativePrefixRange: NSRange
-	public var displayRange: NSRange
+	public var visibleRange: NSRange
 	public var indentationRange: NSRange
 	public var indentation: Indentation
 	public var position: Position = .Single
 
 	public var textRange: NSRange {
-		return displayRange
+		return visibleRange
 	}
 
 	public var subnodes = [SpanNode]()
@@ -32,7 +32,7 @@ public struct UnorderedListItem: Listable, NodeContainer {
 			"range": range.dictionary,
 			"enclosingRange": enclosingRange.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
-			"displayRange": displayRange.dictionary,
+			"visibleRange": visibleRange.dictionary,
 			"indentationRange": indentationRange.dictionary,
 			"indentation": indentation.rawValue,
 			"position": position.rawValue,
@@ -44,7 +44,7 @@ public struct UnorderedListItem: Listable, NodeContainer {
 	// MARK: - Initializers
 
 	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
-		guard let (nativePrefixRange, indentationRange, indentation, prefixRange, displayRange) = parseListable(
+		guard let (nativePrefixRange, indentationRange, indentation, prefixRange, visibleRange) = parseListable(
 			string: string,
 			range: range,
 			delimiter: "unordered-list",
@@ -54,7 +54,7 @@ public struct UnorderedListItem: Listable, NodeContainer {
 		self.range = range
 		self.enclosingRange = enclosingRange
 		self.nativePrefixRange = nativePrefixRange.union(prefixRange)
-		self.displayRange = displayRange
+		self.visibleRange = visibleRange
 		self.indentationRange = indentationRange
 		self.indentation = indentation
 	}
@@ -66,7 +66,7 @@ public struct UnorderedListItem: Listable, NodeContainer {
 		range.location += delta
 		enclosingRange.location += delta
 		nativePrefixRange.location += delta
-		displayRange.location += delta
+		visibleRange.location += delta
 		indentationRange.location += delta
 		
 		subnodes = subnodes.map {

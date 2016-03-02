@@ -15,7 +15,7 @@ public struct CodeBlock: NativePrefixable, Positionable, Annotatable, ReturnComp
 	public var range: NSRange
 	public var enclosingRange: NSRange
 	public var nativePrefixRange: NSRange
-	public var displayRange: NSRange
+	public var visibleRange: NSRange
 	public var position: Position = .Single
 
 	public var dictionary: [String: AnyObject] {
@@ -24,7 +24,7 @@ public struct CodeBlock: NativePrefixable, Positionable, Annotatable, ReturnComp
 			"range": range.dictionary,
 			"enclosingRange": enclosingRange.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
-			"displayRange": displayRange.dictionary,
+			"visibleRange": visibleRange.dictionary,
 			"position": position.rawValue
 		]
 	}
@@ -33,7 +33,7 @@ public struct CodeBlock: NativePrefixable, Positionable, Annotatable, ReturnComp
 	// MARK: - Initializers
 
 	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
-		guard let (nativePrefixRange, displayRange) = parseBlockNode(
+		guard let (nativePrefixRange, visibleRange) = parseBlockNode(
 			string: string,
 			range: range,
 			delimiter: "code"
@@ -42,7 +42,7 @@ public struct CodeBlock: NativePrefixable, Positionable, Annotatable, ReturnComp
 		self.range = range
 		self.enclosingRange = enclosingRange
 		self.nativePrefixRange = nativePrefixRange
-		self.displayRange = displayRange
+		self.visibleRange = visibleRange
 	}
 
 
@@ -52,7 +52,7 @@ public struct CodeBlock: NativePrefixable, Positionable, Annotatable, ReturnComp
 		range.location += delta
 		enclosingRange.location += delta
 		nativePrefixRange.location += delta
-		displayRange.location += delta
+		visibleRange.location += delta
 	}
 
 

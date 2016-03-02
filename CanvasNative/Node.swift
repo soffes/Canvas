@@ -13,8 +13,8 @@ public protocol Node {
 	/// Range of the entire node in the backing text
 	var range: NSRange { get }
 
-	/// Range of the node in the display text
-	var displayRange: NSRange { get }
+	/// Range of the node not hidden from display.
+	var visibleRange: NSRange { get }
 
 	/// Dictionary representation
 	var dictionary: [String: AnyObject] { get }
@@ -30,6 +30,6 @@ public protocol Node {
 
 extension Node {
 	public func contentInString(string: String) -> String {
-		return (string as NSString).substringWithRange(displayRange)
+		return (string as NSString).substringWithRange(visibleRange)
 	}
 }

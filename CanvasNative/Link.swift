@@ -72,7 +72,7 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 	public var title: LinkTitle?
 	public var trailingURLDelimiterRange: NSRange
 
-	public var displayRange: NSRange {
+	public var visibleRange: NSRange {
 		return range
 	}
 
@@ -99,7 +99,7 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 		var dictionary: [String: AnyObject] = [
 			"type": "link",
 			"range": range.dictionary,
-			"displayRange": displayRange.dictionary,
+			"visibleRange": visibleRange.dictionary,
 			"leadingTextDelimiterRange": leadingTextDelimiterRange.dictionary,
 			"textRange": textRange.dictionary,
 			"trailingTextDelimiterRange": trailingTextDelimiterRange.dictionary,

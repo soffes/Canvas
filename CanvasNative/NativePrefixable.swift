@@ -16,7 +16,7 @@ public protocol NativePrefixable: BlockNode {
 }
 
 
-func parseBlockNode(string string: String, range: NSRange, delimiter: String, prefix: String) -> (nativePrefixRange: NSRange, prefixRange: NSRange, displayRange: NSRange)? {
+func parseBlockNode(string string: String, range: NSRange, delimiter: String, prefix: String) -> (nativePrefixRange: NSRange, prefixRange: NSRange, visibleRange: NSRange)? {
 	let scanner = NSScanner(string: string)
 	scanner.charactersToBeSkipped = nil
 
@@ -34,16 +34,16 @@ func parseBlockNode(string string: String, range: NSRange, delimiter: String, pr
 	let prefixRange = NSRange(location: range.location + startPrefix, length: scanner.scanLocation - startPrefix)
 
 	// Content
-	let displayRange = NSRange(
+	let visibleRange = NSRange(
 		location: range.location + scanner.scanLocation,
 		length: range.length - scanner.scanLocation
 	)
 
-	return (nativePrefixRange, prefixRange, displayRange)
+	return (nativePrefixRange, prefixRange, visibleRange)
 }
 
 
-func parseBlockNode(string string: String, range: NSRange, delimiter: String) -> (nativePrefixRange: NSRange, displayRange: NSRange)? {
+func parseBlockNode(string string: String, range: NSRange, delimiter: String) -> (nativePrefixRange: NSRange, visibleRange: NSRange)? {
 	let scanner = NSScanner(string: string)
 	scanner.charactersToBeSkipped = nil
 
@@ -54,10 +54,10 @@ func parseBlockNode(string string: String, range: NSRange, delimiter: String) ->
 	let nativePrefixRange = NSRange(location: range.location, length: scanner.scanLocation)
 
 	// Content
-	let displayRange = NSRange(
+	let visibleRange = NSRange(
 		location: range.location + scanner.scanLocation,
 		length: range.length - scanner.scanLocation
 	)
 
-	return (nativePrefixRange, displayRange)
+	return (nativePrefixRange, visibleRange)
 }
