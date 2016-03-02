@@ -35,12 +35,19 @@ class ControllerTests: XCTestCase {
 	// MARK: - Tests
 
 	func testBlockRange() {
+		// Insert a block after a block
 		controller.replaceCharactersInRange(.zero, withString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
 		var blockRange = controller.blockRangeForCharacterRange(NSRange(location: 22, length: 0), string: "\n⧙code⧘Half")
 		XCTAssertEqual(NSRange(location: 2, length: 0), blockRange)
 
+		// Insert at the end
 		blockRange = controller.blockRangeForCharacterRange(NSRange(location: 22, length: 0), string: "!")
 		XCTAssertEqual(NSRange(location: 1, length: 1), blockRange)
+
+		// At the end of the document
+		controller.replaceCharactersInRange(NSRange(location: 0, length: controller.length), withString: "⧙doc-heading⧘Title\nOne")
+		blockRange = controller.blockRangeForCharacterRange(NSRange(location: 22, length: 0), string: "\nHello\nWorld")
+		XCTAssertEqual(NSRange(location: 2, length: 0), blockRange)
 	}
 
 	func testLoading() {

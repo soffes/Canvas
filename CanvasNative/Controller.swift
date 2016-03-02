@@ -201,7 +201,9 @@ public final class Controller {
 			}
 		}
 
-		guard let loc = location else { return .zero }
+		// If we didn't find anything, assume we're inserting at the very end
+		guard let loc = location else { return NSRange(location: blocks.endIndex, length: 0) }
+		
 		return NSRange(location: loc, length: length)
 	}
 
