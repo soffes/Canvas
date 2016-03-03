@@ -11,19 +11,20 @@ import Foundation
 public protocol CanvasControllerDelegate: class {
 	func canvasControllerWillUpdateNodes(canvasController: CanvasController)
 
+	// This will be called before all other messages
+	func canvasController(canvasController: CanvasController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String)
+
 	func canvasController(canvasController: CanvasController, didInsertBlock block: BlockNode, atIndex index: Int)
 
 	func canvasController(canvasController: CanvasController, didRemoveBlock block: BlockNode, atIndex index: Int)
 
-	// The block's content changed.
+	// The block's content changed. `before` and `after` will always be the same type.
 	func canvasController(canvasController: CanvasController, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
 
-	// The block's metadata changed.
+	// The block's metadata changed. `before` and `after` will always be the same type.
 	func canvasController(canvasController: CanvasController, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
 
 	func canvasControllerDidUpdateNodes(canvasController: CanvasController)
-
-	func canvasController(canvasController: CanvasController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String)
 }
 
 
@@ -100,17 +101,21 @@ public final class CanvasController {
 		let parsedBlocks = invalidRange.length == 0 ? [] : Parser.parse(text, range: invalidRange)
 		let (workingBlocks, messages) = applyParsedBlocks(parsedBlocks, parseRange: invalidRange, blockRange: blockRange)
 
+		// Calculate message for presentation replacement
 		let replacement: String
 		if inString.isEmpty {
+			// If we're deleting, this is easy
 			replacement = ""
 		} else {
+			// Get the replacement string from the updated presentation string
 			let editRange = NSRange(location: range.location, length: string.length)
 			let displayTextRange = presentationRange(blocks: workingBlocks, backingRange: editRange)
-			let displayString = workingBlocks.map({ $0.contentInString(text as String) }).joinWithSeparator("\n") as NSString
+			let displayString = presentationString(workingBlocks) as NSString
 			replacement = displayString.substringWithRange(displayTextRange) as String
 		}
 		delegate?.canvasController(self, didReplaceCharactersInPresentationStringInRange: displayRange, withString: replacement)
 
+		// Send the rest of the messages and update blocks
 		messages.forEach(sendDelegateMessage)
 		blocks = workingBlocks
 
@@ -277,6 +282,10 @@ public final class CanvasController {
 //		}
 
 		return blockRange
+	}
+
+	private func presentationString(blocks: [BlockNode]) -> String {
+		return blocks.map({ $0.contentInString(text as String) }).joinWithSeparator("\n") as NSString
 	}
 
 
