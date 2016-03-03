@@ -71,6 +71,7 @@ class CanvasControllerTests: XCTestCase {
 
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nParagraph", controller.string)
+		XCTAssertEqual("Title\nParagraph", delegate.presentationString)
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
@@ -130,6 +131,7 @@ class CanvasControllerTests: XCTestCase {
 
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne!\nTwo", controller.string)
+		XCTAssertEqual("Title\nOne!\nTwo", delegate.presentationString)
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
@@ -185,6 +187,7 @@ class CanvasControllerTests: XCTestCase {
 
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\n⧙code⧘Half\n⧙blockquote⧘> Two", controller.string)
+		XCTAssertEqual("Title\nOne\nHalf\nTwo", delegate.presentationString)
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
@@ -239,6 +242,7 @@ class CanvasControllerTests: XCTestCase {
 
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\n⧙blockquote⧘> Two", controller.string)
+		XCTAssertEqual("Title\nTwo", delegate.presentationString)
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
@@ -246,6 +250,7 @@ class CanvasControllerTests: XCTestCase {
 		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two"
 		controller.replaceCharactersInRange(NSRange(location: 21, length: 0), withString: "\n⧙code⧘T")
 		XCTAssertEqual("⧙doc-heading⧘Title\nOn\n⧙code⧘Te\n⧙blockquote⧘> Two", controller.string)
+		XCTAssertEqual("Title\nOn\nTe\nTwo", delegate.presentationString)
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
@@ -263,6 +268,7 @@ class CanvasControllerTests: XCTestCase {
 
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nOneTwo", controller.string)
+		XCTAssertEqual("Title\nOneTwo", delegate.presentationString)
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
@@ -280,6 +286,7 @@ class CanvasControllerTests: XCTestCase {
 
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nOneThree", controller.string)
+		XCTAssertEqual("Title\nOneThree", delegate.presentationString)
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
@@ -297,6 +304,7 @@ class CanvasControllerTests: XCTestCase {
 
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nHello\nWorld", controller.string)
+		XCTAssertEqual("Title\nOne\nHello\nWorld", delegate.presentationString)
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
@@ -304,13 +312,14 @@ class CanvasControllerTests: XCTestCase {
 		controller.string = "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour"
 		controller.replaceCharactersInRange(NSRange(location: 22, length: 10), withString: "")
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nFour", controller.string)
+		XCTAssertEqual("Title\nOne\nFour", delegate.presentationString)
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 
 		controller.string = "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour"
 		controller.replaceCharactersInRange(NSRange(location: 23, length: 10), withString: "")
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nFour", controller.string)
+		XCTAssertEqual("Title\nOne\nFour", delegate.presentationString)
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
-
 	}
 
 	func testMultipleInsertRemove() {
@@ -327,6 +336,7 @@ class CanvasControllerTests: XCTestCase {
 
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nHello\nWorld", controller.string)
+		XCTAssertEqual("Title\nHello\nWorld", delegate.presentationString)
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
