@@ -80,6 +80,7 @@ public final class CanvasController {
 		var range = inRange
 		let string = inString as NSString
 
+		// Special case for new lines at the beginning instead of the end
 		if range.length > 1 && text.substringWithRange(NSRange(location: range.location, length: 1)) == "\n" {
 			range.location += 1
 			range.length = min(length - range.location, range.length)
@@ -94,6 +95,7 @@ public final class CanvasController {
 		// Update the text representation
 		text.replaceCharactersInRange(range, withString: string as String)
 
+		// Get the range of the replacement in the presentation string
 		let displayRange = presentationRange(blocks: blocks, backingRange: range)
 
 		// Reparse the invalid range of document
