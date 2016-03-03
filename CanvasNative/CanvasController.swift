@@ -22,6 +22,8 @@ public protocol CanvasControllerDelegate: class {
 	func canvasController(canvasController: CanvasController, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
 
 	func canvasControllerDidUpdateNodes(canvasController: CanvasController)
+
+	func canvasController(canvasController: CanvasController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String)
 }
 
 
@@ -81,10 +83,17 @@ public final class CanvasController {
 		// Update the text representation
 		text.replaceCharactersInRange(range, withString: string as String)
 
+		let displayRange = presentationRange(blocks: blocks, backingRange: range)
+
 		// Reparse the invalid range of document
 		let invalidRange = parseRangeForRange(NSRange(location: range.location, length: string.length))
 		let parsedBlocks = invalidRange.length == 0 ? [] : Parser.parse(text, range: invalidRange)
 		blocks = applyParsedBlocks(parsedBlocks, parseRange: invalidRange, blockRange: blockRange)
+
+		let displayTextRange = presentationRange(blocks: blocks, backingRange: NSRange(location: range.location, length: string.length - range.length))
+		let displayString = blocks.map({ $0.contentInString(text as String) }).joinWithSeparator("\n") as NSString
+		let replacement = displayString.substringWithRange(displayTextRange) as String
+		delegate?.canvasController(self, didReplaceCharactersInPresentationStringInRange: displayRange, withString: replacement)
 
 		// Notify the delegate we're done
 		didUpdate()
@@ -188,6 +197,28 @@ public final class CanvasController {
 		return text.lineRangeForRange(invalidRange)
 	}
 
+	private func presentationRange(blocks blocks: [BlockNode], backingRange: NSRange) -> NSRange {
+		var presentationRange = backingRange
+
+		for block in blocks {
+			guard let block = block as? NativePrefixable else { continue }
+
+			let range = block.nativePrefixRange
+
+//			if range.location > backingRange.location {
+//				break
+//			}
+
+			if presentationRange.location > range.location {
+				presentationRange.location -= range.length
+			} else if presentationRange.intersection(range) != nil {
+				presentationRange.length -= range.length
+			}
+		}
+
+		return presentationRange
+	}
+
 
 	// MARK: - Block Calculations
 
@@ -221,7 +252,7 @@ public final class CanvasController {
 		}
 
 		// If we didn't find anything, assume we're inserting at the very end.
-		var blockRange = NSRange(location: location ?? blocks.endIndex, length: matchingBlocks.count)
+		let blockRange = NSRange(location: location ?? blocks.endIndex, length: matchingBlocks.count)
 
 		// If we delete the new line in the last block, extend the length if possible.
 //		if string.isEmpty, let lastNewLine = matchingBlocks.last?.newLineRange where lastNewLine.intersection(range) == 1 {

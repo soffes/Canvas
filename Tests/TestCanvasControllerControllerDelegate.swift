@@ -6,6 +6,7 @@
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
+import Foundation
 import CanvasNative
 
 final class TestCanvasControllerDelegate: CanvasControllerDelegate {
@@ -13,6 +14,7 @@ final class TestCanvasControllerDelegate: CanvasControllerDelegate {
 	// MARK: - Properties
 
 	var blocks = [BlockNode]()
+	var presentationString: NSMutableString = ""
 
 	var willUpdate: (Void -> Void)?
 	var didInsert: ((BlockNode, Int) -> Void)?
@@ -52,5 +54,9 @@ final class TestCanvasControllerDelegate: CanvasControllerDelegate {
 
 	func canvasControllerDidUpdateNodes(canvasController: CanvasController) {
 		didUpdate?()
+	}
+
+	func canvasController(canvasController: CanvasController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
+		presentationString.replaceCharactersInRange(range, withString: string)
 	}
 }
