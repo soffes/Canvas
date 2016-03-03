@@ -100,9 +100,15 @@ public final class CanvasController {
 		let parsedBlocks = invalidRange.length == 0 ? [] : Parser.parse(text, range: invalidRange)
 		let (workingBlocks, messages) = applyParsedBlocks(parsedBlocks, parseRange: invalidRange, blockRange: blockRange)
 
-		let displayTextRange = presentationRange(blocks: workingBlocks, backingRange: NSRange(location: range.location, length: string.length - range.length))
-		let displayString = workingBlocks.map({ $0.contentInString(text as String) }).joinWithSeparator("\n") as NSString
-		let replacement = displayString.substringWithRange(displayTextRange) as String
+		let replacement: String
+		if inString.isEmpty {
+			replacement = ""
+		} else {
+			let editRange = NSRange(location: range.location, length: string.length)
+			let displayTextRange = presentationRange(blocks: workingBlocks, backingRange: editRange)
+			let displayString = workingBlocks.map({ $0.contentInString(text as String) }).joinWithSeparator("\n") as NSString
+			replacement = displayString.substringWithRange(displayTextRange) as String
+		}
 		delegate?.canvasController(self, didReplaceCharactersInPresentationStringInRange: displayRange, withString: replacement)
 
 		messages.forEach(sendDelegateMessage)
@@ -218,18 +224,12 @@ public final class CanvasController {
 		var presentationRange = backingRange
 
 		for block in blocks {
-			guard let block = block as? NativePrefixable else { continue }
+			guard let range = (block as? NativePrefixable)?.nativePrefixRange else { continue }
 
-			let range = block.nativePrefixRange
-
-//			if range.location > backingRange.location {
-//				break
-//			}
-
-			if presentationRange.location > range.location {
+			if range.max < backingRange.location {
 				presentationRange.location -= range.length
-			} else if presentationRange.intersection(range) != nil {
-				presentationRange.length -= range.length
+			} else if let intersection = backingRange.intersection(range) {
+				presentationRange.length -= intersection
 			}
 		}
 
