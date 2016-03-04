@@ -27,9 +27,9 @@ public final class TextController {
 	public weak var connectionDelegate: TextControllerConnectionDelegate?
 	public weak var selectionDelegate: TextControllerSelectionDelegate?
 
-	public let textStorage = NSTextStorage()
-	public let layoutManager = NSLayoutManager()
-	public let textContainer = NSTextContainer()
+	public let textStorage = TextStorage()
+	public let layoutManager = LayoutManager()
+	public let textContainer = TextContainer()
 
 	public var presentationString: String {
 		return textStorage.string
@@ -52,6 +52,7 @@ public final class TextController {
 	// MARK: - Initializers
 
 	public init() {
+		// Setup Text Kit
 		layoutManager.addTextContainer(textContainer)
 		textStorage.addLayoutManager(layoutManager)
 

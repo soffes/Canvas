@@ -19,6 +19,11 @@
 		21AD8C3B1C8A4350000A53F8 /* CanvasTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C271C8A430B000A53F8 /* CanvasTextTests.swift */; };
 		21AD8C3E1C8A43E2000A53F8 /* OperationTransport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AD8C3D1C8A43E2000A53F8 /* OperationTransport.framework */; };
 		21AD8C401C8A443A000A53F8 /* CanvasNative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AD8C3F1C8A443A000A53F8 /* CanvasNative.framework */; };
+		21AD8D001C8A487E000A53F8 /* TextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CFF1C8A487E000A53F8 /* TextStorage.swift */; };
+		21AD8D021C8A4886000A53F8 /* BaseTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8D011C8A4886000A53F8 /* BaseTextStorage.swift */; };
+		21AD8D071C8A48EA000A53F8 /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8D061C8A48EA000A53F8 /* TextContainer.swift */; };
+		21AD8D091C8A491E000A53F8 /* LayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8D081C8A491E000A53F8 /* LayoutManager.swift */; };
+		21AD8D0C1C8A496B000A53F8 /* NSRange+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8D0B1C8A496B000A53F8 /* NSRange+CanvasText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +52,11 @@
 		21AD8C371C8A433D000A53F8 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		21AD8C3D1C8A43E2000A53F8 /* OperationTransport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OperationTransport.framework; path = Carthage/Build/iOS/OperationTransport.framework; sourceTree = "<group>"; };
 		21AD8C3F1C8A443A000A53F8 /* CanvasNative.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CanvasNative.framework; path = Carthage/Build/iOS/CanvasNative.framework; sourceTree = "<group>"; };
+		21AD8CFF1C8A487E000A53F8 /* TextStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextStorage.swift; sourceTree = "<group>"; };
+		21AD8D011C8A4886000A53F8 /* BaseTextStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTextStorage.swift; sourceTree = "<group>"; };
+		21AD8D061C8A48EA000A53F8 /* TextContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextContainer.swift; sourceTree = "<group>"; };
+		21AD8D081C8A491E000A53F8 /* LayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutManager.swift; sourceTree = "<group>"; };
+		21AD8D0B1C8A496B000A53F8 /* NSRange+CanvasText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+CanvasText.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,13 +103,10 @@
 		21AD8C1C1C8A430B000A53F8 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				21AD8C1D1C8A430B000A53F8 /* BlockSpacing.swift */,
-				21AD8C1F1C8A430B000A53F8 /* Color.swift */,
-				21AD8C201C8A430B000A53F8 /* Font.swift */,
-				21AD8C221C8A430B000A53F8 /* LightTheme.swift */,
 				21AD8C231C8A430B000A53F8 /* TextController.swift */,
-				21AD8C241C8A430B000A53F8 /* Theme.swift */,
-				21AD8C251C8A430B000A53F8 /* UserInterfaceSizeClass.swift */,
+				21AD8CFE1C8A4869000A53F8 /* Text Kit */,
+				21AD8C841C8A45FC000A53F8 /* Theme */,
+				21AD8D0A1C8A4960000A53F8 /* Extensions */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -129,6 +136,38 @@
 				21AD8C3D1C8A43E2000A53F8 /* OperationTransport.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		21AD8C841C8A45FC000A53F8 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				21AD8C1D1C8A430B000A53F8 /* BlockSpacing.swift */,
+				21AD8C1F1C8A430B000A53F8 /* Color.swift */,
+				21AD8C201C8A430B000A53F8 /* Font.swift */,
+				21AD8C221C8A430B000A53F8 /* LightTheme.swift */,
+				21AD8C241C8A430B000A53F8 /* Theme.swift */,
+				21AD8C251C8A430B000A53F8 /* UserInterfaceSizeClass.swift */,
+			);
+			name = Theme;
+			sourceTree = "<group>";
+		};
+		21AD8CFE1C8A4869000A53F8 /* Text Kit */ = {
+			isa = PBXGroup;
+			children = (
+				21AD8D011C8A4886000A53F8 /* BaseTextStorage.swift */,
+				21AD8CFF1C8A487E000A53F8 /* TextStorage.swift */,
+				21AD8D081C8A491E000A53F8 /* LayoutManager.swift */,
+				21AD8D061C8A48EA000A53F8 /* TextContainer.swift */,
+			);
+			name = "Text Kit";
+			sourceTree = "<group>";
+		};
+		21AD8D0A1C8A4960000A53F8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				21AD8D0B1C8A496B000A53F8 /* NSRange+CanvasText.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,13 +278,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21AD8D071C8A48EA000A53F8 /* TextContainer.swift in Sources */,
+				21AD8D0C1C8A496B000A53F8 /* NSRange+CanvasText.swift in Sources */,
+				21AD8D001C8A487E000A53F8 /* TextStorage.swift in Sources */,
 				21AD8C291C8A430B000A53F8 /* BlockSpacing.swift in Sources */,
+				21AD8D021C8A4886000A53F8 /* BaseTextStorage.swift in Sources */,
 				21AD8C311C8A430B000A53F8 /* UserInterfaceSizeClass.swift in Sources */,
 				21AD8C2F1C8A430B000A53F8 /* TextController.swift in Sources */,
 				21AD8C2B1C8A430B000A53F8 /* Color.swift in Sources */,
 				21AD8C301C8A430B000A53F8 /* Theme.swift in Sources */,
 				21AD8C2E1C8A430B000A53F8 /* LightTheme.swift in Sources */,
 				21AD8C2C1C8A430B000A53F8 /* Font.swift in Sources */,
+				21AD8D091C8A491E000A53F8 /* LayoutManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
