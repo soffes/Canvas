@@ -28,23 +28,4 @@ class APIClientOrganizationTests: XCTestCase {
 
 		waitForExpectationsWithTimeout(1, handler: nil)
 	}
-
-	func testGetOrganizationSearchCredential() {
-		let expectation = expectationWithDescription("Networking")
-		let dvr = Session(cassetteName: "search-credential")
-		let client = APIClient(accessToken: "REDACTED_TOKEN", session: dvr)
-
-		client.getOrganizationSearchCredential(organizationID: "soffes") {
-			switch $0 {
-			case .Success(let searchCredential):
-				XCTAssertEqual("REDACTED_APPLICATION_ID", searchCredential.applicationID)
-				XCTAssertEqual("REDACTED_SEARCH_KEY", searchCredential.searchKey)
-			default:
-				XCTFail()
-			}
-			expectation.fulfill()
-		}
-
-		waitForExpectationsWithTimeout(1, handler: nil)
-	}
 }
