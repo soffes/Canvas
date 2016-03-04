@@ -287,7 +287,7 @@ public final class CanvasController {
 	}
 
 	private func presentationString(blocks: [BlockNode]) -> String {
-		return blocks.map({ $0.contentInString(text as String) }).joinWithSeparator("\n") as NSString
+		return blocks.map({ $0.contentInString(text as String) }).joinWithSeparator("\n")
 	}
 
 
