@@ -14,20 +14,20 @@ public struct Canvas {
 	// MARK: - Properties
 
 	public let ID: String
-	public let UUID: String
 	public let organization: Organization
-	public let readOnly: Bool
-	public let title: String?
-	public let summary: String?
+	public let isWritable: Bool
+	public let isPublicWritable: Bool
+	public let title: String
+	public let summary: String
 	public let updatedAt: NSDate
 	public let archivedAt: NSDate?
 
 	public var displayTitle: String {
-		return title ?? "Untitled"
+		return title.isEmpty ? "Untitled" : title
 	}
 
 	public var isEmpty: Bool {
-		return summary?.isEmpty ?? true
+		return summary.isEmpty
 	}
 
 	public var URL: NSURL? {
@@ -40,15 +40,13 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 	public var dictionary: JSONDictionary {
 		var dictionary: [String: AnyObject] = [
 			"id": ID,
-			"uuid": UUID,
 			"collection": organization.dictionary,
-			"readonly": readOnly,
-			"updated_at": updatedAt.ISO8601String()!
+			"is_writable": isWritable,
+			"is_public_writable": isPublicWritable,
+			"updated_at": updatedAt.ISO8601String()!,
+			"title": title,
+			"summary": summary
 		]
-
-		if let title = title {
-			dictionary["title"] = title
-		}
 
 		if let archivedAt = archivedAt {
 			dictionary["archived_at"] = archivedAt.ISO8601String()
@@ -59,20 +57,22 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 
 	public init?(dictionary: JSONDictionary) {
 		guard let ID = dictionary["id"] as? String,
-			UUID = dictionary["uuid"] as? String,
 			org = dictionary["org"] as? JSONDictionary,
 			organization = Organization(dictionary: org),
-			readOnly = dictionary["readonly"] as? Bool,
+			isWritable = dictionary["is_writable"] as? Bool,
+			isPublicWritable = dictionary["is_public_writable"] as? Bool,
 			updatedAtString = dictionary["updated_at"] as? String,
-			updatedAt = NSDate(ISO8601String: updatedAtString)
+			updatedAt = NSDate(ISO8601String: updatedAtString),
+			title = dictionary["title"] as? String,
+			summary = dictionary["summary"] as? String
 		else { return nil }
 
 		self.ID = ID
-		self.UUID = UUID
 		self.organization = organization
-		self.readOnly = readOnly
-		title = dictionary["title"] as? String
-		summary = dictionary["summary"] as? String
+		self.isWritable = isWritable
+		self.isPublicWritable = isPublicWritable
+		self.title = title
+		self.summary = summary
 		self.updatedAt = updatedAt
 
 		let archivedAtString = dictionary["archived_at"] as? String

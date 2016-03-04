@@ -43,7 +43,7 @@ public struct AuthorizationClient: NetworkClient {
 		request.HTTPMethod = "POST"
 		request.HTTPBody = formEncode(queryItems).dataUsingEncoding(NSUTF8StringEncoding)
 		request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-		request.setValue("application/vnd.canvas+json; version=1; charset=utf-8", forHTTPHeaderField: "Accept")
+		request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
 
 		if let authorization = authorizationHeader(username: clientID, password: clientSecret) {
 			request.setValue(authorization, forHTTPHeaderField: "Authorization")
@@ -55,7 +55,7 @@ public struct AuthorizationClient: NetworkClient {
 		}
 
 		let session = self.session
-		session.dataTaskWithRequest(request) { responseData, _, error in
+		session.dataTaskWithRequest(request) { responseData, response, error in
 			guard let responseData = responseData,
 				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
 				dictionary = json as? JSONDictionary

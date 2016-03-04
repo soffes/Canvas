@@ -34,7 +34,7 @@ extension APIClient {
 				return
 			}
 
-			let canvases = dictionaries.flatMap({ Canvas(dictionary: $0) })
+			let canvases = dictionaries.flatMap(Canvas.init)
 			dispatch_async(networkCompletionQueue) {
 				completion(.Success(canvases))
 			}
@@ -167,7 +167,7 @@ extension APIClient {
 				return
 			}
 
-			let canvases = dictionaries.flatMap({ Canvas(dictionary: $0) })
+			let canvases = dictionaries.flatMap(Canvas.init)
 			dispatch_async(networkCompletionQueue) {
 				completion(.Success(canvases))
 			}

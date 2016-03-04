@@ -80,7 +80,7 @@ public struct APIClient: NetworkClient {
 		}
 
 		// Accept JSON
-		request.setValue("application/vnd.canvas+json; version=1; charset=utf-8", forHTTPHeaderField: "Accept")
+		request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
 
 		// Add access token
 		request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
