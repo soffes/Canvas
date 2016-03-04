@@ -7,59 +7,62 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2118DB971BFCE902004054FA /* APIClientCanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2118DB961BFCE902004054FA /* APIClientCanvasTests.swift */; };
-		2118DB981BFCE902004054FA /* APIClientCanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2118DB961BFCE902004054FA /* APIClientCanvasTests.swift */; };
-		212404D21C2330A800BF0C91 /* access-token.json in Resources */ = {isa = PBXBuildFile; fileRef = 212404D01C23300800BF0C91 /* access-token.json */; };
-		212404D31C2330A800BF0C91 /* access-token.json in Resources */ = {isa = PBXBuildFile; fileRef = 212404D01C23300800BF0C91 /* access-token.json */; };
-		2129D2E41BF54FF90018F255 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129D2E31BF54FF90018F255 /* AccountController.swift */; };
-		2129D2E51BF54FF90018F255 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2129D2E31BF54FF90018F255 /* AccountController.swift */; };
 		2129D2E81BF550290018F255 /* SSKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2129D2E61BF550290018F255 /* SSKeychain.framework */; };
 		2129D2EC1BF550350018F255 /* SSKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2129D2EA1BF550350018F255 /* SSKeychain.framework */; };
-		213C2BD81BF688C900F6BF50 /* APIClient+Canvases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213C2BD71BF688C900F6BF50 /* APIClient+Canvases.swift */; };
-		213C2BD91BF688C900F6BF50 /* APIClient+Canvases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213C2BD71BF688C900F6BF50 /* APIClient+Canvases.swift */; };
-		213C2BDB1BF688F000F6BF50 /* APIClient+Organizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213C2BDA1BF688F000F6BF50 /* APIClient+Organizations.swift */; };
-		213C2BDC1BF688F000F6BF50 /* APIClient+Organizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213C2BDA1BF688F000F6BF50 /* APIClient+Organizations.swift */; };
-		213C2BDE1BF68B2D00F6BF50 /* AuthorizationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213C2BDD1BF68B2D00F6BF50 /* AuthorizationClient.swift */; };
-		213C2BDF1BF68B2D00F6BF50 /* AuthorizationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213C2BDD1BF68B2D00F6BF50 /* AuthorizationClient.swift */; };
-		213C2BE41BF68C2800F6BF50 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213C2BE31BF68C2800F6BF50 /* NetworkClient.swift */; };
-		213C2BE51BF68C2800F6BF50 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213C2BE31BF68C2800F6BF50 /* NetworkClient.swift */; };
 		213C2BE61BF6901D00F6BF50 /* SSKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2129D2E61BF550290018F255 /* SSKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		213C2BE71BF6902200F6BF50 /* SSKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2129D2EA1BF550350018F255 /* SSKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		21450A201BF691B600345E4A /* AuthorizationClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21450A1F1BF691B600345E4A /* AuthorizationClientTests.swift */; };
-		21450A211BF691B600345E4A /* AuthorizationClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21450A1F1BF691B600345E4A /* AuthorizationClientTests.swift */; };
 		216C4BA11BF54AB100260B8E /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4B971BF54AB100260B8E /* CanvasKit.framework */; };
-		216C4BB41BF54AEB00260B8E /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BAE1BF54AEB00260B8E /* Account.swift */; };
-		216C4BB51BF54AEB00260B8E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BAF1BF54AEB00260B8E /* APIClient.swift */; };
-		216C4BB61BF54AEB00260B8E /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BB01BF54AEB00260B8E /* Canvas.swift */; };
-		216C4BB71BF54AEB00260B8E /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BB11BF54AEB00260B8E /* Organization.swift */; };
-		216C4BB81BF54AEB00260B8E /* JSONSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BB21BF54AEB00260B8E /* JSONSerialization.swift */; };
-		216C4BB91BF54AEB00260B8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BB31BF54AEB00260B8E /* User.swift */; };
-		216C4BC41BF54AFE00260B8E /* APIClientOrganizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BBB1BF54AF100260B8E /* APIClientOrganizationTests.swift */; };
-		216C4BC51BF54AFF00260B8E /* APIClientOrganizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BBB1BF54AF100260B8E /* APIClientOrganizationTests.swift */; };
-		216C4BC61BF54B0700260B8E /* list-organizations.json in Resources */ = {isa = PBXBuildFile; fileRef = 216C4BBE1BF54AF100260B8E /* list-organizations.json */; };
-		216C4BC81BF54B0800260B8E /* list-organizations.json in Resources */ = {isa = PBXBuildFile; fileRef = 216C4BBE1BF54AF100260B8E /* list-organizations.json */; };
-		216C4BCA1BF54B0D00260B8E /* CanvasKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 21FB6ABE1BF53C9D003C82BB /* CanvasKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		216C4BCB1BF54B0D00260B8E /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BAE1BF54AEB00260B8E /* Account.swift */; };
-		216C4BCC1BF54B0D00260B8E /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BAF1BF54AEB00260B8E /* APIClient.swift */; };
-		216C4BCD1BF54B0D00260B8E /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BB01BF54AEB00260B8E /* Canvas.swift */; };
-		216C4BCE1BF54B0D00260B8E /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BB11BF54AEB00260B8E /* Organization.swift */; };
-		216C4BCF1BF54B0D00260B8E /* JSONSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BB21BF54AEB00260B8E /* JSONSerialization.swift */; };
-		216C4BD01BF54B0D00260B8E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C4BB31BF54AEB00260B8E /* User.swift */; };
 		216C4BD51BF54BB000260B8E /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4BD21BF54BB000260B8E /* DVR.framework */; };
 		216C4BD91BF54BF400260B8E /* DVR.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4BD21BF54BB000260B8E /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		216C4BE11BF54C4100260B8E /* DVR.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4BDF1BF54C3B00260B8E /* DVR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2193340D1C0FD76B000A974B /* SearchCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2193340C1C0FD76B000A974B /* SearchCredential.swift */; };
-		2193340E1C0FD76B000A974B /* SearchCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2193340C1C0FD76B000A974B /* SearchCredential.swift */; };
-		219334101C0FD897000A974B /* search-credential.json in Resources */ = {isa = PBXBuildFile; fileRef = 2193340F1C0FD897000A974B /* search-credential.json */; };
-		219334111C0FD897000A974B /* search-credential.json in Resources */ = {isa = PBXBuildFile; fileRef = 2193340F1C0FD897000A974B /* search-credential.json */; };
-		219DAC6F1C0E582500F39A6F /* archive-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC6E1C0E582500F39A6F /* archive-canvas.json */; };
-		219DAC701C0E582500F39A6F /* archive-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC6E1C0E582500F39A6F /* archive-canvas.json */; };
-		219DAC721C0E584E00F39A6F /* create-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC711C0E584E00F39A6F /* create-canvas.json */; };
-		219DAC731C0E584E00F39A6F /* create-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC711C0E584E00F39A6F /* create-canvas.json */; };
-		219DAC751C0E595000F39A6F /* destroy-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC741C0E595000F39A6F /* destroy-canvas.json */; };
-		219DAC761C0E595000F39A6F /* destroy-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC741C0E595000F39A6F /* destroy-canvas.json */; };
-		219DAC781C0E59FD00F39A6F /* list-canvases.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC771C0E59FD00F39A6F /* list-canvases.json */; };
-		219DAC791C0E59FD00F39A6F /* list-canvases.json in Resources */ = {isa = PBXBuildFile; fileRef = 219DAC771C0E59FD00F39A6F /* list-canvases.json */; };
+		21AD8BA51C8A37D6000A53F8 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B891C8A37D5000A53F8 /* Account.swift */; };
+		21AD8BA61C8A37D6000A53F8 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8A1C8A37D5000A53F8 /* AccountController.swift */; };
+		21AD8BA71C8A37D6000A53F8 /* APIClient+Canvases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8B1C8A37D5000A53F8 /* APIClient+Canvases.swift */; };
+		21AD8BA81C8A37D6000A53F8 /* APIClient+Organizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8C1C8A37D5000A53F8 /* APIClient+Organizations.swift */; };
+		21AD8BA91C8A37D6000A53F8 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */; };
+		21AD8BAA1C8A37D6000A53F8 /* AuthorizationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */; };
+		21AD8BAB1C8A37D6000A53F8 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */; };
+		21AD8BAD1C8A37D6000A53F8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B911C8A37D5000A53F8 /* Color.swift */; };
+		21AD8BAF1C8A37D6000A53F8 /* JSONSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */; };
+		21AD8BB01C8A37D6000A53F8 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */; };
+		21AD8BB11C8A37D6000A53F8 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B951C8A37D5000A53F8 /* Organization.swift */; };
+		21AD8BB21C8A37D6000A53F8 /* SearchCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B961C8A37D5000A53F8 /* SearchCredential.swift */; };
+		21AD8BB31C8A37D6000A53F8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B971C8A37D5000A53F8 /* User.swift */; };
+		21AD8BBF1C8A37DE000A53F8 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B891C8A37D5000A53F8 /* Account.swift */; };
+		21AD8BC01C8A37DE000A53F8 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8A1C8A37D5000A53F8 /* AccountController.swift */; };
+		21AD8BC11C8A37DE000A53F8 /* APIClient+Canvases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8B1C8A37D5000A53F8 /* APIClient+Canvases.swift */; };
+		21AD8BC21C8A37DE000A53F8 /* APIClient+Organizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8C1C8A37D5000A53F8 /* APIClient+Organizations.swift */; };
+		21AD8BC31C8A37DE000A53F8 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */; };
+		21AD8BC41C8A37DE000A53F8 /* AuthorizationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */; };
+		21AD8BC51C8A37DE000A53F8 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */; };
+		21AD8BC71C8A37DE000A53F8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B911C8A37D5000A53F8 /* Color.swift */; };
+		21AD8BC81C8A37DE000A53F8 /* JSONSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */; };
+		21AD8BC91C8A37DE000A53F8 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */; };
+		21AD8BCA1C8A37DE000A53F8 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B951C8A37D5000A53F8 /* Organization.swift */; };
+		21AD8BCB1C8A37DE000A53F8 /* SearchCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B961C8A37D5000A53F8 /* SearchCredential.swift */; };
+		21AD8BCC1C8A37DE000A53F8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B971C8A37D5000A53F8 /* User.swift */; };
+		21AD8BD01C8A380E000A53F8 /* CanvasKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AD8BCE1C8A380E000A53F8 /* CanvasKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21AD8BD21C8A381A000A53F8 /* APIClientCanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B991C8A37D5000A53F8 /* APIClientCanvasTests.swift */; };
+		21AD8BD31C8A381A000A53F8 /* APIClientOrganizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B9A1C8A37D5000A53F8 /* APIClientOrganizationTests.swift */; };
+		21AD8BD41C8A381A000A53F8 /* AuthorizationClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B9B1C8A37D5000A53F8 /* AuthorizationClientTests.swift */; };
+		21AD8BD51C8A381B000A53F8 /* APIClientCanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B991C8A37D5000A53F8 /* APIClientCanvasTests.swift */; };
+		21AD8BD61C8A381B000A53F8 /* APIClientOrganizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B9A1C8A37D5000A53F8 /* APIClientOrganizationTests.swift */; };
+		21AD8BD71C8A381B000A53F8 /* AuthorizationClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B9B1C8A37D5000A53F8 /* AuthorizationClientTests.swift */; };
+		21AD8BE81C8A3829000A53F8 /* CanvasKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AD8BCE1C8A380E000A53F8 /* CanvasKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21AD8BF11C8A385A000A53F8 /* access-token.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8BEA1C8A385A000A53F8 /* access-token.json */; };
+		21AD8BF21C8A385A000A53F8 /* access-token.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8BEA1C8A385A000A53F8 /* access-token.json */; };
+		21AD8BF31C8A385A000A53F8 /* archive-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8BEB1C8A385A000A53F8 /* archive-canvas.json */; };
+		21AD8BF41C8A385A000A53F8 /* archive-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8BEB1C8A385A000A53F8 /* archive-canvas.json */; };
+		21AD8BF51C8A385A000A53F8 /* create-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8BEC1C8A385A000A53F8 /* create-canvas.json */; };
+		21AD8BF61C8A385A000A53F8 /* create-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8BEC1C8A385A000A53F8 /* create-canvas.json */; };
+		21AD8BF71C8A385A000A53F8 /* destroy-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8BED1C8A385A000A53F8 /* destroy-canvas.json */; };
+		21AD8BF81C8A385A000A53F8 /* destroy-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8BED1C8A385A000A53F8 /* destroy-canvas.json */; };
+		21AD8BF91C8A385A000A53F8 /* list-canvases.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8BEE1C8A385A000A53F8 /* list-canvases.json */; };
+		21AD8BFA1C8A385A000A53F8 /* list-canvases.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8BEE1C8A385A000A53F8 /* list-canvases.json */; };
+		21AD8BFB1C8A385A000A53F8 /* list-organizations.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8BEF1C8A385A000A53F8 /* list-organizations.json */; };
+		21AD8BFC1C8A385A000A53F8 /* list-organizations.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8BEF1C8A385A000A53F8 /* list-organizations.json */; };
+		21AD8BFD1C8A385A000A53F8 /* search-credential.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8BF01C8A385A000A53F8 /* search-credential.json */; };
+		21AD8BFE1C8A385A000A53F8 /* search-credential.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8BF01C8A385A000A53F8 /* search-credential.json */; };
 		21D2B1811C0D00DE003652B7 /* ISO8601.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D2B1801C0D00DE003652B7 /* ISO8601.framework */; };
 		21D2B1851C0D00EB003652B7 /* ISO8601.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D2B1831C0D00EB003652B7 /* ISO8601.framework */; };
 		21D2B1861C0D010F003652B7 /* ISO8601.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D2B1831C0D00EB003652B7 /* ISO8601.framework */; };
@@ -67,9 +70,6 @@
 		21D2B1891C0D0127003652B7 /* ISO8601.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21D2B1801C0D00DE003652B7 /* ISO8601.framework */; };
 		21D2B18A1C0D0127003652B7 /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4BDF1BF54C3B00260B8E /* DVR.framework */; };
 		21D2B18B1C0D012D003652B7 /* ISO8601.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21D2B1801C0D00DE003652B7 /* ISO8601.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		21E39CEB1C56D9B6005C1FF3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E39CEA1C56D9B6005C1FF3 /* Color.swift */; };
-		21E39CEC1C56D9B6005C1FF3 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E39CEA1C56D9B6005C1FF3 /* Color.swift */; };
-		21FB6ABF1BF53C9D003C82BB /* CanvasKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 21FB6ABE1BF53C9D003C82BB /* CanvasKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21FB6AC61BF53C9D003C82BB /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FB6ABB1BF53C9D003C82BB /* CanvasKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,41 +120,41 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2118DB961BFCE902004054FA /* APIClientCanvasTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientCanvasTests.swift; sourceTree = "<group>"; };
-		212404D01C23300800BF0C91 /* access-token.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "access-token.json"; sourceTree = "<group>"; };
-		2129D2E31BF54FF90018F255 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		2129D2E61BF550290018F255 /* SSKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSKeychain.framework; path = Carthage/Build/iOS/SSKeychain.framework; sourceTree = "<group>"; };
 		2129D2EA1BF550350018F255 /* SSKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSKeychain.framework; path = Carthage/Build/Mac/SSKeychain.framework; sourceTree = "<group>"; };
-		213C2BD71BF688C900F6BF50 /* APIClient+Canvases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Canvases.swift"; sourceTree = "<group>"; };
-		213C2BDA1BF688F000F6BF50 /* APIClient+Organizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Organizations.swift"; sourceTree = "<group>"; };
-		213C2BDD1BF68B2D00F6BF50 /* AuthorizationClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationClient.swift; sourceTree = "<group>"; };
-		213C2BE31BF68C2800F6BF50 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
-		21450A1F1BF691B600345E4A /* AuthorizationClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationClientTests.swift; sourceTree = "<group>"; };
 		216C4B971BF54AB100260B8E /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		216C4BA01BF54AB100260B8E /* CanvasKit-OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CanvasKit-OSXTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		216C4BAE1BF54AEB00260B8E /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		216C4BAF1BF54AEB00260B8E /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		216C4BB01BF54AEB00260B8E /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
-		216C4BB11BF54AEB00260B8E /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
-		216C4BB21BF54AEB00260B8E /* JSONSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerialization.swift; sourceTree = "<group>"; };
-		216C4BB31BF54AEB00260B8E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		216C4BBB1BF54AF100260B8E /* APIClientOrganizationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientOrganizationTests.swift; sourceTree = "<group>"; };
-		216C4BBD1BF54AF100260B8E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		216C4BBE1BF54AF100260B8E /* list-organizations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "list-organizations.json"; sourceTree = "<group>"; };
 		216C4BD21BF54BB000260B8E /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/Mac/DVR.framework; sourceTree = "<group>"; };
 		216C4BDF1BF54C3B00260B8E /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/iOS/DVR.framework; sourceTree = "<group>"; };
-		2193340C1C0FD76B000A974B /* SearchCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCredential.swift; sourceTree = "<group>"; };
-		2193340F1C0FD897000A974B /* search-credential.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "search-credential.json"; sourceTree = "<group>"; };
-		219DAC6E1C0E582500F39A6F /* archive-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "archive-canvas.json"; sourceTree = "<group>"; };
-		219DAC711C0E584E00F39A6F /* create-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "create-canvas.json"; sourceTree = "<group>"; };
-		219DAC741C0E595000F39A6F /* destroy-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "destroy-canvas.json"; sourceTree = "<group>"; };
-		219DAC771C0E59FD00F39A6F /* list-canvases.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "list-canvases.json"; sourceTree = "<group>"; };
+		21AD8B891C8A37D5000A53F8 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		21AD8B8A1C8A37D5000A53F8 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
+		21AD8B8B1C8A37D5000A53F8 /* APIClient+Canvases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Canvases.swift"; sourceTree = "<group>"; };
+		21AD8B8C1C8A37D5000A53F8 /* APIClient+Organizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Organizations.swift"; sourceTree = "<group>"; };
+		21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationClient.swift; sourceTree = "<group>"; };
+		21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
+		21AD8B911C8A37D5000A53F8 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerialization.swift; sourceTree = "<group>"; };
+		21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		21AD8B951C8A37D5000A53F8 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		21AD8B961C8A37D5000A53F8 /* SearchCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCredential.swift; sourceTree = "<group>"; };
+		21AD8B971C8A37D5000A53F8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		21AD8B991C8A37D5000A53F8 /* APIClientCanvasTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientCanvasTests.swift; sourceTree = "<group>"; };
+		21AD8B9A1C8A37D5000A53F8 /* APIClientOrganizationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientOrganizationTests.swift; sourceTree = "<group>"; };
+		21AD8B9B1C8A37D5000A53F8 /* AuthorizationClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationClientTests.swift; sourceTree = "<group>"; };
+		21AD8BCE1C8A380E000A53F8 /* CanvasKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasKit.h; sourceTree = "<group>"; };
+		21AD8BCF1C8A380E000A53F8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21AD8BEA1C8A385A000A53F8 /* access-token.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "access-token.json"; sourceTree = "<group>"; };
+		21AD8BEB1C8A385A000A53F8 /* archive-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "archive-canvas.json"; sourceTree = "<group>"; };
+		21AD8BEC1C8A385A000A53F8 /* create-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "create-canvas.json"; sourceTree = "<group>"; };
+		21AD8BED1C8A385A000A53F8 /* destroy-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "destroy-canvas.json"; sourceTree = "<group>"; };
+		21AD8BEE1C8A385A000A53F8 /* list-canvases.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "list-canvases.json"; sourceTree = "<group>"; };
+		21AD8BEF1C8A385A000A53F8 /* list-organizations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "list-organizations.json"; sourceTree = "<group>"; };
+		21AD8BF01C8A385A000A53F8 /* search-credential.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "search-credential.json"; sourceTree = "<group>"; };
+		21AD8BFF1C8A386B000A53F8 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		21D2B1801C0D00DE003652B7 /* ISO8601.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ISO8601.framework; path = Carthage/Build/iOS/ISO8601.framework; sourceTree = "<group>"; };
 		21D2B1831C0D00EB003652B7 /* ISO8601.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ISO8601.framework; path = Carthage/Build/Mac/ISO8601.framework; sourceTree = "<group>"; };
-		21E39CEA1C56D9B6005C1FF3 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		21FB6ABB1BF53C9D003C82BB /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		21FB6ABE1BF53C9D003C82BB /* CanvasKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasKit.h; sourceTree = "<group>"; };
-		21FB6AC01BF53C9D003C82BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21FB6AC51BF53C9D003C82BB /* CanvasKit-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CanvasKit-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -200,45 +200,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		213C2BD61BF688B600F6BF50 /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				213C2BE31BF68C2800F6BF50 /* NetworkClient.swift */,
-				213C2BDD1BF68B2D00F6BF50 /* AuthorizationClient.swift */,
-				216C4BAF1BF54AEB00260B8E /* APIClient.swift */,
-				213C2BDA1BF688F000F6BF50 /* APIClient+Organizations.swift */,
-				213C2BD71BF688C900F6BF50 /* APIClient+Canvases.swift */,
-			);
-			name = Networking;
-			sourceTree = "<group>";
-		};
-		216C4BBA1BF54AF100260B8E /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				21450A1F1BF691B600345E4A /* AuthorizationClientTests.swift */,
-				216C4BBB1BF54AF100260B8E /* APIClientOrganizationTests.swift */,
-				2118DB961BFCE902004054FA /* APIClientCanvasTests.swift */,
-				216C4BBC1BF54AF100260B8E /* Resources */,
-			);
-			name = Tests;
-			path = Source/CanvasKitTests;
-			sourceTree = "<group>";
-		};
-		216C4BBC1BF54AF100260B8E /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				216C4BBD1BF54AF100260B8E /* Info.plist */,
-				216C4BBE1BF54AF100260B8E /* list-organizations.json */,
-				219DAC6E1C0E582500F39A6F /* archive-canvas.json */,
-				219DAC711C0E584E00F39A6F /* create-canvas.json */,
-				219DAC741C0E595000F39A6F /* destroy-canvas.json */,
-				219DAC771C0E59FD00F39A6F /* list-canvases.json */,
-				2193340F1C0FD897000A974B /* search-credential.json */,
-				212404D01C23300800BF0C91 /* access-token.json */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		216C4BD11BF54B9A00260B8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,48 +229,67 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		219334081C0FD74E000A974B /* Models */ = {
+		21AD8B881C8A37D5000A53F8 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				216C4BAE1BF54AEB00260B8E /* Account.swift */,
-				216C4BB01BF54AEB00260B8E /* Canvas.swift */,
-				216C4BB11BF54AEB00260B8E /* Organization.swift */,
-				216C4BB31BF54AEB00260B8E /* User.swift */,
-				2193340C1C0FD76B000A974B /* SearchCredential.swift */,
-				21E39CEA1C56D9B6005C1FF3 /* Color.swift */,
+				21AD8B891C8A37D5000A53F8 /* Account.swift */,
+				21AD8B8A1C8A37D5000A53F8 /* AccountController.swift */,
+				21AD8B8B1C8A37D5000A53F8 /* APIClient+Canvases.swift */,
+				21AD8B8C1C8A37D5000A53F8 /* APIClient+Organizations.swift */,
+				21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */,
+				21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */,
+				21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */,
+				21AD8B911C8A37D5000A53F8 /* Color.swift */,
+				21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */,
+				21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */,
+				21AD8B951C8A37D5000A53F8 /* Organization.swift */,
+				21AD8B961C8A37D5000A53F8 /* SearchCredential.swift */,
+				21AD8B971C8A37D5000A53F8 /* User.swift */,
 			);
-			name = Models;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		219334091C0FD755000A974B /* Controllers */ = {
+		21AD8B981C8A37D5000A53F8 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				2129D2E31BF54FF90018F255 /* AccountController.swift */,
+				21AD8B991C8A37D5000A53F8 /* APIClientCanvasTests.swift */,
+				21AD8B9A1C8A37D5000A53F8 /* APIClientOrganizationTests.swift */,
+				21AD8B9B1C8A37D5000A53F8 /* AuthorizationClientTests.swift */,
+				21AD8BE91C8A385A000A53F8 /* Fixtures */,
 			);
-			name = Controllers;
+			path = Tests;
 			sourceTree = "<group>";
 		};
-		2193340A1C0FD75C000A974B /* Protocols */ = {
+		21AD8BCD1C8A380E000A53F8 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				216C4BB21BF54AEB00260B8E /* JSONSerialization.swift */,
+				21AD8BCE1C8A380E000A53F8 /* CanvasKit.h */,
+				21AD8BCF1C8A380E000A53F8 /* Info.plist */,
+				21AD8BFF1C8A386B000A53F8 /* Tests-Info.plist */,
 			);
-			name = Protocols;
+			path = Support;
 			sourceTree = "<group>";
 		};
-		2193340B1C0FD762000A974B /* Resources */ = {
+		21AD8BE91C8A385A000A53F8 /* Fixtures */ = {
 			isa = PBXGroup;
 			children = (
-				21FB6AC01BF53C9D003C82BB /* Info.plist */,
+				21AD8BEA1C8A385A000A53F8 /* access-token.json */,
+				21AD8BEB1C8A385A000A53F8 /* archive-canvas.json */,
+				21AD8BEC1C8A385A000A53F8 /* create-canvas.json */,
+				21AD8BED1C8A385A000A53F8 /* destroy-canvas.json */,
+				21AD8BEE1C8A385A000A53F8 /* list-canvases.json */,
+				21AD8BEF1C8A385A000A53F8 /* list-organizations.json */,
+				21AD8BF01C8A385A000A53F8 /* search-credential.json */,
 			);
-			name = Resources;
+			path = Fixtures;
 			sourceTree = "<group>";
 		};
 		21FB6AB11BF53C9D003C82BB = {
 			isa = PBXGroup;
 			children = (
-				21FB6ABD1BF53C9D003C82BB /* CanvasKit */,
-				216C4BBA1BF54AF100260B8E /* Tests */,
+				21AD8B881C8A37D5000A53F8 /* Sources */,
+				21AD8B981C8A37D5000A53F8 /* Tests */,
+				21AD8BCD1C8A380E000A53F8 /* Support */,
 				216C4BD11BF54B9A00260B8E /* Frameworks */,
 				21FB6ABC1BF53C9D003C82BB /* Products */,
 			);
@@ -326,20 +306,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		21FB6ABD1BF53C9D003C82BB /* CanvasKit */ = {
-			isa = PBXGroup;
-			children = (
-				21FB6ABE1BF53C9D003C82BB /* CanvasKit.h */,
-				219334081C0FD74E000A974B /* Models */,
-				213C2BD61BF688B600F6BF50 /* Networking */,
-				219334091C0FD755000A974B /* Controllers */,
-				2193340A1C0FD75C000A974B /* Protocols */,
-				2193340B1C0FD762000A974B /* Resources */,
-			);
-			name = CanvasKit;
-			path = Source/CanvasKit;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -347,7 +313,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				216C4BCA1BF54B0D00260B8E /* CanvasKit.h in Headers */,
+				21AD8BE81C8A3829000A53F8 /* CanvasKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,7 +321,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21FB6ABF1BF53C9D003C82BB /* CanvasKit.h in Headers */,
+				21AD8BD01C8A380E000A53F8 /* CanvasKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,13 +460,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				216C4BC61BF54B0700260B8E /* list-organizations.json in Resources */,
-				219DAC761C0E595000F39A6F /* destroy-canvas.json in Resources */,
-				219DAC731C0E584E00F39A6F /* create-canvas.json in Resources */,
-				219DAC791C0E59FD00F39A6F /* list-canvases.json in Resources */,
-				219DAC701C0E582500F39A6F /* archive-canvas.json in Resources */,
-				219334111C0FD897000A974B /* search-credential.json in Resources */,
-				212404D21C2330A800BF0C91 /* access-token.json in Resources */,
+				21AD8BFC1C8A385A000A53F8 /* list-organizations.json in Resources */,
+				21AD8BF41C8A385A000A53F8 /* archive-canvas.json in Resources */,
+				21AD8BFE1C8A385A000A53F8 /* search-credential.json in Resources */,
+				21AD8BFA1C8A385A000A53F8 /* list-canvases.json in Resources */,
+				21AD8BF21C8A385A000A53F8 /* access-token.json in Resources */,
+				21AD8BF81C8A385A000A53F8 /* destroy-canvas.json in Resources */,
+				21AD8BF61C8A385A000A53F8 /* create-canvas.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,13 +481,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				216C4BC81BF54B0800260B8E /* list-organizations.json in Resources */,
-				219DAC751C0E595000F39A6F /* destroy-canvas.json in Resources */,
-				219DAC721C0E584E00F39A6F /* create-canvas.json in Resources */,
-				219DAC781C0E59FD00F39A6F /* list-canvases.json in Resources */,
-				219DAC6F1C0E582500F39A6F /* archive-canvas.json in Resources */,
-				219334101C0FD897000A974B /* search-credential.json in Resources */,
-				212404D31C2330A800BF0C91 /* access-token.json in Resources */,
+				21AD8BFB1C8A385A000A53F8 /* list-organizations.json in Resources */,
+				21AD8BF31C8A385A000A53F8 /* archive-canvas.json in Resources */,
+				21AD8BFD1C8A385A000A53F8 /* search-credential.json in Resources */,
+				21AD8BF91C8A385A000A53F8 /* list-canvases.json in Resources */,
+				21AD8BF11C8A385A000A53F8 /* access-token.json in Resources */,
+				21AD8BF71C8A385A000A53F8 /* destroy-canvas.json in Resources */,
+				21AD8BF51C8A385A000A53F8 /* create-canvas.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,19 +529,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2129D2E51BF54FF90018F255 /* AccountController.swift in Sources */,
-				216C4BCB1BF54B0D00260B8E /* Account.swift in Sources */,
-				213C2BDF1BF68B2D00F6BF50 /* AuthorizationClient.swift in Sources */,
-				216C4BCC1BF54B0D00260B8E /* APIClient.swift in Sources */,
-				21E39CEC1C56D9B6005C1FF3 /* Color.swift in Sources */,
-				2193340E1C0FD76B000A974B /* SearchCredential.swift in Sources */,
-				213C2BD91BF688C900F6BF50 /* APIClient+Canvases.swift in Sources */,
-				216C4BD01BF54B0D00260B8E /* User.swift in Sources */,
-				216C4BCD1BF54B0D00260B8E /* Canvas.swift in Sources */,
-				216C4BCF1BF54B0D00260B8E /* JSONSerialization.swift in Sources */,
-				213C2BDC1BF688F000F6BF50 /* APIClient+Organizations.swift in Sources */,
-				216C4BCE1BF54B0D00260B8E /* Organization.swift in Sources */,
-				213C2BE51BF68C2800F6BF50 /* NetworkClient.swift in Sources */,
+				21AD8BCC1C8A37DE000A53F8 /* User.swift in Sources */,
+				21AD8BC51C8A37DE000A53F8 /* Canvas.swift in Sources */,
+				21AD8BC91C8A37DE000A53F8 /* NetworkClient.swift in Sources */,
+				21AD8BCB1C8A37DE000A53F8 /* SearchCredential.swift in Sources */,
+				21AD8BCA1C8A37DE000A53F8 /* Organization.swift in Sources */,
+				21AD8BC41C8A37DE000A53F8 /* AuthorizationClient.swift in Sources */,
+				21AD8BC21C8A37DE000A53F8 /* APIClient+Organizations.swift in Sources */,
+				21AD8BBF1C8A37DE000A53F8 /* Account.swift in Sources */,
+				21AD8BC81C8A37DE000A53F8 /* JSONSerialization.swift in Sources */,
+				21AD8BC11C8A37DE000A53F8 /* APIClient+Canvases.swift in Sources */,
+				21AD8BC71C8A37DE000A53F8 /* Color.swift in Sources */,
+				21AD8BC31C8A37DE000A53F8 /* APIClient.swift in Sources */,
+				21AD8BC01C8A37DE000A53F8 /* AccountController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,9 +549,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2118DB981BFCE902004054FA /* APIClientCanvasTests.swift in Sources */,
-				21450A211BF691B600345E4A /* AuthorizationClientTests.swift in Sources */,
-				216C4BC51BF54AFF00260B8E /* APIClientOrganizationTests.swift in Sources */,
+				21AD8BD41C8A381A000A53F8 /* AuthorizationClientTests.swift in Sources */,
+				21AD8BD31C8A381A000A53F8 /* APIClientOrganizationTests.swift in Sources */,
+				21AD8BD21C8A381A000A53F8 /* APIClientCanvasTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,19 +559,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2129D2E41BF54FF90018F255 /* AccountController.swift in Sources */,
-				216C4BB41BF54AEB00260B8E /* Account.swift in Sources */,
-				213C2BDE1BF68B2D00F6BF50 /* AuthorizationClient.swift in Sources */,
-				216C4BB51BF54AEB00260B8E /* APIClient.swift in Sources */,
-				21E39CEB1C56D9B6005C1FF3 /* Color.swift in Sources */,
-				2193340D1C0FD76B000A974B /* SearchCredential.swift in Sources */,
-				213C2BD81BF688C900F6BF50 /* APIClient+Canvases.swift in Sources */,
-				216C4BB91BF54AEB00260B8E /* User.swift in Sources */,
-				216C4BB61BF54AEB00260B8E /* Canvas.swift in Sources */,
-				216C4BB81BF54AEB00260B8E /* JSONSerialization.swift in Sources */,
-				213C2BDB1BF688F000F6BF50 /* APIClient+Organizations.swift in Sources */,
-				216C4BB71BF54AEB00260B8E /* Organization.swift in Sources */,
-				213C2BE41BF68C2800F6BF50 /* NetworkClient.swift in Sources */,
+				21AD8BB31C8A37D6000A53F8 /* User.swift in Sources */,
+				21AD8BAB1C8A37D6000A53F8 /* Canvas.swift in Sources */,
+				21AD8BB01C8A37D6000A53F8 /* NetworkClient.swift in Sources */,
+				21AD8BB21C8A37D6000A53F8 /* SearchCredential.swift in Sources */,
+				21AD8BB11C8A37D6000A53F8 /* Organization.swift in Sources */,
+				21AD8BAA1C8A37D6000A53F8 /* AuthorizationClient.swift in Sources */,
+				21AD8BA81C8A37D6000A53F8 /* APIClient+Organizations.swift in Sources */,
+				21AD8BA51C8A37D6000A53F8 /* Account.swift in Sources */,
+				21AD8BAF1C8A37D6000A53F8 /* JSONSerialization.swift in Sources */,
+				21AD8BA71C8A37D6000A53F8 /* APIClient+Canvases.swift in Sources */,
+				21AD8BAD1C8A37D6000A53F8 /* Color.swift in Sources */,
+				21AD8BA91C8A37D6000A53F8 /* APIClient.swift in Sources */,
+				21AD8BA61C8A37D6000A53F8 /* AccountController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,9 +579,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2118DB971BFCE902004054FA /* APIClientCanvasTests.swift in Sources */,
-				21450A201BF691B600345E4A /* AuthorizationClientTests.swift in Sources */,
-				216C4BC41BF54AFE00260B8E /* APIClientOrganizationTests.swift in Sources */,
+				21AD8BD71C8A381B000A53F8 /* AuthorizationClientTests.swift in Sources */,
+				21AD8BD61C8A381B000A53F8 /* APIClientOrganizationTests.swift in Sources */,
+				21AD8BD51C8A381B000A53F8 /* APIClientCanvasTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,7 +615,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Source/CanvasKit/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvaskit;
@@ -673,7 +639,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Source/CanvasKit/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvaskit;
@@ -692,7 +658,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = Source/CanvasKitTests/Resources/Info.plist;
+				INFOPLIST_FILE = "Support/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasKitTests;
@@ -710,7 +676,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
-				INFOPLIST_FILE = Source/CanvasKitTests/Resources/Info.plist;
+				INFOPLIST_FILE = "Support/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasKitTests;
@@ -822,7 +788,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = Source/CanvasKit/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvaskit;
@@ -846,7 +812,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = Source/CanvasKit/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvaskit;
@@ -862,7 +828,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = Source/CanvasKitTests/Resources/Info.plist;
+				INFOPLIST_FILE = "Support/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -876,7 +842,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = Source/CanvasKitTests/Resources/Info.plist;
+				INFOPLIST_FILE = "Support/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

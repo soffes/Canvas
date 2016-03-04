@@ -52,9 +52,10 @@ public struct APIClient: NetworkClient {
 			if let params = params, components = NSURLComponents(URL: URL, resolvingAgainstBaseURL: true) {
 				var queryItems = [NSURLQueryItem]()
 				for (name, value) in params {
-					// TODO: Support things other than [String: String]
 					if let value = value as? String {
 						queryItems.append(NSURLQueryItem(name: name, value: value))
+					} else {
+						print("[APIClient] Failed to GET encode a non string value: `\(value)`")
 					}
 				}
 				components.queryItems = queryItems
