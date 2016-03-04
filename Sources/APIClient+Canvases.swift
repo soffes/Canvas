@@ -44,16 +44,25 @@ extension APIClient {
 
 	// MARK: - Creating a Canvas
 
-	public func createCanvas(organization organization: Organization, completion: Result<Canvas> -> Void) {
-		createCanvas(organizationID: organization.ID, completion: completion)
+	public func createCanvas(organization organization: Organization, content: String? = nil, isPublicWritable: Bool? = nil, completion: Result<Canvas> -> Void) {
+		createCanvas(organizationID: organization.ID, content: content, isPublicWritable: isPublicWritable, completion: completion)
 	}
 
-	public func createCanvas(organizationID organizationID: String, completion: Result<Canvas> -> Void) {
-		let params = [
+	public func createCanvas(organizationID organizationID: String, content: String? = nil, isPublicWritable: Bool? = nil, completion: Result<Canvas> -> Void) {
+		var params: JSONDictionary = [
 			"org": [
 				"id": organizationID
 			]
 		]
+
+		if let content = content {
+			params["content"] = content
+		}
+
+		if let isPublicWritable = isPublicWritable {
+			params["is_public_writable"] = isPublicWritable
+		}
+
 		let request = self.request(method: .POST, path: "canvases", params: params)
 
 		session.dataTaskWithRequest(request) { responseData, response, error in

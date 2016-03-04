@@ -22,7 +22,7 @@ class AuthorizationClientTests: XCTestCase {
 		client.createAccessToken(username: "soffes", password: "REDACTED_PASSWORD") {
 			switch $0 {
 			case .Success(let account):
-				XCTAssertEqual("REDACTED_TOKEN", account.accessToken)
+				XCTAssertEqual("REDCATED_ACCESS_TOKEN", account.accessToken)
 				XCTAssertEqual("soffes", account.user.username)
 				XCTAssertEqual("sam@soff.es", account.email)
 			case .Failure(let message):

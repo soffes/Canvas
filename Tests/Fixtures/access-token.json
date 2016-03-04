@@ -1,7 +1,7 @@
 {
   "interactions" : [
     {
-      "recorded_at" : 1450375232.255865,
+      "recorded_at" : 1457129354.940316,
       "response" : {
         "body" : {
           "scope" : "global",
@@ -12,33 +12,43 @@
               "avatar_url" : "https:\/\/www.gravatar.com\/avatar\/eb02c1cdbc2e1b474051b5c622e1d539?d=https%3A%2F%2Fd3tp5plu9dfsfn.cloudfront.net%2Favatars%2F6.png",
               "username" : "soffes"
             },
-            "verified_at" : "2015-10-21T20:47:14.086Z"
+            "dismissed_dialogs" : [
+              "getting-started-web"
+            ],
+            "updated_at" : "2015-10-21T20:46:58.740Z",
+            "verified_at" : "2015-10-21T20:47:14.086Z",
+            "created_at" : "2015-10-21T20:46:58.740Z"
           },
           "token_type" : "bearer",
-          "access_token" : "REDACTED_TOKEN"
+          "access_token" : "REDCATED_ACCESS_TOKEN"
         },
-        "status" : 201,
-        "url" : "https:\/\/api.usecanvas.com\/oauth\/access-tokens",
+        "status" : 200,
+        "url" : "https:\/\/api.usecanvas.com\/v1\/oauth\/access-tokens",
         "headers" : {
-          "Pragma" : "no-cache",
           "Content-Type" : "application\/json; charset=utf-8",
-          "Connection" : "keep-alive",
+          "X-Runtime" : "0.125298",
+          "X-Xss-Protection" : "1; mode=block",
           "Server" : "Cowboy",
-          "Transfer-Encoding" : "Identity",
           "Via" : "1.1 vegur",
-          "Date" : "Thu, 17 Dec 2015 18:00:32 GMT",
-          "Content-Encoding" : "gzip",
-          "Cache-Control" : "no-store",
-          "Vary" : "origin,accept-encoding"
+          "Transfer-Encoding" : "Identity",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "Date" : "Fri, 04 Mar 2016 22:09:14 GMT",
+          "X-Request-Id" : "9042ab39-bef2-476a-a2b1-d5af9ecbac8d",
+          "Strict-Transport-Security" : "max-age=15552000",
+          "Connection" : "keep-alive",
+          "X-Content-Type-Options" : "nosniff",
+          "Etag" : "W\/\"7bff85f780374d98ca35d07f2f9cf770\"",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Vary" : "Origin"
         }
       },
       "request" : {
         "method" : "POST",
         "body" : "dXNlcm5hbWU9c29mZmVzJnBhc3N3b3JkPVJFREFDVEVEX1BBU1NXT1JEJnNjb3BlPWdsb2JhbCZncmFudF90eXBlPXBhc3N3b3Jk",
-        "url" : "https:\/\/api.usecanvas.com\/oauth\/access-tokens",
+        "url" : "https:\/\/api.usecanvas.com\/v1\/oauth\/access-tokens",
         "headers" : {
-          "Accept" : "application\/vnd.canvas+json; version=1; charset=utf-8",
-          "Authorization" : "Basic REDACTED_CLIENT_AUTHORIZATION",
+          "Accept" : "application\/json; charset=utf-8",
+          "Authorization" : "Basic UkVEQUNURURfQ0xJRU5UX0lEOlJFRENBVEVEX0NMSUVOVF9TRUNSRVQ=",
           "Content-Type" : "application\/x-www-form-urlencoded"
         }
       }

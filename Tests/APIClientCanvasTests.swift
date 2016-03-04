@@ -14,12 +14,12 @@ class APIClientCanvasTests: XCTestCase {
 	func testListCanvases() {
 		let expectation = expectationWithDescription("Networking")
 		let dvr = Session(cassetteName: "list-canvases")
-		let client = APIClient(accessToken: "REDACTED_TOKEN", session: dvr)
+		let client = APIClient(accessToken: "REDACTED_ACCESS_TOKEN", session: dvr)
 
 		client.listCanvases(organizationID: "soffes") {
 			switch $0 {
 			case .Success(let canvases):
-				XCTAssertEqual(["Sam’s Wish Lists", "New Headphone Stuff", "Canvas Things"], canvases.flatMap({ $0.title }))
+				XCTAssertEqual(["Ducati Scrambler Tires", "Drums"], canvases.flatMap({ $0.title }))
 			default:
 				XCTFail()
 			}
@@ -32,9 +32,9 @@ class APIClientCanvasTests: XCTestCase {
 	func testCreateCanvas() {
 		let expectation = expectationWithDescription("Networking")
 		let dvr = Session(cassetteName: "create-canvas")
-		let client = APIClient(accessToken: "REDACTED_TOKEN", session: dvr)
+		let client = APIClient(accessToken: "REDACTED_ACCESS_TOKEN", session: dvr)
 
-		client.createCanvas(organizationID: "test", body: "# From CanvasKit\nYay.") {
+		client.createCanvas(organizationID: "test", content: "# From CanvasKit\nYay.") {
 			switch $0 {
 			case .Success(let canvas):
 				XCTAssertEqual("From CanvasKit", canvas.title)
@@ -50,9 +50,9 @@ class APIClientCanvasTests: XCTestCase {
 	func testDestroyCanvas() {
 		let expectation = expectationWithDescription("Networking")
 		let dvr = Session(cassetteName: "destroy-canvas")
-		let client = APIClient(accessToken: "REDACTED_TOKEN", session: dvr)
+		let client = APIClient(accessToken: "REDACTED_ACCESS_TOKEN", session: dvr)
 
-		client.destroyCanvas(canvasID: "89480a5c-94fe-4fca-9a3d-faeff9f57154") {
+		client.destroyCanvas(canvasID: "2Kg8HUaQ4XPcu6erPy5XDA") {
 			switch $0 {
 			case .Success(_):
 				expectation.fulfill()
@@ -67,9 +67,9 @@ class APIClientCanvasTests: XCTestCase {
 	func testArchiveCanvas() {
 		let expectation = expectationWithDescription("Networking")
 		let dvr = Session(cassetteName: "archive-canvas")
-		let client = APIClient(accessToken: "REDACTED_TOKEN", session: dvr)
+		let client = APIClient(accessToken: "REDACTED_ACCESS_TOKEN", session: dvr)
 
-		client.archiveCanvas(canvasID: "48565cf8-0471-4c6b-9655-aef5bcb0db8f") {
+		client.archiveCanvas(canvasID: "3tgucu7tbOM2qIvFWsnoI1") {
 			switch $0 {
 			case .Success(_):
 				expectation.fulfill()

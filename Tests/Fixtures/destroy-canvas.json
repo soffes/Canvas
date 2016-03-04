@@ -1,38 +1,34 @@
 {
   "interactions" : [
     {
-      "recorded_at" : 1449009586.493243,
+      "recorded_at" : 1457129851.174193,
       "response" : {
         "body" : "",
         "status" : 204,
-        "url" : "https:\/\/api.usecanvas.com\/canvases\/89480a5c-94fe-4fca-9a3d-faeff9f57154",
+        "url" : "https:\/\/api.usecanvas.com\/v1\/canvases\/2Kg8HUaQ4XPcu6erPy5XDA",
         "headers" : {
-          "X-Content-Security-Policy" : "default-src 'self'",
-          "Access-Control-Allow-Origin" : "undefined",
-          "Content-Security-Policy" : "default-src 'self'",
+          "X-Runtime" : "0.031774",
           "X-Xss-Protection" : "1; mode=block",
           "Server" : "Cowboy",
-          "X-Download-Options" : "noopen",
-          "Access-Control-Allow-Methods" : "GET,HEAD,PUT,PATCH,POST,DELETE",
-          "Access-Control-Max-Age" : "3600",
-          "X-Webkit-Csp" : "default-src 'self'",
           "Via" : "1.1 vegur",
-          "Date" : "Tue, 01 Dec 2015 22:39:45 GMT",
-          "Strict-Transport-Security" : "max-age=15768000",
+          "Cache-Control" : "no-cache",
+          "Date" : "Fri, 04 Mar 2016 22:17:30 GMT",
+          "X-Request-Id" : "93460182-573e-45e2-872e-5e4b862beb6e",
+          "Strict-Transport-Security" : "max-age=15552000",
           "Content-Length" : "0",
           "Connection" : "keep-alive",
           "X-Content-Type-Options" : "nosniff",
-          "X-Frame-Options" : "DENY",
-          "Vary" : "Accept-Encoding"
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Vary" : "Origin"
         }
       },
       "request" : {
         "method" : "DELETE",
-        "url" : "https:\/\/api.usecanvas.com\/canvases\/89480a5c-94fe-4fca-9a3d-faeff9f57154",
+        "url" : "https:\/\/api.usecanvas.com\/v1\/canvases\/2Kg8HUaQ4XPcu6erPy5XDA",
         "headers" : {
-          "Accept" : "application\/json",
-          "Authorization" : "Bearer REDACTED_TOKEN",
-          "Content-Type" : "application\/json"
+          "Accept" : "application\/json; charset=utf-8",
+          "Authorization" : "Bearer REDACTED_ACCESS_TOKEN",
+          "Content-Type" : "application\/json; charset=utf-8"
         }
       }
     }
