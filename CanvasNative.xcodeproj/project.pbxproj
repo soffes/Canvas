@@ -7,66 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2109989C1C62E268000C34B2 /* Positionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2109989B1C62E268000C34B2 /* Positionable.swift */; };
-		210C74381C7E782400FBB665 /* CGSize+CanvasNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210C74371C7E782400FBB665 /* CGSize+CanvasNative.swift */; };
-		210C74391C7E782400FBB665 /* CGSize+CanvasNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210C74371C7E782400FBB665 /* CGSize+CanvasNative.swift */; };
 		210C743D1C7E7C6100FBB665 /* TestCanvasControllerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210C743C1C7E7C6100FBB665 /* TestCanvasControllerControllerDelegate.swift */; };
 		210C743E1C7E7C6100FBB665 /* TestCanvasControllerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210C743C1C7E7C6100FBB665 /* TestCanvasControllerControllerDelegate.swift */; };
 		21341C8B1C85089400C9EF39 /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21341C8A1C85089400C9EF39 /* NodeTests.swift */; };
 		21341C8C1C85089400C9EF39 /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21341C8A1C85089400C9EF39 /* NodeTests.swift */; };
-		215BAB311C52B0C400118C8C /* CanvasNative.h in Headers */ = {isa = PBXBuildFile; fileRef = 215BAB301C52B0C400118C8C /* CanvasNative.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		215BAB381C52B0C400118C8C /* CanvasNative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215BAB2D1C52B0C400118C8C /* CanvasNative.framework */; };
 		215BAB561C52B18C00118C8C /* CanvasNative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215BAB4C1C52B18B00118C8C /* CanvasNative.framework */; };
-		215BABAC1C52B32B00118C8C /* Attachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB951C52B32B00118C8C /* Attachable.swift */; };
-		215BABAD1C52B32B00118C8C /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB961C52B32B00118C8C /* BlockNode.swift */; };
-		215BABAE1C52B32B00118C8C /* Blockquote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB971C52B32B00118C8C /* Blockquote.swift */; };
-		215BABAF1C52B32B00118C8C /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB981C52B32B00118C8C /* ChecklistItem.swift */; };
-		215BABB01C52B32B00118C8C /* CodeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB991C52B32B00118C8C /* CodeBlock.swift */; };
-		215BABB11C52B32B00118C8C /* CodeSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB9A1C52B32B00118C8C /* CodeSpan.swift */; };
-		215BABB21C52B32B00118C8C /* DoubleEmphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB9B1C52B32B00118C8C /* DoubleEmphasis.swift */; };
-		215BABB31C52B32B00118C8C /* Emphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB9C1C52B32B00118C8C /* Emphasis.swift */; };
-		215BABB41C52B32B00118C8C /* Foldable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB9D1C52B32B00118C8C /* Foldable.swift */; };
-		215BABB51C52B32B00118C8C /* Heading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB9E1C52B32B00118C8C /* Heading.swift */; };
-		215BABB61C52B32B00118C8C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB9F1C52B32B00118C8C /* Image.swift */; };
-		215BABB71C52B32B00118C8C /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA01C52B32B00118C8C /* Link.swift */; };
-		215BABB81C52B32B00118C8C /* Listable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA11C52B32B00118C8C /* Listable.swift */; };
-		215BABB91C52B32B00118C8C /* NativePrefixable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA21C52B32B00118C8C /* NativePrefixable.swift */; };
-		215BABBA1C52B32B00118C8C /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA31C52B32B00118C8C /* Node.swift */; };
-		215BABBB1C52B32B00118C8C /* NodeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA41C52B32B00118C8C /* NodeContainer.swift */; };
-		215BABBC1C52B32B00118C8C /* OrderedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA51C52B32B00118C8C /* OrderedListItem.swift */; };
-		215BABBD1C52B32B00118C8C /* Paragraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA61C52B32B00118C8C /* Paragraph.swift */; };
-		215BABBE1C52B32B00118C8C /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA71C52B32B00118C8C /* Parser.swift */; };
-		215BABBF1C52B32B00118C8C /* SpanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA81C52B32B00118C8C /* SpanNode.swift */; };
-		215BABC01C52B32B00118C8C /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA91C52B32B00118C8C /* Text.swift */; };
-		215BABC11C52B32B00118C8C /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABAA1C52B32B00118C8C /* Title.swift */; };
-		215BABC21C52B32B00118C8C /* UnorderedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABAB1C52B32B00118C8C /* UnorderedList.swift */; };
-		215BABC71C52B3C500118C8C /* NSRange+CanvasNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABC61C52B3C500118C8C /* NSRange+CanvasNative.swift */; };
-		215BABC81C52B42F00118C8C /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA71C52B32B00118C8C /* Parser.swift */; };
-		215BABC91C52B42F00118C8C /* NSRange+CanvasNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABC61C52B3C500118C8C /* NSRange+CanvasNative.swift */; };
-		215BABCA1C52B42F00118C8C /* NativePrefixable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA21C52B32B00118C8C /* NativePrefixable.swift */; };
-		215BABCB1C52B42F00118C8C /* Attachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB951C52B32B00118C8C /* Attachable.swift */; };
-		215BABCC1C52B42F00118C8C /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB961C52B32B00118C8C /* BlockNode.swift */; };
-		215BABCD1C52B42F00118C8C /* Foldable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB9D1C52B32B00118C8C /* Foldable.swift */; };
-		215BABCE1C52B42F00118C8C /* Listable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA11C52B32B00118C8C /* Listable.swift */; };
-		215BABCF1C52B42F00118C8C /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA31C52B32B00118C8C /* Node.swift */; };
-		215BABD01C52B42F00118C8C /* NodeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA41C52B32B00118C8C /* NodeContainer.swift */; };
-		215BABD11C52B42F00118C8C /* SpanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA81C52B32B00118C8C /* SpanNode.swift */; };
-		215BABD21C52B42F00118C8C /* Blockquote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB971C52B32B00118C8C /* Blockquote.swift */; };
-		215BABD31C52B42F00118C8C /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB981C52B32B00118C8C /* ChecklistItem.swift */; };
-		215BABD41C52B42F00118C8C /* CodeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB991C52B32B00118C8C /* CodeBlock.swift */; };
-		215BABD51C52B42F00118C8C /* Heading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB9E1C52B32B00118C8C /* Heading.swift */; };
-		215BABD61C52B42F00118C8C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB9F1C52B32B00118C8C /* Image.swift */; };
-		215BABD71C52B42F00118C8C /* OrderedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA51C52B32B00118C8C /* OrderedListItem.swift */; };
-		215BABD81C52B42F00118C8C /* Paragraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA61C52B32B00118C8C /* Paragraph.swift */; };
-		215BABD91C52B42F00118C8C /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABAA1C52B32B00118C8C /* Title.swift */; };
-		215BABDA1C52B42F00118C8C /* UnorderedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABAB1C52B32B00118C8C /* UnorderedList.swift */; };
-		215BABDB1C52B42F00118C8C /* CodeSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB9A1C52B32B00118C8C /* CodeSpan.swift */; };
-		215BABDC1C52B42F00118C8C /* DoubleEmphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB9B1C52B32B00118C8C /* DoubleEmphasis.swift */; };
-		215BABDD1C52B42F00118C8C /* Emphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BAB9C1C52B32B00118C8C /* Emphasis.swift */; };
-		215BABDE1C52B42F00118C8C /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA01C52B32B00118C8C /* Link.swift */; };
-		215BABDF1C52B42F00118C8C /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABA91C52B32B00118C8C /* Text.swift */; };
-		215BABE11C52B44800118C8C /* SpanNodeParseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE01C52B44800118C8C /* SpanNodeParseable.swift */; };
-		215BABE21C52B44A00118C8C /* SpanNodeParseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE01C52B44800118C8C /* SpanNodeParseable.swift */; };
 		215BABE81C52B46B00118C8C /* BlockquoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE31C52B46B00118C8C /* BlockquoteTests.swift */; };
 		215BABE91C52B46B00118C8C /* BlockquoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE31C52B46B00118C8C /* BlockquoteTests.swift */; };
 		215BABEA1C52B46B00118C8C /* HeadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE41C52B46B00118C8C /* HeadingTests.swift */; };
@@ -77,19 +23,74 @@
 		215BABEF1C52B46B00118C8C /* ListableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE61C52B46B00118C8C /* ListableTests.swift */; };
 		215BABF01C52B46B00118C8C /* SpanLevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE71C52B46B00118C8C /* SpanLevelTests.swift */; };
 		215BABF11C52B46B00118C8C /* SpanLevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE71C52B46B00118C8C /* SpanLevelTests.swift */; };
-		215E6D711C7534CC00126FE9 /* Positionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2109989B1C62E268000C34B2 /* Positionable.swift */; };
-		21A9F0D01C7CFD01009B40A0 /* CanvasController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0CF1C7CFD01009B40A0 /* CanvasController.swift */; };
 		21A9F0D21C7CFD1C009B40A0 /* CanvasControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* CanvasControllerTests.swift */; };
 		21A9F0D31C7CFD1C009B40A0 /* CanvasControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* CanvasControllerTests.swift */; };
-		21A9F0D61C7D23D2009B40A0 /* CanvasController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0CF1C7CFD01009B40A0 /* CanvasController.swift */; };
-		21A9F0D81C7D3D0A009B40A0 /* Annotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D71C7D3D0A009B40A0 /* Annotatable.swift */; };
-		21A9F0D91C7D3D0A009B40A0 /* Annotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D71C7D3D0A009B40A0 /* Annotatable.swift */; };
-		21A9F0DB1C7D41B1009B40A0 /* ReturnCompletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0DA1C7D41B1009B40A0 /* ReturnCompletable.swift */; };
-		21A9F0DC1C7D41B1009B40A0 /* ReturnCompletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0DA1C7D41B1009B40A0 /* ReturnCompletable.swift */; };
-		21A9F0DE1C7D46D3009B40A0 /* SpanNodeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0DD1C7D46D3009B40A0 /* SpanNodeContainer.swift */; };
-		21A9F0DF1C7D46D3009B40A0 /* SpanNodeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0DD1C7D46D3009B40A0 /* SpanNodeContainer.swift */; };
 		21AB4EB01C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */; };
 		21AB4EB11C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */; };
+		21AD8CA81C8A4628000A53F8 /* Annotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C861C8A4628000A53F8 /* Annotatable.swift */; };
+		21AD8CA91C8A4628000A53F8 /* Attachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C871C8A4628000A53F8 /* Attachable.swift */; };
+		21AD8CAA1C8A4628000A53F8 /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C881C8A4628000A53F8 /* BlockNode.swift */; };
+		21AD8CAB1C8A4628000A53F8 /* Blockquote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C891C8A4628000A53F8 /* Blockquote.swift */; };
+		21AD8CAC1C8A4628000A53F8 /* CanvasController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8A1C8A4628000A53F8 /* CanvasController.swift */; };
+		21AD8CAD1C8A4628000A53F8 /* CGSize+CanvasNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8B1C8A4628000A53F8 /* CGSize+CanvasNative.swift */; };
+		21AD8CAE1C8A4628000A53F8 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8C1C8A4628000A53F8 /* ChecklistItem.swift */; };
+		21AD8CAF1C8A4628000A53F8 /* CodeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8D1C8A4628000A53F8 /* CodeBlock.swift */; };
+		21AD8CB01C8A4628000A53F8 /* CodeSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8E1C8A4628000A53F8 /* CodeSpan.swift */; };
+		21AD8CB11C8A4628000A53F8 /* DoubleEmphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8F1C8A4628000A53F8 /* DoubleEmphasis.swift */; };
+		21AD8CB21C8A4628000A53F8 /* Emphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C901C8A4628000A53F8 /* Emphasis.swift */; };
+		21AD8CB31C8A4628000A53F8 /* Foldable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C911C8A4628000A53F8 /* Foldable.swift */; };
+		21AD8CB41C8A4628000A53F8 /* Heading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C921C8A4628000A53F8 /* Heading.swift */; };
+		21AD8CB51C8A4628000A53F8 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C931C8A4628000A53F8 /* Image.swift */; };
+		21AD8CB61C8A4628000A53F8 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C941C8A4628000A53F8 /* Link.swift */; };
+		21AD8CB71C8A4628000A53F8 /* Listable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C951C8A4628000A53F8 /* Listable.swift */; };
+		21AD8CB81C8A4628000A53F8 /* NativePrefixable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C961C8A4628000A53F8 /* NativePrefixable.swift */; };
+		21AD8CB91C8A4628000A53F8 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C971C8A4628000A53F8 /* Node.swift */; };
+		21AD8CBA1C8A4628000A53F8 /* NodeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C981C8A4628000A53F8 /* NodeContainer.swift */; };
+		21AD8CBB1C8A4628000A53F8 /* NSRange+CanvasNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C991C8A4628000A53F8 /* NSRange+CanvasNative.swift */; };
+		21AD8CBC1C8A4628000A53F8 /* OrderedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9A1C8A4628000A53F8 /* OrderedListItem.swift */; };
+		21AD8CBD1C8A4628000A53F8 /* Paragraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9B1C8A4628000A53F8 /* Paragraph.swift */; };
+		21AD8CBE1C8A4628000A53F8 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9C1C8A4628000A53F8 /* Parser.swift */; };
+		21AD8CBF1C8A4628000A53F8 /* Positionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9D1C8A4628000A53F8 /* Positionable.swift */; };
+		21AD8CC01C8A4628000A53F8 /* ReturnCompletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9E1C8A4628000A53F8 /* ReturnCompletable.swift */; };
+		21AD8CC11C8A4628000A53F8 /* SpanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9F1C8A4628000A53F8 /* SpanNode.swift */; };
+		21AD8CC21C8A4628000A53F8 /* SpanNodeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA01C8A4628000A53F8 /* SpanNodeContainer.swift */; };
+		21AD8CC31C8A4628000A53F8 /* SpanNodeParseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA11C8A4628000A53F8 /* SpanNodeParseable.swift */; };
+		21AD8CC41C8A4628000A53F8 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA21C8A4628000A53F8 /* Text.swift */; };
+		21AD8CC51C8A4628000A53F8 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA31C8A4628000A53F8 /* Title.swift */; };
+		21AD8CC61C8A4628000A53F8 /* UnorderedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA41C8A4628000A53F8 /* UnorderedListItem.swift */; };
+		21AD8CC71C8A4628000A53F8 /* CanvasNative.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AD8CA61C8A4628000A53F8 /* CanvasNative.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21AD8CCB1C8A4642000A53F8 /* CanvasNative.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AD8CA61C8A4628000A53F8 /* CanvasNative.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21AD8CCC1C8A4649000A53F8 /* Annotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C861C8A4628000A53F8 /* Annotatable.swift */; };
+		21AD8CCD1C8A4649000A53F8 /* Attachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C871C8A4628000A53F8 /* Attachable.swift */; };
+		21AD8CCE1C8A4649000A53F8 /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C881C8A4628000A53F8 /* BlockNode.swift */; };
+		21AD8CCF1C8A4649000A53F8 /* Blockquote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C891C8A4628000A53F8 /* Blockquote.swift */; };
+		21AD8CD01C8A4649000A53F8 /* CanvasController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8A1C8A4628000A53F8 /* CanvasController.swift */; };
+		21AD8CD11C8A4649000A53F8 /* CGSize+CanvasNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8B1C8A4628000A53F8 /* CGSize+CanvasNative.swift */; };
+		21AD8CD21C8A4649000A53F8 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8C1C8A4628000A53F8 /* ChecklistItem.swift */; };
+		21AD8CD31C8A4649000A53F8 /* CodeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8D1C8A4628000A53F8 /* CodeBlock.swift */; };
+		21AD8CD41C8A4649000A53F8 /* CodeSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8E1C8A4628000A53F8 /* CodeSpan.swift */; };
+		21AD8CD51C8A4649000A53F8 /* DoubleEmphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8F1C8A4628000A53F8 /* DoubleEmphasis.swift */; };
+		21AD8CD61C8A4649000A53F8 /* Emphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C901C8A4628000A53F8 /* Emphasis.swift */; };
+		21AD8CD71C8A4649000A53F8 /* Foldable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C911C8A4628000A53F8 /* Foldable.swift */; };
+		21AD8CD81C8A4649000A53F8 /* Heading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C921C8A4628000A53F8 /* Heading.swift */; };
+		21AD8CD91C8A4649000A53F8 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C931C8A4628000A53F8 /* Image.swift */; };
+		21AD8CDA1C8A4649000A53F8 /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C941C8A4628000A53F8 /* Link.swift */; };
+		21AD8CDB1C8A4649000A53F8 /* Listable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C951C8A4628000A53F8 /* Listable.swift */; };
+		21AD8CDC1C8A4649000A53F8 /* NativePrefixable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C961C8A4628000A53F8 /* NativePrefixable.swift */; };
+		21AD8CDD1C8A4649000A53F8 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C971C8A4628000A53F8 /* Node.swift */; };
+		21AD8CDE1C8A4649000A53F8 /* NodeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C981C8A4628000A53F8 /* NodeContainer.swift */; };
+		21AD8CDF1C8A4649000A53F8 /* NSRange+CanvasNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C991C8A4628000A53F8 /* NSRange+CanvasNative.swift */; };
+		21AD8CE01C8A4649000A53F8 /* OrderedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9A1C8A4628000A53F8 /* OrderedListItem.swift */; };
+		21AD8CE11C8A4649000A53F8 /* Paragraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9B1C8A4628000A53F8 /* Paragraph.swift */; };
+		21AD8CE21C8A4649000A53F8 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9C1C8A4628000A53F8 /* Parser.swift */; };
+		21AD8CE31C8A4649000A53F8 /* Positionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9D1C8A4628000A53F8 /* Positionable.swift */; };
+		21AD8CE41C8A4649000A53F8 /* ReturnCompletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9E1C8A4628000A53F8 /* ReturnCompletable.swift */; };
+		21AD8CE51C8A4649000A53F8 /* SpanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9F1C8A4628000A53F8 /* SpanNode.swift */; };
+		21AD8CE61C8A4649000A53F8 /* SpanNodeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA01C8A4628000A53F8 /* SpanNodeContainer.swift */; };
+		21AD8CE71C8A4649000A53F8 /* SpanNodeParseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA11C8A4628000A53F8 /* SpanNodeParseable.swift */; };
+		21AD8CE81C8A4649000A53F8 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA21C8A4628000A53F8 /* Text.swift */; };
+		21AD8CE91C8A4649000A53F8 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA31C8A4628000A53F8 /* Title.swift */; };
+		21AD8CEA1C8A4649000A53F8 /* UnorderedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA41C8A4628000A53F8 /* UnorderedListItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,53 +111,53 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2109989B1C62E268000C34B2 /* Positionable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Positionable.swift; sourceTree = "<group>"; };
-		210C74371C7E782400FBB665 /* CGSize+CanvasNative.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+CanvasNative.swift"; sourceTree = "<group>"; };
 		210C743C1C7E7C6100FBB665 /* TestCanvasControllerControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestCanvasControllerControllerDelegate.swift; sourceTree = "<group>"; };
 		21341C8A1C85089400C9EF39 /* NodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
 		215BAB2D1C52B0C400118C8C /* CanvasNative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasNative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		215BAB301C52B0C400118C8C /* CanvasNative.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasNative.h; sourceTree = "<group>"; };
-		215BAB321C52B0C400118C8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		215BAB371C52B0C400118C8C /* CanvasNativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasNativeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		215BAB4C1C52B18B00118C8C /* CanvasNative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasNative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		215BAB551C52B18C00118C8C /* CanvasNativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasNativeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		215BAB901C52B28900118C8C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		215BAB951C52B32B00118C8C /* Attachable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachable.swift; sourceTree = "<group>"; };
-		215BAB961C52B32B00118C8C /* BlockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
-		215BAB971C52B32B00118C8C /* Blockquote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blockquote.swift; sourceTree = "<group>"; };
-		215BAB981C52B32B00118C8C /* ChecklistItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
-		215BAB991C52B32B00118C8C /* CodeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlock.swift; sourceTree = "<group>"; };
-		215BAB9A1C52B32B00118C8C /* CodeSpan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeSpan.swift; sourceTree = "<group>"; };
-		215BAB9B1C52B32B00118C8C /* DoubleEmphasis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleEmphasis.swift; sourceTree = "<group>"; };
-		215BAB9C1C52B32B00118C8C /* Emphasis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emphasis.swift; sourceTree = "<group>"; };
-		215BAB9D1C52B32B00118C8C /* Foldable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foldable.swift; sourceTree = "<group>"; };
-		215BAB9E1C52B32B00118C8C /* Heading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Heading.swift; sourceTree = "<group>"; };
-		215BAB9F1C52B32B00118C8C /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
-		215BABA01C52B32B00118C8C /* Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
-		215BABA11C52B32B00118C8C /* Listable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listable.swift; sourceTree = "<group>"; };
-		215BABA21C52B32B00118C8C /* NativePrefixable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativePrefixable.swift; sourceTree = "<group>"; };
-		215BABA31C52B32B00118C8C /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
-		215BABA41C52B32B00118C8C /* NodeContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeContainer.swift; sourceTree = "<group>"; };
-		215BABA51C52B32B00118C8C /* OrderedListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedListItem.swift; sourceTree = "<group>"; };
-		215BABA61C52B32B00118C8C /* Paragraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paragraph.swift; sourceTree = "<group>"; };
-		215BABA71C52B32B00118C8C /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
-		215BABA81C52B32B00118C8C /* SpanNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanNode.swift; sourceTree = "<group>"; };
-		215BABA91C52B32B00118C8C /* Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
-		215BABAA1C52B32B00118C8C /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
-		215BABAB1C52B32B00118C8C /* UnorderedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnorderedList.swift; sourceTree = "<group>"; };
-		215BABC61C52B3C500118C8C /* NSRange+CanvasNative.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+CanvasNative.swift"; sourceTree = "<group>"; };
-		215BABE01C52B44800118C8C /* SpanNodeParseable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanNodeParseable.swift; sourceTree = "<group>"; };
 		215BABE31C52B46B00118C8C /* BlockquoteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockquoteTests.swift; sourceTree = "<group>"; };
 		215BABE41C52B46B00118C8C /* HeadingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadingTests.swift; sourceTree = "<group>"; };
 		215BABE51C52B46B00118C8C /* ImageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTests.swift; sourceTree = "<group>"; };
 		215BABE61C52B46B00118C8C /* ListableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListableTests.swift; sourceTree = "<group>"; };
 		215BABE71C52B46B00118C8C /* SpanLevelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanLevelTests.swift; sourceTree = "<group>"; };
-		21A9F0CF1C7CFD01009B40A0 /* CanvasController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasController.swift; sourceTree = "<group>"; };
 		21A9F0D11C7CFD1C009B40A0 /* CanvasControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasControllerTests.swift; sourceTree = "<group>"; };
-		21A9F0D71C7D3D0A009B40A0 /* Annotatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotatable.swift; sourceTree = "<group>"; };
-		21A9F0DA1C7D41B1009B40A0 /* ReturnCompletable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnCompletable.swift; sourceTree = "<group>"; };
-		21A9F0DD1C7D46D3009B40A0 /* SpanNodeContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanNodeContainer.swift; sourceTree = "<group>"; };
 		21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+CanvasNativeTests.swift"; sourceTree = "<group>"; };
+		21AD8C861C8A4628000A53F8 /* Annotatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotatable.swift; sourceTree = "<group>"; };
+		21AD8C871C8A4628000A53F8 /* Attachable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachable.swift; sourceTree = "<group>"; };
+		21AD8C881C8A4628000A53F8 /* BlockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
+		21AD8C891C8A4628000A53F8 /* Blockquote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blockquote.swift; sourceTree = "<group>"; };
+		21AD8C8A1C8A4628000A53F8 /* CanvasController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasController.swift; sourceTree = "<group>"; };
+		21AD8C8B1C8A4628000A53F8 /* CGSize+CanvasNative.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+CanvasNative.swift"; sourceTree = "<group>"; };
+		21AD8C8C1C8A4628000A53F8 /* ChecklistItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
+		21AD8C8D1C8A4628000A53F8 /* CodeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlock.swift; sourceTree = "<group>"; };
+		21AD8C8E1C8A4628000A53F8 /* CodeSpan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeSpan.swift; sourceTree = "<group>"; };
+		21AD8C8F1C8A4628000A53F8 /* DoubleEmphasis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleEmphasis.swift; sourceTree = "<group>"; };
+		21AD8C901C8A4628000A53F8 /* Emphasis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emphasis.swift; sourceTree = "<group>"; };
+		21AD8C911C8A4628000A53F8 /* Foldable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foldable.swift; sourceTree = "<group>"; };
+		21AD8C921C8A4628000A53F8 /* Heading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Heading.swift; sourceTree = "<group>"; };
+		21AD8C931C8A4628000A53F8 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		21AD8C941C8A4628000A53F8 /* Link.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
+		21AD8C951C8A4628000A53F8 /* Listable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listable.swift; sourceTree = "<group>"; };
+		21AD8C961C8A4628000A53F8 /* NativePrefixable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativePrefixable.swift; sourceTree = "<group>"; };
+		21AD8C971C8A4628000A53F8 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		21AD8C981C8A4628000A53F8 /* NodeContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeContainer.swift; sourceTree = "<group>"; };
+		21AD8C991C8A4628000A53F8 /* NSRange+CanvasNative.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+CanvasNative.swift"; sourceTree = "<group>"; };
+		21AD8C9A1C8A4628000A53F8 /* OrderedListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedListItem.swift; sourceTree = "<group>"; };
+		21AD8C9B1C8A4628000A53F8 /* Paragraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Paragraph.swift; sourceTree = "<group>"; };
+		21AD8C9C1C8A4628000A53F8 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		21AD8C9D1C8A4628000A53F8 /* Positionable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Positionable.swift; sourceTree = "<group>"; };
+		21AD8C9E1C8A4628000A53F8 /* ReturnCompletable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnCompletable.swift; sourceTree = "<group>"; };
+		21AD8C9F1C8A4628000A53F8 /* SpanNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanNode.swift; sourceTree = "<group>"; };
+		21AD8CA01C8A4628000A53F8 /* SpanNodeContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanNodeContainer.swift; sourceTree = "<group>"; };
+		21AD8CA11C8A4628000A53F8 /* SpanNodeParseable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanNodeParseable.swift; sourceTree = "<group>"; };
+		21AD8CA21C8A4628000A53F8 /* Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		21AD8CA31C8A4628000A53F8 /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
+		21AD8CA41C8A4628000A53F8 /* UnorderedListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnorderedListItem.swift; sourceTree = "<group>"; };
+		21AD8CA61C8A4628000A53F8 /* CanvasNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasNative.h; sourceTree = "<group>"; };
+		21AD8CA71C8A4628000A53F8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21AD8CC91C8A4637000A53F8 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,15 +194,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		210C743A1C7E782A00FBB665 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				215BABC61C52B3C500118C8C /* NSRange+CanvasNative.swift */,
-				210C74371C7E782400FBB665 /* CGSize+CanvasNative.swift */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
 		210C743B1C7E7C5000FBB665 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,7 +206,8 @@
 		215BAB231C52B0C400118C8C = {
 			isa = PBXGroup;
 			children = (
-				215BAB2F1C52B0C400118C8C /* CanvasNative */,
+				21AD8C851C8A4628000A53F8 /* Sources */,
+				21AD8CA51C8A4628000A53F8 /* Support */,
 				215BAB8E1C52B28900118C8C /* Tests */,
 				215BAB2E1C52B0C400118C8C /* Products */,
 			);
@@ -232,21 +225,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		215BAB2F1C52B0C400118C8C /* CanvasNative */ = {
-			isa = PBXGroup;
-			children = (
-				215BAB301C52B0C400118C8C /* CanvasNative.h */,
-				215BABA71C52B32B00118C8C /* Parser.swift */,
-				21A9F0CF1C7CFD01009B40A0 /* CanvasController.swift */,
-				215BABC31C52B33A00118C8C /* Protocols */,
-				215BABC41C52B35100118C8C /* Block Level */,
-				215BABC51C52B35C00118C8C /* Span Level */,
-				210C743A1C7E782A00FBB665 /* Extensions */,
-				215BAB321C52B0C400118C8C /* Info.plist */,
-			);
-			path = CanvasNative;
-			sourceTree = "<group>";
-		};
 		215BAB8E1C52B28900118C8C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,57 +236,88 @@
 				215BABE71C52B46B00118C8C /* SpanLevelTests.swift */,
 				21341C8A1C85089400C9EF39 /* NodeTests.swift */,
 				210C743B1C7E7C5000FBB665 /* Helpers */,
-				215BAB901C52B28900118C8C /* Info.plist */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		215BABC31C52B33A00118C8C /* Protocols */ = {
+		21AD8C851C8A4628000A53F8 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				215BABA21C52B32B00118C8C /* NativePrefixable.swift */,
-				215BAB951C52B32B00118C8C /* Attachable.swift */,
-				21A9F0D71C7D3D0A009B40A0 /* Annotatable.swift */,
-				215BAB961C52B32B00118C8C /* BlockNode.swift */,
-				215BAB9D1C52B32B00118C8C /* Foldable.swift */,
-				215BABA11C52B32B00118C8C /* Listable.swift */,
-				215BABA31C52B32B00118C8C /* Node.swift */,
-				215BABA41C52B32B00118C8C /* NodeContainer.swift */,
-				2109989B1C62E268000C34B2 /* Positionable.swift */,
-				21A9F0DA1C7D41B1009B40A0 /* ReturnCompletable.swift */,
-				215BABA81C52B32B00118C8C /* SpanNode.swift */,
-				21A9F0DD1C7D46D3009B40A0 /* SpanNodeContainer.swift */,
-				215BABE01C52B44800118C8C /* SpanNodeParseable.swift */,
+				21AD8C9C1C8A4628000A53F8 /* Parser.swift */,
+				21AD8C8A1C8A4628000A53F8 /* CanvasController.swift */,
+				21AD8CED1C8A4698000A53F8 /* Protocols */,
+				21AD8CEB1C8A4674000A53F8 /* Block Level */,
+				21AD8CEC1C8A4685000A53F8 /* Span Level */,
+				21AD8CEE1C8A46A1000A53F8 /* Extensions */,
 			);
-			name = Protocols;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		215BABC41C52B35100118C8C /* Block Level */ = {
+		21AD8CA51C8A4628000A53F8 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				215BAB971C52B32B00118C8C /* Blockquote.swift */,
-				215BAB981C52B32B00118C8C /* ChecklistItem.swift */,
-				215BAB991C52B32B00118C8C /* CodeBlock.swift */,
-				215BAB9E1C52B32B00118C8C /* Heading.swift */,
-				215BAB9F1C52B32B00118C8C /* Image.swift */,
-				215BABA51C52B32B00118C8C /* OrderedListItem.swift */,
-				215BABA61C52B32B00118C8C /* Paragraph.swift */,
-				215BABAA1C52B32B00118C8C /* Title.swift */,
-				215BABAB1C52B32B00118C8C /* UnorderedList.swift */,
+				21AD8CA61C8A4628000A53F8 /* CanvasNative.h */,
+				21AD8CA71C8A4628000A53F8 /* Info.plist */,
+				21AD8CC91C8A4637000A53F8 /* Tests-Info.plist */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		21AD8CEB1C8A4674000A53F8 /* Block Level */ = {
+			isa = PBXGroup;
+			children = (
+				21AD8C891C8A4628000A53F8 /* Blockquote.swift */,
+				21AD8C8C1C8A4628000A53F8 /* ChecklistItem.swift */,
+				21AD8C8D1C8A4628000A53F8 /* CodeBlock.swift */,
+				21AD8C921C8A4628000A53F8 /* Heading.swift */,
+				21AD8C931C8A4628000A53F8 /* Image.swift */,
+				21AD8C9A1C8A4628000A53F8 /* OrderedListItem.swift */,
+				21AD8C9B1C8A4628000A53F8 /* Paragraph.swift */,
+				21AD8CA31C8A4628000A53F8 /* Title.swift */,
+				21AD8CA41C8A4628000A53F8 /* UnorderedListItem.swift */,
 			);
 			name = "Block Level";
 			sourceTree = "<group>";
 		};
-		215BABC51C52B35C00118C8C /* Span Level */ = {
+		21AD8CEC1C8A4685000A53F8 /* Span Level */ = {
 			isa = PBXGroup;
 			children = (
-				215BAB9A1C52B32B00118C8C /* CodeSpan.swift */,
-				215BAB9B1C52B32B00118C8C /* DoubleEmphasis.swift */,
-				215BAB9C1C52B32B00118C8C /* Emphasis.swift */,
-				215BABA01C52B32B00118C8C /* Link.swift */,
-				215BABA91C52B32B00118C8C /* Text.swift */,
+				21AD8C8E1C8A4628000A53F8 /* CodeSpan.swift */,
+				21AD8C8F1C8A4628000A53F8 /* DoubleEmphasis.swift */,
+				21AD8C901C8A4628000A53F8 /* Emphasis.swift */,
+				21AD8C941C8A4628000A53F8 /* Link.swift */,
+				21AD8CA21C8A4628000A53F8 /* Text.swift */,
 			);
 			name = "Span Level";
+			sourceTree = "<group>";
+		};
+		21AD8CED1C8A4698000A53F8 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				21AD8C861C8A4628000A53F8 /* Annotatable.swift */,
+				21AD8C871C8A4628000A53F8 /* Attachable.swift */,
+				21AD8C881C8A4628000A53F8 /* BlockNode.swift */,
+				21AD8C911C8A4628000A53F8 /* Foldable.swift */,
+				21AD8C951C8A4628000A53F8 /* Listable.swift */,
+				21AD8C961C8A4628000A53F8 /* NativePrefixable.swift */,
+				21AD8C971C8A4628000A53F8 /* Node.swift */,
+				21AD8C981C8A4628000A53F8 /* NodeContainer.swift */,
+				21AD8C9D1C8A4628000A53F8 /* Positionable.swift */,
+				21AD8C9E1C8A4628000A53F8 /* ReturnCompletable.swift */,
+				21AD8C9F1C8A4628000A53F8 /* SpanNode.swift */,
+				21AD8CA01C8A4628000A53F8 /* SpanNodeContainer.swift */,
+				21AD8CA11C8A4628000A53F8 /* SpanNodeParseable.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		21AD8CEE1C8A46A1000A53F8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				21AD8C8B1C8A4628000A53F8 /* CGSize+CanvasNative.swift */,
+				21AD8C991C8A4628000A53F8 /* NSRange+CanvasNative.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,7 +327,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				215BAB311C52B0C400118C8C /* CanvasNative.h in Headers */,
+				21AD8CC71C8A4628000A53F8 /* CanvasNative.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +335,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21AD8CCB1C8A4642000A53F8 /* CanvasNative.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,37 +527,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				215BABAE1C52B32B00118C8C /* Blockquote.swift in Sources */,
-				215BABB41C52B32B00118C8C /* Foldable.swift in Sources */,
-				215BABC11C52B32B00118C8C /* Title.swift in Sources */,
-				215BABB21C52B32B00118C8C /* DoubleEmphasis.swift in Sources */,
-				215BABB71C52B32B00118C8C /* Link.swift in Sources */,
-				21A9F0D81C7D3D0A009B40A0 /* Annotatable.swift in Sources */,
-				215BABAC1C52B32B00118C8C /* Attachable.swift in Sources */,
-				215BABBF1C52B32B00118C8C /* SpanNode.swift in Sources */,
-				215BABB51C52B32B00118C8C /* Heading.swift in Sources */,
-				2109989C1C62E268000C34B2 /* Positionable.swift in Sources */,
-				215BABBD1C52B32B00118C8C /* Paragraph.swift in Sources */,
-				215BABBA1C52B32B00118C8C /* Node.swift in Sources */,
-				215BABBB1C52B32B00118C8C /* NodeContainer.swift in Sources */,
-				215BABC01C52B32B00118C8C /* Text.swift in Sources */,
-				21A9F0D01C7CFD01009B40A0 /* CanvasController.swift in Sources */,
-				215BABBC1C52B32B00118C8C /* OrderedListItem.swift in Sources */,
-				215BABC71C52B3C500118C8C /* NSRange+CanvasNative.swift in Sources */,
-				21A9F0DE1C7D46D3009B40A0 /* SpanNodeContainer.swift in Sources */,
-				215BABB31C52B32B00118C8C /* Emphasis.swift in Sources */,
-				215BABB11C52B32B00118C8C /* CodeSpan.swift in Sources */,
-				21A9F0DB1C7D41B1009B40A0 /* ReturnCompletable.swift in Sources */,
-				215BABB81C52B32B00118C8C /* Listable.swift in Sources */,
-				215BABB01C52B32B00118C8C /* CodeBlock.swift in Sources */,
-				215BABB91C52B32B00118C8C /* NativePrefixable.swift in Sources */,
-				215BABBE1C52B32B00118C8C /* Parser.swift in Sources */,
-				215BABAD1C52B32B00118C8C /* BlockNode.swift in Sources */,
-				215BABB61C52B32B00118C8C /* Image.swift in Sources */,
-				215BABC21C52B32B00118C8C /* UnorderedList.swift in Sources */,
-				210C74381C7E782400FBB665 /* CGSize+CanvasNative.swift in Sources */,
-				215BABAF1C52B32B00118C8C /* ChecklistItem.swift in Sources */,
-				215BABE11C52B44800118C8C /* SpanNodeParseable.swift in Sources */,
+				21AD8CBA1C8A4628000A53F8 /* NodeContainer.swift in Sources */,
+				21AD8CAF1C8A4628000A53F8 /* CodeBlock.swift in Sources */,
+				21AD8CBD1C8A4628000A53F8 /* Paragraph.swift in Sources */,
+				21AD8CB21C8A4628000A53F8 /* Emphasis.swift in Sources */,
+				21AD8CAB1C8A4628000A53F8 /* Blockquote.swift in Sources */,
+				21AD8CB91C8A4628000A53F8 /* Node.swift in Sources */,
+				21AD8CBF1C8A4628000A53F8 /* Positionable.swift in Sources */,
+				21AD8CC21C8A4628000A53F8 /* SpanNodeContainer.swift in Sources */,
+				21AD8CBB1C8A4628000A53F8 /* NSRange+CanvasNative.swift in Sources */,
+				21AD8CAC1C8A4628000A53F8 /* CanvasController.swift in Sources */,
+				21AD8CC51C8A4628000A53F8 /* Title.swift in Sources */,
+				21AD8CAE1C8A4628000A53F8 /* ChecklistItem.swift in Sources */,
+				21AD8CAA1C8A4628000A53F8 /* BlockNode.swift in Sources */,
+				21AD8CB41C8A4628000A53F8 /* Heading.swift in Sources */,
+				21AD8CB51C8A4628000A53F8 /* Image.swift in Sources */,
+				21AD8CAD1C8A4628000A53F8 /* CGSize+CanvasNative.swift in Sources */,
+				21AD8CB71C8A4628000A53F8 /* Listable.swift in Sources */,
+				21AD8CC01C8A4628000A53F8 /* ReturnCompletable.swift in Sources */,
+				21AD8CB61C8A4628000A53F8 /* Link.swift in Sources */,
+				21AD8CBC1C8A4628000A53F8 /* OrderedListItem.swift in Sources */,
+				21AD8CB11C8A4628000A53F8 /* DoubleEmphasis.swift in Sources */,
+				21AD8CC41C8A4628000A53F8 /* Text.swift in Sources */,
+				21AD8CA91C8A4628000A53F8 /* Attachable.swift in Sources */,
+				21AD8CC31C8A4628000A53F8 /* SpanNodeParseable.swift in Sources */,
+				21AD8CB81C8A4628000A53F8 /* NativePrefixable.swift in Sources */,
+				21AD8CC61C8A4628000A53F8 /* UnorderedListItem.swift in Sources */,
+				21AD8CC11C8A4628000A53F8 /* SpanNode.swift in Sources */,
+				21AD8CA81C8A4628000A53F8 /* Annotatable.swift in Sources */,
+				21AD8CB31C8A4628000A53F8 /* Foldable.swift in Sources */,
+				21AD8CBE1C8A4628000A53F8 /* Parser.swift in Sources */,
+				21AD8CB01C8A4628000A53F8 /* CodeSpan.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,37 +581,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				215BABD71C52B42F00118C8C /* OrderedListItem.swift in Sources */,
-				215BABDD1C52B42F00118C8C /* Emphasis.swift in Sources */,
-				215BABCB1C52B42F00118C8C /* Attachable.swift in Sources */,
-				215BABCC1C52B42F00118C8C /* BlockNode.swift in Sources */,
-				215BABD21C52B42F00118C8C /* Blockquote.swift in Sources */,
-				21A9F0D91C7D3D0A009B40A0 /* Annotatable.swift in Sources */,
-				215BABCA1C52B42F00118C8C /* NativePrefixable.swift in Sources */,
-				215BABD61C52B42F00118C8C /* Image.swift in Sources */,
-				215BABD81C52B42F00118C8C /* Paragraph.swift in Sources */,
-				215E6D711C7534CC00126FE9 /* Positionable.swift in Sources */,
-				215BABD41C52B42F00118C8C /* CodeBlock.swift in Sources */,
-				215BABDC1C52B42F00118C8C /* DoubleEmphasis.swift in Sources */,
-				215BABDF1C52B42F00118C8C /* Text.swift in Sources */,
-				215BABCF1C52B42F00118C8C /* Node.swift in Sources */,
-				21A9F0D61C7D23D2009B40A0 /* CanvasController.swift in Sources */,
-				215BABD51C52B42F00118C8C /* Heading.swift in Sources */,
-				215BABDE1C52B42F00118C8C /* Link.swift in Sources */,
-				21A9F0DF1C7D46D3009B40A0 /* SpanNodeContainer.swift in Sources */,
-				215BABD91C52B42F00118C8C /* Title.swift in Sources */,
-				215BABC81C52B42F00118C8C /* Parser.swift in Sources */,
-				21A9F0DC1C7D41B1009B40A0 /* ReturnCompletable.swift in Sources */,
-				215BABD11C52B42F00118C8C /* SpanNode.swift in Sources */,
-				215BABD31C52B42F00118C8C /* ChecklistItem.swift in Sources */,
-				215BABDB1C52B42F00118C8C /* CodeSpan.swift in Sources */,
-				215BABCD1C52B42F00118C8C /* Foldable.swift in Sources */,
-				215BABDA1C52B42F00118C8C /* UnorderedList.swift in Sources */,
-				215BABC91C52B42F00118C8C /* NSRange+CanvasNative.swift in Sources */,
-				215BABD01C52B42F00118C8C /* NodeContainer.swift in Sources */,
-				210C74391C7E782400FBB665 /* CGSize+CanvasNative.swift in Sources */,
-				215BABCE1C52B42F00118C8C /* Listable.swift in Sources */,
-				215BABE21C52B44A00118C8C /* SpanNodeParseable.swift in Sources */,
+				21AD8CDE1C8A4649000A53F8 /* NodeContainer.swift in Sources */,
+				21AD8CD31C8A4649000A53F8 /* CodeBlock.swift in Sources */,
+				21AD8CE11C8A4649000A53F8 /* Paragraph.swift in Sources */,
+				21AD8CD61C8A4649000A53F8 /* Emphasis.swift in Sources */,
+				21AD8CCF1C8A4649000A53F8 /* Blockquote.swift in Sources */,
+				21AD8CDD1C8A4649000A53F8 /* Node.swift in Sources */,
+				21AD8CE31C8A4649000A53F8 /* Positionable.swift in Sources */,
+				21AD8CE61C8A4649000A53F8 /* SpanNodeContainer.swift in Sources */,
+				21AD8CDF1C8A4649000A53F8 /* NSRange+CanvasNative.swift in Sources */,
+				21AD8CD01C8A4649000A53F8 /* CanvasController.swift in Sources */,
+				21AD8CE91C8A4649000A53F8 /* Title.swift in Sources */,
+				21AD8CD21C8A4649000A53F8 /* ChecklistItem.swift in Sources */,
+				21AD8CCE1C8A4649000A53F8 /* BlockNode.swift in Sources */,
+				21AD8CD81C8A4649000A53F8 /* Heading.swift in Sources */,
+				21AD8CD91C8A4649000A53F8 /* Image.swift in Sources */,
+				21AD8CD11C8A4649000A53F8 /* CGSize+CanvasNative.swift in Sources */,
+				21AD8CDB1C8A4649000A53F8 /* Listable.swift in Sources */,
+				21AD8CE41C8A4649000A53F8 /* ReturnCompletable.swift in Sources */,
+				21AD8CDA1C8A4649000A53F8 /* Link.swift in Sources */,
+				21AD8CE01C8A4649000A53F8 /* OrderedListItem.swift in Sources */,
+				21AD8CD51C8A4649000A53F8 /* DoubleEmphasis.swift in Sources */,
+				21AD8CE81C8A4649000A53F8 /* Text.swift in Sources */,
+				21AD8CCD1C8A4649000A53F8 /* Attachable.swift in Sources */,
+				21AD8CE71C8A4649000A53F8 /* SpanNodeParseable.swift in Sources */,
+				21AD8CDC1C8A4649000A53F8 /* NativePrefixable.swift in Sources */,
+				21AD8CEA1C8A4649000A53F8 /* UnorderedListItem.swift in Sources */,
+				21AD8CE51C8A4649000A53F8 /* SpanNode.swift in Sources */,
+				21AD8CCC1C8A4649000A53F8 /* Annotatable.swift in Sources */,
+				21AD8CD71C8A4649000A53F8 /* Foldable.swift in Sources */,
+				21AD8CE21C8A4649000A53F8 /* Parser.swift in Sources */,
+				21AD8CD41C8A4649000A53F8 /* CodeSpan.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,7 +747,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CanvasNative/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvasnative;
@@ -756,7 +766,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CanvasNative/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvasnative;
@@ -768,7 +778,7 @@
 		215BAB451C52B0C400118C8C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = "Support/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasNativeTests;
 				PRODUCT_NAME = CanvasNativeTests;
@@ -778,7 +788,7 @@
 		215BAB461C52B0C400118C8C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = "Support/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasNativeTests;
 				PRODUCT_NAME = CanvasNativeTests;
@@ -796,7 +806,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = CanvasNative/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvasnative;
@@ -817,7 +827,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = CanvasNative/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvasnative;
@@ -832,7 +842,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = "Support/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasNativeTests;
@@ -846,7 +856,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = "Support/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasNativeTests;
