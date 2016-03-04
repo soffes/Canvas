@@ -1,2 +1,2 @@
 github "usecanvas/OperationTransport" "master"
-github "usecanvas/canvas-native-swift" "master"
+github "usecanvas/CanvasNative" "master"
