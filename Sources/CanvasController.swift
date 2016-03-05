@@ -9,11 +9,13 @@
 import Foundation
 
 public protocol CanvasControllerDelegate: class {
+	// After this message, `blocks` will be the new value
 	func canvasControllerWillUpdateNodes(canvasController: CanvasController)
 
-	// This will be called before all other messages
+	// This will be called before all other messages.
 	func canvasController(canvasController: CanvasController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String)
 
+	// The index will be relative to the blocks array before the change (similar to UITableView).
 	func canvasController(canvasController: CanvasController, didInsertBlock block: BlockNode, atIndex index: Int)
 
 	func canvasController(canvasController: CanvasController, didRemoveBlock block: BlockNode, atIndex index: Int)
@@ -96,7 +98,7 @@ public final class CanvasController {
 		text.replaceCharactersInRange(range, withString: string as String)
 
 		// Get the range of the replacement in the presentation string
-		let displayRange = presentationRange(blocks: blocks, backingRange: range)
+		let displayRange = presentationRange(backingRange: range, blocks: blocks)
 
 		// Reparse the invalid range of document
 		let invalidRange = parseRangeForRange(NSRange(location: range.location, length: string.length))
@@ -111,15 +113,19 @@ public final class CanvasController {
 		} else {
 			// Get the replacement string from the updated presentation string
 			let editRange = NSRange(location: range.location, length: string.length)
-			let displayTextRange = presentationRange(blocks: workingBlocks, backingRange: editRange)
+			let displayTextRange = presentationRange(backingRange: editRange, blocks: workingBlocks)
 			let displayString = presentationString(workingBlocks) as NSString
 			replacement = displayString.substringWithRange(displayTextRange) as String
 		}
+
+		// Update the blocks
+		blocks = workingBlocks
+
+		// Notify the delegate of a text change
 		delegate?.canvasController(self, didReplaceCharactersInPresentationStringInRange: displayRange, withString: replacement)
 
-		// Send the rest of the messages and update blocks
+		// Send the rest of the messages
 		messages.forEach(sendDelegateMessage)
-		blocks = workingBlocks
 
 		// Notify the delegate we're done
 		delegate?.canvasControllerDidUpdateNodes(self)
@@ -203,6 +209,41 @@ public final class CanvasController {
 
 	// MARK: - Range Calculations
 
+	public func presentationRange(backingRange backingRange: NSRange) -> NSRange {
+		return presentationRange(backingRange: backingRange, blocks: blocks)
+	}
+
+	private func presentationRange(backingRange backingRange: NSRange, blocks blocks: [BlockNode]) -> NSRange {
+		var presentationRange = backingRange
+
+		for block in blocks {
+			guard let range = (block as? NativePrefixable)?.nativePrefixRange else { continue }
+
+			if range.max < backingRange.location {
+				presentationRange.location -= range.length
+			} else if let intersection = backingRange.intersection(range) {
+				presentationRange.length -= intersection
+			}
+		}
+
+		return presentationRange
+	}
+
+	public func blockAt(presentationLocation presentationLocation: Int) -> BlockNode? {
+		for block in blocks {
+			var range = presentationRange(backingRange: block.visibleRange)
+
+			// Account for new line
+			range.length += 1
+
+			if range.contains(presentationLocation) {
+				return block
+			}
+		}
+
+		return nil
+	}
+
 	private func parseRangeForRange(range: NSRange) -> NSRange {
 		var invalidRange = range
 
@@ -225,22 +266,6 @@ public final class CanvasController {
 		}
 
 		return text.lineRangeForRange(invalidRange)
-	}
-
-	private func presentationRange(blocks blocks: [BlockNode], backingRange: NSRange) -> NSRange {
-		var presentationRange = backingRange
-
-		for block in blocks {
-			guard let range = (block as? NativePrefixable)?.nativePrefixRange else { continue }
-
-			if range.max < backingRange.location {
-				presentationRange.location -= range.length
-			} else if let intersection = backingRange.intersection(range) {
-				presentationRange.length -= intersection
-			}
-		}
-
-		return presentationRange
 	}
 
 
