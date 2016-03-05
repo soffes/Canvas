@@ -9,17 +9,17 @@
 import CanvasNative
 import UIKit
 
-struct LightTheme: Theme {
+public struct LightTheme: Theme {
 
 	// MARK: - Properties
 
-	let fontSize: CGFloat = 18
-	let backgroundColor = UIColor(white: 1, alpha: 1)
-	let foregroundColor = UIColor(white: 0.133, alpha: 1)
-	let placeholderColor = Color(red: 0.847, green: 0.847, blue: 0.863, alpha: 1)
-	var tintColor = Color(red: 0.004, green: 0.412, blue: 1, alpha: 1)
+	public let fontSize: CGFloat = 18
+	public let backgroundColor = UIColor(white: 1, alpha: 1)
+	public let foregroundColor = UIColor(white: 0.133, alpha: 1)
+	public let placeholderColor = Color(red: 0.847, green: 0.847, blue: 0.863, alpha: 1)
+	public var tintColor = Color(red: 0.004, green: 0.412, blue: 1, alpha: 1)
 
-	let lineHeightMultiple: CGFloat = 1.2
+	public let lineHeightMultiple: CGFloat = 1.2
 
 	private let smallParagraphSpacing: CGFloat
 	private let mediumGray = UIColor(red: 0.494, green: 0.494, blue: 0.510, alpha: 1)
@@ -31,7 +31,7 @@ struct LightTheme: Theme {
 
 	// MARK: - Initializers
 
-	init() {
+	public init() {
 		smallParagraphSpacing = fontSize * 0.1
 	}
 
@@ -44,7 +44,7 @@ struct LightTheme: Theme {
 		return paragraph
 	}
 
-	var baseAttributes: Attributes {
+	public var baseAttributes: Attributes {
 		return [
 			NSForegroundColorAttributeName: foregroundColor,
 			NSFontAttributeName: fontOfSize(fontSize),
@@ -52,55 +52,55 @@ struct LightTheme: Theme {
 		]
 	}
 
-	var foldingAttributes: Attributes {
+	public var foldingAttributes: Attributes {
 		return [
 			NSForegroundColorAttributeName: UIColor(red: 0.847, green: 0.847, blue: 0.863, alpha: 1)
 		]
 	}
 
-	var titleAttributes: Attributes {
+	public var titleAttributes: Attributes {
 		var attributes = baseAttributes
 		attributes[NSForegroundColorAttributeName] = UIColor.blackColor()
 		attributes[NSFontAttributeName] = fontOfSize(fontSize * 1.7, symbolicTraits: .TraitBold)
 		return attributes
 	}
 
-	func blockSpacing(node node: BlockNode, horizontalSizeClass: UserInterfaceSizeClass) -> BlockSpacing {
+	public func blockSpacing(block block: BlockNode, horizontalSizeClass: UserInterfaceSizeClass) -> BlockSpacing {
 		var spacing = BlockSpacing(marginBottom: fontSize * 1.5)
 
 		// Large left padding on title for icon
-		if node is Title {
+		if block is Title {
 			spacing.paddingLeft = 32
 			return spacing
 		}
 
 		// No margin if it's not at the bottom of a positionable list
-		if let node = node as? Positionable where !(node is Blockquote) {
-			if !node.position.isBottom {
+		if let block = block as? Positionable where !(block is Blockquote) {
+			if !block.position.isBottom {
 				spacing.marginBottom = 0
 			}
 		}
 
 		// Heading spacing
-		if node is Heading {
+		if block is Heading {
 			spacing.marginTop = spacing.marginBottom * 0.25
 			spacing.marginBottom /= 2
 			return spacing
 		}
 
 		// Indentation
-		if let listable = node as? Listable {
+		if let listable = block as? Listable {
 			spacing.paddingLeft = listIndentation * CGFloat(listable.indentation.rawValue + 1)
 			return spacing
 		}
 
-		if let node = node as? CodeBlock {
+		if let code = block as? CodeBlock {
 			// Top margin
-			if node.position.isTop {
+			if code.position.isTop {
 				spacing.marginTop += 4
 			}
 
-			if node.position.isBottom {
+			if code.position.isBottom {
 				spacing.marginBottom += 4
 			}
 
@@ -115,7 +115,7 @@ struct LightTheme: Theme {
 			return spacing
 		}
 
-		if node is Blockquote {
+		if block is Blockquote {
 			spacing.paddingLeft = listIndentation
 			return spacing
 		}
@@ -123,7 +123,7 @@ struct LightTheme: Theme {
 		return spacing
 	}
 
-	func attributesForNode(node: Node, currentFont: CanvasText.Font?) -> Attributes {
+	public func attributesForNode(node: Node, currentFont: CanvasText.Font?) -> Attributes {
 		if node is Title {
 			return titleAttributes
 		}

@@ -35,7 +35,7 @@ public protocol Theme {
 
 	func attributesForNode(node: Node, currentFont: Font?) -> Attributes
 
-	func blockSpacing(node node: BlockNode, horizontalSizeClass: UserInterfaceSizeClass) -> BlockSpacing
+	func blockSpacing(block block: BlockNode, horizontalSizeClass: UserInterfaceSizeClass) -> BlockSpacing
 }
 
 

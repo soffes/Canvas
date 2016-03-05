@@ -30,6 +30,8 @@ public class LayoutManager: NSLayoutManager {
 
 	// MARK: - Properties
 
+	weak var textController: TextController?
+
 	public weak var layoutDelegate: LayoutManagerDelegate?
 
 	public var unfoldedRange: NSRange? {
@@ -146,10 +148,13 @@ extension LayoutManager: NSLayoutManagerDelegate {
 			return action
 		}
 
-//		public func layoutManager(layoutManager: NSLayoutManager, paragraphSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
-//			let characterIndex = characterIndexForGlyphAtIndex(glyphIndex)
-//			guard let textStorage = textStorage as? CanvasTextStorage, node = textStorage.blockNodeAtDisplayLocation(characterIndex) else { return 0 }
-//			return textStorage.theme.blockSpacing(node: node, horizontalSizeClass: textStorage.horizontalSizeClass).marginBottom
-//		}
+		public func layoutManager(layoutManager: NSLayoutManager, paragraphSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
+			guard let textController = textController else { return 0 }
+
+			let characterIndex = characterIndexForGlyphAtIndex(glyphIndex)
+
+			guard let block = textController.canvasController.blockAt(presentationLocation: characterIndex) else { return 0 }
+			return textController.theme.blockSpacing(block: block, horizontalSizeClass: textController.horizontalSizeClass).marginBottom
+		}
 	}
 #endif

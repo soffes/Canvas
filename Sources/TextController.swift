@@ -45,14 +45,21 @@ public final class TextController {
 		}
 	}
 
+	public var horizontalSizeClass: UserInterfaceSizeClass = .Unspecified
+	public var theme: Theme
+
 	private var transportController: TransportController?
-	private let canvasController = CanvasController()
+	let canvasController = CanvasController()
 
 
 	// MARK: - Initializers
 
-	public init() {
+	public init(theme: Theme = LightTheme()) {
+		self.theme = theme
+
 		// Setup Text Kit
+		textContainer.textController = self
+		layoutManager.textController = self
 		layoutManager.addTextContainer(textContainer)
 		textStorage.addLayoutManager(layoutManager)
 
