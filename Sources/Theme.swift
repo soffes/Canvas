@@ -27,6 +27,7 @@ public protocol Theme {
 	var foldingAttributes: Attributes { get }
 	var baseAttributes: Attributes { get }
 	var titleAttributes: Attributes { get }
+	var bulletColor: Color { get }
 
 	var lineHeightMultiple: CGFloat { get }
 

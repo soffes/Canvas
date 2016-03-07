@@ -19,6 +19,10 @@ public protocol TextControllerSelectionDelegate: class {
 	func textControllerDidUpdateSelectedRange(textController: TextController)
 }
 
+public protocol TextControllerAnnotationDelegate: class {
+	func textController(textController: TextController, willAddAnnotation annotation: View)
+}
+
 
 public final class TextController {
 
@@ -26,6 +30,7 @@ public final class TextController {
 
 	public weak var connectionDelegate: TextControllerConnectionDelegate?
 	public weak var selectionDelegate: TextControllerSelectionDelegate?
+	public weak var annotationDelegate: TextControllerAnnotationDelegate?
 
 	public let textStorage = TextStorage()
 	public let layoutManager = LayoutManager()
@@ -49,6 +54,8 @@ public final class TextController {
 	public var theme: Theme
 
 	private var transportController: TransportController?
+	private let annotationsController: AnnotationsController
+
 	let canvasController = CanvasController()
 
 
@@ -56,6 +63,9 @@ public final class TextController {
 
 	public init(theme: Theme = LightTheme()) {
 		self.theme = theme
+
+		annotationsController = AnnotationsController(theme: theme)
+		annotationsController.delegate = self
 
 		// Setup Text Kit
 		textContainer.textController = self
@@ -134,22 +144,27 @@ extension TextController: CanvasControllerDelegate {
 	}
 
 	public func canvasController(canvasController: CanvasController, didInsertBlock block: BlockNode, atIndex index: Int) {
-		print("Insert  \(block.dynamicType) at \(index)")
+		annotationsController.insert(block: block, index: index)
 	}
 
 	public func canvasController(canvasController: CanvasController, didRemoveBlock block: BlockNode, atIndex index: Int) {
-		print("Remove  \(block.dynamicType) at \(index)")
+		annotationsController.remove(block: block, index: index)
 	}
 
 	public func canvasController(canvasController: CanvasController, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
-		print("Replace \(after.dynamicType) at \(index)")
+		annotationsController.replace(block: after, index: index)
 	}
 
 	public func canvasController(canvasController: CanvasController, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
-		print("Update  \(after.dynamicType) at \(index)")
+		annotationsController.update(block: after, index: index)
 	}
 
-	public func canvasControllerDidUpdateNodes(controller: CanvasController) {
-		print("\n---------------------------------------\n")
+	public func canvasControllerDidUpdateNodes(controller: CanvasController) {}
+}
+
+
+extension TextController: AnnotationsControllerDelegate {
+	func annotationsController(annotationsController: AnnotationsController, willAddAnnotation annotation: View) {
+		annotationDelegate?.textController(self, willAddAnnotation: annotation)
 	}
 }

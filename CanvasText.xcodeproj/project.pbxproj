@@ -24,6 +24,10 @@
 		21AD8D071C8A48EA000A53F8 /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8D061C8A48EA000A53F8 /* TextContainer.swift */; };
 		21AD8D091C8A491E000A53F8 /* LayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8D081C8A491E000A53F8 /* LayoutManager.swift */; };
 		21AD8D0C1C8A496B000A53F8 /* NSRange+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8D0B1C8A496B000A53F8 /* NSRange+CanvasText.swift */; };
+		21E1D9DE1C8DF54700283961 /* BulletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9DD1C8DF54700283961 /* BulletView.swift */; };
+		21E1D9E21C8DF65900283961 /* AnnotationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E11C8DF65900283961 /* AnnotationsController.swift */; };
+		21E1D9E61C8DF6B800283961 /* Themeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E51C8DF6B800283961 /* Themeable.swift */; };
+		21E1D9E81C8E212300283961 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E71C8E212300283961 /* View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +61,10 @@
 		21AD8D061C8A48EA000A53F8 /* TextContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextContainer.swift; sourceTree = "<group>"; };
 		21AD8D081C8A491E000A53F8 /* LayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutManager.swift; sourceTree = "<group>"; };
 		21AD8D0B1C8A496B000A53F8 /* NSRange+CanvasText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+CanvasText.swift"; sourceTree = "<group>"; };
+		21E1D9DD1C8DF54700283961 /* BulletView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletView.swift; sourceTree = "<group>"; };
+		21E1D9E11C8DF65900283961 /* AnnotationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationsController.swift; sourceTree = "<group>"; };
+		21E1D9E51C8DF6B800283961 /* Themeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Themeable.swift; sourceTree = "<group>"; };
+		21E1D9E71C8E212300283961 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +114,7 @@
 				21AD8C231C8A430B000A53F8 /* TextController.swift */,
 				21AD8CFE1C8A4869000A53F8 /* Text Kit */,
 				21AD8C841C8A45FC000A53F8 /* Theme */,
+				21E1D9D91C8DF52300283961 /* Annotations */,
 				21AD8D0A1C8A4960000A53F8 /* Extensions */,
 			);
 			path = Sources;
@@ -147,6 +156,7 @@
 				21AD8C221C8A430B000A53F8 /* LightTheme.swift */,
 				21AD8C241C8A430B000A53F8 /* Theme.swift */,
 				21AD8C251C8A430B000A53F8 /* UserInterfaceSizeClass.swift */,
+				21E1D9E51C8DF6B800283961 /* Themeable.swift */,
 			);
 			name = Theme;
 			sourceTree = "<group>";
@@ -168,6 +178,16 @@
 				21AD8D0B1C8A496B000A53F8 /* NSRange+CanvasText.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		21E1D9D91C8DF52300283961 /* Annotations */ = {
+			isa = PBXGroup;
+			children = (
+				21E1D9E11C8DF65900283961 /* AnnotationsController.swift */,
+				21E1D9DD1C8DF54700283961 /* BulletView.swift */,
+				21E1D9E71C8E212300283961 /* View.swift */,
+			);
+			name = Annotations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,13 +298,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21E1D9E81C8E212300283961 /* View.swift in Sources */,
 				21AD8D071C8A48EA000A53F8 /* TextContainer.swift in Sources */,
+				21E1D9E61C8DF6B800283961 /* Themeable.swift in Sources */,
 				21AD8D0C1C8A496B000A53F8 /* NSRange+CanvasText.swift in Sources */,
 				21AD8D001C8A487E000A53F8 /* TextStorage.swift in Sources */,
 				21AD8C291C8A430B000A53F8 /* BlockSpacing.swift in Sources */,
 				21AD8D021C8A4886000A53F8 /* BaseTextStorage.swift in Sources */,
+				21E1D9DE1C8DF54700283961 /* BulletView.swift in Sources */,
 				21AD8C311C8A430B000A53F8 /* UserInterfaceSizeClass.swift in Sources */,
 				21AD8C2F1C8A430B000A53F8 /* TextController.swift in Sources */,
+				21E1D9E21C8DF65900283961 /* AnnotationsController.swift in Sources */,
 				21AD8C2B1C8A430B000A53F8 /* Color.swift in Sources */,
 				21AD8C301C8A430B000A53F8 /* Theme.swift in Sources */,
 				21AD8C2E1C8A430B000A53F8 /* LightTheme.swift in Sources */,
