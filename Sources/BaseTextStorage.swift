@@ -36,6 +36,7 @@ public class BaseTextStorage: NSTextStorage {
 
 		let stringLength = (string as NSString).length
 		var editMask = NSTextStorageEditActions.EditedCharacters
+
 		if fixesAttributesLazily && stringLength > 0 {
 			editMask.insert(.EditedAttributes)
 		}

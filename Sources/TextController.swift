@@ -60,6 +60,7 @@ public final class TextController {
 		// Setup Text Kit
 		textContainer.textController = self
 		layoutManager.textController = self
+		textStorage.textController = self
 		layoutManager.addTextContainer(textContainer)
 		textStorage.addLayoutManager(layoutManager)
 
