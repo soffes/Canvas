@@ -65,6 +65,7 @@ public final class TextController {
 		self.theme = theme
 
 		annotationsController = AnnotationsController(theme: theme)
+		annotationsController.textController = self
 		annotationsController.delegate = self
 
 		// Setup Text Kit

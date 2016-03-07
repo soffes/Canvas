@@ -9,26 +9,12 @@
 import UIKit
 import CanvasNative
 
-final class BulletView: UIView {
-
-	// MARK: - Properties
-
-	var theme: Theme {
-		didSet {
-			setNeedsDisplay()
-		}
-	}
-
-	let unorderedList: UnorderedListItem
-
+final class BulletView: Annotation {
 
 	// MARK: - Initializers
 
-	init(theme: Theme, unorderedList: UnorderedListItem) {
-		self.theme = theme
-		self.unorderedList = unorderedList
-
-		super.init(frame: .zero)
+	override init(block: BlockNode, theme: Theme) {
+		super.init(block: block, theme: theme)
 
 		userInteractionEnabled = false
 		backgroundColor = .clearColor()
@@ -43,11 +29,11 @@ final class BulletView: UIView {
 	// MARK: - UIView
 
 	override func drawRect(rect: CGRect) {
-		guard let context = UIGraphicsGetCurrentContext() else { return }
+		guard let context = UIGraphicsGetCurrentContext(), block = block as? UnorderedListItem else { return }
 
 		theme.bulletColor.set()
 
-		if unorderedList.indentation.isFilled {
+		if block.indentation.isFilled {
 			CGContextFillEllipseInRect(context, bounds)
 		} else {
 			CGContextSetLineWidth(context, 2)

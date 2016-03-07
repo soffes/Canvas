@@ -17,12 +17,18 @@ final class AnnotationsController {
 
 	// MARK: - Properties
 
-	// TODO: Update theme on all annotations
-	var theme: Theme
+	var theme: Theme {
+		didSet {
+			for annotation in annotations {
+				annotation.theme = theme
+			}
+		}
+	}
 
 	weak var delegate: AnnotationsControllerDelegate?
+	weak var textController: TextController?
 
-	private var annotations = [View]()
+	private var annotations = [Annotation]()
 
 
 	// MARK: - Initializers
@@ -63,21 +69,31 @@ final class AnnotationsController {
 		}
 	}
 
-	func rectForAnnotation(annotation: View, index: Int) -> CGRect {
-		// TODO: Implement
-		return CGRect(x: 16, y: 64+16, width: 8, height: 8)
+	func rectForAnnotation(annotation: Annotation, index: Int) -> CGRect {
+		guard let textController = textController else { return .zero }
+
+		let presentationRange = textController.canvasController.presentationRange(backingRange: annotation.block.enclosingRange)
+		let glyphIndex = textController.layoutManager.glyphIndexForCharacterAtIndex(presentationRange.location)
+		var rect = textController.layoutManager.lineFragmentUsedRectForGlyphAtIndex(glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true)
+
+		let size = annotation.intrinsicContentSize()
+		rect.origin.y = rect.midY - (size.height / 2)
+		rect.origin.x -= size.width
+		rect.size = size
+
+		return rect
 	}
 
 
 	// MARK: - Private
 
-	private func annotationForBlock(block: BlockNode) -> View {
-		if let unorderedListItem = block as? UnorderedListItem {
-			return BulletView(theme: theme, unorderedList: unorderedListItem)
+	private func annotationForBlock(block: BlockNode) -> Annotation {
+		if block is UnorderedListItem {
+			return BulletView(block: block, theme: theme)
 		}
 
 		// TODO: Implement additional types
 
-		return View()
+		return Annotation(block: block, theme: theme)
 	}
 }

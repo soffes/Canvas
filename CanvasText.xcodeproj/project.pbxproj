@@ -27,7 +27,7 @@
 		21E1D9DE1C8DF54700283961 /* BulletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9DD1C8DF54700283961 /* BulletView.swift */; };
 		21E1D9E21C8DF65900283961 /* AnnotationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E11C8DF65900283961 /* AnnotationsController.swift */; };
 		21E1D9E61C8DF6B800283961 /* Themeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E51C8DF6B800283961 /* Themeable.swift */; };
-		21E1D9E81C8E212300283961 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E71C8E212300283961 /* View.swift */; };
+		21E1D9E81C8E212300283961 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E71C8E212300283961 /* Annotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +64,7 @@
 		21E1D9DD1C8DF54700283961 /* BulletView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletView.swift; sourceTree = "<group>"; };
 		21E1D9E11C8DF65900283961 /* AnnotationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationsController.swift; sourceTree = "<group>"; };
 		21E1D9E51C8DF6B800283961 /* Themeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Themeable.swift; sourceTree = "<group>"; };
-		21E1D9E71C8E212300283961 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		21E1D9E71C8E212300283961 /* Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,7 +185,7 @@
 			children = (
 				21E1D9E11C8DF65900283961 /* AnnotationsController.swift */,
 				21E1D9DD1C8DF54700283961 /* BulletView.swift */,
-				21E1D9E71C8E212300283961 /* View.swift */,
+				21E1D9E71C8E212300283961 /* Annotation.swift */,
 			);
 			name = Annotations;
 			sourceTree = "<group>";
@@ -298,7 +298,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21E1D9E81C8E212300283961 /* View.swift in Sources */,
+				21E1D9E81C8E212300283961 /* Annotation.swift in Sources */,
 				21AD8D071C8A48EA000A53F8 /* TextContainer.swift in Sources */,
 				21E1D9E61C8DF6B800283961 /* Themeable.swift in Sources */,
 				21AD8D0C1C8A496B000A53F8 /* NSRange+CanvasText.swift in Sources */,
