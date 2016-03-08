@@ -59,6 +59,11 @@ class ViewController: UIViewController {
 			canvasID: "59S18UczqJcw0rx1AsVaTD" //"3n2OAeAec2vDDQxmx6pijZ"
 		)
 	}
+
+	override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+		super.traitCollectionDidChange(previousTraitCollection)
+		textController.horizontalSizeClass = traitCollection.horizontalSizeClass
+	}
 }
 
 

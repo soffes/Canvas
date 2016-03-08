@@ -58,7 +58,7 @@ final class BulletView: Annotation {
 
 		return CGRect(
 			x: bounds.width - dimension - 6,
-			y: floor((bounds.height - dimension) / 2),
+			y: floor((bounds.height - dimension) / 2) + 1,
 			width: dimension,
 			height: dimension
 		)
