@@ -354,13 +354,13 @@ class CanvasControllerTests: XCTestCase {
 		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two"
 		XCTAssertEqual("Title\nOne\nTwo", delegate.presentationString)
 
-//		XCTAssert(controller.blockAt(presentationLocation: 0)! is Title)
-//		XCTAssert(controller.blockAt(presentationLocation: 1)! is Title)
-//		XCTAssert(controller.blockAt(presentationLocation: 6)! is Paragraph)
-//		XCTAssert(controller.blockAt(presentationLocation: 7)! is Paragraph)
-//		XCTAssert(controller.blockAt(presentationLocation: 9)! is Paragraph)
-		XCTAssert(controller.blockAt(presentationLocation: 10)! is Paragraph)
-//		XCTAssert(controller.blockAt(presentationLocation: 11)! is Blockquote)
+		XCTAssert(controller.blockAt(presentationLocation: 0)! is Title)
+		XCTAssert(controller.blockAt(presentationLocation: 1)! is Title)
+		XCTAssert(controller.blockAt(presentationLocation: 6)! is Paragraph)
+		XCTAssert(controller.blockAt(presentationLocation: 7)! is Paragraph)
+		XCTAssert(controller.blockAt(presentationLocation: 9)! is Paragraph)
+		XCTAssert(controller.blockAt(presentationLocation: 10)! is Blockquote)
+		XCTAssert(controller.blockAt(presentationLocation: 11)! is Blockquote)
 	}
 
 

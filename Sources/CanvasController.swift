@@ -239,7 +239,7 @@ public final class CanvasController {
 			}
 
 			// Account for trailing new line
-			range.length += 1
+//			range.length += 1
 
 			// If the range contains it or the location is equal to the max, it's this block.
 			if range.contains(presentationLocation) || range.max == presentationLocation {
