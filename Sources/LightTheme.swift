@@ -23,6 +23,10 @@ public struct LightTheme: Theme {
 		return placeholderColor
 	}
 
+	public var blockquoteBorderColor: Color {
+		return Color(red: 0.925, green: 0.925, blue: 0.929, alpha: 1)
+	}
+
 	public let lineHeightMultiple: CGFloat = 1.2
 
 	private let smallParagraphSpacing: CGFloat

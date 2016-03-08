@@ -106,6 +106,10 @@ final class AnnotationsController {
 			return CheckboxView(block: block, theme: theme)
 		}
 
+		if block is Blockquote {
+			return BlockquoteBorderView(block: block, theme: theme)
+		}
+
 		return nil
 	}
 }

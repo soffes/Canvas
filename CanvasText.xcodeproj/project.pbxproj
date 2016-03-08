@@ -26,6 +26,7 @@
 		21AD8D0C1C8A496B000A53F8 /* NSRange+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8D0B1C8A496B000A53F8 /* NSRange+CanvasText.swift */; };
 		21DF7A2F1C8F75C300C17A62 /* CheckboxBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A2E1C8F75C300C17A62 /* CheckboxBox.swift */; };
 		21DF7A311C8F75ED00C17A62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21DF7A301C8F75ED00C17A62 /* Assets.xcassets */; };
+		21DF7A391C8F914900C17A62 /* BlockquoteBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A381C8F914900C17A62 /* BlockquoteBorderView.swift */; };
 		21E1D9DE1C8DF54700283961 /* BulletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9DD1C8DF54700283961 /* BulletView.swift */; };
 		21E1D9E21C8DF65900283961 /* AnnotationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E11C8DF65900283961 /* AnnotationsController.swift */; };
 		21E1D9E61C8DF6B800283961 /* Themeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E51C8DF6B800283961 /* Themeable.swift */; };
@@ -65,6 +66,7 @@
 		21AD8D0B1C8A496B000A53F8 /* NSRange+CanvasText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+CanvasText.swift"; sourceTree = "<group>"; };
 		21DF7A2E1C8F75C300C17A62 /* CheckboxBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxBox.swift; sourceTree = "<group>"; };
 		21DF7A301C8F75ED00C17A62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		21DF7A381C8F914900C17A62 /* BlockquoteBorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockquoteBorderView.swift; sourceTree = "<group>"; };
 		21E1D9DD1C8DF54700283961 /* BulletView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletView.swift; sourceTree = "<group>"; };
 		21E1D9E11C8DF65900283961 /* AnnotationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationsController.swift; sourceTree = "<group>"; };
 		21E1D9E51C8DF6B800283961 /* Themeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Themeable.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				21E1D9E71C8E212300283961 /* Annotation.swift */,
 				21E1D9DD1C8DF54700283961 /* BulletView.swift */,
 				21DF7A2E1C8F75C300C17A62 /* CheckboxBox.swift */,
+				21DF7A381C8F914900C17A62 /* BlockquoteBorderView.swift */,
 			);
 			name = Annotations;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				21AD8C2B1C8A430B000A53F8 /* Color.swift in Sources */,
 				21AD8C301C8A430B000A53F8 /* Theme.swift in Sources */,
 				21AD8C2E1C8A430B000A53F8 /* LightTheme.swift in Sources */,
+				21DF7A391C8F914900C17A62 /* BlockquoteBorderView.swift in Sources */,
 				21AD8C2C1C8A430B000A53F8 /* Font.swift in Sources */,
 				21AD8D091C8A491E000A53F8 /* LayoutManager.swift in Sources */,
 			);
