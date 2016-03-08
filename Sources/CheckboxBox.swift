@@ -86,7 +86,8 @@ private final class CheckboxButton: UIButton {
 			tintColor.setFill()
 			UIBezierPath(roundedRect: rect, cornerRadius: 3).fill()
 
-			if let checkmark = UIImage(named: "checkmark") {
+			let bundle = NSBundle(forClass: CheckboxView.self)
+			if let checkmark = UIImage(named: "checkmark", inBundle: bundle, compatibleWithTraitCollection: nil) {
 				Color.whiteColor().setFill()
 				checkmark.drawAtPoint(CGPoint(x: rect.origin.x + (rect.width - checkmark.size.width) / 2, y: (bounds.height - checkmark.size.height) / 2))
 			}
