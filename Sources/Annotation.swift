@@ -18,6 +18,7 @@ public class Annotation: View {
 	public var block: Annotatable
 	public var theme: Theme {
 		didSet {
+			backgroundColor = theme.backgroundColor
 			setNeedsDisplay()
 		}
 	}
@@ -25,10 +26,13 @@ public class Annotation: View {
 
 	// MARK: - Initializers
 
-	public init(block: Annotatable, theme: Theme) {
+	public init?(block: Annotatable, theme: Theme) {
 		self.block = block
 		self.theme = theme
+
 		super.init(frame: .zero)
+
+		backgroundColor = theme.backgroundColor
 	}
 	
 	public required init?(coder aDecoder: NSCoder) {

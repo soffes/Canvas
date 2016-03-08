@@ -84,10 +84,12 @@ final class AnnotationsController {
 		// No idea why this is required *sigh*
 		rect.origin.y += 8
 
-		let size = annotation.intrinsicContentSize()
-//		rect.origin.x -= size.width
-		rect.origin.y += floor((rect.size.height - size.height) / 2)
-		rect.size = size
+		// Make the annotation the width of the indentation. It's up to the view to position itself inside this space.
+		// A future optimization could be making this as small as possible. Configuring it to do this was consfusing,
+		// so deferring for now.
+		rect.size.width = rect.origin.x
+		rect.origin.x = 0
+		rect = rect.integral
 
 		return rect
 	}
@@ -100,7 +102,10 @@ final class AnnotationsController {
 			return BulletView(block: block, theme: theme)
 		}
 
-		// TODO: Implement additional types
+		if block is ChecklistItem {
+			return CheckboxView(block: block, theme: theme)
+		}
+
 		return nil
 	}
 }

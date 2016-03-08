@@ -14,7 +14,7 @@
 
 import CanvasNative
 
-public class TextContainer: NSTextContainer {
+class TextContainer: NSTextContainer {
 
 	// MARK: - Properties
 
@@ -23,19 +23,19 @@ public class TextContainer: NSTextContainer {
 
 	// MARK: - Initializers
 
-	public override init(size: CGSize) {
+	override init(size: CGSize) {
 		super.init(size: size)
 		lineFragmentPadding = 0
 	}
 	
-	public required init?(coder: NSCoder) {
+	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 
 
 	// MARK: - NSTextContainer
 
-	public override func lineFragmentRectForProposedRect(proposedRect: CGRect, atIndex index: Int, writingDirection: NSWritingDirection, remainingRect: UnsafeMutablePointer<CGRect>) -> CGRect {
+	override func lineFragmentRectForProposedRect(proposedRect: CGRect, atIndex index: Int, writingDirection: NSWritingDirection, remainingRect: UnsafeMutablePointer<CGRect>) -> CGRect {
 		var rect = proposedRect
 
 		if let textController = textController, block = textController.canvasController.blockAt(presentationLocation: index) {

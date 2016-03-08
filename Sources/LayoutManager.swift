@@ -14,7 +14,7 @@
 
 import CanvasNative
 
-public protocol LayoutManagerDelegate: class {
+protocol LayoutManagerDelegate: class {
 	func layoutManagerDidInvalidateGlyphs(layoutManager: NSLayoutManager)
 	func layoutManager(layoutManager: NSLayoutManager, didCompleteLayoutForTextContainer textContainer: NSTextContainer)
 }
@@ -26,15 +26,15 @@ public protocol LayoutManagerDelegate: class {
 /// complete, they should use the `layoutDelegate` property and corresponding `LayoutManagerDelegate` protocol.
 ///
 /// Currently, folding is only supported on iOS although it should be trivial to add OS X support.
-public class LayoutManager: NSLayoutManager {
+class LayoutManager: NSLayoutManager {
 
 	// MARK: - Properties
 
 	weak var textController: TextController?
 
-	public weak var layoutDelegate: LayoutManagerDelegate?
+	weak var layoutDelegate: LayoutManagerDelegate?
 
-	public var unfoldedRange: NSRange? {
+	var unfoldedRange: NSRange? {
 		didSet {
 			if let unfoldedRange = unfoldedRange, oldValue = oldValue where !unfoldedRange.equals(oldValue) {
 				unfolding = true
@@ -52,7 +52,7 @@ public class LayoutManager: NSLayoutManager {
 		}
 	}
 
-	public var foldableRanges = [NSRange]() {
+	var foldableRanges = [NSRange]() {
 		didSet {
 //			if let textStorage = textStorage as? CanvasTextStorage {
 //				let indicies = foldableRanges.map { textStorage.backingRangeToDisplayRange($0).indices }
@@ -75,22 +75,17 @@ public class LayoutManager: NSLayoutManager {
 
 	// MARK: - Initializers
 
-	public override init() {
+	override init() {
 		super.init()
-		initialize()
+		delegate = self
 	}
-
-	public required init?(coder: NSCoder) {
-		super.init(coder: coder)
-		initialize()
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
 	}
 
 
 	// MARK: - Private
-
-	private func initialize() {
-		delegate = self
-	}
 
 	// TODO: We should intellegently invalidate glyphs are a given range instead of the entire document.
 	private func invalidateGlyphs() {
@@ -114,7 +109,7 @@ public class LayoutManager: NSLayoutManager {
 
 
 extension LayoutManager: NSLayoutManagerDelegate {
-	public func layoutManager(layoutManager: NSLayoutManager, didCompleteLayoutForTextContainer textContainer: NSTextContainer?, atEnd layoutFinishedFlag: Bool) {
+	func layoutManager(layoutManager: NSLayoutManager, didCompleteLayoutForTextContainer textContainer: NSTextContainer?, atEnd layoutFinishedFlag: Bool) {
 		guard let textContainer = textContainer else { return }
 		layoutDelegate?.layoutManager(self, didCompleteLayoutForTextContainer: textContainer)
 	}
@@ -123,7 +118,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
 
 #if os(iOS)
 	extension LayoutManager {
-		public func layoutManager(layoutManager: NSLayoutManager, shouldGenerateGlyphs glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSGlyphProperty>, characterIndexes: UnsafePointer<Int>, font: UIFont, forGlyphRange glyphRange: NSRange) -> Int {
+		func layoutManager(layoutManager: NSLayoutManager, shouldGenerateGlyphs glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSGlyphProperty>, characterIndexes: UnsafePointer<Int>, font: UIFont, forGlyphRange glyphRange: NSRange) -> Int {
 			let properties = UnsafeMutablePointer<NSGlyphProperty>(props)
 
 			for i in 0..<glyphRange.length {
@@ -138,7 +133,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
 			return glyphRange.length
 		}
 
-		public func layoutManager(layoutManager: NSLayoutManager, shouldUseAction action: NSControlCharacterAction, forControlCharacterAtIndex characterIndex: Int) -> NSControlCharacterAction {
+		func layoutManager(layoutManager: NSLayoutManager, shouldUseAction action: NSControlCharacterAction, forControlCharacterAtIndex characterIndex: Int) -> NSControlCharacterAction {
 			// Don't advance if it's a control character we changed
 			if foldedIndices.contains(characterIndex) {
 				return .ZeroAdvancement
@@ -148,12 +143,12 @@ extension LayoutManager: NSLayoutManagerDelegate {
 			return action
 		}
 
-		public func layoutManager(layoutManager: NSLayoutManager, paragraphSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
+		func layoutManager(layoutManager: NSLayoutManager, paragraphSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
 			guard let textController = textController else { return 0 }
 
 			let characterIndex = characterIndexForGlyphAtIndex(glyphIndex)
-
 			guard let block = textController.canvasController.blockAt(presentationLocation: characterIndex) else { return 0 }
+
 			return textController.theme.blockSpacing(block: block, horizontalSizeClass: textController.horizontalSizeClass).marginBottom
 		}
 	}

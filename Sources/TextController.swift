@@ -32,9 +32,9 @@ public final class TextController {
 	public weak var selectionDelegate: TextControllerSelectionDelegate?
 	public weak var annotationDelegate: TextControllerAnnotationDelegate?
 
-	public let textStorage = TextStorage()
-	public let layoutManager = LayoutManager()
-	public let textContainer = TextContainer()
+	public let textStorage: NSTextStorage
+	public let layoutManager: NSLayoutManager
+	public let textContainer: NSTextContainer
 
 	public var presentationString: String {
 		return textStorage.string
@@ -64,11 +64,20 @@ public final class TextController {
 	public init(theme: Theme = LightTheme()) {
 		self.theme = theme
 
+		let textStorage = TextStorage()
+		self.textStorage = textStorage
+
+		let layoutManager = LayoutManager()
+		self.layoutManager = layoutManager
+
+		let textContainer = TextContainer()
+		self.textContainer = textContainer
+
 		annotationsController = AnnotationsController(theme: theme)
 		annotationsController.textController = self
 		annotationsController.delegate = self
 
-		// Setup Text Kit
+		// Configure Text Kit
 		textContainer.textController = self
 		layoutManager.textController = self
 		textStorage.textController = self
