@@ -6,4 +6,4 @@
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
-public protocol Annotatable {}
+public protocol Annotatable: BlockNode {}
