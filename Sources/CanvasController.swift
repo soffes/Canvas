@@ -213,13 +213,13 @@ public final class CanvasController {
 		return presentationRange(backingRange: backingRange, blocks: blocks)
 	}
 
-	private func presentationRange(backingRange backingRange: NSRange, blocks blocks: [BlockNode]) -> NSRange {
+	private func presentationRange(backingRange backingRange: NSRange, blocks: [BlockNode]) -> NSRange {
 		var presentationRange = backingRange
 
 		for block in blocks {
 			guard let range = (block as? NativePrefixable)?.nativePrefixRange else { continue }
 
-			if range.max < backingRange.location {
+			if range.max <= backingRange.location {
 				presentationRange.location -= range.length
 			} else if let intersection = backingRange.intersection(range) {
 				presentationRange.length -= intersection
@@ -233,10 +233,16 @@ public final class CanvasController {
 		for block in blocks {
 			var range = presentationRange(backingRange: block.visibleRange)
 
-			// Account for new line
+			// We passed it.
+			if range.location > presentationLocation {
+				break
+			}
+
+			// Account for trailing new line
 			range.length += 1
 
-			if range.contains(presentationLocation) {
+			// If the range contains it or the location is equal to the max, it's this block.
+			if range.contains(presentationLocation) || range.max == presentationLocation {
 				return block
 			}
 		}
