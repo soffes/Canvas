@@ -20,7 +20,7 @@ final class AnnotationsController {
 	var theme: Theme {
 		didSet {
 			for annotation in annotations {
-				annotation.theme = theme
+				annotation?.theme = theme
 			}
 		}
 	}
@@ -28,7 +28,7 @@ final class AnnotationsController {
 	weak var delegate: AnnotationsControllerDelegate?
 	weak var textController: TextController?
 
-	private var annotations = [Annotation]()
+	private var annotations = [Annotation?]()
 
 
 	// MARK: - Initializers
@@ -41,7 +41,11 @@ final class AnnotationsController {
 	// MARK: - Manipulating
 
 	func insert(block block: BlockNode, index: Int) {
-		let annotation = annotationForBlock(block)
+		guard let block = block as? Annotatable, annotation = annotationForBlock(block) else {
+			annotations.insert(nil, atIndex: index)
+			return
+		}
+
 		annotation.frame = rectForAnnotation(annotation, index: index)
 		annotations.insert(annotation, atIndex: index)
 		delegate?.annotationsController(self, willAddAnnotation: annotation)
@@ -56,7 +60,7 @@ final class AnnotationsController {
 	}
 
 	func update(block block: BlockNode, index: Int) {
-		let annotation = annotations[index]
+		guard let annotation = annotations[index] else { return }
 		annotation.frame = rectForAnnotation(annotation, index: index)
 	}
 
@@ -65,6 +69,7 @@ final class AnnotationsController {
 
 	func layoutAnnotations() {
 		for (index, annotation) in annotations.enumerate() {
+			guard let annotation = annotation else { continue }
 			annotation.frame = rectForAnnotation(annotation, index: index)
 		}
 	}
@@ -76,9 +81,12 @@ final class AnnotationsController {
 		let glyphIndex = textController.layoutManager.glyphIndexForCharacterAtIndex(presentationRange.location)
 		var rect = textController.layoutManager.lineFragmentUsedRectForGlyphAtIndex(glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true)
 
+		// No idea why this is required *sigh*
+		rect.origin.y += 8
+
 		let size = annotation.intrinsicContentSize()
-		rect.origin.y = rect.midY - (size.height / 2)
-		rect.origin.x -= size.width
+//		rect.origin.x -= size.width
+		rect.origin.y += floor((rect.size.height - size.height) / 2)
 		rect.size = size
 
 		return rect
@@ -87,13 +95,12 @@ final class AnnotationsController {
 
 	// MARK: - Private
 
-	private func annotationForBlock(block: BlockNode) -> Annotation {
+	private func annotationForBlock(block: Annotatable) -> Annotation? {
 		if block is UnorderedListItem {
 			return BulletView(block: block, theme: theme)
 		}
 
 		// TODO: Implement additional types
-
-		return Annotation(block: block, theme: theme)
+		return nil
 	}
 }

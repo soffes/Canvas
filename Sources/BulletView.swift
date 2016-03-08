@@ -13,7 +13,7 @@ final class BulletView: Annotation {
 
 	// MARK: - Initializers
 
-	override init(block: BlockNode, theme: Theme) {
+	override init(block: Annotatable, theme: Theme) {
 		super.init(block: block, theme: theme)
 
 		userInteractionEnabled = false

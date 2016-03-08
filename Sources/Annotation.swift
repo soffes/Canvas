@@ -15,7 +15,7 @@ public class Annotation: View {
 
 	// MARK: - Properties
 
-	public var block: BlockNode
+	public var block: Annotatable
 	public var theme: Theme {
 		didSet {
 			setNeedsDisplay()
@@ -25,7 +25,7 @@ public class Annotation: View {
 
 	// MARK: - Initializers
 
-	public init(block: BlockNode, theme: Theme) {
+	public init(block: Annotatable, theme: Theme) {
 		self.block = block
 		self.theme = theme
 		super.init(frame: .zero)
