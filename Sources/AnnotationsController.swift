@@ -52,6 +52,7 @@ final class AnnotationsController {
 	}
 
 	func remove(block block: BlockNode, index: Int) {
+		annotations[index]?.view.removeFromSuperview()
 		annotations.removeAtIndex(index)
 	}
 
