@@ -9,48 +9,15 @@
 import UIKit
 import CanvasNative
 
-final class CheckboxView: Annotation {
+final class CheckboxView: UIButton, Annotation {
 
 	// MARK: - Properties
 
-	private let button: CheckboxButton
+	private let checklistItem: ChecklistItem
 
-	override var theme: Theme {
-		didSet {
-			button.theme = theme
-		}
+	var block: Annotatable {
+		return checklistItem
 	}
-
-
-	// MARK: - Initializers
-
-	override init?(block: Annotatable, theme: Theme) {
-		guard let checklistItem = block as? ChecklistItem else { return nil }
-		button = CheckboxButton(checklist: checklistItem, theme: theme)
-
-		super.init(block: block, theme: theme)
-
-		addSubview(button)
-	}
-
-	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-
-
-	// MARK: - UIView
-
-	override func layoutSubviews() {
-		button.frame = bounds
-	}
-}
-
-
-private final class CheckboxButton: UIButton {
-
-	// MARK: - Properties
-
-	let checklist: ChecklistItem
 
 	var theme: Theme {
 		didSet {
@@ -62,8 +29,9 @@ private final class CheckboxButton: UIButton {
 
 	// MARK: - Initializers
 
-	init(checklist: ChecklistItem, theme: Theme) {
-		self.checklist = checklist
+	init?(block: Annotatable, theme: Theme) {
+		guard let checklistItem = block as? ChecklistItem else { return nil }
+		self.checklistItem = checklistItem
 		self.theme = theme
 
 		super.init(frame: .zero)
@@ -82,7 +50,7 @@ private final class CheckboxButton: UIButton {
 	override func drawRect(rect: CGRect) {
 		let rect = checkboxRectForBounds(bounds)
 
-		if checklist.completion == .Complete {
+		if checklistItem.completion == .Complete {
 			tintColor.setFill()
 			UIBezierPath(roundedRect: rect, cornerRadius: 3).fill()
 

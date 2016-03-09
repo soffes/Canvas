@@ -9,23 +9,36 @@
 import UIKit
 import CanvasNative
 
-final class BlockquoteBorderView: Annotation {
+final class BlockquoteBorderView: View, Annotation {
 
 	// MARK: - Private
 
-	let blockquote: Blockquote
+	private let blockquote: Blockquote
+
+	var block: Annotatable {
+		return blockquote
+	}
+
+	var theme: Theme {
+		didSet {
+			backgroundColor = theme.backgroundColor
+			setNeedsDisplay()
+		}
+	}
 
 
 	// MARK: - Initializers
 
-	override init?(block: Annotatable, theme: Theme) {
+	init?(block: Annotatable, theme: Theme) {
 		guard let blockquote = block as? Blockquote else { return nil }
 		self.blockquote = blockquote
+		self.theme = theme
 
-		super.init(block: block, theme: theme)
+		super.init(frame: .zero)
 
 		userInteractionEnabled = false
 		contentMode = .Redraw
+		backgroundColor = theme.backgroundColor
 	}
 
 	required init?(coder aDecoder: NSCoder) {

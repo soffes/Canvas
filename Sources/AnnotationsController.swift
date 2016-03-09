@@ -46,9 +46,9 @@ final class AnnotationsController {
 			return
 		}
 
-		annotation.frame = rectForAnnotation(annotation, index: index)
+		annotation.view.frame = rectForAnnotation(annotation, index: index)
 		annotations.insert(annotation, atIndex: index)
-		delegate?.annotationsController(self, willAddAnnotation: annotation)
+		delegate?.annotationsController(self, willAddAnnotation: annotation.view)
 	}
 
 	func remove(block block: BlockNode, index: Int) {
@@ -61,7 +61,7 @@ final class AnnotationsController {
 
 	func update(block block: BlockNode, index: Int) {
 		guard let annotation = annotations[index] else { return }
-		annotation.frame = rectForAnnotation(annotation, index: index)
+		annotation.view.frame = rectForAnnotation(annotation, index: index)
 	}
 
 
@@ -70,7 +70,7 @@ final class AnnotationsController {
 	func layoutAnnotations() {
 		for (index, annotation) in annotations.enumerate() {
 			guard let annotation = annotation else { continue }
-			annotation.frame = rectForAnnotation(annotation, index: index)
+			annotation.view.frame = rectForAnnotation(annotation, index: index)
 		}
 	}
 
@@ -98,18 +98,6 @@ final class AnnotationsController {
 	// MARK: - Private
 
 	private func annotationForBlock(block: Annotatable) -> Annotation? {
-		if block is UnorderedListItem {
-			return BulletView(block: block, theme: theme)
-		}
-
-		if block is ChecklistItem {
-			return CheckboxView(block: block, theme: theme)
-		}
-
-		if block is Blockquote {
-			return BlockquoteBorderView(block: block, theme: theme)
-		}
-
-		return nil
+		return block.annotation(theme: theme)
 	}
 }

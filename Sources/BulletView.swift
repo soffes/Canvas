@@ -9,23 +9,36 @@
 import UIKit
 import CanvasNative
 
-final class BulletView: Annotation {
+final class BulletView: View, Annotation {
 
 	// MARK: - Private
 
-	let unorderedListItem: UnorderedListItem
+	var block: Annotatable {
+		return unorderedListItem
+	}
+
+	var theme: Theme {
+		didSet {
+			backgroundColor = theme.backgroundColor
+			setNeedsDisplay()
+		}
+	}
+
+	private let unorderedListItem: UnorderedListItem
 
 
 	// MARK: - Initializers
 
-	override init?(block: Annotatable, theme: Theme) {
+	init?(block: Annotatable, theme: Theme) {
 		guard let unorderedListItem = block as? UnorderedListItem else { return nil }
 		self.unorderedListItem = unorderedListItem
+		self.theme = theme
 
-		super.init(block: block, theme: theme)
+		super.init(frame: .zero)
 
 		userInteractionEnabled = false
 		contentMode = .Redraw
+		backgroundColor = theme.backgroundColor
 	}
 
 	required init?(coder aDecoder: NSCoder) {

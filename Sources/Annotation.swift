@@ -11,31 +11,17 @@ import CanvasNative
 
 public typealias View = UIView
 
-public class Annotation: View {
+public protocol Annotation: class {
+	var block: Annotatable { get }
+	var theme: Theme { get set }
+	var view: View { get }
 
-	// MARK: - Properties
-
-	public var block: Annotatable
-	public var theme: Theme {
-		didSet {
-			backgroundColor = theme.backgroundColor
-			setNeedsDisplay()
-		}
-	}
+	init?(block: Annotatable, theme: Theme)
+}
 
 
-	// MARK: - Initializers
-
-	public init?(block: Annotatable, theme: Theme) {
-		self.block = block
-		self.theme = theme
-
-		super.init(frame: .zero)
-
-		backgroundColor = theme.backgroundColor
-	}
-	
-	public required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
+extension Annotation where Self: View {
+	public var view: View {
+		return self
 	}
 }
