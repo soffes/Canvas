@@ -77,7 +77,7 @@ public struct LightTheme: Theme {
 
 		// Large left padding on title for icon
 		if block is Title {
-			spacing.paddingLeft = 32
+//			spacing.paddingLeft = 32
 			return spacing
 		}
 

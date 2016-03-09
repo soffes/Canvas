@@ -20,6 +20,8 @@ public class TextStorage: BaseTextStorage {
 	public override func replaceCharactersInRange(range: NSRange, withString string: String) {
 		super.replaceCharactersInRange(range, withString: string)
 
+		guard !string.isEmpty else { return }
+
 		guard let theme = textController?.theme else { return }
 		let attributes = [
 			NSFontAttributeName: theme.fontOfSize(theme.fontSize),
