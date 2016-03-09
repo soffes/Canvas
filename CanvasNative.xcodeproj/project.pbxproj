@@ -27,7 +27,6 @@
 		21A9F0D31C7CFD1C009B40A0 /* CanvasControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* CanvasControllerTests.swift */; };
 		21AB4EB01C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */; };
 		21AB4EB11C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */; };
-		21AD8CA81C8A4628000A53F8 /* Annotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C861C8A4628000A53F8 /* Annotatable.swift */; };
 		21AD8CA91C8A4628000A53F8 /* Attachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C871C8A4628000A53F8 /* Attachable.swift */; };
 		21AD8CAA1C8A4628000A53F8 /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C881C8A4628000A53F8 /* BlockNode.swift */; };
 		21AD8CAB1C8A4628000A53F8 /* Blockquote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C891C8A4628000A53F8 /* Blockquote.swift */; };
@@ -60,7 +59,6 @@
 		21AD8CC61C8A4628000A53F8 /* UnorderedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA41C8A4628000A53F8 /* UnorderedListItem.swift */; };
 		21AD8CC71C8A4628000A53F8 /* CanvasNative.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AD8CA61C8A4628000A53F8 /* CanvasNative.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21AD8CCB1C8A4642000A53F8 /* CanvasNative.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AD8CA61C8A4628000A53F8 /* CanvasNative.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		21AD8CCC1C8A4649000A53F8 /* Annotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C861C8A4628000A53F8 /* Annotatable.swift */; };
 		21AD8CCD1C8A4649000A53F8 /* Attachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C871C8A4628000A53F8 /* Attachable.swift */; };
 		21AD8CCE1C8A4649000A53F8 /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C881C8A4628000A53F8 /* BlockNode.swift */; };
 		21AD8CCF1C8A4649000A53F8 /* Blockquote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C891C8A4628000A53F8 /* Blockquote.swift */; };
@@ -91,6 +89,8 @@
 		21AD8CE81C8A4649000A53F8 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA21C8A4628000A53F8 /* Text.swift */; };
 		21AD8CE91C8A4649000A53F8 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA31C8A4628000A53F8 /* Title.swift */; };
 		21AD8CEA1C8A4649000A53F8 /* UnorderedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA41C8A4628000A53F8 /* UnorderedListItem.swift */; };
+		21DF7A471C8FA1AF00C17A62 /* CanvasControllerTests+Calculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* CanvasControllerTests+Calculations.swift */; };
+		21DF7A481C8FA1AF00C17A62 /* CanvasControllerTests+Calculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* CanvasControllerTests+Calculations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,7 +124,6 @@
 		215BABE71C52B46B00118C8C /* SpanLevelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanLevelTests.swift; sourceTree = "<group>"; };
 		21A9F0D11C7CFD1C009B40A0 /* CanvasControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasControllerTests.swift; sourceTree = "<group>"; };
 		21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+CanvasNativeTests.swift"; sourceTree = "<group>"; };
-		21AD8C861C8A4628000A53F8 /* Annotatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotatable.swift; sourceTree = "<group>"; };
 		21AD8C871C8A4628000A53F8 /* Attachable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachable.swift; sourceTree = "<group>"; };
 		21AD8C881C8A4628000A53F8 /* BlockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
 		21AD8C891C8A4628000A53F8 /* Blockquote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blockquote.swift; sourceTree = "<group>"; };
@@ -158,6 +157,7 @@
 		21AD8CA61C8A4628000A53F8 /* CanvasNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasNative.h; sourceTree = "<group>"; };
 		21AD8CA71C8A4628000A53F8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21AD8CC91C8A4637000A53F8 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		21DF7A461C8FA1AF00C17A62 /* CanvasControllerTests+Calculations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasControllerTests+Calculations.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				21A9F0D11C7CFD1C009B40A0 /* CanvasControllerTests.swift */,
+				21DF7A461C8FA1AF00C17A62 /* CanvasControllerTests+Calculations.swift */,
 				215BABE31C52B46B00118C8C /* BlockquoteTests.swift */,
 				215BABE41C52B46B00118C8C /* HeadingTests.swift */,
 				215BABE51C52B46B00118C8C /* ImageTests.swift */,
@@ -294,7 +295,6 @@
 		21AD8CED1C8A4698000A53F8 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				21AD8C861C8A4628000A53F8 /* Annotatable.swift */,
 				21AD8C871C8A4628000A53F8 /* Attachable.swift */,
 				21AD8C881C8A4628000A53F8 /* BlockNode.swift */,
 				21AD8C911C8A4628000A53F8 /* Foldable.swift */,
@@ -554,7 +554,6 @@
 				21AD8CB81C8A4628000A53F8 /* NativePrefixable.swift in Sources */,
 				21AD8CC61C8A4628000A53F8 /* UnorderedListItem.swift in Sources */,
 				21AD8CC11C8A4628000A53F8 /* SpanNode.swift in Sources */,
-				21AD8CA81C8A4628000A53F8 /* Annotatable.swift in Sources */,
 				21AD8CB31C8A4628000A53F8 /* Foldable.swift in Sources */,
 				21AD8CBE1C8A4628000A53F8 /* Parser.swift in Sources */,
 				21AD8CB01C8A4628000A53F8 /* CodeSpan.swift in Sources */,
@@ -574,6 +573,7 @@
 				21A9F0D21C7CFD1C009B40A0 /* CanvasControllerTests.swift in Sources */,
 				215BABEA1C52B46B00118C8C /* HeadingTests.swift in Sources */,
 				210C743D1C7E7C6100FBB665 /* TestCanvasControllerControllerDelegate.swift in Sources */,
+				21DF7A471C8FA1AF00C17A62 /* CanvasControllerTests+Calculations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,7 +608,6 @@
 				21AD8CDC1C8A4649000A53F8 /* NativePrefixable.swift in Sources */,
 				21AD8CEA1C8A4649000A53F8 /* UnorderedListItem.swift in Sources */,
 				21AD8CE51C8A4649000A53F8 /* SpanNode.swift in Sources */,
-				21AD8CCC1C8A4649000A53F8 /* Annotatable.swift in Sources */,
 				21AD8CD71C8A4649000A53F8 /* Foldable.swift in Sources */,
 				21AD8CE21C8A4649000A53F8 /* Parser.swift in Sources */,
 				21AD8CD41C8A4649000A53F8 /* CodeSpan.swift in Sources */,
@@ -628,6 +627,7 @@
 				21A9F0D31C7CFD1C009B40A0 /* CanvasControllerTests.swift in Sources */,
 				215BABEB1C52B46B00118C8C /* HeadingTests.swift in Sources */,
 				210C743E1C7E7C6100FBB665 /* TestCanvasControllerControllerDelegate.swift in Sources */,
+				21DF7A481C8FA1AF00C17A62 /* CanvasControllerTests+Calculations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

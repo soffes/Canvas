@@ -13,11 +13,11 @@ class CanvasControllerTests: XCTestCase {
 
 	// MARK: - Properties
 
-	private let controller = CanvasController()
+	let controller = CanvasController()
 
-	private let delegate = TestCanvasControllerDelegate()
+	let delegate = TestCanvasControllerDelegate()
 
-	private var blockDictionaries: [[String: AnyObject]] {
+	var blockDictionaries: [[String: AnyObject]] {
 		// Note that we're checking what the delegate thinks the blocks are. This makes sure all of the delegate
 		// messages fire in the right order. If they didn't, this would be wrong and the test would fail. Yay.
 		return delegate.blocks.map { $0.dictionary }
@@ -340,33 +340,10 @@ class CanvasControllerTests: XCTestCase {
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
-	func testPresentationRange() {
-		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two\n⧙code⧘Three"
-		XCTAssertEqual("Title\nOne\nTwo\nThree", delegate.presentationString)
 
-		XCTAssertEqual(NSRange(location: 0, length: 5), controller.presentationRange(backingRange: controller.blocks[0].visibleRange))
-		XCTAssertEqual(NSRange(location: 6, length: 3), controller.presentationRange(backingRange: controller.blocks[1].visibleRange))
-		XCTAssertEqual(NSRange(location: 10, length: 3), controller.presentationRange(backingRange: controller.blocks[2].visibleRange))
-		XCTAssertEqual(NSRange(location: 14, length: 5), controller.presentationRange(backingRange: controller.blocks[3].visibleRange))
-	}
+	// MARK: - Utilities
 
-	func testBlockAtPresentationLocation() {
-		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two"
-		XCTAssertEqual("Title\nOne\nTwo", delegate.presentationString)
-
-		XCTAssert(controller.blockAt(presentationLocation: 0)! is Title)
-		XCTAssert(controller.blockAt(presentationLocation: 1)! is Title)
-		XCTAssert(controller.blockAt(presentationLocation: 6)! is Paragraph)
-		XCTAssert(controller.blockAt(presentationLocation: 7)! is Paragraph)
-		XCTAssert(controller.blockAt(presentationLocation: 9)! is Paragraph)
-		XCTAssert(controller.blockAt(presentationLocation: 10)! is Blockquote)
-		XCTAssert(controller.blockAt(presentationLocation: 11)! is Blockquote)
-	}
-
-
-	// MARK: - Private
-
-	private func parse(string: String) -> [[String: AnyObject]] {
+	func parse(string: String) -> [[String: AnyObject]] {
 		return Parser.parse(string).map { $0.dictionary }
 	}
 }
