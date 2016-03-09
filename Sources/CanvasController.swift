@@ -230,6 +230,39 @@ public final class CanvasController {
 		return presentationRange
 	}
 
+	public func backingRange(presentationRange presentationRange: NSRange) -> NSRange {
+		return backingRange(presentationRange: presentationRange, blocks: blocks)
+	}
+
+	private func backingRange(presentationRange presentationRange: NSRange, blocks: [BlockNode]) -> NSRange {
+		var backingRange = presentationRange
+
+		for block in blocks {
+			guard let range = (block as? NativePrefixable)?.nativePrefixRange else { continue }
+			
+			// Shadow starts after backing range
+			if range.location > backingRange.location {
+
+				// Shadow intersects. Expand lenght.
+				if backingRange.intersection(range) > 0 {
+					backingRange.length += range.length
+					continue
+				}
+
+				// If the shadow starts directly after the backing range, expand to include it.
+				if range.location == backingRange.max {
+					backingRange.length += range.length
+				}
+
+				break
+			}
+
+			backingRange.location += range.length
+		}
+
+		return backingRange
+	}
+
 	public func blockAt(presentationLocation presentationLocation: Int) -> BlockNode? {
 		for block in blocks {
 			let range = presentationRange(backingRange: block.visibleRange)
@@ -291,6 +324,9 @@ public final class CanvasController {
 			if block.enclosingRange.intersection(range) != nil || block.enclosingRange.max == range.location && hasNewLinePrefix {
 				// Detect inserting at the end of a line vs inserting a new block
 				if block.newLineRange != nil && range.location == block.range.max && hasNewLinePrefix {
+					if i + 1 == blocks.count {
+						return NSRange(location: i, length: 1)
+					}
 					return NSRange(location: min(i + 1, blocks.endIndex), length: 0)
 				}
 
@@ -304,6 +340,11 @@ public final class CanvasController {
 				// This block didn't match and we've already started, so end the range.
 				break
 			}
+		}
+
+		// Nothing found. Editing the last block.
+		if !blocks.isEmpty && location == nil && matchingBlocks.isEmpty && !hasNewLinePrefix {
+			return NSRange(location: blocks.count - 1, length: 1)
 		}
 
 		// If we didn't find anything, assume we're inserting at the very end.

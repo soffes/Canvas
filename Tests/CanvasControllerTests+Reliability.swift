@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import CanvasNative
+@testable import CanvasNative
 
 extension CanvasControllerTests {
 	func testReliabilityInsert() {
@@ -43,6 +43,30 @@ extension CanvasControllerTests {
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nTwo", controller.string)
 		XCTAssertEqual("Title\nOne\nTwo", delegate.presentationString)
 
+		XCTAssertEqual(parse(controller.string), blockDictionaries)
+	}
+
+	func testReliabilityEnd() {
+		controller.string = "⧙doc-heading⧘Title\nOne\nTwo"
+
+		var presentationRange = NSRange(location: 13, length: 0)
+		var backingRange = controller.backingRange(presentationRange: presentationRange)
+		var replacement = "."
+		var blockRange = controller.blockRangeForCharacterRange(backingRange, string: replacement)
+		XCTAssertEqual(NSRange(location: 2, length: 1), blockRange)
+		controller.replaceCharactersInRange(backingRange, withString: replacement)
+		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nTwo.", controller.string)
+		XCTAssertEqual("Title\nOne\nTwo.", delegate.presentationString)
+		XCTAssertEqual(parse(controller.string), blockDictionaries)
+		
+		presentationRange = NSRange(location: 13, length: 1)
+		backingRange = controller.backingRange(presentationRange: presentationRange)
+		replacement = ""
+		blockRange = controller.blockRangeForCharacterRange(backingRange, string: replacement)
+		XCTAssertEqual(NSRange(location: 2, length: 1), blockRange)
+		controller.replaceCharactersInRange(backingRange, withString: "")
+		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nTwo", controller.string)
+		XCTAssertEqual("Title\nOne\nTwo", delegate.presentationString)
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 }

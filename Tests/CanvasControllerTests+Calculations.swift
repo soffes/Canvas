@@ -10,7 +10,7 @@ import XCTest
 @testable import CanvasNative
 
 extension CanvasControllerTests {
-	func testPresentationRange() {
+	func testBackingRangeToPresentationRange() {
 		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two\n⧙code⧘Three"
 		XCTAssertEqual("Title\nOne\nTwo\nThree", delegate.presentationString)
 
@@ -18,6 +18,14 @@ extension CanvasControllerTests {
 		XCTAssertEqual(NSRange(location: 6, length: 3), controller.presentationRange(backingRange: controller.blocks[1].visibleRange))
 		XCTAssertEqual(NSRange(location: 10, length: 3), controller.presentationRange(backingRange: controller.blocks[2].visibleRange))
 		XCTAssertEqual(NSRange(location: 14, length: 5), controller.presentationRange(backingRange: controller.blocks[3].visibleRange))
+	}
+
+	func testPresentationRangeToBackingRange() {
+		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two\n⧙code⧘Three"
+		XCTAssertEqual("Title\nOne\nTwo\nThree", delegate.presentationString)
+
+		XCTAssertEqual(NSRange(location: 38, length: 2), controller.backingRange(presentationRange: NSRange(location: 11, length: 2)))
+		XCTAssertEqual(NSRange(location: 21, length: 27), controller.backingRange(presentationRange: NSRange(location: 8, length: 7)))
 	}
 
 	func testBlockAtPresentationLocation() {
