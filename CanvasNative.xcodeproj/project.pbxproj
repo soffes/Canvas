@@ -91,6 +91,8 @@
 		21AD8CEA1C8A4649000A53F8 /* UnorderedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA41C8A4628000A53F8 /* UnorderedListItem.swift */; };
 		21DF7A471C8FA1AF00C17A62 /* CanvasControllerTests+Calculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* CanvasControllerTests+Calculations.swift */; };
 		21DF7A481C8FA1AF00C17A62 /* CanvasControllerTests+Calculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* CanvasControllerTests+Calculations.swift */; };
+		21DF7A5A1C8FAF5B00C17A62 /* CanvasControllerTests+Reliability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A591C8FAF5B00C17A62 /* CanvasControllerTests+Reliability.swift */; };
+		21DF7A5B1C8FAF5B00C17A62 /* CanvasControllerTests+Reliability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A591C8FAF5B00C17A62 /* CanvasControllerTests+Reliability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +160,7 @@
 		21AD8CA71C8A4628000A53F8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21AD8CC91C8A4637000A53F8 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		21DF7A461C8FA1AF00C17A62 /* CanvasControllerTests+Calculations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasControllerTests+Calculations.swift"; sourceTree = "<group>"; };
+		21DF7A591C8FAF5B00C17A62 /* CanvasControllerTests+Reliability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasControllerTests+Reliability.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				21A9F0D11C7CFD1C009B40A0 /* CanvasControllerTests.swift */,
+				21DF7A591C8FAF5B00C17A62 /* CanvasControllerTests+Reliability.swift */,
 				21DF7A461C8FA1AF00C17A62 /* CanvasControllerTests+Calculations.swift */,
 				215BABE31C52B46B00118C8C /* BlockquoteTests.swift */,
 				215BABE41C52B46B00118C8C /* HeadingTests.swift */,
@@ -573,6 +577,7 @@
 				21A9F0D21C7CFD1C009B40A0 /* CanvasControllerTests.swift in Sources */,
 				215BABEA1C52B46B00118C8C /* HeadingTests.swift in Sources */,
 				210C743D1C7E7C6100FBB665 /* TestCanvasControllerControllerDelegate.swift in Sources */,
+				21DF7A5A1C8FAF5B00C17A62 /* CanvasControllerTests+Reliability.swift in Sources */,
 				21DF7A471C8FA1AF00C17A62 /* CanvasControllerTests+Calculations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -627,6 +632,7 @@
 				21A9F0D31C7CFD1C009B40A0 /* CanvasControllerTests.swift in Sources */,
 				215BABEB1C52B46B00118C8C /* HeadingTests.swift in Sources */,
 				210C743E1C7E7C6100FBB665 /* TestCanvasControllerControllerDelegate.swift in Sources */,
+				21DF7A5B1C8FAF5B00C17A62 /* CanvasControllerTests+Reliability.swift in Sources */,
 				21DF7A481C8FA1AF00C17A62 /* CanvasControllerTests+Calculations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
