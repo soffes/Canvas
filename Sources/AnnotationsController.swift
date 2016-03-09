@@ -113,7 +113,7 @@ final class AnnotationsController {
 
 		case .Background:
 			rect.origin.x = 0
-			rect.size.width = textController.textContainer.size.width - textContainerInset.left - textContainerInset.right
+			rect.size.width = textController.textContainer.size.width
 		}
 
 		rect.origin.x += textContainerInset.left
