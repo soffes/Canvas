@@ -102,7 +102,8 @@ public final class CanvasController {
 
 		// Reparse the invalid range of document
 		let invalidRange = parseRangeForRange(NSRange(location: range.location, length: string.length))
-		let parsedBlocks = invalidRange.length == 0 ? [] : Parser.parse(text, range: invalidRange)
+		let shouldParse = invalidRange.length > 0
+		let parsedBlocks = shouldParse ? Parser.parse(text, range: invalidRange) : []
 		let (workingBlocks, messages) = applyParsedBlocks(parsedBlocks, parseRange: invalidRange, blockRange: blockRange)
 
 		// Calculate message for presentation replacement
@@ -231,15 +232,12 @@ public final class CanvasController {
 
 	public func blockAt(presentationLocation presentationLocation: Int) -> BlockNode? {
 		for block in blocks {
-			var range = presentationRange(backingRange: block.visibleRange)
+			let range = presentationRange(backingRange: block.visibleRange)
 
 			// We passed it.
 			if range.location > presentationLocation {
 				break
 			}
-
-			// Account for trailing new line
-//			range.length += 1
 
 			// If the range contains it or the location is equal to the max, it's this block.
 			if range.contains(presentationLocation) || range.max == presentationLocation {
@@ -253,8 +251,10 @@ public final class CanvasController {
 	private func parseRangeForRange(range: NSRange) -> NSRange {
 		var invalidRange = range
 
+		// Deleting
 		if invalidRange.length == 0 {
-			return invalidRange
+			// TODO: This needs to return a 0 length if the entire block is removed
+			return text.lineRangeForRange(invalidRange)
 		}
 
 		let rangeMax = invalidRange.max

@@ -10,7 +10,7 @@ import XCTest
 @testable import CanvasNative
 
 extension CanvasControllerTests {
-	func testRemove() {
+	func testRemoveBlock() {
 		// Initial state
 		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two"
 
@@ -125,7 +125,7 @@ extension CanvasControllerTests {
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
-	func testJoin() {
+	func testJoinBlock() {
 		// Initial state
 		controller.string = "⧙doc-heading⧘Title\nOne\nTwo"
 
@@ -161,7 +161,7 @@ extension CanvasControllerTests {
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
-	func testMultipleRemove() {
+	func testMultipleRemoveBlock() {
 		controller.string = "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour"
 		controller.replaceCharactersInRange(NSRange(location: 22, length: 10), withString: "")
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nFour", controller.string)

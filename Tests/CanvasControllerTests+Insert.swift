@@ -51,7 +51,7 @@ extension CanvasControllerTests {
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
-	func testInsert() {
+	func testInsertBlock() {
 		// Initial state
 		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two"
 		let blockquote = controller.blocks[2]
@@ -107,7 +107,7 @@ extension CanvasControllerTests {
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
-	func testMultipleInsert() {
+	func testMultipleInsertBlock() {
 		// Initial state
 		controller.string = "⧙doc-heading⧘Title\nOne"
 
@@ -125,7 +125,7 @@ extension CanvasControllerTests {
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 
-	func testSplit() {
+	func testSplitBlock() {
 		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two"
 		controller.replaceCharactersInRange(NSRange(location: 21, length: 0), withString: "\n⧙code⧘T")
 		XCTAssertEqual("⧙doc-heading⧘Title\nOn\n⧙code⧘Te\n⧙blockquote⧘> Two", controller.string)
