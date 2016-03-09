@@ -11,10 +11,16 @@ import CanvasNative
 
 public typealias View = UIView
 
+public enum AnnotationStyle {
+	case LeadingGutter
+	case Background
+}
+
 public protocol Annotation: class {
 	var block: Annotatable { get }
 	var theme: Theme { get set }
 	var view: View { get }
+	var style: AnnotationStyle { get }
 
 	init?(block: Annotatable, theme: Theme)
 }
@@ -23,5 +29,9 @@ public protocol Annotation: class {
 extension Annotation where Self: View {
 	public var view: View {
 		return self
+	}
+
+	public var style: AnnotationStyle {
+		return .LeadingGutter
 	}
 }

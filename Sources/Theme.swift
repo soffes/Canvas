@@ -30,6 +30,7 @@ public protocol Theme {
 
 	var bulletColor: Color { get }
 	var blockquoteBorderColor: Color { get }
+	var codeBackground: Color { get }
 
 	var lineHeightMultiple: CGFloat { get }
 

@@ -84,14 +84,20 @@ final class AnnotationsController {
 		// No idea why this is required *sigh*
 		rect.origin.y += 8
 
-		// Make the annotation the width of the indentation. It's up to the view to position itself inside this space.
-		// A future optimization could be making this as small as possible. Configuring it to do this was consfusing,
-		// so deferring for now.
-		rect.size.width = rect.origin.x
-		rect.origin.x = 0
-		rect = rect.integral
+		switch annotation.style {
+		case .LeadingGutter:
+			// Make the annotation the width of the indentation. It's up to the view to position itself inside this space.
+			// A future optimization could be making this as small as possible. Configuring it to do this was consfusing,
+			// so deferring for now.
+			rect.size.width = rect.origin.x
+			rect.origin.x = 0
 
-		return rect
+		case .Background:
+			rect.origin.x = 0
+			rect.size.width = textController.textContainer.size.width
+		}
+
+		return rect.integral
 	}
 
 

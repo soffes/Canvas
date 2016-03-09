@@ -57,6 +57,12 @@ final class BlockquoteBorderView: View, Annotation {
 		CGContextFillRect(context, rect)
 	}
 
+	override func tintColorDidChange() {
+		super.tintColorDidChange()
+		setNeedsDisplay()
+	}
+
+
 
 	// MARK: - Private
 

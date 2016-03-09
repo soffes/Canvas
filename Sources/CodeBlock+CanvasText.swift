@@ -1,5 +1,5 @@
 //
-//  ChecklistItem+CanvasText.swift
+//  CodeBlock+CanvasText.swift
 //  CanvasText
 //
 //  Created by Sam Soffes on 3/8/16.
@@ -8,8 +8,8 @@
 
 import CanvasNative
 
-extension ChecklistItem: Annotatable {
+extension CodeBlock: Annotatable {
 	public func annotation(theme theme: Theme) -> Annotation? {
-		return CheckboxView(block: self, theme: theme)
+		return CodeBlockView(block: self, theme: theme)
 	}
 }

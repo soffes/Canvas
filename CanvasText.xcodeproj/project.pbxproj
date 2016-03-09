@@ -31,6 +31,8 @@
 		21DF7A431C8FA08300C17A62 /* Blockquote+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A3E1C8F9C0C00C17A62 /* Blockquote+CanvasText.swift */; };
 		21DF7A441C8FA11100C17A62 /* CheckboxBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A2E1C8F75C300C17A62 /* CheckboxBox.swift */; };
 		21DF7A451C8FA11100C17A62 /* ChecklistItem+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A401C8F9C2A00C17A62 /* ChecklistItem+CanvasText.swift */; };
+		21DF7A4A1C8FA27D00C17A62 /* CodeBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A491C8FA27D00C17A62 /* CodeBlockView.swift */; };
+		21DF7A4C1C8FA3A300C17A62 /* CodeBlock+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A4B1C8FA3A300C17A62 /* CodeBlock+CanvasText.swift */; };
 		21E1D9DE1C8DF54700283961 /* BulletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9DD1C8DF54700283961 /* BulletView.swift */; };
 		21E1D9E21C8DF65900283961 /* AnnotationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E11C8DF65900283961 /* AnnotationsController.swift */; };
 		21E1D9E61C8DF6B800283961 /* Themeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E51C8DF6B800283961 /* Themeable.swift */; };
@@ -75,6 +77,8 @@
 		21DF7A3C1C8F9B5200C17A62 /* UnorderedListItem+CanvasText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UnorderedListItem+CanvasText.swift"; sourceTree = "<group>"; };
 		21DF7A3E1C8F9C0C00C17A62 /* Blockquote+CanvasText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Blockquote+CanvasText.swift"; sourceTree = "<group>"; };
 		21DF7A401C8F9C2A00C17A62 /* ChecklistItem+CanvasText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChecklistItem+CanvasText.swift"; sourceTree = "<group>"; };
+		21DF7A491C8FA27D00C17A62 /* CodeBlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlockView.swift; sourceTree = "<group>"; };
+		21DF7A4B1C8FA3A300C17A62 /* CodeBlock+CanvasText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CodeBlock+CanvasText.swift"; sourceTree = "<group>"; };
 		21E1D9DD1C8DF54700283961 /* BulletView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletView.swift; sourceTree = "<group>"; };
 		21E1D9E11C8DF65900283961 /* AnnotationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationsController.swift; sourceTree = "<group>"; };
 		21E1D9E51C8DF6B800283961 /* Themeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Themeable.swift; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 				21DF7A3C1C8F9B5200C17A62 /* UnorderedListItem+CanvasText.swift */,
 				21DF7A3E1C8F9C0C00C17A62 /* Blockquote+CanvasText.swift */,
 				21DF7A401C8F9C2A00C17A62 /* ChecklistItem+CanvasText.swift */,
+				21DF7A4B1C8FA3A300C17A62 /* CodeBlock+CanvasText.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 				21E1D9DD1C8DF54700283961 /* BulletView.swift */,
 				21DF7A2E1C8F75C300C17A62 /* CheckboxBox.swift */,
 				21DF7A381C8F914900C17A62 /* BlockquoteBorderView.swift */,
+				21DF7A491C8FA27D00C17A62 /* CodeBlockView.swift */,
 			);
 			name = Annotations;
 			sourceTree = "<group>";
@@ -333,6 +339,7 @@
 				21E1D9DE1C8DF54700283961 /* BulletView.swift in Sources */,
 				21AD8C311C8A430B000A53F8 /* UserInterfaceSizeClass.swift in Sources */,
 				21AD8C2F1C8A430B000A53F8 /* TextController.swift in Sources */,
+				21DF7A4A1C8FA27D00C17A62 /* CodeBlockView.swift in Sources */,
 				21E1D9E21C8DF65900283961 /* AnnotationsController.swift in Sources */,
 				21DF7A441C8FA11100C17A62 /* CheckboxBox.swift in Sources */,
 				21AD8C2B1C8A430B000A53F8 /* Color.swift in Sources */,
@@ -342,6 +349,7 @@
 				21AD8C2C1C8A430B000A53F8 /* Font.swift in Sources */,
 				21AD8D091C8A491E000A53F8 /* LayoutManager.swift in Sources */,
 				21DF7A431C8FA08300C17A62 /* Blockquote+CanvasText.swift in Sources */,
+				21DF7A4C1C8FA3A300C17A62 /* CodeBlock+CanvasText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
