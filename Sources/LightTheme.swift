@@ -84,7 +84,7 @@ public struct LightTheme: Theme {
 		// No margin if it's not at the bottom of a positionable list
 		if let block = block as? Positionable where !(block is Blockquote) {
 			if !block.position.isBottom {
-				spacing.marginBottom = 0
+				spacing.marginBottom = 4
 			}
 		}
 
