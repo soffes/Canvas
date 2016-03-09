@@ -23,7 +23,7 @@ class ViewController: UIViewController {
 	// MARK: - Initializers
 
 	override init(nibName: String?, bundle: NSBundle?) {
-		textView = UITextView(frame: .zero, textContainer: textController.textContainer)
+		textView = TextView(frame: .zero, textContainer: textController.textContainer)
 		textView.translatesAutoresizingMaskIntoConstraints = false
 		textView.alwaysBounceVertical = true
 		textView.font = .systemFontOfSize(18)
