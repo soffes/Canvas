@@ -24,6 +24,8 @@ final class CodeBlockView: View, Annotation {
 		}
 	}
 
+	var horizontalSizeClass: UserInterfaceSizeClass = .Unspecified
+
 	let style: AnnotationStyle = .Background
 
 	private let codeBlock: CodeBlock

@@ -33,6 +33,8 @@
 		21DF7A451C8FA11100C17A62 /* ChecklistItem+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A401C8F9C2A00C17A62 /* ChecklistItem+CanvasText.swift */; };
 		21DF7A4A1C8FA27D00C17A62 /* CodeBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A491C8FA27D00C17A62 /* CodeBlockView.swift */; };
 		21DF7A4C1C8FA3A300C17A62 /* CodeBlock+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A4B1C8FA3A300C17A62 /* CodeBlock+CanvasText.swift */; };
+		21DF7A6C1C90E15800C17A62 /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A6B1C90E15800C17A62 /* EdgeInsets.swift */; };
+		21DF7A6E1C90E16C00C17A62 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A6D1C90E16C00C17A62 /* View.swift */; };
 		21E1D9DE1C8DF54700283961 /* BulletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9DD1C8DF54700283961 /* BulletView.swift */; };
 		21E1D9E21C8DF65900283961 /* AnnotationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E11C8DF65900283961 /* AnnotationsController.swift */; };
 		21E1D9E61C8DF6B800283961 /* Themeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E51C8DF6B800283961 /* Themeable.swift */; };
@@ -79,6 +81,8 @@
 		21DF7A401C8F9C2A00C17A62 /* ChecklistItem+CanvasText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChecklistItem+CanvasText.swift"; sourceTree = "<group>"; };
 		21DF7A491C8FA27D00C17A62 /* CodeBlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlockView.swift; sourceTree = "<group>"; };
 		21DF7A4B1C8FA3A300C17A62 /* CodeBlock+CanvasText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CodeBlock+CanvasText.swift"; sourceTree = "<group>"; };
+		21DF7A6B1C90E15800C17A62 /* EdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdgeInsets.swift; sourceTree = "<group>"; };
+		21DF7A6D1C90E16C00C17A62 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		21E1D9DD1C8DF54700283961 /* BulletView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletView.swift; sourceTree = "<group>"; };
 		21E1D9E11C8DF65900283961 /* AnnotationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationsController.swift; sourceTree = "<group>"; };
 		21E1D9E51C8DF6B800283961 /* Themeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Themeable.swift; sourceTree = "<group>"; };
@@ -133,6 +137,7 @@
 				21AD8CFE1C8A4869000A53F8 /* Text Kit */,
 				21AD8C841C8A45FC000A53F8 /* Theme */,
 				21E1D9D91C8DF52300283961 /* Annotations */,
+				21DF7A6F1C90E19B00C17A62 /* Cross Platform */,
 				21AD8D0A1C8A4960000A53F8 /* Extensions */,
 			);
 			path = Sources;
@@ -170,11 +175,8 @@
 			isa = PBXGroup;
 			children = (
 				21AD8C1D1C8A430B000A53F8 /* BlockSpacing.swift */,
-				21AD8C1F1C8A430B000A53F8 /* Color.swift */,
-				21AD8C201C8A430B000A53F8 /* Font.swift */,
 				21AD8C221C8A430B000A53F8 /* LightTheme.swift */,
 				21AD8C241C8A430B000A53F8 /* Theme.swift */,
-				21AD8C251C8A430B000A53F8 /* UserInterfaceSizeClass.swift */,
 				21E1D9E51C8DF6B800283961 /* Themeable.swift */,
 			);
 			name = Theme;
@@ -201,6 +203,18 @@
 				21DF7A4B1C8FA3A300C17A62 /* CodeBlock+CanvasText.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		21DF7A6F1C90E19B00C17A62 /* Cross Platform */ = {
+			isa = PBXGroup;
+			children = (
+				21DF7A6B1C90E15800C17A62 /* EdgeInsets.swift */,
+				21DF7A6D1C90E16C00C17A62 /* View.swift */,
+				21AD8C1F1C8A430B000A53F8 /* Color.swift */,
+				21AD8C201C8A430B000A53F8 /* Font.swift */,
+				21AD8C251C8A430B000A53F8 /* UserInterfaceSizeClass.swift */,
+			);
+			name = "Cross Platform";
 			sourceTree = "<group>";
 		};
 		21E1D9D91C8DF52300283961 /* Annotations */ = {
@@ -326,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21DF7A6E1C90E16C00C17A62 /* View.swift in Sources */,
 				21E1D9E81C8E212300283961 /* Annotation.swift in Sources */,
 				21AD8D071C8A48EA000A53F8 /* TextContainer.swift in Sources */,
 				21DF7A3B1C8F9ADA00C17A62 /* Annotatable.swift in Sources */,
@@ -338,6 +353,7 @@
 				21AD8D021C8A4886000A53F8 /* BaseTextStorage.swift in Sources */,
 				21E1D9DE1C8DF54700283961 /* BulletView.swift in Sources */,
 				21AD8C311C8A430B000A53F8 /* UserInterfaceSizeClass.swift in Sources */,
+				21DF7A6C1C90E15800C17A62 /* EdgeInsets.swift in Sources */,
 				21AD8C2F1C8A430B000A53F8 /* TextController.swift in Sources */,
 				21DF7A4A1C8FA27D00C17A62 /* CodeBlockView.swift in Sources */,
 				21E1D9E21C8DF65900283961 /* AnnotationsController.swift in Sources */,

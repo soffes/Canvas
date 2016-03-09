@@ -26,6 +26,8 @@ final class BlockquoteBorderView: View, Annotation {
 		}
 	}
 
+	var horizontalSizeClass: UserInterfaceSizeClass = .Unspecified
+
 
 	// MARK: - Initializers
 

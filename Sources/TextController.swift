@@ -20,7 +20,7 @@ public protocol TextControllerSelectionDelegate: class {
 }
 
 public protocol TextControllerAnnotationDelegate: class {
-	func textController(textController: TextController, willAddAnnotation annotation: View)
+	func textController(textController: TextController, willAddAnnotation annotation: Annotation)
 }
 
 
@@ -32,7 +32,12 @@ public final class TextController {
 	public weak var selectionDelegate: TextControllerSelectionDelegate?
 	public weak var annotationDelegate: TextControllerAnnotationDelegate?
 
-	public let textStorage: NSTextStorage
+	public var textStorage: NSTextStorage {
+		return _textStorage
+	}
+
+	let _textStorage = TextStorage()
+
 	public let layoutManager: NSLayoutManager
 	public let textContainer: NSTextContainer
 
@@ -50,7 +55,18 @@ public final class TextController {
 		}
 	}
 
-	public var horizontalSizeClass: UserInterfaceSizeClass = .Unspecified
+	public var textContainerInset: EdgeInsets = .zero {
+		didSet {
+			annotationsController.textContainerInset = textContainerInset
+		}
+	}
+
+	public var horizontalSizeClass: UserInterfaceSizeClass = .Unspecified {
+		didSet {
+			annotationsController.horizontalSizeClass = horizontalSizeClass
+		}
+	}
+
 	public var theme: Theme
 
 	private var transportController: TransportController?
@@ -63,9 +79,6 @@ public final class TextController {
 
 	public init(theme: Theme = LightTheme()) {
 		self.theme = theme
-
-		let textStorage = TextStorage()
-		self.textStorage = textStorage
 
 		let layoutManager = LayoutManager()
 		self.layoutManager = layoutManager
@@ -80,7 +93,8 @@ public final class TextController {
 		// Configure Text Kit
 		textContainer.textController = self
 		layoutManager.textController = self
-		textStorage.textController = self
+		_textStorage.textController = self
+		_textStorage.replacementDelegate = self
 		layoutManager.addTextContainer(textContainer)
 		textStorage.addLayoutManager(layoutManager)
 
@@ -141,20 +155,18 @@ extension TextController: CanvasControllerDelegate {
 	public func canvasControllerWillUpdateNodes(canvasController: CanvasController) {}
 
 	public func canvasController(canvasController: CanvasController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
-		textStorage.replaceCharactersInRange(range, withString: string)
+		_textStorage.actuallyReplaceCharactersInRange(range, withString: string)
 
 		if var selectedRange = presentationSelectedRange {
 			selectedRange.location += (string as NSString).length
 			selectedRange.location -= range.length
 			presentationSelectedRange = selectedRange
 		}
-
-		let text = textStorage.string as NSString
-		layoutManager.invalidateLayoutForCharacterRange(text.lineRangeForRange(range), actualCharacterRange: nil)
 	}
 
 	public func canvasController(canvasController: CanvasController, didInsertBlock block: BlockNode, atIndex index: Int) {
 		annotationsController.insert(block: block, index: index)
+//		layoutManager.invalidateLayoutForCharacterRange(canvasController.presentationRange(backingRange: block.visibleRange), actualCharacterRange: nil)
 	}
 
 	public func canvasController(canvasController: CanvasController, didRemoveBlock block: BlockNode, atIndex index: Int) {
@@ -163,10 +175,12 @@ extension TextController: CanvasControllerDelegate {
 
 	public func canvasController(canvasController: CanvasController, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
 		annotationsController.replace(block: after, index: index)
+//		layoutManager.invalidateGlyphsForCharacterRange(canvasController.presentationRange(backingRange: after.visibleRange), changeInLength: after.visibleRange.length - before.visibleRange.length, actualCharacterRange: nil)
 	}
 
 	public func canvasController(canvasController: CanvasController, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
 		annotationsController.update(block: after, index: index)
+//		layoutManager.invalidateLayoutForCharacterRange(canvasController.presentationRange(backingRange: after.visibleRange), actualCharacterRange: nil)
 	}
 
 	public func canvasControllerDidUpdateNodes(controller: CanvasController) {}
@@ -174,7 +188,35 @@ extension TextController: CanvasControllerDelegate {
 
 
 extension TextController: AnnotationsControllerDelegate {
-	func annotationsController(annotationsController: AnnotationsController, willAddAnnotation annotation: View) {
+	func annotationsController(annotationsController: AnnotationsController, willAddAnnotation annotation: Annotation) {
 		annotationDelegate?.textController(self, willAddAnnotation: annotation)
+	}
+}
+
+
+extension TextController: TextStorageDelegate {
+	func textStorage(textStorage: TextStorage, didReplaceCharactersInRange range: NSRange, withString string: String) {
+		let backingRange = canvasController.backingRange(presentationRange: range)
+		canvasController.replaceCharactersInRange(backingRange, withString: string)
+
+		guard let transportController = transportController else {
+			print("[TextController] WARNING: Tried to submit an operation without a connection.")
+			return
+		}
+
+		// Submit the operation
+		// Insert
+		if backingRange.length == 0 {
+			transportController.submitOperation(.Insert(location: UInt(backingRange.location), string: string))
+			return
+		}
+
+		// Remove
+		transportController.submitOperation(.Remove(location: UInt(backingRange.location), length: UInt(backingRange.length)))
+
+		// Insert after removing
+		if backingRange.length > 0 {
+			transportController.submitOperation(.Insert(location: UInt(backingRange.location), string: string))
+		}
 	}
 }

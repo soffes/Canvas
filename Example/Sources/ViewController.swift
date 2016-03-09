@@ -64,6 +64,15 @@ class ViewController: UIViewController {
 		super.traitCollectionDidChange(previousTraitCollection)
 		textController.horizontalSizeClass = traitCollection.horizontalSizeClass
 	}
+
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+
+		let maxWidth: CGFloat = 640
+		let padding = max(16 - textView.textContainer.lineFragmentPadding, (textView.bounds.width - maxWidth) / 2)
+		textView.textContainerInset = UIEdgeInsets(top: 16, left: padding, bottom: 32, right: padding)
+		textController.textContainerInset = textView.textContainerInset
+	}
 }
 
 
@@ -111,7 +120,7 @@ extension ViewController: TextControllerConnectionDelegate {
 
 
 extension ViewController: TextControllerAnnotationDelegate {
-	func textController(textController: TextController, willAddAnnotation annotation: View) {
-		textView.insertSubview(annotation, atIndex: 0)
+	func textController(textController: TextController, willAddAnnotation annotation: Annotation) {
+		textView.insertSubview(annotation.view, atIndex: 0)
 	}
 }

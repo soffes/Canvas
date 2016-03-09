@@ -9,8 +9,6 @@
 import UIKit
 import CanvasNative
 
-public typealias View = UIView
-
 public enum AnnotationStyle {
 	case LeadingGutter
 	case Background
@@ -21,6 +19,7 @@ public protocol Annotation: class {
 	var theme: Theme { get set }
 	var view: View { get }
 	var style: AnnotationStyle { get }
+	var horizontalSizeClass: UserInterfaceSizeClass { get set }
 
 	init?(block: Annotatable, theme: Theme)
 }

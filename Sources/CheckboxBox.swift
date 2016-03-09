@@ -26,6 +26,8 @@ final class CheckboxView: UIButton, Annotation {
 		}
 	}
 
+	var horizontalSizeClass: UserInterfaceSizeClass = .Unspecified
+	
 
 	// MARK: - Initializers
 

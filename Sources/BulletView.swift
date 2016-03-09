@@ -24,6 +24,8 @@ final class BulletView: View, Annotation {
 		}
 	}
 
+	var horizontalSizeClass: UserInterfaceSizeClass = .Unspecified
+
 	private let unorderedListItem: UnorderedListItem
 
 
