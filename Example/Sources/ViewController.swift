@@ -26,8 +26,7 @@ class ViewController: UIViewController {
 		textView = TextView(frame: .zero, textContainer: textController.textContainer)
 		textView.translatesAutoresizingMaskIntoConstraints = false
 		textView.alwaysBounceVertical = true
-		textView.font = .systemFontOfSize(18)
-
+		
 		super.init(nibName: nil, bundle: nil)
 
 		textController.connectionDelegate = self
