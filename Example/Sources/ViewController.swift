@@ -51,9 +51,13 @@ class ViewController: UIViewController {
 
 		title = "Example"
 
+		guard let accessToken = NSUserDefaults.standardUserDefaults().stringForKey("AccessToken") else {
+			fatalError("Access token is not set. Please set your access token in AppDelegate.swift and rerun the app.")
+		}
+
 		textController.connect(
 			serverURL: NSURL(string: "wss://realtime.usecanvas.com")!,
-			accessToken: NSUserDefaults.standardUserDefaults().stringForKey("AccessToken")!,
+			accessToken: accessToken,
 			organizationID: "b29c5091-3959-4ca8-a39e-c3159f5f06c5",
 			canvasID: "59S18UczqJcw0rx1AsVaTD" //"3n2OAeAec2vDDQxmx6pijZ"
 		)
