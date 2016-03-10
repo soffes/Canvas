@@ -56,6 +56,52 @@
 		21632D0E1C92360100C40D7D /* CGSize+CanvasNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8B1C8A4628000A53F8 /* CGSize+CanvasNative.swift */; };
 		21632D0F1C92360100C40D7D /* NSRange+CanvasNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C991C8A4628000A53F8 /* NSRange+CanvasNative.swift */; };
 		21632D101C92360800C40D7D /* CanvasNative.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AD8CA61C8A4628000A53F8 /* CanvasNative.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21632D201C92366700C40D7D /* CanvasNative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21632D161C92366600C40D7D /* CanvasNative.framework */; };
+		21632D2D1C92367800C40D7D /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9C1C8A4628000A53F8 /* Parser.swift */; };
+		21632D2E1C92367800C40D7D /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8A1C8A4628000A53F8 /* Controller.swift */; };
+		21632D2F1C92367B00C40D7D /* Attachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C871C8A4628000A53F8 /* Attachable.swift */; };
+		21632D301C92367B00C40D7D /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C881C8A4628000A53F8 /* BlockNode.swift */; };
+		21632D311C92367B00C40D7D /* Foldable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C911C8A4628000A53F8 /* Foldable.swift */; };
+		21632D321C92367B00C40D7D /* Listable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C951C8A4628000A53F8 /* Listable.swift */; };
+		21632D331C92367B00C40D7D /* NativePrefixable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C961C8A4628000A53F8 /* NativePrefixable.swift */; };
+		21632D341C92367B00C40D7D /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C971C8A4628000A53F8 /* Node.swift */; };
+		21632D351C92367B00C40D7D /* NodeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C981C8A4628000A53F8 /* NodeContainer.swift */; };
+		21632D361C92367B00C40D7D /* Positionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9D1C8A4628000A53F8 /* Positionable.swift */; };
+		21632D371C92367B00C40D7D /* ReturnCompletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9E1C8A4628000A53F8 /* ReturnCompletable.swift */; };
+		21632D381C92367B00C40D7D /* SpanNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9F1C8A4628000A53F8 /* SpanNode.swift */; };
+		21632D391C92367B00C40D7D /* SpanNodeContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA01C8A4628000A53F8 /* SpanNodeContainer.swift */; };
+		21632D3A1C92367B00C40D7D /* SpanNodeParseable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA11C8A4628000A53F8 /* SpanNodeParseable.swift */; };
+		21632D3B1C92367E00C40D7D /* Blockquote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C891C8A4628000A53F8 /* Blockquote.swift */; };
+		21632D3C1C92367E00C40D7D /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8C1C8A4628000A53F8 /* ChecklistItem.swift */; };
+		21632D3D1C92367E00C40D7D /* CodeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8D1C8A4628000A53F8 /* CodeBlock.swift */; };
+		21632D3E1C92367E00C40D7D /* Heading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C921C8A4628000A53F8 /* Heading.swift */; };
+		21632D3F1C92367E00C40D7D /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C931C8A4628000A53F8 /* Image.swift */; };
+		21632D401C92367E00C40D7D /* OrderedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9A1C8A4628000A53F8 /* OrderedListItem.swift */; };
+		21632D411C92367E00C40D7D /* Paragraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9B1C8A4628000A53F8 /* Paragraph.swift */; };
+		21632D421C92367E00C40D7D /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA31C8A4628000A53F8 /* Title.swift */; };
+		21632D431C92367E00C40D7D /* UnorderedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA41C8A4628000A53F8 /* UnorderedListItem.swift */; };
+		21632D441C92368200C40D7D /* CodeSpan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8E1C8A4628000A53F8 /* CodeSpan.swift */; };
+		21632D451C92368200C40D7D /* DoubleEmphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8F1C8A4628000A53F8 /* DoubleEmphasis.swift */; };
+		21632D461C92368200C40D7D /* Emphasis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C901C8A4628000A53F8 /* Emphasis.swift */; };
+		21632D471C92368200C40D7D /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C941C8A4628000A53F8 /* Link.swift */; };
+		21632D481C92368200C40D7D /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA21C8A4628000A53F8 /* Text.swift */; };
+		21632D491C92368600C40D7D /* CGSize+CanvasNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8B1C8A4628000A53F8 /* CGSize+CanvasNative.swift */; };
+		21632D4A1C92368600C40D7D /* NSRange+CanvasNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C991C8A4628000A53F8 /* NSRange+CanvasNative.swift */; };
+		21632D4B1C92368800C40D7D /* CanvasNative.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AD8CA61C8A4628000A53F8 /* CanvasNative.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21632D4C1C92369A00C40D7D /* ControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* ControllerTests.swift */; };
+		21632D4D1C92369A00C40D7D /* ControllerInsertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A5F1C90A09000C17A62 /* ControllerInsertTests.swift */; };
+		21632D4E1C92369A00C40D7D /* ControllerRemoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A621C90A0E100C17A62 /* ControllerRemoveTests.swift */; };
+		21632D4F1C92369A00C40D7D /* ControllerReliabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A591C8FAF5B00C17A62 /* ControllerReliabilityTests.swift */; };
+		21632D501C92369A00C40D7D /* ControllerCalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* ControllerCalculationTests.swift */; };
+		21632D511C92369A00C40D7D /* BlockquoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE31C52B46B00118C8C /* BlockquoteTests.swift */; };
+		21632D521C92369A00C40D7D /* HeadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE41C52B46B00118C8C /* HeadingTests.swift */; };
+		21632D531C92369A00C40D7D /* ImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE51C52B46B00118C8C /* ImageTests.swift */; };
+		21632D541C92369A00C40D7D /* ListableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE61C52B46B00118C8C /* ListableTests.swift */; };
+		21632D551C92369A00C40D7D /* SpanLevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE71C52B46B00118C8C /* SpanLevelTests.swift */; };
+		21632D561C92369A00C40D7D /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21341C8A1C85089400C9EF39 /* NodeTests.swift */; };
+		21632D571C9236A000C40D7D /* TestControllerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210C743C1C7E7C6100FBB665 /* TestControllerControllerDelegate.swift */; };
+		21632D581C9236A000C40D7D /* NSRange+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */; };
+		21632D591C9236A000C40D7D /* XCTestCase+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B90161C923047004862FC /* XCTestCase+CanvasNativeTests.swift */; };
 		21A9F0D21C7CFD1C009B40A0 /* ControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* ControllerTests.swift */; };
 		21A9F0D31C7CFD1C009B40A0 /* ControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* ControllerTests.swift */; };
 		21AB4EB01C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */; };
@@ -147,6 +193,13 @@
 			remoteGlobalIDString = 215BAB4B1C52B18B00118C8C;
 			remoteInfo = CanvasNative;
 		};
+		21632D211C92366700C40D7D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 215BAB241C52B0C400118C8C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 21632D151C92366600C40D7D;
+			remoteInfo = CanvasNative;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -163,6 +216,8 @@
 		215BABE61C52B46B00118C8C /* ListableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListableTests.swift; sourceTree = "<group>"; };
 		215BABE71C52B46B00118C8C /* SpanLevelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanLevelTests.swift; sourceTree = "<group>"; };
 		21632CEA1C9235E400C40D7D /* CanvasNative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasNative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21632D161C92366600C40D7D /* CanvasNative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasNative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21632D1F1C92366600C40D7D /* CanvasNativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasNativeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21A9F0D11C7CFD1C009B40A0 /* ControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerTests.swift; sourceTree = "<group>"; };
 		21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+CanvasNativeTests.swift"; sourceTree = "<group>"; };
 		21AD8C871C8A4628000A53F8 /* Attachable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachable.swift; sourceTree = "<group>"; };
@@ -242,6 +297,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		21632D121C92366600C40D7D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21632D1C1C92366600C40D7D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21632D201C92366700C40D7D /* CanvasNative.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -274,6 +344,8 @@
 				215BAB4C1C52B18B00118C8C /* CanvasNative.framework */,
 				215BAB551C52B18C00118C8C /* CanvasNativeTests.xctest */,
 				21632CEA1C9235E400C40D7D /* CanvasNative.framework */,
+				21632D161C92366600C40D7D /* CanvasNative.framework */,
+				21632D1F1C92366600C40D7D /* CanvasNativeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -403,6 +475,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		21632D131C92366600C40D7D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21632D4B1C92368800C40D7D /* CanvasNative.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -498,6 +578,42 @@
 			productReference = 21632CEA1C9235E400C40D7D /* CanvasNative.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		21632D151C92366600C40D7D /* CanvasNative-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21632D271C92366700C40D7D /* Build configuration list for PBXNativeTarget "CanvasNative-tvOS" */;
+			buildPhases = (
+				21632D111C92366600C40D7D /* Sources */,
+				21632D121C92366600C40D7D /* Frameworks */,
+				21632D131C92366600C40D7D /* Headers */,
+				21632D141C92366600C40D7D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CanvasNative-tvOS";
+			productName = CanvasNative;
+			productReference = 21632D161C92366600C40D7D /* CanvasNative.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		21632D1E1C92366600C40D7D /* CanvasNativeTests-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21632D2A1C92366700C40D7D /* Build configuration list for PBXNativeTarget "CanvasNativeTests-tvOS" */;
+			buildPhases = (
+				21632D1B1C92366600C40D7D /* Sources */,
+				21632D1C1C92366600C40D7D /* Frameworks */,
+				21632D1D1C92366600C40D7D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				21632D221C92366700C40D7D /* PBXTargetDependency */,
+			);
+			name = "CanvasNativeTests-tvOS";
+			productName = CanvasNativeTests;
+			productReference = 21632D1F1C92366600C40D7D /* CanvasNativeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -523,6 +639,12 @@
 					21632CE91C9235E400C40D7D = {
 						CreatedOnToolsVersion = 7.3;
 					};
+					21632D151C92366600C40D7D = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					21632D1E1C92366600C40D7D = {
+						CreatedOnToolsVersion = 7.3;
+					};
 				};
 			};
 			buildConfigurationList = 215BAB271C52B0C400118C8C /* Build configuration list for PBXProject "CanvasNative" */;
@@ -541,6 +663,8 @@
 				215BAB361C52B0C400118C8C /* CanvasNativeTests-iOS */,
 				215BAB4B1C52B18B00118C8C /* CanvasNative-OSX */,
 				215BAB541C52B18C00118C8C /* CanvasNativeTests-OSX */,
+				21632D151C92366600C40D7D /* CanvasNative-tvOS */,
+				21632D1E1C92366600C40D7D /* CanvasNativeTests-tvOS */,
 				21632CE91C9235E400C40D7D /* CanvasNative-watchOS */,
 			);
 		};
@@ -576,6 +700,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		21632CE81C9235E400C40D7D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21632D141C92366600C40D7D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21632D1D1C92366600C40D7D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -769,6 +907,64 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		21632D111C92366600C40D7D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21632D3E1C92367E00C40D7D /* Heading.swift in Sources */,
+				21632D311C92367B00C40D7D /* Foldable.swift in Sources */,
+				21632D421C92367E00C40D7D /* Title.swift in Sources */,
+				21632D321C92367B00C40D7D /* Listable.swift in Sources */,
+				21632D2D1C92367800C40D7D /* Parser.swift in Sources */,
+				21632D371C92367B00C40D7D /* ReturnCompletable.swift in Sources */,
+				21632D341C92367B00C40D7D /* Node.swift in Sources */,
+				21632D331C92367B00C40D7D /* NativePrefixable.swift in Sources */,
+				21632D431C92367E00C40D7D /* UnorderedListItem.swift in Sources */,
+				21632D3B1C92367E00C40D7D /* Blockquote.swift in Sources */,
+				21632D481C92368200C40D7D /* Text.swift in Sources */,
+				21632D3C1C92367E00C40D7D /* ChecklistItem.swift in Sources */,
+				21632D451C92368200C40D7D /* DoubleEmphasis.swift in Sources */,
+				21632D2F1C92367B00C40D7D /* Attachable.swift in Sources */,
+				21632D3A1C92367B00C40D7D /* SpanNodeParseable.swift in Sources */,
+				21632D4A1C92368600C40D7D /* NSRange+CanvasNative.swift in Sources */,
+				21632D2E1C92367800C40D7D /* Controller.swift in Sources */,
+				21632D471C92368200C40D7D /* Link.swift in Sources */,
+				21632D441C92368200C40D7D /* CodeSpan.swift in Sources */,
+				21632D391C92367B00C40D7D /* SpanNodeContainer.swift in Sources */,
+				21632D3F1C92367E00C40D7D /* Image.swift in Sources */,
+				21632D351C92367B00C40D7D /* NodeContainer.swift in Sources */,
+				21632D381C92367B00C40D7D /* SpanNode.swift in Sources */,
+				21632D401C92367E00C40D7D /* OrderedListItem.swift in Sources */,
+				21632D3D1C92367E00C40D7D /* CodeBlock.swift in Sources */,
+				21632D491C92368600C40D7D /* CGSize+CanvasNative.swift in Sources */,
+				21632D411C92367E00C40D7D /* Paragraph.swift in Sources */,
+				21632D361C92367B00C40D7D /* Positionable.swift in Sources */,
+				21632D301C92367B00C40D7D /* BlockNode.swift in Sources */,
+				21632D461C92368200C40D7D /* Emphasis.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21632D1B1C92366600C40D7D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21632D511C92369A00C40D7D /* BlockquoteTests.swift in Sources */,
+				21632D541C92369A00C40D7D /* ListableTests.swift in Sources */,
+				21632D561C92369A00C40D7D /* NodeTests.swift in Sources */,
+				21632D551C92369A00C40D7D /* SpanLevelTests.swift in Sources */,
+				21632D531C92369A00C40D7D /* ImageTests.swift in Sources */,
+				21632D591C9236A000C40D7D /* XCTestCase+CanvasNativeTests.swift in Sources */,
+				21632D501C92369A00C40D7D /* ControllerCalculationTests.swift in Sources */,
+				21632D4F1C92369A00C40D7D /* ControllerReliabilityTests.swift in Sources */,
+				21632D4D1C92369A00C40D7D /* ControllerInsertTests.swift in Sources */,
+				21632D571C9236A000C40D7D /* TestControllerControllerDelegate.swift in Sources */,
+				21632D521C92369A00C40D7D /* HeadingTests.swift in Sources */,
+				21632D4E1C92369A00C40D7D /* ControllerRemoveTests.swift in Sources */,
+				21632D581C9236A000C40D7D /* NSRange+CanvasNativeTests.swift in Sources */,
+				21632D4C1C92369A00C40D7D /* ControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -781,6 +977,11 @@
 			isa = PBXTargetDependency;
 			target = 215BAB4B1C52B18B00118C8C /* CanvasNative-OSX */;
 			targetProxy = 215BAB571C52B18C00118C8C /* PBXContainerItemProxy */;
+		};
+		21632D221C92366700C40D7D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 21632D151C92366600C40D7D /* CanvasNative-tvOS */;
+			targetProxy = 21632D211C92366700C40D7D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1045,6 +1246,72 @@
 			};
 			name = Release;
 		};
+		21632D281C92366700C40D7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Support/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvasnative;
+				PRODUCT_NAME = CanvasNative;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		21632D291C92366700C40D7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Support/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvasnative;
+				PRODUCT_NAME = CanvasNative;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Release;
+		};
+		21632D2B1C92366700C40D7D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "Support/Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasNativeTests;
+				PRODUCT_NAME = CanvasNativeTests;
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		21632D2C1C92366700C40D7D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "Support/Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasNativeTests;
+				PRODUCT_NAME = CanvasNativeTests;
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1098,6 +1365,22 @@
 			buildConfigurations = (
 				21632CEF1C9235E400C40D7D /* Debug */,
 				21632CF01C9235E400C40D7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		21632D271C92366700C40D7D /* Build configuration list for PBXNativeTarget "CanvasNative-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21632D281C92366700C40D7D /* Debug */,
+				21632D291C92366700C40D7D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		21632D2A1C92366700C40D7D /* Build configuration list for PBXNativeTarget "CanvasNativeTests-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21632D2B1C92366700C40D7D /* Debug */,
+				21632D2C1C92366700C40D7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "21632CE91C9235E400C40D7D"
+               BlueprintIdentifier = "21632D151C92366600C40D7D"
                BuildableName = "CanvasNative.framework"
-               BlueprintName = "CanvasNative-watchOS"
+               BlueprintName = "CanvasNative-tvOS"
                ReferencedContainer = "container:CanvasNative.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "21632D1E1C92366600C40D7D"
+               BuildableName = "CanvasNativeTests.xctest"
+               BlueprintName = "CanvasNativeTests-tvOS"
+               ReferencedContainer = "container:CanvasNative.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "21632D151C92366600C40D7D"
+            BuildableName = "CanvasNative.framework"
+            BlueprintName = "CanvasNative-tvOS"
+            ReferencedContainer = "container:CanvasNative.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -45,9 +64,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "21632CE91C9235E400C40D7D"
+            BlueprintIdentifier = "21632D151C92366600C40D7D"
             BuildableName = "CanvasNative.framework"
-            BlueprintName = "CanvasNative-watchOS"
+            BlueprintName = "CanvasNative-tvOS"
             ReferencedContainer = "container:CanvasNative.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +82,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "21632CE91C9235E400C40D7D"
+            BlueprintIdentifier = "21632D151C92366600C40D7D"
             BuildableName = "CanvasNative.framework"
-            BlueprintName = "CanvasNative-watchOS"
+            BlueprintName = "CanvasNative-tvOS"
             ReferencedContainer = "container:CanvasNative.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
