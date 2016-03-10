@@ -19,19 +19,12 @@ protocol LayoutManagerDelegate: class {
 	func layoutManager(layoutManager: NSLayoutManager, didCompleteLayoutForTextContainer textContainer: NSTextContainer)
 }
 
-/// Custom layout mangaer to handle folding. Any range of text with the `FoldableAttributeName` set to `true`, will be
-/// folded. To unfold a range, simply remove that attribute and call `invalidate`.
-///
-/// Consumers must not override the receiver's delegate property. If a consumer needs to get notified when layouts
-/// complete, they should use the `layoutDelegate` property and corresponding `LayoutManagerDelegate` protocol.
-///
-/// Currently, folding is only supported on iOS although it should be trivial to add OS X support.
+/// All ranges are presentation ranges.
 class LayoutManager: NSLayoutManager {
 
 	// MARK: - Properties
 
 	weak var textController: TextController?
-
 	weak var layoutDelegate: LayoutManagerDelegate?
 
 	var unfoldedRange: NSRange? {
@@ -52,12 +45,10 @@ class LayoutManager: NSLayoutManager {
 		}
 	}
 
-	var foldableRanges = [NSRange]() {
+	private var foldableRanges = [NSRange]() {
 		didSet {
-//			if let textStorage = textStorage as? CanvasTextStorage {
-//				let indicies = foldableRanges.map { textStorage.backingRangeToDisplayRange($0).indices }
-//				foldedIndices = Set(indicies.flatten())
-//			}
+			let indicies = foldableRanges.map { $0.indices }
+			foldedIndices = Set(indicies.flatten())
 
 			invalidateGlyphs()
 		}
