@@ -114,9 +114,7 @@ public final class CanvasController {
 		} else {
 			// Get the replacement string from the updated presentation string
 			let editRange = NSRange(location: range.location, length: string.length)
-			let displayTextRange = presentationRange(backingRange: editRange, blocks: workingBlocks)
-			let displayString = presentationString(workingBlocks) as NSString
-			replacement = displayString.substringWithRange(displayTextRange) as String
+			replacement = presentationString(backingRange: editRange, blocks: workingBlocks)
 		}
 
 		// Update the blocks
@@ -358,8 +356,49 @@ public final class CanvasController {
 		return blockRange
 	}
 
-	private func presentationString(blocks: [BlockNode]) -> String {
-		return blocks.map({ $0.contentInString(text as String) }).joinWithSeparator("\n")
+	func presentationString(backingRange backingRange: NSRange) -> String {
+		return presentationString(backingRange: backingRange, blocks: blocks)
+	}
+
+	private func presentationString(backingRange backingRange: NSRange, blocks: [BlockNode]) -> String {
+		var output = ""
+
+		for block in blocks {
+			if block.enclosingRange.max < backingRange.location {
+				continue
+			}
+
+			if block.enclosingRange.location > backingRange.max {
+				break
+			}
+
+			let content = block.contentInString(string)
+			var component: String
+
+			// Offset if starting out
+			if output.isEmpty && backingRange.location > block.enclosingRange.location {
+				let offset = backingRange.location - block.enclosingRange.location
+				component = (content as NSString).substringFromIndex(offset) as String
+			} else {
+				component = content
+			}
+
+			// Add new line
+			if let newLineRange = block.newLineRange where newLineRange.length > 0 {
+				component += "\n"
+			}
+
+			// Offset the end of it's too long
+			let delta = block.enclosingRange.max - backingRange.max
+			if delta > 0 {
+				let string = component as NSString
+				component = string.substringWithRange(NSRange(location: 0, length: string.length - delta))
+			}
+
+			output += component
+		}
+
+		return output
 	}
 
 

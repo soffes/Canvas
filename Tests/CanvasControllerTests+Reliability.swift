@@ -10,6 +10,7 @@ import XCTest
 @testable import CanvasNative
 
 extension CanvasControllerTests {
+
 	func testReliabilityInsert() {
 		controller.string = "⧙doc-heading⧘Title\nOne\nTwo"
 
@@ -25,6 +26,15 @@ extension CanvasControllerTests {
 		XCTAssertEqual("⧙doc-heading⧘Title\nOn123e\nTwo", controller.string)
 		XCTAssertEqual("Title\nOn123e\nTwo", delegate.presentationString)
 
+		XCTAssertEqual(parse(controller.string), blockDictionaries)
+	}
+
+	func testReliabilityInsertBlock() {
+		controller.string = "⧙doc-heading⧘Demo\nParagraph.\n⧙ordered-list-0⧘1. One"
+
+		controller.replaceCharactersInRange(NSRange(location: 29, length: 0), withString: "\n")
+		XCTAssertEqual("⧙doc-heading⧘Demo\nParagraph.\n\n⧙ordered-list-0⧘1. One", controller.string)
+		XCTAssertEqual("Demo\nParagraph\n\nOne", delegate.presentationString)
 		XCTAssertEqual(parse(controller.string), blockDictionaries)
 	}
 

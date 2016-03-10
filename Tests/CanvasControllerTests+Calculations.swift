@@ -40,4 +40,9 @@ extension CanvasControllerTests {
 		XCTAssert(controller.blockAt(presentationLocation: 10)! is Blockquote)
 		XCTAssert(controller.blockAt(presentationLocation: 11)! is Blockquote)
 	}
+
+	func testPresentationStringWithBackingRange() {
+		controller.string = "⧙doc-heading⧘Demo\nParagraph.\n⧙ordered-list-0⧘1. One"
+		XCTAssertEqual("graph.\nOn", controller.presentationString(backingRange: NSRange(location: 22, length: 28)))
+	}
 }
