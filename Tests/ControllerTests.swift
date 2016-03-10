@@ -1,5 +1,5 @@
 //
-//  CanvasControllerTests.swift
+//  ControllerTests.swift
 //  CanvasNative
 //
 //  Created by Sam Soffes on 2/23/16.
@@ -9,19 +9,12 @@
 import XCTest
 @testable import CanvasNative
 
-class CanvasControllerTests: XCTestCase {
+class ControllerTests: XCTestCase {
 
 	// MARK: - Properties
 
-	let controller = CanvasController()
-
-	let delegate = TestCanvasControllerDelegate()
-
-	var blockDictionaries: [[String: AnyObject]] {
-		// Note that we're checking what the delegate thinks the blocks are. This makes sure all of the delegate
-		// messages fire in the right order. If they didn't, this would be wrong and the test would fail. Yay.
-		return delegate.blocks.map { $0.dictionary }
-	}
+	let controller = Controller()
+	let delegate = TestControllerDelegate()
 
 
 	// MARK: - XCTestCase
@@ -91,7 +84,7 @@ class CanvasControllerTests: XCTestCase {
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne!\nTwo", controller.string)
 		XCTAssertEqual("Title\nOne!\nTwo", delegate.presentationString)
-		XCTAssertEqual(parse(controller.string), blockDictionaries)
+		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
 
 	func testMultipleInsertRemove() {
@@ -109,13 +102,6 @@ class CanvasControllerTests: XCTestCase {
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nHello\nWorld", controller.string)
 		XCTAssertEqual("Title\nHello\nWorld", delegate.presentationString)
-		XCTAssertEqual(parse(controller.string), blockDictionaries)
-	}
-
-
-	// MARK: - Utilities
-
-	func parse(string: String) -> [[String: AnyObject]] {
-		return Parser.parse(string).map { $0.dictionary }
+		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
 }

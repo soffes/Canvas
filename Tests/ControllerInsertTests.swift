@@ -1,5 +1,5 @@
 //
-//  CanvasControllerTests+Insert.swift
+//  ControllerInsertTests.swift
 //  CanvasNative
 //
 //  Created by Sam Soffes on 3/9/16.
@@ -9,7 +9,24 @@
 import XCTest
 @testable import CanvasNative
 
-extension CanvasControllerTests {
+class ControllerInsertTests: XCTestCase {
+
+	// MARK: - Properties
+
+	let controller = Controller()
+	let delegate = TestControllerDelegate()
+
+
+	// MARK: - XCTestCase
+
+	override func setUp() {
+		super.setUp()
+		controller.delegate = delegate
+	}
+
+
+	// MARK: - Tests
+
 	func testLoading() {
 		// Will update
 		let will = expectationWithDescription("controllerWillUpdateNodes")
@@ -48,7 +65,7 @@ extension CanvasControllerTests {
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nParagraph", controller.string)
 		XCTAssertEqual("Title\nParagraph", delegate.presentationString)
-		XCTAssertEqual(parse(controller.string), blockDictionaries)
+		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
 
 	func testInsertBlock() {
@@ -104,7 +121,7 @@ extension CanvasControllerTests {
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\n⧙code⧘Half\n⧙blockquote⧘> Two", controller.string)
 		XCTAssertEqual("Title\nOne\nHalf\nTwo", delegate.presentationString)
-		XCTAssertEqual(parse(controller.string), blockDictionaries)
+		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
 
 	func testMultipleInsertBlock() {
@@ -122,7 +139,7 @@ extension CanvasControllerTests {
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nHello\nWorld", controller.string)
 		XCTAssertEqual("Title\nOne\nHello\nWorld", delegate.presentationString)
-		XCTAssertEqual(parse(controller.string), blockDictionaries)
+		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
 
 	func testSplitBlock() {
@@ -130,6 +147,6 @@ extension CanvasControllerTests {
 		controller.replaceCharactersInRange(NSRange(location: 21, length: 0), withString: "\n⧙code⧘T")
 		XCTAssertEqual("⧙doc-heading⧘Title\nOn\n⧙code⧘Te\n⧙blockquote⧘> Two", controller.string)
 		XCTAssertEqual("Title\nOn\nTe\nTwo", delegate.presentationString)
-		XCTAssertEqual(parse(controller.string), blockDictionaries)
+		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
 }

@@ -1,5 +1,5 @@
 //
-//  CanvasController.swift
+//  Controller.swift
 //  CanvasNative
 //
 //  Created by Sam Soffes on 2/18/16.
@@ -8,29 +8,29 @@
 
 import Foundation
 
-public protocol CanvasControllerDelegate: class {
+public protocol ControllerDelegate: class {
 	// After this message, `blocks` will be the new value
-	func canvasControllerWillUpdateNodes(canvasController: CanvasController)
+	func canvasControllerWillUpdateNodes(canvasController: Controller)
 
 	// This will be called before all other messages.
-	func canvasController(canvasController: CanvasController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String)
+	func canvasController(canvasController: Controller, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String)
 
 	// The index will be relative to the blocks array before the change (similar to UITableView).
-	func canvasController(canvasController: CanvasController, didInsertBlock block: BlockNode, atIndex index: Int)
+	func canvasController(canvasController: Controller, didInsertBlock block: BlockNode, atIndex index: Int)
 
-	func canvasController(canvasController: CanvasController, didRemoveBlock block: BlockNode, atIndex index: Int)
+	func canvasController(canvasController: Controller, didRemoveBlock block: BlockNode, atIndex index: Int)
 
 	// The block's content changed. `before` and `after` will always be the same type.
-	func canvasController(canvasController: CanvasController, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
+	func canvasController(canvasController: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
 
 	// The block's metadata changed. `before` and `after` will always be the same type.
-	func canvasController(canvasController: CanvasController, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
+	func canvasController(canvasController: Controller, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
 
-	func canvasControllerDidUpdateNodes(canvasController: CanvasController)
+	func canvasControllerDidUpdateNodes(canvasController: Controller)
 }
 
 
-public final class CanvasController {
+public final class Controller {
 
 	// MARK: - Types
 
@@ -44,7 +44,7 @@ public final class CanvasController {
 
 	// MARK: - Properties
 
-	public weak var delegate: CanvasControllerDelegate?
+	public weak var delegate: ControllerDelegate?
 
 	public private(set) var blocks = [BlockNode]()
 
@@ -67,7 +67,7 @@ public final class CanvasController {
 
 	// MARK: - Initializers
 
-	public init(string: String? = nil, delegate: CanvasControllerDelegate? = nil) {
+	public init(string: String? = nil, delegate: ControllerDelegate? = nil) {
 		self.delegate = delegate
 
 		if let string = string {

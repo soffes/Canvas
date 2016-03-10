@@ -1,5 +1,5 @@
 //
-//  CanvasControllerTests+Calculations.swift
+//  ControllerCalculationTests.swift
 //  CanvasNative
 //
 //  Created by Sam Soffes on 3/8/16.
@@ -9,7 +9,24 @@
 import XCTest
 @testable import CanvasNative
 
-extension CanvasControllerTests {
+class ControllerCalculationTests: XCTestCase {
+
+	// MARK: - Properties
+
+	let controller = Controller()
+	let delegate = TestControllerDelegate()
+
+
+	// MARK: - XCTestCase
+
+	override func setUp() {
+		super.setUp()
+		controller.delegate = delegate
+	}
+
+
+	// MARK: - Tests
+
 	func testBackingRangeToPresentationRange() {
 		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two\n⧙code⧘Three"
 		XCTAssertEqual("Title\nOne\nTwo\nThree", delegate.presentationString)

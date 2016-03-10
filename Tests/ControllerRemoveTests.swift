@@ -1,5 +1,5 @@
 //
-//  CanvasControllerTests+Remove.swift
+//  ControllerRemoveTests.swift
 //  CanvasNative
 //
 //  Created by Sam Soffes on 3/9/16.
@@ -9,7 +9,24 @@
 import XCTest
 @testable import CanvasNative
 
-extension CanvasControllerTests {
+class ControllerRemoveTests: XCTestCase {
+
+	// MARK: - Properties
+
+	let controller = Controller()
+	let delegate = TestControllerDelegate()
+
+
+	// MARK: - XCTestCase
+
+	override func setUp() {
+		super.setUp()
+		controller.delegate = delegate
+	}
+
+
+	// MARK: - Tests
+
 	func testRemoveBlock() {
 		// Initial state
 		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two"
@@ -62,7 +79,7 @@ extension CanvasControllerTests {
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\n⧙blockquote⧘> Two", controller.string)
 		XCTAssertEqual("Title\nTwo", delegate.presentationString)
-		XCTAssertEqual(parse(controller.string), blockDictionaries)
+		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
 
 	func testRemoveEnd() {
@@ -122,7 +139,7 @@ extension CanvasControllerTests {
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nOn\n⧙blockquote⧘> Two", controller.string)
 		XCTAssertEqual("Title\nOn\nTwo", delegate.presentationString)
-		XCTAssertEqual(parse(controller.string), blockDictionaries)
+		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
 
 	func testJoinBlock() {
@@ -140,7 +157,7 @@ extension CanvasControllerTests {
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nOneTwo", controller.string)
 		XCTAssertEqual("Title\nOneTwo", delegate.presentationString)
-		XCTAssertEqual(parse(controller.string), blockDictionaries)
+		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
 
 	func testMultipleJoin() {
@@ -158,7 +175,7 @@ extension CanvasControllerTests {
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nOneThree", controller.string)
 		XCTAssertEqual("Title\nOneThree", delegate.presentationString)
-		XCTAssertEqual(parse(controller.string), blockDictionaries)
+		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
 
 	func testMultipleRemoveBlock() {
@@ -166,12 +183,12 @@ extension CanvasControllerTests {
 		controller.replaceCharactersInRange(NSRange(location: 22, length: 10), withString: "")
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nFour", controller.string)
 		XCTAssertEqual("Title\nOne\nFour", delegate.presentationString)
-		XCTAssertEqual(parse(controller.string), blockDictionaries)
+		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 
 		controller.string = "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour"
 		controller.replaceCharactersInRange(NSRange(location: 23, length: 10), withString: "")
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nFour", controller.string)
 		XCTAssertEqual("Title\nOne\nFour", delegate.presentationString)
-		XCTAssertEqual(parse(controller.string), blockDictionaries)
+		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
 }

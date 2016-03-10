@@ -215,11 +215,4 @@ class SpanLevelTests: XCTestCase {
 
 		XCTAssertEqual([paragraph].map { $0.dictionary }, parse(markdown))
 	}
-
-
-	// MARK: - Private
-
-	private func parse(markdown: String) -> [[String: AnyObject]] {
-		return Parser.parse(markdown).map { $0.dictionary }
-	}
 }
