@@ -384,7 +384,7 @@ public final class CanvasController {
 			}
 
 			// Add new line
-			if let newLineRange = block.newLineRange where newLineRange.length > 0 {
+			if block.newLineRange != nil {
 				component += "\n"
 			}
 
