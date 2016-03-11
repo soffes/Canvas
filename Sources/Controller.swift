@@ -48,7 +48,7 @@ public final class Controller {
 	public init(string: String? = nil, delegate: ControllerDelegate? = nil) {
 		self.delegate = delegate
 
-		if let string = string {
+		if let string = string where !string.isEmpty {
 			self.string = string
 		}
 	}
@@ -324,12 +324,12 @@ public final class Controller {
 		}
 
 		// If we didn't find anything, assume we're inserting at the very end.
-		let blockRange = NSRange(location: location ?? blocks.endIndex, length: matchingBlocks.count)
+		var blockRange = NSRange(location: location ?? blocks.endIndex, length: matchingBlocks.count)
 
 		// If we delete the new line in the last block, extend the length if possible.
-//		if string.isEmpty, let lastNewLine = matchingBlocks.last?.newLineRange where lastNewLine.intersection(range) == 1 {
-//			blockRange.length = min(blockRange.length + 1, blocks.count - blockRange.location)
-//		}
+		if string.isEmpty, let lastNewLine = matchingBlocks.last?.newLineRange where lastNewLine.intersection(range) == 1 {
+			blockRange.length = min(blockRange.length + 1, blocks.count - blockRange.location)
+		}
 
 		return blockRange
 	}

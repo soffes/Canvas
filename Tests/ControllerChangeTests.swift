@@ -97,7 +97,7 @@ class ControllerChangeTests: XCTestCase {
 		XCTAssertEqual(NSRange(location: 1, length: 4), blockRange)
 
 		// Edit characters
-		controller.replaceCharactersInRange(range, withString: replacement)
+//		controller.replaceCharactersInRange(range, withString: replacement)
 
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nHello\nWorld", controller.string)
