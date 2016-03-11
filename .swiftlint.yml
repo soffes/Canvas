@@ -1,3 +1,6 @@
+excluded:
+  - Tests
+
 disabled_rules:
   # I really like putting else one a new line in long guard statements.
   - statement_position

@@ -29,10 +29,6 @@ public struct Text: SpanNode {
 
 	// MARK: - Initializers
 
-	public init?(string: String, enclosingRange: NSRange) {
-		range = enclosingRange
-	}
-
 	public init(range: NSRange) {
 		self.range = range
 	}
