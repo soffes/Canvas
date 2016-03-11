@@ -38,12 +38,12 @@ class TextContainer: NSTextContainer {
 	override func lineFragmentRectForProposedRect(proposedRect: CGRect, atIndex index: Int, writingDirection: NSWritingDirection, remainingRect: UnsafeMutablePointer<CGRect>) -> CGRect {
 		var rect = proposedRect
 
-		if let textController = textController, block = textController.canvasController.blockAt(presentationLocation: index) {
+		if let textController = textController, block = textController.controller.blockAt(presentationLocation: index) {
 			let spacing = textController.theme.blockSpacing(block: block, horizontalSizeClass: textController.horizontalSizeClass)
 			rect = spacing.applyPadding(rect)
 
 			// Apply the top margin if it's not the second node
-			let blocks = textController.canvasController.blocks
+			let blocks = textController.controller.blocks
 			if spacing.marginTop > 0 && blocks.count >= 2 && block.range.location > blocks[1].range.location {
 				rect.origin.y += spacing.marginTop
 			}
