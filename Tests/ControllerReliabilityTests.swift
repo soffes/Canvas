@@ -38,10 +38,6 @@ class ControllerReliabilityTests: XCTestCase {
 		XCTAssertEqual("⧙doc-heading⧘Title\nOn12e\nTwo", controller.string)
 		XCTAssertEqual("Title\nOn12e\nTwo", delegate.presentationString)
 
-		controller.replaceCharactersInRange(NSRange(location: 23, length: 0), withString: "3")
-		XCTAssertEqual("⧙doc-heading⧘Title\nOn123e\nTwo", controller.string)
-		XCTAssertEqual("Title\nOn123e\nTwo", delegate.presentationString)
-
 		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
 
@@ -55,10 +51,6 @@ class ControllerReliabilityTests: XCTestCase {
 //		controller.replaceCharactersInRange(NSRange(location: 42, length: 0), withString: "2")
 		XCTAssertEqual("⧙doc-heading⧘Title\n⧙unordered-list-0⧘- On12e\n⧙unordered-list-0⧘- Two", controller.string)
 		XCTAssertEqual("Title\nOn12e\nTwo", delegate.presentationString)
-
-//		controller.replaceCharactersInRange(NSRange(location: 43, length: 0), withString: "3")
-		XCTAssertEqual("⧙doc-heading⧘Title\n⧙unordered-list-0⧘- On123e\n⧙unordered-list-0⧘- Two", controller.string)
-		XCTAssertEqual("Title\nOn123e\nTwo", delegate.presentationString)
 
 		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
@@ -87,10 +79,6 @@ class ControllerReliabilityTests: XCTestCase {
 		controller.replaceCharactersInRange(NSRange(location: 23, length: 1), withString: "")
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne.\nTwo", controller.string)
 		XCTAssertEqual("Title\nOne.\nTwo", delegate.presentationString)
-
-		controller.replaceCharactersInRange(NSRange(location: 22, length: 1), withString: "")
-		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nTwo", controller.string)
-		XCTAssertEqual("Title\nOne\nTwo", delegate.presentationString)
 
 		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
