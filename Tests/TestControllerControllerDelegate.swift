@@ -32,37 +32,37 @@ final class TestControllerDelegate: ControllerDelegate {
 
 	// MARK: - ControllerDelegate
 
-	func canvasControllerWillUpdateNodes(canvasController: Controller) {
+	func controllerWillUpdateNodes(controller: Controller) {
 		willUpdate?()
 	}
 
-	func canvasController(canvasController: Controller, didInsertBlock block: BlockNode, atIndex index: Int) {
+	func controller(controller: Controller, didInsertBlock block: BlockNode, atIndex index: Int) {
 		blocks.insert(block, atIndex: index)
 		didInsert?(block, index)
 	}
 
-	func canvasController(canvasController: Controller, didRemoveBlock block: BlockNode, atIndex index: Int) {
+	func controller(controller: Controller, didRemoveBlock block: BlockNode, atIndex index: Int) {
 		blocks.removeAtIndex(index)
 		didRemove?(block, index)
 	}
 
-	func canvasController(canvasController: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
+	func controller(controller: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
 		blocks.removeAtIndex(index)
 		blocks.insert(after, atIndex: index)
 		didReplaceContent?(before, index, after)
 	}
 
-	func canvasController(canvasController: Controller, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
+	func controller(controller: Controller, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
 		blocks.removeAtIndex(index)
 		blocks.insert(after, atIndex: index)
 		didUpdateLocation?(before, index, after)
 	}
 
-	func canvasControllerDidUpdateNodes(canvasController: Controller) {
+	func controllerDidUpdateNodes(controller: Controller) {
 		didUpdate?()
 	}
 
-	func canvasController(canvasController: Controller, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
+	func controller(controller: Controller, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
 		presentationString.replaceCharactersInRange(range, withString: string)
 	}
 }

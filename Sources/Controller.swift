@@ -10,23 +10,23 @@ import Foundation
 
 public protocol ControllerDelegate: class {
 	// After this message, `blocks` will be the new value
-	func canvasControllerWillUpdateNodes(canvasController: Controller)
+	func controllerWillUpdateNodes(controller: Controller)
 
 	// This will be called before all other messages.
-	func canvasController(canvasController: Controller, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String)
+	func controller(controller: Controller, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String)
 
 	// The index will be relative to the blocks array before the change (similar to UITableView).
-	func canvasController(canvasController: Controller, didInsertBlock block: BlockNode, atIndex index: Int)
+	func controller(controller: Controller, didInsertBlock block: BlockNode, atIndex index: Int)
 
-	func canvasController(canvasController: Controller, didRemoveBlock block: BlockNode, atIndex index: Int)
+	func controller(controller: Controller, didRemoveBlock block: BlockNode, atIndex index: Int)
 
 	// The block's content changed. `before` and `after` will always be the same type.
-	func canvasController(canvasController: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
+	func controller(controller: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
 
 	// The block's metadata changed. `before` and `after` will always be the same type.
-	func canvasController(canvasController: Controller, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
+	func controller(controller: Controller, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
 
-	func canvasControllerDidUpdateNodes(canvasController: Controller)
+	func controllerDidUpdateNodes(controller: Controller)
 }
 
 
@@ -89,7 +89,7 @@ public final class Controller {
 		}
 
 		// Notify the delegate we're beginning
-		delegate?.canvasControllerWillUpdateNodes(self)
+		delegate?.controllerWillUpdateNodes(self)
 
 		// Calculate blocks changed by the edit
 		let blockRange = blockRangeForCharacterRange(range, string: string as String)
@@ -121,13 +121,13 @@ public final class Controller {
 		blocks = workingBlocks
 
 		// Notify the delegate of a text change
-		delegate?.canvasController(self, didReplaceCharactersInPresentationStringInRange: displayRange, withString: replacement)
+		delegate?.controller(self, didReplaceCharactersInPresentationStringInRange: displayRange, withString: replacement)
 
 		// Send the rest of the messages
 		messages.forEach(sendDelegateMessage)
 
 		// Notify the delegate we're done
-		delegate?.canvasControllerDidUpdateNodes(self)
+		delegate?.controllerDidUpdateNodes(self)
 	}
 
 
@@ -407,18 +407,18 @@ public final class Controller {
 	private func sendDelegateMessage(message: Message) {
 		switch message {
 		case .Insert(let block, let index):
-			delegate?.canvasController(self, didInsertBlock: block, atIndex: index)
+			delegate?.controller(self, didInsertBlock: block, atIndex: index)
 		case .Remove(let block, let index):
-			delegate?.canvasController(self, didRemoveBlock: block, atIndex: index)
+			delegate?.controller(self, didRemoveBlock: block, atIndex: index)
 		case .Replace(let before, let index, let after):
 			if before.dynamicType == after.dynamicType {
-				delegate?.canvasController(self, didReplaceContentForBlock: before, atIndex: index, withBlock: after)
+				delegate?.controller(self, didReplaceContentForBlock: before, atIndex: index, withBlock: after)
 			} else {
-				delegate?.canvasController(self, didRemoveBlock: before, atIndex: index)
-				delegate?.canvasController(self, didInsertBlock: after, atIndex: index)
+				delegate?.controller(self, didRemoveBlock: before, atIndex: index)
+				delegate?.controller(self, didInsertBlock: after, atIndex: index)
 			}
 		case .Update(let before, let index, let after):
-			delegate?.canvasController(self, didUpdateLocationForBlock: before, atIndex: index, withBlock: after)
+			delegate?.controller(self, didUpdateLocationForBlock: before, atIndex: index, withBlock: after)
 		}
 	}
 }
