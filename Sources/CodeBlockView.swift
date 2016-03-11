@@ -20,6 +20,7 @@ final class CodeBlockView: View, Annotation {
 	var theme: Theme {
 		didSet {
 			backgroundColor = theme.codeBackground
+			tintColor = theme.tintColor
 			setNeedsDisplay()
 		}
 	}

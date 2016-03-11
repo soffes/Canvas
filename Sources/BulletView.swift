@@ -20,6 +20,7 @@ final class BulletView: View, Annotation {
 	var theme: Theme {
 		didSet {
 			backgroundColor = theme.backgroundColor
+			tintColor = theme.tintColor
 			setNeedsDisplay()
 		}
 	}
