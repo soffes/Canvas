@@ -58,14 +58,14 @@ class ControllerReliabilityTests: XCTestCase {
 	func testReliabilityInsertBlock() {
 		controller.string = "⧙doc-heading⧘Demo\nParagraph.\n⧙ordered-list-0⧘1. One"
 
-		let range = NSRange(location: 29, length: 0)
+		let range = NSRange(location: 28, length: 0)
 		let replacement = "\n"
 		let blockRange = controller.blockRangeForCharacterRange(range, string: replacement)
 		XCTAssertEqual(NSRange(location: 2, length: 0), blockRange)
 
 		controller.replaceCharactersInRange(range, withString: replacement)
 		XCTAssertEqual("⧙doc-heading⧘Demo\nParagraph.\n\n⧙ordered-list-0⧘1. One", controller.string)
-		XCTAssertEqual("Demo\nParagraph\n\nOne", delegate.presentationString)
+		XCTAssertEqual("Demo\nParagraph.\n\nOne", delegate.presentationString)
 		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
 
@@ -110,7 +110,6 @@ class ControllerReliabilityTests: XCTestCase {
 	func testCheckboxes() {
 		controller.string = "⧙doc-heading⧘Title\n⧙checklist-0⧘- [ ] Todo"
 		controller.replaceCharactersInRange(NSRange(location: 35, length: 1), withString: "x")
-
 		XCTAssertEqual("⧙doc-heading⧘Title\n⧙checklist-0⧘- [x] Todo", controller.string)
 		XCTAssertEqual("Title\nTodo", delegate.presentationString)
 		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)

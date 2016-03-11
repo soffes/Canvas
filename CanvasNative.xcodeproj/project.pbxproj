@@ -172,6 +172,12 @@
 		21BF7D471C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D451C933A9D00CB1A7A /* ControllerDelegate.swift */; };
 		21BF7D481C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D451C933A9D00CB1A7A /* ControllerDelegate.swift */; };
 		21BF7D491C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D451C933A9D00CB1A7A /* ControllerDelegate.swift */; };
+		21BF7D4B1C937F4100CB1A7A /* CodeBlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D4A1C937F4100CB1A7A /* CodeBlockTests.swift */; };
+		21BF7D4C1C937F4100CB1A7A /* CodeBlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D4A1C937F4100CB1A7A /* CodeBlockTests.swift */; };
+		21BF7D4D1C937F4100CB1A7A /* CodeBlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D4A1C937F4100CB1A7A /* CodeBlockTests.swift */; };
+		21BF7D4F1C93802100CB1A7A /* ParagraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D4E1C93802100CB1A7A /* ParagraphTests.swift */; };
+		21BF7D501C93802100CB1A7A /* ParagraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D4E1C93802100CB1A7A /* ParagraphTests.swift */; };
+		21BF7D511C93802100CB1A7A /* ParagraphTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D4E1C93802100CB1A7A /* ParagraphTests.swift */; };
 		21DF7A471C8FA1AF00C17A62 /* ControllerCalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* ControllerCalculationTests.swift */; };
 		21DF7A481C8FA1AF00C17A62 /* ControllerCalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* ControllerCalculationTests.swift */; };
 		21DF7A5A1C8FAF5B00C17A62 /* ControllerReliabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A591C8FAF5B00C17A62 /* ControllerReliabilityTests.swift */; };
@@ -258,6 +264,8 @@
 		21AD8CA71C8A4628000A53F8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21AD8CC91C8A4637000A53F8 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		21BF7D451C933A9D00CB1A7A /* ControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerDelegate.swift; sourceTree = "<group>"; };
+		21BF7D4A1C937F4100CB1A7A /* CodeBlockTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlockTests.swift; sourceTree = "<group>"; };
+		21BF7D4E1C93802100CB1A7A /* ParagraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphTests.swift; sourceTree = "<group>"; };
 		21DF7A461C8FA1AF00C17A62 /* ControllerCalculationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerCalculationTests.swift; sourceTree = "<group>"; };
 		21DF7A591C8FAF5B00C17A62 /* ControllerReliabilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerReliabilityTests.swift; sourceTree = "<group>"; };
 		21DF7A5F1C90A09000C17A62 /* ControllerInsertTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerInsertTests.swift; sourceTree = "<group>"; };
@@ -364,6 +372,8 @@
 				21DF7A591C8FAF5B00C17A62 /* ControllerReliabilityTests.swift */,
 				21DF7A461C8FA1AF00C17A62 /* ControllerCalculationTests.swift */,
 				215BABE31C52B46B00118C8C /* BlockquoteTests.swift */,
+				21BF7D4A1C937F4100CB1A7A /* CodeBlockTests.swift */,
+				21BF7D4E1C93802100CB1A7A /* ParagraphTests.swift */,
 				215BABE41C52B46B00118C8C /* HeadingTests.swift */,
 				215BABE51C52B46B00118C8C /* ImageTests.swift */,
 				215BABE61C52B46B00118C8C /* ListableTests.swift */,
@@ -816,7 +826,9 @@
 				21AB4EB01C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */,
 				21DF7A601C90A09000C17A62 /* ControllerInsertTests.swift in Sources */,
 				211B90191C92306B004862FC /* XCTestCase+CanvasNativeTests.swift in Sources */,
+				21BF7D4B1C937F4100CB1A7A /* CodeBlockTests.swift in Sources */,
 				21341C8B1C85089400C9EF39 /* NodeTests.swift in Sources */,
+				21BF7D4F1C93802100CB1A7A /* ParagraphTests.swift in Sources */,
 				215BABEE1C52B46B00118C8C /* ListableTests.swift in Sources */,
 				21A9F0D21C7CFD1C009B40A0 /* ControllerChangeTests.swift in Sources */,
 				215BABEA1C52B46B00118C8C /* HeadingTests.swift in Sources */,
@@ -875,7 +887,9 @@
 				21AB4EB11C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */,
 				21DF7A611C90A09000C17A62 /* ControllerInsertTests.swift in Sources */,
 				211B90181C92306B004862FC /* XCTestCase+CanvasNativeTests.swift in Sources */,
+				21BF7D4C1C937F4100CB1A7A /* CodeBlockTests.swift in Sources */,
 				21341C8C1C85089400C9EF39 /* NodeTests.swift in Sources */,
+				21BF7D501C93802100CB1A7A /* ParagraphTests.swift in Sources */,
 				215BABEF1C52B46B00118C8C /* ListableTests.swift in Sources */,
 				21A9F0D31C7CFD1C009B40A0 /* ControllerChangeTests.swift in Sources */,
 				215BABEB1C52B46B00118C8C /* HeadingTests.swift in Sources */,
@@ -972,7 +986,9 @@
 				21632D551C92369A00C40D7D /* SpanLevelTests.swift in Sources */,
 				21632D531C92369A00C40D7D /* ImageTests.swift in Sources */,
 				21632D591C9236A000C40D7D /* XCTestCase+CanvasNativeTests.swift in Sources */,
+				21BF7D4D1C937F4100CB1A7A /* CodeBlockTests.swift in Sources */,
 				21632D501C92369A00C40D7D /* ControllerCalculationTests.swift in Sources */,
+				21BF7D511C93802100CB1A7A /* ParagraphTests.swift in Sources */,
 				21632D4F1C92369A00C40D7D /* ControllerReliabilityTests.swift in Sources */,
 				21632D4D1C92369A00C40D7D /* ControllerInsertTests.swift in Sources */,
 				21632D571C9236A000C40D7D /* TestControllerControllerDelegate.swift in Sources */,
