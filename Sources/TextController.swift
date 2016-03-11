@@ -46,7 +46,7 @@ public final class TextController {
 	}
 
 	public var backingString: String {
-		return controller.string
+		return canvasController.string
 	}
 
 	public var presentationSelectedRange: NSRange? {
@@ -72,7 +72,7 @@ public final class TextController {
 	private var transportController: TransportController?
 	private let annotationsController: AnnotationsController
 
-	let controller = Controller()
+	let canvasController = Controller()
 
 
 	// MARK: - Initializers
@@ -98,7 +98,7 @@ public final class TextController {
 		layoutManager.addTextContainer(textContainer)
 		textStorage.addLayoutManager(layoutManager)
 
-		controller.delegate = self
+		canvasController.delegate = self
 	}
 
 
@@ -125,19 +125,19 @@ extension TextController: TransportControllerDelegate {
 	}
 
 	public func transportController(controller: TransportController, didReceiveSnapshot text: String) {
-		let bounds = NSRange(location: 0, length: controller.length)
-		controller.replaceCharactersInRange(bounds, withString: text)
+		let bounds = NSRange(location: 0, length: canvasController.length)
+		canvasController.replaceCharactersInRange(bounds, withString: text)
 	}
 
 	public func transportController(controller: TransportController, didReceiveOperation operation: Operation) {
 		switch operation {
 		case .Insert(let location, let string):
 			let range = NSRange(location: Int(location), length: 0)
-			controller.replaceCharactersInRange(range, withString: string)
+			canvasController.replaceCharactersInRange(range, withString: string)
 
 		case .Remove(let location, let length):
 			let range = NSRange(location: Int(location), length: Int(length))
-			controller.replaceCharactersInRange(range, withString: "")
+			canvasController.replaceCharactersInRange(range, withString: "")
 		}
 	}
 
@@ -196,8 +196,8 @@ extension TextController: AnnotationsControllerDelegate {
 
 extension TextController: TextStorageDelegate {
 	func textStorage(textStorage: TextStorage, didReplaceCharactersInRange range: NSRange, withString string: String) {
-		let backingRange = controller.backingRange(presentationRange: range)
-		controller.replaceCharactersInRange(backingRange, withString: string)
+		let backingRange = canvasController.backingRange(presentationRange: range)
+		canvasController.replaceCharactersInRange(backingRange, withString: string)
 
 		guard let transportController = transportController else {
 			print("[TextController] WARNING: Tried to submit an operation without a connection.")
