@@ -168,6 +168,10 @@
 		21AD8CE81C8A4649000A53F8 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA21C8A4628000A53F8 /* Text.swift */; };
 		21AD8CE91C8A4649000A53F8 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA31C8A4628000A53F8 /* Title.swift */; };
 		21AD8CEA1C8A4649000A53F8 /* UnorderedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA41C8A4628000A53F8 /* UnorderedListItem.swift */; };
+		21BF7D461C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D451C933A9D00CB1A7A /* ControllerDelegate.swift */; };
+		21BF7D471C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D451C933A9D00CB1A7A /* ControllerDelegate.swift */; };
+		21BF7D481C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D451C933A9D00CB1A7A /* ControllerDelegate.swift */; };
+		21BF7D491C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D451C933A9D00CB1A7A /* ControllerDelegate.swift */; };
 		21DF7A471C8FA1AF00C17A62 /* ControllerCalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* ControllerCalculationTests.swift */; };
 		21DF7A481C8FA1AF00C17A62 /* ControllerCalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* ControllerCalculationTests.swift */; };
 		21DF7A5A1C8FAF5B00C17A62 /* ControllerReliabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A591C8FAF5B00C17A62 /* ControllerReliabilityTests.swift */; };
@@ -253,6 +257,7 @@
 		21AD8CA61C8A4628000A53F8 /* CanvasNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasNative.h; sourceTree = "<group>"; };
 		21AD8CA71C8A4628000A53F8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21AD8CC91C8A4637000A53F8 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		21BF7D451C933A9D00CB1A7A /* ControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerDelegate.swift; sourceTree = "<group>"; };
 		21DF7A461C8FA1AF00C17A62 /* ControllerCalculationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerCalculationTests.swift; sourceTree = "<group>"; };
 		21DF7A591C8FAF5B00C17A62 /* ControllerReliabilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerReliabilityTests.swift; sourceTree = "<group>"; };
 		21DF7A5F1C90A09000C17A62 /* ControllerInsertTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerInsertTests.swift; sourceTree = "<group>"; };
@@ -373,7 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				21AD8C9C1C8A4628000A53F8 /* Parser.swift */,
-				21AD8C8A1C8A4628000A53F8 /* Controller.swift */,
+				21BF7D441C933A9300CB1A7A /* Controller */,
 				21AD8CED1C8A4698000A53F8 /* Protocols */,
 				21AD8CEB1C8A4674000A53F8 /* Block Level */,
 				21AD8CEC1C8A4685000A53F8 /* Span Level */,
@@ -446,6 +451,15 @@
 				21AD8C991C8A4628000A53F8 /* NSRange+CanvasNative.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		21BF7D441C933A9300CB1A7A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				21AD8C8A1C8A4628000A53F8 /* Controller.swift */,
+				21BF7D451C933A9D00CB1A7A /* ControllerDelegate.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -767,6 +781,7 @@
 				21AD8CBF1C8A4628000A53F8 /* Positionable.swift in Sources */,
 				21AD8CC21C8A4628000A53F8 /* SpanNodeContainer.swift in Sources */,
 				21AD8CBB1C8A4628000A53F8 /* NSRange+CanvasNative.swift in Sources */,
+				21BF7D461C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */,
 				21AD8CAC1C8A4628000A53F8 /* Controller.swift in Sources */,
 				21AD8CC51C8A4628000A53F8 /* Title.swift in Sources */,
 				21AD8CAE1C8A4628000A53F8 /* ChecklistItem.swift in Sources */,
@@ -825,6 +840,7 @@
 				21AD8CE31C8A4649000A53F8 /* Positionable.swift in Sources */,
 				21AD8CE61C8A4649000A53F8 /* SpanNodeContainer.swift in Sources */,
 				21AD8CDF1C8A4649000A53F8 /* NSRange+CanvasNative.swift in Sources */,
+				21BF7D471C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */,
 				21AD8CD01C8A4649000A53F8 /* Controller.swift in Sources */,
 				21AD8CE91C8A4649000A53F8 /* Title.swift in Sources */,
 				21AD8CD21C8A4649000A53F8 /* ChecklistItem.swift in Sources */,
@@ -883,6 +899,7 @@
 				21632CF91C9235F500C40D7D /* Node.swift in Sources */,
 				21632CF81C9235F500C40D7D /* NativePrefixable.swift in Sources */,
 				21632D081C9235F800C40D7D /* UnorderedListItem.swift in Sources */,
+				21BF7D491C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */,
 				21632D001C9235F800C40D7D /* Blockquote.swift in Sources */,
 				21632D0D1C9235FE00C40D7D /* Text.swift in Sources */,
 				21632D011C9235F800C40D7D /* ChecklistItem.swift in Sources */,
@@ -920,6 +937,7 @@
 				21632D341C92367B00C40D7D /* Node.swift in Sources */,
 				21632D331C92367B00C40D7D /* NativePrefixable.swift in Sources */,
 				21632D431C92367E00C40D7D /* UnorderedListItem.swift in Sources */,
+				21BF7D481C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */,
 				21632D3B1C92367E00C40D7D /* Blockquote.swift in Sources */,
 				21632D481C92368200C40D7D /* Text.swift in Sources */,
 				21632D3C1C92367E00C40D7D /* ChecklistItem.swift in Sources */,
