@@ -13,9 +13,7 @@ final class CodeBlockView: View, Annotation {
 
 	// MARK: - Private
 
-	var block: Annotatable {
-		return codeBlock
-	}
+	var block: Annotatable
 
 	var theme: Theme {
 		didSet {
@@ -29,14 +27,12 @@ final class CodeBlockView: View, Annotation {
 
 	let style: AnnotationStyle = .Background
 
-	private let codeBlock: CodeBlock
-
-
+	
 	// MARK: - Initializers
 
 	init?(block: Annotatable, theme: Theme) {
 		guard let codeBlock = block as? CodeBlock else { return nil }
-		self.codeBlock = codeBlock
+		self.block = codeBlock
 		self.theme = theme
 
 		super.init(frame: .zero)

@@ -15,7 +15,7 @@ public enum AnnotationStyle {
 }
 
 public protocol Annotation: class {
-	var block: Annotatable { get }
+	var block: Annotatable { get set }
 	var theme: Theme { get set }
 	var view: View { get }
 	var style: AnnotationStyle { get }

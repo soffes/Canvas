@@ -14,7 +14,13 @@ final class BulletView: View, Annotation {
 	// MARK: - Private
 
 	var block: Annotatable {
-		return unorderedListItem
+		didSet {
+			guard let old = oldValue as? UnorderedListItem, new = block as? UnorderedListItem else { return }
+
+			if old.indentation.isFilled != new.indentation.isFilled {
+				setNeedsDisplay()
+			}
+		}
 	}
 
 	var theme: Theme {
@@ -27,14 +33,12 @@ final class BulletView: View, Annotation {
 
 	var horizontalSizeClass: UserInterfaceSizeClass = .Unspecified
 
-	private let unorderedListItem: UnorderedListItem
-
 
 	// MARK: - Initializers
 
 	init?(block: Annotatable, theme: Theme) {
 		guard let unorderedListItem = block as? UnorderedListItem else { return nil }
-		self.unorderedListItem = unorderedListItem
+		self.block = unorderedListItem
 		self.theme = theme
 
 		super.init(frame: .zero)
@@ -52,7 +56,7 @@ final class BulletView: View, Annotation {
 	// MARK: - UIView
 
 	override func drawRect(rect: CGRect) {
-		guard let context = UIGraphicsGetCurrentContext() else { return }
+		guard let context = UIGraphicsGetCurrentContext(), unorderedListItem = block as? UnorderedListItem else { return }
 
 		theme.bulletColor.set()
 

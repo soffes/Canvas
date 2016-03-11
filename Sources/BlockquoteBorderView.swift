@@ -13,11 +13,7 @@ final class BlockquoteBorderView: View, Annotation {
 
 	// MARK: - Private
 
-	private let blockquote: Blockquote
-
-	var block: Annotatable {
-		return blockquote
-	}
+	var block: Annotatable
 
 	var theme: Theme {
 		didSet {
@@ -34,7 +30,7 @@ final class BlockquoteBorderView: View, Annotation {
 
 	init?(block: Annotatable, theme: Theme) {
 		guard let blockquote = block as? Blockquote else { return nil }
-		self.blockquote = blockquote
+		self.block = blockquote
 		self.theme = theme
 
 		super.init(frame: .zero)

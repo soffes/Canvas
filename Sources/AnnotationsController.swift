@@ -76,13 +76,12 @@ final class AnnotationsController {
 
 	func replace(block block: BlockNode, index: Int) {
 		guard enabled else { return }
-
 		update(block: block, index: index)
 	}
 
 	func update(block block: BlockNode, index: Int) {
-		guard enabled, let annotation = annotations[index] else { return }
-
+		guard enabled, let block = block as? Annotatable, annotation = annotations[index] else { return }
+		annotation.block = block
 		annotation.view.frame = rectForAnnotation(annotation, index: index)
 	}
 

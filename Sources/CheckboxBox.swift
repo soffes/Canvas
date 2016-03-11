@@ -13,10 +13,14 @@ final class CheckboxView: UIButton, Annotation {
 
 	// MARK: - Properties
 
-	private let checklistItem: ChecklistItem
-
 	var block: Annotatable {
-		return checklistItem
+		didSet {
+			guard let old = oldValue as? ChecklistItem, new = block as? ChecklistItem else { return }
+
+			if old.completion != new.completion {
+				setNeedsDisplay()
+			}
+		}
 	}
 
 	var theme: Theme {
@@ -34,7 +38,7 @@ final class CheckboxView: UIButton, Annotation {
 
 	init?(block: Annotatable, theme: Theme) {
 		guard let checklistItem = block as? ChecklistItem else { return nil }
-		self.checklistItem = checklistItem
+		self.block = checklistItem
 		self.theme = theme
 
 		super.init(frame: .zero)
@@ -51,6 +55,8 @@ final class CheckboxView: UIButton, Annotation {
 	// MARK: - UIView
 
 	override func drawRect(rect: CGRect) {
+		guard let checklistItem = block as? ChecklistItem else { return }
+
 		let rect = checkboxRectForBounds(bounds)
 
 		if checklistItem.completion == .Complete {
