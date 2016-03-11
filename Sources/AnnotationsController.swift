@@ -119,6 +119,10 @@ final class AnnotationsController {
 		rect.origin.x += textContainerInset.left
 		rect.origin.y += textContainerInset.top
 
+		// Account for line height
+		// TODO: We should get this a better way
+		rect.origin.y += 2
+
 		return rect.integral
 	}
 
