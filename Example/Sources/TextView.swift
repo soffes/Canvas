@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CanvasText
 
 final class TextView: UITextView {
 	// Only display the caret in the used rect (if available).
@@ -52,5 +53,12 @@ final class TextView: UITextView {
 			guard let selection = selection as? UITextSelectionRect else { return false }
 			return selection.rect.size.width > 0
 		})
+	}
+}
+
+
+extension TextView: TextControllerAnnotationDelegate {
+	func textController(textController: TextController, willAddAnnotation annotation: Annotation) {
+		insertSubview(annotation.view, atIndex: 0)
 	}
 }

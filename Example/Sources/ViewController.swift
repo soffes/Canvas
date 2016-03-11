@@ -23,15 +23,16 @@ class ViewController: UIViewController {
 	// MARK: - Initializers
 
 	override init(nibName: String?, bundle: NSBundle?) {
-		textView = TextView(frame: .zero, textContainer: textController.textContainer)
+		let textView = TextView(frame: .zero, textContainer: textController.textContainer)
 		textView.translatesAutoresizingMaskIntoConstraints = false
 		textView.alwaysBounceVertical = true
+		self.textView = textView
 		
 		super.init(nibName: nil, bundle: nil)
 
 		textController.connectionDelegate = self
 		textController.selectionDelegate = self
-		textController.annotationDelegate = self
+		textController.annotationDelegate = textView
 		textView.delegate = self
 	}
 	
@@ -118,12 +119,5 @@ extension ViewController: TextControllerConnectionDelegate {
 	func textController(textController: TextController, willConnectWithWebView webView: WKWebView) {
 		webView.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
 		view.addSubview(webView)
-	}
-}
-
-
-extension ViewController: TextControllerAnnotationDelegate {
-	func textController(textController: TextController, willAddAnnotation annotation: Annotation) {
-		textView.insertSubview(annotation.view, atIndex: 0)
 	}
 }
