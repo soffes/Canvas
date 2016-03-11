@@ -355,7 +355,7 @@ public final class Controller {
 
 			// Offset if starting out
 			if output.isEmpty && backingRange.location > block.enclosingRange.location {
-				let offset = backingRange.location - block.enclosingRange.location
+				let offset = backingRange.location - block.visibleRange.location
 				component = (content as NSString).substringFromIndex(offset) as String
 			} else {
 				component = content
