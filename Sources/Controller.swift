@@ -85,7 +85,7 @@ public final class Controller {
 		let (workingBlocks, messages) = applyParsedBlocks(parsedBlocks, parseRange: invalidRange, blockRange: blockRange)
 
 		// Calculate message for presentation replacement
-		let replacement: String
+		let replacement: String?
 		if inString.isEmpty {
 			// If we're deleting, this is easy
 			replacement = ""
@@ -99,7 +99,9 @@ public final class Controller {
 		blocks = workingBlocks
 
 		// Notify the delegate of a text change
-		delegate?.controller(self, didReplaceCharactersInPresentationStringInRange: displayRange, withString: replacement)
+		if let replacement = replacement {
+			delegate?.controller(self, didReplaceCharactersInPresentationStringInRange: displayRange, withString: replacement)
+		}
 
 		// Send the rest of the messages
 		messages.forEach(sendDelegateMessage)
@@ -334,11 +336,11 @@ public final class Controller {
 		return blockRange
 	}
 
-	func presentationString(backingRange backingRange: NSRange) -> String {
+	func presentationString(backingRange backingRange: NSRange) -> String? {
 		return presentationString(backingRange: backingRange, blocks: blocks)
 	}
 
-	private func presentationString(backingRange backingRange: NSRange, blocks: [BlockNode]) -> String {
+	private func presentationString(backingRange backingRange: NSRange, blocks: [BlockNode]) -> String? {
 		var output = ""
 
 		for block in blocks {
@@ -356,6 +358,9 @@ public final class Controller {
 			// Offset if starting out
 			if output.isEmpty && backingRange.location > block.enclosingRange.location {
 				let offset = backingRange.location - block.visibleRange.location
+				if offset < 0 {
+					continue
+				}
 				component = (content as NSString).substringFromIndex(offset) as String
 			} else {
 				component = content
@@ -376,7 +381,7 @@ public final class Controller {
 			output += component
 		}
 
-		return output
+		return output.isEmpty ? nil : output
 	}
 
 

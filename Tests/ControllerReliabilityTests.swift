@@ -106,4 +106,13 @@ class ControllerReliabilityTests: XCTestCase {
 		XCTAssertEqual("Title\nOne\nTwo", delegate.presentationString)
 		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
+
+	func testCheckboxes() {
+		controller.string = "⧙doc-heading⧘Title\n⧙checklist-0⧘- [ ] Todo"
+		controller.replaceCharactersInRange(NSRange(location: 35, length: 1), withString: "x")
+
+		XCTAssertEqual("⧙doc-heading⧘Title\n⧙checklist-0⧘- [x] Todo", controller.string)
+		XCTAssertEqual("Title\nTodo", delegate.presentationString)
+		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
+	}
 }
