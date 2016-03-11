@@ -27,7 +27,7 @@ class ControllerReliabilityTests: XCTestCase {
 
 	// MARK: - Tests
 
-	func testReliabilityInsert() {
+	func testReliabilityInsertMidParagraph() {
 		controller.string = "⧙doc-heading⧘Title\nOne\nTwo"
 
 		controller.replaceCharactersInRange(NSRange(location: 21, length: 0), withString: "1")
@@ -40,6 +40,24 @@ class ControllerReliabilityTests: XCTestCase {
 
 		controller.replaceCharactersInRange(NSRange(location: 23, length: 0), withString: "3")
 		XCTAssertEqual("⧙doc-heading⧘Title\nOn123e\nTwo", controller.string)
+		XCTAssertEqual("Title\nOn123e\nTwo", delegate.presentationString)
+
+		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
+	}
+
+	func testReliabilityInsertMidListItem() {
+		controller.string = "⧙doc-heading⧘Title\n⧙unordered-list-0⧘- One\n⧙unordered-list-0⧘- Two"
+
+//		controller.replaceCharactersInRange(NSRange(location: 41, length: 0), withString: "1")
+		XCTAssertEqual("⧙doc-heading⧘Title\n⧙unordered-list-0⧘- On1e\n⧙unordered-list-0⧘- Two", controller.string)
+		XCTAssertEqual("Title\nOn1e\nTwo", delegate.presentationString)
+
+//		controller.replaceCharactersInRange(NSRange(location: 42, length: 0), withString: "2")
+		XCTAssertEqual("⧙doc-heading⧘Title\n⧙unordered-list-0⧘- On12e\n⧙unordered-list-0⧘- Two", controller.string)
+		XCTAssertEqual("Title\nOn12e\nTwo", delegate.presentationString)
+
+//		controller.replaceCharactersInRange(NSRange(location: 43, length: 0), withString: "3")
+		XCTAssertEqual("⧙doc-heading⧘Title\n⧙unordered-list-0⧘- On123e\n⧙unordered-list-0⧘- Two", controller.string)
 		XCTAssertEqual("Title\nOn123e\nTwo", delegate.presentationString)
 
 		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
