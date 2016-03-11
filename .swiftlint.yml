@@ -12,3 +12,6 @@ disabled_rules:
 
 # TODO: Change to 120
 line_length: 260
+
+# TODO: Remove
+file_length: 500
