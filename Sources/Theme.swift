@@ -37,7 +37,8 @@ public protocol Theme {
 	func fontOfSize(fontSize: CGFloat, symbolicTraits: FontDescriptorSymbolicTraits) -> Font
 	func monospaceFontOfSize(fontSize: CGFloat, symbolicTraits: FontDescriptorSymbolicTraits) -> Font
 
-	func attributesForNode(node: Node, currentFont: Font?) -> Attributes
+	func attributes(block block: BlockNode) -> Attributes
+	func attributes(span span: SpanNode, currentFont: Font) -> Attributes?
 
 	func blockSpacing(block block: BlockNode, horizontalSizeClass: UserInterfaceSizeClass) -> BlockSpacing
 }

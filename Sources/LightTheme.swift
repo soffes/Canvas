@@ -130,19 +130,16 @@ public struct LightTheme: Theme {
 		return spacing
 	}
 
-	public func attributesForNode(node: Node, currentFont: CanvasText.Font?) -> Attributes {
-		if node is Title {
+	public func attributes(block block: BlockNode) -> Attributes {
+		if block is Title {
 			return titleAttributes
 		}
 
-		let fontSize = currentFont?.pointSize ?? self.fontSize
-
+		let paragraph = baseParagraph
 		var attributes = baseAttributes
 		attributes[NSParagraphStyleAttributeName] = nil
 
-		let paragraph = baseParagraph
-
-		if let heading = node as? Heading {
+		if let heading = block as? Heading {
 			switch heading.level {
 			case .One:
 				attributes[NSForegroundColorAttributeName] = UIColor.blackColor()
@@ -163,46 +160,46 @@ public struct LightTheme: Theme {
 			}
 		}
 
-		else if node is CodeBlock {
+		else if block is CodeBlock {
 			attributes[NSForegroundColorAttributeName] = mediumGray
 			attributes[NSFontAttributeName] = monospaceFontOfSize(fontSize)
 
 			paragraph.headIndent = fontSize
 		}
 
-		else if node is Blockquote {
+		else if block is Blockquote {
 			attributes[NSForegroundColorAttributeName] = mediumGray
 		}
 
-		else if node is CodeSpan {
-			let traits = currentFont?.fontDescriptor().symbolicTraits ?? []
+		attributes[NSParagraphStyleAttributeName] = paragraph
+
+		return attributes
+	}
+
+	public func attributes(span span: SpanNode, currentFont: Font) -> Attributes? {
+		var traits = currentFont.fontDescriptor().symbolicTraits
+		var attributes = Attributes()
+
+		if span is CodeSpan {
 			attributes[NSFontAttributeName] = monospaceFontOfSize(fontSize, symbolicTraits: traits)
 			attributes[NSForegroundColorAttributeName] = UIColor(red: 0.494, green: 0.494, blue: 0.510, alpha: 1)
 			attributes[NSBackgroundColorAttributeName] = UIColor(red: 0.961, green: 0.961, blue: 0.965, alpha: 1)
 		}
 
-		else if node is DoubleEmphasis {
-			var traits = currentFont?.fontDescriptor().symbolicTraits ?? []
+		else if span is DoubleEmphasis {
 			traits.insert(.TraitBold)
-
 			attributes[NSFontAttributeName] = fontOfSize(fontSize, symbolicTraits: traits)
 		}
 
-		else if node is Emphasis {
-			var traits = currentFont?.fontDescriptor().symbolicTraits ?? []
+		else if span is Emphasis {
 			traits.insert(.TraitItalic)
-
 			attributes[NSFontAttributeName] = fontOfSize(fontSize, symbolicTraits: traits)
 		}
 
-		else if node is Link {
+		else if span is Link {
 			attributes[NSForegroundColorAttributeName] = tintColor
 		}
-
-		if node is BlockNode {
-			attributes[NSParagraphStyleAttributeName] = paragraph
-		}
 		
-		return attributes
+		return attributes.isEmpty ? nil : attributes
 	}
 }
