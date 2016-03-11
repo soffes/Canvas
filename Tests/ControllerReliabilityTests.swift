@@ -51,7 +51,7 @@ class ControllerReliabilityTests: XCTestCase {
 		let range = NSRange(location: 29, length: 0)
 		let replacement = "\n"
 		let blockRange = controller.blockRangeForCharacterRange(range, string: replacement)
-		XCTAssertEqual(NSRange(location: 1, length: 0), blockRange)
+		XCTAssertEqual(NSRange(location: 2, length: 0), blockRange)
 
 		controller.replaceCharactersInRange(range, withString: replacement)
 		XCTAssertEqual("⧙doc-heading⧘Demo\nParagraph.\n\n⧙ordered-list-0⧘1. One", controller.string)

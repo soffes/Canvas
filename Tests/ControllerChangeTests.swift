@@ -1,5 +1,5 @@
 //
-//  ControllerTests.swift
+//  ControllerChangeTests.swift
 //  CanvasNative
 //
 //  Created by Sam Soffes on 2/23/16.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import CanvasNative
 
-class ControllerTests: XCTestCase {
+class ControllerChangeTests: XCTestCase {
 
 	// MARK: - Properties
 

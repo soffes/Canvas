@@ -88,7 +88,7 @@
 		21632D491C92368600C40D7D /* CGSize+CanvasNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8B1C8A4628000A53F8 /* CGSize+CanvasNative.swift */; };
 		21632D4A1C92368600C40D7D /* NSRange+CanvasNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C991C8A4628000A53F8 /* NSRange+CanvasNative.swift */; };
 		21632D4B1C92368800C40D7D /* CanvasNative.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AD8CA61C8A4628000A53F8 /* CanvasNative.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		21632D4C1C92369A00C40D7D /* ControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* ControllerTests.swift */; };
+		21632D4C1C92369A00C40D7D /* ControllerChangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* ControllerChangeTests.swift */; };
 		21632D4D1C92369A00C40D7D /* ControllerInsertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A5F1C90A09000C17A62 /* ControllerInsertTests.swift */; };
 		21632D4E1C92369A00C40D7D /* ControllerRemoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A621C90A0E100C17A62 /* ControllerRemoveTests.swift */; };
 		21632D4F1C92369A00C40D7D /* ControllerReliabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A591C8FAF5B00C17A62 /* ControllerReliabilityTests.swift */; };
@@ -102,8 +102,8 @@
 		21632D571C9236A000C40D7D /* TestControllerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210C743C1C7E7C6100FBB665 /* TestControllerControllerDelegate.swift */; };
 		21632D581C9236A000C40D7D /* NSRange+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */; };
 		21632D591C9236A000C40D7D /* XCTestCase+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B90161C923047004862FC /* XCTestCase+CanvasNativeTests.swift */; };
-		21A9F0D21C7CFD1C009B40A0 /* ControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* ControllerTests.swift */; };
-		21A9F0D31C7CFD1C009B40A0 /* ControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* ControllerTests.swift */; };
+		21A9F0D21C7CFD1C009B40A0 /* ControllerChangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* ControllerChangeTests.swift */; };
+		21A9F0D31C7CFD1C009B40A0 /* ControllerChangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* ControllerChangeTests.swift */; };
 		21AB4EB01C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */; };
 		21AB4EB11C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */; };
 		21AD8CA91C8A4628000A53F8 /* Attachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C871C8A4628000A53F8 /* Attachable.swift */; };
@@ -218,7 +218,7 @@
 		21632CEA1C9235E400C40D7D /* CanvasNative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasNative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21632D161C92366600C40D7D /* CanvasNative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasNative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21632D1F1C92366600C40D7D /* CanvasNativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasNativeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		21A9F0D11C7CFD1C009B40A0 /* ControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerTests.swift; sourceTree = "<group>"; };
+		21A9F0D11C7CFD1C009B40A0 /* ControllerChangeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerChangeTests.swift; sourceTree = "<group>"; };
 		21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+CanvasNativeTests.swift"; sourceTree = "<group>"; };
 		21AD8C871C8A4628000A53F8 /* Attachable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attachable.swift; sourceTree = "<group>"; };
 		21AD8C881C8A4628000A53F8 /* BlockNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
@@ -353,7 +353,7 @@
 		215BAB8E1C52B28900118C8C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				21A9F0D11C7CFD1C009B40A0 /* ControllerTests.swift */,
+				21A9F0D11C7CFD1C009B40A0 /* ControllerChangeTests.swift */,
 				21DF7A5F1C90A09000C17A62 /* ControllerInsertTests.swift */,
 				21DF7A621C90A0E100C17A62 /* ControllerRemoveTests.swift */,
 				21DF7A591C8FAF5B00C17A62 /* ControllerReliabilityTests.swift */,
@@ -803,7 +803,7 @@
 				211B90191C92306B004862FC /* XCTestCase+CanvasNativeTests.swift in Sources */,
 				21341C8B1C85089400C9EF39 /* NodeTests.swift in Sources */,
 				215BABEE1C52B46B00118C8C /* ListableTests.swift in Sources */,
-				21A9F0D21C7CFD1C009B40A0 /* ControllerTests.swift in Sources */,
+				21A9F0D21C7CFD1C009B40A0 /* ControllerChangeTests.swift in Sources */,
 				215BABEA1C52B46B00118C8C /* HeadingTests.swift in Sources */,
 				21DF7A631C90A0E100C17A62 /* ControllerRemoveTests.swift in Sources */,
 				210C743D1C7E7C6100FBB665 /* TestControllerControllerDelegate.swift in Sources */,
@@ -861,7 +861,7 @@
 				211B90181C92306B004862FC /* XCTestCase+CanvasNativeTests.swift in Sources */,
 				21341C8C1C85089400C9EF39 /* NodeTests.swift in Sources */,
 				215BABEF1C52B46B00118C8C /* ListableTests.swift in Sources */,
-				21A9F0D31C7CFD1C009B40A0 /* ControllerTests.swift in Sources */,
+				21A9F0D31C7CFD1C009B40A0 /* ControllerChangeTests.swift in Sources */,
 				215BABEB1C52B46B00118C8C /* HeadingTests.swift in Sources */,
 				21DF7A641C90A0E100C17A62 /* ControllerRemoveTests.swift in Sources */,
 				210C743E1C7E7C6100FBB665 /* TestControllerControllerDelegate.swift in Sources */,
@@ -961,7 +961,7 @@
 				21632D521C92369A00C40D7D /* HeadingTests.swift in Sources */,
 				21632D4E1C92369A00C40D7D /* ControllerRemoveTests.swift in Sources */,
 				21632D581C9236A000C40D7D /* NSRange+CanvasNativeTests.swift in Sources */,
-				21632D4C1C92369A00C40D7D /* ControllerTests.swift in Sources */,
+				21632D4C1C92369A00C40D7D /* ControllerChangeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1367,6 +1367,7 @@
 				21632CF01C9235E400C40D7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		21632D271C92366700C40D7D /* Build configuration list for PBXNativeTarget "CanvasNative-tvOS" */ = {
 			isa = XCConfigurationList;
@@ -1375,6 +1376,7 @@
 				21632D291C92366700C40D7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		21632D2A1C92366700C40D7D /* Build configuration list for PBXNativeTarget "CanvasNativeTests-tvOS" */ = {
 			isa = XCConfigurationList;
@@ -1383,6 +1385,7 @@
 				21632D2C1C92366700C40D7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
