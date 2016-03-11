@@ -24,17 +24,6 @@ class TextStorage: BaseTextStorage {
 
 	func actuallyReplaceCharactersInRange(range: NSRange, withString string: String) {
 		super.replaceCharactersInRange(range, withString: string)
-
-		guard !string.isEmpty else { return }
-
-		guard let theme = textController?.theme else { return }
-		let attributes = [
-			NSFontAttributeName: theme.fontOfSize(theme.fontSize),
-			NSForegroundColorAttributeName: theme.foregroundColor
-		]
-		let editedRange = NSRange(location: range.location, length: (string as NSString).length - range.length)
-		storage.setAttributes(attributes, range: editedRange)
-		edited(.EditedAttributes, range: editedRange, changeInLength: 0)
 	}
 
 

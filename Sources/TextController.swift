@@ -166,6 +166,11 @@ extension TextController: ControllerDelegate {
 
 	public func controller(controller: Controller, didInsertBlock block: BlockNode, atIndex index: Int) {
 		annotationsController.insert(block: block, index: index)
+
+		let attributes = theme.attributes(block: block)
+		let range = canvasController.presentationRange(backingRange: block.visibleRange)
+		textStorage.setAttributes(attributes, range: range)
+
 //		layoutManager.invalidateLayoutForCharacterRange(controller.presentationRange(backingRange: block.visibleRange), actualCharacterRange: nil)
 	}
 
