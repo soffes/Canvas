@@ -199,6 +199,11 @@ public struct LightTheme: Theme {
 		else if span is Link {
 			attributes[NSForegroundColorAttributeName] = tintColor
 		}
+
+		// Ensure a font is set
+		if attributes[NSFontAttributeName] == nil {
+			attributes[NSFontAttributeName] = currentFont
+		}
 		
 		return attributes.isEmpty ? nil : attributes
 	}

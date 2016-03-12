@@ -120,11 +120,40 @@ public final class TextController {
 
 	// MARK: - Private
 
-	private func styleForBlock(block: BlockNode) -> Style {
-		return Style(
+	private func stylesForBlock(block: BlockNode) -> [Style] {
+		let blockStyle = Style(
 			range: canvasController.presentationRange(backingRange: block.visibleRange),
 			attributes: theme.attributes(block: block)
 		)
+
+		var styles = [blockStyle]
+
+		if let container = block as? NodeContainer, font = blockStyle.attributes[NSFontAttributeName] as? Font {
+			styles += stylesForSpans(container.subnodes, currentFont: font)
+		}
+
+		return styles
+	}
+
+	private func stylesForSpans(spans: [SpanNode], currentFont: Font) -> [Style] {
+		var styles = [Style]()
+
+		for span in spans {
+			guard let attributes = theme.attributes(span: span, currentFont: currentFont) else { continue }
+
+			let style = Style(
+				range: canvasController.presentationRange(backingRange: span.visibleRange),
+				attributes: attributes
+			)
+			styles.append(style)
+
+			if let container = span as? NodeContainer {
+				let font = attributes[NSFontAttributeName] as? Font ?? currentFont
+				styles += stylesForSpans(container.subnodes, currentFont: font)
+			}
+		}
+
+		return styles
 	}
 }
 
@@ -178,7 +207,7 @@ extension TextController: ControllerDelegate {
 
 	public func controller(controller: Controller, didInsertBlock block: BlockNode, atIndex index: Int) {
 		annotationsController.insert(block: block, index: index)
-		_textStorage.addStyle(styleForBlock(block))
+		_textStorage.addStyles(stylesForBlock(block))
 //		layoutManager.invalidateLayoutForCharacterRange(controller.presentationRange(backingRange: block.visibleRange), actualCharacterRange: nil)
 	}
 
@@ -188,7 +217,7 @@ extension TextController: ControllerDelegate {
 
 	public func controller(controller: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
 		annotationsController.replace(block: after, index: index)
-		_textStorage.addStyle(styleForBlock(after))
+		_textStorage.addStyles(stylesForBlock(after))
 //		layoutManager.invalidateGlyphsForCharacterRange(controller.presentationRange(backingRange: after.visibleRange), changeInLength: after.visibleRange.length - before.visibleRange.length, actualCharacterRange: nil)
 	}
 

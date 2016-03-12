@@ -33,8 +33,8 @@ class TextStorage: BaseTextStorage {
 
 	// MARK: - Styles
 
-	func addStyle(style: Style) {
-		styles.append(style)
+	func addStyles(styles: [Style]) {
+		self.styles += styles
 	}
 
 	func applyStyles() {
