@@ -116,6 +116,16 @@ public final class TextController {
 		transportController.connect()
 		self.transportController = transportController
 	}
+
+
+	// MARK: - Private
+
+	private func styleForBlock(block: BlockNode) -> Style {
+		return Style(
+			range: canvasController.presentationRange(backingRange: block.visibleRange),
+			attributes: theme.attributes(block: block)
+		)
+	}
 }
 
 
@@ -152,7 +162,9 @@ extension TextController: TransportControllerDelegate {
 
 
 extension TextController: ControllerDelegate {
-	public func controllerWillUpdateNodes(controller: Controller) {}
+	public func controllerWillUpdateNodes(controller: Controller) {
+		textStorage.beginEditing()
+	}
 
 	public func controller(controller: Controller, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
 		_textStorage.actuallyReplaceCharactersInRange(range, withString: string)
@@ -166,12 +178,7 @@ extension TextController: ControllerDelegate {
 
 	public func controller(controller: Controller, didInsertBlock block: BlockNode, atIndex index: Int) {
 		annotationsController.insert(block: block, index: index)
-
-		_textStorage.addStyle(Style(
-			range: canvasController.presentationRange(backingRange: block.visibleRange),
-			attributes: theme.attributes(block: block)
-		))
-
+		_textStorage.addStyle(styleForBlock(block))
 //		layoutManager.invalidateLayoutForCharacterRange(controller.presentationRange(backingRange: block.visibleRange), actualCharacterRange: nil)
 	}
 
@@ -181,12 +188,8 @@ extension TextController: ControllerDelegate {
 
 	public func controller(controller: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
 		annotationsController.replace(block: after, index: index)
+		_textStorage.addStyle(styleForBlock(after))
 //		layoutManager.invalidateGlyphsForCharacterRange(controller.presentationRange(backingRange: after.visibleRange), changeInLength: after.visibleRange.length - before.visibleRange.length, actualCharacterRange: nil)
-
-		_textStorage.addStyle(Style(
-			range: canvasController.presentationRange(backingRange: after.visibleRange),
-			attributes: theme.attributes(block: after)
-		))
 	}
 
 	public func controller(controller: Controller, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
@@ -194,7 +197,10 @@ extension TextController: ControllerDelegate {
 //		layoutManager.invalidateLayoutForCharacterRange(controller.presentationRange(backingRange: after.visibleRange), actualCharacterRange: nil)
 	}
 
-	public func controllerDidUpdateNodes(controller: Controller) {}
+	public func controllerDidUpdateNodes(controller: Controller) {
+		_textStorage.applyStyles()
+		textStorage.endEditing()
+	}
 }
 
 

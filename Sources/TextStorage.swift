@@ -37,10 +37,14 @@ class TextStorage: BaseTextStorage {
 		styles.append(style)
 	}
 
-	private func applyStyles() {
+	func applyStyles() {
+		guard !styles.isEmpty else { return }
+
 		for style in styles {
-			setAttributes(style.attributes, range: style.range)
+			storage.setAttributes(style.attributes, range: style.range)
+			edited(.EditedAttributes, range: style.range, changeInLength: 0)
 		}
+
 		styles.removeAll()
 	}
 
