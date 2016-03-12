@@ -147,8 +147,19 @@ public final class TextController {
 			)
 			styles.append(style)
 
+			let font = attributes[NSFontAttributeName] as? Font ?? currentFont
+
+			if let foldable = span as? Foldable {
+				for backingRange in foldable.foldableRanges {
+					let style = Style(
+						range: canvasController.presentationRange(backingRange: backingRange),
+						attributes: theme.foldingAttributes(currentFont: font)
+					)
+					styles.append(style)
+				}
+			}
+
 			if let container = span as? NodeContainer {
-				let font = attributes[NSFontAttributeName] as? Font ?? currentFont
 				styles += stylesForSpans(container.subnodes, currentFont: font)
 			}
 		}

@@ -24,7 +24,6 @@ public protocol Theme {
 	var foregroundColor: Color { get }
 	var placeholderColor: Color { get }
 	var tintColor: Color { get set }
-	var foldingAttributes: Attributes { get }
 	var baseAttributes: Attributes { get }
 	var titleAttributes: Attributes { get }
 
@@ -37,18 +36,26 @@ public protocol Theme {
 	func fontOfSize(fontSize: CGFloat, symbolicTraits: FontDescriptorSymbolicTraits) -> Font
 	func monospaceFontOfSize(fontSize: CGFloat, symbolicTraits: FontDescriptorSymbolicTraits) -> Font
 
+	// NSFontAttributeName must be present.
 	func attributes(block block: BlockNode) -> Attributes
+
+	// NSFontAttributeName must be present.
 	func attributes(span span: SpanNode, currentFont: Font) -> Attributes?
+
+	// NSFontAttributeName must be present.
+	func foldingAttributes(currentFont currentFont: Font) -> Attributes
 
 	func blockSpacing(block block: BlockNode, horizontalSizeClass: UserInterfaceSizeClass) -> BlockSpacing
 }
 
 
 extension Theme {
-	public var foldingAttributes: Attributes {
-		return [
-			NSForegroundColorAttributeName: placeholderColor
-		]
+	public func foldingAttributes(currentFont currentFont: Font) -> Attributes {
+		var attributes = baseAttributes
+		attributes[NSParagraphStyleAttributeName] = nil
+		attributes[NSForegroundColorAttributeName] = placeholderColor
+		attributes[NSFontAttributeName] = currentFont
+		return attributes
 	}
 
 	public var baseAttributes: Attributes {

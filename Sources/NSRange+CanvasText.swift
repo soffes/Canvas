@@ -19,10 +19,12 @@ extension NSRange {
 		return indicies
 	}
 
+	@warn_unused_result
 	func equals(range: NSRange) -> Bool {
 		return NSEqualRanges(self, range)
 	}
 
+	@warn_unused_result
 	func intersection(range: NSRange) -> Int? {
 		if range.length == 0 {
 			return NSLocationInRange(range.location, self) ? 0 : nil
@@ -32,6 +34,7 @@ extension NSRange {
 		return length > 0 ? length : nil
 	}
 
+	@warn_unused_result
 	func contains(location: Int) -> Bool {
 		return NSLocationInRange(location, self)
 	}
