@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias Style = (range: NSRange, attributes: Attributes)
+
 protocol TextStorageDelegate: class {
 	func textStorage(textStorage: TextStorage, didReplaceCharactersInRange range: NSRange, withString string: String)
 }
@@ -19,6 +21,8 @@ class TextStorage: BaseTextStorage {
 	weak var textController: TextController?
 	weak var replacementDelegate: TextStorageDelegate?
 
+	private var styles = [Style]()
+
 
 	// MARK: - Updating Content
 
@@ -27,10 +31,29 @@ class TextStorage: BaseTextStorage {
 	}
 
 
+	// MARK: - Styles
+
+	func addStyle(style: Style) {
+		styles.append(style)
+	}
+
+	private func applyStyles() {
+		for style in styles {
+			setAttributes(style.attributes, range: style.range)
+		}
+		styles.removeAll()
+	}
+
+
 	// MARK: - NSTextStorage
 
 	override func replaceCharactersInRange(range: NSRange, withString string: String) {
 		// Local changes are delegated to the text controller
 		replacementDelegate?.textStorage(self, didReplaceCharactersInRange: range, withString: string)
+	}
+
+	override func processEditing() {
+		applyStyles()
+		super.processEditing()
 	}
 }

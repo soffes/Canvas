@@ -167,9 +167,10 @@ extension TextController: ControllerDelegate {
 	public func controller(controller: Controller, didInsertBlock block: BlockNode, atIndex index: Int) {
 		annotationsController.insert(block: block, index: index)
 
-		let attributes = theme.attributes(block: block)
-		let range = canvasController.presentationRange(backingRange: block.visibleRange)
-		textStorage.setAttributes(attributes, range: range)
+		_textStorage.addStyle(Style(
+			range: canvasController.presentationRange(backingRange: block.visibleRange),
+			attributes: theme.attributes(block: block)
+		))
 
 //		layoutManager.invalidateLayoutForCharacterRange(controller.presentationRange(backingRange: block.visibleRange), actualCharacterRange: nil)
 	}
@@ -181,6 +182,11 @@ extension TextController: ControllerDelegate {
 	public func controller(controller: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
 		annotationsController.replace(block: after, index: index)
 //		layoutManager.invalidateGlyphsForCharacterRange(controller.presentationRange(backingRange: after.visibleRange), changeInLength: after.visibleRange.length - before.visibleRange.length, actualCharacterRange: nil)
+
+		_textStorage.addStyle(Style(
+			range: canvasController.presentationRange(backingRange: after.visibleRange),
+			attributes: theme.attributes(block: after)
+		))
 	}
 
 	public func controller(controller: Controller, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
