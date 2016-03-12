@@ -52,10 +52,12 @@ extension NSRange {
 
 	// MARK: - Working with Locations
 
+	@warn_unused_result
 	func contains(location: UInt) -> Bool {
 		return contains(Int(location))
 	}
 
+	@warn_unused_result
 	func contains(location: Int) -> Bool {
 		return NSLocationInRange(location, self)
 	}
@@ -63,6 +65,7 @@ extension NSRange {
 
 	// MARK: - Working with other Ranges
 
+	@warn_unused_result
 	func union(range: NSRange) -> NSRange {
 		return NSUnionRange(self, range)
 	}
@@ -71,6 +74,7 @@ extension NSRange {
 	///
 	/// - parameter range: The range to check for intersection with the receiver.
 	/// - return: The length of intersection if they intersect or nil if they don't.
+	@warn_unused_result
 	func intersection(range: NSRange) -> Int? {
 		if range.length == 0 {
 			return NSLocationInRange(range.location, self) ? 0 : nil
@@ -80,6 +84,7 @@ extension NSRange {
 		return length > 0 ? length : nil
 	}
 
+	@warn_unused_result
 	func equals(range: NSRange) -> Bool {
 		return NSEqualRanges(self, range)
 	}

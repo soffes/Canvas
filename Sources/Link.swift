@@ -77,22 +77,16 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 	}
 
 	public var foldableRanges: [NSRange] {
-		var ranges = [
-			leadingTextDelimiterRange,
-			trailingTextDelimiterRange,
-			leadingUrlDelimiterRange,
-		]
-
-		var URLTitle = urlRange
+		let before = leadingTextDelimiterRange
+		var after = trailingTextDelimiterRange.union(leadingUrlDelimiterRange).union(urlRange)
 
 		if let title = title {
-			URLTitle = URLTitle.union(title.range)
+			after = after.union(title.range)
 		}
 
-		ranges.append(URLTitle)
-		ranges.append(trailingURLDelimiterRange)
+		after = after.union(trailingURLDelimiterRange)
 
-		return ranges
+		return [before, after]
 	}
 
 	public var dictionary: [String: AnyObject] {
