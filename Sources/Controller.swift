@@ -56,15 +56,8 @@ public final class Controller {
 
 	// MARK: - Changing Text
 
-	public func replaceCharactersInRange(inRange: NSRange, withString inString: String) {
-		var range = inRange
+	public func replaceCharactersInRange(range: NSRange, withString inString: String) {
 		let string = inString as NSString
-
-		// Special case for new lines at the beginning instead of the end
-		if range.length > 1 && text.substringWithRange(NSRange(location: range.location, length: 1)) == "\n" {
-			range.location += 1
-			range.length = min(length - range.location, range.length)
-		}
 
 		// Notify the delegate we're beginning
 		delegate?.controllerWillUpdateNodes(self)

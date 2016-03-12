@@ -42,15 +42,15 @@ class ControllerReliabilityTests: XCTestCase {
 	}
 
 	func testReliabilityInsertMidListItem() {
-		controller.string = "⧙doc-heading⧘Title\n⧙unordered-list-0⧘- One\n⧙unordered-list-0⧘- Two"
+		controller.string = "⧙doc-heading⧘Title\n⧙unordered-list-0⧘- One"
 
 		controller.replaceCharactersInRange(NSRange(location: 41, length: 0), withString: "1")
-		XCTAssertEqual("⧙doc-heading⧘Title\n⧙unordered-list-0⧘- On1e\n⧙unordered-list-0⧘- Two", controller.string)
-		XCTAssertEqual("Title\nOn1e\nTwo", delegate.presentationString)
+		XCTAssertEqual("⧙doc-heading⧘Title\n⧙unordered-list-0⧘- On1e", controller.string)
+		XCTAssertEqual("Title\nOn1e", delegate.presentationString)
 
 		controller.replaceCharactersInRange(NSRange(location: 42, length: 0), withString: "2")
-		XCTAssertEqual("⧙doc-heading⧘Title\n⧙unordered-list-0⧘- On12e\n⧙unordered-list-0⧘- Two", controller.string)
-		XCTAssertEqual("Title\nOn12e\nTwo", delegate.presentationString)
+		XCTAssertEqual("⧙doc-heading⧘Title\n⧙unordered-list-0⧘- On12e", controller.string)
+		XCTAssertEqual("Title\nOn12e", delegate.presentationString)
 
 		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
