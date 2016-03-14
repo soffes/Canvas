@@ -65,6 +65,13 @@ public struct LightTheme: Theme {
 		]
 	}
 
+	public var titleAttributes: Attributes {
+		var attributes = baseAttributes
+		attributes[NSForegroundColorAttributeName] = UIColor.blackColor()
+		attributes[NSFontAttributeName] = fontOfSize(fontSize * 1.7, symbolicTraits: [.TraitBold])
+		return attributes
+	}
+
 	public func blockSpacing(block block: BlockNode, horizontalSizeClass: UserInterfaceSizeClass) -> BlockSpacing {
 		var spacing = BlockSpacing(marginBottom: fontSize * 1.5)
 
