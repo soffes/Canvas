@@ -165,7 +165,8 @@ public final class TextController {
 				}
 			}
 
-			// Special case for link titles
+			// Special case for link URL and title. Maybe we should consider having Themes emit Styles instead of
+			// attributes or at least have a style controller for all of this logic.
 			if let link = span as? Link {
 				// TODO: Derive from theme
 				var attrs = foldableAttributes
