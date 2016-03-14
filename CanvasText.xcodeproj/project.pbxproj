@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		211483CF1C8A3034002CA206 /* CanvasText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 211483C41C8A3034002CA206 /* CanvasText.framework */; };
+		2138C2CF1C97228100D93FF4 /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138C2CE1C97228100D93FF4 /* NumberView.swift */; };
+		2138C2D11C9722DF00D93FF4 /* OrderedListItem+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138C2D01C9722DF00D93FF4 /* OrderedListItem+CanvasText.swift */; };
 		21AD8C291C8A430B000A53F8 /* BlockSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C1D1C8A430B000A53F8 /* BlockSpacing.swift */; };
 		21AD8C2B1C8A430B000A53F8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C1F1C8A430B000A53F8 /* Color.swift */; };
 		21AD8C2C1C8A430B000A53F8 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C201C8A430B000A53F8 /* Font.swift */; };
@@ -54,6 +56,8 @@
 /* Begin PBXFileReference section */
 		211483C41C8A3034002CA206 /* CanvasText.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasText.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		211483CE1C8A3034002CA206 /* CanvasTextTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasTextTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2138C2CE1C97228100D93FF4 /* NumberView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
+		2138C2D01C9722DF00D93FF4 /* OrderedListItem+CanvasText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OrderedListItem+CanvasText.swift"; sourceTree = "<group>"; };
 		21AD8C1D1C8A430B000A53F8 /* BlockSpacing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockSpacing.swift; sourceTree = "<group>"; };
 		21AD8C1F1C8A430B000A53F8 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		21AD8C201C8A430B000A53F8 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 			children = (
 				21AD8D0B1C8A496B000A53F8 /* NSRange+CanvasText.swift */,
 				21DF7A3C1C8F9B5200C17A62 /* UnorderedListItem+CanvasText.swift */,
+				2138C2D01C9722DF00D93FF4 /* OrderedListItem+CanvasText.swift */,
 				21DF7A3E1C8F9C0C00C17A62 /* Blockquote+CanvasText.swift */,
 				21DF7A401C8F9C2A00C17A62 /* ChecklistItem+CanvasText.swift */,
 				21DF7A4B1C8FA3A300C17A62 /* CodeBlock+CanvasText.swift */,
@@ -227,6 +232,7 @@
 				21DF7A2E1C8F75C300C17A62 /* CheckboxBox.swift */,
 				21DF7A381C8F914900C17A62 /* BlockquoteBorderView.swift */,
 				21DF7A491C8FA27D00C17A62 /* CodeBlockView.swift */,
+				2138C2CE1C97228100D93FF4 /* NumberView.swift */,
 			);
 			name = Annotations;
 			sourceTree = "<group>";
@@ -351,6 +357,7 @@
 				21AD8D001C8A487E000A53F8 /* TextStorage.swift in Sources */,
 				21AD8C291C8A430B000A53F8 /* BlockSpacing.swift in Sources */,
 				21AD8D021C8A4886000A53F8 /* BaseTextStorage.swift in Sources */,
+				2138C2CF1C97228100D93FF4 /* NumberView.swift in Sources */,
 				21E1D9DE1C8DF54700283961 /* BulletView.swift in Sources */,
 				21AD8C311C8A430B000A53F8 /* UserInterfaceSizeClass.swift in Sources */,
 				21DF7A6C1C90E15800C17A62 /* EdgeInsets.swift in Sources */,
@@ -361,6 +368,7 @@
 				21AD8C2B1C8A430B000A53F8 /* Color.swift in Sources */,
 				21AD8C301C8A430B000A53F8 /* Theme.swift in Sources */,
 				21AD8C2E1C8A430B000A53F8 /* LightTheme.swift in Sources */,
+				2138C2D11C9722DF00D93FF4 /* OrderedListItem+CanvasText.swift in Sources */,
 				21DF7A451C8FA11100C17A62 /* ChecklistItem+CanvasText.swift in Sources */,
 				21AD8C2C1C8A430B000A53F8 /* Font.swift in Sources */,
 				21AD8D091C8A491E000A53F8 /* LayoutManager.swift in Sources */,

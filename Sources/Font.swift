@@ -17,3 +17,18 @@
 #endif
 
 public typealias Font = FontType
+
+extension Font {
+	var fontWithMonospaceNumbers: Font {
+		let fontDescriptor = UIFontDescriptor(name: fontName, size: pointSize).fontDescriptorByAddingAttributes([
+			UIFontDescriptorFeatureSettingsAttribute: [
+				[
+					UIFontFeatureTypeIdentifierKey: kNumberSpacingType,
+					UIFontFeatureSelectorIdentifierKey: kMonospacedNumbersSelector
+				]
+			]
+			])
+
+		return Font(descriptor: fontDescriptor, size: pointSize)
+	}
+}
