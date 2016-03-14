@@ -150,10 +150,14 @@ public final class TextController {
 			let font = attributes[NSFontAttributeName] as? Font ?? currentFont
 
 			if let foldable = span as? Foldable {
+				// Forward the background color
+				var foldableAttributes = theme.foldingAttributes(currentFont: font)
+				foldableAttributes[NSBackgroundColorAttributeName] = attributes[NSBackgroundColorAttributeName]
+
 				for backingRange in foldable.foldableRanges {
 					let style = Style(
 						range: canvasController.presentationRange(backingRange: backingRange),
-						attributes: theme.foldingAttributes(currentFont: font)
+						attributes: foldableAttributes
 					)
 					styles.append(style)
 				}
