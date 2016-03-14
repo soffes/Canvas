@@ -148,18 +148,33 @@ public final class TextController {
 			styles.append(style)
 
 			let font = attributes[NSFontAttributeName] as? Font ?? currentFont
+			let foldableAttributes = theme.foldingAttributes(currentFont: font)
 
+			// Foldable attributes
 			if let foldable = span as? Foldable {
 				// Forward the background color
-				var foldableAttributes = theme.foldingAttributes(currentFont: font)
-				foldableAttributes[NSBackgroundColorAttributeName] = attributes[NSBackgroundColorAttributeName]
+				var attrs = foldableAttributes
+				attrs[NSBackgroundColorAttributeName] = attributes[NSBackgroundColorAttributeName]
 
 				for backingRange in foldable.foldableRanges {
 					let style = Style(
 						range: canvasController.presentationRange(backingRange: backingRange),
-						attributes: foldableAttributes
+						attributes: attrs
 					)
 					styles.append(style)
+				}
+			}
+
+			// Special case for link titles
+			if let link = span as? Link {
+				// TODO: Derive from theme
+				var attrs = foldableAttributes
+				attrs[NSForegroundColorAttributeName] = Color(red: 0.420, green: 0.420, blue: 0.447, alpha: 1)
+
+				styles.append(Style(range: canvasController.presentationRange(backingRange: link.urlRange), attributes: attrs))
+
+				if let title = link.title {
+					styles.append(Style(range: canvasController.presentationRange(backingRange: title.textRange), attributes: attrs))
 				}
 			}
 
