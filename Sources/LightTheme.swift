@@ -200,11 +200,16 @@ public struct LightTheme: Theme {
 			attributes[NSForegroundColorAttributeName] = tintColor
 		}
 
+		// If there aren't any attributes set yet, return nil and inherit from parent.
+		if attributes.isEmpty {
+			return nil
+		}
+
 		// Ensure a font is set
 		if attributes[NSFontAttributeName] == nil {
 			attributes[NSFontAttributeName] = currentFont
 		}
 		
-		return attributes.isEmpty ? nil : attributes
+		return attributes
 	}
 }
