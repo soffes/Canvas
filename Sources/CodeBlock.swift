@@ -17,9 +17,10 @@ public struct CodeBlock: BlockNode, NativePrefixable, Positionable, ReturnComple
 	public var nativePrefixRange: NSRange
 	public var visibleRange: NSRange
 	public var position: Position = .Single
+	public var language: String?
 
 	public var dictionary: [String: AnyObject] {
-		return [
+		var dictionary: [String: AnyObject] = [
 			"type": "code-block",
 			"range": range.dictionary,
 			"enclosingRange": enclosingRange.dictionary,
@@ -27,22 +28,51 @@ public struct CodeBlock: BlockNode, NativePrefixable, Positionable, ReturnComple
 			"visibleRange": visibleRange.dictionary,
 			"position": position.rawValue
 		]
+
+		if let language = language {
+			dictionary["language"] = language
+		}
+
+		return dictionary
 	}
 
 
 	// MARK: - Initializers
 
 	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
-		guard let (nativePrefixRange, visibleRange) = parseBlockNode(
-			string: string,
-			range: range,
-			delimiter: "code"
-		) else { return nil }
+		let scanner = NSScanner(string: string)
+		scanner.charactersToBeSkipped = nil
+
+		// Delimiter
+		if !scanner.scanString("\(leadingNativePrefix)code", intoString: nil) {
+			return nil
+		}
+
+		// Language
+		let scanLocation = scanner.scanLocation
+		var language: NSString? = ""
+		if scanner.scanString("-", intoString: nil) && scanner.scanUpToString(trailingNativePrefix, intoString: &language), let language = language as? String {
+			self.language = language
+		} else {
+			self.language = nil
+			scanner.scanLocation = scanLocation
+		}
+
+		// Closing delimiter
+		guard scanner.scanString(trailingNativePrefix, intoString: nil) else {
+			return nil
+		}
+
+		nativePrefixRange = NSRange(location: range.location, length: scanner.scanLocation)
+
+		// Content
+		visibleRange = NSRange(
+			location: range.location + scanner.scanLocation,
+			length: range.length - scanner.scanLocation
+		)
 
 		self.range = range
 		self.enclosingRange = enclosingRange
-		self.nativePrefixRange = nativePrefixRange
-		self.visibleRange = visibleRange
 	}
 
 
@@ -58,7 +88,8 @@ public struct CodeBlock: BlockNode, NativePrefixable, Positionable, ReturnComple
 
 	// MARK: - Native
 
-	public static func nativeRepresentation() -> String {
-		return "\(leadingNativePrefix)code\(trailingNativePrefix)"
+	public static func nativeRepresentation(language language: String? = nil) -> String {
+		let lang = language.flatMap { "-\($0)" } ?? ""
+		return "\(leadingNativePrefix)code\(lang)\(trailingNativePrefix)"
 	}
 }
