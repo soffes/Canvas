@@ -45,12 +45,7 @@ extension Organization: JSONSerializable, JSONDeserializable {
 		self.name = name
 		self.slug = slug
 		self.membersCount = membersCount
-
-		if let colorHex = dictionary["color"] as? String, color = Color(hex: colorHex) {
-			self.color = color
-		} else {
-			self.color = nil
-		}
+		color = (dictionary["color"] as? String).flatMap(Color.init)
 	}
 }
 
