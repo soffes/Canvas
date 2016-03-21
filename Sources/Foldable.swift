@@ -1,4 +1,3 @@
-
 //
 //  Foldable.swift
 //  CanvasNative
