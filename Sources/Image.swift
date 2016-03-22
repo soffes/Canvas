@@ -51,12 +51,9 @@ public struct Image: Attachable {
 
 		// url image
 		if scanner.scanString("\(leadingNativePrefix)image\(trailingNativePrefix)", intoString: nil) {
-			var urlString: NSString? = ""
-			if !scanner.scanUpToString("\n", intoString: &urlString) {
-				return nil
-			}
-
-			if let urlString = urlString as? String, url = NSURL(string: urlString) {
+			let urlString = (string as NSString).substringFromIndex(7).stringByReplacingOccurrencesOfString(" ", withString: "%20")
+			
+			if let url = NSURL(string: urlString) {
 				self.identifier = urlString
 				self.url = url
 				self.size = nil
@@ -67,6 +64,7 @@ public struct Image: Attachable {
 		}
 
 		// Uploaded image delimiter
+		scanner.scanLocation = 0
 		if !scanner.scanString("\(leadingNativePrefix)image-", intoString: nil) {
 			return nil
 		}
