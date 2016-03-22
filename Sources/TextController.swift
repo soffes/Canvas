@@ -258,7 +258,6 @@ extension TextController: ControllerDelegate {
 	}
 
 	public func controllerDidUpdateNodes(controller: Controller) {
-		_textStorage.applyStyles()
 		textStorage.endEditing()
 	}
 }

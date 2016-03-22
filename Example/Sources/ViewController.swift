@@ -64,7 +64,7 @@ class ViewController: UIViewController {
 			serverURL: NSURL(string: "wss://realtime.usecanvas.com")!,
 			accessToken: accessToken,
 			organizationID: "b29c5091-3959-4ca8-a39e-c3159f5f06c5",
-			canvasID: "59S18UczqJcw0rx1AsVaTD"
+			canvasID: "31fst7N9L4W5EdALDkLiaz"
 		)
 	}
 
