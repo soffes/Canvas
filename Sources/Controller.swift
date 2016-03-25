@@ -26,6 +26,7 @@ public final class Controller {
 
 	public private(set) var blocks = [BlockNode]() {
 		didSet {
+			print("blocks: \(blocks.map { $0.dynamicType })")
 			updateBlockPresentationLocations()
 		}
 	}
@@ -242,7 +243,7 @@ public final class Controller {
 
 	public func blockAt(presentationLocation presentationLocation: Int) -> BlockNode? {
 		for (i, location) in blockPresentationLocations.enumerate() {
-			if presentationLocation >= location {
+			if location >= presentationLocation {
 				return blocks[i]
 			}
 		}
