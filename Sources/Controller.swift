@@ -26,7 +26,6 @@ public final class Controller {
 
 	public private(set) var blocks = [BlockNode]() {
 		didSet {
-			print("blocks: \(blocks.map { $0.dynamicType })")
 			updateBlockPresentationLocations()
 		}
 	}
