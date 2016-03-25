@@ -41,6 +41,10 @@ class TextStorage: BaseTextStorage {
 		guard !styles.isEmpty else { return }
 
 		for style in styles {
+			if NSMaxRange(style.range) >= storage.length {
+				print("WARNING: Invalid style: \(style.range)")
+				continue
+			}
 			storage.setAttributes(style.attributes, range: style.range)
 			edited(.EditedAttributes, range: style.range, changeInLength: 0)
 		}
