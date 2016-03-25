@@ -24,7 +24,13 @@ public final class Controller {
 
 	public weak var delegate: ControllerDelegate?
 
-	public private(set) var blocks = [BlockNode]()
+	public private(set) var blocks = [BlockNode]() {
+		didSet {
+			updateBlockPresentationLocations()
+		}
+	}
+
+	private var blockPresentationLocations = [Int]()
 
 	public var string: String {
 		get {
@@ -235,17 +241,9 @@ public final class Controller {
 	}
 
 	public func blockAt(presentationLocation presentationLocation: Int) -> BlockNode? {
-		for block in blocks {
-			let range = presentationRange(backingRange: block.visibleRange)
-
-			// We passed it.
-			if range.location > presentationLocation {
-				break
-			}
-
-			// If the range contains it or the location is equal to the max, it's this block.
-			if range.contains(presentationLocation) || range.max == presentationLocation {
-				return block
+		for (i, location) in blockPresentationLocations.enumerate() {
+			if presentationLocation >= location {
+				return blocks[i]
 			}
 		}
 
@@ -375,6 +373,21 @@ public final class Controller {
 		}
 
 		return output.isEmpty ? nil : output
+	}
+
+	private func updateBlockPresentationLocations() {
+		var offset = 0
+		var presentationLocations = [Int]()
+
+		for block in blocks {
+			if let range = (block as? NativePrefixable)?.nativePrefixRange {
+				offset += range.length
+			}
+
+			presentationLocations.append(block.visibleRange.location - offset)
+		}
+
+		blockPresentationLocations = presentationLocations
 	}
 
 
