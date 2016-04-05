@@ -68,19 +68,19 @@ final class AnnotationsController {
 	}
 
 	func remove(block block: BlockNode, index: Int) {
-		guard enabled else { return }
+		guard enabled && index < annotations.count else { return }
 
 		annotations[index]?.view.removeFromSuperview()
 		annotations.removeAtIndex(index)
 	}
 
 	func replace(block block: BlockNode, index: Int) {
-		guard enabled else { return }
+		guard enabled && index < annotations.count else { return }
 		update(block: block, index: index)
 	}
 
 	func update(block block: BlockNode, index: Int) {
-		guard enabled, let block = block as? Annotatable, annotation = annotations[index] else { return }
+		guard enabled && index < annotations.count, let block = block as? Annotatable, annotation = annotations[index] else { return }
 		annotation.block = block
 		annotation.view.frame = rectForAnnotation(annotation, index: index)
 	}

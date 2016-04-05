@@ -186,6 +186,27 @@ public final class TextController {
 
 		return styles
 	}
+
+	func submitOperations(backingRange backingRange: NSRange, string: String) {
+		guard let transportController = transportController else {
+			print("[TextController] WARNING: Tried to submit an operation without a connection.")
+			return
+		}
+
+		// Insert
+		if backingRange.length == 0 {
+			transportController.submitOperation(.Insert(location: UInt(backingRange.location), string: string))
+			return
+		}
+
+		// Remove
+		transportController.submitOperation(.Remove(location: UInt(backingRange.location), length: UInt(backingRange.length)))
+
+		// Insert after removing
+		if backingRange.length > 0 {
+			transportController.submitOperation(.Insert(location: UInt(backingRange.location), string: string))
+		}
+	}
 }
 
 
@@ -196,7 +217,15 @@ extension TextController: TransportControllerDelegate {
 
 	public func transportController(controller: TransportController, didReceiveSnapshot text: String) {
 		let bounds = NSRange(location: 0, length: canvasController.length)
-		canvasController.replaceCharactersInRange(bounds, withString: text)
+
+		// Ensure we have a valid document
+		var string = text
+		if string.isEmpty {
+			string = Title.nativeRepresentation()
+			submitOperations(backingRange: bounds, string: string)
+		}
+
+		canvasController.replaceCharactersInRange(bounds, withString: string)
 	}
 
 	public func transportController(controller: TransportController, didReceiveOperation operation: Operation) {
@@ -274,25 +303,6 @@ extension TextController: TextStorageDelegate {
 	func textStorage(textStorage: TextStorage, didReplaceCharactersInRange range: NSRange, withString string: String) {
 		let backingRange = canvasController.backingRange(presentationRange: range)
 		canvasController.replaceCharactersInRange(backingRange, withString: string)
-
-		guard let transportController = transportController else {
-			print("[TextController] WARNING: Tried to submit an operation without a connection.")
-			return
-		}
-
-		// Submit the operation
-		// Insert
-		if backingRange.length == 0 {
-			transportController.submitOperation(.Insert(location: UInt(backingRange.location), string: string))
-			return
-		}
-
-		// Remove
-		transportController.submitOperation(.Remove(location: UInt(backingRange.location), length: UInt(backingRange.length)))
-
-		// Insert after removing
-		if backingRange.length > 0 {
-			transportController.submitOperation(.Insert(location: UInt(backingRange.location), string: string))
-		}
+		submitOperations(backingRange: backingRange, string: string)
 	}
 }
