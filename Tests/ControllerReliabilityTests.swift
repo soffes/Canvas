@@ -116,6 +116,16 @@ class ControllerReliabilityTests: XCTestCase {
 	}
 
 	func testBlank() {
+		controller.string = "⧙doc-heading⧘Title\n"
 
+		let range = NSRange(location: 19, length: 0)
+		let replacement = "H"
+		let blockRange = controller.blockRangeForCharacterRange(range, string: replacement)
+		XCTAssertEqual(NSRange(location: 1, length: 0), blockRange)
+
+		controller.replaceCharactersInRange(range, withString: replacement)
+		XCTAssertEqual("⧙doc-heading⧘Title\nH", controller.string)
+		XCTAssertEqual("Title\nH", delegate.presentationString)
+		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
 }

@@ -319,8 +319,11 @@ public final class Controller {
 		}
 
 		// Nothing found. Editing the last block.
-		if !blocks.isEmpty && location == nil && matchingBlocks.isEmpty && !hasNewLinePrefix {
-			return NSRange(location: blocks.count - 1, length: 1)
+		if !blocks.isEmpty && location == nil && matchingBlocks.isEmpty && !hasNewLinePrefix, let last = blocks.last {
+			// If the last block doesn't end in a new line and we didn't insert one, we're editing it.
+			if last.enclosingRange.length > 0 && text.substringWithRange(NSRange(location: last.enclosingRange.max - 1, length: 1)) != "\n" {
+				return NSRange(location: blocks.count - 1, length: 1)
+			}
 		}
 
 		// If we didn't find anything, assume we're inserting at the very end.
@@ -342,7 +345,7 @@ public final class Controller {
 		var output = ""
 
 		for block in blocks {
-			if block.enclosingRange.max < backingRange.location {
+			if block.enclosingRange.max <= backingRange.location {
 				continue
 			}
 
@@ -392,6 +395,13 @@ public final class Controller {
 			}
 
 			presentationLocations.append(block.visibleRange.location - offset)
+		}
+
+		// Ensure the newly calculated presentations locations are accurate. If these are wrong, there will be all sorts
+		// of problems later. There was probably a bug calculating the block diff on an edit.
+		if !presentationLocations.isEmpty {
+			// The first location must start at the beginning.
+			assert(presentationLocations[0] == 0, "Invalid presentations locations cache.")
 		}
 
 		blockPresentationLocations = presentationLocations
