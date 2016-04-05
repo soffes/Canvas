@@ -241,10 +241,17 @@ public final class Controller {
 	}
 
 	public func blockAt(presentationLocation presentationLocation: Int) -> BlockNode? {
+		guard presentationLocation >= 0  else { return nil }
 		for (i, location) in blockPresentationLocations.enumerate() {
-			if location >= presentationLocation {
-				return blocks[i]
+			if presentationLocation < location {
+				return blocks[i - 1]
 			}
+		}
+
+		guard let block = blocks.last else { return nil }
+
+		if presentationRange(backingRange: block.visibleRange).contains(presentationLocation) {
+			return block
 		}
 
 		return nil

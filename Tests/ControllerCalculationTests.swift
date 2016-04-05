@@ -68,6 +68,8 @@ class ControllerCalculationTests: XCTestCase {
 		XCTAssert(controller.blockAt(presentationLocation: 9)! is Paragraph)
 		XCTAssert(controller.blockAt(presentationLocation: 10)! is Blockquote)
 		XCTAssert(controller.blockAt(presentationLocation: 11)! is Blockquote)
+		XCTAssertNil(controller.blockAt(presentationLocation: 14))
+		XCTAssertNil(controller.blockAt(presentationLocation: -1))
 	}
 
 	func testPresentationStringWithBackingRange() {

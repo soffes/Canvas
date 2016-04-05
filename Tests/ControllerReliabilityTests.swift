@@ -114,4 +114,8 @@ class ControllerReliabilityTests: XCTestCase {
 		XCTAssertEqual("Title\nTodo", delegate.presentationString)
 		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 	}
+
+	func testBlank() {
+
+	}
 }
