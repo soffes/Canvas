@@ -49,6 +49,14 @@ class ControllerCalculationTests: XCTestCase {
 		XCTAssertEqual(NSRange(location: 6, length: 1), controller.presentationRange(backingRange: controller.blocks[1].visibleRange))
 	}
 
+	func testHiddenBackingRangeToPresentationRange() {
+		controller.string = "⧙doc-heading⧘Title\n⧙blockquote⧘> Hi"
+
+		let backingRange = NSRange(location: 25, length: 5)
+		let displayRange = NSRange(location: 6, length: 0)
+		XCTAssertEqual(displayRange, controller.presentationRange(backingRange: backingRange))
+	}
+
 	func testPresentationRangeToBackingRange() {
 		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two\n⧙code⧘Three"
 		XCTAssertEqual("Title\nOne\nTwo\nThree", delegate.presentationString)

@@ -195,11 +195,12 @@ public final class Controller {
 		var presentationRange = backingRange
 
 		for block in blocks {
-			guard let range = (block as? NativePrefixable)?.nativePrefixRange else { continue }
+			guard let prefixRange = (block as? NativePrefixable)?.nativePrefixRange else { continue }
 
-			if range.max <= backingRange.location {
-				presentationRange.location -= range.length
-			} else if let intersection = backingRange.intersection(range) {
+			if prefixRange.max <= backingRange.location {
+				presentationRange.location -= prefixRange.length
+			} else if let intersection = backingRange.intersection(prefixRange) {
+				presentationRange.location -= intersection
 				presentationRange.length -= intersection
 			}
 		}
