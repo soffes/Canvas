@@ -200,7 +200,7 @@ public final class Controller {
 			if prefixRange.max <= backingRange.location {
 				presentationRange.location -= prefixRange.length
 			} else if let intersection = backingRange.intersection(prefixRange) {
-				presentationRange.location -= intersection
+//				presentationRange.location -= intersection
 				presentationRange.length -= intersection
 			}
 		}

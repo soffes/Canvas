@@ -109,18 +109,19 @@ class ControllerChangeTests: XCTestCase {
 		controller.string = "⧙doc-heading⧘Title\n⧙unordered-list-0⧘- [ ]Hi"
 
 		controller.replaceCharactersInRange(NSRange(location: 20, length: 0), withString: "checklist-0⧘- [ ] ")
-		controller.replaceCharactersInRange(NSRange(location: 38, length: 22), withString: "")
+//		controller.replaceCharactersInRange(NSRange(location: 38, length: 22), withString: "")
 		XCTAssertEqual("⧙doc-heading⧘Title\n⧙checklist-0⧘- [ ] Hi", controller.string)
 	}
 
 	func testCheckChecklist() {
-		controller.string = "⧙doc-heading⧘Title\n⧙checklist-0⧘- [ ] Hi"
-		XCTAssertEqual("Title\nHi", delegate.presentationString)
-
-		controller.replaceCharactersInRange(NSRange(location: 35, length: 0), withString: "x")
-		controller.replaceCharactersInRange(NSRange(location: 36, length: 1), withString: "")
-
-		XCTAssertEqual("Title\nHi", delegate.presentationString)
-		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
+//		controller.string = "⧙doc-heading⧘Title\n⧙checklist-0⧘- [ ] Hi"
+//		XCTAssertEqual("Title\nHi", delegate.presentationString)
+//
+//		controller.replaceCharactersInRange(NSRange(location: 35, length: 0), withString: "x")
+//		controller.replaceCharactersInRange(NSRange(location: 36, length: 1), withString: "")
+//
+//		XCTAssertEqual("Title\nHi", delegate.presentationString)
+//		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
+		XCTFail("Pending")
 	}
 }
