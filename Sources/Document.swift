@@ -32,6 +32,13 @@ public struct Document {
 
 	// MARK: - Initializers
 
+	public init() {
+		backingString = ""
+		blocks = []
+		blockPresentationLocations = []
+		presentationString = ""
+	}
+
 	public init(backingString: String, blocks: [BlockNode]? = nil) {
 		self.backingString = backingString
 		self.blocks = blocks ?? Parser.parse(backingString)

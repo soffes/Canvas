@@ -1,5 +1,5 @@
 //
-//  TestControllerDelegate.swift
+//  TestDocumentControllerDelegate.swift
 //  CanvasNative
 //
 //  Created by Sam Soffes on 2/23/16.
@@ -9,7 +9,7 @@
 import Foundation
 import CanvasNative
 
-final class TestControllerDelegate: ControllerDelegate {
+final class TestDocumentControllerDelegate: DocumentControllerDelegate {
 
 	// MARK: - Properties
 
@@ -32,37 +32,37 @@ final class TestControllerDelegate: ControllerDelegate {
 
 	// MARK: - ControllerDelegate
 
-	func controllerWillUpdateNodes(controller: Controller) {
+	func documentControllerWillUpdateDocument(controller: DocumentController) {
 		willUpdate?()
 	}
 
-	func controller(controller: Controller, didInsertBlock block: BlockNode, atIndex index: Int) {
+	func documentController(controller: DocumentController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
+		presentationString.replaceCharactersInRange(range, withString: string)
+	}
+
+	func documentController(controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int) {
 		blocks.insert(block, atIndex: index)
 		didInsert?(block, index)
 	}
 
-	func controller(controller: Controller, didRemoveBlock block: BlockNode, atIndex index: Int) {
+	func documentController(controller: DocumentController, didRemoveBlock block: BlockNode, atIndex index: Int) {
 		blocks.removeAtIndex(index)
 		didRemove?(block, index)
 	}
 
-	func controller(controller: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
+	func documentController(controller: DocumentController, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
 		blocks.removeAtIndex(index)
 		blocks.insert(after, atIndex: index)
 		didReplaceContent?(before, index, after)
 	}
 
-	func controller(controller: Controller, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
+	func documentController(controller: DocumentController, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
 		blocks.removeAtIndex(index)
 		blocks.insert(after, atIndex: index)
 		didUpdateLocation?(before, index, after)
 	}
 
-	func controllerDidUpdateNodes(controller: Controller) {
+	func documentControllerDidUpdateDocument(controller: DocumentController) {
 		didUpdate?()
-	}
-
-	func controller(controller: Controller, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
-		presentationString.replaceCharactersInRange(range, withString: string)
 	}
 }
