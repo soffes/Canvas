@@ -1,5 +1,5 @@
 //
-//  ControllerCalculationTests.swift
+//  DocumentCalculationTests.swift
 //  CanvasNative
 //
 //  Created by Sam Soffes on 3/8/16.
@@ -7,81 +7,65 @@
 //
 
 import XCTest
-@testable import CanvasNative
+import CanvasNative
 
-class ControllerCalculationTests: XCTestCase {
-
-	// MARK: - Properties
-
-	let controller = Controller()
-	let delegate = TestControllerDelegate()
-
-
-	// MARK: - XCTestCase
-
-	override func setUp() {
-		super.setUp()
-		controller.delegate = delegate
-	}
-
-
-	// MARK: - Tests
-
+class DocumentCalculationTests: XCTestCase {
 	func testBackingRangeToPresentationRange() {
-		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two\n⧙code⧘Three"
-		XCTAssertEqual("Title\nOne\nTwo\nThree", delegate.presentationString)
-		XCTAssertEqual(NSRange(location: 0, length: 5), controller.presentationRange(backingRange: controller.blocks[0].visibleRange))
-		XCTAssertEqual(NSRange(location: 6, length: 3), controller.presentationRange(backingRange: controller.blocks[1].visibleRange))
-		XCTAssertEqual(NSRange(location: 10, length: 3), controller.presentationRange(backingRange: controller.blocks[2].visibleRange))
-		XCTAssertEqual(NSRange(location: 14, length: 5), controller.presentationRange(backingRange: controller.blocks[3].visibleRange))
+		var document = Document(backingString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two\n⧙code⧘Three")
 
-		controller.string = "⧙doc-heading⧘Title\nO"
-		XCTAssertEqual("Title\nO", delegate.presentationString)
-		XCTAssertEqual(NSRange(location: 0, length: 5), controller.presentationRange(backingRange: controller.blocks[0].visibleRange))
-		XCTAssertEqual(NSRange(location: 6, length: 1), controller.presentationRange(backingRange: controller.blocks[1].visibleRange))
+		XCTAssertEqual("Title\nOne\nTwo\nThree", document.presentationString)
+		XCTAssertEqual(NSRange(location: 0, length: 5), document.presentationRange(backingRange: document.blocks[0].visibleRange))
+		XCTAssertEqual(NSRange(location: 6, length: 3), document.presentationRange(backingRange: document.blocks[1].visibleRange))
+		XCTAssertEqual(NSRange(location: 10, length: 3), document.presentationRange(backingRange: document.blocks[2].visibleRange))
+		XCTAssertEqual(NSRange(location: 14, length: 5), document.presentationRange(backingRange: document.blocks[3].visibleRange))
 
-		controller.string = "⧙doc-heading⧘Title\n⧙blockquote⧘> One"
-		XCTAssertEqual("Title\nOne", delegate.presentationString)
-		XCTAssertEqual(NSRange(location: 6, length: 3), controller.presentationRange(backingRange: controller.blocks[1].visibleRange))
+		document = Document(backingString: "⧙doc-heading⧘Title\nO")
+		XCTAssertEqual("Title\nO", document.presentationString)
+		XCTAssertEqual(NSRange(location: 0, length: 5), document.presentationRange(backingRange: document.blocks[0].visibleRange))
+		XCTAssertEqual(NSRange(location: 6, length: 1), document.presentationRange(backingRange: document.blocks[1].visibleRange))
 
-		controller.string = "⧙doc-heading⧘Title\nC"
-		XCTAssertEqual("Title\nC", delegate.presentationString)
-		XCTAssertEqual(NSRange(location: 6, length: 1), controller.presentationRange(backingRange: controller.blocks[1].visibleRange))
+		document = Document(backingString: "⧙doc-heading⧘Title\n⧙blockquote⧘> One")
+		XCTAssertEqual("Title\nOne", document.presentationString)
+		XCTAssertEqual(NSRange(location: 6, length: 3), document.presentationRange(backingRange: document.blocks[1].visibleRange))
+
+		document = Document(backingString: "⧙doc-heading⧘Title\nC")
+		XCTAssertEqual("Title\nC", document.presentationString)
+		XCTAssertEqual(NSRange(location: 6, length: 1), document.presentationRange(backingRange: document.blocks[1].visibleRange))
 	}
 
 	func testHiddenBackingRangeToPresentationRange() {
-		controller.string = "⧙doc-heading⧘Title\n⧙blockquote⧘> Hi"
+		let document = Document(backingString: "⧙doc-heading⧘Title\n⧙blockquote⧘> Hi")
 
 		let backingRange = NSRange(location: 25, length: 5)
 		let displayRange = NSRange(location: 6, length: 0)
-		XCTAssertEqual(displayRange, controller.presentationRange(backingRange: backingRange))
+		XCTAssertEqual(displayRange, document.presentationRange(backingRange: backingRange))
 	}
 
 	func testPresentationRangeToBackingRange() {
-		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two\n⧙code⧘Three"
-		XCTAssertEqual("Title\nOne\nTwo\nThree", delegate.presentationString)
+		let document = Document(backingString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two\n⧙code⧘Three")
+		XCTAssertEqual("Title\nOne\nTwo\nThree", document.presentationString)
 
-		XCTAssertEqual(NSRange(location: 38, length: 2), controller.backingRange(presentationRange: NSRange(location: 11, length: 2)))
-		XCTAssertEqual(NSRange(location: 21, length: 27), controller.backingRange(presentationRange: NSRange(location: 8, length: 7)))
+		XCTAssertEqual(NSRange(location: 38, length: 2), document.backingRange(presentationRange: NSRange(location: 11, length: 2)))
+		XCTAssertEqual(NSRange(location: 21, length: 27), document.backingRange(presentationRange: NSRange(location: 8, length: 7)))
 	}
 
 	func testBlockAtPresentationLocation() {
-		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two"
-		XCTAssertEqual("Title\nOne\nTwo", delegate.presentationString)
+		let document = Document(backingString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
+		XCTAssertEqual("Title\nOne\nTwo", document.presentationString)
 
-		XCTAssert(controller.blockAt(presentationLocation: 0)! is Title)
-		XCTAssert(controller.blockAt(presentationLocation: 1)! is Title)
-		XCTAssert(controller.blockAt(presentationLocation: 6)! is Paragraph)
-		XCTAssert(controller.blockAt(presentationLocation: 7)! is Paragraph)
-		XCTAssert(controller.blockAt(presentationLocation: 9)! is Paragraph)
-		XCTAssert(controller.blockAt(presentationLocation: 10)! is Blockquote)
-		XCTAssert(controller.blockAt(presentationLocation: 11)! is Blockquote)
-		XCTAssertNil(controller.blockAt(presentationLocation: 14))
-		XCTAssertNil(controller.blockAt(presentationLocation: -1))
+		XCTAssert(document.blockAt(presentationLocation: 0)! is Title)
+		XCTAssert(document.blockAt(presentationLocation: 1)! is Title)
+		XCTAssert(document.blockAt(presentationLocation: 6)! is Paragraph)
+		XCTAssert(document.blockAt(presentationLocation: 7)! is Paragraph)
+		XCTAssert(document.blockAt(presentationLocation: 9)! is Paragraph)
+		XCTAssert(document.blockAt(presentationLocation: 10)! is Blockquote)
+		XCTAssert(document.blockAt(presentationLocation: 11)! is Blockquote)
+		XCTAssertNil(document.blockAt(presentationLocation: 14))
+		XCTAssertNil(document.blockAt(presentationLocation: -1))
 	}
 
 	func testPresentationStringWithBackingRange() {
-		controller.string = "⧙doc-heading⧘Demo\nParagraph.\n⧙ordered-list-0⧘1. One"
-		XCTAssertEqual("graph.\nOn", controller.presentationString(backingRange: NSRange(location: 22, length: 28)))
+		let document = Document(backingString: "⧙doc-heading⧘Demo\nParagraph.\n⧙ordered-list-0⧘1. One")
+		XCTAssertEqual("graph.\nOn", document.presentationString(backingRange: NSRange(location: 22, length: 28)))
 	}
 }

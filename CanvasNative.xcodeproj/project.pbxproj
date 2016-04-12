@@ -12,6 +12,9 @@
 		210176781CBD6CE900614D61 /* BlockChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210176751CBD6CE900614D61 /* BlockChange.swift */; };
 		210176791CBD6CE900614D61 /* BlockChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210176751CBD6CE900614D61 /* BlockChange.swift */; };
 		2101767B1CBD6DA300614D61 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101767A1CBD6DA300614D61 /* Document.swift */; };
+		210176801CBD6FF100614D61 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101767A1CBD6DA300614D61 /* Document.swift */; };
+		210176811CBD6FF200614D61 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101767A1CBD6DA300614D61 /* Document.swift */; };
+		210176821CBD6FF200614D61 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101767A1CBD6DA300614D61 /* Document.swift */; };
 		210C743D1C7E7C6100FBB665 /* TestControllerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210C743C1C7E7C6100FBB665 /* TestControllerControllerDelegate.swift */; };
 		210C743E1C7E7C6100FBB665 /* TestControllerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210C743C1C7E7C6100FBB665 /* TestControllerControllerDelegate.swift */; };
 		211B90181C92306B004862FC /* XCTestCase+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B90161C923047004862FC /* XCTestCase+CanvasNativeTests.swift */; };
@@ -363,9 +366,16 @@
 				21DF7A5F1C90A09000C17A62 /* ControllerInsertTests.swift */,
 				21DF7A621C90A0E100C17A62 /* ControllerRemoveTests.swift */,
 				21DF7A591C8FAF5B00C17A62 /* ControllerReliabilityTests.swift */,
-				21DF7A461C8FA1AF00C17A62 /* ControllerCalculationTests.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		2101767F1CBD6FA600614D61 /* Document */ = {
+			isa = PBXGroup;
+			children = (
+				21DF7A461C8FA1AF00C17A62 /* ControllerCalculationTests.swift */,
+			);
+			name = Document;
 			sourceTree = "<group>";
 		};
 		210C743B1C7E7C5000FBB665 /* Helpers */ = {
@@ -406,6 +416,7 @@
 		215BAB8E1C52B28900118C8C /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				2101767F1CBD6FA600614D61 /* Document */,
 				2101767E1CBD6E6B00614D61 /* Controller */,
 				2101767C1CBD6E3A00614D61 /* Block Level */,
 				2101767D1CBD6E5C00614D61 /* Span Level */,
@@ -877,6 +888,7 @@
 				21AD8CDD1C8A4649000A53F8 /* Node.swift in Sources */,
 				21AD8CE31C8A4649000A53F8 /* Positionable.swift in Sources */,
 				21AD8CE61C8A4649000A53F8 /* SpanNodeContainer.swift in Sources */,
+				210176821CBD6FF200614D61 /* Document.swift in Sources */,
 				21AD8CDF1C8A4649000A53F8 /* NSRange+CanvasNative.swift in Sources */,
 				21AD8CD01C8A4649000A53F8 /* Controller.swift in Sources */,
 				21AD8CE91C8A4649000A53F8 /* Title.swift in Sources */,
@@ -939,6 +951,7 @@
 				21632CFC1C9235F500C40D7D /* ReturnCompletable.swift in Sources */,
 				21632CF91C9235F500C40D7D /* Node.swift in Sources */,
 				21632CF81C9235F500C40D7D /* NativePrefixable.swift in Sources */,
+				210176801CBD6FF100614D61 /* Document.swift in Sources */,
 				21632D081C9235F800C40D7D /* UnorderedListItem.swift in Sources */,
 				21632D001C9235F800C40D7D /* Blockquote.swift in Sources */,
 				21632D0D1C9235FE00C40D7D /* Text.swift in Sources */,
@@ -977,6 +990,7 @@
 				21632D371C92367B00C40D7D /* ReturnCompletable.swift in Sources */,
 				21632D341C92367B00C40D7D /* Node.swift in Sources */,
 				21632D331C92367B00C40D7D /* NativePrefixable.swift in Sources */,
+				210176811CBD6FF200614D61 /* Document.swift in Sources */,
 				21632D431C92367E00C40D7D /* UnorderedListItem.swift in Sources */,
 				21632D3B1C92367E00C40D7D /* Blockquote.swift in Sources */,
 				21632D481C92368200C40D7D /* Text.swift in Sources */,
