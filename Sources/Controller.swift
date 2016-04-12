@@ -8,17 +8,29 @@
 
 import Foundation
 
+public protocol ControllerDelegate: class {
+	// After this message, `blocks` will be the new value
+	func controllerWillUpdateNodes(controller: Controller)
+
+	// This will be called before all other messages.
+	func controller(controller: Controller, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String)
+
+	// The index will be relative to the blocks array before the change (similar to UITableView).
+	func controller(controller: Controller, didInsertBlock block: BlockNode, atIndex index: Int)
+
+	func controller(controller: Controller, didRemoveBlock block: BlockNode, atIndex index: Int)
+
+	// The block's content changed. `before` and `after` will always be the same type.
+	func controller(controller: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
+
+	// The block's metadata changed. `before` and `after` will always be the same type.
+	func controller(controller: Controller, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
+
+	func controllerDidUpdateNodes(controller: Controller)
+}
+
+
 public final class Controller {
-
-	// MARK: - Types
-
-	private enum Message {
-		case Insert(block: BlockNode, index: Int)
-		case Remove(block: BlockNode, index: Int)
-		case Replace(before: BlockNode, index: Int, after: BlockNode)
-		case Update(before: BlockNode, index: Int, after: BlockNode)
-	}
-
 
 	// MARK: - Properties
 
@@ -112,10 +124,10 @@ public final class Controller {
 
 	// MARK: - Applying Changes to the Tree
 
-	private func applyParsedBlocks(parsedBlocks: [BlockNode], parseRange: NSRange, blockRange: NSRange) -> ([BlockNode], [Message]) {
+	private func applyParsedBlocks(parsedBlocks: [BlockNode], parseRange: NSRange, blockRange: NSRange) -> ([BlockNode], [BlockChange]) {
 		// Start to calculate the new blocks
 		var workingBlocks = blocks
-		var messages = [Message]()
+		var messages = [BlockChange]()
 
 		let afterRange: Range<Int>
 		let afterOffset: Int
@@ -169,9 +181,9 @@ public final class Controller {
 		return (workingBlocks, messages)
 	}
 
-	private func offsetBlocks(blocks blocks: [BlockNode], blockRange: Range<Int>, offset: Int) -> ([BlockNode], [Message]) {
+	private func offsetBlocks(blocks blocks: [BlockNode], blockRange: Range<Int>, offset: Int) -> ([BlockNode], [BlockChange]) {
 		var workingBlocks = blocks
-		var messages = [Message]()
+		var messages = [BlockChange]()
 
 		for index in blockRange {
 			let before = workingBlocks[index]
@@ -411,7 +423,7 @@ public final class Controller {
 
 	// MARK: - Delegate Calls
 
-	private func sendDelegateMessage(message: Message) {
+	private func sendDelegateMessage(message: BlockChange) {
 		switch message {
 		case .Insert(let block, let index):
 			delegate?.controller(self, didInsertBlock: block, atIndex: index)

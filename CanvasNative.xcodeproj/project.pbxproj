@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		210176761CBD6CE900614D61 /* BlockChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210176751CBD6CE900614D61 /* BlockChange.swift */; };
+		210176771CBD6CE900614D61 /* BlockChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210176751CBD6CE900614D61 /* BlockChange.swift */; };
+		210176781CBD6CE900614D61 /* BlockChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210176751CBD6CE900614D61 /* BlockChange.swift */; };
+		210176791CBD6CE900614D61 /* BlockChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210176751CBD6CE900614D61 /* BlockChange.swift */; };
 		210C743D1C7E7C6100FBB665 /* TestControllerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210C743C1C7E7C6100FBB665 /* TestControllerControllerDelegate.swift */; };
 		210C743E1C7E7C6100FBB665 /* TestControllerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210C743C1C7E7C6100FBB665 /* TestControllerControllerDelegate.swift */; };
 		211B90181C92306B004862FC /* XCTestCase+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B90161C923047004862FC /* XCTestCase+CanvasNativeTests.swift */; };
@@ -168,10 +172,6 @@
 		21AD8CE81C8A4649000A53F8 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA21C8A4628000A53F8 /* Text.swift */; };
 		21AD8CE91C8A4649000A53F8 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA31C8A4628000A53F8 /* Title.swift */; };
 		21AD8CEA1C8A4649000A53F8 /* UnorderedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA41C8A4628000A53F8 /* UnorderedListItem.swift */; };
-		21BF7D461C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D451C933A9D00CB1A7A /* ControllerDelegate.swift */; };
-		21BF7D471C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D451C933A9D00CB1A7A /* ControllerDelegate.swift */; };
-		21BF7D481C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D451C933A9D00CB1A7A /* ControllerDelegate.swift */; };
-		21BF7D491C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D451C933A9D00CB1A7A /* ControllerDelegate.swift */; };
 		21BF7D4B1C937F4100CB1A7A /* CodeBlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D4A1C937F4100CB1A7A /* CodeBlockTests.swift */; };
 		21BF7D4C1C937F4100CB1A7A /* CodeBlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D4A1C937F4100CB1A7A /* CodeBlockTests.swift */; };
 		21BF7D4D1C937F4100CB1A7A /* CodeBlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D4A1C937F4100CB1A7A /* CodeBlockTests.swift */; };
@@ -213,6 +213,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		210176751CBD6CE900614D61 /* BlockChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockChange.swift; sourceTree = "<group>"; };
 		210C743C1C7E7C6100FBB665 /* TestControllerControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestControllerControllerDelegate.swift; sourceTree = "<group>"; };
 		211B90161C923047004862FC /* XCTestCase+CanvasNativeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+CanvasNativeTests.swift"; sourceTree = "<group>"; };
 		21341C8A1C85089400C9EF39 /* NodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
@@ -263,7 +264,6 @@
 		21AD8CA61C8A4628000A53F8 /* CanvasNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasNative.h; sourceTree = "<group>"; };
 		21AD8CA71C8A4628000A53F8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21AD8CC91C8A4637000A53F8 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
-		21BF7D451C933A9D00CB1A7A /* ControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerDelegate.swift; sourceTree = "<group>"; };
 		21BF7D4A1C937F4100CB1A7A /* CodeBlockTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlockTests.swift; sourceTree = "<group>"; };
 		21BF7D4E1C93802100CB1A7A /* ParagraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphTests.swift; sourceTree = "<group>"; };
 		21DF7A461C8FA1AF00C17A62 /* ControllerCalculationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerCalculationTests.swift; sourceTree = "<group>"; };
@@ -388,7 +388,8 @@
 			isa = PBXGroup;
 			children = (
 				21AD8C9C1C8A4628000A53F8 /* Parser.swift */,
-				21BF7D441C933A9300CB1A7A /* Controller */,
+				21AD8C8A1C8A4628000A53F8 /* Controller.swift */,
+				210176751CBD6CE900614D61 /* BlockChange.swift */,
 				21AD8CED1C8A4698000A53F8 /* Protocols */,
 				21AD8CEB1C8A4674000A53F8 /* Block Level */,
 				21AD8CEC1C8A4685000A53F8 /* Span Level */,
@@ -461,15 +462,6 @@
 				21AD8C991C8A4628000A53F8 /* NSRange+CanvasNative.swift */,
 			);
 			name = Extensions;
-			sourceTree = "<group>";
-		};
-		21BF7D441C933A9300CB1A7A /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				21AD8C8A1C8A4628000A53F8 /* Controller.swift */,
-				21BF7D451C933A9D00CB1A7A /* ControllerDelegate.swift */,
-			);
-			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -791,7 +783,6 @@
 				21AD8CBF1C8A4628000A53F8 /* Positionable.swift in Sources */,
 				21AD8CC21C8A4628000A53F8 /* SpanNodeContainer.swift in Sources */,
 				21AD8CBB1C8A4628000A53F8 /* NSRange+CanvasNative.swift in Sources */,
-				21BF7D461C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */,
 				21AD8CAC1C8A4628000A53F8 /* Controller.swift in Sources */,
 				21AD8CC51C8A4628000A53F8 /* Title.swift in Sources */,
 				21AD8CAE1C8A4628000A53F8 /* ChecklistItem.swift in Sources */,
@@ -811,6 +802,7 @@
 				21AD8CC61C8A4628000A53F8 /* UnorderedListItem.swift in Sources */,
 				21AD8CC11C8A4628000A53F8 /* SpanNode.swift in Sources */,
 				21AD8CB31C8A4628000A53F8 /* Foldable.swift in Sources */,
+				210176761CBD6CE900614D61 /* BlockChange.swift in Sources */,
 				21AD8CBE1C8A4628000A53F8 /* Parser.swift in Sources */,
 				21AD8CB01C8A4628000A53F8 /* CodeSpan.swift in Sources */,
 			);
@@ -852,7 +844,6 @@
 				21AD8CE31C8A4649000A53F8 /* Positionable.swift in Sources */,
 				21AD8CE61C8A4649000A53F8 /* SpanNodeContainer.swift in Sources */,
 				21AD8CDF1C8A4649000A53F8 /* NSRange+CanvasNative.swift in Sources */,
-				21BF7D471C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */,
 				21AD8CD01C8A4649000A53F8 /* Controller.swift in Sources */,
 				21AD8CE91C8A4649000A53F8 /* Title.swift in Sources */,
 				21AD8CD21C8A4649000A53F8 /* ChecklistItem.swift in Sources */,
@@ -872,6 +863,7 @@
 				21AD8CEA1C8A4649000A53F8 /* UnorderedListItem.swift in Sources */,
 				21AD8CE51C8A4649000A53F8 /* SpanNode.swift in Sources */,
 				21AD8CD71C8A4649000A53F8 /* Foldable.swift in Sources */,
+				210176771CBD6CE900614D61 /* BlockChange.swift in Sources */,
 				21AD8CE21C8A4649000A53F8 /* Parser.swift in Sources */,
 				21AD8CD41C8A4649000A53F8 /* CodeSpan.swift in Sources */,
 			);
@@ -913,7 +905,6 @@
 				21632CF91C9235F500C40D7D /* Node.swift in Sources */,
 				21632CF81C9235F500C40D7D /* NativePrefixable.swift in Sources */,
 				21632D081C9235F800C40D7D /* UnorderedListItem.swift in Sources */,
-				21BF7D491C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */,
 				21632D001C9235F800C40D7D /* Blockquote.swift in Sources */,
 				21632D0D1C9235FE00C40D7D /* Text.swift in Sources */,
 				21632D011C9235F800C40D7D /* ChecklistItem.swift in Sources */,
@@ -933,6 +924,7 @@
 				21632D0E1C92360100C40D7D /* CGSize+CanvasNative.swift in Sources */,
 				21632D061C9235F800C40D7D /* Paragraph.swift in Sources */,
 				21632CFB1C9235F500C40D7D /* Positionable.swift in Sources */,
+				210176791CBD6CE900614D61 /* BlockChange.swift in Sources */,
 				21632CF51C9235F500C40D7D /* BlockNode.swift in Sources */,
 				21632D0B1C9235FE00C40D7D /* Emphasis.swift in Sources */,
 			);
@@ -951,7 +943,6 @@
 				21632D341C92367B00C40D7D /* Node.swift in Sources */,
 				21632D331C92367B00C40D7D /* NativePrefixable.swift in Sources */,
 				21632D431C92367E00C40D7D /* UnorderedListItem.swift in Sources */,
-				21BF7D481C933A9D00CB1A7A /* ControllerDelegate.swift in Sources */,
 				21632D3B1C92367E00C40D7D /* Blockquote.swift in Sources */,
 				21632D481C92368200C40D7D /* Text.swift in Sources */,
 				21632D3C1C92367E00C40D7D /* ChecklistItem.swift in Sources */,
@@ -971,6 +962,7 @@
 				21632D491C92368600C40D7D /* CGSize+CanvasNative.swift in Sources */,
 				21632D411C92367E00C40D7D /* Paragraph.swift in Sources */,
 				21632D361C92367B00C40D7D /* Positionable.swift in Sources */,
+				210176781CBD6CE900614D61 /* BlockChange.swift in Sources */,
 				21632D301C92367B00C40D7D /* BlockNode.swift in Sources */,
 				21632D461C92368200C40D7D /* Emphasis.swift in Sources */,
 			);
