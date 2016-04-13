@@ -37,7 +37,7 @@ public struct ChecklistItem: Listable, NodeContainer {
 	public var visibleRange: NSRange
 	public var indentationRange: NSRange
 	public var indentation: Indentation
-	public var completedRange: NSRange
+	public var completionRange: NSRange
 	public var completion: Completion
 	public var position: Position = .Single
 
@@ -56,6 +56,8 @@ public struct ChecklistItem: Listable, NodeContainer {
 			"visibleRange": visibleRange.dictionary,
 			"indentationRange": indentationRange.dictionary,
 			"indentation": indentation.rawValue,
+			"completionRange": completionRange.dictionary,
+			"completion": completion.rawValue,
 			"position": position.rawValue,
 			"subnodes": subnodes.map { $0.dictionary }
 		]
@@ -101,7 +103,7 @@ public struct ChecklistItem: Listable, NodeContainer {
 
 		let set = NSCharacterSet(charactersInString: "x ")
 		var completionString: NSString? = ""
-		let completedRange = NSRange(location: range.location + scanner.scanLocation, length: 1)
+		let completionRange = NSRange(location: range.location + scanner.scanLocation, length: 1)
 		if !scanner.scanCharactersFromSet(set, intoString: &completionString) {
 			return nil
 		}
@@ -120,7 +122,7 @@ public struct ChecklistItem: Listable, NodeContainer {
 		self.nativePrefixRange = nativePrefixRange.union(prefixRange)
 
 		// Content
-		self.completedRange = completedRange
+		self.completionRange = completionRange
 		visibleRange = NSRange(
 			location: range.location + scanner.scanLocation,
 			length: range.length - scanner.scanLocation
@@ -138,7 +140,7 @@ public struct ChecklistItem: Listable, NodeContainer {
 		nativePrefixRange.location += delta
 		visibleRange.location += delta
 		indentationRange.location += delta
-		completedRange.location += delta
+		completionRange.location += delta
 
 		subnodes = subnodes.map {
 			var node = $0
