@@ -360,6 +360,7 @@
 		2101767C1CBD6E3A00614D61 /* Block Level */ = {
 			isa = PBXGroup;
 			children = (
+				21C589FE1CBEB56C002EDC7E /* TitleTests.swift */,
 				215BABE31C52B46B00118C8C /* BlockquoteTests.swift */,
 				21BF7D4A1C937F4100CB1A7A /* CodeBlockTests.swift */,
 				21BF7D4E1C93802100CB1A7A /* ParagraphTests.swift */,
@@ -440,7 +441,6 @@
 				2101767E1CBD6E6B00614D61 /* Document Controller */,
 				2101767C1CBD6E3A00614D61 /* Block Level */,
 				2101767D1CBD6E5C00614D61 /* Span Level */,
-				21C589FE1CBEB56C002EDC7E /* TitleTests.swift */,
 				210C743B1C7E7C5000FBB665 /* Helpers */,
 			);
 			path = Tests;
