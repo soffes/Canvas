@@ -29,11 +29,11 @@ class DocumentControllerChangeTests: XCTestCase {
 		let beforeParagraph2 = controller.document.blocks[2]
 
 		// Will update
-		let will = expectationWithDescription("controllerWillUpdateNodes")
+		let will = expectationWithDescription("willUpdate")
 		delegate.willUpdate = { will.fulfill() }
 
 		// Replace
-		let replace = expectationWithDescription("controller:didReplaceContentForBlock:atIndex:withBlock:")
+		let replace = expectationWithDescription("didReplaceContent")
 		delegate.didReplaceContent = { before, index, after in
 			XCTAssertEqual("Paragraph", String(before.dynamicType))
 			XCTAssertEqual(beforeParagraph1.range, before.range)
@@ -45,23 +45,23 @@ class DocumentControllerChangeTests: XCTestCase {
 		}
 
 		// Update
-		let update = expectationWithDescription("controller:didUpdateLocationForBlock:atIndex:withBlock:")
-		delegate.didUpdateLocation = { before, index, after in
-			XCTAssertEqual("Paragraph", String(before.dynamicType))
-			XCTAssertEqual(beforeParagraph2.range, before.range)
-			XCTAssertEqual(2, index)
-			XCTAssertEqual("Paragraph", String(after.dynamicType))
-			XCTAssertEqual(NSRange(location: 24, length: 3), after.range)
-
-			update.fulfill()
-		}
+//		let update = expectationWithDescription("didUpdateLocation")
+//		delegate.didUpdateLocation = { before, index, after in
+//			XCTAssertEqual("Paragraph", String(before.dynamicType))
+//			XCTAssertEqual(beforeParagraph2.range, before.range)
+//			XCTAssertEqual(2, index)
+//			XCTAssertEqual("Paragraph", String(after.dynamicType))
+//			XCTAssertEqual(NSRange(location: 24, length: 3), after.range)
+//
+//			update.fulfill()
+//		}
 
 		// Ignored
 		delegate.didInsert = { _, _ in XCTFail("Shouldn't insert.") }
 		delegate.didRemove = { _, _ in XCTFail("Shouldn't remove.") }
 
 		// Did update
-		let did = expectationWithDescription("controllerDidUpdateNodes")
+		let did = expectationWithDescription("didUpdate")
 		delegate.didUpdate = { did.fulfill() }
 
 		// Edit characters

@@ -19,7 +19,7 @@ struct StringChange {
 	// MARK: - Initializers
 
 	init(range: Range<Int>, string: String) {
-		self.range = NSRange(location: range.startIndex, length: range.endIndex - range.startIndex)
+		self.range = NSRange(location: range.startIndex, length: range.count - 1)
 		self.string = string
 	}
 

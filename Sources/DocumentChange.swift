@@ -1,5 +1,5 @@
 //
-//  Diff.swift
+//  DocumentChange.swift
 //  CanvasNative
 //
 //  Created by Sam Soffes on 4/12/16.

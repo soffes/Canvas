@@ -37,7 +37,7 @@ public final class DocumentController {
 
 	public weak var delegate: DocumentControllerDelegate?
 
-	public private(set) var document: Document
+	public private(set) var document = Document()
 
 
 	// MARK: - Initializers
@@ -45,22 +45,35 @@ public final class DocumentController {
 	public init(backingString: String, delegate: DocumentControllerDelegate? = nil) {
 		self.document = Document(backingString: backingString)
 		self.delegate = delegate
+
+		let change = Document().replaceCharactersInRange(NSRange(location: 0, length: 0), withString: document.backingString)
+		processChange(change)
 	}
 
 	public init(document: Document? = nil, delegate: DocumentControllerDelegate? = nil) {
 		self.document = document ?? Document()
 		self.delegate = delegate
+
+		if let document = document {
+			let change = Document().replaceCharactersInRange(NSRange(location: 0, length: 0), withString: document.backingString)
+			processChange(change)
+		}
 	}
 
 
 	// MARK: - Changing Text
 
 	public func replaceCharactersInRange(range: NSRange, withString string: String) {
+		let change = document.replaceCharactersInRange(range, withString: string)
+		processChange(change)
+	}
+
+
+	// MARK: - Private
+
+	private func processChange(change: DocumentChange) {
 		// Notifiy the delegate we have a change
 		delegate?.documentControllerWillUpdateDocument(self)
-
-		// Get the change
-		let change = document.replaceCharactersInRange(range, withString: string)
 
 		// Notify about presentation string change
 		if let presentationChange = change.presentationStringChange {
@@ -76,9 +89,6 @@ public final class DocumentController {
 		// Notifiy the delegate that we're done.
 		delegate?.documentControllerDidUpdateDocument(self)
 	}
-
-
-	// MARK: - Delegate Calls
 
 	private func sendDelegateMessage(message: BlockChange) {
 		switch message {
