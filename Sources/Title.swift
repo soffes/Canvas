@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Title: NativePrefixable {
+public struct Title: NativePrefixable, NodeContainer {
 
 	// MARK: - Properties
 
@@ -17,13 +17,20 @@ public struct Title: NativePrefixable {
 	public var nativePrefixRange: NSRange
 	public var visibleRange: NSRange
 
+	public var textRange: NSRange {
+		return visibleRange
+	}
+
+	public var subnodes = [SpanNode]()
+
 	public var dictionary: [String: AnyObject] {
 		return [
 			"type": "title",
 			"range": range.dictionary,
 			"enclosingRange": enclosingRange.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
-			"visibleRange": visibleRange.dictionary
+			"visibleRange": visibleRange.dictionary,
+			"subnodes": subnodes.map { $0.dictionary }
 		]
 	}
 
@@ -51,6 +58,12 @@ public struct Title: NativePrefixable {
 		enclosingRange.location += delta
 		nativePrefixRange.location += delta
 		visibleRange.location += delta
+
+		subnodes = subnodes.map {
+			var node = $0
+			node.offset(delta)
+			return node
+		}
 	}
 
 
