@@ -9,7 +9,7 @@
 import Foundation
 import CoreGraphics
 
-public struct Image: Attachable {
+public struct Image: Attachable, Equatable {
 
 	// MARK: - Properties
 
@@ -115,5 +115,10 @@ extension Image: Hashable {
 
 
 public func == (lhs: Image, rhs: Image) -> Bool {
-	return lhs.identifier == rhs.identifier
+	return NSEqualRanges(lhs.range, rhs.range) &&
+		NSEqualRanges(lhs.enclosingRange, rhs.enclosingRange) &&
+		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
+		lhs.identifier == rhs.identifier &&
+		lhs.url == rhs.url &&
+		lhs.size == rhs.size
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Heading: BlockNode, NodeContainer, Foldable {
+public struct Heading: BlockNode, NodeContainer, Foldable, Equatable {
 
 	// MARK: - Types
 
@@ -43,12 +43,13 @@ public struct Heading: BlockNode, NodeContainer, Foldable {
 	public var range: NSRange
 	public var enclosingRange: NSRange
 	public var visibleRange: NSRange
-	public var foldableRanges: [NSRange] {
-		return [leadingDelimiterRange]
-	}
 	public var leadingDelimiterRange: NSRange
 	public var textRange: NSRange
 	public var level: Level
+
+	public var foldableRanges: [NSRange] {
+		return [leadingDelimiterRange]
+	}
 
 	public var subnodes = [SpanNode]()
 
@@ -129,4 +130,14 @@ public struct Heading: BlockNode, NodeContainer, Foldable {
 
 		return prefix
 	}
+}
+
+
+public func ==(lhs: Heading, rhs: Heading) -> Bool {
+	return NSEqualRanges(lhs.range, rhs.range) &&
+		NSEqualRanges(lhs.enclosingRange, rhs.enclosingRange) &&
+		NSEqualRanges(lhs.visibleRange, rhs.visibleRange) &&
+		NSEqualRanges(lhs.leadingDelimiterRange, rhs.leadingDelimiterRange) &&
+		NSEqualRanges(lhs.textRange, rhs.textRange) &&
+		lhs.level == rhs.level
 }

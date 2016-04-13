@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct CodeBlock: BlockNode, NativePrefixable, Positionable, ReturnCompletable {
+public struct CodeBlock: BlockNode, NativePrefixable, Positionable, ReturnCompletable, Equatable {
 
 	// MARK: - Properties
 
@@ -92,4 +92,14 @@ public struct CodeBlock: BlockNode, NativePrefixable, Positionable, ReturnComple
 		let lang = language.flatMap { "-\($0)" } ?? ""
 		return "\(leadingNativePrefix)code\(lang)\(trailingNativePrefix)"
 	}
+}
+
+
+public func ==(lhs: CodeBlock, rhs: CodeBlock) -> Bool {
+	return NSEqualRanges(lhs.range, rhs.range) &&
+		NSEqualRanges(lhs.enclosingRange, rhs.enclosingRange) &&
+		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
+		NSEqualRanges(lhs.visibleRange, rhs.visibleRange) &&
+		lhs.language == rhs.language &&
+		lhs.position == rhs.position
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct UnorderedListItem: Listable, NodeContainer {
+public struct UnorderedListItem: Listable, NodeContainer, Equatable {
 
 	// MARK: - Properties
 
@@ -82,4 +82,15 @@ public struct UnorderedListItem: Listable, NodeContainer {
 	public static func nativeRepresentation(indentation indentation: Indentation = .Zero) -> String {
 		return "\(leadingNativePrefix)unordered-list-\(indentation.string)\(trailingNativePrefix)- "
 	}
+}
+
+
+public func ==(lhs: UnorderedListItem, rhs: UnorderedListItem) -> Bool {
+	return NSEqualRanges(lhs.range, rhs.range) &&
+		NSEqualRanges(lhs.enclosingRange, rhs.enclosingRange) &&
+		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
+		NSEqualRanges(lhs.visibleRange, rhs.visibleRange) &&
+		NSEqualRanges(lhs.indentationRange, rhs.indentationRange) &&
+		lhs.indentation == rhs.indentation &&
+		lhs.position == rhs.position
 }

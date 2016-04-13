@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Blockquote: BlockNode, NativePrefixable, Positionable, NodeContainer, ReturnCompletable {
+public struct Blockquote: BlockNode, NativePrefixable, Positionable, NodeContainer, ReturnCompletable, Equatable {
 
 	// MARK: - Properties
 
@@ -75,4 +75,13 @@ public struct Blockquote: BlockNode, NativePrefixable, Positionable, NodeContain
 	public static func nativeRepresentation() -> String {
 		return "\(leadingNativePrefix)blockquote\(trailingNativePrefix)> "
 	}
+}
+
+
+public func ==(lhs: Blockquote, rhs: Blockquote) -> Bool {
+	return NSEqualRanges(lhs.range, rhs.range) &&
+		NSEqualRanges(lhs.enclosingRange, rhs.enclosingRange) &&
+		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
+		NSEqualRanges(lhs.visibleRange, rhs.visibleRange) &&
+		lhs.position == rhs.position
 }

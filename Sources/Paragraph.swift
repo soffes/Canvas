@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Paragraph: BlockNode, NodeContainer {
+public struct Paragraph: BlockNode, NodeContainer, Equatable {
 
 	// MARK: - Properties
 
@@ -67,4 +67,10 @@ public struct Paragraph: BlockNode, NodeContainer {
 			return node
 		}
 	}
+}
+
+
+public func ==(lhs: Paragraph, rhs: Paragraph) -> Bool {
+	return NSEqualRanges(lhs.range, rhs.range) &&
+		NSEqualRanges(lhs.enclosingRange, rhs.enclosingRange)
 }

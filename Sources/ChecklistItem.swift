@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ChecklistItem: Listable, NodeContainer {
+public struct ChecklistItem: Listable, NodeContainer, Equatable {
 
 	// MARK: - Types
 
@@ -155,4 +155,17 @@ public struct ChecklistItem: Listable, NodeContainer {
 	public static func nativeRepresentation(indentation indentation: Indentation = .Zero, completion: Completion = .Incomplete) -> String {
 		return "\(leadingNativePrefix)checklist-\(indentation.string)\(trailingNativePrefix)- [\(completion.string)] "
 	}
+}
+
+
+public func ==(lhs: ChecklistItem, rhs: ChecklistItem) -> Bool {
+	return NSEqualRanges(lhs.range, rhs.range) &&
+		NSEqualRanges(lhs.enclosingRange, rhs.enclosingRange) &&
+		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
+		NSEqualRanges(lhs.visibleRange, rhs.visibleRange) &&
+		NSEqualRanges(lhs.indentationRange, rhs.indentationRange) &&
+		lhs.indentation == rhs.indentation &&
+		NSEqualRanges(lhs.completionRange, rhs.completionRange) &&
+		lhs.completion == rhs.completion &&
+		lhs.position == rhs.position
 }

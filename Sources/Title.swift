@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Title: NativePrefixable, NodeContainer {
+public struct Title: NativePrefixable, NodeContainer, Equatable {
 
 	// MARK: - Properties
 
@@ -72,4 +72,12 @@ public struct Title: NativePrefixable, NodeContainer {
 	public static func nativeRepresentation(string: String? = nil) -> String {
 		return "\(leadingNativePrefix)doc-heading\(trailingNativePrefix)" + (string ?? "")
 	}
+}
+
+
+public func ==(lhs: Title, rhs: Title) -> Bool {
+	return NSEqualRanges(lhs.range, rhs.range) &&
+		NSEqualRanges(lhs.enclosingRange, rhs.enclosingRange) &&
+		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
+		NSEqualRanges(lhs.visibleRange, rhs.visibleRange)
 }
