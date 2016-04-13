@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Blockquote: BlockNode, NativePrefixable, Positionable, ReturnCompletable {
+public struct Blockquote: BlockNode, NativePrefixable, Positionable, NodeContainer, ReturnCompletable {
 
 	// MARK: - Properties
 
@@ -18,6 +18,12 @@ public struct Blockquote: BlockNode, NativePrefixable, Positionable, ReturnCompl
 	public var visibleRange: NSRange
 	public var position: Position = .Single
 
+	public var textRange: NSRange {
+		return visibleRange
+	}
+
+	public var subnodes = [SpanNode]()
+
 	public var dictionary: [String: AnyObject] {
 		return [
 			"type": "blockquote",
@@ -25,7 +31,8 @@ public struct Blockquote: BlockNode, NativePrefixable, Positionable, ReturnCompl
 			"enclosingRange": enclosingRange.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
 			"visibleRange": visibleRange.dictionary,
-			"position": position.rawValue
+			"position": position.rawValue,
+			"subnodes": subnodes.map { $0.dictionary }
 		]
 	}
 
@@ -54,6 +61,12 @@ public struct Blockquote: BlockNode, NativePrefixable, Positionable, ReturnCompl
 		enclosingRange.location += delta
 		nativePrefixRange.location += delta
 		visibleRange.location += delta
+
+		subnodes = subnodes.map {
+			var node = $0
+			node.offset(delta)
+			return node
+		}
 	}
 
 
