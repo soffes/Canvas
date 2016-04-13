@@ -16,18 +16,20 @@ final class TestDocumentControllerDelegate: DocumentControllerDelegate {
 	var blocks = [BlockNode]()
 	var presentationString: NSMutableString = ""
 
+	var willUpdate: (Void -> Void)?
+	var didInsert: ((BlockNode, Int) -> Void)?
+	var didRemove: ((BlockNode, Int) -> Void)?
+	var didUpdate: (Void -> Void)?
+
+	var blockTypes: [String] {
+		return blocks.map { String($0.dynamicType) }
+	}
+
 	var blockDictionaries: [[String: AnyObject]] {
 		// Note that we're checking what the delegate thinks the blocks are. This makes sure all of the delegate
 		// messages fire in the right order. If they didn't, this would be wrong and the test would fail. Yay.
 		return blocks.map { $0.dictionary }
 	}
-
-	var willUpdate: (Void -> Void)?
-	var didInsert: ((BlockNode, Int) -> Void)?
-	var didRemove: ((BlockNode, Int) -> Void)?
-	var didReplaceContent: ((BlockNode, Int, BlockNode) -> Void)?
-	var didUpdateLocation: ((BlockNode, Int, BlockNode) -> Void)?
-	var didUpdate: (Void -> Void)?
 
 
 	// MARK: - ControllerDelegate
@@ -48,18 +50,6 @@ final class TestDocumentControllerDelegate: DocumentControllerDelegate {
 	func documentController(controller: DocumentController, didRemoveBlock block: BlockNode, atIndex index: Int) {
 		blocks.removeAtIndex(index)
 		didRemove?(block, index)
-	}
-
-	func documentController(controller: DocumentController, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
-		blocks.removeAtIndex(index)
-		blocks.insert(after, atIndex: index)
-		didReplaceContent?(before, index, after)
-	}
-
-	func documentController(controller: DocumentController, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
-		blocks.removeAtIndex(index)
-		blocks.insert(after, atIndex: index)
-		didUpdateLocation?(before, index, after)
 	}
 
 	func documentControllerDidUpdateDocument(controller: DocumentController) {

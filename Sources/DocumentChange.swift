@@ -13,17 +13,17 @@ struct DocumentChange {
 	let before: Document
 	let after: Document
 
-	let blockChanges: [BlockChange]
+	let blockChange: BlockChange?
 	let backingStringChange: StringChange
 	let presentationStringChange: StringChange?
 
 
 	// MARK: - Initializers
 
-	init(before: Document, after: Document, blockChanges: [BlockChange], backingStringChange: StringChange, presentationStringChange: StringChange?) {
+	init(before: Document, after: Document, blockChange: BlockChange?, backingStringChange: StringChange, presentationStringChange: StringChange?) {
 		self.before = before
 		self.after = after
-		self.blockChanges = blockChanges
+		self.blockChange = blockChange
 		self.backingStringChange = backingStringChange
 		self.presentationStringChange = presentationStringChange
 	}

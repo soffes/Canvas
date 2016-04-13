@@ -8,6 +8,10 @@
 
 import Foundation
 
+/// DocumentController delegate for notifications about changes to the owned document.  You can not rely upon these
+/// messages to keep a parallel array in sync with the backing model. They are intended to be used for keeping
+/// associated information in sync. After `documentControllerDidUpdateDocument` is called, all of the models will
+/// reflect the new state.
 public protocol DocumentControllerDelegate: class {
 	// After this message, `document` will be the new value
 	func documentControllerWillUpdateDocument(controller: DocumentController)
@@ -15,16 +19,9 @@ public protocol DocumentControllerDelegate: class {
 	// This will be called before all other messages.
 	func documentController(controller: DocumentController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String)
 
-	// The index will be relative to the blocks array before the change (similar to UITableView).
 	func documentController(controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int)
 
 	func documentController(controller: DocumentController, didRemoveBlock block: BlockNode, atIndex index: Int)
-
-	// The block's content changed. `before` and `after` will always be the same type.
-	func documentController(controller: DocumentController, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
-
-	// The block's metadata changed. `before` and `after` will always be the same type.
-	func documentController(controller: DocumentController, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode)
 
 	// Changes to `document` are complete
 	func documentControllerDidUpdateDocument(controller: DocumentController)
@@ -77,34 +74,26 @@ public final class DocumentController {
 
 		// Notify about presentation string change
 		if let presentationChange = change.presentationStringChange {
-			delegate?.documentController(self, didReplaceCharactersInPresentationStringInRange: presentationChange.range, withString: presentationChange.string)
+			delegate?.documentController(self, didReplaceCharactersInPresentationStringInRange: presentationChange.range, withString: presentationChange.replacement)
 		}
 
 		// Notify about AST changes
-		change.blockChanges.forEach(sendDelegateMessage)
+		if let blockChange = change.blockChange {
+			// Remove
+			for i in blockChange.range.location..<blockChange.range.max {
+				delegate?.documentController(self, didRemoveBlock: change.before.blocks[i], atIndex: i)
+			}
+
+			// Insert
+			for (i, block) in blockChange.replacement.enumerate() {
+				delegate?.documentController(self, didInsertBlock: block, atIndex: blockChange.range.location + i)
+			}
+		}
 
 		// Set the new document
 		document = change.after
 
 		// Notifiy the delegate that we're done.
 		delegate?.documentControllerDidUpdateDocument(self)
-	}
-
-	private func sendDelegateMessage(message: BlockChange) {
-		switch message {
-		case .Insert(let block, let index):
-			delegate?.documentController(self, didInsertBlock: block, atIndex: index)
-		case .Remove(let block, let index):
-			delegate?.documentController(self, didRemoveBlock: block, atIndex: index)
-		case .Replace(let before, let index, let after):
-			if before.dynamicType == after.dynamicType {
-				delegate?.documentController(self, didReplaceContentForBlock: before, atIndex: index, withBlock: after)
-			} else {
-				delegate?.documentController(self, didRemoveBlock: before, atIndex: index)
-				delegate?.documentController(self, didInsertBlock: after, atIndex: index)
-			}
-		case .Update(let before, let index, let after):
-			delegate?.documentController(self, didUpdateLocationForBlock: before, atIndex: index, withBlock: after)
-		}
 	}
 }

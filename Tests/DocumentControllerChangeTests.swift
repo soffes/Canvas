@@ -25,40 +25,25 @@ class DocumentControllerChangeTests: XCTestCase {
 		let range = NSRange(location: 22, length: 0)
 		let replacement = "!"
 
-		let beforeParagraph1 = controller.document.blocks[1]
-		let beforeParagraph2 = controller.document.blocks[2]
-
 		// Will update
 		let will = expectationWithDescription("willUpdate")
 		delegate.willUpdate = { will.fulfill() }
 
-		// Replace
-		let replace = expectationWithDescription("didReplaceContent")
-		delegate.didReplaceContent = { before, index, after in
-			XCTAssertEqual("Paragraph", String(before.dynamicType))
-			XCTAssertEqual(beforeParagraph1.range, before.range)
-			XCTAssertEqual(1, index)
-			XCTAssertEqual("Paragraph", String(after.dynamicType))
-			XCTAssertEqual(NSRange(location: 19, length: 4), after.range)
-
-			replace.fulfill()
+		// Insert
+		let insert = expectationWithDescription("didInsert")
+		var inserted = false
+		delegate.didInsert = { _, _ in
+			if !inserted {
+				insert.fulfill()
+			}
+			inserted = true
 		}
 
-		// Update
-//		let update = expectationWithDescription("didUpdateLocation")
-//		delegate.didUpdateLocation = { before, index, after in
-//			XCTAssertEqual("Paragraph", String(before.dynamicType))
-//			XCTAssertEqual(beforeParagraph2.range, before.range)
-//			XCTAssertEqual(2, index)
-//			XCTAssertEqual("Paragraph", String(after.dynamicType))
-//			XCTAssertEqual(NSRange(location: 24, length: 3), after.range)
-//
-//			update.fulfill()
-//		}
-
-		// Ignored
-		delegate.didInsert = { _, _ in XCTFail("Shouldn't insert.") }
-		delegate.didRemove = { _, _ in XCTFail("Shouldn't remove.") }
+		// Remove
+		let remove = expectationWithDescription("didRemove")
+		delegate.didRemove = { _, _ in
+			remove.fulfill()
+		}
 
 		// Did update
 		let did = expectationWithDescription("didUpdate")
@@ -73,7 +58,7 @@ class DocumentControllerChangeTests: XCTestCase {
 		// Check blocks
 		XCTAssertEqual("⧙doc-heading⧘Title\nOne!\nTwo", controller.document.backingString)
 		XCTAssertEqual(delegate.presentationString, controller.document.presentationString)
-		XCTAssertEqual(parse(controller.document.backingString), delegate.blockDictionaries)
+		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
 	}
 
 //	func testMultipleInsertRemove() {
