@@ -59,11 +59,19 @@ public final class DocumentController {
 		// Notifiy the delegate we have a change
 		delegate?.documentControllerWillUpdateDocument(self)
 
-		// Get the new document
-		let newDocument = document.replaceCharactersInRange(range, withString: string)
+		// Get the change
+		let change = document.replaceCharactersInRange(range, withString: string)
+
+		// Notify about presentation string change
+		if let presentationChange = change.presentationStringChange {
+			delegate?.documentController(self, didReplaceCharactersInPresentationStringInRange: presentationChange.range, withString: presentationChange.string)
+		}
+
+		// Notify about AST changes
+		change.blockChanges.forEach(sendDelegateMessage)
 
 		// Set the new document
-		document = newDocument
+		document = change.after
 
 		// Notifiy the delegate that we're done.
 		delegate?.documentControllerDidUpdateDocument(self)

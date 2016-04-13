@@ -47,16 +47,6 @@ public struct Document {
 	}
 
 
-	// MARK: - Modifying
-
-	public func replaceCharactersInRange(range: NSRange, withString string: String) -> Document {
-		let text = NSMutableString(string: self.backingString)
-		text.replaceCharactersInRange(range, withString: string)
-
-		return Document(backingString: text as String)
-	}
-
-
 	// MARK: - Range Calculations
 
 	public func presentationRange(backingRange backingRange: NSRange) -> NSRange {
