@@ -7,23 +7,22 @@
 //
 
 public enum Position: Equatable {
-	case Top(UInt)
+	case Top
 	case Middle(UInt)
 	case Bottom(UInt)
 	case Single
 
 	public var number: UInt {
 		switch self {
-		case .Top(let number): return number
 		case .Middle(let number): return number
 		case .Bottom(let number): return number
-		case .Single: return 1
+		default: return 1
 		}
 	}
 
 	public var isTop: Bool {
 		switch self {
-		case .Top(_), .Single: return true
+		case .Top, .Single: return true
 		default: return false
 		}
 	}
@@ -46,9 +45,9 @@ public enum Position: Equatable {
 
 public func ==(lhs: Position, rhs: Position) -> Bool {
 	switch lhs {
-	case .Top(let lhsNumber):
+	case .Top:
 		switch rhs {
-		case .Top(let rhsNumber): return lhsNumber == rhsNumber
+		case .Top: return true
 		default: return false
 		}
 	case .Middle(let lhsNumber):
