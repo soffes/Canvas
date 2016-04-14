@@ -33,13 +33,13 @@ class DocumentCalculationTests: XCTestCase {
 		XCTAssertEqual(NSRange(location: 6, length: 1), document.presentationRange(backingRange: document.blocks[1].visibleRange))
 	}
 
-	func testHiddenBackingRangeToPresentationRange() {
-		let document = Document(backingString: "⧙doc-heading⧘Title\n⧙blockquote⧘> Hi")
-
-		let backingRange = NSRange(location: 25, length: 5)
-		let displayRange = NSRange(location: 6, length: 0)
-		XCTAssertEqual(displayRange, document.presentationRange(backingRange: backingRange))
-	}
+//	func testHiddenBackingRangeToPresentationRange() {
+//		let document = Document(backingString: "⧙doc-heading⧘Title\n⧙blockquote⧘> Hi")
+//
+//		let backingRange = NSRange(location: 25, length: 5)
+//		let displayRange = NSRange(location: 6, length: 0)
+//		XCTAssertEqual(displayRange, document.presentationRange(backingRange: backingRange))
+//	}
 
 	func testPresentationRangeToBackingRange() {
 		let document = Document(backingString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two\n⧙code⧘Three")

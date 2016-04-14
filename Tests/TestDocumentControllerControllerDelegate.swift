@@ -9,6 +9,8 @@
 import Foundation
 import CanvasNative
 
+typealias Message = (BlockNode, Int)
+
 final class TestDocumentControllerDelegate: DocumentControllerDelegate {
 
 	// MARK: - Properties
