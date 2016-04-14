@@ -70,7 +70,13 @@ extension Document {
 		let after = Document(backingString: text as String)
 
 		// Calculate block changes
-		let blockChange = diff(before.blocks, after.blocks, compare: compareBlock)
+		let blockChange = diff(before.blocks, after.blocks) { lhs, rhs in
+			if lhs.dynamicType != rhs.dynamicType {
+				return false
+			}
+
+			return lhs.contentInString(before.backingString) == rhs.contentInString(after.backingString)
+		}
 
 		// Calculate presentation change
 		let presentationStringChange: StringChange? = diff(before.presentationString, after.presentationString).flatMap(StringChange.init)

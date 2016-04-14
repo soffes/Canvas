@@ -10,7 +10,7 @@ import Foundation
 
 /// DocumentController delegate for notifications about changes to the owned document.  You can not rely upon these
 /// messages to keep a parallel array in sync with the backing model. They are intended to be used for keeping
-/// associated information in sync. After `documentControllerDidUpdateDocument` is called, all of the models will
+/// associated information in sync. After `documentControllerWillUpdateDocument` is called, all of the models will
 /// reflect the new state.
 public protocol DocumentControllerDelegate: class {
 	// After this message, `document` will be the new value
@@ -72,6 +72,9 @@ public final class DocumentController {
 		// Notifiy the delegate we have a change
 		delegate?.documentControllerWillUpdateDocument(self)
 
+		// Set the new document
+		document = change.after
+
 		// Notify about presentation string change
 		if let presentationChange = change.presentationStringChange {
 			delegate?.documentController(self, didReplaceCharactersInPresentationStringInRange: presentationChange.range, withString: presentationChange.replacement)
@@ -89,9 +92,6 @@ public final class DocumentController {
 				delegate?.documentController(self, didInsertBlock: block, atIndex: blockChange.range.startIndex + i)
 			}
 		}
-
-		// Set the new document
-		document = change.after
 
 		// Notifiy the delegate that we're done.
 		delegate?.documentControllerDidUpdateDocument(self)
