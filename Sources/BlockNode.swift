@@ -21,4 +21,21 @@ extension BlockNode {
 
 		return NSRange(location: range.max, length: 1)
 	}
+
+	static func compare(lhs: BlockNode, rhs: BlockNode) -> Bool {
+		if lhs.dynamicType != rhs.dynamicType {
+			return false
+		}
+
+		return (lhs.dictionary as NSDictionary).isEqual(rhs.dictionary as NSDictionary)
+	}
+}
+
+
+func compareBlock(lhs: BlockNode, rhs: BlockNode) -> Bool {
+	if lhs.dynamicType != rhs.dynamicType {
+		return false
+	}
+
+	return (lhs.dictionary as NSDictionary).isEqual(rhs.dictionary as NSDictionary)
 }

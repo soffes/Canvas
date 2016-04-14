@@ -13,4 +13,8 @@ extension XCTest {
 	func parse(string: String) -> [[String: AnyObject]] {
 		return Parser.parse(string).map { $0.dictionary }
 	}
+
+	func blockTypes(string: String) -> [String] {
+		return Parser.parse(string).map { String($0.dynamicType) }
+	}
 }
