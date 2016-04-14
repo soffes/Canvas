@@ -98,7 +98,7 @@ final class AnnotationsController {
 	func rectForAnnotation(annotation: Annotation, index: Int) -> CGRect {
 		guard let textController = textController else { return .zero }
 
-		let presentationRange = textController.canvasController.presentationRange(backingRange: annotation.block.enclosingRange)
+		let presentationRange = textController.documentController.document.presentationRange(backingRange: annotation.block.enclosingRange)
 		let glyphIndex = textController.layoutManager.glyphIndexForCharacterAtIndex(presentationRange.location)
 		var rect = textController.layoutManager.lineFragmentUsedRectForGlyphAtIndex(glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true)
 

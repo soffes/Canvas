@@ -46,7 +46,7 @@ public final class TextController {
 	}
 
 	public var backingString: String {
-		return canvasController.string
+		return documentController.document.backingString
 	}
 
 	public var presentationSelectedRange: NSRange? {
@@ -72,7 +72,7 @@ public final class TextController {
 	private var transportController: TransportController?
 	private let annotationsController: AnnotationsController
 
-	let canvasController = Controller()
+	let documentController = DocumentController()
 
 
 	// MARK: - Initializers
@@ -98,7 +98,7 @@ public final class TextController {
 		layoutManager.addTextContainer(textContainer)
 		textStorage.addLayoutManager(layoutManager)
 
-		canvasController.delegate = self
+		documentController.delegate = self
 	}
 
 
@@ -122,7 +122,7 @@ public final class TextController {
 
 	private func stylesForBlock(block: BlockNode) -> [Style] {
 		let blockStyle = Style(
-			range: canvasController.presentationRange(backingRange: block.visibleRange),
+			range: documentController.document.presentationRange(backingRange: block.visibleRange),
 			attributes: theme.attributes(block: block)
 		)
 
@@ -142,7 +142,7 @@ public final class TextController {
 			guard let attributes = theme.attributes(span: span, currentFont: currentFont) else { continue }
 
 			let style = Style(
-				range: canvasController.presentationRange(backingRange: span.visibleRange),
+				range: documentController.document.presentationRange(backingRange: span.visibleRange),
 				attributes: attributes
 			)
 			styles.append(style)
@@ -158,7 +158,7 @@ public final class TextController {
 
 				for backingRange in foldable.foldableRanges {
 					let style = Style(
-						range: canvasController.presentationRange(backingRange: backingRange),
+						range: documentController.document.presentationRange(backingRange: backingRange),
 						attributes: attrs
 					)
 					styles.append(style)
@@ -172,10 +172,10 @@ public final class TextController {
 				var attrs = foldableAttributes
 				attrs[NSForegroundColorAttributeName] = Color(red: 0.420, green: 0.420, blue: 0.447, alpha: 1)
 
-				styles.append(Style(range: canvasController.presentationRange(backingRange: link.urlRange), attributes: attrs))
+				styles.append(Style(range: documentController.document.presentationRange(backingRange: link.urlRange), attributes: attrs))
 
 				if let title = link.title {
-					styles.append(Style(range: canvasController.presentationRange(backingRange: title.textRange), attributes: attrs))
+					styles.append(Style(range: documentController.document.presentationRange(backingRange: title.textRange), attributes: attrs))
 				}
 			}
 
@@ -216,7 +216,7 @@ extension TextController: TransportControllerDelegate {
 	}
 
 	public func transportController(controller: TransportController, didReceiveSnapshot text: String) {
-		let bounds = NSRange(location: 0, length: canvasController.length)
+		let bounds = NSRange(location: 0, length: (documentController.document.backingString as NSString).length)
 
 		// Ensure we have a valid document
 		var string = text
@@ -225,18 +225,18 @@ extension TextController: TransportControllerDelegate {
 			submitOperations(backingRange: bounds, string: string)
 		}
 
-		canvasController.replaceCharactersInRange(bounds, withString: string)
+		documentController.replaceCharactersInRange(bounds, withString: string)
 	}
 
 	public func transportController(controller: TransportController, didReceiveOperation operation: Operation) {
 		switch operation {
 		case .Insert(let location, let string):
 			let range = NSRange(location: Int(location), length: 0)
-			canvasController.replaceCharactersInRange(range, withString: string)
+			documentController.replaceCharactersInRange(range, withString: string)
 
 		case .Remove(let location, let length):
 			let range = NSRange(location: Int(location), length: Int(length))
-			canvasController.replaceCharactersInRange(range, withString: "")
+			documentController.replaceCharactersInRange(range, withString: "")
 		}
 	}
 
@@ -250,12 +250,12 @@ extension TextController: TransportControllerDelegate {
 }
 
 
-extension TextController: ControllerDelegate {
-	public func controllerWillUpdateNodes(controller: Controller) {
+extension TextController: DocumentControllerDelegate {
+	public func documentControllerWillUpdateDocument(controller: DocumentController) {
 		textStorage.beginEditing()
 	}
 
-	public func controller(controller: Controller, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
+	public func documentController(controller: DocumentController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
 		_textStorage.actuallyReplaceCharactersInRange(range, withString: string)
 
 		if var selectedRange = presentationSelectedRange {
@@ -265,28 +265,17 @@ extension TextController: ControllerDelegate {
 		}
 	}
 
-	public func controller(controller: Controller, didInsertBlock block: BlockNode, atIndex index: Int) {
-		annotationsController.insert(block: block, index: index)
-		_textStorage.addStyles(stylesForBlock(block))
+	public func documentController(controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int) {
+//		annotationsController.insert(block: block, index: index)
+//		_textStorage.addStyles(stylesForBlock(block))
 //		layoutManager.invalidateLayoutForCharacterRange(controller.presentationRange(backingRange: block.visibleRange), actualCharacterRange: nil)
 	}
 
-	public func controller(controller: Controller, didRemoveBlock block: BlockNode, atIndex index: Int) {
-		annotationsController.remove(block: block, index: index)
+	public func documentController(controller: DocumentController, didRemoveBlock block: BlockNode, atIndex index: Int) {
+//		annotationsController.remove(block: block, index: index)
 	}
 
-	public func controller(controller: Controller, didReplaceContentForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
-		annotationsController.replace(block: after, index: index)
-		_textStorage.addStyles(stylesForBlock(after))
-//		layoutManager.invalidateGlyphsForCharacterRange(controller.presentationRange(backingRange: after.visibleRange), changeInLength: after.visibleRange.length - before.visibleRange.length, actualCharacterRange: nil)
-	}
-
-	public func controller(controller: Controller, didUpdateLocationForBlock before: BlockNode, atIndex index: Int, withBlock after: BlockNode) {
-		annotationsController.update(block: after, index: index)
-//		layoutManager.invalidateLayoutForCharacterRange(controller.presentationRange(backingRange: after.visibleRange), actualCharacterRange: nil)
-	}
-
-	public func controllerDidUpdateNodes(controller: Controller) {
+	public func documentControllerDidUpdateDocument(controller: DocumentController) {
 		textStorage.endEditing()
 	}
 }
@@ -301,8 +290,8 @@ extension TextController: AnnotationsControllerDelegate {
 
 extension TextController: TextStorageDelegate {
 	func textStorage(textStorage: TextStorage, didReplaceCharactersInRange range: NSRange, withString string: String) {
-		let backingRange = canvasController.backingRange(presentationRange: range)
-		canvasController.replaceCharactersInRange(backingRange, withString: string)
+		let backingRange = documentController.document.backingRange(presentationRange: range)
+		documentController.replaceCharactersInRange(backingRange, withString: string)
 		submitOperations(backingRange: backingRange, string: string)
 	}
 }

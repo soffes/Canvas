@@ -56,16 +56,21 @@ class ViewController: UIViewController {
 			fatalError("Access token is not set. Please set your access token in AppDelegate.swift and rerun the app.")
 		}
 
-		// Blank "31fst7N9L4W5EdALDkLiaz"
-		// Demo  "59S18UczqJcw0rx1AsVaTD"
-		// Long  "3n2OAeAec2vDDQxmx6pijZ"
+		// Blank "7bBmNtv3qVKK4plJBRAS0L"
+		// Demo  "3Fn14Jt9e9hF59sy4FhTAl"
+		// Long  "5kbzOyFgWIRjJBAnIrFLQ4"
 
 		textController.connect(
-			serverURL: NSURL(string: "wss://realtime.usecanvas.com")!,
+			serverURL: NSURL(string: "wss://canvas-realtime-staging.herokuapp.com")!,
 			accessToken: accessToken,
-			organizationID: "b29c5091-3959-4ca8-a39e-c3159f5f06c5",
-			canvasID: "31fst7N9L4W5EdALDkLiaz"
+			organizationID: "eaedcdb7-a0d5-4415-95a7-50b78316c910",
+			canvasID: "5kbzOyFgWIRjJBAnIrFLQ4"
 		)
+	}
+
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+		textView.becomeFirstResponder()
 	}
 
 	override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {

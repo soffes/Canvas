@@ -112,6 +112,27 @@
 			remoteGlobalIDString = 215E6D241C7520BD00126FE9;
 			remoteInfo = "OperationTransport-iOS";
 		};
+		214E4C571CC0017B0007942D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 213350181C8F596B00FDEBD6 /* CanvasNative.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 21632D161C92366600C40D7D;
+			remoteInfo = "CanvasNative-tvOS";
+		};
+		214E4C591CC0017B0007942D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 213350181C8F596B00FDEBD6 /* CanvasNative.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 21632D1F1C92366600C40D7D;
+			remoteInfo = "CanvasNativeTests-tvOS";
+		};
+		214E4C5B1CC0017B0007942D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 213350181C8F596B00FDEBD6 /* CanvasNative.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 21632CEA1C9235E400C40D7D;
+			remoteInfo = "CanvasNative-watchOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -191,6 +212,9 @@
 				213350221C8F596B00FDEBD6 /* CanvasNativeTests.xctest */,
 				213350241C8F596B00FDEBD6 /* CanvasNative.framework */,
 				213350261C8F596B00FDEBD6 /* CanvasNativeTests.xctest */,
+				214E4C581CC0017B0007942D /* CanvasNative.framework */,
+				214E4C5A1CC0017B0007942D /* CanvasNativeTests.xctest */,
+				214E4C5C1CC0017B0007942D /* CanvasNative.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -265,6 +289,7 @@
 				TargetAttributes = {
 					212D7F8A1C751F0D00CDB574 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 676PZY29MZ;
 					};
 				};
 			};
@@ -369,6 +394,27 @@
 			fileType = wrapper.cfbundle;
 			path = OperationTransportTests.xctest;
 			remoteRef = 213350341C8F597400FDEBD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		214E4C581CC0017B0007942D /* CanvasNative.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CanvasNative.framework;
+			remoteRef = 214E4C571CC0017B0007942D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		214E4C5A1CC0017B0007942D /* CanvasNativeTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CanvasNativeTests.xctest;
+			remoteRef = 214E4C591CC0017B0007942D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		214E4C5C1CC0017B0007942D /* CanvasNative.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CanvasNative.framework;
+			remoteRef = 214E4C5B1CC0017B0007942D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -517,10 +563,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -528,10 +577,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
