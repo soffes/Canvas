@@ -148,15 +148,16 @@ public struct Parser {
 			let count = positionables.count
 			for (i, p) in positionables.enumerate() {
 				var positionable = p
+				let number = UInt(i) + 1
 
 				if count == 1 {
 					positionable.position = .Single
 				} else if i == 0 {
-					positionable.position = .Top
+					positionable.position = .Top(number)
 				} else if i == count - 1 {
-					positionable.position = .Bottom
+					positionable.position = .Bottom(number)
 				} else {
-					positionable.position = .Middle
+					positionable.position = .Middle(number)
 				}
 
 				guard let node = positionable as? BlockNode else { continue }

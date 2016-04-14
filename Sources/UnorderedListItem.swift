@@ -35,7 +35,7 @@ public struct UnorderedListItem: Listable, NodeContainer, Equatable {
 			"visibleRange": visibleRange.dictionary,
 			"indentationRange": indentationRange.dictionary,
 			"indentation": indentation.rawValue,
-			"position": position.rawValue,
+			"position": position.number,
 			"subnodes": subnodes.map { $0.dictionary }
 		]
 	}

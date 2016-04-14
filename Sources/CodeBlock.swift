@@ -26,7 +26,7 @@ public struct CodeBlock: BlockNode, NativePrefixable, Positionable, ReturnComple
 			"enclosingRange": enclosingRange.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
 			"visibleRange": visibleRange.dictionary,
-			"position": position.rawValue
+			"position": position.number
 		]
 
 		if let language = language {

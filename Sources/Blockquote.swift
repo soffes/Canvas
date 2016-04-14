@@ -31,7 +31,7 @@ public struct Blockquote: BlockNode, NativePrefixable, Positionable, NodeContain
 			"enclosingRange": enclosingRange.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
 			"visibleRange": visibleRange.dictionary,
-			"position": position.rawValue,
+			"position": position.number,
 			"subnodes": subnodes.map { $0.dictionary }
 		]
 	}
