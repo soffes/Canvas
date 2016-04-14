@@ -80,13 +80,13 @@ public final class DocumentController {
 		// Notify about AST changes
 		if let blockChange = change.blockChange {
 			// Remove
-			for i in blockChange.range.location..<blockChange.range.max {
+			for i in blockChange.range.reverse() {
 				delegate?.documentController(self, didRemoveBlock: change.before.blocks[i], atIndex: i)
 			}
 
 			// Insert
 			for (i, block) in blockChange.replacement.enumerate() {
-				delegate?.documentController(self, didInsertBlock: block, atIndex: blockChange.range.location + i)
+				delegate?.documentController(self, didInsertBlock: block, atIndex: blockChange.range.startIndex + i)
 			}
 		}
 

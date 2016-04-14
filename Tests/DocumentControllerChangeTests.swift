@@ -32,7 +32,8 @@ class DocumentControllerChangeTests: XCTestCase {
 		// Insert
 		let insert = expectationWithDescription("didInsert")
 		var inserted = false
-		delegate.didInsert = { _, _ in
+		delegate.didInsert = { block, index in
+			print("INSERT block: \(block.dynamicType), index: \(index)")
 			if !inserted {
 				insert.fulfill()
 			}
@@ -41,8 +42,13 @@ class DocumentControllerChangeTests: XCTestCase {
 
 		// Remove
 		let remove = expectationWithDescription("didRemove")
-		delegate.didRemove = { _, _ in
-			remove.fulfill()
+		var removed = false
+		delegate.didRemove = { block, index in
+			print("REMOVE block: \(block.dynamicType), index: \(index)")
+			if !removed {
+				remove.fulfill()
+			}
+			removed = true
 		}
 
 		// Did update
