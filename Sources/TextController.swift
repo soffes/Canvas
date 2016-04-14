@@ -277,6 +277,7 @@ extension TextController: DocumentControllerDelegate {
 
 	public func documentControllerDidUpdateDocument(controller: DocumentController) {
 		textStorage.endEditing()
+		annotationsController.layoutAnnotations()
 	}
 }
 
