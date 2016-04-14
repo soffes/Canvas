@@ -9,38 +9,26 @@
 import XCTest
 import CanvasNative
 
-//class DocumentControllerReliabilityTests: XCTestCase {
-//
-//	// MARK: - Properties
-//
-//	let controller = DocumentController()
-//	let delegate = TestDocumentControllerDelegate()
-//
-//
-//	// MARK: - XCTestCase
-//
-//	override func setUp() {
-//		super.setUp()
-//		controller.delegate = delegate
-//	}
-//
-//
-//	// MARK: - Tests
-//
-//	func testReliabilityInsertMidParagraph() {
-//		controller.string = "⧙doc-heading⧘Title\nOne\nTwo"
-//
-//		controller.replaceCharactersInRange(NSRange(location: 21, length: 0), withString: "1")
-//		XCTAssertEqual("⧙doc-heading⧘Title\nOn1e\nTwo", controller.string)
-//		XCTAssertEqual("Title\nOn1e\nTwo", delegate.presentationString)
-//
-//		controller.replaceCharactersInRange(NSRange(location: 22, length: 0), withString: "2")
-//		XCTAssertEqual("⧙doc-heading⧘Title\nOn12e\nTwo", controller.string)
-//		XCTAssertEqual("Title\nOn12e\nTwo", delegate.presentationString)
-//
-//		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
-//	}
-//
+class DocumentControllerReliabilityTests: XCTestCase {
+
+	// MARK: - Properties
+
+	let delegate = TestDocumentControllerDelegate()
+
+
+	// MARK: - Tests
+
+	func testReliabilityInsertMidParagraph() {
+		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\nOne\nTwo", delegate: delegate)
+		controller.replaceCharactersInRange(NSRange(location: 21, length: 0), withString: "1")
+		XCTAssertEqual(delegate.presentationString, controller.document.presentationString)
+		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
+
+		controller.replaceCharactersInRange(NSRange(location: 22, length: 0), withString: "2")
+		XCTAssertEqual(delegate.presentationString, controller.document.presentationString)
+		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
+	}
+
 //	func testReliabilityInsertMidListItem() {
 //		controller.string = "⧙doc-heading⧘Title\n⧙unordered-list-0⧘- One"
 //
@@ -128,4 +116,4 @@ import CanvasNative
 //		XCTAssertEqual("Title\nH", delegate.presentationString)
 //		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 //	}
-//}
+}

@@ -9,65 +9,47 @@
 import XCTest
 import CanvasNative
 
-//class DocumentControllerInsertTests: XCTestCase {
-//
-//	// MARK: - Properties
-//
-//	let controller = DocumentController()
-//	let delegate = TestControllerDelegate()
-//
-//
-//	// MARK: - XCTestCase
-//
-//	override func setUp() {
-//		super.setUp()
-//		controller.delegate = delegate
-//	}
-//
-//
-//	// MARK: - Tests
-//
-//	func testLoading() {
-//		// Will update
-//		let will = expectationWithDescription("controllerWillUpdateNodes")
-//		delegate.willUpdate = { will.fulfill() }
-//
-//		// Insert
-//		let insertTitle = expectationWithDescription("controller:didInsertBlock:atIndex: Title")
-//		let insertParagraph = expectationWithDescription("controller:didInsertBlock:atIndex: Paragraph")
-//		delegate.didInsert = { node, index in
-//			if node is Title {
-//				XCTAssertEqual(0, index)
-//				insertTitle.fulfill()
-//			} else if node is Paragraph {
-//				XCTAssertEqual(1, index)
-//				insertParagraph.fulfill()
-//			} else {
-//				XCTFail("Unexpected insert.")
-//			}
-//		}
-//
-//		// Ignored
-//		delegate.didRemove = { _, _ in XCTFail("Shouldn't remove.") }
-//		delegate.didReplaceContent = { _, _, _ in XCTFail("Shouldn't replace.") }
-//		delegate.didUpdateLocation = { _, _, _ in XCTFail("Shouldn't update.") }
-//
-//		// Did update
-//		let did = expectationWithDescription("controllerDidUpdateNodes")
-//		delegate.didUpdate = { did.fulfill() }
-//
-//		// Edit characters
-//		controller.string = "⧙doc-heading⧘Title\nParagraph"
-//
-//		// Wait for expectations
-//		waitForExpectationsWithTimeout(0.5, handler: nil)
-//
-//		// Check blocks
-//		XCTAssertEqual("⧙doc-heading⧘Title\nParagraph", controller.string)
-//		XCTAssertEqual("Title\nParagraph", delegate.presentationString)
-//		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
-//	}
-//
+class DocumentControllerInsertTests: XCTestCase {
+
+	// MARK: - Properties
+
+	let delegate = TestDocumentControllerDelegate()
+
+
+	// MARK: - Tests
+
+	func testLoading() {
+		let controller = DocumentController(delegate: delegate)
+
+		let will = expectationWithDescription("controllerWillUpdateNodes")
+		delegate.willUpdate = { will.fulfill() }
+
+		let insertTitle = expectationWithDescription("controller:didInsertBlock:atIndex: Title")
+		let insertParagraph = expectationWithDescription("controller:didInsertBlock:atIndex: Paragraph")
+		delegate.didInsert = { node, index in
+			if node is Title {
+				XCTAssertEqual(0, index)
+				insertTitle.fulfill()
+			} else if node is Paragraph {
+				XCTAssertEqual(1, index)
+				insertParagraph.fulfill()
+			} else {
+				XCTFail("Unexpected insert.")
+			}
+		}
+
+		delegate.didRemove = { _, _ in XCTFail("Shouldn't remove.") }
+
+		let did = expectationWithDescription("controllerDidUpdateNodes")
+		delegate.didUpdate = { did.fulfill() }
+
+		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nParagraph")
+		waitForExpectationsWithTimeout(0.5, handler: nil)
+
+		XCTAssertEqual(delegate.presentationString, controller.document.presentationString)
+		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
+	}
+
 //	func testInsertBlock() {
 //		// Initial state
 //		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two"
@@ -123,7 +105,7 @@ import CanvasNative
 //		XCTAssertEqual("Title\nOne\nHalf\nTwo", delegate.presentationString)
 //		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 //	}
-//
+
 //	func testMultipleInsertBlock() {
 //		// Initial state
 //		controller.string = "⧙doc-heading⧘Title\nOne"
@@ -141,7 +123,7 @@ import CanvasNative
 //		XCTAssertEqual("Title\nOne\nHello\nWorld", delegate.presentationString)
 //		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 //	}
-//
+
 //	func testSplitBlock() {
 //		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two"
 //		controller.replaceCharactersInRange(NSRange(location: 21, length: 0), withString: "\n⧙code⧘T")
@@ -149,4 +131,4 @@ import CanvasNative
 //		XCTAssertEqual("Title\nOn\nTe\nTwo", delegate.presentationString)
 //		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 //	}
-//}
+}

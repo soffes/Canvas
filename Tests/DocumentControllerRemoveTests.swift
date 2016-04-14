@@ -9,24 +9,15 @@
 import XCTest
 import CanvasNative
 
-//class DocumentControllerRemoveTests: XCTestCase {
-//
-//	// MARK: - Properties
-//
-//	let controller = DocumentController()
-//	let delegate = TestDocumentControllerDelegate()
-//
-//
-//	// MARK: - XCTestCase
-//
-//	override func setUp() {
-//		super.setUp()
-//		controller.delegate = delegate
-//	}
-//
-//
-//	// MARK: - Tests
-//
+class DocumentControllerRemoveTests: XCTestCase {
+
+	// MARK: - Properties
+
+	let delegate = TestDocumentControllerDelegate()
+
+
+	// MARK: - Tests
+
 //	func testRemoveBlock() {
 //		// Initial state
 //		controller.string = "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two"
@@ -141,54 +132,34 @@ import CanvasNative
 //		XCTAssertEqual("Title\nOn\nTwo", delegate.presentationString)
 //		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
 //	}
-//
-//	func testJoinBlock() {
-//		// Initial state
-//		controller.string = "⧙doc-heading⧘Title\nOne\nTwo"
-//
-//		let range = NSRange(location: 22, length: 1)
-//		let replacement = ""
-//		let blockRange = controller.blockRangeForCharacterRange(range, string: replacement)
-//		XCTAssertEqual(NSRange(location: 1, length: 2), blockRange)
-//
-//		// Edit characters
-//		controller.replaceCharactersInRange(range, withString: replacement)
-//
-//		// Check blocks
-//		XCTAssertEqual("⧙doc-heading⧘Title\nOneTwo", controller.string)
-//		XCTAssertEqual("Title\nOneTwo", delegate.presentationString)
-//		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
-//	}
-//
-//	func testMultipleJoin() {
-//		// Initial state
-//		controller.string = "⧙doc-heading⧘Title\nOne\nTwo\nThree"
-//
-//		let range = NSRange(location: 22, length: 5)
-//		let replacement = ""
-//		let blockRange = controller.blockRangeForCharacterRange(range, string: replacement)
-//		XCTAssertEqual(NSRange(location: 1, length: 3), blockRange)
-//
-//		// Edit characters
-//		controller.replaceCharactersInRange(range, withString: replacement)
-//
-//		// Check blocks
-//		XCTAssertEqual("⧙doc-heading⧘Title\nOneThree", controller.string)
-//		XCTAssertEqual("Title\nOneThree", delegate.presentationString)
-//		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
-//	}
-//
-//	func testMultipleRemoveBlock() {
-//		controller.string = "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour"
-//		controller.replaceCharactersInRange(NSRange(location: 22, length: 10), withString: "")
-//		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nFour", controller.string)
-//		XCTAssertEqual("Title\nOne\nFour", delegate.presentationString)
-//		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
-//
-//		controller.string = "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour"
-//		controller.replaceCharactersInRange(NSRange(location: 23, length: 10), withString: "")
-//		XCTAssertEqual("⧙doc-heading⧘Title\nOne\nFour", controller.string)
-//		XCTAssertEqual("Title\nOne\nFour", delegate.presentationString)
-//		XCTAssertEqual(parse(controller.string), delegate.blockDictionaries)
-//	}
-//}
+
+	func testJoinBlock() {
+		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\nOne\nTwo", delegate: delegate)
+		controller.replaceCharactersInRange(NSRange(location: 22, length: 1), withString: "")
+
+		XCTAssertEqual(delegate.presentationString, controller.document.presentationString)
+		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
+	}
+
+	func testMultipleJoin() {
+		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\nOne\nTwo\nThree", delegate: delegate)
+		controller.replaceCharactersInRange(NSRange(location: 22, length: 5), withString: "")
+
+		XCTAssertEqual(delegate.presentationString, controller.document.presentationString)
+		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
+	}
+
+	func testMultipleRemoveBlock() {
+		var delegate = TestDocumentControllerDelegate()
+		var controller = DocumentController(backingString: "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour", delegate: delegate)
+		controller.replaceCharactersInRange(NSRange(location: 22, length: 10), withString: "")
+		XCTAssertEqual(delegate.presentationString, controller.document.presentationString)
+		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
+
+		delegate = TestDocumentControllerDelegate()
+		controller = DocumentController(backingString: "⧙doc-heading⧘Title\nOne\nTwo\nThree\nFour", delegate: delegate)
+		controller.replaceCharactersInRange(NSRange(location: 23, length: 10), withString: "")
+		XCTAssertEqual(delegate.presentationString, controller.document.presentationString)
+		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
+	}
+}
