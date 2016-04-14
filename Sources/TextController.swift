@@ -266,13 +266,13 @@ extension TextController: DocumentControllerDelegate {
 	}
 
 	public func documentController(controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int) {
-//		annotationsController.insert(block: block, index: index)
-//		_textStorage.addStyles(stylesForBlock(block))
+		annotationsController.insert(block: block, index: index)
+		_textStorage.addStyles(stylesForBlock(block))
 //		layoutManager.invalidateLayoutForCharacterRange(controller.presentationRange(backingRange: block.visibleRange), actualCharacterRange: nil)
 	}
 
 	public func documentController(controller: DocumentController, didRemoveBlock block: BlockNode, atIndex index: Int) {
-//		annotationsController.remove(block: block, index: index)
+		annotationsController.remove(block: block, index: index)
 	}
 
 	public func documentControllerDidUpdateDocument(controller: DocumentController) {

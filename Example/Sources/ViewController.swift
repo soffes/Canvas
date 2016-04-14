@@ -64,7 +64,7 @@ class ViewController: UIViewController {
 			serverURL: NSURL(string: "wss://canvas-realtime-staging.herokuapp.com")!,
 			accessToken: accessToken,
 			organizationID: "eaedcdb7-a0d5-4415-95a7-50b78316c910",
-			canvasID: "5kbzOyFgWIRjJBAnIrFLQ4"
+			canvasID: "7bBmNtv3qVKK4plJBRAS0L"
 		)
 	}
 
