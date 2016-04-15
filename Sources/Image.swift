@@ -104,6 +104,13 @@ public struct Image: Attachable, Equatable {
 		enclosingRange.location += delta
 		nativePrefixRange.location += delta
 	}
+
+
+	// MARK: - Native
+
+	public static func nativeRepresentation(URL URL: NSURL) -> String {
+		return "\(leadingNativePrefix)image\(trailingNativePrefix)\(URL.absoluteString)"
+	}
 }
 
 
