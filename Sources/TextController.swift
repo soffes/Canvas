@@ -291,8 +291,22 @@ extension TextController: AnnotationsControllerDelegate {
 
 extension TextController: TextStorageDelegate {
 	func textStorage(textStorage: TextStorage, didReplaceCharactersInRange range: NSRange, withString string: String) {
-		let backingRange = documentController.document.backingRange(presentationRange: range)
-		documentController.replaceCharactersInRange(backingRange, withString: string)
-		submitOperations(backingRange: backingRange, string: string)
+		var presentationRange = range
+		let backingRange = documentController.document.backingRange(presentationRange: presentationRange)
+		edit(backingRange: backingRange, replacement: string)
+
+		presentationRange.length = (string as NSString).length
+		processMarkdownShortcuts(presentationRange)
+	}
+
+	func edit(presentationRange presentationRange: NSRange, replacement: String) {
+		let backingRange = documentController.document.backingRange(presentationRange: presentationRange)
+		edit(backingRange: backingRange, replacement: replacement)
+	}
+
+	// Commit the edit to DocumentController and submit the operation to OT
+	func edit(backingRange backingRange: NSRange, replacement: String) {
+		documentController.replaceCharactersInRange(backingRange, withString: replacement)
+		submitOperations(backingRange: backingRange, string: replacement)
 	}
 }
