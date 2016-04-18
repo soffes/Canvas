@@ -30,7 +30,7 @@ extension TextController {
 			var replacementRange = backingRange
 			var replacement: String
 
-			if let node = node as? UnorderedListItem, match = self?.prefixForUnorderedList(string) {
+			if let node = node as? UnorderedListItem, match = self?.prefixForUnorderedList(string, unorderedListItem: node) {
 				replacement = match.0
 				replacementRange = node.nativePrefixRange
 				replacementRange.length += match.1
@@ -56,12 +56,12 @@ extension TextController {
 
 	// MARK: - Private
 
-	private func prefixForUnorderedList(string: String) -> (String, Int)? {
+	private func prefixForUnorderedList(string: String, unorderedListItem: UnorderedListItem? = nil) -> (String, Int)? {
 		let scanner = NSScanner(string: string)
 		scanner.charactersToBeSkipped = nil
 
 		// Checklist item
-		if let native = scanChecklist(scanner, requireUnorderedListPrefix: false) {
+		if let native = scanChecklist(scanner, unorderedListItem: unorderedListItem) {
 			return (native, scanner.scanLocation)
 		}
 
@@ -104,10 +104,14 @@ extension TextController {
 		return Blockquote.nativeRepresentation()
 	}
 
-	// TODO: Support scanning in an unordered list as well as a paragraph8
-	private func scanChecklist(scanner: NSScanner, requireUnorderedListPrefix: Bool = true) -> String? {
-		// List prefix
-		if requireUnorderedListPrefix {
+	private func scanChecklist(scanner: NSScanner, unorderedListItem: UnorderedListItem? = nil) -> String? {
+		let indentation: Indentation
+
+		if let unorderedListItem = unorderedListItem {
+			indentation = unorderedListItem.indentation
+		} else {
+			indentation = scanIndentation(scanner)
+
 			guard scanner.scanString("-", intoString: nil) || scanner.scanString("*", intoString: nil) else { return nil }
 
 			// Optional space
@@ -132,24 +136,31 @@ extension TextController {
 		// Trailing delimiter with required trailing space
 		guard scanner.scanString("] ", intoString: nil) else { return nil }
 
-		// TODO: Handle indentation
-		return ChecklistItem.nativeRepresentation(indentation: .Zero, completion: completion)
+		return ChecklistItem.nativeRepresentation(indentation: indentation, completion: completion)
 	}
 
 	private func scanUnorderedList(scanner: NSScanner) -> String? {
+		let indentation = scanIndentation(scanner)
 		let set = NSCharacterSet(charactersInString: "-*")
 		guard scanner.scanCharactersFromSet(set, intoString: nil) && scanner.scanString(" ", intoString: nil) else {
 			return nil
 		}
 
-		// TODO: Handle indentation
-		return UnorderedListItem.nativeRepresentation()
+		return UnorderedListItem.nativeRepresentation(indentation: indentation)
 	}
 
 	private func scanOrderedList(scanner: NSScanner) -> String? {
+		let indentation = scanIndentation(scanner)
 		guard scanner.scanInt(nil) && scanner.scanString(". ", intoString: nil) else { return nil }
 
-		// TODO: Handle indentation
-		return OrderedListItem.nativeRepresentation()
+		return OrderedListItem.nativeRepresentation(indentation: indentation)
+	}
+
+	private func scanIndentation(scanner: NSScanner) -> Indentation {
+		var level: UInt = 0
+		while scanner.scanString("    ", intoString: nil) {
+			level += 1
+		}
+		return Indentation(rawValue: level) ?? .Three
 	}
 }
