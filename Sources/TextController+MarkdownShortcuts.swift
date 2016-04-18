@@ -19,6 +19,8 @@ extension TextController {
 
 		let searchRange = NSUnionRange(presentationRange, text.lineRangeForRange(presentationRange))
 
+		// TODO: This fails if there is more than one line of markdown pasted since it's relative to the node before
+		// we make any changes.
 		text.enumerateSubstringsInRange(searchRange, options: .ByLines) { [weak self] string, range, enclosingRange, _ in
 			guard let string = string,
 				document = self?.documentController.document,
