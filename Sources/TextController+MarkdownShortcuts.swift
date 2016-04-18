@@ -11,8 +11,7 @@ import CanvasNative
 
 extension TextController {
 	func processMarkdownShortcuts(presentationRange: NSRange) {
-		let document = documentController.document
-		let text = document.presentationString as NSString
+		let text = documentController.document.presentationString as NSString
 
 		if NSMaxRange(presentationRange) > text.length {
 			return
@@ -22,13 +21,14 @@ extension TextController {
 
 		text.enumerateSubstringsInRange(searchRange, options: .ByLines) { [weak self] string, range, enclosingRange, _ in
 			guard let string = string,
+				document = self?.documentController.document,
 				node = document.blockAt(presentationLocation: range.location)
 			where (string as NSString).length > 0
 			else { return }
 
 			let backingRange = document.backingRange(presentationRange: range)
 			var replacementRange = backingRange
-			let replacement: String
+			var replacement: (String, Int)
 
 //			if let node = node as? UnorderedListItem {
 //				replacementRange = NSUnionRange(node.nativePrefixRange, backingRange)
@@ -46,14 +46,22 @@ extension TextController {
 //				}
 //			} else
 
-			if node is Paragraph, let (prefix, replacedLength) = self?.prefixForParagraph(string) {
-				replacementRange.length = replacedLength
-				replacement = prefix
+			if node is Paragraph, let match = self?.prefixForParagraph(string) {
+				replacement = match
 			} else {
 				return
 			}
 
-			self?.edit(backingRange: replacementRange, replacement: replacement)
+			// Replace
+			replacementRange.length = replacement.1
+			self?.edit(backingRange: replacementRange, replacement: replacement.0)
+
+			// Update selection
+			guard let updated = self?.documentController.document else { return }
+			var selection = updated.presentationRange(backingRange: replacementRange)
+			selection.location = NSMaxRange(selection) - 1
+			selection.length = 0
+			self?.presentationSelectedRange = selection
 		}
 	}
 

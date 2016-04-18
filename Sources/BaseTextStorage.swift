@@ -36,6 +36,11 @@ public class BaseTextStorage: NSTextStorage {
 	}
 
 	public override func setAttributes(attributes: [String : AnyObject]?, range: NSRange) {
+		guard NSMaxRange(range) < length else {
+			print("WARNING: Invalid attributes.")
+			return
+		}
+
 		beginEditing()
 
 		storage.setAttributes(attributes, range: range)
