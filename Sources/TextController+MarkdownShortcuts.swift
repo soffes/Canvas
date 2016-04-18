@@ -160,7 +160,7 @@ extension TextController {
 
 	private func scanIndentation(scanner: NSScanner) -> Indentation {
 		var level: UInt = 0
-		while scanner.scanString("    ", intoString: nil) {
+		while scanner.scanString("    ", intoString: nil) || scanner.scanString("\t", intoString: nil) {
 			level += 1
 		}
 		return Indentation(rawValue: level) ?? .Three
