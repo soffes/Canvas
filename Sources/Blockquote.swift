@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Blockquote: BlockNode, NativePrefixable, Positionable, NodeContainer, ReturnCompletable, Equatable {
+public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, NodeContainer, Equatable {
 
 	// MARK: - Properties
 
