@@ -17,6 +17,13 @@
 		211B90191C92306B004862FC /* XCTestCase+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B90161C923047004862FC /* XCTestCase+CanvasNativeTests.swift */; };
 		21341C8B1C85089400C9EF39 /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21341C8A1C85089400C9EF39 /* NodeTests.swift */; };
 		21341C8C1C85089400C9EF39 /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21341C8A1C85089400C9EF39 /* NodeTests.swift */; };
+		214FA01C1CC6E48800927A07 /* HorizontalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214FA01B1CC6E48800927A07 /* HorizontalRule.swift */; };
+		214FA01D1CC6E48800927A07 /* HorizontalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214FA01B1CC6E48800927A07 /* HorizontalRule.swift */; };
+		214FA01E1CC6E48800927A07 /* HorizontalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214FA01B1CC6E48800927A07 /* HorizontalRule.swift */; };
+		214FA01F1CC6E48800927A07 /* HorizontalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214FA01B1CC6E48800927A07 /* HorizontalRule.swift */; };
+		214FA0211CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214FA0201CC6E68E00927A07 /* HorizontalRuleTests.swift */; };
+		214FA0221CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214FA0201CC6E68E00927A07 /* HorizontalRuleTests.swift */; };
+		214FA0231CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214FA0201CC6E68E00927A07 /* HorizontalRuleTests.swift */; };
 		215BAB381C52B0C400118C8C /* CanvasNative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215BAB2D1C52B0C400118C8C /* CanvasNative.framework */; };
 		215BAB561C52B18C00118C8C /* CanvasNative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215BAB4C1C52B18B00118C8C /* CanvasNative.framework */; };
 		215BABE81C52B46B00118C8C /* BlockquoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE31C52B46B00118C8C /* BlockquoteTests.swift */; };
@@ -228,6 +235,8 @@
 		210C743C1C7E7C6100FBB665 /* TestDocumentControllerControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestDocumentControllerControllerDelegate.swift; sourceTree = "<group>"; };
 		211B90161C923047004862FC /* XCTestCase+CanvasNativeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+CanvasNativeTests.swift"; sourceTree = "<group>"; };
 		21341C8A1C85089400C9EF39 /* NodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
+		214FA01B1CC6E48800927A07 /* HorizontalRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalRule.swift; sourceTree = "<group>"; };
+		214FA0201CC6E68E00927A07 /* HorizontalRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalRuleTests.swift; sourceTree = "<group>"; };
 		215BAB2D1C52B0C400118C8C /* CanvasNative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasNative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		215BAB371C52B0C400118C8C /* CanvasNativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasNativeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		215BAB4C1C52B18B00118C8C /* CanvasNative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasNative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -352,6 +361,7 @@
 				215BABE41C52B46B00118C8C /* HeadingTests.swift */,
 				215BABE51C52B46B00118C8C /* ImageTests.swift */,
 				215BABE61C52B46B00118C8C /* ListableTests.swift */,
+				214FA0201CC6E68E00927A07 /* HorizontalRuleTests.swift */,
 			);
 			name = "Block Level";
 			sourceTree = "<group>";
@@ -480,6 +490,7 @@
 				21AD8C8C1C8A4628000A53F8 /* ChecklistItem.swift */,
 				21AD8C8D1C8A4628000A53F8 /* CodeBlock.swift */,
 				21AD8C921C8A4628000A53F8 /* Heading.swift */,
+				214FA01B1CC6E48800927A07 /* HorizontalRule.swift */,
 				21AD8C931C8A4628000A53F8 /* Image.swift */,
 				21AD8C9A1C8A4628000A53F8 /* OrderedListItem.swift */,
 				21AD8C9B1C8A4628000A53F8 /* Paragraph.swift */,
@@ -575,7 +586,6 @@
 				215BAB291C52B0C400118C8C /* Frameworks */,
 				215BAB2A1C52B0C400118C8C /* Headers */,
 				215BAB2B1C52B0C400118C8C /* Resources */,
-				21BD86A51C62DD6500FDED29 /* Swift Lint */,
 			);
 			buildRules = (
 			);
@@ -612,7 +622,6 @@
 				215BAB481C52B18B00118C8C /* Frameworks */,
 				215BAB491C52B18B00118C8C /* Headers */,
 				215BAB4A1C52B18B00118C8C /* Resources */,
-				215E6D6E1C75348200126FE9 /* Swift Lint */,
 			);
 			buildRules = (
 			);
@@ -803,37 +812,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		215E6D6E1C75348200126FE9 /* Swift Lint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Swift Lint";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
-		};
-		21BD86A51C62DD6500FDED29 /* Swift Lint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Swift Lint";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		215BAB281C52B0C400118C8C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -860,6 +838,7 @@
 				21AD8CAD1C8A4628000A53F8 /* CGSize+CanvasNative.swift in Sources */,
 				21AD8CB71C8A4628000A53F8 /* Listable.swift in Sources */,
 				21AD8CC01C8A4628000A53F8 /* ReturnCompletable.swift in Sources */,
+				214FA01C1CC6E48800927A07 /* HorizontalRule.swift in Sources */,
 				21AD8CB61C8A4628000A53F8 /* Link.swift in Sources */,
 				21AD8CBC1C8A4628000A53F8 /* OrderedListItem.swift in Sources */,
 				21AD8CB11C8A4628000A53F8 /* DoubleEmphasis.swift in Sources */,
@@ -890,6 +869,7 @@
 				21341C8B1C85089400C9EF39 /* NodeTests.swift in Sources */,
 				21BF7D4F1C93802100CB1A7A /* ParagraphTests.swift in Sources */,
 				215BABEE1C52B46B00118C8C /* ListableTests.swift in Sources */,
+				214FA0211CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */,
 				21A9F0D21C7CFD1C009B40A0 /* DocumentControllerChangeTests.swift in Sources */,
 				215BABEA1C52B46B00118C8C /* HeadingTests.swift in Sources */,
 				21DF7A631C90A0E100C17A62 /* DocumentControllerRemoveTests.swift in Sources */,
@@ -924,6 +904,7 @@
 				21AD8CD11C8A4649000A53F8 /* CGSize+CanvasNative.swift in Sources */,
 				21AD8CDB1C8A4649000A53F8 /* Listable.swift in Sources */,
 				21AD8CE41C8A4649000A53F8 /* ReturnCompletable.swift in Sources */,
+				214FA01D1CC6E48800927A07 /* HorizontalRule.swift in Sources */,
 				21AD8CDA1C8A4649000A53F8 /* Link.swift in Sources */,
 				21AD8CE01C8A4649000A53F8 /* OrderedListItem.swift in Sources */,
 				21AD8CD51C8A4649000A53F8 /* DoubleEmphasis.swift in Sources */,
@@ -954,6 +935,7 @@
 				21341C8C1C85089400C9EF39 /* NodeTests.swift in Sources */,
 				21BF7D501C93802100CB1A7A /* ParagraphTests.swift in Sources */,
 				215BABEF1C52B46B00118C8C /* ListableTests.swift in Sources */,
+				214FA0221CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */,
 				21A9F0D31C7CFD1C009B40A0 /* DocumentControllerChangeTests.swift in Sources */,
 				215BABEB1C52B46B00118C8C /* HeadingTests.swift in Sources */,
 				21DF7A641C90A0E100C17A62 /* DocumentControllerRemoveTests.swift in Sources */,
@@ -988,6 +970,7 @@
 				21632D0F1C92360100C40D7D /* NSRange+CanvasNative.swift in Sources */,
 				21632CF31C9235F000C40D7D /* DocumentController.swift in Sources */,
 				21632D0C1C9235FE00C40D7D /* Link.swift in Sources */,
+				214FA01F1CC6E48800927A07 /* HorizontalRule.swift in Sources */,
 				21632D091C9235FE00C40D7D /* CodeSpan.swift in Sources */,
 				21632CFE1C9235F500C40D7D /* SpanNodeContainer.swift in Sources */,
 				21632D041C9235F800C40D7D /* Image.swift in Sources */,
@@ -1028,6 +1011,7 @@
 				21632D4A1C92368600C40D7D /* NSRange+CanvasNative.swift in Sources */,
 				21632D2E1C92367800C40D7D /* DocumentController.swift in Sources */,
 				21632D471C92368200C40D7D /* Link.swift in Sources */,
+				214FA01E1CC6E48800927A07 /* HorizontalRule.swift in Sources */,
 				21632D441C92368200C40D7D /* CodeSpan.swift in Sources */,
 				21632D391C92367B00C40D7D /* SpanNodeContainer.swift in Sources */,
 				21632D3F1C92367E00C40D7D /* Image.swift in Sources */,
@@ -1058,6 +1042,7 @@
 				21632D501C92369A00C40D7D /* ControllerCalculationTests.swift in Sources */,
 				21BF7D511C93802100CB1A7A /* ParagraphTests.swift in Sources */,
 				21632D4F1C92369A00C40D7D /* DocumentControllerReliabilityTests.swift in Sources */,
+				214FA0231CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */,
 				21632D4D1C92369A00C40D7D /* DocumentControllerInsertTests.swift in Sources */,
 				21632D571C9236A000C40D7D /* TestDocumentControllerControllerDelegate.swift in Sources */,
 				21632D521C92369A00C40D7D /* HeadingTests.swift in Sources */,
