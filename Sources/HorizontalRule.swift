@@ -8,11 +8,7 @@
 
 import Foundation
 
-private let regularExpressions = [
-	try! NSRegularExpression(pattern: "^\\s{0,2}(\\s?\\-\\s*?){3,}[ \\t]*$", options: []),
-	try! NSRegularExpression(pattern: "^\\s{0,2}(\\s?\\*\\s*?){3,}[ \\t]*$", options: []),
-	try! NSRegularExpression(pattern: "^\\s{0,2}(\\s?_\\s*?){3,}[ \\t]*$", options: [])
-]
+private let regularExpression = try! NSRegularExpression(pattern: "^(?:\\s{0,2}(?:(\\s?\\*\\s*?){3,})|(?:(\\s?-\\s*?){3,})|(?:(\\s?_\\s*?){3,})[ \\t]*)$", options: [])
 
 public struct HorizontalRule: Attachable, Equatable {
 
@@ -35,16 +31,13 @@ public struct HorizontalRule: Attachable, Equatable {
 	// MARK: - Initializers
 
 	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
-		for regularExpression in regularExpressions {
-			if let match = regularExpression.firstMatchInString(string, options: [], range: range) where NSEqualRanges(match.range, range) {
-				self.range = range
-				self.enclosingRange = enclosingRange
-				nativePrefixRange = NSRange(location: range.location, length: range.length - 1)
-				return
-			}
-		}
+		guard let match = regularExpression.firstMatchInString(string, options: [], range: range)
+		where NSEqualRanges(match.range, range)
+		else { return nil }
 
-		return nil
+		self.range = range
+		self.enclosingRange = enclosingRange
+		nativePrefixRange = NSRange(location: range.location, length: range.length - 1)
 	}
 
 
