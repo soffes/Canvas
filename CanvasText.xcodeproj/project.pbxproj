@@ -10,6 +10,7 @@
 		211483CF1C8A3034002CA206 /* CanvasText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 211483C41C8A3034002CA206 /* CanvasText.framework */; };
 		2138C2CF1C97228100D93FF4 /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138C2CE1C97228100D93FF4 /* NumberView.swift */; };
 		2138C2D11C9722DF00D93FF4 /* OrderedListItem+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138C2D01C9722DF00D93FF4 /* OrderedListItem+CanvasText.swift */; };
+		214F9FF31CC6B2E400927A07 /* TextController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214F9FF21CC6B2E400927A07 /* TextController+Actions.swift */; };
 		216459AA1CC1957C00033B7F /* TextController+MarkdownShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216459A91CC1957C00033B7F /* TextController+MarkdownShortcuts.swift */; };
 		21AD8C291C8A430B000A53F8 /* BlockSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C1D1C8A430B000A53F8 /* BlockSpacing.swift */; };
 		21AD8C2B1C8A430B000A53F8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C1F1C8A430B000A53F8 /* Color.swift */; };
@@ -59,6 +60,7 @@
 		211483CE1C8A3034002CA206 /* CanvasTextTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasTextTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2138C2CE1C97228100D93FF4 /* NumberView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
 		2138C2D01C9722DF00D93FF4 /* OrderedListItem+CanvasText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OrderedListItem+CanvasText.swift"; sourceTree = "<group>"; };
+		214F9FF21CC6B2E400927A07 /* TextController+Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextController+Actions.swift"; sourceTree = "<group>"; };
 		216459A91CC1957C00033B7F /* TextController+MarkdownShortcuts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextController+MarkdownShortcuts.swift"; sourceTree = "<group>"; };
 		21AD8C1D1C8A430B000A53F8 /* BlockSpacing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockSpacing.swift; sourceTree = "<group>"; };
 		21AD8C1F1C8A430B000A53F8 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				21AD8C231C8A430B000A53F8 /* TextController.swift */,
+				214F9FF21CC6B2E400927A07 /* TextController+Actions.swift */,
 				216459A91CC1957C00033B7F /* TextController+MarkdownShortcuts.swift */,
 				21AD8CFE1C8A4869000A53F8 /* Text Kit */,
 				21AD8C841C8A45FC000A53F8 /* Theme */,
@@ -363,6 +366,7 @@
 				21AD8D021C8A4886000A53F8 /* BaseTextStorage.swift in Sources */,
 				2138C2CF1C97228100D93FF4 /* NumberView.swift in Sources */,
 				21E1D9DE1C8DF54700283961 /* BulletView.swift in Sources */,
+				214F9FF31CC6B2E400927A07 /* TextController+Actions.swift in Sources */,
 				21AD8C311C8A430B000A53F8 /* UserInterfaceSizeClass.swift in Sources */,
 				21DF7A6C1C90E15800C17A62 /* EdgeInsets.swift in Sources */,
 				21AD8C2F1C8A430B000A53F8 /* TextController.swift in Sources */,

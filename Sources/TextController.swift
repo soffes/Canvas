@@ -55,6 +55,11 @@ public final class TextController {
 		}
 	}
 
+	public var focusedBlock: BlockNode? {
+		let selection = presentationSelectedRange
+		return selection.flatMap { documentController.document.blockAt(presentationLocation: $0.location) }
+	}
+
 	public var textContainerInset: EdgeInsets = .zero {
 		didSet {
 			annotationsController.textContainerInset = textContainerInset
