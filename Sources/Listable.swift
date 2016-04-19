@@ -19,7 +19,7 @@ public enum Indentation: UInt {
 	}
 
 	public var successor: Indentation {
-		if self == .Three {
+		if isMaximum {
 			return self
 		}
 
@@ -27,11 +27,19 @@ public enum Indentation: UInt {
 	}
 
 	public var predecessor: Indentation {
-		if self == .Zero {
+		if isMinimum {
 			return self
 		}
 
 		return Indentation(rawValue: rawValue - 1)!
+	}
+
+	public var isMinimum: Bool {
+		return self == .Zero
+	}
+
+	public var isMaximum: Bool {
+		return self == .Three
 	}
 
 	public var string: String {
