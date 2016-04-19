@@ -17,7 +17,7 @@ final class CheckboxView: UIButton, Annotation {
 		didSet {
 			guard let old = oldValue as? ChecklistItem, new = block as? ChecklistItem else { return }
 
-			if old.completion != new.completion {
+			if old.state != new.state {
 				setNeedsDisplay()
 			}
 		}
@@ -59,7 +59,7 @@ final class CheckboxView: UIButton, Annotation {
 
 		let rect = checkboxRectForBounds(bounds)
 
-		if checklistItem.completion == .Complete {
+		if checklistItem.state == .Checked {
 			tintColor.setFill()
 			UIBezierPath(roundedRect: rect, cornerRadius: 3).fill()
 

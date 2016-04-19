@@ -123,22 +123,22 @@ extension TextController {
 		// Leading delimiter
 		guard scanner.scanString("[", intoString: nil) else { return nil }
 
-		// Completion
-		let completion: ChecklistItem.Completion
+		// State
+		let state: ChecklistItem.State
 		if !scanner.scanString(" ", intoString: nil) {
 			if scanner.scanString("x", intoString: nil) {
-				completion = .Complete
+				state = .Checked
 			} else {
-				completion = .Incomplete
+				state = .Unchecked
 			}
 		} else {
-			completion = .Incomplete
+			state = .Unchecked
 		}
 
 		// Trailing delimiter with required trailing space
 		guard scanner.scanString("] ", intoString: nil) else { return nil }
 
-		return ChecklistItem.nativeRepresentation(indentation: indentation, completion: completion)
+		return ChecklistItem.nativeRepresentation(indentation: indentation, state: state)
 	}
 
 	private func scanUnorderedList(scanner: NSScanner) -> String? {
