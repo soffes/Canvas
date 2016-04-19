@@ -64,6 +64,12 @@ final class AnnotationsController {
 
 		annotations.insert(annotation, atIndex: index)
 		delegate?.annotationsController(self, willAddAnnotation: annotation)
+
+		// Add taps
+		if annotation.view.userInteractionEnabled {
+			let tap = UITapGestureRecognizer(target: self, action: #selector(self.tap))
+			annotation.view.addGestureRecognizer(tap)
+		}
 	}
 
 	func remove(block block: BlockNode, index: Int) {
@@ -123,5 +129,13 @@ final class AnnotationsController {
 
 	private func annotationForBlock(block: Annotatable) -> Annotation? {
 		return block.annotation(theme: theme)
+	}
+
+	@objc private func tap(sender: UITapGestureRecognizer?) {
+		guard let annotation = sender?.view as? CheckboxView, block = annotation.block as? ChecklistItem else { return }
+
+		let range = block.completionRange
+		let replacement = block.completion.opposite.string
+		textController?.edit(backingRange: range, replacement: replacement)
 	}
 }
