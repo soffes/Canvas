@@ -10,11 +10,26 @@ import CanvasNative
 
 extension TextController {
 	public func toggleChecked() {
-		guard let block = focusedBlock as? ChecklistItem
-		else { return }
+		guard let block = focusedBlock as? ChecklistItem else { return }
 
 		let range = block.stateRange
 		let replacement = block.state.opposite.string
+		edit(backingRange: range, replacement: replacement)
+	}
+
+	public func indent() {
+		guard let block = focusedBlock as? Listable where !block.indentation.isMaximum else { return }
+
+		let range = block.indentationRange
+		let replacement = block.indentation.successor.string
+		edit(backingRange: range, replacement: replacement)
+	}
+
+	public func outdent() {
+		guard let block = focusedBlock as? Listable where !block.indentation.isMinimum else { return }
+
+		let range = block.indentationRange
+		let replacement = block.indentation.predecessor.string
 		edit(backingRange: range, replacement: replacement)
 	}
 }
