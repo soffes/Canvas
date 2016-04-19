@@ -15,7 +15,7 @@ class ListableTests: XCTestCase {
 		XCTAssertEqual(NSRange(location: 0, length: 19), node.nativePrefixRange)
 		XCTAssertEqual(NSRange(location: 19, length: 5), node.visibleRange)
 		XCTAssertEqual(Indentation.Zero, node.indentation)
-		XCTAssertEqual(ChecklistItem.Completion.Incomplete, node.completion)
+		XCTAssertEqual(ChecklistItem.State.Unchecked, node.state)
 	}
 
 	func testCompleted() {
@@ -23,7 +23,7 @@ class ListableTests: XCTestCase {
 		XCTAssertEqual(NSRange(location: 10, length: 19), node.nativePrefixRange)
 		XCTAssertEqual(NSRange(location: 29, length: 4), node.visibleRange)
 		XCTAssertEqual(Indentation.One, node.indentation)
-		XCTAssertEqual(ChecklistItem.Completion.Complete, node.completion)
+		XCTAssertEqual(ChecklistItem.State.Checked, node.state)
 	}
 
 	func testUnordered() {

@@ -12,18 +12,18 @@ public struct ChecklistItem: Listable, NodeContainer, Equatable {
 
 	// MARK: - Types
 
-	public enum Completion: String {
-		case Incomplete = " "
-		case Complete = "x"
+	public enum State: String {
+		case Unchecked = " "
+		case Checked = "x"
 
 		public var string: String {
 			return rawValue
 		}
 
-		public var opposite: Completion {
+		public var opposite: State {
 			switch self {
-			case .Incomplete: return .Complete
-			case . Complete: return .Incomplete
+			case .Unchecked: return .Checked
+			case . Checked: return .Unchecked
 			}
 		}
 	}
@@ -37,8 +37,8 @@ public struct ChecklistItem: Listable, NodeContainer, Equatable {
 	public var visibleRange: NSRange
 	public var indentationRange: NSRange
 	public var indentation: Indentation
-	public var completionRange: NSRange
-	public var completion: Completion
+	public var stateRange: NSRange
+	public var state: State
 	public var position: Position = .Single
 
 	public var textRange: NSRange {
@@ -56,8 +56,8 @@ public struct ChecklistItem: Listable, NodeContainer, Equatable {
 			"visibleRange": visibleRange.dictionary,
 			"indentationRange": indentationRange.dictionary,
 			"indentation": indentation.rawValue,
-			"completionRange": completionRange.dictionary,
-			"completion": completion.rawValue,
+			"stateRange": stateRange.dictionary,
+			"state": state.rawValue,
 			"position": position.number,
 			"subnodes": subnodes.map { $0.dictionary }
 		]
@@ -102,14 +102,14 @@ public struct ChecklistItem: Listable, NodeContainer, Equatable {
 		}
 
 		let set = NSCharacterSet(charactersInString: "x ")
-		var completionString: NSString? = ""
-		let completionRange = NSRange(location: range.location + scanner.scanLocation, length: 1)
-		if !scanner.scanCharactersFromSet(set, intoString: &completionString) {
+		var stateString: NSString? = ""
+		let stateRange = NSRange(location: range.location + scanner.scanLocation, length: 1)
+		if !scanner.scanCharactersFromSet(set, intoString: &stateString) {
 			return nil
 		}
 
-		if let completionString = completionString as? String, completion = Completion(rawValue: completionString) {
-			self.completion = completion
+		if let stateString = stateString as? String, state = State(rawValue: stateString) {
+			self.state = state
 		} else {
 			return nil
 		}
@@ -122,7 +122,7 @@ public struct ChecklistItem: Listable, NodeContainer, Equatable {
 		self.nativePrefixRange = nativePrefixRange.union(prefixRange)
 
 		// Content
-		self.completionRange = completionRange
+		self.stateRange = stateRange
 		visibleRange = NSRange(
 			location: range.location + scanner.scanLocation,
 			length: range.length - scanner.scanLocation
@@ -140,7 +140,7 @@ public struct ChecklistItem: Listable, NodeContainer, Equatable {
 		nativePrefixRange.location += delta
 		visibleRange.location += delta
 		indentationRange.location += delta
-		completionRange.location += delta
+		stateRange.location += delta
 
 		subnodes = subnodes.map {
 			var node = $0
@@ -152,8 +152,8 @@ public struct ChecklistItem: Listable, NodeContainer, Equatable {
 
 	// MARK: - Native
 
-	public static func nativeRepresentation(indentation indentation: Indentation = .Zero, completion: Completion = .Incomplete) -> String {
-		return "\(leadingNativePrefix)checklist-\(indentation.string)\(trailingNativePrefix)- [\(completion.string)] "
+	public static func nativeRepresentation(indentation indentation: Indentation = .Zero, state: State = .Unchecked) -> String {
+		return "\(leadingNativePrefix)checklist-\(indentation.string)\(trailingNativePrefix)- [\(state.string)] "
 	}
 }
 
@@ -165,7 +165,7 @@ public func ==(lhs: ChecklistItem, rhs: ChecklistItem) -> Bool {
 		NSEqualRanges(lhs.visibleRange, rhs.visibleRange) &&
 		NSEqualRanges(lhs.indentationRange, rhs.indentationRange) &&
 		lhs.indentation == rhs.indentation &&
-		NSEqualRanges(lhs.completionRange, rhs.completionRange) &&
-		lhs.completion == rhs.completion &&
+		NSEqualRanges(lhs.stateRange, rhs.stateRange) &&
+		lhs.state == rhs.state &&
 		lhs.position == rhs.position
 }
