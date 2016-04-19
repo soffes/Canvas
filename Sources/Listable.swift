@@ -14,10 +14,6 @@ public enum Indentation: UInt {
 	case Two = 2
 	case Three = 3
 
-	public var isFilled: Bool {
-		return rawValue % 2 == 0
-	}
-
 	public var successor: Indentation {
 		if isMaximum {
 			return self
