@@ -306,11 +306,45 @@ extension TextController: AnnotationsControllerDelegate {
 
 extension TextController: TextStorageDelegate {
 	func textStorage(textStorage: TextStorage, didReplaceCharactersInRange range: NSRange, withString string: String) {
+		let document = documentController.document
 		var presentationRange = range
-		let backingRange = documentController.document.backingRange(presentationRange: presentationRange)
-		edit(backingRange: backingRange, replacement: string)
+		var backingRange = document.backingRange(presentationRange: presentationRange)
+		var replacement = string
 
-		presentationRange.length = (string as NSString).length
+		if string == "\n" {
+			// Continue the previous node
+			if let block = document.blockAt(backingLocation: backingRange.location) as? ReturnCompletable {
+				// Bust out of completion
+				if block.visibleRange.length == 0 {
+					backingRange = block.range
+					replacement = ""
+				} else {
+					// Complete the node
+					if let block = block as? NativePrefixable {
+						replacement += (document.backingString as NSString).substringWithRange(block.nativePrefixRange)
+
+						// Make checkboxes unchecked by default
+						replacement = replacement.stringByReplacingOccurrencesOfString("- [x] ", withString: "- [ ] ")
+					}
+				}
+			}
+
+			// Code block
+			else {
+				let text = document.backingString as NSString
+				let line = text.lineRangeForRange(range)
+
+				// TODO: Support language
+				if text.substringWithRange(line) == "```" {
+					backingRange = NSUnionRange(line, range)
+					replacement = CodeBlock.nativeRepresentation()
+				}
+			}
+		}
+
+		edit(backingRange: backingRange, replacement: replacement)
+
+		presentationRange.length = (replacement as NSString).length
 		processMarkdownShortcuts(presentationRange)
 	}
 
