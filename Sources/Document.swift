@@ -104,12 +104,19 @@ public struct Document {
 		}
 
 		guard let block = blocks.last else { return nil }
+		return presentationRange(backingRange: block.visibleRange).contains(presentationLocation) ? block : nil
+	}
 
-		if presentationRange(backingRange: block.visibleRange).contains(presentationLocation) {
-			return block
+	public func blockAt(backingLocation backingLocation: Int) -> BlockNode? {
+		guard backingLocation >= 0  else { return nil }
+		for (i, block) in blocks.enumerate() {
+			if backingLocation < block.range.location {
+				return blocks[i - 1]
+			}
 		}
-		
-		return nil
+
+		guard let block = blocks.last else { return nil }
+		return block.range.contains(backingLocation) ? block : nil
 	}
 
 
