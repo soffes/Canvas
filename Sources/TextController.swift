@@ -268,7 +268,6 @@ extension TextController: DocumentControllerDelegate {
 	public func documentController(controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int) {
 		annotationsController.insert(block: block, index: index)
 		_textStorage.addStyles(stylesForBlock(block))
-//		layoutManager.invalidateLayoutForCharacterRange(controller.presentationRange(backingRange: block.visibleRange), actualCharacterRange: nil)
 	}
 
 	public func documentController(controller: DocumentController, didRemoveBlock block: BlockNode, atIndex index: Int) {
@@ -277,6 +276,22 @@ extension TextController: DocumentControllerDelegate {
 
 	public func documentControllerDidUpdateDocument(controller: DocumentController) {
 		textStorage.endEditing()
+
+		dispatch_async(dispatch_get_main_queue()) { [weak self] in
+			self?.refreshAnnotations()
+		}
+	}
+
+	private func refreshAnnotations() {
+		let blocks = documentController.document.blocks
+
+		// Refresh models
+		for (i, block) in blocks.enumerate() {
+			guard let block = block as? Annotatable else { continue }
+			annotationsController.update(block: block, index: i)
+		}
+
+		// Layout
 		annotationsController.layoutAnnotations()
 	}
 }

@@ -62,7 +62,6 @@ final class AnnotationsController {
 			return
 		}
 
-		annotation.view.frame = rectForAnnotation(annotation, index: index)
 		annotations.insert(annotation, atIndex: index)
 		delegate?.annotationsController(self, willAddAnnotation: annotation)
 	}
@@ -74,28 +73,22 @@ final class AnnotationsController {
 		annotations.removeAtIndex(index)
 	}
 
-	func replace(block block: BlockNode, index: Int) {
-		guard enabled && index < annotations.count else { return }
-		update(block: block, index: index)
-	}
-
 	func update(block block: BlockNode, index: Int) {
 		guard enabled && index < annotations.count, let block = block as? Annotatable, annotation = annotations[index] else { return }
 		annotation.block = block
-		annotation.view.frame = rectForAnnotation(annotation, index: index)
 	}
 
 
 	// MARK: - Layout
 
 	func layoutAnnotations() {
-		for (index, annotation) in annotations.enumerate() {
+		for annotation in annotations {
 			guard let annotation = annotation else { continue }
-			annotation.view.frame = rectForAnnotation(annotation, index: index)
+			annotation.view.frame = rectForAnnotation(annotation)
 		}
 	}
 
-	func rectForAnnotation(annotation: Annotation, index: Int) -> CGRect {
+	func rectForAnnotation(annotation: Annotation) -> CGRect {
 		guard let textController = textController else { return .zero }
 
 		let presentationRange = textController.documentController.document.presentationRange(backingRange: annotation.block.enclosingRange)
