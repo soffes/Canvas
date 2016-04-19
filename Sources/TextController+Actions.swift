@@ -32,4 +32,16 @@ extension TextController {
 		let replacement = block.indentation.predecessor.string
 		edit(backingRange: range, replacement: replacement)
 	}
+
+	public func bold() {
+		print("[CanvasText] TODO: Bold")
+	}
+
+	public func italic() {
+		print("[CanvasText] TODO: Italic")
+	}
+
+	public func inlineCode() {
+		print("[CanvasText] TODO: Inline code")
+	}
 }
