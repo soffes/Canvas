@@ -132,7 +132,9 @@ final class AnnotationsController {
 	}
 
 	@objc private func tap(sender: UITapGestureRecognizer?) {
-		guard let annotation = sender?.view as? CheckboxView, block = annotation.block as? ChecklistItem else { return }
+		guard let annotation = sender?.view as? CheckboxView,
+			block = annotation.block as? ChecklistItem
+		else { return }
 
 		let range = block.stateRange
 		let replacement = block.state.opposite.string
