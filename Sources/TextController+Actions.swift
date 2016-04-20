@@ -44,4 +44,12 @@ extension TextController {
 	public func inlineCode() {
 		print("[CanvasText] TODO: Inline code")
 	}
+	
+	public func insertLineAfter() {
+		print("[CanvasText] TODO: Insert line after")
+	}
+	
+	public func insertLineBefore() {
+		print("[CanvasText] TODO: Insert line before")
+	}
 }
