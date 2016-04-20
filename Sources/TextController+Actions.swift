@@ -50,7 +50,7 @@ extension TextController {
 		
 		let text = documentController.document.presentationString as NSString
 		let range = NSRange(location: NSMaxRange(text.lineRangeForRange(selection)), length: 0)
-		edit(presentationRange: range, replacement: "\n")
+		textStorage.replaceCharactersInRange(range, withString: "\n")
 		presentationSelectedRange = range
 	}
 	
@@ -66,7 +66,7 @@ extension TextController {
 		}
 		
 		let range = NSRange(location: lineRange.location - 1, length: 0)
-		edit(presentationRange: range, replacement: "\n")
+		textStorage.replaceCharactersInRange(range, withString: "\n")
 		presentationSelectedRange = NSRange(location: lineRange.location, length: 0)
 	}
 }
