@@ -46,10 +46,27 @@ extension TextController {
 	}
 	
 	public func insertLineAfter() {
-		print("[CanvasText] TODO: Insert line after")
+		guard let selection = presentationSelectedRange else { return }
+		
+		let text = documentController.document.presentationString as NSString
+		let range = NSRange(location: NSMaxRange(text.lineRangeForRange(selection)), length: 0)
+		edit(presentationRange: range, replacement: "\n")
+		presentationSelectedRange = range
 	}
 	
 	public func insertLineBefore() {
-		print("[CanvasText] TODO: Insert line before")
+		guard let selection = presentationSelectedRange else { return }
+		
+		let text = documentController.document.presentationString as NSString
+		let lineRange = text.lineRangeForRange(selection)
+		
+		// Don't insert lines above the title
+		if lineRange.location == 0 {
+			return
+		}
+		
+		let range = NSRange(location: lineRange.location - 1, length: 0)
+		edit(presentationRange: range, replacement: "\n")
+		presentationSelectedRange = NSRange(location: lineRange.location, length: 0)
 	}
 }
