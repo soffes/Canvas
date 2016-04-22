@@ -6,12 +6,7 @@
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
-#if os(OSX)
-	import AppKit
-#else
-	import UIKit
-#endif
-
+import UIKit
 import CanvasNative
 
 protocol LayoutManagerDelegate: class {
@@ -104,43 +99,38 @@ extension LayoutManager: NSLayoutManagerDelegate {
 		guard let textContainer = textContainer else { return }
 		layoutDelegate?.layoutManager(self, didCompleteLayoutForTextContainer: textContainer)
 	}
-}
 
+	func layoutManager(layoutManager: NSLayoutManager, shouldGenerateGlyphs glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSGlyphProperty>, characterIndexes: UnsafePointer<Int>, font: UIFont, forGlyphRange glyphRange: NSRange) -> Int {
+		let properties = UnsafeMutablePointer<NSGlyphProperty>(props)
 
-#if os(iOS)
-	extension LayoutManager {
-		func layoutManager(layoutManager: NSLayoutManager, shouldGenerateGlyphs glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSGlyphProperty>, characterIndexes: UnsafePointer<Int>, font: UIFont, forGlyphRange glyphRange: NSRange) -> Int {
-			let properties = UnsafeMutablePointer<NSGlyphProperty>(props)
+		for i in 0..<glyphRange.length {
+			let characterIndex = characterIndexes[i]
 
-			for i in 0..<glyphRange.length {
-				let characterIndex = characterIndexes[i]
-
-				if !(unfoldedRange?.contains(characterIndex) ?? false) && foldedIndices.contains(characterIndex) {
-					properties[i] = .ControlCharacter
-				}
+			if !(unfoldedRange?.contains(characterIndex) ?? false) && foldedIndices.contains(characterIndex) {
+				properties[i] = .ControlCharacter
 			}
-
-			layoutManager.setGlyphs(glyphs, properties: properties, characterIndexes: characterIndexes, font: font, forGlyphRange: glyphRange)
-			return glyphRange.length
 		}
 
-		func layoutManager(layoutManager: NSLayoutManager, shouldUseAction action: NSControlCharacterAction, forControlCharacterAtIndex characterIndex: Int) -> NSControlCharacterAction {
-			// Don't advance if it's a control character we changed
-			if foldedIndices.contains(characterIndex) {
-				return .ZeroAdvancement
-			}
-
-			// Default action for things we didn't change
-			return action
-		}
-
-		func layoutManager(layoutManager: NSLayoutManager, paragraphSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
-			guard let textController = textController else { return 0 }
-
-			let characterIndex = characterIndexForGlyphAtIndex(glyphIndex)
-			guard let block = textController.documentController.document.blockAt(presentationLocation: characterIndex) else { return 0 }
-
-			return textController.theme.blockSpacing(block: block, horizontalSizeClass: textController.horizontalSizeClass).marginBottom
-		}
+		layoutManager.setGlyphs(glyphs, properties: properties, characterIndexes: characterIndexes, font: font, forGlyphRange: glyphRange)
+		return glyphRange.length
 	}
-#endif
+
+	func layoutManager(layoutManager: NSLayoutManager, shouldUseAction action: NSControlCharacterAction, forControlCharacterAtIndex characterIndex: Int) -> NSControlCharacterAction {
+		// Don't advance if it's a control character we changed
+		if foldedIndices.contains(characterIndex) {
+			return .ZeroAdvancement
+		}
+
+		// Default action for things we didn't change
+		return action
+	}
+
+	func layoutManager(layoutManager: NSLayoutManager, paragraphSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
+		guard let textController = textController else { return 0 }
+
+		let characterIndex = characterIndexForGlyphAtIndex(glyphIndex)
+		guard let block = textController.documentController.document.blockAt(presentationLocation: characterIndex) else { return 0 }
+
+		return textController.theme.blockSpacing(block: block, horizontalSizeClass: textController.horizontalSizeClass).marginBottom
+	}
+}

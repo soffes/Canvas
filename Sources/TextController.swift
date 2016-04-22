@@ -263,8 +263,9 @@ extension TextController: DocumentControllerDelegate {
 	public func documentController(controller: DocumentController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
 		_textStorage.actuallyReplaceCharactersInRange(range, withString: string)
 
+		let stringLength = (string as NSString).length
 		if var selectedRange = presentationSelectedRange {
-			selectedRange.location += (string as NSString).length
+			selectedRange.location += stringLength
 			selectedRange.location -= range.length
 			presentationSelectedRange = selectedRange
 		}

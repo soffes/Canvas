@@ -22,12 +22,27 @@ class TextStorage: BaseTextStorage {
 	weak var replacementDelegate: TextStorageDelegate?
 
 	private var styles = [Style]()
+	private var invalidDisplayRange: NSRange?
 
 
 	// MARK: - Updating Content
 
 	func actuallyReplaceCharactersInRange(range: NSRange, withString string: String) {
 		super.replaceCharactersInRange(range, withString: string)
+		
+		// Calculate the line range
+		let text = self.string as NSString
+		var lineRange = range
+		lineRange.length = (string as NSString).length
+		lineRange = text.lineRangeForRange(lineRange)
+		
+		// Include the line before
+		if lineRange.location > 0 {
+			lineRange.location -= 1
+			lineRange.length += 1
+		}
+		
+		invalidDisplayRange = lineRange
 	}
 
 
@@ -62,6 +77,17 @@ class TextStorage: BaseTextStorage {
 
 	override func processEditing() {
 		applyStyles()
+		
 		super.processEditing()
+		
+		if let invalidDisplayRange = invalidDisplayRange {
+			beginEditing()
+			for layoutManager in layoutManagers {
+//				layoutManager.ensureGlyphsForCharacterRange(invalidDisplayRange)
+				layoutManager.invalidateLayoutForCharacterRange(invalidDisplayRange, actualCharacterRange: nil)
+			}
+			self.invalidDisplayRange = nil
+			endEditing()
+		}
 	}
 }
