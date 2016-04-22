@@ -356,7 +356,7 @@ extension TextController: TextStorageDelegate {
 
 	// Commit the edit to DocumentController and submit the operation to OT. This doesn't go through the text system so
 	// things like markdown shortcuts and return completion don't run on this change. Ideally, this will only be used
-	// by the text storage delegate or changes made to non-visible portions of the backing string (like block or
+	// by the text storage delegate or changes made to non-visible portions of the backing string (like sblock or
 	// indentation changes).
 	func edit(backingRange backingRange: NSRange, replacement: String) {
 		documentController.replaceCharactersInRange(backingRange, withString: replacement)

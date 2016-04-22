@@ -79,15 +79,22 @@ class TextStorage: BaseTextStorage {
 		applyStyles()
 		
 		super.processEditing()
-		
-		if let invalidDisplayRange = invalidDisplayRange {
-			beginEditing()
-			for layoutManager in layoutManagers {
-//				layoutManager.ensureGlyphsForCharacterRange(invalidDisplayRange)
-				layoutManager.invalidateLayoutForCharacterRange(invalidDisplayRange, actualCharacterRange: nil)
-			}
-			self.invalidDisplayRange = nil
-			endEditing()
+
+		dispatch_async(dispatch_get_main_queue()) { [weak self] in
+			self?.invalidateLayoutIfNeeded()
 		}
+	}
+
+
+	// MARK: - Private
+
+	private func invalidateLayoutIfNeeded() {
+		guard let invalidDisplayRange = invalidDisplayRange else { return }
+
+		for layoutManager in layoutManagers {
+			layoutManager.ensureGlyphsForCharacterRange(invalidDisplayRange)
+			layoutManager.invalidateLayoutForCharacterRange(invalidDisplayRange, actualCharacterRange: nil)
+		}
+		self.invalidDisplayRange = nil
 	}
 }
