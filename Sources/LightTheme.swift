@@ -112,12 +112,12 @@ public struct LightTheme: Theme {
 			}
 
 			// Indent
-			if horizontalSizeClass == .Regular {
-				// TODO: Use a constant
-				spacing.paddingLeft = 48
-			} else {
+//			if horizontalSizeClass == .Regular {
+//				// TODO: Use a constant
+//				spacing.paddingLeft = 48
+//			} else {
 				spacing.paddingLeft = listIndentation
-			}
+//			}
 
 			return spacing
 		}
