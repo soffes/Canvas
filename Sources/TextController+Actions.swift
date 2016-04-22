@@ -69,4 +69,13 @@ extension TextController {
 		textStorage.replaceCharactersInRange(range, withString: "\n")
 		presentationSelectedRange = NSRange(location: lineRange.location, length: 0)
 	}
+	
+	public func deleteLine() {
+		guard let selection = presentationSelectedRange else { return }
+		
+		let text = documentController.document.presentationString as NSString
+		let range = text.lineRangeForRange(selection)
+		textStorage.replaceCharactersInRange(range, withString: "")
+		presentationSelectedRange = NSRange(location: range.location, length: 0)
+	}
 }
