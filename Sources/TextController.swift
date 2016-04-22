@@ -338,12 +338,13 @@ extension TextController: TextStorageDelegate {
 			// Code block
 			else {
 				let text = document.backingString as NSString
-				let line = text.lineRangeForRange(range)
+				let lineRange = text.lineRangeForRange(backingRange)
+				let line = text.substringWithRange(lineRange)
 
 				// TODO: Support language
-				if text.substringWithRange(line) == "```" {
-					backingRange = NSUnionRange(line, range)
-					replacement = CodeBlock.nativeRepresentation()
+				if line.hasPrefix("```") {
+					backingRange = NSUnionRange(lineRange, backingRange)
+					replacement = CodeBlock.nativeRepresentation() + "\n"
 				}
 			}
 		}
