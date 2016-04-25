@@ -70,12 +70,14 @@ extension Document {
 		let after = Document(backingString: text as String)
 
 		// Calculate block changes
-		let blockChange = diff(before.blocks, after.blocks) { lhs, rhs in
-			if lhs.dynamicType != rhs.dynamicType {
+		let blockChange = diff(before.blocks, after.blocks) { beforeBlock, afterBlock in
+			// If they are different types or have different lengths, they are definitely not equal.
+			if beforeBlock.dynamicType != afterBlock.dynamicType || beforeBlock.range.length != afterBlock.range.length {
 				return false
 			}
 
-			return lhs.contentInString(before.backingString) == rhs.contentInString(after.backingString)
+			// Compare their native representations
+			return beforeBlock.contentInString(before.backingString) == afterBlock.contentInString(after.backingString)
 		}
 
 		// Calculate presentation change
