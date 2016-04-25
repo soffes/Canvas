@@ -13,6 +13,8 @@ import CanvasNative
 
 public protocol TextControllerConnectionDelegate: class {
 	func textController(textController: TextController, willConnectWithWebView webView: WKWebView)
+	func textControllerDidConnect(textController: TextController)
+	func textController(textController: TextController, didDisconnectWithErrorMessage errorMessage: String?)
 }
 
 public protocol TextControllerSelectionDelegate: class {
@@ -79,10 +81,19 @@ public final class TextController {
 
 	let documentController = DocumentController()
 
+	let serverURL: NSURL
+	let accessToken: String
+	let organizationID: String
+	let canvasID: String
+
 
 	// MARK: - Initializers
 
-	public init(theme: Theme = LightTheme()) {
+	public init(serverURL: NSURL, accessToken: String, organizationID: String, canvasID: String, theme: Theme = LightTheme()) {
+		self.serverURL = serverURL
+		self.accessToken = accessToken
+		self.organizationID = organizationID
+		self.canvasID = canvasID
 		self.theme = theme
 
 		let layoutManager = LayoutManager()
@@ -109,9 +120,7 @@ public final class TextController {
 
 	// MARK: - OT
 
-	public func connect(serverURL serverURL: NSURL, accessToken: String, organizationID: String, canvasID: String) {
-		guard self.transportController == nil else { return }
-
+	public func connect() {
 		if connectionDelegate == nil {
 			print("[TextController] WARNING: connectionDelegate is nil. If you don't add the web view from textController:willConnectWithWebView: to a view, Operation Transport won't work as expected.")
 		}
@@ -231,6 +240,7 @@ extension TextController: TransportControllerDelegate {
 		}
 
 		documentController.replaceCharactersInRange(bounds, withString: string)
+		connectionDelegate?.textControllerDidConnect(self)
 	}
 
 	public func transportController(controller: TransportController, didReceiveOperation operation: Operation) {
@@ -247,10 +257,12 @@ extension TextController: TransportControllerDelegate {
 
 	public func transportController(controller: TransportController, didReceiveWebErrorMessage errorMessage: String?, lineNumber: UInt?, columnNumber: UInt?) {
 		print("TransportController error \(errorMessage)")
+		connectionDelegate?.textController(self, didDisconnectWithErrorMessage: errorMessage)
 	}
 
 	public func transportController(controller: TransportController, didDisconnectWithErrorMessage errorMessage: String?) {
 		print("TransportController disconnect \(errorMessage)")
+		connectionDelegate?.textController(self, didDisconnectWithErrorMessage: errorMessage)
 	}
 }
 
