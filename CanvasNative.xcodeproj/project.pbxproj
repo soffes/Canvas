@@ -18,6 +18,9 @@
 		21260D351CCFD28000F7C9D7 /* ChecklistItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21260D341CCFD28000F7C9D7 /* ChecklistItemTests.swift */; };
 		21260D361CCFD28000F7C9D7 /* ChecklistItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21260D341CCFD28000F7C9D7 /* ChecklistItemTests.swift */; };
 		21260D371CCFD28000F7C9D7 /* ChecklistItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21260D341CCFD28000F7C9D7 /* ChecklistItemTests.swift */; };
+		212DD5C21CCFFD0800C3845A /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212DD5C11CCFFD0800C3845A /* ParserTests.swift */; };
+		212DD5C31CCFFD0800C3845A /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212DD5C11CCFFD0800C3845A /* ParserTests.swift */; };
+		212DD5C41CCFFD0800C3845A /* ParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212DD5C11CCFFD0800C3845A /* ParserTests.swift */; };
 		21341C8B1C85089400C9EF39 /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21341C8A1C85089400C9EF39 /* NodeTests.swift */; };
 		21341C8C1C85089400C9EF39 /* NodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21341C8A1C85089400C9EF39 /* NodeTests.swift */; };
 		214FA01C1CC6E48800927A07 /* HorizontalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214FA01B1CC6E48800927A07 /* HorizontalRule.swift */; };
@@ -238,6 +241,7 @@
 		210C743C1C7E7C6100FBB665 /* TestDocumentControllerControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestDocumentControllerControllerDelegate.swift; sourceTree = "<group>"; };
 		211B90161C923047004862FC /* XCTestCase+CanvasNativeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+CanvasNativeTests.swift"; sourceTree = "<group>"; };
 		21260D341CCFD28000F7C9D7 /* ChecklistItemTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItemTests.swift; sourceTree = "<group>"; };
+		212DD5C11CCFFD0800C3845A /* ParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserTests.swift; sourceTree = "<group>"; };
 		21341C8A1C85089400C9EF39 /* NodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
 		214FA01B1CC6E48800927A07 /* HorizontalRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalRule.swift; sourceTree = "<group>"; };
 		214FA0201CC6E68E00927A07 /* HorizontalRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalRuleTests.swift; sourceTree = "<group>"; };
@@ -409,6 +413,14 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		212DD5C51CCFFD3900C3845A /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				212DD5C11CCFFD0800C3845A /* ParserTests.swift */,
+			);
+			name = Parser;
+			sourceTree = "<group>";
+		};
 		215BAB231C52B0C400118C8C = {
 			isa = PBXGroup;
 			children = (
@@ -439,6 +451,7 @@
 			children = (
 				2101767F1CBD6FA600614D61 /* Document */,
 				2101767E1CBD6E6B00614D61 /* Document Controller */,
+				212DD5C51CCFFD3900C3845A /* Parser */,
 				2101767C1CBD6E3A00614D61 /* Block Level */,
 				2101767D1CBD6E5C00614D61 /* Span Level */,
 				210C743B1C7E7C5000FBB665 /* Helpers */,
@@ -875,6 +888,7 @@
 				21BF7D4F1C93802100CB1A7A /* ParagraphTests.swift in Sources */,
 				215BABEE1C52B46B00118C8C /* ListableTests.swift in Sources */,
 				214FA0211CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */,
+				212DD5C21CCFFD0800C3845A /* ParserTests.swift in Sources */,
 				21260D351CCFD28000F7C9D7 /* ChecklistItemTests.swift in Sources */,
 				21A9F0D21C7CFD1C009B40A0 /* DocumentControllerChangeTests.swift in Sources */,
 				215BABEA1C52B46B00118C8C /* HeadingTests.swift in Sources */,
@@ -942,6 +956,7 @@
 				21BF7D501C93802100CB1A7A /* ParagraphTests.swift in Sources */,
 				215BABEF1C52B46B00118C8C /* ListableTests.swift in Sources */,
 				214FA0221CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */,
+				212DD5C31CCFFD0800C3845A /* ParserTests.swift in Sources */,
 				21260D361CCFD28000F7C9D7 /* ChecklistItemTests.swift in Sources */,
 				21A9F0D31C7CFD1C009B40A0 /* DocumentControllerChangeTests.swift in Sources */,
 				215BABEB1C52B46B00118C8C /* HeadingTests.swift in Sources */,
@@ -1050,6 +1065,7 @@
 				21BF7D511C93802100CB1A7A /* ParagraphTests.swift in Sources */,
 				21632D4F1C92369A00C40D7D /* DocumentControllerReliabilityTests.swift in Sources */,
 				214FA0231CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */,
+				212DD5C41CCFFD0800C3845A /* ParserTests.swift in Sources */,
 				21260D371CCFD28000F7C9D7 /* ChecklistItemTests.swift in Sources */,
 				21632D4D1C92369A00C40D7D /* DocumentControllerInsertTests.swift in Sources */,
 				21632D571C9236A000C40D7D /* TestDocumentControllerControllerDelegate.swift in Sources */,
