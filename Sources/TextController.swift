@@ -59,7 +59,8 @@ public final class TextController {
 
 	public var focusedBlock: BlockNode? {
 		let selection = presentationSelectedRange
-		return selection.flatMap { documentController.document.blockAt(presentationLocation: $0.location) }
+		let document = documentController.document
+		return selection.flatMap { document.blockAt(presentationLocation: $0.location) }
 	}
 
 	public var textContainerInset: EdgeInsets = .zero {
@@ -296,6 +297,8 @@ extension TextController: DocumentControllerDelegate {
 		textStorage.endEditing()
 
 		dispatch_async(dispatch_get_main_queue()) { [weak self] in
+			self?._textStorage.applyStyles()
+			self?._textStorage.invalidateLayoutIfNeeded()
 			self?.refreshAnnotations()
 		}
 	}
@@ -331,7 +334,7 @@ extension TextController: TextStorageDelegate {
 
 		if string == "\n" {
 			// Continue the previous node
-			if let block = document.blockAt(backingLocation: backingRange.location) as? ReturnCompletable ?? document.blocks.last {
+			if let block = document.blockAt(backingLocation: backingRange.location) as? ReturnCompletable {
 				// Bust out of completion
 				if block.visibleRange.length == 0 {
 					backingRange = block.range

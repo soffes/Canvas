@@ -24,6 +24,14 @@ class TextStorage: BaseTextStorage {
 	private var styles = [Style]()
 	private var invalidDisplayRange: NSRange?
 
+	
+	// MARK: - NSTextStorage
+
+	override func replaceCharactersInRange(range: NSRange, withString string: String) {
+		// Local changes are delegated to the text controller
+		replacementDelegate?.textStorage(self, didReplaceCharactersInRange: range, withString: string)
+	}
+
 
 	// MARK: - Updating Content
 
@@ -60,19 +68,12 @@ class TextStorage: BaseTextStorage {
 				print("WARNING: Invalid style: \(style.range)")
 				continue
 			}
+			
 			storage.setAttributes(style.attributes, range: style.range)
 			edited(.EditedAttributes, range: style.range, changeInLength: 0)
 		}
 
 		styles.removeAll()
-	}
-
-
-	// MARK: - NSTextStorage
-
-	override func replaceCharactersInRange(range: NSRange, withString string: String) {
-		// Local changes are delegated to the text controller
-		replacementDelegate?.textStorage(self, didReplaceCharactersInRange: range, withString: string)
 	}
 
 	override func processEditing() {
@@ -86,9 +87,9 @@ class TextStorage: BaseTextStorage {
 	}
 
 
-	// MARK: - Private
+	// MARK: - Layout
 
-	private func invalidateLayoutIfNeeded() {
+	func invalidateLayoutIfNeeded() {
 		guard let invalidDisplayRange = invalidDisplayRange else { return }
 
 		for layoutManager in layoutManagers {
