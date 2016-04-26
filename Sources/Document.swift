@@ -104,7 +104,9 @@ public struct Document {
 		}
 
 		guard let block = blocks.last else { return nil }
-		return presentationRange(backingRange: block.visibleRange).contains(presentationLocation) ? block : nil
+
+		let presentationRange = self.presentationRange(backingRange: block.visibleRange)
+		return presentationRange.contains(presentationLocation) || presentationRange.max == presentationLocation ? block : nil
 	}
 
 	public func blockAt(backingLocation backingLocation: Int) -> BlockNode? {
@@ -116,7 +118,8 @@ public struct Document {
 		}
 
 		guard let block = blocks.last else { return nil }
-		return block.range.contains(backingLocation) ? block : nil
+		
+		return block.range.contains(backingLocation) || block.range.max == backingLocation ? block : nil
 	}
 
 
