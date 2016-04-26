@@ -32,7 +32,6 @@ public struct ChecklistItem: Listable, NodeContainer, Equatable {
 	// MARK: - Properties
 
 	public var range: NSRange
-	public var enclosingRange: NSRange
 	public var nativePrefixRange: NSRange
 	public var visibleRange: NSRange
 	public var indentationRange: NSRange
@@ -51,7 +50,6 @@ public struct ChecklistItem: Listable, NodeContainer, Equatable {
 		return [
 			"type": "checklist-item",
 			"range": range.dictionary,
-			"enclosingRange": enclosingRange.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
 			"visibleRange": visibleRange.dictionary,
 			"indentationRange": indentationRange.dictionary,
@@ -66,7 +64,7 @@ public struct ChecklistItem: Listable, NodeContainer, Equatable {
 
 	// MARK: - Initializers
 
-	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
+	public init?(string: String, range: NSRange) {
 		let scanner = NSScanner(string: string)
 		scanner.charactersToBeSkipped = nil
 
@@ -130,7 +128,6 @@ public struct ChecklistItem: Listable, NodeContainer, Equatable {
 		)
 
 		self.range = range
-		self.enclosingRange = enclosingRange
 	}
 
 
@@ -161,7 +158,6 @@ public struct ChecklistItem: Listable, NodeContainer, Equatable {
 
 public func ==(lhs: ChecklistItem, rhs: ChecklistItem) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
-		NSEqualRanges(lhs.enclosingRange, rhs.enclosingRange) &&
 		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
 		NSEqualRanges(lhs.visibleRange, rhs.visibleRange) &&
 		NSEqualRanges(lhs.indentationRange, rhs.indentationRange) &&

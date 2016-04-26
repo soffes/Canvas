@@ -13,7 +13,6 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Equa
 	// MARK: - Properties
 
 	public var range: NSRange
-	public var enclosingRange: NSRange
 	public var nativePrefixRange: NSRange
 	public var visibleRange: NSRange
 	public var position: Position = .Single
@@ -23,7 +22,6 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Equa
 		var dictionary: [String: AnyObject] = [
 			"type": "code-block",
 			"range": range.dictionary,
-			"enclosingRange": enclosingRange.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
 			"visibleRange": visibleRange.dictionary,
 			"position": position.number
@@ -39,7 +37,7 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Equa
 
 	// MARK: - Initializers
 
-	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
+	public init?(string: String, range: NSRange) {
 		let scanner = NSScanner(string: string)
 		scanner.charactersToBeSkipped = nil
 
@@ -72,7 +70,6 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Equa
 		)
 
 		self.range = range
-		self.enclosingRange = enclosingRange
 	}
 
 
@@ -80,7 +77,6 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Equa
 
 	public mutating func offset(delta: Int) {
 		range.location += delta
-		enclosingRange.location += delta
 		nativePrefixRange.location += delta
 		visibleRange.location += delta
 	}
@@ -97,7 +93,6 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Equa
 
 public func ==(lhs: CodeBlock, rhs: CodeBlock) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
-		NSEqualRanges(lhs.enclosingRange, rhs.enclosingRange) &&
 		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
 		NSEqualRanges(lhs.visibleRange, rhs.visibleRange) &&
 		lhs.language == rhs.language &&

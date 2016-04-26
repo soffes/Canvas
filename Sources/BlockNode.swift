@@ -9,16 +9,5 @@
 import Foundation
 
 public protocol BlockNode: Node {
-	var enclosingRange: NSRange { get }
-	init?(string: String, range: NSRange, enclosingRange: NSRange)
-}
-
-
-extension BlockNode {
-	var newLineRange: NSRange? {
-		let delta = enclosingRange.max - range.max
-		guard delta == 1 else { return nil }
-
-		return NSRange(location: range.max, length: 1)
-	}
+	init?(string: String, range: NSRange)
 }

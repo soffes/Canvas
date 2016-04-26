@@ -14,7 +14,6 @@ public struct Image: Attachable, Equatable {
 	// MARK: - Properties
 
 	public var range: NSRange
-	public var enclosingRange: NSRange
 	public var nativePrefixRange: NSRange
 
 	public var identifier: String
@@ -25,7 +24,6 @@ public struct Image: Attachable, Equatable {
 		var dictionary: [String: AnyObject] = [
 			"type": "ordered-list",
 			"range": range.dictionary,
-			"enclosingRange": enclosingRange.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
 			"identifier": identifier,
 			"url": url.absoluteString
@@ -41,9 +39,8 @@ public struct Image: Attachable, Equatable {
 
 	// MARK: - Initializers
 
-	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
+	public init?(string: String, range: NSRange) {
 		self.range = range
-		self.enclosingRange = enclosingRange
 		nativePrefixRange = NSRange(location: range.location, length: range.length - 1)
 		
 		let scanner = NSScanner(string: string)
@@ -101,7 +98,6 @@ public struct Image: Attachable, Equatable {
 
 	public mutating func offset(delta: Int) {
 		range.location += delta
-		enclosingRange.location += delta
 		nativePrefixRange.location += delta
 	}
 
@@ -123,7 +119,6 @@ extension Image: Hashable {
 
 public func == (lhs: Image, rhs: Image) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
-		NSEqualRanges(lhs.enclosingRange, rhs.enclosingRange) &&
 		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
 		lhs.identifier == rhs.identifier &&
 		lhs.url == rhs.url &&

@@ -13,7 +13,6 @@ public struct Title: NativePrefixable, NodeContainer, Equatable {
 	// MARK: - Properties
 
 	public var range: NSRange
-	public var enclosingRange: NSRange
 	public var nativePrefixRange: NSRange
 	public var visibleRange: NSRange
 
@@ -27,7 +26,6 @@ public struct Title: NativePrefixable, NodeContainer, Equatable {
 		return [
 			"type": "title",
 			"range": range.dictionary,
-			"enclosingRange": enclosingRange.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
 			"visibleRange": visibleRange.dictionary,
 			"subnodes": subnodes.map { $0.dictionary }
@@ -37,7 +35,7 @@ public struct Title: NativePrefixable, NodeContainer, Equatable {
 
 	// MARK: - Initializers
 
-	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
+	public init?(string: String, range: NSRange) {
 		guard let (nativePrefixRange, visibleRange) = parseBlockNode(
 			string: string,
 			range: range,
@@ -45,7 +43,6 @@ public struct Title: NativePrefixable, NodeContainer, Equatable {
 		) else { return nil }
 
 		self.range = range
-		self.enclosingRange = enclosingRange
 		self.nativePrefixRange = nativePrefixRange
 		self.visibleRange = visibleRange
 	}
@@ -55,7 +52,6 @@ public struct Title: NativePrefixable, NodeContainer, Equatable {
 
 	public mutating func offset(delta: Int) {
 		range.location += delta
-		enclosingRange.location += delta
 		nativePrefixRange.location += delta
 		visibleRange.location += delta
 
@@ -77,7 +73,6 @@ public struct Title: NativePrefixable, NodeContainer, Equatable {
 
 public func ==(lhs: Title, rhs: Title) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
-		NSEqualRanges(lhs.enclosingRange, rhs.enclosingRange) &&
 		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
 		NSEqualRanges(lhs.visibleRange, rhs.visibleRange)
 }

@@ -13,7 +13,6 @@ public struct Paragraph: BlockNode, NodeContainer, Equatable {
 	// MARK: - Properties
 
 	public var range: NSRange
-	public var enclosingRange: NSRange
 
 	public var visibleRange: NSRange {
 		return range
@@ -29,7 +28,6 @@ public struct Paragraph: BlockNode, NodeContainer, Equatable {
 		return [
 			"type": "paragraph",
 			"range": range.dictionary,
-			"enclosingRange": enclosingRange.dictionary,
 			"visibleRange": visibleRange.dictionary,
 			"subnodes": subnodes.map { $0.dictionary }
 		]
@@ -38,19 +36,17 @@ public struct Paragraph: BlockNode, NodeContainer, Equatable {
 
 	// MARK: - Initializers
 
-	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
+	public init?(string: String, range: NSRange) {
 		// Prevent any Canvas Native from appearing in the documment
 		if string.hasPrefix(leadingNativePrefix) {
 			return nil
 		}
 
 		self.range = range
-		self.enclosingRange = enclosingRange
 	}
 
-	public init(range: NSRange, enclosingRange: NSRange? = nil, subnodes: [SpanNode]) {
+	public init(range: NSRange, subnodes: [SpanNode]) {
 		self.range = range
-		self.enclosingRange = enclosingRange ?? range
 		self.subnodes = subnodes
 	}
 
@@ -59,7 +55,6 @@ public struct Paragraph: BlockNode, NodeContainer, Equatable {
 
 	public mutating func offset(delta: Int) {
 		range.location += delta
-		enclosingRange.location += delta
 		
 		subnodes = subnodes.map {
 			var node = $0
@@ -71,6 +66,5 @@ public struct Paragraph: BlockNode, NodeContainer, Equatable {
 
 
 public func ==(lhs: Paragraph, rhs: Paragraph) -> Bool {
-	return NSEqualRanges(lhs.range, rhs.range) &&
-		NSEqualRanges(lhs.enclosingRange, rhs.enclosingRange)
+	return NSEqualRanges(lhs.range, rhs.range)
 }

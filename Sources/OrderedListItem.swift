@@ -13,7 +13,6 @@ public struct OrderedListItem: Listable, NodeContainer, Equatable {
 	// MARK: - Properties
 
 	public var range: NSRange
-	public var enclosingRange: NSRange
 	public var nativePrefixRange: NSRange
 	public var visibleRange: NSRange
 	public var indentationRange: NSRange
@@ -30,7 +29,6 @@ public struct OrderedListItem: Listable, NodeContainer, Equatable {
 		return [
 			"type": "ordered-list",
 			"range": range.dictionary,
-			"enclosingRange": enclosingRange.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
 			"visibleRange": visibleRange.dictionary,
 			"indentationRange": indentationRange.dictionary,
@@ -43,7 +41,7 @@ public struct OrderedListItem: Listable, NodeContainer, Equatable {
 
 	// MARK: - Initializers
 
-	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
+	public init?(string: String, range: NSRange) {
 		guard let (nativePrefixRange, indentationRange, indentation, prefixRange, visibleRange) = parseListable(
 			string: string,
 			range: range,
@@ -52,7 +50,6 @@ public struct OrderedListItem: Listable, NodeContainer, Equatable {
 		)else { return nil }
 
 		self.range = range
-		self.enclosingRange = enclosingRange
 		self.nativePrefixRange = nativePrefixRange.union(prefixRange)
 		self.visibleRange = visibleRange
 		self.indentationRange = indentationRange
@@ -64,7 +61,6 @@ public struct OrderedListItem: Listable, NodeContainer, Equatable {
 
 	public mutating func offset(delta: Int) {
 		range.location += delta
-		enclosingRange.location += delta
 		nativePrefixRange.location += delta
 		visibleRange.location += delta
 		indentationRange.location += delta
@@ -87,7 +83,6 @@ public struct OrderedListItem: Listable, NodeContainer, Equatable {
 
 public func ==(lhs: OrderedListItem, rhs: OrderedListItem) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
-		NSEqualRanges(lhs.enclosingRange, rhs.enclosingRange) &&
 		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
 		NSEqualRanges(lhs.visibleRange, rhs.visibleRange) &&
 		NSEqualRanges(lhs.indentationRange, rhs.indentationRange) &&

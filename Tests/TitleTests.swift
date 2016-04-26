@@ -11,7 +11,7 @@ import CanvasNative
 
 class TitleTest: XCTestCase {
 	func testTitle() {
-		let node = Title(string: "⧙doc-heading⧘Hello", range: NSRange(location: 0, length: 18), enclosingRange: NSRange(location: 0, length: 18))!
+		let node = Title(string: "⧙doc-heading⧘Hello", range: NSRange(location: 0, length: 18))!
 		XCTAssertEqual(NSRange(location: 0, length: 13), node.nativePrefixRange)
 		XCTAssertEqual(NSRange(location: 13, length: 5), node.visibleRange)
 	}
@@ -28,10 +28,9 @@ class TitleTest: XCTestCase {
 
 		XCTAssert(blocks[0] is Title)
 		XCTAssertEqual(NSRange(location: 0, length: 18), blocks[0].range)
-		XCTAssertEqual(NSRange(location: 0, length: 18), blocks[0].enclosingRange)
 
+		XCTAssertEqual(2, blocks.count)
 //		XCTAssert(blocks[1] is Paragraph)
-//		XCTAssertEqual(NSRange(location: 18, length: 1), blocks[1].range)
-//		XCTAssertEqual(NSRange(location: 18, length: 1), blocks[1].enclosingRange)
+//		XCTAssertEqual(NSRange(location: 19, length: 0), blocks[1].range)
 	}
 }

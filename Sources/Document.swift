@@ -133,95 +133,8 @@ public struct Document {
 		return blocks.map { UInt($0.range.length) }.reduce(0, combine: +)
 	}
 
-	public func blockRangeForCharacterRange(range: NSRange, string: String) -> NSRange {
-		var location: Int?
-		var matchingBlocks = [BlockNode]()
-
-		let hasNewLinePrefix = string.hasPrefix("\n")
-
-		for (i, block) in blocks.enumerate() {
-			if block.enclosingRange.intersection(range) != nil || block.enclosingRange.max == range.location && hasNewLinePrefix {
-				// Detect inserting at the end of a line vs inserting a new block
-				if block.newLineRange != nil && range.location == block.range.max && hasNewLinePrefix {
-					if i + 1 == blocks.count {
-						return NSRange(location: i, length: 1)
-					}
-					return NSRange(location: min(i + 1, blocks.endIndex), length: 0)
-				}
-
-				// Start if we haven't already
-				if location == nil {
-					location = i
-				}
-
-				matchingBlocks.append(block)
-			} else if location != nil {
-				// This block didn't match and we've already started, so end the range.
-				break
-			}
-		}
-
-		// Nothing found. Editing the last block.
-		if !blocks.isEmpty && location == nil && matchingBlocks.isEmpty && !hasNewLinePrefix, let last = blocks.last {
-			// If the last block doesn't end in a new line and we didn't insert one, we're editing it.
-			if last.enclosingRange.length > 0 && text.substringWithRange(NSRange(location: last.enclosingRange.max - 1, length: 1)) != "\n" {
-				return NSRange(location: blocks.count - 1, length: 1)
-			}
-		}
-
-		// If we didn't find anything, assume we're inserting at the very end.
-		var blockRange = NSRange(location: location ?? blocks.endIndex, length: matchingBlocks.count)
-
-		// If we delete the new line in the last block, extend the length if possible.
-		if string.isEmpty, let lastNewLine = matchingBlocks.last?.newLineRange where lastNewLine.intersection(range) == 1 {
-			blockRange.length = min(blockRange.length + 1, blocks.count - blockRange.location)
-		}
-
-		return blockRange
-	}
-
 	public func presentationString(backingRange backingRange: NSRange) -> String? {
-		var output = ""
-
-		for block in blocks {
-			if block.enclosingRange.max <= backingRange.location {
-				continue
-			}
-
-			if block.enclosingRange.location > backingRange.max {
-				break
-			}
-
-			let content = block.contentInString(backingString)
-			var component: String
-
-			// Offset if starting out
-			if output.isEmpty && backingRange.location > block.enclosingRange.location {
-				let offset = backingRange.location - block.visibleRange.location
-				if offset < 0 {
-					continue
-				}
-				component = (content as NSString).substringFromIndex(offset) as String
-			} else {
-				component = content
-			}
-
-			// Add new line
-			if block.newLineRange != nil {
-				component += "\n"
-			}
-
-			// Offset the end of it's too long
-			let delta = block.enclosingRange.max - backingRange.max
-			if delta > 0 {
-				let string = component as NSString
-				component = string.substringWithRange(NSRange(location: 0, length: string.length - delta))
-			}
-
-			output += component
-		}
-
-		return output.isEmpty ? nil : output
+		return documentPresentationString(backingString: backingString, backingRange: backingRange, blocks: blocks)
 	}
 }
 
@@ -251,14 +164,15 @@ private func documentPresentationLocations(blocks blocks: [BlockNode]) -> [Int] 
 
 private func documentPresentationString(backingString backingString: String, backingRange inBackingRange: NSRange? = nil, blocks: [BlockNode]) -> String? {
 	let backingRange = inBackingRange ?? NSRange(location: 0, length: (backingString as NSString).length)
-	var output = ""
+
+	var components = [String]()
 
 	for block in blocks {
-		if block.enclosingRange.max <= backingRange.location {
+		if block.range.max <= backingRange.location {
 			continue
 		}
 
-		if block.enclosingRange.location > backingRange.max {
+		if block.range.location > backingRange.max {
 			break
 		}
 
@@ -266,7 +180,7 @@ private func documentPresentationString(backingString backingString: String, bac
 		var component: String
 
 		// Offset if starting out
-		if output.isEmpty && backingRange.location > block.enclosingRange.location {
+		if components.isEmpty && backingRange.location > block.range.location {
 			let offset = backingRange.location - block.visibleRange.location
 			if offset < 0 {
 				continue
@@ -276,20 +190,15 @@ private func documentPresentationString(backingString backingString: String, bac
 			component = content
 		}
 
-		// Add new line
-		if block.newLineRange != nil {
-			component += "\n"
-		}
-
 		// Offset the end of it's too long
-		let delta = block.enclosingRange.max - backingRange.max
+		let delta = block.range.max - backingRange.max
 		if delta > 0 {
 			let string = component as NSString
 			component = string.substringWithRange(NSRange(location: 0, length: string.length - delta))
 		}
 
-		output += component
+		components.append(component)
 	}
 
-	return output.isEmpty ? nil : output
+	return components.isEmpty ? nil : components.joinWithSeparator("\n")
 }

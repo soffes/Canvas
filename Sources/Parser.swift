@@ -59,7 +59,7 @@ public struct Parser {
 			guard let substring = substring else { return }
 
 			for type in self.blockParseOrder {
-				guard var node = type.init(string: substring, range: range, enclosingRange: enclosingRange) else { continue }
+				guard var node = type.init(string: substring, range: range) else { continue }
 
 				if var container = node as? NodeContainer {
 					container.subnodes = self.parseInline(string: string, container: container)

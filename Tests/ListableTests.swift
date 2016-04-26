@@ -11,14 +11,14 @@ import CanvasNative
 
 class ListableTests: XCTestCase {
 	func testUnordered() {
-		let node = UnorderedListItem(string: "⧙unordered-list-0⧘- Hello", range: NSRange(location: 0, length: 25), enclosingRange: NSRange(location: 0, length: 26))!
+		let node = UnorderedListItem(string: "⧙unordered-list-0⧘- Hello", range: NSRange(location: 0, length: 25))!
 		XCTAssertEqual(NSRange(location: 0, length: 20), node.nativePrefixRange)
 		XCTAssertEqual(NSRange(location: 20, length: 5), node.visibleRange)
 		XCTAssertEqual(Indentation.Zero, node.indentation)
 	}
 
 	func testOrdered() {
-		let node = OrderedListItem(string: "⧙ordered-list-0⧘1. Hello", range: NSRange(location: 0, length: 24), enclosingRange: NSRange(location: 0, length: 25))!
+		let node = OrderedListItem(string: "⧙ordered-list-0⧘1. Hello", range: NSRange(location: 0, length: 24))!
 		XCTAssertEqual(NSRange(location: 0, length: 19), node.nativePrefixRange)
 		XCTAssertEqual(NSRange(location: 19, length: 5), node.visibleRange)
 		XCTAssertEqual(Indentation.Zero, node.indentation)

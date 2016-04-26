@@ -11,7 +11,7 @@ import CanvasNative
 
 class ParagraphTestes: XCTestCase {
 	func testPreventNative() {
-		let node = Paragraph(string: "⧙code⧘puts hi", range: NSRange(location: 0, length: 13), enclosingRange: NSRange(location: 0, length: 13))
+		let node = Paragraph(string: "⧙code⧘puts hi", range: NSRange(location: 0, length: 13))
 		XCTAssertNil(node)
 	}
 }

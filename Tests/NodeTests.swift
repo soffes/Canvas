@@ -11,12 +11,11 @@ import CanvasNative
 
 class NodeTests: XCTestCase {
 	func testOffset() {
-		let before = Paragraph(string: "Hello\n", range: NSRange(location: 0, length: 5), enclosingRange: NSRange(location: 0, length: 6))!
+		let before = Paragraph(string: "Hello", range: NSRange(location: 0, length: 5))!
 
 		var after = before
 		after.offset(8)
 
 		XCTAssertEqual(NSRange(location: 8, length: 5), after.range)
-		XCTAssertEqual(NSRange(location: 8, length: 6), after.enclosingRange)
 	}
 }

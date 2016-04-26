@@ -13,7 +13,6 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 	// MARK: - Properties
 
 	public var range: NSRange
-	public var enclosingRange: NSRange
 	public var nativePrefixRange: NSRange
 	public var visibleRange: NSRange
 	public var position: Position = .Single
@@ -28,7 +27,6 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 		return [
 			"type": "blockquote",
 			"range": range.dictionary,
-			"enclosingRange": enclosingRange.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
 			"visibleRange": visibleRange.dictionary,
 			"position": position.number,
@@ -39,7 +37,7 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 
 	// MARK: - Initializers
 
-	public init?(string: String, range: NSRange, enclosingRange: NSRange) {
+	public init?(string: String, range: NSRange) {
 		guard let (nativePrefixRange, prefixRange, visibleRange) = parseBlockNode(
 			string: string,
 			range: range,
@@ -48,7 +46,6 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 		) else { return nil }
 
 		self.range = range
-		self.enclosingRange = enclosingRange
 		self.nativePrefixRange = nativePrefixRange.union(prefixRange)
 		self.visibleRange = visibleRange
 	}
@@ -58,7 +55,6 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 
 	public mutating func offset(delta: Int) {
 		range.location += delta
-		enclosingRange.location += delta
 		nativePrefixRange.location += delta
 		visibleRange.location += delta
 
@@ -80,7 +76,6 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 
 public func ==(lhs: Blockquote, rhs: Blockquote) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
-		NSEqualRanges(lhs.enclosingRange, rhs.enclosingRange) &&
 		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
 		NSEqualRanges(lhs.visibleRange, rhs.visibleRange) &&
 		lhs.position == rhs.position
