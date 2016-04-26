@@ -65,7 +65,7 @@ class DocumentControllerRemoveTests: XCTestCase {
 //		controller.replaceCharactersInRange(range, withString: replacement)
 //
 //		// Wait for expectations
-//		waitForExpectationsWithTimeout(0.5, handler: nil)
+//		waitForExpectationsWithTimeout(0.1, handler: nil)
 //
 //		// Check blocks
 //		XCTAssertEqual("⧙doc-heading⧘Title\n⧙blockquote⧘> Two", controller.string)
@@ -125,7 +125,7 @@ class DocumentControllerRemoveTests: XCTestCase {
 //		controller.replaceCharactersInRange(range, withString: replacement)
 //
 //		// Wait for expectations
-//		waitForExpectationsWithTimeout(0.5, handler: nil)
+//		waitForExpectationsWithTimeout(0.1, handler: nil)
 //
 //		// Check blocks
 //		XCTAssertEqual("⧙doc-heading⧘Title\nOn\n⧙blockquote⧘> Two", controller.string)

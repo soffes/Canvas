@@ -38,7 +38,7 @@ class DocumentControllerChangeTests: XCTestCase {
 		delegate.didUpdate = { did.fulfill() }
 
 		controller.replaceCharactersInRange(NSRange(location: 22, length: 0), withString: "!")
-		waitForExpectationsWithTimeout(0.5, handler: nil)
+		waitForExpectationsWithTimeout(0.1, handler: nil)
 
 		XCTAssertEqual(delegate.presentationString, controller.document.presentationString)
 		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
@@ -65,6 +65,32 @@ class DocumentControllerChangeTests: XCTestCase {
 		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\n⧙checklist-0⧘- [ ] Hi", delegate: delegate)
 		controller.replaceCharactersInRange(NSRange(location: 35, length: 0), withString: "x")
 		controller.replaceCharactersInRange(NSRange(location: 36, length: 1), withString: "")
+
+		XCTAssertEqual(delegate.presentationString, controller.document.presentationString)
+		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
+	}
+
+	func testIndent() {
+		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\n⧙checklist-0⧘- [ ] Hi", delegate: delegate)
+
+		let will = expectationWithDescription("willUpdate")
+		delegate.willUpdate = { will.fulfill() }
+
+		let insert = expectationWithDescription("didInsert")
+		delegate.didInsert = { block, index in
+			insert.fulfill()
+		}
+
+		let remove = expectationWithDescription("didRemove")
+		delegate.didRemove = { block, index in
+			remove.fulfill()
+		}
+
+		let did = expectationWithDescription("didUpdate")
+		delegate.didUpdate = { did.fulfill() }
+
+		controller.replaceCharactersInRange(NSRange(location: 30, length: 1), withString: "1")
+		waitForExpectationsWithTimeout(0.1, handler: nil)
 
 		XCTAssertEqual(delegate.presentationString, controller.document.presentationString)
 		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)

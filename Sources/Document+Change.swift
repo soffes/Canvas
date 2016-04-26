@@ -77,7 +77,7 @@ extension Document {
 			}
 
 			// Compare their native representations
-			return beforeBlock.contentInString(before.backingString) == afterBlock.contentInString(after.backingString)
+			return (before.backingString as NSString).substringWithRange(beforeBlock.range) == (after.backingString as NSString).substringWithRange(afterBlock.range)
 		}
 
 		// Calculate presentation change

@@ -44,7 +44,7 @@ class DocumentControllerInsertTests: XCTestCase {
 		delegate.didUpdate = { did.fulfill() }
 
 		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nParagraph")
-		waitForExpectationsWithTimeout(0.5, handler: nil)
+		waitForExpectationsWithTimeout(0.1, handler: nil)
 
 		XCTAssertEqual(delegate.presentationString, controller.document.presentationString)
 		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
@@ -98,7 +98,7 @@ class DocumentControllerInsertTests: XCTestCase {
 //		controller.replaceCharactersInRange(range, withString: replacement)
 //
 //		// Wait for expectations
-//		waitForExpectationsWithTimeout(0.5, handler: nil)
+//		waitForExpectationsWithTimeout(0.1, handler: nil)
 //
 //		// Check blocks
 //		XCTAssertEqual("⧙doc-heading⧘Title\nOne\n⧙code⧘Half\n⧙blockquote⧘> Two", controller.string)
