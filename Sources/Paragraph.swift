@@ -45,9 +45,9 @@ public struct Paragraph: BlockNode, NodeContainer, Equatable {
 		self.range = range
 	}
 
-	public init(range: NSRange, subnodes: [SpanNode]) {
+	public init(range: NSRange, subnodes: [SpanNode]? = nil) {
 		self.range = range
-		self.subnodes = subnodes
+		self.subnodes = subnodes ?? []
 	}
 
 

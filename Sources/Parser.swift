@@ -54,9 +54,12 @@ public struct Parser {
 		}
 
 		// Enumerate the string blocks of the `backingText`.
+		var max = 0
 		text.enumerateSubstringsInRange(parseRange, options: [.ByLines]) { substring, range, enclosingRange, _ in
 			// Ensure we have a substring to work with
 			guard let substring = substring else { return }
+
+			max = range.max
 
 			for type in self.blockParseOrder {
 				guard var node = type.init(string: substring, range: range) else { continue }
@@ -75,6 +78,11 @@ public struct Parser {
 			}
 
 			// Future: Add support for unknown node types #8
+		}
+
+		// Support trailing new line
+		if max < text.length {
+			nodes.append(Paragraph(range: NSRange(location: max + 1, length: 0)))
 		}
 
 		nodes = calculatePositions(nodes)

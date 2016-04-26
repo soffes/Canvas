@@ -26,11 +26,13 @@ class DocumentControllerChangeTests: XCTestCase {
 
 		var inserted = [Message]()
 		delegate.didInsert = { block, index in
+			print("Insert \(block.dynamicType) at \(index)")
 			inserted.append((block, index))
 		}
 
 		var removed = [Message]()
 		delegate.didRemove = { block, index in
+			print("Remove \(block.dynamicType) at \(index)")
 			removed.append((block, index))
 		}
 
