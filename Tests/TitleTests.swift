@@ -22,4 +22,16 @@ class TitleTest: XCTestCase {
 		XCTAssert(node.subnodes[0] is Text)
 		XCTAssert(node.subnodes[1] is DoubleEmphasis)
 	}
+
+	func testTrailingNewLine() {
+		let blocks = Parser.parse("⧙doc-heading⧘Hello\n")
+
+		XCTAssert(blocks[0] is Title)
+		XCTAssertEqual(NSRange(location: 0, length: 18), blocks[0].range)
+		XCTAssertEqual(NSRange(location: 0, length: 18), blocks[0].enclosingRange)
+
+//		XCTAssert(blocks[1] is Paragraph)
+//		XCTAssertEqual(NSRange(location: 18, length: 1), blocks[1].range)
+//		XCTAssertEqual(NSRange(location: 18, length: 1), blocks[1].enclosingRange)
+	}
 }
