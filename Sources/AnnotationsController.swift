@@ -98,8 +98,7 @@ final class AnnotationsController {
 		guard let textController = textController else { return .zero }
 
 		let presentationRange = textController.documentController.document.presentationRange(backingRange: annotation.block.range)
-		let glyphIndex = textController.layoutManager.glyphIndexForCharacterAtIndex(presentationRange.location)
-		var rect = textController.layoutManager.lineFragmentUsedRectForGlyphAtIndex(glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true)
+		var rect = textController.annotationDelegate?.textController(textController, firstRectForRange: presentationRange) ?? .zero
 
 		switch annotation.style {
 		case .LeadingGutter:
@@ -119,7 +118,7 @@ final class AnnotationsController {
 
 		// Account for line height
 		// TODO: We should get this a better way
-		rect.origin.y += 2
+		rect.origin.y += 3
 
 		return rect.integral
 	}

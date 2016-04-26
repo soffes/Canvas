@@ -23,6 +23,7 @@ public protocol TextControllerSelectionDelegate: class {
 
 public protocol TextControllerAnnotationDelegate: class {
 	func textController(textController: TextController, willAddAnnotation annotation: Annotation)
+	func textController(textController: TextController, firstRectForRange range: NSRange) -> CGRect?
 }
 
 
@@ -111,7 +112,7 @@ public final class TextController {
 		textContainer.textController = self
 		layoutManager.textController = self
 		_textStorage.textController = self
-		_textStorage.replacementDelegate = self
+		_textStorage.customDelegate = self
 		layoutManager.addTextContainer(textContainer)
 		textStorage.addLayoutManager(layoutManager)
 
@@ -299,7 +300,6 @@ extension TextController: DocumentControllerDelegate {
 		dispatch_async(dispatch_get_main_queue()) { [weak self] in
 			self?._textStorage.applyStyles()
 			self?._textStorage.invalidateLayoutIfNeeded()
-			self?.refreshAnnotations()
 		}
 	}
 
@@ -368,6 +368,10 @@ extension TextController: TextStorageDelegate {
 
 		presentationRange.length = (replacement as NSString).length
 		processMarkdownShortcuts(presentationRange)
+	}
+
+	func textStorageDidProcessEditing(textStorage: TextStorage) {
+		refreshAnnotations()
 	}
 
 	// Commit the edit to DocumentController and submit the operation to OT. This doesn't go through the text system so

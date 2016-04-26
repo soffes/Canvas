@@ -12,6 +12,7 @@ typealias Style = (range: NSRange, attributes: Attributes)
 
 protocol TextStorageDelegate: class {
 	func textStorage(textStorage: TextStorage, didReplaceCharactersInRange range: NSRange, withString string: String)
+	func textStorageDidProcessEditing(textStorage: TextStorage)
 }
 
 class TextStorage: BaseTextStorage {
@@ -19,7 +20,7 @@ class TextStorage: BaseTextStorage {
 	// MARK: - Properties
 
 	weak var textController: TextController?
-	weak var replacementDelegate: TextStorageDelegate?
+	weak var customDelegate: TextStorageDelegate?
 
 	private var styles = [Style]()
 	private var invalidDisplayRange: NSRange?
@@ -29,7 +30,7 @@ class TextStorage: BaseTextStorage {
 
 	override func replaceCharactersInRange(range: NSRange, withString string: String) {
 		// Local changes are delegated to the text controller
-		replacementDelegate?.textStorage(self, didReplaceCharactersInRange: range, withString: string)
+		customDelegate?.textStorage(self, didReplaceCharactersInRange: range, withString: string)
 	}
 
 
@@ -84,6 +85,8 @@ class TextStorage: BaseTextStorage {
 		dispatch_async(dispatch_get_main_queue()) { [weak self] in
 			self?.invalidateLayoutIfNeeded()
 		}
+
+		customDelegate?.textStorageDidProcessEditing(self)
 	}
 
 
