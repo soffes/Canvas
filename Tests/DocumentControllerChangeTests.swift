@@ -24,16 +24,14 @@ class DocumentControllerChangeTests: XCTestCase {
 		let will = expectationWithDescription("willUpdate")
 		delegate.willUpdate = { will.fulfill() }
 
-		var inserted = [Message]()
+		let insert = expectationWithDescription("didInsert")
 		delegate.didInsert = { block, index in
-			print("Insert \(block.dynamicType) at \(index)")
-			inserted.append((block, index))
+			insert.fulfill()
 		}
 
-		var removed = [Message]()
+		let remove = expectationWithDescription("didRemove")
 		delegate.didRemove = { block, index in
-			print("Remove \(block.dynamicType) at \(index)")
-			removed.append((block, index))
+			remove.fulfill()
 		}
 
 		let did = expectationWithDescription("didUpdate")
@@ -41,9 +39,6 @@ class DocumentControllerChangeTests: XCTestCase {
 
 		controller.replaceCharactersInRange(NSRange(location: 22, length: 0), withString: "!")
 		waitForExpectationsWithTimeout(0.5, handler: nil)
-
-		XCTAssertEqual(2, inserted.count)
-		XCTAssertEqual(2, removed.count)
 
 		XCTAssertEqual(delegate.presentationString, controller.document.presentationString)
 		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
