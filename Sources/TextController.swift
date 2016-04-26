@@ -331,7 +331,7 @@ extension TextController: TextStorageDelegate {
 
 		if string == "\n" {
 			// Continue the previous node
-			if let block = document.blockAt(backingLocation: backingRange.location) as? ReturnCompletable {
+			if let block = document.blockAt(backingLocation: backingRange.location) as? ReturnCompletable ?? document.blocks.last {
 				// Bust out of completion
 				if block.visibleRange.length == 0 {
 					backingRange = block.range
