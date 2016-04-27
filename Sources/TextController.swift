@@ -279,8 +279,10 @@ extension TextController: DocumentControllerDelegate {
 
 		let stringLength = (string as NSString).length
 		if var selectedRange = presentationSelectedRange {
-			selectedRange.location += stringLength
-			selectedRange.location -= range.length
+			if stringLength > 0 {
+				selectedRange.location += stringLength
+			}
+			selectedRange.length = 0
 			presentationSelectedRange = selectedRange
 		}
 	}
@@ -366,7 +368,8 @@ extension TextController: TextStorageDelegate {
 
 		edit(backingRange: backingRange, replacement: replacement)
 
-		presentationRange.length = (replacement as NSString).length
+		backingRange.length = (replacement as NSString).length
+		presentationRange = document.presentationRange(backingRange: backingRange)
 		processMarkdownShortcuts(presentationRange)
 	}
 

@@ -12,11 +12,6 @@ import CanvasNative
 extension TextController {
 	func processMarkdownShortcuts(presentationRange: NSRange) {
 		let text = documentController.document.presentationString as NSString
-
-		if NSMaxRange(presentationRange) > text.length {
-			return
-		}
-
 		let searchRange = NSUnionRange(presentationRange, text.lineRangeForRange(presentationRange))
 
 		// TODO: This fails if there is more than one line of markdown pasted since it's relative to the node before
