@@ -371,7 +371,13 @@ extension TextController: TextStorageDelegate {
 	}
 
 	func textStorageDidProcessEditing(textStorage: TextStorage) {
-		refreshAnnotations()
+		if textStorage.isEditing {
+			return
+		}
+
+		dispatch_async(dispatch_get_main_queue()) { [weak self] in
+			self?.refreshAnnotations()
+		}
 	}
 
 	// Commit the edit to DocumentController and submit the operation to OT. This doesn't go through the text system so

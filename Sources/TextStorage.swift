@@ -22,11 +22,27 @@ class TextStorage: BaseTextStorage {
 	weak var textController: TextController?
 	weak var customDelegate: TextStorageDelegate?
 
+	var isEditing: Bool {
+		return editCount > 0
+	}
+
+	private var editCount = 0
+
 	private var styles = [Style]()
 	private var invalidDisplayRange: NSRange?
 
 	
 	// MARK: - NSTextStorage
+
+	override func beginEditing() {
+		editCount += 1
+		super.beginEditing()
+	}
+
+	override func endEditing() {
+		editCount -= 1
+		super.endEditing()
+	}
 
 	override func replaceCharactersInRange(range: NSRange, withString string: String) {
 		// Local changes are delegated to the text controller
