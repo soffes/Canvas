@@ -35,14 +35,20 @@ public final class TextController {
 	public weak var selectionDelegate: TextControllerSelectionDelegate?
 	public weak var annotationDelegate: TextControllerAnnotationDelegate?
 
+	let _textStorage = TextStorage()
 	public var textStorage: NSTextStorage {
 		return _textStorage
 	}
 
-	let _textStorage = TextStorage()
+	private let _layoutManager = LayoutManager()
+	public var layoutManager: NSLayoutManager {
+		return _layoutManager
+	}
 
-	public let layoutManager: NSLayoutManager
-	public let textContainer: NSTextContainer
+	private let _textContainer = TextContainer()
+	public var textContainer: NSTextContainer {
+		return _textContainer
+	}
 
 	public var presentationString: String {
 		return textStorage.string
@@ -98,19 +104,13 @@ public final class TextController {
 		self.canvasID = canvasID
 		self.theme = theme
 
-		let layoutManager = LayoutManager()
-		self.layoutManager = layoutManager
-
-		let textContainer = TextContainer()
-		self.textContainer = textContainer
-
 		annotationsController = AnnotationsController(theme: theme)
 		annotationsController.textController = self
 		annotationsController.delegate = self
 
 		// Configure Text Kit
-		textContainer.textController = self
-		layoutManager.textController = self
+		_textContainer.textController = self
+		_layoutManager.textController = self
 		_textStorage.textController = self
 		_textStorage.customDelegate = self
 		layoutManager.addTextContainer(textContainer)
