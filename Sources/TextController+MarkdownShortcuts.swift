@@ -49,7 +49,7 @@ extension TextController {
 			// Update selection
 			guard let updated = self?.documentController.document else { return }
 			var selection = updated.presentationRange(backingRange: replacementRange)
-			selection.location = NSMaxRange(selection) - 1
+			selection.location -= 1 // The character they typed
 			selection.length = 0
 			self?.presentationSelectedRange = selection
 		}
