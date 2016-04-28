@@ -90,6 +90,10 @@ public final class TextController {
 
 	let documentController = DocumentController()
 
+	public var currentDocument: Document {
+		return documentController.document
+	}
+
 	let serverURL: NSURL
 	let accessToken: String
 	let organizationID: String
