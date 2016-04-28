@@ -122,6 +122,26 @@ public struct Document {
 		return block.range.contains(backingLocation) || block.range.max == backingLocation ? block : nil
 	}
 
+	public func nodesIn(backingRange backingRange: NSRange) -> [Node] {
+		return nodesIn(backingRange: backingRange, nodes: blocks.map({ $0 as Node }))
+	}
+
+	private func nodesIn(backingRange backingRange: NSRange, nodes: [Node]) -> [Node] {
+		var results = [Node]()
+
+		for node in nodes {
+			if node.range.intersection(backingRange) != nil {
+				results.append(node)
+
+				if let node = node as? NodeContainer {
+					results += nodesIn(backingRange: backingRange, nodes: node.subnodes.map { $0 as Node })
+				}
+			}
+		}
+
+		return results
+	}
+
 
 	// MARK: - Presentation String
 
