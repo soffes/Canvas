@@ -81,7 +81,7 @@ class TextStorage: BaseTextStorage {
 		guard !styles.isEmpty else { return }
 
 		for style in styles {
-			if NSMaxRange(style.range) > storage.length {
+			if style.range.max > storage.length {
 				print("WARNING: Invalid style: \(style.range)")
 				continue
 			}

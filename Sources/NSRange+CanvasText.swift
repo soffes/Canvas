@@ -19,6 +19,10 @@ extension NSRange {
 		return indicies
 	}
 
+	var max: Int {
+		return NSMaxRange(self)
+	}
+
 	@warn_unused_result
 	func equals(range: NSRange) -> Bool {
 		return NSEqualRanges(self, range)
@@ -37,5 +41,10 @@ extension NSRange {
 	@warn_unused_result
 	func contains(location: Int) -> Bool {
 		return NSLocationInRange(location, self)
+	}
+
+	@warn_unused_result
+	func union(range: NSRange) -> NSRange {
+		return NSUnionRange(self, range)
 	}
 }

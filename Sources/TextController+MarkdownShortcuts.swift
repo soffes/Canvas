@@ -14,7 +14,7 @@ extension TextController {
 		let text = documentController.document.presentationString as NSString
 
 		var searchRange = presentationRange
-		if NSMaxRange(searchRange) >= text.length {
+		if searchRange.max >= text.length {
 			searchRange.length = text.length - searchRange.location
 		}
 		searchRange = text.lineRangeForRange(searchRange)

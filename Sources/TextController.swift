@@ -369,7 +369,7 @@ extension TextController: TextStorageDelegate {
 
 				// TODO: Support language
 				if line.hasPrefix("```") {
-					backingRange = NSUnionRange(lineRange, backingRange)
+					backingRange = lineRange.union(backingRange)
 					replacement = CodeBlock.nativeRepresentation() + "\n"
 				}
 			}

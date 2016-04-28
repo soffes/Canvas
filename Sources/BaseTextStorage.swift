@@ -36,7 +36,7 @@ public class BaseTextStorage: NSTextStorage {
 	}
 
 	public override func setAttributes(attributes: [String : AnyObject]?, range: NSRange) {
-		guard NSMaxRange(range) <= length else {
+		guard range.max <= length else {
 			print("WARNING: Tried to set attributes at out of bounds range \(range). Length: \(length)")
 			return
 		}

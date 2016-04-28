@@ -49,7 +49,7 @@ extension TextController {
 		guard let selection = presentationSelectedRange else { return }
 		
 		let text = documentController.document.presentationString as NSString
-		let range = NSRange(location: NSMaxRange(text.lineRangeForRange(selection)), length: 0)
+		let range = NSRange(location: text.lineRangeForRange(selection).max, length: 0)
 		textStorage.replaceCharactersInRange(range, withString: "\n")
 		presentationSelectedRange = range
 	}
