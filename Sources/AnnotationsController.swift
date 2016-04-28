@@ -105,6 +105,9 @@ final class AnnotationsController {
 		let presentationRange = textController.documentController.document.presentationRange(backingRange: annotation.block.range)
 		var rect = textController.annotationDelegate?.textController(textController, firstRectForRange: presentationRange) ?? .zero
 
+		// Hack for multiline. This is dependent on font size.
+		rect.size.height = 27
+
 		switch annotation.style {
 		case .LeadingGutter:
 			// Make the annotation the width of the indentation. It's up to the view to position itself inside this space.
