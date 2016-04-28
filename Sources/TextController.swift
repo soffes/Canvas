@@ -376,6 +376,23 @@ extension TextController: TextStorageDelegate {
 		backingRange.length = (replacement as NSString).length
 		presentationRange = document.presentationRange(backingRange: backingRange)
 		processMarkdownShortcuts(presentationRange)
+
+		let stringLength = (string as NSString).length
+		let replacementLength = (replacement as NSString).length
+		if replacementLength == 0 && stringLength > 0, let selection = presentationSelectedRange {
+			dispatch_async(dispatch_get_main_queue()) { [weak self] in
+				self?.presentationSelectedRange = selection
+
+				guard let textStorage = self?.textStorage, layoutManager = self?.layoutManager else { return }
+
+				var lineRange = selection
+				lineRange.location = max(0, lineRange.location - 1)
+				lineRange = (textStorage.string as NSString).lineRangeForRange(lineRange)
+
+				layoutManager.ensureGlyphsForCharacterRange(lineRange)
+				layoutManager.invalidateLayoutForCharacterRange(lineRange, actualCharacterRange: nil)
+			}
+		}
 	}
 
 	func textStorageDidProcessEditing(textStorage: TextStorage) {
