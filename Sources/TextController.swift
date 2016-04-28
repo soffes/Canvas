@@ -23,6 +23,7 @@ public protocol TextControllerSelectionDelegate: class {
 
 public protocol TextControllerAnnotationDelegate: class {
 	func textController(textController: TextController, willAddAnnotation annotation: Annotation)
+	func textController(textController: TextController, willRemoveAnnotation annotation: Annotation)
 	func textController(textController: TextController, firstRectForRange range: NSRange) -> CGRect?
 }
 
@@ -323,6 +324,10 @@ extension TextController: DocumentControllerDelegate {
 extension TextController: AnnotationsControllerDelegate {
 	func annotationsController(annotationsController: AnnotationsController, willAddAnnotation annotation: Annotation) {
 		annotationDelegate?.textController(self, willAddAnnotation: annotation)
+	}
+
+	func annotationsController(annotationsController: AnnotationsController, willRemoveAnnotation annotation: Annotation) {
+		annotationDelegate?.textController(self, willRemoveAnnotation: annotation)
 	}
 }
 

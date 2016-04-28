@@ -11,6 +11,7 @@ import CanvasNative
 
 protocol AnnotationsControllerDelegate: class {
 	func annotationsController(annotationsController: AnnotationsController, willAddAnnotation annotation: Annotation)
+	func annotationsController(annotationsController: AnnotationsController, willRemoveAnnotation annotation: Annotation)
 }
 
 final class AnnotationsController {
@@ -74,6 +75,10 @@ final class AnnotationsController {
 
 	func remove(block block: BlockNode, index: Int) {
 		guard enabled && index < annotations.count else { return }
+
+		if let annotation = annotations[index] {
+			delegate?.annotationsController(self, willRemoveAnnotation: annotation)
+		}
 
 		annotations[index]?.view.removeFromSuperview()
 		annotations.removeAtIndex(index)
