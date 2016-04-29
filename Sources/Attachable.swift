@@ -6,12 +6,16 @@
 //  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public protocol Attachable: NativePrefixable {}
 
 extension Attachable {
 	public var visibleRange: NSRange {
 		return NSRange(location: nativePrefixRange.max, length: 1)
+	}
+	
+	public func contentInString(string: String) -> String {
+		return String(Character(UnicodeScalar(NSAttachmentCharacter)))
 	}
 }
