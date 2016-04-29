@@ -155,7 +155,7 @@ public final class TextController {
 		for block in documentController.document.blocks {
 			guard let block = block as? Attachable,
 				style = attachmentStyle(block: block)
-				else { continue }
+			else { continue }
 			
 			styles.append(style)
 		}
