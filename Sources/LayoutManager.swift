@@ -132,6 +132,6 @@ extension LayoutManager: NSLayoutManagerDelegate {
 		let characterIndex = characterIndexForGlyphAtIndex(glyphIndex)
 		guard let block = textController.documentController.document.blockAt(presentationLocation: characterIndex) else { return 0 }
 
-		return textController.theme.blockSpacing(block: block, horizontalSizeClass: textController.horizontalSizeClass).marginBottom
+		return textController.theme.blockSpacing(block: block, horizontalSizeClass: textController.traitCollection.horizontalSizeClass).marginBottom
 	}
 }

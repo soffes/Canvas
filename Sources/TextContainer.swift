@@ -39,7 +39,7 @@ class TextContainer: NSTextContainer {
 		var rect = proposedRect
 
 		if let textController = textController, block = textController.documentController.document.blockAt(presentationLocation: index) {
-			let spacing = textController.theme.blockSpacing(block: block, horizontalSizeClass: textController.horizontalSizeClass)
+			let spacing = textController.theme.blockSpacing(block: block, horizontalSizeClass: textController.traitCollection.horizontalSizeClass)
 			rect = spacing.applyPadding(rect)
 
 			// Apply the top margin if it's not the second node

@@ -77,13 +77,12 @@ public final class TextController {
 		}
 	}
 
-	public var horizontalSizeClass: UserInterfaceSizeClass = .Unspecified {
+	public var theme: Theme
+	public var traitCollection = UITraitCollection(horizontalSizeClass: .Unspecified) {
 		didSet {
-			annotationsController.horizontalSizeClass = horizontalSizeClass
+			traitCollectionDidChange(oldValue)
 		}
 	}
-
-	public var theme: Theme
 
 	private var transportController: TransportController?
 	private let annotationsController: AnnotationsController
@@ -138,10 +137,33 @@ public final class TextController {
 		transportController.connect()
 		self.transportController = transportController
 	}
+	
+	
+	// MARK: - Traits
+	
+	public func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+		layoutAttachments()
+		annotationsController.horizontalSizeClass = traitCollection.horizontalSizeClass
+	}
 
 
 	// MARK: - Private
 
+	private func layoutAttachments() {
+		var styles = [Style]()
+		
+		for block in documentController.document.blocks {
+			guard let block = block as? Attachable,
+				style = attachmentStyle(block: block)
+				else { continue }
+			
+			styles.append(style)
+		}
+		
+		_textStorage.addStyles(styles)
+		_textStorage.applyStyles()
+	}
+	
 	private func stylesForBlock(block: BlockNode) -> [Style] {
 		let blockStyle = Style(
 			range: documentController.document.presentationRange(backingRange: block.visibleRange),
@@ -455,17 +477,6 @@ extension TextController: TextStorageDelegate {
 
 extension TextController: LayoutManagerDelegate {
 	func layoutManager(layoutManager: NSLayoutManager, textContainerChangedGeometry textContainer: NSTextContainer) {
-		var styles = [Style]()
-		
-		for block in documentController.document.blocks {
-			guard let block = block as? Attachable,
-				style = attachmentStyle(block: block)
-			else { continue }
-			
-			styles.append(style)
-		}
-		
-		_textStorage.addStyles(styles)
-		_textStorage.applyStyles()
+		layoutAttachments()
 	}
 }
