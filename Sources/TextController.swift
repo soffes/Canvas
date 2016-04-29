@@ -208,7 +208,7 @@ public final class TextController {
 		return styles
 	}
 
-	func submitOperations(backingRange backingRange: NSRange, string: String) {
+	private func submitOperations(backingRange backingRange: NSRange, string: String) {
 		guard let transportController = transportController else {
 			print("[TextController] WARNING: Tried to submit an operation without a connection.")
 			return
@@ -227,6 +227,39 @@ public final class TextController {
 		if backingRange.length > 0 {
 			transportController.submitOperation(.Insert(location: UInt(backingRange.location), string: string))
 		}
+	}
+	
+	private func addAttachment(block: Attachable) {
+		let attachment: NSTextAttachment
+		
+		// Horizontal rule
+		if block is HorizontalRule {
+			guard let image = HorizontalRuleAttachment.image(width: textContainer.size.width, theme: theme) else { return }
+			
+			attachment = NSTextAttachment()
+			attachment.image = image
+			attachment.bounds = CGRect(origin: .zero, size: image.size)
+		}
+		
+		// Image
+		else if let block = block as? Image {
+			print("Image: \(block)")
+			return
+		}
+		
+		// Unsupported attachment
+		else {
+			print("WARNING: Unsupported attachmable: \(block)")
+			return
+		}
+		
+		// Add attachment to text system
+		let range = documentController.document.presentationRange(backingRange: block.visibleRange)
+		_textStorage.addStyles([
+			Style(range: range, attributes: [
+				NSAttachmentAttributeName: attachment
+			])
+		])
 	}
 }
 
@@ -293,6 +326,10 @@ extension TextController: DocumentControllerDelegate {
 	public func documentController(controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int) {
 		annotationsController.insert(block: block, index: index)
 		_textStorage.addStyles(stylesForBlock(block))
+		
+		if let block = block as? Attachable {
+			addAttachment(block)
+		}
 	}
 
 	public func documentController(controller: DocumentController, didRemoveBlock block: BlockNode, atIndex index: Int) {
