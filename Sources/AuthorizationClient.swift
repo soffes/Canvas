@@ -57,11 +57,12 @@ public struct AuthorizationClient: NetworkClient {
 		let session = self.session
 		session.dataTaskWithRequest(request) { responseData, response, error in
 			guard let responseData = responseData,
+				statusCode = (response as? NSHTTPURLResponse)?.statusCode,
 				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
 				dictionary = json as? JSONDictionary
 			else {
 				dispatch_async(networkCompletionQueue) {
-					completion(.Failure("Invalid JSON"))
+					completion(.Failure("Invalid response."))
 				}
 				return
 			}
@@ -73,15 +74,15 @@ public struct AuthorizationClient: NetworkClient {
 				return
 			}
 
-			if let errors = dictionary["errors"] as? [[String: String]], error = errors.first, message = error["detail"] {
+			if statusCode != 200, let error = dictionary["message"] as? String {
 				dispatch_async(networkCompletionQueue) {
-					completion(.Failure(message))
+					completion(.Failure(error))
 				}
 				return
 			}
 
 			dispatch_async(networkCompletionQueue) {
-				completion(.Failure("Invalid response"))
+				completion(.Failure("Invalid response."))
 			}
 		}.resume()
 	}
