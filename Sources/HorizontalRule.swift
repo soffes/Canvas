@@ -29,8 +29,9 @@ public struct HorizontalRule: Attachable, Equatable {
 	// MARK: - Initializers
 
 	public init?(string: String, range: NSRange) {
-		guard let match = regularExpression.firstMatchInString(string, options: [], range: range)
-		where NSEqualRanges(match.range, range)
+		let bounds = NSRange(location: 0, length: (string as NSString).length)
+		guard let match = regularExpression.firstMatchInString(string, options: [], range: bounds)
+		where match.range.length == range.length
 		else { return nil }
 
 		self.range = range
