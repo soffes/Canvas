@@ -18,6 +18,10 @@ public struct LightTheme: Theme {
 	public let foregroundColor = UIColor(white: 0.133, alpha: 1)
 	public let placeholderColor = Color(red: 0.847, green: 0.847, blue: 0.863, alpha: 1)
 	public var tintColor = Color(red: 0.004, green: 0.412, blue: 1, alpha: 1)
+	
+	public var horizontalRuleColor: Color {
+		return placeholderColor
+	}
 
 	public var bulletColor: Color {
 		return placeholderColor
