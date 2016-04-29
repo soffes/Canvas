@@ -10,8 +10,7 @@ import UIKit
 import CanvasNative
 
 protocol LayoutManagerDelegate: class {
-	func layoutManagerDidInvalidateGlyphs(layoutManager: NSLayoutManager)
-	func layoutManager(layoutManager: NSLayoutManager, didCompleteLayoutForTextContainer textContainer: NSTextContainer)
+	func layoutManager(layoutManager: NSLayoutManager, textContainerChangedGeometry textContainer: NSTextContainer)
 }
 
 /// All ranges are presentation ranges.
@@ -69,6 +68,14 @@ class LayoutManager: NSLayoutManager {
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+	
+	
+	// MARK: - NSLayoutManager
+	
+	override func textContainerChangedGeometry(container: NSTextContainer) {
+		super.textContainerChangedGeometry(container)
+		layoutDelegate?.layoutManager(self, textContainerChangedGeometry: container)
+	}
 
 
 	// MARK: - Private
@@ -78,7 +85,6 @@ class LayoutManager: NSLayoutManager {
 		guard let characterLength = textStorage?.length else { return }
 		let characterRange = NSRange(location: 0, length: characterLength)
 		invalidateGlyphsForCharacterRange(characterRange, changeInLength: 0, actualCharacterRange: nil)
-		layoutDelegate?.layoutManagerDidInvalidateGlyphs(self)
 		needsInvalidateGlyphs = false
 	}
 
@@ -95,11 +101,6 @@ class LayoutManager: NSLayoutManager {
 
 
 extension LayoutManager: NSLayoutManagerDelegate {
-	func layoutManager(layoutManager: NSLayoutManager, didCompleteLayoutForTextContainer textContainer: NSTextContainer?, atEnd layoutFinishedFlag: Bool) {
-		guard let textContainer = textContainer else { return }
-		layoutDelegate?.layoutManager(self, didCompleteLayoutForTextContainer: textContainer)
-	}
-
 	func layoutManager(layoutManager: NSLayoutManager, shouldGenerateGlyphs glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSGlyphProperty>, characterIndexes: UnsafePointer<Int>, font: UIFont, forGlyphRange glyphRange: NSRange) -> Int {
 		let properties = UnsafeMutablePointer<NSGlyphProperty>(props)
 

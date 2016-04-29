@@ -116,6 +116,7 @@ public final class TextController {
 		// Configure Text Kit
 		_textContainer.textController = self
 		_layoutManager.textController = self
+		_layoutManager.layoutDelegate = self
 		_textStorage.textController = self
 		_textStorage.customDelegate = self
 		layoutManager.addTextContainer(textContainer)
@@ -229,36 +230,33 @@ public final class TextController {
 		}
 	}
 	
-	private func addAttachment(block: Attachable) {
+	private func attachmentStyle(block block: Attachable) -> Style? {
 		let attachment: NSTextAttachment
 		
 		// Horizontal rule
 		if block is HorizontalRule {
-			guard let image = HorizontalRuleAttachment.image(width: textContainer.size.width, theme: theme) else { return }
+			guard let image = HorizontalRuleAttachment.image(theme: theme) else { return nil }
 			
 			attachment = NSTextAttachment()
 			attachment.image = image
-			attachment.bounds = CGRect(origin: .zero, size: image.size)
+			attachment.bounds = CGRect(x: 0, y: 0, width: textContainer.size.width, height: HorizontalRuleAttachment.height)
 		}
 		
 		// Image
 		else if let block = block as? Image {
 			print("Image: \(block)")
-			return
+			return nil
 		}
 		
 		// Unsupported attachment
 		else {
 			print("WARNING: Unsupported attachmable: \(block)")
-			return
+			return nil
 		}
 		
-		// Add attachment to text system
 		let range = documentController.document.presentationRange(backingRange: block.visibleRange)
-		_textStorage.addStyles([
-			Style(range: range, attributes: [
-				NSAttachmentAttributeName: attachment
-			])
+		return Style(range: range, attributes: [
+			NSAttachmentAttributeName: attachment
 		])
 	}
 }
@@ -327,8 +325,8 @@ extension TextController: DocumentControllerDelegate {
 		annotationsController.insert(block: block, index: index)
 		_textStorage.addStyles(stylesForBlock(block))
 		
-		if let block = block as? Attachable {
-			addAttachment(block)
+		if let block = block as? Attachable, style = attachmentStyle(block: block) {
+			_textStorage.addStyles([style])
 		}
 	}
 
@@ -451,5 +449,23 @@ extension TextController: TextStorageDelegate {
 	func edit(backingRange backingRange: NSRange, replacement: String) {
 		documentController.replaceCharactersInRange(backingRange, withString: replacement)
 		submitOperations(backingRange: backingRange, string: replacement)
+	}
+}
+
+
+extension TextController: LayoutManagerDelegate {
+	func layoutManager(layoutManager: NSLayoutManager, textContainerChangedGeometry textContainer: NSTextContainer) {
+		var styles = [Style]()
+		
+		for block in documentController.document.blocks {
+			guard let block = block as? Attachable,
+				style = attachmentStyle(block: block)
+			else { continue }
+			
+			styles.append(style)
+		}
+		
+		_textStorage.addStyles(styles)
+		_textStorage.applyStyles()
 	}
 }

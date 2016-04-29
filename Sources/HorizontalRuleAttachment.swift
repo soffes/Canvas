@@ -10,19 +10,22 @@ import UIKit
 
 struct HorizontalRuleAttachment {
 	
-	private static let height: CGFloat = 1
+	static let height: CGFloat = 1
 	
-	static func image(width width: CGFloat, theme: Theme) -> UIImage? {
+	static func image(theme theme: Theme) -> UIImage? {
 		// Create context
 		let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedLast.rawValue).rawValue
-		let context = CGBitmapContextCreate(nil, Int(width), Int(height), 8, 0, CGColorSpaceCreateDeviceRGB(), bitmapInfo)
+		let context = CGBitmapContextCreate(nil, Int(height), Int(height), 8, 0, CGColorSpaceCreateDeviceRGB(), bitmapInfo)
 		
 		// Draw
 		CGContextSetFillColorWithColor(context, theme.horizontalRuleColor.CGColor)
-		CGContextFillRect(context, CGRect(x: 0, y: 0, width: width, height: height))
+		CGContextFillRect(context, CGRect(x: 0, y: 0, width: height, height: height))
+		
+		// Create image
+		guard let cgImage = CGBitmapContextCreateImage(context) else { return nil }
+		let image = UIImage(CGImage: cgImage)
 		
 		// Return image
-		let image = CGBitmapContextCreateImage(context)
-		return image.flatMap { UIImage(CGImage: $0) }
+		return image
 	}
 }
