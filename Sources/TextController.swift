@@ -393,11 +393,14 @@ extension TextController: AnnotationsControllerDelegate {
 
 extension TextController: TextStorageDelegate {
 	func textStorage(textStorage: TextStorage, didReplaceCharactersInRange range: NSRange, withString string: String) {
+		print("range: \(range), string: `\(string)`")
+		
 		let document = documentController.document
 		var presentationRange = range
 		var backingRange = document.backingRange(presentationRange: presentationRange)
 		var replacement = string
 
+		// Return completion
 		if string == "\n" {
 			// Continue the previous node
 			if let block = document.blockAt(backingLocation: backingRange.location) as? ReturnCompletable {
@@ -436,9 +439,7 @@ extension TextController: TextStorageDelegate {
 		presentationRange = document.presentationRange(backingRange: backingRange)
 		processMarkdownShortcuts(presentationRange)
 
-		let stringLength = (string as NSString).length
-		let replacementLength = (replacement as NSString).length
-		if replacementLength == 0 && stringLength > 0, let selection = presentationSelectedRange {
+		if let selection = presentationSelectedRange {
 			dispatch_async(dispatch_get_main_queue()) { [weak self] in
 				self?.presentationSelectedRange = selection
 
