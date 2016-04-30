@@ -392,9 +392,7 @@ extension TextController: AnnotationsControllerDelegate {
 
 
 extension TextController: TextStorageDelegate {
-	func textStorage(textStorage: TextStorage, didReplaceCharactersInRange range: NSRange, withString string: String) {
-		print("range: \(range), string: `\(string)`")
-		
+	func textStorage(textStorage: TextStorage, didReplaceCharactersInRange range: NSRange, withString string: String) {		
 		let document = documentController.document
 		var presentationRange = range
 		var backingRange = document.backingRange(presentationRange: presentationRange)
