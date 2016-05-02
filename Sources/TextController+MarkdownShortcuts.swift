@@ -9,6 +9,8 @@
 import Foundation
 import CanvasNative
 
+private typealias Match = (replacement: String, location: Int)
+
 extension TextController {
 	func processMarkdownShortcuts(presentationRange: NSRange) {
 		let text = documentController.document.presentationString as NSString
@@ -30,15 +32,15 @@ extension TextController {
 
 			let backingRange = document.backingRange(presentationRange: range)
 			var replacementRange = backingRange
-			var replacement: String
+			let replacement: String
 
 			if let node = node as? UnorderedListItem, match = self?.prefixForUnorderedList(string, unorderedListItem: node) {
-				replacement = match.0
+				replacement = match.replacement
 				replacementRange = node.nativePrefixRange
-				replacementRange.length += match.1
+				replacementRange.length += match.location
 			} else if node is Paragraph, let match = self?.prefixForParagraph(string) {
-				replacement = match.0
-				replacementRange.length = match.1
+				replacement = match.replacement
+				replacementRange.length = match.location
 			} else {
 				return
 			}
@@ -46,10 +48,8 @@ extension TextController {
 			// Replace
 			self?.edit(backingRange: replacementRange, replacement: replacement)
 
-			// Update selection
-			guard let updated = self?.documentController.document else { return }
-			var selection = updated.presentationRange(backingRange: replacementRange)
-			selection.location -= 1 // The character they typed
+			// Reset selection
+			guard var selection = self?.presentationSelectedRange else { return }
 			selection.length = 0
 			self?.setPresentationSelectedRange(selection, updateTextView: true)
 		}
@@ -58,7 +58,7 @@ extension TextController {
 
 	// MARK: - Private
 
-	private func prefixForUnorderedList(string: String, unorderedListItem: UnorderedListItem? = nil) -> (String, Int)? {
+	private func prefixForUnorderedList(string: String, unorderedListItem: UnorderedListItem? = nil) -> Match? {
 		let scanner = NSScanner(string: string)
 		scanner.charactersToBeSkipped = nil
 
@@ -70,7 +70,7 @@ extension TextController {
 		return nil
 	}
 
-	private func prefixForParagraph(string: String) -> (String, Int)? {
+	private func prefixForParagraph(string: String) -> Match? {
 		let scanner = NSScanner(string: string)
 		scanner.charactersToBeSkipped = nil
 

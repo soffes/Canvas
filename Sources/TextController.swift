@@ -288,15 +288,6 @@ public final class TextController {
 
 	// Update from Text Controller
 	func setPresentationSelectedRange(range: NSRange?, updateTextView: Bool) {
-		// Gross, but I don't want to have a public operator exported from the framework 😕
-		if presentationSelectedRange == nil && range == nil {
-			return
-		}
-
-		if let presentationSelectedRange = presentationSelectedRange, range = range where NSEqualRanges(presentationSelectedRange, range) {
-			return
-		}
-
 		presentationSelectedRange = range
 
 		if updateTextView && range != nil {
