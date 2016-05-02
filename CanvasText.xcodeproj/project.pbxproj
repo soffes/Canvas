@@ -21,7 +21,6 @@
 		21AD8C301C8A430B000A53F8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C241C8A430B000A53F8 /* Theme.swift */; };
 		21AD8C311C8A430B000A53F8 /* UserInterfaceSizeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C251C8A430B000A53F8 /* UserInterfaceSizeClass.swift */; };
 		21AD8C381C8A433D000A53F8 /* CanvasText.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AD8C351C8A433D000A53F8 /* CanvasText.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		21AD8C3B1C8A4350000A53F8 /* CanvasTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C271C8A430B000A53F8 /* CanvasTextTests.swift */; };
 		21AD8C3E1C8A43E2000A53F8 /* OperationTransport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AD8C3D1C8A43E2000A53F8 /* OperationTransport.framework */; };
 		21AD8C401C8A443A000A53F8 /* CanvasNative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AD8C3F1C8A443A000A53F8 /* CanvasNative.framework */; };
 		21AD8D001C8A487E000A53F8 /* TextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CFF1C8A487E000A53F8 /* TextStorage.swift */; };
@@ -46,6 +45,9 @@
 		21E1D9E21C8DF65900283961 /* AnnotationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E11C8DF65900283961 /* AnnotationsController.swift */; };
 		21E1D9E61C8DF6B800283961 /* Themeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E51C8DF6B800283961 /* Themeable.swift */; };
 		21E1D9E81C8E212300283961 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E71C8E212300283961 /* Annotation.swift */; };
+		21F7EEEC1CD7F77D004E80E2 /* SelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7EEEB1CD7F77D004E80E2 /* SelectionController.swift */; };
+		21F7EEEF1CD7F833004E80E2 /* SelectionControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7EEED1CD7F82F004E80E2 /* SelectionControllerTests.swift */; };
+		21F7EEF11CD7F8EA004E80E2 /* NSRange+CanvasTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7EEF01CD7F8EA004E80E2 /* NSRange+CanvasTextTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +75,6 @@
 		21AD8C231C8A430B000A53F8 /* TextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextController.swift; sourceTree = "<group>"; };
 		21AD8C241C8A430B000A53F8 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		21AD8C251C8A430B000A53F8 /* UserInterfaceSizeClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInterfaceSizeClass.swift; sourceTree = "<group>"; };
-		21AD8C271C8A430B000A53F8 /* CanvasTextTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasTextTests.swift; sourceTree = "<group>"; };
 		21AD8C351C8A433D000A53F8 /* CanvasText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasText.h; sourceTree = "<group>"; };
 		21AD8C361C8A433D000A53F8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21AD8C371C8A433D000A53F8 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
@@ -101,6 +102,9 @@
 		21E1D9E11C8DF65900283961 /* AnnotationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationsController.swift; sourceTree = "<group>"; };
 		21E1D9E51C8DF6B800283961 /* Themeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Themeable.swift; sourceTree = "<group>"; };
 		21E1D9E71C8E212300283961 /* Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
+		21F7EEEB1CD7F77D004E80E2 /* SelectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionController.swift; sourceTree = "<group>"; };
+		21F7EEED1CD7F82F004E80E2 /* SelectionControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionControllerTests.swift; sourceTree = "<group>"; };
+		21F7EEF01CD7F8EA004E80E2 /* NSRange+CanvasTextTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+CanvasTextTests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,9 +151,7 @@
 		21AD8C1C1C8A430B000A53F8 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				21AD8C231C8A430B000A53F8 /* TextController.swift */,
-				214F9FF21CC6B2E400927A07 /* TextController+Actions.swift */,
-				216459A91CC1957C00033B7F /* TextController+MarkdownShortcuts.swift */,
+				21F7EEEA1CD7E98A004E80E2 /* Text Controller */,
 				21AD8CFE1C8A4869000A53F8 /* Text Kit */,
 				21AD8C841C8A45FC000A53F8 /* Theme */,
 				21E1D9D91C8DF52300283961 /* Annotations */,
@@ -163,7 +165,8 @@
 		21AD8C261C8A430B000A53F8 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				21AD8C271C8A430B000A53F8 /* CanvasTextTests.swift */,
+				21F7EEED1CD7F82F004E80E2 /* SelectionControllerTests.swift */,
+				21F7EEF01CD7F8EA004E80E2 /* NSRange+CanvasTextTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -258,6 +261,17 @@
 				2138C2CE1C97228100D93FF4 /* NumberView.swift */,
 			);
 			name = Annotations;
+			sourceTree = "<group>";
+		};
+		21F7EEEA1CD7E98A004E80E2 /* Text Controller */ = {
+			isa = PBXGroup;
+			children = (
+				21AD8C231C8A430B000A53F8 /* TextController.swift */,
+				214F9FF21CC6B2E400927A07 /* TextController+Actions.swift */,
+				216459A91CC1957C00033B7F /* TextController+MarkdownShortcuts.swift */,
+				21F7EEEB1CD7F77D004E80E2 /* SelectionController.swift */,
+			);
+			name = "Text Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,6 +393,7 @@
 				21DF7A3D1C8F9B5200C17A62 /* UnorderedListItem+CanvasText.swift in Sources */,
 				21DF7A421C8FA08300C17A62 /* BlockquoteBorderView.swift in Sources */,
 				21AD8D0C1C8A496B000A53F8 /* NSRange+CanvasText.swift in Sources */,
+				21F7EEEC1CD7F77D004E80E2 /* SelectionController.swift in Sources */,
 				21AD8D001C8A487E000A53F8 /* TextStorage.swift in Sources */,
 				21AD8C291C8A430B000A53F8 /* BlockSpacing.swift in Sources */,
 				21AD8D021C8A4886000A53F8 /* BaseTextStorage.swift in Sources */,
@@ -409,7 +424,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21AD8C3B1C8A4350000A53F8 /* CanvasTextTests.swift in Sources */,
+				21F7EEEF1CD7F833004E80E2 /* SelectionControllerTests.swift in Sources */,
+				21F7EEF11CD7F8EA004E80E2 /* NSRange+CanvasTextTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

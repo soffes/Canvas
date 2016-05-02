@@ -51,7 +51,7 @@ extension TextController {
 		let text = documentController.document.presentationString as NSString
 		let range = NSRange(location: text.lineRangeForRange(selection).max, length: 0)
 		textStorage.replaceCharactersInRange(range, withString: "\n")
-		presentationSelectedRange = range
+		setPresentationSelectedRange(range, updateTextView: true)
 	}
 	
 	public func insertLineBefore() {
@@ -65,17 +65,21 @@ extension TextController {
 			return
 		}
 		
-		let range = NSRange(location: lineRange.location - 1, length: 0)
+		var range = NSRange(location: lineRange.location - 1, length: 0)
 		textStorage.replaceCharactersInRange(range, withString: "\n")
-		presentationSelectedRange = NSRange(location: lineRange.location, length: 0)
+
+		range.location += 1
+		setPresentationSelectedRange(range, updateTextView: true)
 	}
 	
 	public func deleteLine() {
 		guard let selection = presentationSelectedRange else { return }
 		
 		let text = documentController.document.presentationString as NSString
-		let range = text.lineRangeForRange(selection)
+		var range = text.lineRangeForRange(selection)
 		textStorage.replaceCharactersInRange(range, withString: "")
-		presentationSelectedRange = NSRange(location: range.location, length: 0)
+
+		range.length = 0
+		setPresentationSelectedRange(range, updateTextView: true)
 	}
 }

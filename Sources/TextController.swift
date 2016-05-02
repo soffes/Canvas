@@ -59,11 +59,7 @@ public final class TextController {
 		return documentController.document.backingString
 	}
 
-	public var presentationSelectedRange: NSRange? {
-		didSet {
-			selectionDelegate?.textControllerDidUpdateSelectedRange(self)
-		}
-	}
+	public private(set) var presentationSelectedRange: NSRange?
 
 	public var focusedBlock: BlockNode? {
 		let selection = presentationSelectedRange
@@ -281,6 +277,32 @@ public final class TextController {
 			NSAttachmentAttributeName: attachment
 		])
 	}
+
+
+	// MARK: - Selection
+
+	// Update from Text View
+	public func setPresentationSelectedRange(range: NSRange?) {
+		setPresentationSelectedRange(range, updateTextView: false)
+	}
+
+	// Update from Text Controller
+	func setPresentationSelectedRange(range: NSRange?, updateTextView: Bool) {
+		// Gross, but I don't want to have a public operator exported from the framework 😕
+		if presentationSelectedRange == nil && range == nil {
+			return
+		}
+
+		if let presentationSelectedRange = presentationSelectedRange, range = range where NSEqualRanges(presentationSelectedRange, range) {
+			return
+		}
+
+		presentationSelectedRange = range
+
+		if updateTextView && range != nil {
+			selectionDelegate?.textControllerDidUpdateSelectedRange(self)
+		}
+	}
 }
 
 
@@ -335,12 +357,11 @@ extension TextController: DocumentControllerDelegate {
 	public func documentController(controller: DocumentController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
 		_textStorage.actuallyReplaceCharactersInRange(range, withString: string)
 
-		let delta = (string as NSString).length - range.length
-		if var selectedRange = presentationSelectedRange where range.location <= selectedRange.location {
-			selectedRange.location += delta
-			selectedRange.length = 0
-			presentationSelectedRange = selectedRange
-		}
+		guard let selection = presentationSelectedRange else { return }
+
+		let length = (string as NSString).length
+		let adjusted = SelectionController.adjust(selection: selection, replacementRange: range, replacementLength: length)
+		setPresentationSelectedRange(adjusted, updateTextView: true)
 	}
 
 	public func documentController(controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int) {
@@ -437,20 +458,20 @@ extension TextController: TextStorageDelegate {
 		presentationRange = document.presentationRange(backingRange: backingRange)
 		processMarkdownShortcuts(presentationRange)
 
-		if let selection = presentationSelectedRange {
-			dispatch_async(dispatch_get_main_queue()) { [weak self] in
-				self?.presentationSelectedRange = selection
-
-				guard let textStorage = self?.textStorage, layoutManager = self?.layoutManager else { return }
-
-				var lineRange = selection
-				lineRange.location = max(0, lineRange.location - 1)
-				lineRange = (textStorage.string as NSString).lineRangeForRange(lineRange)
-
-				layoutManager.ensureGlyphsForCharacterRange(lineRange)
-				layoutManager.invalidateLayoutForCharacterRange(lineRange, actualCharacterRange: nil)
-			}
-		}
+//		if let selection = presentationSelectedRange {
+//			dispatch_async(dispatch_get_main_queue()) { [weak self] in
+//				setPresentationSelectedRange(selection, updateTextView: true)
+//
+//				guard let textStorage = self?.textStorage, layoutManager = self?.layoutManager else { return }
+//
+//				var lineRange = selection
+//				lineRange.location = max(0, lineRange.location - 1)
+//				lineRange = (textStorage.string as NSString).lineRangeForRange(lineRange)
+//
+//				layoutManager.ensureGlyphsForCharacterRange(lineRange)
+//				layoutManager.invalidateLayoutForCharacterRange(lineRange, actualCharacterRange: nil)
+//			}
+//		}
 	}
 
 	func textStorageDidProcessEditing(textStorage: TextStorage) {
