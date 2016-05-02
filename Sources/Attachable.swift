@@ -6,7 +6,11 @@
 //  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
 //
 
-import UIKit
+#if os(OSX)
+	import AppKit
+#else
+	import UIKit
+#endif
 
 public protocol Attachable: NativePrefixable {}
 

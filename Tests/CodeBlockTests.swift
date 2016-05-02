@@ -18,6 +18,10 @@ class CodeBlockTestes: XCTestCase {
 		let node2 = CodeBlock(string: "⧙code-swift⧘print(\"hi\")", range: NSRange(location: 0, length: 23))!
 		XCTAssertEqual(NSRange(location: 0, length: 12), node2.nativePrefixRange)
 		XCTAssertEqual(NSRange(location: 12, length: 11), node2.visibleRange)
+
+		let node3 = CodeBlock(string: "⧙code-⧘ugh", range: NSRange(location: 0, length: 10))!
+		XCTAssertEqual(NSRange(location: 0, length: 7), node3.nativePrefixRange)
+		XCTAssertEqual(NSRange(location: 7, length: 3), node3.visibleRange)
 	}
 
 	func testOffset() {

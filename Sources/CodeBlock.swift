@@ -47,13 +47,15 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Equa
 		}
 
 		// Language
-		let scanLocation = scanner.scanLocation
 		var language: NSString? = ""
-		if scanner.scanString("-", intoString: nil) && scanner.scanUpToString(trailingNativePrefix, intoString: &language), let language = language as? String {
-			self.language = language
-		} else {
-			self.language = nil
-			scanner.scanLocation = scanLocation
+		if scanner.scanString("-", intoString: nil) {
+			let scanLocation = scanner.scanLocation
+			if scanner.scanUpToString(trailingNativePrefix, intoString: &language), let language = language as? String {
+				self.language = language
+			} else {
+				self.language = nil
+				scanner.scanLocation = scanLocation
+			}
 		}
 
 		// Closing delimiter
