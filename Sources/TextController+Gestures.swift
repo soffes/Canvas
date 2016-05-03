@@ -9,7 +9,7 @@
 import CanvasNative
 
 extension TextController {
-	public func increaseBlockLevel(block: BlockNode) {
+	public func increaseBlockLevel(block block: BlockNode) {
 		// Convert paragraph to unordered list
 		if block is Paragraph {
 			let string = ChecklistItem.nativeRepresentation()
