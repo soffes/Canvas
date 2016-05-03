@@ -135,6 +135,7 @@ extension TransportController: WKScriptMessageHandler {
 		case .Error(let errorMessage, let lineNumber, let columnNumber):
 			webView.removeFromSuperview()
 			delegate?.transportController(self, didReceiveWebErrorMessage: errorMessage, lineNumber: lineNumber, columnNumber: columnNumber)
+			delegate?.transportController(self, didDisconnectWithErrorMessage: "error")
 		}
 	}
 }
