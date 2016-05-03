@@ -130,6 +130,27 @@ class SelectionControllerTests: XCTestCase {
 	}
 
 
+	// MARK: - Replacement Tests
+
+	func testReplaceBefore() {
+		let output = SelectionController.adjust(
+			selection: startingSelection,
+			replacementRange: NSRange(location: 0, length: 4),
+			replacementLength: 2
+		)
+		XCTAssertEqual(NSRange(location: 8, length: 9), output)
+	}
+
+	func testReplaceAfter() {
+		let output = SelectionController.adjust(
+			selection: startingSelection,
+			replacementRange: NSRange(location: 20, length: 4),
+			replacementLength: 2
+		)
+		XCTAssertEqual(NSRange(location: 10, length: 9), output)
+	}
+
+
 	// MARK: - Invalid Input Tests
 
 	func testInvalid() {

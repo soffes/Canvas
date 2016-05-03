@@ -23,7 +23,7 @@ extension TextController {
 
 		// TODO: This fails if there is more than one line of markdown pasted since it's relative to the node before
 		// we make any changes.
-		text.enumerateSubstringsInRange(searchRange, options: .ByLines) { [weak self] string, range, enclosingRange, _ in
+		text.enumerateSubstringsInRange(searchRange, options: .ByLines) { [weak self] string, range, _, _ in
 			guard let string = string,
 				document = self?.documentController.document,
 				node = document.blockAt(presentationLocation: range.location)
