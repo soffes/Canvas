@@ -35,6 +35,18 @@ public struct Heading: BlockNode, NodeContainer, Foldable, Equatable {
 
 			return Level(rawValue: rawValue - 1)!
 		}
+
+		public var isMinimum: Bool {
+			return self == .One
+		}
+
+		public var isMaximum: Bool {
+			return self == .Six
+		}
+
+		public var string: String {
+			return rawValue.description
+		}
 	}
 
 
