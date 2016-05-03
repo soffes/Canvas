@@ -14,6 +14,7 @@ import CanvasNative
 public protocol TextControllerConnectionDelegate: class {
 	func textController(textController: TextController, willConnectWithWebView webView: WKWebView)
 	func textControllerDidConnect(textController: TextController)
+	func textController(textController: TextController, didReceiveWebErrorMessage errorMessage: String?, lineNumber: UInt?, columnNumber: UInt?)
 	func textController(textController: TextController, didDisconnectWithErrorMessage errorMessage: String?)
 }
 
@@ -330,7 +331,7 @@ extension TextController: TransportControllerDelegate {
 
 	public func transportController(controller: TransportController, didReceiveWebErrorMessage errorMessage: String?, lineNumber: UInt?, columnNumber: UInt?) {
 		print("TransportController error \(errorMessage)")
-		connectionDelegate?.textController(self, didDisconnectWithErrorMessage: errorMessage)
+		connectionDelegate?.textController(self, didReceiveWebErrorMessage: errorMessage, lineNumber: lineNumber, columnNumber: columnNumber)
 	}
 
 	public func transportController(controller: TransportController, didDisconnectWithErrorMessage errorMessage: String?) {
