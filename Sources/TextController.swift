@@ -149,6 +149,30 @@ public final class TextController {
 	}
 
 
+	// MARK: - Selection
+
+	// Update from Text View
+	public func setPresentationSelectedRange(range: NSRange?) {
+		setPresentationSelectedRange(range, updateTextView: false)
+	}
+
+	// Update from Text Controller
+	func setPresentationSelectedRange(range: NSRange?, updateTextView: Bool) {
+		presentationSelectedRange = range
+
+		if updateTextView && range != nil {
+			selectionDelegate?.textControllerDidUpdateSelectedRange(self)
+		}
+	}
+
+
+	// MARK: - Querying
+
+	public func blockAt(presentationLocation presentationLocation: Int) -> BlockNode? {
+		return documentController.document.blockAt(presentationLocation: presentationLocation)
+	}
+
+
 	// MARK: - Private
 
 	private func layoutAttachments() {
@@ -282,23 +306,6 @@ public final class TextController {
 		return Style(range: range, attributes: [
 			NSAttachmentAttributeName: attachment
 		])
-	}
-
-
-	// MARK: - Selection
-
-	// Update from Text View
-	public func setPresentationSelectedRange(range: NSRange?) {
-		setPresentationSelectedRange(range, updateTextView: false)
-	}
-
-	// Update from Text Controller
-	func setPresentationSelectedRange(range: NSRange?, updateTextView: Bool) {
-		presentationSelectedRange = range
-
-		if updateTextView && range != nil {
-			selectionDelegate?.textControllerDidUpdateSelectedRange(self)
-		}
 	}
 }
 
