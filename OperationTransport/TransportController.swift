@@ -87,7 +87,11 @@ public class TransportController: NSObject {
 		
 		webView.loadHTMLString(html, baseURL: serverURL)
 	}
-	
+
+	public func disconnect(reason reason: String? = nil) {
+		webView.removeFromSuperview()
+		delegate?.transportController(self, didDisconnectWithErrorMessage: reason)
+	}
 	
 	// MARK: - Operations
 	
@@ -130,12 +134,9 @@ extension TransportController: WKScriptMessageHandler {
 		case .Snapshot(let content):
 			delegate?.transportController(self, didReceiveSnapshot: content)
 		case .Disconnect(let errorMessage):
-			webView.removeFromSuperview()
-			delegate?.transportController(self, didDisconnectWithErrorMessage: errorMessage)
+			disconnect(reason: errorMessage)
 		case .Error(let errorMessage, let lineNumber, let columnNumber):
-			webView.removeFromSuperview()
 			delegate?.transportController(self, didReceiveWebErrorMessage: errorMessage, lineNumber: lineNumber, columnNumber: columnNumber)
-			delegate?.transportController(self, didDisconnectWithErrorMessage: "error")
 		}
 	}
 }
