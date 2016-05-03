@@ -134,6 +134,11 @@ public final class TextController {
 		transportController.connect()
 		self.transportController = transportController
 	}
+
+	public func disconnect(reason reason: String?) {
+		transportController?.disconnect(reason: reason)
+		transportController = nil
+	}
 	
 	
 	// MARK: - Traits
