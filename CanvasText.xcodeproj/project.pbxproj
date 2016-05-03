@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		210B4EAD1CD94E2A006E3C11 /* TextController+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B4EAC1CD94E2A006E3C11 /* TextController+Gestures.swift */; };
 		211483CF1C8A3034002CA206 /* CanvasText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 211483C41C8A3034002CA206 /* CanvasText.framework */; };
 		2138C2CF1C97228100D93FF4 /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138C2CE1C97228100D93FF4 /* NumberView.swift */; };
 		2138C2D11C9722DF00D93FF4 /* OrderedListItem+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138C2D01C9722DF00D93FF4 /* OrderedListItem+CanvasText.swift */; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		210B4EAC1CD94E2A006E3C11 /* TextController+Gestures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextController+Gestures.swift"; sourceTree = "<group>"; };
 		211483C41C8A3034002CA206 /* CanvasText.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasText.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		211483CE1C8A3034002CA206 /* CanvasTextTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasTextTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2138C2CE1C97228100D93FF4 /* NumberView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 			children = (
 				21AD8C231C8A430B000A53F8 /* TextController.swift */,
 				214F9FF21CC6B2E400927A07 /* TextController+Actions.swift */,
+				210B4EAC1CD94E2A006E3C11 /* TextController+Gestures.swift */,
 				216459A91CC1957C00033B7F /* TextController+MarkdownShortcuts.swift */,
 				21F7EEEB1CD7F77D004E80E2 /* SelectionController.swift */,
 			);
@@ -395,6 +398,7 @@
 				21AD8D0C1C8A496B000A53F8 /* NSRange+CanvasText.swift in Sources */,
 				21F7EEEC1CD7F77D004E80E2 /* SelectionController.swift in Sources */,
 				21AD8D001C8A487E000A53F8 /* TextStorage.swift in Sources */,
+				210B4EAD1CD94E2A006E3C11 /* TextController+Gestures.swift in Sources */,
 				21AD8C291C8A430B000A53F8 /* BlockSpacing.swift in Sources */,
 				21AD8D021C8A4886000A53F8 /* BaseTextStorage.swift in Sources */,
 				214F9FF51CC6C9ED00927A07 /* Listable+CanvasText.swift in Sources */,
