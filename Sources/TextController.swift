@@ -25,7 +25,6 @@ public protocol TextControllerSelectionDelegate: class {
 public protocol TextControllerAnnotationDelegate: class {
 	func textController(textController: TextController, willAddAnnotation annotation: Annotation)
 	func textController(textController: TextController, willRemoveAnnotation annotation: Annotation)
-	func textController(textController: TextController, firstRectForRange range: NSRange) -> CGRect?
 }
 
 

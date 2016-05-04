@@ -93,30 +93,49 @@ final class AnnotationsController {
 	// MARK: - Layout
 
 	func layoutAnnotations() {
-		for annotation in annotations {
-			guard let annotation = annotation else { continue }
-			annotation.view.frame = rectForAnnotation(annotation)
+		for ann in annotations {
+			guard let annotation = ann, frame = rectForAnnotation(annotation) else {
+				ann?.view.hidden = true
+				continue
+			}
+			annotation.view.frame = frame
+			annotation.view.hidden = false
 		}
 	}
 
-	func rectForAnnotation(annotation: Annotation) -> CGRect {
+	func rectForAnnotation(annotation: Annotation) -> CGRect? {
 		guard let textController = textController else { return .zero }
 
-		let presentationRange = textController.documentController.document.presentationRange(backingRange: annotation.block.range)
-		var rect = textController.annotationDelegate?.textController(textController, firstRectForRange: presentationRange) ?? .zero
+		let document = textController.documentController.document
+		var presentationRange = document.presentationRange(backingRange: annotation.block.range)
 
-		// Hack for multiline. This is dependent on font size.
-		rect.size.height = 27
+		// Add new line
+		if presentationRange.max < (document.presentationString as NSString).length {
+			presentationRange.length += 1
+		}
+
+		let layoutManager = textController.layoutManager
+		let glyphRange = layoutManager.glyphRangeForCharacterRange(presentationRange, actualCharacterRange: nil)
+
+		var rects = [CGRect]()
+		layoutManager.enumerateLineFragmentsForGlyphRange(glyphRange) { _, usedRect, _, _, _ in
+			rects.append(usedRect)
+		}
+
+		guard let firstRect = rects.first else { return nil }
+		var rect: CGRect
 
 		switch annotation.style {
 		case .LeadingGutter:
 			// Make the annotation the width of the indentation. It's up to the view to position itself inside this space.
 			// A future optimization could be making this as small as possible. Configuring it to do this was consfusing,
 			// so deferring for now.
+			rect = firstRect
 			rect.size.width = rect.origin.x
 			rect.origin.x = 0
 
 		case .Background:
+			rect = rects.reduce(firstRect) { $0.union($1) }
 			rect.origin.x = 0
 			rect.size.width = textController.textContainer.size.width
 		}
