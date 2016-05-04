@@ -371,6 +371,18 @@ extension TextController: DocumentControllerDelegate {
 	public func documentController(controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int) {
 		annotationsController.insert(block: block, index: index)
 		_textStorage.addStyles(stylesForBlock(block))
+
+		var range = controller.document.presentationRange(backingRange: block.visibleRange)
+		if range.location > 0 {
+			range.location -= 1
+			range.length += 1
+		}
+
+		if range.max < (controller.document.presentationString as NSString).length {
+			range.length += 1
+		}
+
+		_textStorage.invalidRange(range)
 		
 		if let block = block as? Attachable, style = attachmentStyle(block: block) {
 			_textStorage.addStyles([style])

@@ -49,6 +49,18 @@ class TextStorage: BaseTextStorage {
 		customDelegate?.textStorage(self, didReplaceCharactersInRange: range, withString: string)
 	}
 
+	override func processEditing() {
+		applyStyles()
+
+		super.processEditing()
+
+		dispatch_async(dispatch_get_main_queue()) { [weak self] in
+			self?.invalidateLayoutIfNeeded()
+		}
+
+		customDelegate?.textStorageDidProcessEditing(self)
+	}
+
 
 	// MARK: - Updating Content
 
@@ -93,20 +105,12 @@ class TextStorage: BaseTextStorage {
 		styles.removeAll()
 	}
 
-	override func processEditing() {
-		applyStyles()
-		
-		super.processEditing()
-
-		dispatch_async(dispatch_get_main_queue()) { [weak self] in
-			self?.invalidateLayoutIfNeeded()
-		}
-
-		customDelegate?.textStorageDidProcessEditing(self)
-	}
-
 
 	// MARK: - Layout
+
+	func invalidRange(range: NSRange) {
+		invalidDisplayRange = invalidDisplayRange.flatMap { $0.union(range) } ?? range
+	}
 
 	func invalidateLayoutIfNeeded() {
 		guard let invalidDisplayRange = invalidDisplayRange else { return }
@@ -115,6 +119,7 @@ class TextStorage: BaseTextStorage {
 			layoutManager.ensureGlyphsForCharacterRange(invalidDisplayRange)
 			layoutManager.invalidateLayoutForCharacterRange(invalidDisplayRange, actualCharacterRange: nil)
 		}
+
 		self.invalidDisplayRange = nil
 	}
 }
