@@ -113,11 +113,13 @@ class TextStorage: BaseTextStorage {
 	}
 
 	func invalidateLayoutIfNeeded() {
-		guard let invalidDisplayRange = invalidDisplayRange else { return }
+		guard var range = invalidDisplayRange else { return }
+
+		range.length = min(length - range.location, range.length)
 
 		for layoutManager in layoutManagers {
-			layoutManager.ensureGlyphsForCharacterRange(invalidDisplayRange)
-			layoutManager.invalidateLayoutForCharacterRange(invalidDisplayRange, actualCharacterRange: nil)
+			layoutManager.ensureGlyphsForCharacterRange(range)
+			layoutManager.invalidateLayoutForCharacterRange(range, actualCharacterRange: nil)
 		}
 
 		self.invalidDisplayRange = nil
