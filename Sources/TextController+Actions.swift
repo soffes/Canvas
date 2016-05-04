@@ -50,8 +50,12 @@ extension TextController {
 		
 		let text = documentController.document.presentationString as NSString
 		let lineRange = text.lineRangeForRange(selection)
-		let adjust = text.substringWithRange(NSRange(location: lineRange.max - 1, length: 1)) == "\n" ? 1 : 0
-		var range = NSRange(location: lineRange.max - adjust, length: 0)
+		var range = NSRange(location: lineRange.max, length: 0)
+
+		if text.substringWithRange(NSRange(location: lineRange.max - 1, length: 1)) == "\n" {
+			range.location -= 1
+		}
+
 		textStorage.replaceCharactersInRange(range, withString: "\n")
 
 		range.location += 1
@@ -70,9 +74,21 @@ extension TextController {
 		}
 		
 		var range = NSRange(location: lineRange.location - 1, length: 0)
+
+		let adjusted: Bool
+		if range.location > 0 && text.substringWithRange(NSRange(location: range.location, length: 1)) == "\n" {
+			range.location += 1
+			adjusted = true
+		} else {
+			adjusted = false
+		}
+
 		textStorage.replaceCharactersInRange(range, withString: "\n")
 
-		range.location += 1
+		if !adjusted {
+			range.location += 1
+		}
+
 		setPresentationSelectedRange(range, updateTextView: true)
 	}
 	
