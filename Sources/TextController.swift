@@ -190,8 +190,14 @@ public final class TextController {
 	}
 	
 	private func stylesForBlock(block: BlockNode) -> [Style] {
+		var range = documentController.document.presentationRange(backingRange: block.visibleRange)
+		if range.location > 0 {
+			range.location -= 1
+			range.length += 1
+		}
+
 		let blockStyle = Style(
-			range: documentController.document.presentationRange(backingRange: block.visibleRange),
+			range: range,
 			attributes: theme.attributes(block: block)
 		)
 
