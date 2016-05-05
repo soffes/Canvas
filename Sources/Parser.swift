@@ -19,7 +19,7 @@ public struct Parser {
 		CodeBlock.self,
 		Title.self,
 		Heading.self,
-		HorizontalRule.self,
+//		HorizontalRule.self,
 		Image.self,
 		OrderedListItem.self,
 		UnorderedListItem.self,
