@@ -165,13 +165,6 @@ public final class TextController {
 	}
 
 
-	// MARK: - Querying
-
-	public func blockAt(presentationLocation presentationLocation: Int) -> BlockNode? {
-		return documentController.document.blockAt(presentationLocation: presentationLocation)
-	}
-
-
 	// MARK: - Private
 
 	private func layoutAttachments() {
