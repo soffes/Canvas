@@ -118,11 +118,13 @@ final class AnnotationsController {
 		let glyphRange = layoutManager.glyphRangeForCharacterRange(presentationRange, actualCharacterRange: nil)
 
 		var rects = [CGRect]()
-		layoutManager.enumerateLineFragmentsForGlyphRange(glyphRange) { _, usedRect, _, _, _ in
+		layoutManager.enumerateLineFragmentsForGlyphRange(glyphRange) { availableRect, usedRect, _, _, _ in
 			rects.append(usedRect)
 		}
 
-		guard let firstRect = rects.first else { return nil }
+		guard let firstRect = rects.first else {
+			return nil
+		}
 		var rect: CGRect
 
 		switch annotation.style {
