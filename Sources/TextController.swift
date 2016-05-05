@@ -478,21 +478,6 @@ extension TextController: TextStorageDelegate {
 		backingRange.length = (replacement as NSString).length
 		presentationRange = document.presentationRange(backingRange: backingRange)
 		processMarkdownShortcuts(presentationRange)
-
-//		if let selection = presentationSelectedRange {
-//			dispatch_async(dispatch_get_main_queue()) { [weak self] in
-//				setPresentationSelectedRange(selection, updateTextView: true)
-//
-//				guard let textStorage = self?.textStorage, layoutManager = self?.layoutManager else { return }
-//
-//				var lineRange = selection
-//				lineRange.location = max(0, lineRange.location - 1)
-//				lineRange = (textStorage.string as NSString).lineRangeForRange(lineRange)
-//
-//				layoutManager.ensureGlyphsForCharacterRange(lineRange)
-//				layoutManager.invalidateLayoutForCharacterRange(lineRange, actualCharacterRange: nil)
-//			}
-//		}
 	}
 
 	func textStorageDidProcessEditing(textStorage: TextStorage) {
@@ -507,7 +492,7 @@ extension TextController: TextStorageDelegate {
 
 	// Commit the edit to DocumentController and submit the operation to OT. This doesn't go through the text system so
 	// things like markdown shortcuts and return completion don't run on this change. Ideally, this will only be used
-	// by the text storage delegate or changes made to non-visible portions of the backing string (like sblock or
+	// by the text storage delegate or changes made to non-visible portions of the backing string (like block or
 	// indentation changes).
 	func edit(backingRange backingRange: NSRange, replacement: String) {
 		documentController.replaceCharactersInRange(backingRange, withString: replacement)
