@@ -93,17 +93,13 @@ final class AnnotationsController {
 	// MARK: - Layout
 
 	func layoutAnnotations() {
-		for ann in annotations {
-			guard let annotation = ann, frame = rectForAnnotation(annotation) else {
-				ann?.view.hidden = true
-				continue
-			}
-			annotation.view.frame = frame
-			annotation.view.hidden = false
+		for annotation in annotations {
+			guard let annotation = annotation else { continue }
+			annotation.view.frame = rectForAnnotation(annotation)
 		}
 	}
 
-	func rectForAnnotation(annotation: Annotation) -> CGRect? {
+	func rectForAnnotation(annotation: Annotation) -> CGRect {
 		guard let textController = textController else { return .zero }
 
 		let document = textController.documentController.document
@@ -121,10 +117,13 @@ final class AnnotationsController {
 		layoutManager.enumerateLineFragmentsForGlyphRange(glyphRange) { availableRect, usedRect, _, _, _ in
 			rects.append(usedRect)
 		}
-
-		guard let firstRect = rects.first else {
-			return nil
+		
+		// Handle the last line
+		if rects.isEmpty {
+			rects.append(layoutManager.extraLineFragmentRect)
 		}
+		
+		let firstRect = rects[0]
 		var rect: CGRect
 
 		switch annotation.style {
