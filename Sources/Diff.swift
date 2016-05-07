@@ -6,18 +6,16 @@
 //  Copyright © 2016 Sam Soffes. All rights reserved.
 //
 
-// From https://github.com/soffes/diff
-
-func diff(before: String, _ after: String) -> (Range<Int>, String)? {
+public func diff(before: String, _ after: String) -> (Range<Int>, String)? {
 	let result = diff(Array(before.characters), Array(after.characters))
 	return result.flatMap { ($0.0, String($0.1)) }
 }
 
-func diff<T: Equatable>(before: [T], _ after: [T]) -> (Range<Int>, [T])? {
+public func diff<T: Equatable>(before: [T], _ after: [T]) -> (Range<Int>, [T])? {
 	return diff(before, after, compare: ==)
 }
 
-func diff<T>(before: [T], _ after: [T], compare: (T, T) -> Bool) -> (Range<Int>, [T])? {
+public func diff<T>(before: [T], _ after: [T], compare: (T, T) -> Bool) -> (Range<Int>, [T])? {
 	let beforeCount = before.count
 	let afterCount = after.count
 
@@ -37,7 +35,7 @@ func diff<T>(before: [T], _ after: [T], compare: (T, T) -> Bool) -> (Range<Int>,
 	if beforeCount != commonStart + commonEnd {
 		let range = commonStart..<(beforeCount - commonEnd)
 		let intersection = commonStart..<(afterCount - commonEnd)
-		return (range, Array(after[intersection]))
+		return (Range(range), Array(after[intersection]))
 	}
 
 	// Insert

@@ -77,7 +77,7 @@ public final class DocumentController {
 
 		// Notify about presentation string change
 		if let presentationChange = change.presentationStringChange {
-			delegate?.documentController(self, didReplaceCharactersInPresentationStringInRange: presentationChange.range, withString: presentationChange.replacement)
+			delegate?.documentController(self, didReplaceCharactersInPresentationStringInRange: presentationChange.range, withString: presentationChange.replacement as String)
 		}
 
 		// Notify about AST changes

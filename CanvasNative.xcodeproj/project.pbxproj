@@ -127,6 +127,9 @@
 		21673D801CBDC7CD0017190B /* Diff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21673D7E1CBDC7CD0017190B /* Diff.swift */; };
 		21673D811CBDC7CD0017190B /* Diff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21673D7E1CBDC7CD0017190B /* Diff.swift */; };
 		21673D821CBDC7CD0017190B /* Diff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21673D7E1CBDC7CD0017190B /* Diff.swift */; };
+		216A2A691CDD87DD00A8F35E /* Diff+NSString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FE16901CDD86B700028593 /* Diff+NSString.swift */; };
+		216A2A6A1CDD87DE00A8F35E /* Diff+NSString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FE16901CDD86B700028593 /* Diff+NSString.swift */; };
+		216A2A6B1CDD87DF00A8F35E /* Diff+NSString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FE16901CDD86B700028593 /* Diff+NSString.swift */; };
 		21A9F0D21C7CFD1C009B40A0 /* DocumentControllerChangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* DocumentControllerChangeTests.swift */; };
 		21A9F0D31C7CFD1C009B40A0 /* DocumentControllerChangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A9F0D11C7CFD1C009B40A0 /* DocumentControllerChangeTests.swift */; };
 		21AB4EB01C52B8C8004D716D /* NSRange+CanvasNativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AB4EAF1C52B8C8004D716D /* NSRange+CanvasNativeTests.swift */; };
@@ -210,6 +213,7 @@
 		21DF7A611C90A09000C17A62 /* DocumentControllerInsertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A5F1C90A09000C17A62 /* DocumentControllerInsertTests.swift */; };
 		21DF7A631C90A0E100C17A62 /* DocumentControllerRemoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A621C90A0E100C17A62 /* DocumentControllerRemoveTests.swift */; };
 		21DF7A641C90A0E100C17A62 /* DocumentControllerRemoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A621C90A0E100C17A62 /* DocumentControllerRemoveTests.swift */; };
+		21FE16911CDD86B700028593 /* Diff+NSString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FE16901CDD86B700028593 /* Diff+NSString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -301,6 +305,7 @@
 		21DF7A591C8FAF5B00C17A62 /* DocumentControllerReliabilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentControllerReliabilityTests.swift; sourceTree = "<group>"; };
 		21DF7A5F1C90A09000C17A62 /* DocumentControllerInsertTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentControllerInsertTests.swift; sourceTree = "<group>"; };
 		21DF7A621C90A0E100C17A62 /* DocumentControllerRemoveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentControllerRemoveTests.swift; sourceTree = "<group>"; };
+		21FE16901CDD86B700028593 /* Diff+NSString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Diff+NSString.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -463,6 +468,7 @@
 			isa = PBXGroup;
 			children = (
 				21673D7E1CBDC7CD0017190B /* Diff.swift */,
+				21FE16901CDD86B700028593 /* Diff+NSString.swift */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
@@ -844,6 +850,7 @@
 				21673D7F1CBDC7CD0017190B /* Diff.swift in Sources */,
 				21AD8CBF1C8A4628000A53F8 /* Positionable.swift in Sources */,
 				21AD8CC21C8A4628000A53F8 /* SpanNodeContainer.swift in Sources */,
+				21FE16911CDD86B700028593 /* Diff+NSString.swift in Sources */,
 				2101767B1CBD6DA300614D61 /* Document.swift in Sources */,
 				21673D721CBD94980017190B /* Document+Change.swift in Sources */,
 				21AD8CBB1C8A4628000A53F8 /* NSRange+CanvasNative.swift in Sources */,
@@ -912,6 +919,7 @@
 				21673D801CBDC7CD0017190B /* Diff.swift in Sources */,
 				21AD8CE31C8A4649000A53F8 /* Positionable.swift in Sources */,
 				21AD8CE61C8A4649000A53F8 /* SpanNodeContainer.swift in Sources */,
+				216A2A691CDD87DD00A8F35E /* Diff+NSString.swift in Sources */,
 				210176821CBD6FF200614D61 /* Document.swift in Sources */,
 				21673D751CBD949D0017190B /* Document+Change.swift in Sources */,
 				21AD8CDF1C8A4649000A53F8 /* NSRange+CanvasNative.swift in Sources */,
@@ -980,6 +988,7 @@
 				21673D821CBDC7CD0017190B /* Diff.swift in Sources */,
 				21632CF91C9235F500C40D7D /* Node.swift in Sources */,
 				21632CF81C9235F500C40D7D /* NativePrefixable.swift in Sources */,
+				216A2A6B1CDD87DF00A8F35E /* Diff+NSString.swift in Sources */,
 				210176801CBD6FF100614D61 /* Document.swift in Sources */,
 				21673D731CBD949C0017190B /* Document+Change.swift in Sources */,
 				21632D081C9235F800C40D7D /* UnorderedListItem.swift in Sources */,
@@ -1021,6 +1030,7 @@
 				21673D811CBDC7CD0017190B /* Diff.swift in Sources */,
 				21632D341C92367B00C40D7D /* Node.swift in Sources */,
 				21632D331C92367B00C40D7D /* NativePrefixable.swift in Sources */,
+				216A2A6A1CDD87DE00A8F35E /* Diff+NSString.swift in Sources */,
 				210176811CBD6FF200614D61 /* Document.swift in Sources */,
 				21673D741CBD949C0017190B /* Document+Change.swift in Sources */,
 				21632D431C92367E00C40D7D /* UnorderedListItem.swift in Sources */,

@@ -9,28 +9,7 @@
 import Foundation
 
 typealias BlockChange = (range: Range<Int>, replacement: [BlockNode])
-
-
-struct StringChange {
-
-	// MARK: - Properties
-
-	let range: NSRange
-	let replacement: String
-
-
-	// MARK: - Initializers
-
-	init(range: Range<Int>, replacement: String) {
-		self.range = NSRange(range)
-		self.replacement = replacement
-	}
-
-	init(range: NSRange, replacement: String) {
-		self.range = range
-		self.replacement = replacement
-	}
-}
+typealias StringChange = (range: NSRange, replacement: NSString)
 
 
 struct DocumentChange {
@@ -81,7 +60,7 @@ extension Document {
 		}
 
 		// Calculate presentation change
-		let presentationStringChange: StringChange? = diff(before.presentationString, after.presentationString).flatMap(StringChange.init)
+		let presentationStringChange = diff(before.presentationString as NSString, after.presentationString as NSString)
 
 		return DocumentChange(
 			before: before,
