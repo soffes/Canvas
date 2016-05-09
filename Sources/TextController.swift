@@ -18,8 +18,9 @@ public protocol TextControllerConnectionDelegate: class {
 	func textController(textController: TextController, didDisconnectWithErrorMessage errorMessage: String?)
 }
 
-public protocol TextControllerSelectionDelegate: class {
-	func textControllerDidUpdateSelectedRange(textController: TextController)
+public protocol TextControllerDisplayDelegate: class {
+	func textController(textController: TextController, didUpdateSelectedRange selectedRange: NSRange)
+	func textController(textController: TextController, didUpdateTitle title: String?)
 }
 
 public protocol TextControllerAnnotationDelegate: class {
@@ -33,7 +34,7 @@ public final class TextController {
 	// MARK: - Properties
 
 	public weak var connectionDelegate: TextControllerConnectionDelegate?
-	public weak var selectionDelegate: TextControllerSelectionDelegate?
+	public weak var displayDelegate: TextControllerDisplayDelegate?
 	public weak var annotationDelegate: TextControllerAnnotationDelegate?
 
 	let _textStorage = TextStorage()
@@ -159,8 +160,8 @@ public final class TextController {
 	func setPresentationSelectedRange(range: NSRange?, updateTextView: Bool) {
 		presentationSelectedRange = range
 
-		if updateTextView && range != nil {
-			selectionDelegate?.textControllerDidUpdateSelectedRange(self)
+		if updateTextView, let range = range {
+			displayDelegate?.textController(self, didUpdateSelectedRange: range)
 		}
 	}
 
@@ -385,10 +386,18 @@ extension TextController: DocumentControllerDelegate {
 		if let block = block as? Attachable, style = attachmentStyle(block: block) {
 			_textStorage.addStyles([style])
 		}
+
+		if index == 0 {
+			displayDelegate?.textController(self, didUpdateTitle: controller.document.title)
+		}
 	}
 
 	public func documentController(controller: DocumentController, didRemoveBlock block: BlockNode, atIndex index: Int) {
 		annotationsController.remove(block: block, index: index)
+
+		if index == 0 {
+			displayDelegate?.textController(self, didUpdateTitle: controller.document.title)
+		}
 	}
 
 	public func documentControllerDidUpdateDocument(controller: DocumentController) {
