@@ -1,13 +1,8 @@
 var Canvas = {};
 window.Canvas = Canvas;
 
-Canvas.connect = function(realtimeURL, accessToken, organizationID, canvasID) {
-  var share = new ShareJSWrapper.default({
-    accessToken: accessToken,
-    canvasID: canvasID,
-    realtimeURL: realtimeURL,
-    orgID: organizationID
-  });
+Canvas.connect = function(options) {
+  var share = new ShareJSWrapper.default(options);
 
   // Tell the client to connect to the ShareJS server.
   share.connect(function onConnect() {
