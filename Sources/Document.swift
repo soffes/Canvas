@@ -23,6 +23,17 @@ public struct Document {
 	/// Models for each line
 	public let blocks: [BlockNode]
 
+	/// The title of the document
+	public var title: String? {
+		guard let title = blocks.first as? Title else { return nil }
+
+		let range = presentationRange(backingRange: title.visibleRange)
+		if range.length == 0 {
+			return nil
+		}
+		return (presentationString as NSString).substringWithRange(range)
+	}
+
 	private var text: NSString {
 		return backingString as NSString
 	}
