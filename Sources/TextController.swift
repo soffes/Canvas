@@ -21,6 +21,8 @@ public protocol TextControllerConnectionDelegate: class {
 public protocol TextControllerDisplayDelegate: class {
 	func textController(textController: TextController, didUpdateSelectedRange selectedRange: NSRange)
 	func textController(textController: TextController, didUpdateTitle title: String?)
+	func textControllerWillProcessRemoteEdit(textController: TextController)
+	func textControllerDidProcessRemoteEdit(textController: TextController)
 }
 
 public protocol TextControllerAnnotationDelegate: class {
@@ -324,11 +326,15 @@ extension TextController: TransportControllerDelegate {
 			submitOperations(backingRange: bounds, string: string)
 		}
 
+		displayDelegate?.textControllerWillProcessRemoteEdit(self)
 		documentController.replaceCharactersInRange(bounds, withString: string)
 		connectionDelegate?.textControllerDidConnect(self)
+		displayDelegate?.textControllerDidProcessRemoteEdit(self)
 	}
 
 	public func transportController(controller: TransportController, didReceiveOperation operation: Operation) {
+		displayDelegate?.textControllerWillProcessRemoteEdit(self)
+
 		switch operation {
 		case .Insert(let location, let string):
 			let range = NSRange(location: Int(location), length: 0)
@@ -338,6 +344,8 @@ extension TextController: TransportControllerDelegate {
 			let range = NSRange(location: Int(location), length: Int(length))
 			documentController.replaceCharactersInRange(range, withString: "")
 		}
+
+		displayDelegate?.textControllerDidProcessRemoteEdit(self)
 	}
 
 	public func transportController(controller: TransportController, didReceiveWebErrorMessage errorMessage: String?, lineNumber: UInt?, columnNumber: UInt?) {
