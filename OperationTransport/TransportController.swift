@@ -64,7 +64,13 @@ public class TransportController: NSObject {
 		userContentController.addScriptMessageHandler(self, name: "share")
 
 		// Connect
-		let js = "Canvas.connect({ realtimeURL: '\(serverURL.absoluteString)', accessToken: '\(accessToken)', orgID: '\(organizationID)', canvasID: '\(canvasID)', debug: \(debug) });"
+		let js = "Canvas.connect({" +
+			"realtimeURL: '\(serverURL.absoluteString)', " +
+			"accessToken: '\(accessToken)', " +
+			"orgID: '\(organizationID)', " +
+			"canvasID: '\(canvasID)', " +
+			"debug: \(debug)" +
+		"});"
 		userContentController.addUserScript(WKUserScript(source: js, injectionTime: .AtDocumentEnd, forMainFrameOnly: true))
 		configuration.userContentController = userContentController
 
