@@ -19,6 +19,7 @@ public struct Canvas {
 	public let isPublicWritable: Bool
 	public let title: String
 	public let summary: String
+	public let nativeVersion: String
 	public let updatedAt: NSDate
 	public let archivedAt: NSDate?
 
@@ -45,7 +46,8 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 			"is_public_writable": isPublicWritable,
 			"updated_at": updatedAt.ISO8601String()!,
 			"title": title,
-			"summary": summary
+			"summary": summary,
+			"native_version": nativeVersion
 		]
 
 		if let archivedAt = archivedAt {
@@ -64,7 +66,8 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 			updatedAtString = dictionary["updated_at"] as? String,
 			updatedAt = NSDate(ISO8601String: updatedAtString),
 			title = dictionary["title"] as? String,
-			summary = dictionary["summary"] as? String
+			summary = dictionary["summary"] as? String,
+			nativeVersion = dictionary["native_version"] as? String
 		else { return nil }
 
 		self.ID = ID
@@ -73,6 +76,7 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 		self.isPublicWritable = isPublicWritable
 		self.title = title
 		self.summary = summary
+		self.nativeVersion = nativeVersion
 		self.updatedAt = updatedAt
 
 		let archivedAtString = dictionary["archived_at"] as? String
