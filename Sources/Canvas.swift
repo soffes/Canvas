@@ -23,10 +23,6 @@ public struct Canvas {
 	public let updatedAt: NSDate
 	public let archivedAt: NSDate?
 
-	public var displayTitle: String {
-		return title.isEmpty ? "Untitled" : title
-	}
-
 	public var isEmpty: Bool {
 		return summary.isEmpty
 	}
