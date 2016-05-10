@@ -42,6 +42,10 @@
 		215BABEF1C52B46B00118C8C /* ListableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE61C52B46B00118C8C /* ListableTests.swift */; };
 		215BABF01C52B46B00118C8C /* SpanLevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE71C52B46B00118C8C /* SpanLevelTests.swift */; };
 		215BABF11C52B46B00118C8C /* SpanLevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE71C52B46B00118C8C /* SpanLevelTests.swift */; };
+		215CD8211CE258260093C545 /* CanvasNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215CD8201CE258260093C545 /* CanvasNative.swift */; };
+		215CD8221CE258260093C545 /* CanvasNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215CD8201CE258260093C545 /* CanvasNative.swift */; };
+		215CD8231CE258260093C545 /* CanvasNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215CD8201CE258260093C545 /* CanvasNative.swift */; };
+		215CD8241CE258260093C545 /* CanvasNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215CD8201CE258260093C545 /* CanvasNative.swift */; };
 		21632CF21C9235F000C40D7D /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C9C1C8A4628000A53F8 /* Parser.swift */; };
 		21632CF31C9235F000C40D7D /* DocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C8A1C8A4628000A53F8 /* DocumentController.swift */; };
 		21632CF41C9235F500C40D7D /* Attachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C871C8A4628000A53F8 /* Attachable.swift */; };
@@ -258,6 +262,7 @@
 		215BABE51C52B46B00118C8C /* ImageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTests.swift; sourceTree = "<group>"; };
 		215BABE61C52B46B00118C8C /* ListableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListableTests.swift; sourceTree = "<group>"; };
 		215BABE71C52B46B00118C8C /* SpanLevelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpanLevelTests.swift; sourceTree = "<group>"; };
+		215CD8201CE258260093C545 /* CanvasNative.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasNative.swift; sourceTree = "<group>"; };
 		21632CEA1C9235E400C40D7D /* CanvasNative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasNative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21632D161C92366600C40D7D /* CanvasNative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasNative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21632D1F1C92366600C40D7D /* CanvasNativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasNativeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -486,6 +491,7 @@
 		21AD8C851C8A4628000A53F8 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				215CD8201CE258260093C545 /* CanvasNative.swift */,
 				21AD8C9C1C8A4628000A53F8 /* Parser.swift */,
 				21673D871CBDD36D0017190B /* Document */,
 				21AD8CED1C8A4698000A53F8 /* Protocols */,
@@ -861,6 +867,7 @@
 				21AD8CB41C8A4628000A53F8 /* Heading.swift in Sources */,
 				21AD8CB51C8A4628000A53F8 /* Image.swift in Sources */,
 				21AD8CAD1C8A4628000A53F8 /* CGSize+CanvasNative.swift in Sources */,
+				215CD8211CE258260093C545 /* CanvasNative.swift in Sources */,
 				21AD8CB71C8A4628000A53F8 /* Listable.swift in Sources */,
 				21AD8CC01C8A4628000A53F8 /* ReturnCompletable.swift in Sources */,
 				214FA01C1CC6E48800927A07 /* HorizontalRule.swift in Sources */,
@@ -930,6 +937,7 @@
 				21AD8CD81C8A4649000A53F8 /* Heading.swift in Sources */,
 				21AD8CD91C8A4649000A53F8 /* Image.swift in Sources */,
 				21AD8CD11C8A4649000A53F8 /* CGSize+CanvasNative.swift in Sources */,
+				215CD8221CE258260093C545 /* CanvasNative.swift in Sources */,
 				21AD8CDB1C8A4649000A53F8 /* Listable.swift in Sources */,
 				21AD8CE41C8A4649000A53F8 /* ReturnCompletable.swift in Sources */,
 				214FA01D1CC6E48800927A07 /* HorizontalRule.swift in Sources */,
@@ -999,6 +1007,7 @@
 				21632CF41C9235F500C40D7D /* Attachable.swift in Sources */,
 				21632CFF1C9235F500C40D7D /* SpanNodeParseable.swift in Sources */,
 				21632D0F1C92360100C40D7D /* NSRange+CanvasNative.swift in Sources */,
+				215CD8241CE258260093C545 /* CanvasNative.swift in Sources */,
 				21632CF31C9235F000C40D7D /* DocumentController.swift in Sources */,
 				21632D0C1C9235FE00C40D7D /* Link.swift in Sources */,
 				214FA01F1CC6E48800927A07 /* HorizontalRule.swift in Sources */,
@@ -1041,6 +1050,7 @@
 				21632D2F1C92367B00C40D7D /* Attachable.swift in Sources */,
 				21632D3A1C92367B00C40D7D /* SpanNodeParseable.swift in Sources */,
 				21632D4A1C92368600C40D7D /* NSRange+CanvasNative.swift in Sources */,
+				215CD8231CE258260093C545 /* CanvasNative.swift in Sources */,
 				21632D2E1C92367800C40D7D /* DocumentController.swift in Sources */,
 				21632D471C92368200C40D7D /* Link.swift in Sources */,
 				214FA01E1CC6E48800927A07 /* HorizontalRule.swift in Sources */,
