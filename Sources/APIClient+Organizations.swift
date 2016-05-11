@@ -11,7 +11,7 @@ extension APIClient {
 	// MARK: - Listing Organizations
 
 	public func listOrganizations(completion: Result<[Organization]> -> Void) {
-		let request = self.request(path: "orgs")
+		let request = self.request(path: "v1/orgs")
 		session.dataTaskWithRequest(request) { responseData, response, error in
 			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
 				dispatch_async(networkCompletionQueue) {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-let baseURL = NSURL(string: "https://api.usecanvas.com/v1/")!
+let baseURL = NSURL(string: "https://api.usecanvas.com/")!
 let networkCompletionQueue = dispatch_queue_create("com.usecanvas.canvaskit.network-callback", DISPATCH_QUEUE_CONCURRENT)
 
 

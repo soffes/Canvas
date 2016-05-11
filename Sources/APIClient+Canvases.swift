@@ -15,7 +15,7 @@ extension APIClient {
 	}
 
 	public func listCanvases(organizationID organizationID: String, completion: Result<[Canvas]> -> Void) {
-		let request = self.request(path: "orgs/\(organizationID)/canvases")
+		let request = self.request(path: "v1/orgs/\(organizationID)/canvases")
 		session.dataTaskWithRequest(request) { responseData, response, error in
 			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
 				dispatch_async(networkCompletionQueue) {
@@ -63,7 +63,7 @@ extension APIClient {
 			params["is_public_writable"] = isPublicWritable
 		}
 
-		let request = self.request(method: .POST, path: "canvases", params: params)
+		let request = self.request(method: .POST, path: "v1/canvases", params: params)
 
 		session.dataTaskWithRequest(request) { responseData, response, error in
 			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
@@ -98,7 +98,7 @@ extension APIClient {
 	}
 
 	public func destroyCanvas(canvasID canvasID: String, completion: Result<Void> -> Void) {
-		let request = self.request(method: .DELETE, path: "canvases/\(canvasID)")
+		let request = self.request(method: .DELETE, path: "v1/canvases/\(canvasID)")
 		session.dataTaskWithRequest(request) { _, response, _ in
 			if let res = response as? NSHTTPURLResponse where res.statusCode == 204 {
 				dispatch_async(networkCompletionQueue) {
@@ -121,7 +121,7 @@ extension APIClient {
 	}
 
 	public func archiveCanvas(canvasID canvasID: String, completion: Result<Canvas> -> Void) {
-		let request = self.request(method: .POST, path: "canvases/\(canvasID)/actions/archive")
+		let request = self.request(method: .POST, path: "v1/canvases/\(canvasID)/actions/archive")
 
 		session.dataTaskWithRequest(request) { responseData, response, _ in
 			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
@@ -157,7 +157,7 @@ extension APIClient {
 	}
 
 	public func searchCanvases(organizationID organizationID: String, query: String, completion: Result<[Canvas]> -> Void) {
-		let request = self.request(path: "orgs/\(organizationID)/canvases/search", params: ["query": query])
+		let request = self.request(path: "v1/orgs/\(organizationID)/canvases/search", params: ["query": query])
 		session.dataTaskWithRequest(request) { responseData, response, error in
 			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
 				dispatch_async(networkCompletionQueue) {
