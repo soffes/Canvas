@@ -97,6 +97,8 @@ public final class TextController {
 	let organizationID: String
 	let canvasID: String
 
+	private var needsTitle = false
+
 
 	// MARK: - Initializers
 
@@ -326,6 +328,7 @@ extension TextController: TransportControllerDelegate {
 			submitOperations(backingRange: bounds, string: string)
 		}
 
+		setNeedsTitleUpdate()
 		displayDelegate?.textControllerWillProcessRemoteEdit(self)
 		documentController.replaceCharactersInRange(bounds, withString: string)
 		connectionDelegate?.textControllerDidConnect(self)
@@ -396,7 +399,7 @@ extension TextController: DocumentControllerDelegate {
 		}
 
 		if index == 0 {
-			displayDelegate?.textController(self, didUpdateTitle: controller.document.title)
+			setNeedsTitleUpdate()
 		}
 	}
 
@@ -404,7 +407,7 @@ extension TextController: DocumentControllerDelegate {
 		annotationsController.remove(block: block, index: index)
 
 		if index == 0 {
-			displayDelegate?.textController(self, didUpdateTitle: controller.document.title)
+			setNeedsTitleUpdate()
 		}
 	}
 
@@ -415,6 +418,8 @@ extension TextController: DocumentControllerDelegate {
 			self?._textStorage.applyStyles()
 			self?._textStorage.invalidateLayoutIfNeeded()
 		}
+
+		updateTitleIfNeeded(controller)
 	}
 
 	private func refreshAnnotations() {
@@ -428,6 +433,19 @@ extension TextController: DocumentControllerDelegate {
 
 		// Layout
 		annotationsController.layoutAnnotations()
+	}
+
+	private func setNeedsTitleUpdate() {
+		needsTitle = true
+	}
+
+	private func updateTitleIfNeeded(controller: DocumentController) {
+		if !needsTitle {
+			return
+		}
+
+		displayDelegate?.textController(self, didUpdateTitle: controller.document.title)
+		needsTitle = false
 	}
 }
 
