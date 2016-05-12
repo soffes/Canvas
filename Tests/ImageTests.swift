@@ -31,4 +31,14 @@ class ImageTests: XCTestCase {
 		XCTAssertEqual(NSRange(location: length - 1, length: 1), image.visibleRange)
 		XCTAssertEqual(NSURL(string: "https://canvas-files-prod.s3.amazonaws.com/uploads/b631973f-1d6f-4a27-8973-7c3db5c270fc/Screen%20Shot%202016-02-25%20at%209.47.56%20AM.png")!, image.url)
 	}
+	
+	func testNewLinkedImage() {
+		let native = "⧙image-{\"url\":\"https://canvas-files-prod.s3.amazonaws.com/uploads/b631973f-1d6f-4a27-8973-7c3db5c270fc/Screen Shot 2016-02-25 at 9.47.56 AM.png\"}⧘"
+		let length = (native as NSString).length
+		let image = Image(string: native, range: NSRange(location: 0, length: length))!
+		
+		XCTAssertEqual(NSRange(location: 0, length: length - 1), image.nativePrefixRange)
+		XCTAssertEqual(NSRange(location: length - 1, length: 1), image.visibleRange)
+		XCTAssertEqual(NSURL(string: "https://canvas-files-prod.s3.amazonaws.com/uploads/b631973f-1d6f-4a27-8973-7c3db5c270fc/Screen%20Shot%202016-02-25%20at%209.47.56%20AM.png")!, image.url)
+	}
 }

@@ -76,14 +76,13 @@ public struct Image: Attachable, Equatable {
 		guard let data = json?.dataUsingEncoding(NSUTF8StringEncoding),
 			raw = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
 			dictionary = raw as? [String: AnyObject],
-			identifier = dictionary["ci"] as? String,
 			urlString = (dictionary["url"] as? String)?.stringByReplacingOccurrencesOfString(" ", withString: "%20"),
 			url = NSURL(string: urlString)
 		else {
 			return nil
 		}
 
-		self.identifier = identifier
+		self.identifier = (dictionary["ci"] as? String) ?? urlString
 		self.url = url
 
 		if let width = dictionary["width"] as? UInt, height = dictionary["height"] as? UInt {
