@@ -13,14 +13,14 @@ final class ImagesController {
 	
 	// MARK: - Types
 	
-	typealias Completion = (block: Image, image: UIImage?) -> Void
+	typealias Completion = (ID: String, image: UIImage?) -> Void
 	
 	
 	// MARK: - Properties
 	
 	let session: NSURLSession
 	
-	private var downloading = [Image: [Completion]]()
+	private var downloading = [String: [Completion]]()
 	
 	private let queue = dispatch_queue_create("com.usecanvas.canvastext.imagescontroller", DISPATCH_QUEUE_SERIAL)
 	
@@ -49,25 +49,25 @@ final class ImagesController {
 	
 	// MARK: - Accessing
 	
-	func fetchImage(image block: Image, size: CGSize, scale: CGFloat, completion: Completion) -> UIImage? {
-		if let image = imageCache.objectForKey(block.identifier) as? UIImage {
+	func fetchImage(ID ID: String, URL: NSURL, size: CGSize, scale: CGFloat, completion: Completion) -> UIImage? {
+		if let image = imageCache.objectForKey(ID) as? UIImage {
 			return image
 		}
 		
 		coordinate {
 			// Already downloading
-			if var array = self.downloading[block] {
+			if var array = self.downloading[ID] {
 				array.append(completion)
-				self.downloading[block] = array
+				self.downloading[ID] = array
 				return
 			}
 			
 			// Start download
-			self.downloading[block] = [completion]
+			self.downloading[ID] = [completion]
 			
-			let request = NSURLRequest(URL: block.url)
+			let request = NSURLRequest(URL: URL)
 			self.session.downloadTaskWithRequest(request) { [weak self] location, _, _ in
-				self?.loadImage(location: location, image: block)
+				self?.loadImage(location: location, ID: ID)
 			}.resume()
 		}
 		
@@ -81,24 +81,24 @@ final class ImagesController {
 		dispatch_sync(queue, block)
 	}
 	
-	private func loadImage(location location: NSURL?, image block: Image) {
+	private func loadImage(location location: NSURL?, ID: String) {
 		let data = location.flatMap { NSData(contentsOfURL: $0) }
 		let image = data.flatMap { UIImage(data: $0) }
 		
 		if let image = image {
-			imageCache.setObject(image, forKey: block.identifier)
+			imageCache.setObject(image, forKey: ID)
 		} else {
-			imageCache.removeObjectForKey(block.identifier)
+			imageCache.removeObjectForKey(ID)
 		}
 		
 		coordinate {
-			if let completions = self.downloading[block] {
+			if let completions = self.downloading[ID] {
 				for completion in completions {
 					dispatch_async(dispatch_get_main_queue()) {
-						completion(block: block, image: image)
+						completion(ID: ID, image: image)
 					}
 				}
-				self.downloading[block] = nil
+				self.downloading[ID] = nil
 			}
 			return
 		}

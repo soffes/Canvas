@@ -23,6 +23,7 @@ public protocol TextControllerDisplayDelegate: class {
 	func textController(textController: TextController, didUpdateTitle title: String?)
 	func textControllerWillProcessRemoteEdit(textController: TextController)
 	func textControllerDidProcessRemoteEdit(textController: TextController)
+	func textController(textController: TextController, URLForImage block: Image) -> NSURL?
 }
 
 public protocol TextControllerAnnotationDelegate: class {
@@ -58,15 +59,11 @@ public final class TextController {
 		return textStorage.string
 	}
 
-	public var backingString: String {
-		return documentController.document.backingString
-	}
-
 	public private(set) var presentationSelectedRange: NSRange?
 
 	public var focusedBlock: BlockNode? {
 		let selection = presentationSelectedRange
-		let document = documentController.document
+		let document = currentDocument
 		return selection.flatMap { document.blockAt(presentationLocation: $0.location) }
 	}
 
@@ -85,6 +82,7 @@ public final class TextController {
 
 	private var transportController: TransportController?
 	private let annotationsController: AnnotationsController
+	private let imagesController = ImagesController()
 
 	let documentController = DocumentController()
 
@@ -175,7 +173,7 @@ public final class TextController {
 	private func layoutAttachments() {
 		var styles = [Style]()
 		
-		for block in documentController.document.blocks {
+		for block in currentDocument.blocks {
 			guard let block = block as? Attachable,
 				style = attachmentStyle(block: block)
 			else { continue }
@@ -188,7 +186,7 @@ public final class TextController {
 	}
 	
 	private func stylesForBlock(block: BlockNode) -> [Style] {
-		var range = documentController.document.presentationRange(backingRange: block.visibleRange)
+		var range = currentDocument.presentationRange(backingRange: block.visibleRange)
 		if range.location > 0 {
 			range.location -= 1
 			range.length += 1
@@ -215,7 +213,7 @@ public final class TextController {
 			guard let attributes = theme.attributes(span: span, currentFont: currentFont) else { continue }
 
 			let style = Style(
-				range: documentController.document.presentationRange(backingRange: span.visibleRange),
+				range: currentDocument.presentationRange(backingRange: span.visibleRange),
 				attributes: attributes
 			)
 			styles.append(style)
@@ -231,7 +229,7 @@ public final class TextController {
 
 				for backingRange in foldable.foldableRanges {
 					let style = Style(
-						range: documentController.document.presentationRange(backingRange: backingRange),
+						range: currentDocument.presentationRange(backingRange: backingRange),
 						attributes: attrs
 					)
 					styles.append(style)
@@ -245,10 +243,10 @@ public final class TextController {
 				var attrs = foldableAttributes
 				attrs[NSForegroundColorAttributeName] = Color(red: 0.420, green: 0.420, blue: 0.447, alpha: 1)
 
-				styles.append(Style(range: documentController.document.presentationRange(backingRange: link.urlRange), attributes: attrs))
+				styles.append(Style(range: currentDocument.presentationRange(backingRange: link.urlRange), attributes: attrs))
 
 				if let title = link.title {
-					styles.append(Style(range: documentController.document.presentationRange(backingRange: title.textRange), attributes: attrs))
+					styles.append(Style(range: currentDocument.presentationRange(backingRange: title.textRange), attributes: attrs))
 				}
 			}
 
@@ -295,20 +293,68 @@ public final class TextController {
 		
 		// Image
 		else if let block = block as? Image {
-			print("Image: \(block)")
-			return nil
+			let URL = displayDelegate?.textController(self, URLForImage: block) ?? block.url
+			
+			let width = floor(textContainer.size.width)
+			let size = attachmentSize(imageSize: block.size ?? CGSize(width: width, height: 300))
+			
+			attachment = NSTextAttachment()
+			attachment.image = imagesController.fetchImage(
+				ID: block.identifier,
+				URL: URL,
+				size: size,
+				scale: traitCollection.displayScale,
+				completion: updateImageAttachment
+			)
+			attachment.bounds = CGRect(origin: .zero, size: size)
 		}
 		
-		// Unsupported attachment
+		// Missing attachment
 		else {
-			print("WARNING: Unsupported attachmable: \(block)")
+			print("WARNING: Missing attachment for block \(block)")
 			return nil
 		}
 		
-		let range = documentController.document.presentationRange(backingRange: block.visibleRange)
+		let range = currentDocument.presentationRange(backingRange: block.visibleRange)
 		return Style(range: range, attributes: [
 			NSAttachmentAttributeName: attachment
 		])
+	}
+	
+	private func attachmentSize(imageSize imageSize: CGSize) -> CGSize {
+		let width = floor(textContainer.size.width)
+		var size = imageSize
+		
+		size.height = floor(width * size.height / size.width)
+		size.width = width
+		
+		return size
+	}
+	
+	private func blockForImageID(ID: String) -> Image? {
+		for block in currentDocument.blocks {
+			if let image = block as? Image where image.identifier == ID {
+				return image
+			}
+		}
+		
+		return nil
+	}
+	
+	private func updateImageAttachment(ID ID: String, image: UIImage?) {
+		guard let image = image, block = blockForImageID(ID) else { return }
+		
+		let attachment = NSTextAttachment()
+		attachment.image = image
+		attachment.bounds = CGRect(origin: .zero, size: attachmentSize(imageSize: image.size))
+		
+		let range = currentDocument.presentationRange(backingRange: block.visibleRange)
+		let style = Style(range: range, attributes: [
+			NSAttachmentAttributeName: attachment
+		])
+		
+		_textStorage.addStyles([style])
+		_textStorage.applyStyles()
 	}
 }
 
@@ -319,7 +365,7 @@ extension TextController: TransportControllerDelegate {
 	}
 
 	public func transportController(controller: TransportController, didReceiveSnapshot text: String) {
-		let bounds = NSRange(location: 0, length: (documentController.document.backingString as NSString).length)
+		let bounds = NSRange(location: 0, length: (currentDocument.backingString as NSString).length)
 
 		// Ensure we have a valid document
 		var string = text
@@ -423,7 +469,7 @@ extension TextController: DocumentControllerDelegate {
 	}
 
 	private func refreshAnnotations() {
-		let blocks = documentController.document.blocks
+		let blocks = currentDocument.blocks
 
 		// Refresh models
 		for (i, block) in blocks.enumerate() {
@@ -463,7 +509,7 @@ extension TextController: AnnotationsControllerDelegate {
 
 extension TextController: TextStorageDelegate {
 	func textStorage(textStorage: TextStorage, didReplaceCharactersInRange range: NSRange, withString string: String) {		
-		let document = documentController.document
+		let document = currentDocument
 		var presentationRange = range
 		var backingRange = document.backingRange(presentationRange: presentationRange)
 		var replacement = string
