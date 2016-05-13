@@ -69,7 +69,6 @@ public struct Document {
 			if prefixRange.max <= backingRange.location {
 				presentationRange.location -= prefixRange.length
 			} else if let intersection = backingRange.intersection(prefixRange) {
-//				presentationRange.location -= intersection
 				presentationRange.length -= intersection
 			}
 		}
@@ -86,7 +85,7 @@ public struct Document {
 			// Shadow starts after backing range
 			if range.location > backingRange.location {
 
-				// Shadow intersects. Expand lenght.
+				// Shadow intersects. Expand length.
 				if backingRange.intersection(range) > 0 {
 					backingRange.length += range.length
 					continue
