@@ -296,16 +296,21 @@ public final class TextController {
 			let URL = displayDelegate?.textController(self, URLForImage: block) ?? block.url
 			
 			let width = floor(textContainer.size.width)
-			let size = attachmentSize(imageSize: block.size ?? CGSize(width: width, height: 300))
-			
-			attachment = NSTextAttachment()
-			attachment.image = imagesController.fetchImage(
+			var size = attachmentSize(imageSize: block.size ?? CGSize(width: width, height: 300))
+			let image = imagesController.fetchImage(
 				ID: block.identifier,
 				URL: URL,
 				size: size,
 				scale: traitCollection.displayScale,
 				completion: updateImageAttachment
 			)
+
+			if let image = image {
+				size = attachmentSize(imageSize: image.size)
+			}
+			
+			attachment = NSTextAttachment()
+			attachment.image = image
 			attachment.bounds = CGRect(origin: .zero, size: size)
 		}
 		
