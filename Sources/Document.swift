@@ -83,12 +83,8 @@ public struct Document {
 			guard let range = (block as? NativePrefixable)?.nativePrefixRange else { continue }
 
 			// Shadow starts after backing range
-			// If we are replacing characters (presentationRange.length > 0) then make it inclusive. This will extend
-			// the selection to include the entire block. We need this or logic to make deleting an entire line in the
-			// presentation string delete the entire backing line. If you just insert into an empty presentation line,
-			// (but has stuff in the backing line—like a native prefix) it won't extend so you don't replace the whole
-			// backing line.
-			if (presentationRange.length > 0 && range.location >= backingRange.location) || range.location > backingRange.location {
+			// If the block is Attachable, make this inclusive so we delete the entire block.
+			if (block is Attachable && range.location >= backingRange.location) || range.location > backingRange.location {
 
 				// Shadow intersects. Expand length.
 				if backingRange.intersection(range) > 0 {
