@@ -552,6 +552,27 @@ extension TextController: TextStorageDelegate {
 			}
 		}
 
+		// Handle inserts around attachments
+		else if !replacement.isEmpty {
+			if let block = document.blockAt(presentationLocation: range.location) as? Attachable {
+				let presentation = document.presentationRange(backingRange: block.visibleRange)
+
+				// Add a new line before edits immediately following an Attachable
+				if range.location == presentation.max {
+					replacement = "\n" + replacement
+				}
+
+				// Add a new line after edits immediately before an Attachable {
+				else if range.location == presentationRange.location {
+					presentationRange.location -= 1
+					backingRange = document.backingRange(presentationRange: presentationRange)
+					replacement = "\n" + replacement
+				}
+			}
+
+			// TODO: Handle a replacement of the new line before the attachment
+		}
+
 		edit(backingRange: backingRange, replacement: replacement)
 
 		backingRange.length = (replacement as NSString).length
