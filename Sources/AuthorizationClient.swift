@@ -57,7 +57,6 @@ public struct AuthorizationClient: NetworkClient {
 		let session = self.session
 		session.dataTaskWithRequest(request) { responseData, response, error in
 			guard let responseData = responseData,
-				statusCode = (response as? NSHTTPURLResponse)?.statusCode,
 				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
 				dictionary = json as? JSONDictionary
 			else {
@@ -74,9 +73,9 @@ public struct AuthorizationClient: NetworkClient {
 				return
 			}
 
-			if statusCode != 200, let error = dictionary["message"] as? String {
+			if let error = dictionary["error"] as? String where error == "invalid_resource_owner" {
 				dispatch_async(networkCompletionQueue) {
-					completion(.Failure(error))
+					completion(.Failure("Username/email or password incorrect."))
 				}
 				return
 			}
