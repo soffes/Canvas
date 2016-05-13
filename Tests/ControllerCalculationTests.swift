@@ -49,6 +49,12 @@ class DocumentCalculationTests: XCTestCase {
 		XCTAssertEqual(NSRange(location: 21, length: 27), document.backingRange(presentationRange: NSRange(location: 8, length: 7)))
 	}
 
+	func testEntirePresentationRange() {
+		let document = Document(backingString: "⧙doc-heading⧘Title\n⧙image⧘http://example.com/image.jpg")
+		let range = document.backingRange(presentationRange: NSRange(location: 6, length: 1))
+		XCTAssertEqual(NSRange(location: 19, length: 35), range)
+	}
+
 	func testBlockAtPresentationLocation() {
 		let document = Document(backingString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two")
 		XCTAssertEqual("Title\nOne\nTwo", document.presentationString)

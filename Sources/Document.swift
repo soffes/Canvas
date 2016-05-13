@@ -83,7 +83,7 @@ public struct Document {
 			guard let range = (block as? NativePrefixable)?.nativePrefixRange else { continue }
 
 			// Shadow starts after backing range
-			if range.location > backingRange.location {
+			if range.location >= backingRange.location {
 
 				// Shadow intersects. Expand length.
 				if backingRange.intersection(range) > 0 {
