@@ -232,8 +232,8 @@
 		21B1E6111CD3FF7E00E2902C /* Attachments */ = {
 			isa = PBXGroup;
 			children = (
-				21B1E6121CD3FF9300E2902C /* HorizontalRuleAttachment.swift */,
 				21B1E6161CD422A900E2902C /* ImagesController.swift */,
+				21B1E6121CD3FF9300E2902C /* HorizontalRuleAttachment.swift */,
 			);
 			name = Attachments;
 			sourceTree = "<group>";

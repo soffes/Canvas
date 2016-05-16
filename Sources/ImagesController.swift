@@ -8,6 +8,7 @@
 
 import UIKit
 import CanvasNative
+import Cache
 
 final class ImagesController {
 	
@@ -24,18 +25,8 @@ final class ImagesController {
 	
 	private let queue = dispatch_queue_create("com.usecanvas.canvastext.imagescontroller", DISPATCH_QUEUE_SERIAL)
 	
-	/// The image ID is the key. The value is a UIImage object.
-	private let imageCache: NSCache = {
-		let cache = NSCache()
-		cache.name = "ImagesController.imageCache"
-		return cache
-	}()
-	
-	private let placeholderCache: NSCache = {
-		let cache = NSCache()
-		cache.name = "ImagesController.placeholderCache"
-		return cache
-	}()
+	private let imageCache = MemoryCache<UIImage>()
+	private let placeholderCache = MemoryCache<UIImage>()
 	
 	static let sharedController = ImagesController()
 	
@@ -50,7 +41,7 @@ final class ImagesController {
 	// MARK: - Accessing
 	
 	func fetchImage(ID ID: String, URL: NSURL, size: CGSize, scale: CGFloat, completion: Completion) -> UIImage? {
-		if let image = imageCache.objectForKey(ID) as? UIImage {
+		if let image = imageCache[ID] {
 			return image
 		}
 		
@@ -85,11 +76,7 @@ final class ImagesController {
 		let data = location.flatMap { NSData(contentsOfURL: $0) }
 		let image = data.flatMap { UIImage(data: $0) }
 		
-		if let image = image {
-			imageCache.setObject(image, forKey: ID)
-		} else {
-			imageCache.removeObjectForKey(ID)
-		}
+		imageCache[ID] = image
 		
 		coordinate {
 			if let completions = self.downloading[ID] {
@@ -106,7 +93,7 @@ final class ImagesController {
 	
 	private func placeholderImage(size size: CGSize, scale: CGFloat) -> UIImage? {
 		let key = "\(size.width)x\(size.height)-\(scale)"
-		if let image = placeholderCache.objectForKey(key) as? UIImage {
+		if let image = placeholderCache[key] {
 			return image
 		}
 		
@@ -131,7 +118,7 @@ final class ImagesController {
 		icon.drawInRect(iconFrame)
 		
 		let image = UIGraphicsGetImageFromCurrentImageContext()
-		placeholderCache.setObject(image, forKey: key)
+		placeholderCache[key] = image
 		
 		UIGraphicsEndImageContext()
 		
