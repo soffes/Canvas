@@ -82,7 +82,10 @@ public final class TextController {
 
 	private var transportController: TransportController?
 	private let annotationsController: AnnotationsController
-	private let imagesController = ImagesController()
+	
+	private var imagesController: ImagesController {
+		return ImagesController.sharedController
+	}
 
 	let documentController = DocumentController()
 
