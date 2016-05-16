@@ -25,7 +25,8 @@ final class ImagesController {
 	
 	private let queue = dispatch_queue_create("com.usecanvas.canvastext.imagescontroller", DISPATCH_QUEUE_SERIAL)
 	
-	private let imageCache = MemoryCache<UIImage>()
+	private let memoryCache = MemoryCache<UIImage>()
+	private let imageCache: MultiCache<UIImage>
 	private let placeholderCache = MemoryCache<UIImage>()
 	
 	static let sharedController = ImagesController()
@@ -35,33 +36,55 @@ final class ImagesController {
 	
 	init(session: NSURLSession = NSURLSession.sharedSession()) {
 		self.session = session
+
+		var caches = [AnyCache(memoryCache)]
+
+		// Setup disk cache
+		if let cachesDirectory = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true).first {
+			let directory = (cachesDirectory as NSString).stringByAppendingPathComponent("CanvasImages") as String
+
+			if let diskCache = DiskCache<UIImage>(directory: directory) {
+				caches.append(AnyCache(diskCache))
+			}
+		}
+
+		imageCache = MultiCache(caches: caches)
 	}
 	
 	
 	// MARK: - Accessing
 	
 	func fetchImage(ID ID: String, URL: NSURL, size: CGSize, scale: CGFloat, completion: Completion) -> UIImage? {
-		if let image = imageCache[ID] {
+		if let image = memoryCache[ID] {
 			return image
 		}
-		
-		coordinate {
-			// Already downloading
-			if var array = self.downloading[ID] {
-				array.append(completion)
-				self.downloading[ID] = array
+
+		imageCache.get(key: ID) { [weak self] image in
+			if let image = image {
+				dispatch_async(dispatch_get_main_queue()) {
+					completion(ID: ID, image: image)
+				}
 				return
 			}
-			
-			// Start download
-			self.downloading[ID] = [completion]
-			
-			let request = NSURLRequest(URL: URL)
-			self.session.downloadTaskWithRequest(request) { [weak self] location, _, _ in
-				self?.loadImage(location: location, ID: ID)
-			}.resume()
+
+			self?.coordinate { [weak self] in
+				// Already downloading
+				if var array = self?.downloading[ID] {
+					array.append(completion)
+					self?.downloading[ID] = array
+					return
+				}
+
+				// Start download
+				self?.downloading[ID] = [completion]
+
+				let request = NSURLRequest(URL: URL)
+				self?.session.downloadTaskWithRequest(request) { [weak self] location, _, _ in
+					self?.loadImage(location: location, ID: ID)
+				}.resume()
+			}
 		}
-		
+
 		return placeholderImage(size: size, scale: scale)
 	}
 	
@@ -75,19 +98,21 @@ final class ImagesController {
 	private func loadImage(location location: NSURL?, ID: String) {
 		let data = location.flatMap { NSData(contentsOfURL: $0) }
 		let image = data.flatMap { UIImage(data: $0) }
-		
-		imageCache[ID] = image
-		
-		coordinate {
-			if let completions = self.downloading[ID] {
+
+		if let image = image {
+			imageCache.set(key: ID, value: image)
+		}
+
+		coordinate { [weak self] in
+			if let image = image, completions = self?.downloading[ID] {
 				for completion in completions {
 					dispatch_async(dispatch_get_main_queue()) {
 						completion(ID: ID, image: image)
 					}
 				}
-				self.downloading[ID] = nil
 			}
-			return
+
+			self?.downloading[ID] = nil
 		}
 	}
 	
