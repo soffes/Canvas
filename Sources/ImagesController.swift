@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CanvasNative
 import Cache
 
 final class ImagesController {
