@@ -149,6 +149,19 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 			return node
 		}
 	}
+
+
+	// MARK: - URL
+
+	public func URL(backingString backingString: String) -> NSURL? {
+		var string = (backingString as NSString).substringWithRange(urlRange)
+
+		if !string.containsString("://") {
+			string = "http://\(string)"
+		}
+
+		return NSURL(string: string)
+	}
 }
 
 
