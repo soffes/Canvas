@@ -130,7 +130,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
 		guard let textController = textController else { return 0 }
 
 		let characterIndex = characterIndexForGlyphAtIndex(glyphIndex)
-		guard let block = textController.documentController.document.blockAt(presentationLocation: characterIndex) else { return 0 }
+		guard let block = textController.currentDocument.blockAt(presentationLocation: characterIndex) else { return 0 }
 
 		return textController.theme.blockSpacing(block: block, horizontalSizeClass: textController.traitCollection.horizontalSizeClass).marginBottom
 	}

@@ -13,7 +13,7 @@ private typealias Match = (replacement: String, location: Int)
 
 extension TextController {
 	func processMarkdownShortcuts(presentationRange: NSRange) {
-		let text = documentController.document.presentationString as NSString
+		let text = currentDocument.presentationString as NSString
 
 		var searchRange = presentationRange
 		if searchRange.max >= text.length {
@@ -25,7 +25,7 @@ extension TextController {
 		// we make any changes.
 		text.enumerateSubstringsInRange(searchRange, options: .ByLines) { [weak self] string, range, _, _ in
 			guard let string = string,
-				document = self?.documentController.document,
+				document = self?.currentDocument,
 				node = document.blockAt(presentationLocation: range.location)
 			where (string as NSString).length > 0
 			else { return }

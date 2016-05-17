@@ -87,7 +87,7 @@ public final class TextController {
 		return ImagesController.sharedController
 	}
 
-	let documentController = DocumentController()
+	private let documentController = DocumentController()
 
 	public var currentDocument: Document {
 		return documentController.document

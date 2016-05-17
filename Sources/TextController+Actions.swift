@@ -48,7 +48,7 @@ extension TextController {
 	public func insertLineAfter() {
 		guard let selection = presentationSelectedRange else { return }
 		
-		let text = documentController.document.presentationString as NSString
+		let text = currentDocument.presentationString as NSString
 		let lineRange = text.lineRangeForRange(selection)
 		var range = NSRange(location: lineRange.max, length: 0)
 
@@ -65,7 +65,7 @@ extension TextController {
 	public func insertLineBefore() {
 		guard let selection = presentationSelectedRange else { return }
 		
-		let text = documentController.document.presentationString as NSString
+		let text = currentDocument.presentationString as NSString
 		let lineRange = text.lineRangeForRange(selection)
 		
 		// Don't insert lines above the title
@@ -84,7 +84,7 @@ extension TextController {
 	public func deleteLine() {
 		guard let selection = presentationSelectedRange else { return }
 		
-		let text = documentController.document.presentationString as NSString
+		let text = currentDocument.presentationString as NSString
 		var range = text.lineRangeForRange(selection)
 		textStorage.replaceCharactersInRange(range, withString: "")
 

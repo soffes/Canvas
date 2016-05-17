@@ -25,7 +25,7 @@ final class CodeBlockView: View, Annotation {
 
 	var horizontalSizeClass: UserInterfaceSizeClass = .Unspecified
 
-	let style: AnnotationStyle = .Background
+	let placement = AnnotationPlacement.ExpandedBackground
 
 	
 	// MARK: - Initializers

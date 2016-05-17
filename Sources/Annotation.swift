@@ -9,16 +9,25 @@
 import UIKit
 import CanvasNative
 
-public enum AnnotationStyle {
-	case LeadingGutter
-	case Background
+public enum AnnotationPlacement {
+	case FirstLeadingGutter
+	case ExpandedLeadingGutter
+	case ExpandedBackground
+
+	public var isExpanded: Bool {
+		switch self {
+		case .ExpandedLeadingGutter, .ExpandedBackground: return true
+		default: return false
+		}
+	}
 }
 
 public protocol Annotation: class {
 	var block: Annotatable { get set }
 	var theme: Theme { get set }
 	var view: View { get }
-	var style: AnnotationStyle { get }
+	var placement: AnnotationPlacement { get }
+
 	var horizontalSizeClass: UserInterfaceSizeClass { get set }
 
 	init?(block: Annotatable, theme: Theme)
@@ -30,7 +39,7 @@ extension Annotation where Self: View {
 		return self
 	}
 
-	public var style: AnnotationStyle {
-		return .LeadingGutter
+	public var placement: AnnotationPlacement {
+		return .FirstLeadingGutter
 	}
 }

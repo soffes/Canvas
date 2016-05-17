@@ -23,6 +23,8 @@ final class BlockquoteBorderView: View, Annotation {
 		}
 	}
 
+	let placement = AnnotationPlacement.ExpandedLeadingGutter
+
 	var horizontalSizeClass: UserInterfaceSizeClass = .Unspecified
 
 

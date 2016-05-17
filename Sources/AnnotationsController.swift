@@ -102,7 +102,7 @@ final class AnnotationsController {
 	func rectForAnnotation(annotation: Annotation) -> CGRect {
 		guard let textController = textController else { return .zero }
 
-		let document = textController.documentController.document
+		let document = textController.currentDocument
 		var presentationRange = document.presentationRange(backingRange: annotation.block.range)
 
 		// Add new line
@@ -110,35 +110,37 @@ final class AnnotationsController {
 			presentationRange.length += 1
 		}
 
-		let layoutManager = textController.layoutManager
-		let glyphRange = layoutManager.glyphRangeForCharacterRange(presentationRange, actualCharacterRange: nil)
-
-		var rects = [CGRect]()
-		layoutManager.enumerateLineFragmentsForGlyphRange(glyphRange) { availableRect, usedRect, _, _, _ in
-			rects.append(usedRect)
-		}
-		
-		// Handle the last line
-		if rects.isEmpty {
-			rects.append(layoutManager.extraLineFragmentRect)
-		}
-		
-		let firstRect = rects[0]
+		guard let rects = rectsForPresentationRange(presentationRange), firstRect = rects.first else { return .zero }
 		var rect: CGRect
 
-		switch annotation.style {
-		case .LeadingGutter:
-			// Make the annotation the width of the indentation. It's up to the view to position itself inside this space.
-			// A future optimization could be making this as small as possible. Configuring it to do this was consfusing,
-			// so deferring for now.
+		switch annotation.placement {
+		case .FirstLeadingGutter:
 			rect = firstRect
 			rect.size.width = rect.origin.x
 			rect.origin.x = 0
-
-		case .Background:
+		case .ExpandedLeadingGutter:
+			rect = rects.reduce(firstRect) { $0.union($1) }
+			rect.size.width = rect.origin.x
+			rect.origin.x = 0
+		case .ExpandedBackground:
 			rect = rects.reduce(firstRect) { $0.union($1) }
 			rect.origin.x = 0
 			rect.size.width = textController.textContainer.size.width
+		}
+
+		// Expand to the top of the next block if neccessary
+		if annotation.placement.isExpanded, let positionable = annotation.block as? Positionable where !positionable.position.isBottom {
+			if let index = document.indexOf(block: annotation.block) where index < document.blocks.count - 1 {
+				let next = document.blocks[index + 1]
+				var nextRange = document.presentationRange(backingRange: next.visibleRange)
+				nextRange.length = min(presentationRange.length + 1, textController.textStorage.length - nextRange.location)
+
+				if let nextRect = rectsForPresentationRange(nextRange)?.first {
+					if nextRect.minY > rect.maxY {
+						rect.size.height = nextRect.minY - rect.minY
+					}
+				}
+			}
 		}
 
 		rect.origin.x += textContainerInset.left
@@ -153,6 +155,27 @@ final class AnnotationsController {
 
 
 	// MARK: - Private
+
+	private func rectsForPresentationRange(presentationRange: NSRange) -> [CGRect]? {
+		guard let textController = textController else { return nil }
+
+		let layoutManager = textController.layoutManager
+
+		let glyphRange = layoutManager.glyphRangeForCharacterRange(presentationRange, actualCharacterRange: nil)
+		layoutManager.ensureLayoutForGlyphRange(glyphRange)
+
+		var rects = [CGRect]()
+		layoutManager.enumerateLineFragmentsForGlyphRange(glyphRange) { availableRect, usedRect, _, _, _ in
+			rects.append(usedRect)
+		}
+
+		// Handle the last line
+		if rects.isEmpty {
+			rects.append(layoutManager.extraLineFragmentRect)
+		}
+
+		return rects
+	}
 
 	private func annotationForBlock(block: Annotatable) -> Annotation? {
 		return block.annotation(theme: theme)
