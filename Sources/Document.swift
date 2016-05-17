@@ -153,6 +153,10 @@ public struct Document {
 		return results
 	}
 
+	public func indexOf(block block: BlockNode) -> Int? {
+		return blocks.indexOf({ NSEqualRanges($0.range, block.range) })
+	}
+
 
 	// MARK: - Presentation String
 
