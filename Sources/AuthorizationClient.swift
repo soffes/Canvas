@@ -39,7 +39,7 @@ public struct AuthorizationClient: NetworkClient {
 		]
 
 		let baseURL = self.baseURL
-		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("oauth/token"))
+		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("v1/oauth/access-tokens"))
 		request.HTTPMethod = "POST"
 		request.HTTPBody = formEncode(queryItems).dataUsingEncoding(NSUTF8StringEncoding)
 		request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
