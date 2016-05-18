@@ -91,4 +91,42 @@ extension TextController {
 		range.length = 0
 		setPresentationSelectedRange(range, updateTextView: true)
 	}
+
+	public func swapLineUp() {
+		guard var selection = presentationSelectedRange, let block = focusedBlock where !(block is Title) else { return }
+
+		let document = currentDocument
+
+		// Prevent swapping up to the title
+		guard let index = document.indexOf(block: block) where index > 1 else { return }
+
+		let before = document.blocks[index - 1]
+		let range = before.range.union(block.range)
+
+		let text = document.backingString as NSString
+		let replacement = text.substringWithRange(block.range) + "\n" + text.substringWithRange(before.range)
+		edit(backingRange: range, replacement: replacement)
+
+		selection.location -= before.visibleRange.length + 1
+		setPresentationSelectedRange(selection, updateTextView: true)
+	}
+
+	public func swapLineDown() {
+		guard var selection = presentationSelectedRange, let block = focusedBlock where !(block is Title) else { return }
+
+		let document = currentDocument
+
+		// Prevent swapping down the last line
+		guard let index = document.indexOf(block: block) where index < document.blocks.count - 1 else { return }
+
+		let after = document.blocks[index + 1]
+		let range = after.range.union(block.range)
+
+		let text = document.backingString as NSString
+		let replacement = text.substringWithRange(after.range) + "\n" + text.substringWithRange(block.range)
+		edit(backingRange: range, replacement: replacement)
+
+		selection.location += after.visibleRange.length + 1
+		setPresentationSelectedRange(selection, updateTextView: true)
+	}
 }
