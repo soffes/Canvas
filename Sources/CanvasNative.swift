@@ -8,5 +8,9 @@
 
 public struct CanvasNative {
 	/// The version of Canvas Native this library can parse.
-	public static let nativeVersion = "0.0.1"
+	public static let supportedNativeVersion = Set<String>(["0.0.0", "0.0.1"])
+
+	public static func supports(nativeVersion nativeVersion: String) -> Bool {
+		return supportedNativeVersion.contains(nativeVersion)
+	}
 }
