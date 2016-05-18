@@ -25,7 +25,7 @@ class LayoutManager: NSLayoutManager {
 		didSet {
 			if let unfoldedRange = unfoldedRange, oldValue = oldValue where !unfoldedRange.equals(oldValue) {
 				unfolding = true
-				invalidateGlyphs()
+				invalidateFoldableGlyphs()
 				return
 			}
 
@@ -35,7 +35,7 @@ class LayoutManager: NSLayoutManager {
 				unfolding = false
 			}
 
-			invalidateGlyphsIfNeeded()
+			invalidateFoldableGlyphsIfNeeded()
 		}
 	}
 
@@ -43,17 +43,17 @@ class LayoutManager: NSLayoutManager {
 		didSet {
 			let indicies = foldableRanges.map { $0.indices }
 			foldedIndices = Set(indicies.flatten())
-
-			invalidateGlyphs()
+			setNeedsInvalidateFoldableGlyphs()
 		}
 	}
 
-	private var needsInvalidateGlyphs = false
+	private var needsUpdateTextContainer = false
+	private var needsInvalidateFoldableGlyphs = false
 	private var foldedIndices = Set<Int>()
 	private var unfolding = false {
 		didSet {
 			guard unfolding != oldValue else { return }
-			setNeedsInvalidateGlyphs()
+			setNeedsInvalidateFoldableGlyphs()
 		}
 	}
 
@@ -78,24 +78,36 @@ class LayoutManager: NSLayoutManager {
 	}
 
 
+	// MARK: - Invalidation
+
+	func addFoldableRange(presentationRange: NSRange) {
+		foldableRanges.append(presentationRange)
+	}
+
+	func clearFoldableRanges() {
+		foldableRanges.removeAll()
+	}
+
+	func invalidateFoldableGlyphsIfNeeded() {
+		if needsInvalidateFoldableGlyphs {
+			invalidateFoldableGlyphs()
+		}
+	}
+
+
 	// MARK: - Private
 
 	// TODO: We should intellegently invalidate glyphs are a given range instead of the entire document.
-	private func invalidateGlyphs() {
+	private func invalidateFoldableGlyphs() {
 		guard let characterLength = textStorage?.length else { return }
 		let characterRange = NSRange(location: 0, length: characterLength)
 		invalidateGlyphsForCharacterRange(characterRange, changeInLength: 0, actualCharacterRange: nil)
-		needsInvalidateGlyphs = false
+		needsInvalidateFoldableGlyphs = false
+		needsUpdateTextContainer = true
 	}
 
-	private func setNeedsInvalidateGlyphs() {
-		needsInvalidateGlyphs = true
-	}
-
-	private func invalidateGlyphsIfNeeded() {
-		if needsInvalidateGlyphs {
-			invalidateGlyphs()
-		}
+	private func setNeedsInvalidateFoldableGlyphs() {
+		needsInvalidateFoldableGlyphs = true
 	}
 }
 
@@ -133,5 +145,12 @@ extension LayoutManager: NSLayoutManagerDelegate {
 		guard let block = textController.currentDocument.blockAt(presentationLocation: characterIndex) else { return 0 }
 
 		return textController.theme.blockSpacing(block: block, horizontalSizeClass: textController.traitCollection.horizontalSizeClass).marginBottom
+	}
+
+	func layoutManager(layoutManager: NSLayoutManager, didCompleteLayoutForTextContainer textContainer: NSTextContainer?, atEnd layoutFinishedFlag: Bool) {
+		guard needsUpdateTextContainer, let textContainer = textContainer where textContainer == textController?.textContainer else { return }
+
+		textContainer.replaceLayoutManager(self)
+		needsUpdateTextContainer = false
 	}
 }

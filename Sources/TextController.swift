@@ -165,6 +165,9 @@ public final class TextController {
 	func setPresentationSelectedRange(range: NSRange?, updateTextView: Bool) {
 		presentationSelectedRange = range
 
+		let unfolded = range.flatMap { unfoldableRange(presentationSelectedRange: $0) }
+		_layoutManager.unfoldedRange = unfolded
+
 		if updateTextView, let range = range {
 			displayDelegate?.textController(self, didUpdateSelectedRange: range)
 		}
@@ -172,6 +175,27 @@ public final class TextController {
 
 
 	// MARK: - Private
+
+	private func unfoldableRange(presentationSelectedRange presentationSelection: NSRange) -> NSRange? {
+		let document = currentDocument
+		let backingRange: NSRange = {
+			var range = presentationSelection
+			range.location = max(0, range.location - 1)
+			range.length += (presentationSelection.location - range.location) + 1
+			return document.backingRange(presentationRange: range)
+		}()
+
+		let foldableNodes = document.nodesIn(backingRange: backingRange).filter { $0 is Foldable }
+		var foldableRanges = ArraySlice<NSRange>(foldableNodes.map { document.presentationRange(backingRange: $0.range) })
+
+		guard var range = foldableRanges.popFirst() else { return nil }
+
+		for r in foldableRanges {
+			range = range.union(r)
+		}
+
+		return range
+	}
 
 	private func layoutAttachments() {
 		var styles = [Style]()
@@ -236,6 +260,8 @@ public final class TextController {
 						attributes: attrs
 					)
 					styles.append(style)
+
+					_layoutManager.addFoldableRange(style.range)
 				}
 			}
 
@@ -590,6 +616,7 @@ extension TextController: TextStorageDelegate {
 
 		dispatch_async(dispatch_get_main_queue()) { [weak self] in
 			self?.refreshAnnotations()
+			self?._layoutManager.invalidateFoldableGlyphsIfNeeded()
 		}
 	}
 
