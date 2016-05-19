@@ -580,7 +580,9 @@ extension TextController: TextStorageDelegate {
 						replacement += (document.backingString as NSString).substringWithRange(block.nativePrefixRange)
 
 						// Make checkboxes unchecked by default
-						replacement = replacement.stringByReplacingOccurrencesOfString("- [x] ", withString: "- [ ] ")
+						if let checklist = block as? ChecklistItem where checklist.state == .Checked {
+							replacement = replacement.stringByReplacingOccurrencesOfString("- [x] ", withString: "- [ ] ")
+						}
 					}
 				}
 			}
