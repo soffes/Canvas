@@ -113,7 +113,7 @@
 		21632D4D1C92369A00C40D7D /* DocumentControllerInsertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A5F1C90A09000C17A62 /* DocumentControllerInsertTests.swift */; };
 		21632D4E1C92369A00C40D7D /* DocumentControllerRemoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A621C90A0E100C17A62 /* DocumentControllerRemoveTests.swift */; };
 		21632D4F1C92369A00C40D7D /* DocumentControllerReliabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A591C8FAF5B00C17A62 /* DocumentControllerReliabilityTests.swift */; };
-		21632D501C92369A00C40D7D /* ControllerCalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* ControllerCalculationTests.swift */; };
+		21632D501C92369A00C40D7D /* DocumentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* DocumentTests.swift */; };
 		21632D511C92369A00C40D7D /* BlockquoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE31C52B46B00118C8C /* BlockquoteTests.swift */; };
 		21632D521C92369A00C40D7D /* HeadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE41C52B46B00118C8C /* HeadingTests.swift */; };
 		21632D531C92369A00C40D7D /* ImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE51C52B46B00118C8C /* ImageTests.swift */; };
@@ -209,8 +209,8 @@
 		21C589FF1CBEB56C002EDC7E /* TitleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C589FE1CBEB56C002EDC7E /* TitleTests.swift */; };
 		21C58A001CBEB56C002EDC7E /* TitleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C589FE1CBEB56C002EDC7E /* TitleTests.swift */; };
 		21C58A011CBEB56C002EDC7E /* TitleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C589FE1CBEB56C002EDC7E /* TitleTests.swift */; };
-		21DF7A471C8FA1AF00C17A62 /* ControllerCalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* ControllerCalculationTests.swift */; };
-		21DF7A481C8FA1AF00C17A62 /* ControllerCalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* ControllerCalculationTests.swift */; };
+		21DF7A471C8FA1AF00C17A62 /* DocumentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* DocumentTests.swift */; };
+		21DF7A481C8FA1AF00C17A62 /* DocumentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* DocumentTests.swift */; };
 		21DF7A5A1C8FAF5B00C17A62 /* DocumentControllerReliabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A591C8FAF5B00C17A62 /* DocumentControllerReliabilityTests.swift */; };
 		21DF7A5B1C8FAF5B00C17A62 /* DocumentControllerReliabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A591C8FAF5B00C17A62 /* DocumentControllerReliabilityTests.swift */; };
 		21DF7A601C90A09000C17A62 /* DocumentControllerInsertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A5F1C90A09000C17A62 /* DocumentControllerInsertTests.swift */; };
@@ -306,7 +306,7 @@
 		21BF7D4A1C937F4100CB1A7A /* CodeBlockTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlockTests.swift; sourceTree = "<group>"; };
 		21BF7D4E1C93802100CB1A7A /* ParagraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphTests.swift; sourceTree = "<group>"; };
 		21C589FE1CBEB56C002EDC7E /* TitleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleTests.swift; sourceTree = "<group>"; };
-		21DF7A461C8FA1AF00C17A62 /* ControllerCalculationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerCalculationTests.swift; sourceTree = "<group>"; };
+		21DF7A461C8FA1AF00C17A62 /* DocumentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTests.swift; sourceTree = "<group>"; };
 		21DF7A591C8FAF5B00C17A62 /* DocumentControllerReliabilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentControllerReliabilityTests.swift; sourceTree = "<group>"; };
 		21DF7A5F1C90A09000C17A62 /* DocumentControllerInsertTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentControllerInsertTests.swift; sourceTree = "<group>"; };
 		21DF7A621C90A0E100C17A62 /* DocumentControllerRemoveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentControllerRemoveTests.swift; sourceTree = "<group>"; };
@@ -408,7 +408,7 @@
 		2101767F1CBD6FA600614D61 /* Document */ = {
 			isa = PBXGroup;
 			children = (
-				21DF7A461C8FA1AF00C17A62 /* ControllerCalculationTests.swift */,
+				21DF7A461C8FA1AF00C17A62 /* DocumentTests.swift */,
 			);
 			name = Document;
 			sourceTree = "<group>";
@@ -909,7 +909,7 @@
 				21DF7A631C90A0E100C17A62 /* DocumentControllerRemoveTests.swift in Sources */,
 				210C743D1C7E7C6100FBB665 /* TestDocumentControllerControllerDelegate.swift in Sources */,
 				21DF7A5A1C8FAF5B00C17A62 /* DocumentControllerReliabilityTests.swift in Sources */,
-				21DF7A471C8FA1AF00C17A62 /* ControllerCalculationTests.swift in Sources */,
+				21DF7A471C8FA1AF00C17A62 /* DocumentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -979,7 +979,7 @@
 				21DF7A641C90A0E100C17A62 /* DocumentControllerRemoveTests.swift in Sources */,
 				210C743E1C7E7C6100FBB665 /* TestDocumentControllerControllerDelegate.swift in Sources */,
 				21DF7A5B1C8FAF5B00C17A62 /* DocumentControllerReliabilityTests.swift in Sources */,
-				21DF7A481C8FA1AF00C17A62 /* ControllerCalculationTests.swift in Sources */,
+				21DF7A481C8FA1AF00C17A62 /* DocumentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1081,7 +1081,7 @@
 				21632D531C92369A00C40D7D /* ImageTests.swift in Sources */,
 				21632D591C9236A000C40D7D /* XCTestCase+CanvasNativeTests.swift in Sources */,
 				21BF7D4D1C937F4100CB1A7A /* CodeBlockTests.swift in Sources */,
-				21632D501C92369A00C40D7D /* ControllerCalculationTests.swift in Sources */,
+				21632D501C92369A00C40D7D /* DocumentTests.swift in Sources */,
 				21BF7D511C93802100CB1A7A /* ParagraphTests.swift in Sources */,
 				21632D4F1C92369A00C40D7D /* DocumentControllerReliabilityTests.swift in Sources */,
 				214FA0231CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */,

@@ -40,20 +40,19 @@ class CodeBlockTestes: XCTestCase {
 	}
 
 	// https://github.com/usecanvas/CanvasNative/issues/15
-	func testLineNumbers() {
-		let blocks = Parser.parse("⧙doc-heading⧘Code\n⧙code⧘hi\n⧙code-swift⧘yay\n⧙code-swift⧘ok\n⧙code-ruby⧘gem\n⧙code-ruby⧘matz\n⧙code-ruby⧘done")
-		let actual = blocks.flatMap { ($0 as? Positionable)?.position }
-
-		let expected: [Position] = [
-			.Single,
-			.Top,
-			.Bottom(2),
-			.Top,
-			.Middle(2),
-			.Bottom(3)
-		]
-
-		XCTAssertEqual(actual, expected)
-	}
-
+//	func testLineNumbers() {
+//		let blocks = Parser.parse("⧙doc-heading⧘Code\n⧙code⧘hi\n⧙code-swift⧘yay\n⧙code-swift⧘ok\n⧙code-ruby⧘gem\n⧙code-ruby⧘matz\n⧙code-ruby⧘done")
+//		let actual = blocks.flatMap { ($0 as? Positionable)?.position }
+//
+//		let expected: [Position] = [
+//			.Single,
+//			.Top,
+//			.Bottom(2),
+//			.Top,
+//			.Middle(2),
+//			.Bottom(3)
+//		]
+//
+//		XCTAssertEqual(actual, expected)
+//	}
 }

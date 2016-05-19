@@ -1,5 +1,5 @@
 //
-//  DocumentCalculationTests.swift
+//  DocumentTests.swift
 //  CanvasNative
 //
 //  Created by Sam Soffes on 3/8/16.
@@ -9,7 +9,7 @@
 import XCTest
 import CanvasNative
 
-class DocumentCalculationTests: XCTestCase {
+class DocumentTests: XCTestCase {
 	func testBackingRangeToPresentationRange() {
 		var document = Document(backingString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two\n⧙code⧘Three")
 
@@ -31,6 +31,12 @@ class DocumentCalculationTests: XCTestCase {
 		document = Document(backingString: "⧙doc-heading⧘Title\nC")
 		XCTAssertEqual("Title\nC", document.presentationString)
 		XCTAssertEqual(NSRange(location: 6, length: 1), document.presentationRange(backingRange: document.blocks[1].visibleRange))
+	}
+
+	func testPresentationRangeForBlock() {
+		let document = Document(backingString: "⧙doc-heading⧘Title\n⧙blockquote⧘> One")
+		XCTAssertEqual(NSRange(location: 6, length: 3), document.presentationRange(block: document.blocks[1]))
+		XCTAssertEqual(NSRange(location: 6, length: 3), document.presentationRange(blockIndex: 1))
 	}
 
 //	func testHiddenBackingRangeToPresentationRange() {

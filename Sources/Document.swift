@@ -76,6 +76,16 @@ public struct Document {
 		return presentationRange
 	}
 
+	public func presentationRange(block block: BlockNode) -> NSRange {
+		guard let index = indexOf(block: block) else { return block.visibleRange }
+		return NSRange(location: blockPresentationLocations[index], length: block.visibleRange.length)
+	}
+
+	public func presentationRange(blockIndex index: Int) -> NSRange {
+		let block = blocks[index]
+		return NSRange(location: blockPresentationLocations[index], length: block.visibleRange.length)
+	}
+
 	public func backingRange(presentationRange presentationRange: NSRange) -> NSRange {
 		var backingRange = presentationRange
 
@@ -191,11 +201,8 @@ private func documentPresentationLocations(blocks blocks: [BlockNode]) -> [Int] 
 	}
 
 	// Ensure the newly calculated presentations locations are accurate. If these are wrong, there will be all sorts
-	// of problems later.
-	if !presentationLocations.isEmpty {
-		// The first location must start at the beginning.
-		assert(presentationLocations[0] == 0, "Invalid presentations locations.")
-	}
+	// of problems later. The first location must start at the beginning.
+	assert(!presentationLocations.isEmpty && presentationLocations[0] == 0, "Invalid presentations locations.")
 
 	return presentationLocations
 }
