@@ -135,7 +135,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
 	// Mark folded characters as control characters so we can give them a zero width in
 	// `layoutManager:shouldUseAction:forControlCharacterAtIndex:`.
 	func layoutManager(layoutManager: NSLayoutManager, shouldGenerateGlyphs glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSGlyphProperty>, characterIndexes: UnsafePointer<Int>, font: UIFont, forGlyphRange glyphRange: NSRange) -> Int {
-		if foldedIndices.isEmpty {
+		if !foldingEnabled || foldedIndices.isEmpty {
 			return 0
 		}
 
@@ -162,7 +162,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
 	// Folded characters should have a zero width
 	func layoutManager(layoutManager: NSLayoutManager, shouldUseAction action: NSControlCharacterAction, forControlCharacterAtIndex characterIndex: Int) -> NSControlCharacterAction {
 		// Don't advance if it's a control character we changed
-		if foldedIndices.contains(characterIndex) {
+		if foldingEnabled && foldedIndices.contains(characterIndex) {
 			return .ZeroAdvancement
 		}
 

@@ -213,19 +213,19 @@ public final class TextController {
 		var foldableRanges = [NSRange]()
 
 		if let font = attributes[NSFontAttributeName] as? Font {
-//			// Foldable attributes
-//			if let foldable = block as? Foldable {
-//				let foldableAttributes = theme.foldingAttributes(currentFont: font)
-//
-//				for backingRange in foldable.foldableRanges {
-//					let style = Style(
-//						range: currentDocument.presentationRange(backingRange: backingRange),
-//						attributes: foldableAttributes
-//					)
-//					styles.append(style)
-//					foldableRanges.append(style.range)
-//				}
-//			}
+			// Foldable attributes
+			if let foldable = block as? Foldable {
+				let foldableAttributes = theme.foldingAttributes(currentFont: font)
+
+				for backingRange in foldable.foldableRanges {
+					let style = Style(
+						range: currentDocument.presentationRange(backingRange: backingRange),
+						attributes: foldableAttributes
+					)
+					styles.append(style)
+					foldableRanges.append(style.range)
+				}
+			}
 
 			// Contained nodes
 			if let container = block as? NodeContainer {
