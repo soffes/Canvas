@@ -27,7 +27,7 @@ public struct Document {
 	public var title: String? {
 		guard let title = blocks.first as? Title else { return nil }
 
-		let range = presentationRange(backingRange: title.visibleRange)
+		let range = presentationRange(block: title)
 		if range.length == 0 {
 			return nil
 		}
@@ -126,7 +126,7 @@ public struct Document {
 
 		guard let block = blocks.last else { return nil }
 
-		let presentationRange = self.presentationRange(backingRange: block.visibleRange)
+		let presentationRange = self.presentationRange(block: block)
 		return presentationRange.contains(presentationLocation) || presentationRange.max == presentationLocation ? block : nil
 	}
 
