@@ -211,12 +211,22 @@ public final class TextController {
 		_textStorage.addStyles(styles)
 		_textStorage.applyStyles()
 	}
-	
-	private func stylesForBlock(block: BlockNode) -> [Style] {
+
+	// Returns an array of styles and an array of foldable ranges
+	private func stylesForBlock(block: BlockNode) -> ([Style], [NSRange]) {
 		var range = currentDocument.presentationRange(backingRange: block.visibleRange)
-		if range.location > 0 {
+
+		if range.location == 0 {
+			range.length += 1
+		} else if range.location > 0 {
 			range.location -= 1
 			range.length += 1
+		}
+
+		range.length = min(range.length, (currentDocument.presentationString as NSString).length - range.location)
+
+		if range.length == 0 {
+			return ([], [])
 		}
 
 		let blockStyle = Style(
@@ -225,16 +235,21 @@ public final class TextController {
 		)
 
 		var styles = [blockStyle]
+		var foldableRanges = [NSRange]()
 
 		if let container = block as? NodeContainer, font = blockStyle.attributes[NSFontAttributeName] as? Font {
-			styles += stylesForSpans(container.subnodes, currentFont: font)
+			let (innerStyles, innerFoldableRanges) = stylesForSpans(container.subnodes, currentFont: font)
+			styles += innerStyles
+			foldableRanges += innerFoldableRanges
 		}
 
-		return styles
+		return (styles, foldableRanges)
 	}
 
-	private func stylesForSpans(spans: [SpanNode], currentFont: Font) -> [Style] {
+	// Returns an array of styles and an array of foldable ranges
+	private func stylesForSpans(spans: [SpanNode], currentFont: Font) -> ([Style], [NSRange]) {
 		var styles = [Style]()
+		var foldableRanges = [NSRange]()
 
 		for span in spans {
 			guard let attributes = theme.attributes(span: span, currentFont: currentFont) else { continue }
@@ -260,8 +275,7 @@ public final class TextController {
 						attributes: attrs
 					)
 					styles.append(style)
-
-					_layoutManager.addFoldableRange(style.range)
+					foldableRanges.append(style.range)
 				}
 			}
 
@@ -280,11 +294,13 @@ public final class TextController {
 			}
 
 			if let container = span as? NodeContainer {
-				styles += stylesForSpans(container.subnodes, currentFont: font)
+				let (innerStyles, innerFoldableRanges) = stylesForSpans(container.subnodes, currentFont: font)
+				styles += innerStyles
+				foldableRanges += innerFoldableRanges
 			}
 		}
 
-		return styles
+		return (styles, foldableRanges)
 	}
 
 	private func submitOperations(backingRange backingRange: NSRange, string: String) {
@@ -460,7 +476,10 @@ extension TextController: DocumentControllerDelegate {
 
 	public func documentController(controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int) {
 		annotationsController.insert(block: block, index: index)
-		_textStorage.addStyles(stylesForBlock(block))
+
+		let (styles, foldableRanges) = stylesForBlock(block)
+		_textStorage.addStyles(styles)
+		_layoutManager.addFoldableRanges(foldableRanges)
 
 		var range = controller.document.presentationRange(backingRange: block.visibleRange)
 		if range.location > 0 {

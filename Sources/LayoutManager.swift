@@ -80,8 +80,8 @@ class LayoutManager: NSLayoutManager {
 
 	// MARK: - Invalidation
 
-	func addFoldableRange(presentationRange: NSRange) {
-		foldableRanges.append(presentationRange)
+	func addFoldableRanges(presentationRanges: [NSRange]) {
+		foldableRanges += presentationRanges
 	}
 
 	func clearFoldableRanges() {
@@ -99,8 +99,7 @@ class LayoutManager: NSLayoutManager {
 
 	// TODO: We should intellegently invalidate glyphs are a given range instead of the entire document.
 	private func invalidateFoldableGlyphs() {
-		guard let characterLength = textStorage?.length else { return }
-		let characterRange = NSRange(location: 0, length: characterLength)
+		let characterRange = characterRangeForGlyphRange(NSRange(location: 0, length: numberOfGlyphs), actualGlyphRange: nil)
 		invalidateGlyphsForCharacterRange(characterRange, changeInLength: 0, actualCharacterRange: nil)
 		needsInvalidateFoldableGlyphs = false
 		needsUpdateTextContainer = true
