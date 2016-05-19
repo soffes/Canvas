@@ -29,7 +29,7 @@ class LayoutManager: NSLayoutManager {
 	weak var textController: TextController?
 	weak var layoutDelegate: LayoutManagerDelegate?
 
-	private let foldingEnabled = true
+	private let foldingEnabled = false
 
 	/// The user selection. Adjacent foldings should be unfolded.
 	var presentationSelectedRange: NSRange? {
