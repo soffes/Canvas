@@ -29,34 +29,14 @@ class LayoutManager: NSLayoutManager {
 	weak var textController: TextController?
 	weak var layoutDelegate: LayoutManagerDelegate?
 
-	/// Currently unfolding due to `unfoldedRange`
-	private var isUnfolding = false
+	private let foldingEnabled = false
 
-	/// This range will be excluded from folding.
-	var unfoldedRange: NSRange? {
+	/// The user selection. Adjacent foldings should be unfolded.
+	var presentationSelectedRange: NSRange? {
 		didSet {
-//			// If we don't have an unfolded range, we're not folding.
-//			guard let unfoldedRange = unfoldedRange else {
-//				let wasUnfolding = isUnfolding
-//				isUnfolding = false
-//
-//				// If were previous folding, we need to invalidate
-//				if wasUnfolding {
-//					setNeedsInvalidateFoldableGlyphs()
-//				}
-//				return
-//			}
-//
-//			// If the old value is the same as the current value, no change.
-//			if let oldValue = oldValue where unfoldedRange.equals(oldValue) {
-//				return
-//			}
-//
-//			// We're unfolding if there's an intersection with an unfolded index.
-//			isUnfolding = !foldedIndices.intersect(unfoldedRange.indices).isEmpty
+			guard foldingEnabled else { return }
 
-			// Invalidate something changed
-			setNeedsInvalidateFoldableGlyphs()
+			// TODO: Implement
 
 			dispatch_async(dispatch_get_main_queue()) { [weak self] in
 				self?.invalidateFoldableGlyphsIfNeeded()
@@ -131,6 +111,8 @@ class LayoutManager: NSLayoutManager {
 	}
 
 	private func invalidateFoldableGlyphs() {
+		guard foldingEnabled else { return }
+
 		let sorted = foldableRanges.sort { $0.location < $1.location }
 		guard let first = sorted.first, last = sorted.last else { return }
 
@@ -141,7 +123,7 @@ class LayoutManager: NSLayoutManager {
 	}
 
 	private func updateTextContainerIfNeeded() {
-		guard needsUpdateTextContainer, let textContainer = textController?.textContainer else { return }
+		guard foldingEnabled && needsUpdateTextContainer, let textContainer = textController?.textContainer else { return }
 
 		textContainer.replaceLayoutManager(self)
 		needsUpdateTextContainer = false
@@ -153,14 +135,24 @@ extension LayoutManager: NSLayoutManagerDelegate {
 	// Mark folded characters as control characters so we can give them a zero width in
 	// `layoutManager:shouldUseAction:forControlCharacterAtIndex:`.
 	func layoutManager(layoutManager: NSLayoutManager, shouldGenerateGlyphs glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSGlyphProperty>, characterIndexes: UnsafePointer<Int>, font: UIFont, forGlyphRange glyphRange: NSRange) -> Int {
+		if foldedIndices.isEmpty {
+			return 0
+		}
+
 		let properties = UnsafeMutablePointer<NSGlyphProperty>(props)
 
+		var changed = false
 		for i in 0..<glyphRange.length {
 			let characterIndex = characterIndexes[i]
 
-			if !(unfoldedRange?.contains(characterIndex) ?? false) && foldedIndices.contains(characterIndex) {
+			if /*!(unfoldedRange?.contains(characterIndex) ?? false) &&*/ foldedIndices.contains(characterIndex) {
 				properties[i] = .ControlCharacter
+				changed = true
 			}
+		}
+
+		if !changed {
+			return 0
 		}
 
 		layoutManager.setGlyphs(glyphs, properties: properties, characterIndexes: characterIndexes, font: font, forGlyphRange: glyphRange)

@@ -165,8 +165,7 @@ public final class TextController {
 	func setPresentationSelectedRange(range: NSRange?, updateTextView: Bool) {
 		presentationSelectedRange = range
 
-		let unfolded = range.flatMap { unfoldableRange(presentationSelectedRange: $0) }
-		_layoutManager.unfoldedRange = unfolded
+		_layoutManager.presentationSelectedRange = range
 
 		if updateTextView, let range = range {
 			displayDelegate?.textController(self, didUpdateSelectedRange: range)
@@ -175,27 +174,6 @@ public final class TextController {
 
 
 	// MARK: - Private
-
-	private func unfoldableRange(presentationSelectedRange presentationSelection: NSRange) -> NSRange? {
-		let document = currentDocument
-		let backingRange: NSRange = {
-			var range = presentationSelection
-			range.location = max(0, range.location - 1)
-			range.length += (presentationSelection.location - range.location) + 1
-			return document.backingRange(presentationRange: range)
-		}()
-
-		let foldableNodes = document.nodesIn(backingRange: backingRange).filter { $0 is Foldable }
-		var foldableRanges = ArraySlice<NSRange>(foldableNodes.map { document.presentationRange(backingRange: $0.range) })
-
-		guard var range = foldableRanges.popFirst() else { return nil }
-
-		for r in foldableRanges {
-			range = range.union(r)
-		}
-
-		return range
-	}
 
 	private func layoutAttachments() {
 		var styles = [Style]()
@@ -214,7 +192,7 @@ public final class TextController {
 
 	// Returns an array of styles and an array of foldable ranges
 	private func stylesForBlock(block: BlockNode) -> ([Style], [NSRange]) {
-		var range = currentDocument.presentationRange(backingRange: block.visibleRange)
+		var range = currentDocument.presentationRange(block: block)
 
 		if range.location == 0 {
 			range.length += 1
@@ -235,19 +213,19 @@ public final class TextController {
 		var foldableRanges = [NSRange]()
 
 		if let font = attributes[NSFontAttributeName] as? Font {
-			// Foldable attributes
-			if let foldable = block as? Foldable {
-				let foldableAttributes = theme.foldingAttributes(currentFont: font)
-
-				for backingRange in foldable.foldableRanges {
-					let style = Style(
-						range: currentDocument.presentationRange(backingRange: backingRange),
-						attributes: foldableAttributes
-					)
-					styles.append(style)
-					foldableRanges.append(style.range)
-				}
-			}
+//			// Foldable attributes
+//			if let foldable = block as? Foldable {
+//				let foldableAttributes = theme.foldingAttributes(currentFont: font)
+//
+//				for backingRange in foldable.foldableRanges {
+//					let style = Style(
+//						range: currentDocument.presentationRange(backingRange: backingRange),
+//						attributes: foldableAttributes
+//					)
+//					styles.append(style)
+//					foldableRanges.append(style.range)
+//				}
+//			}
 
 			// Contained nodes
 			if let container = block as? NodeContainer {
@@ -379,7 +357,7 @@ public final class TextController {
 			return nil
 		}
 		
-		let range = currentDocument.presentationRange(backingRange: block.visibleRange)
+		let range = currentDocument.presentationRange(block: block)
 		return Style(range: range, attributes: [
 			NSAttachmentAttributeName: attachment
 		])
@@ -412,7 +390,7 @@ public final class TextController {
 		attachment.image = image
 		attachment.bounds = CGRect(origin: .zero, size: attachmentSize(imageSize: image.size))
 		
-		let range = currentDocument.presentationRange(backingRange: block.visibleRange)
+		let range = currentDocument.presentationRange(block: block)
 		let style = Style(range: range, attributes: [
 			NSAttachmentAttributeName: attachment
 		])
@@ -495,7 +473,7 @@ extension TextController: DocumentControllerDelegate {
 		let (styles, _) = stylesForBlock(block)
 		_textStorage.addStyles(styles)
 
-		var range = controller.document.presentationRange(backingRange: block.visibleRange)
+		var range = controller.document.presentationRange(block: block)
 		if range.location > 0 {
 			range.location -= 1
 			range.length += 1
@@ -624,7 +602,7 @@ extension TextController: TextStorageDelegate {
 		// Handle inserts around attachments
 		else if !replacement.isEmpty {
 			if let block = document.blockAt(presentationLocation: range.location) as? Attachable {
-				let presentation = document.presentationRange(backingRange: block.visibleRange)
+				let presentation = document.presentationRange(block: block)
 
 				// Add a new line before edits immediately following an Attachable
 				if range.location == presentation.max {

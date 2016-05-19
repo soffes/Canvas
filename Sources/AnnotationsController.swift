@@ -103,7 +103,7 @@ final class AnnotationsController {
 		guard let textController = textController else { return .zero }
 
 		let document = textController.currentDocument
-		var presentationRange = document.presentationRange(backingRange: annotation.block.range)
+		var presentationRange = document.presentationRange(block: annotation.block)
 
 		// Add new line
 		if presentationRange.max < (document.presentationString as NSString).length {
@@ -131,11 +131,10 @@ final class AnnotationsController {
 		// Expand to the top of the next block if neccessary
 		if annotation.placement.isExpanded, let positionable = annotation.block as? Positionable where !positionable.position.isBottom {
 			if let index = document.indexOf(block: annotation.block) where index < document.blocks.count - 1 {
-				let next = document.blocks[index + 1]
-				var nextRange = document.presentationRange(backingRange: next.visibleRange)
+				var nextRange = document.presentationRange(blockIndex: index + 1)
 				nextRange.length = min(presentationRange.length + 1, textController.textStorage.length - nextRange.location)
 
-				if let nextRect = rectsForPresentationRange(nextRange)?.first {
+				if let nextRect = firstRectsForPresentationRange(nextRange) {
 					if nextRect.minY > rect.maxY {
 						rect.size.height = nextRect.minY - rect.minY
 					}
@@ -155,6 +154,23 @@ final class AnnotationsController {
 
 
 	// MARK: - Private
+
+	private func firstRectsForPresentationRange(presentationRange: NSRange) -> CGRect? {
+		guard let textController = textController else { return nil }
+
+		let layoutManager = textController.layoutManager
+
+		let glyphRange = layoutManager.glyphRangeForCharacterRange(presentationRange, actualCharacterRange: nil)
+		layoutManager.ensureLayoutForGlyphRange(glyphRange)
+
+		var rect: CGRect?
+		layoutManager.enumerateLineFragmentsForGlyphRange(glyphRange) { availableRect, usedRect, _, _, stop in
+			rect = usedRect
+			stop.memory = true
+		}
+
+		return rect ?? layoutManager.extraLineFragmentRect
+	}
 
 	private func rectsForPresentationRange(presentationRange: NSRange) -> [CGRect]? {
 		guard let textController = textController else { return nil }
