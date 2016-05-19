@@ -35,28 +35,33 @@ class LayoutManager: NSLayoutManager {
 	/// This range will be excluded from folding.
 	var unfoldedRange: NSRange? {
 		didSet {
-			// If we don't have an unfolded range, we're not folding.
-			guard let unfoldedRange = unfoldedRange else {
-				let wasUnfolding = isUnfolding
-				isUnfolding = false
-
-				// If were previous folding, we need to invalidate
-				if wasUnfolding {
-					setNeedsInvalidateFoldableGlyphs()
-				}
-				return
-			}
-
-			// If the old value is the same as the current value, no change.
-			if let oldValue = oldValue where unfoldedRange.equals(oldValue) {
-				return
-			}
-
-			// We're unfolding if there's an intersection with an unfolded index.
-			isUnfolding = !foldedIndices.intersect(unfoldedRange.indices).isEmpty
+//			// If we don't have an unfolded range, we're not folding.
+//			guard let unfoldedRange = unfoldedRange else {
+//				let wasUnfolding = isUnfolding
+//				isUnfolding = false
+//
+//				// If were previous folding, we need to invalidate
+//				if wasUnfolding {
+//					setNeedsInvalidateFoldableGlyphs()
+//				}
+//				return
+//			}
+//
+//			// If the old value is the same as the current value, no change.
+//			if let oldValue = oldValue where unfoldedRange.equals(oldValue) {
+//				return
+//			}
+//
+//			// We're unfolding if there's an intersection with an unfolded index.
+//			isUnfolding = !foldedIndices.intersect(unfoldedRange.indices).isEmpty
 
 			// Invalidate something changed
 			setNeedsInvalidateFoldableGlyphs()
+
+			dispatch_async(dispatch_get_main_queue()) { [weak self] in
+				self?.invalidateFoldableGlyphsIfNeeded()
+				self?.updateTextContainerIfNeeded()
+			}
 		}
 	}
 
@@ -132,6 +137,14 @@ class LayoutManager: NSLayoutManager {
 		let characterRange = NSRange(location: first.location, length: last.max - first.location)
 		invalidateGlyphsForCharacterRange(characterRange, changeInLength: 0, actualCharacterRange: nil)
 		needsInvalidateFoldableGlyphs = false
+		needsUpdateTextContainer = true
+	}
+
+	private func updateTextContainerIfNeeded() {
+		guard needsUpdateTextContainer, let textContainer = textController?.textContainer else { return }
+
+		textContainer.replaceLayoutManager(self)
+		needsUpdateTextContainer = false
 	}
 }
 
@@ -178,11 +191,6 @@ extension LayoutManager: NSLayoutManagerDelegate {
 	// If we've updated folding, we need to replace the layout manager in the text container. I'm all ears for a way to
 	// avoid this.
 	func layoutManager(layoutManager: NSLayoutManager, didCompleteLayoutForTextContainer textContainer: NSTextContainer?, atEnd layoutFinishedFlag: Bool) {
-		guard needsUpdateTextContainer, let textContainer = textContainer where textContainer == textController?.textContainer else { return }
-
-		textContainer.replaceLayoutManager(self)
-		needsUpdateTextContainer = false
-
-		invalidateFoldableGlyphsIfNeeded()
+		updateTextContainerIfNeeded()
 	}
 }

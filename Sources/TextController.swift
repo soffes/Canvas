@@ -476,6 +476,7 @@ extension TextController: TransportControllerDelegate {
 extension TextController: DocumentControllerDelegate {
 	public func documentControllerWillUpdateDocument(controller: DocumentController) {
 		textStorage.beginEditing()
+		_layoutManager.clearFoldableRanges()
 	}
 
 	public func documentController(controller: DocumentController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
@@ -491,9 +492,8 @@ extension TextController: DocumentControllerDelegate {
 	public func documentController(controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int) {
 		annotationsController.insert(block: block, index: index)
 
-		let (styles, foldableRanges) = stylesForBlock(block)
+		let (styles, _) = stylesForBlock(block)
 		_textStorage.addStyles(styles)
-//		_layoutManager.addFoldableRanges(foldableRanges)
 
 		var range = controller.document.presentationRange(backingRange: block.visibleRange)
 		if range.location > 0 {
@@ -526,6 +526,13 @@ extension TextController: DocumentControllerDelegate {
 
 	public func documentControllerDidUpdateDocument(controller: DocumentController) {
 		textStorage.endEditing()
+
+		var foldableRanges = [NSRange]()
+		for block in controller.document.blocks {
+			let (_, ranges) = stylesForBlock(block)
+			foldableRanges += ranges
+		}
+		_layoutManager.addFoldableRanges(foldableRanges)
 
 		dispatch_async(dispatch_get_main_queue()) { [weak self] in
 			self?._textStorage.applyStyles()
