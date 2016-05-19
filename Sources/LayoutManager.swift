@@ -29,7 +29,7 @@ class LayoutManager: NSLayoutManager {
 	weak var textController: TextController?
 	weak var layoutDelegate: LayoutManagerDelegate?
 
-	private let foldingEnabled = false
+	private let foldingEnabled = true
 
 	/// The user selection. Adjacent foldings should be unfolded.
 	var presentationSelectedRange: NSRange? {
@@ -38,10 +38,10 @@ class LayoutManager: NSLayoutManager {
 
 			// TODO: Implement
 
-			dispatch_async(dispatch_get_main_queue()) { [weak self] in
-				self?.invalidateFoldableGlyphsIfNeeded()
-				self?.updateTextContainerIfNeeded()
-			}
+//			dispatch_async(dispatch_get_main_queue()) { [weak self] in
+//				self?.invalidateFoldableGlyphsIfNeeded()
+//				self?.updateTextContainerIfNeeded()
+//			}
 		}
 	}
 
@@ -145,7 +145,12 @@ extension LayoutManager: NSLayoutManagerDelegate {
 		for i in 0..<glyphRange.length {
 			let characterIndex = characterIndexes[i]
 
-			if /*!(unfoldedRange?.contains(characterIndex) ?? false) &&*/ foldedIndices.contains(characterIndex) {
+			// Skip selected characters
+//			if let selection = presentationSelectedRange where selection.contains(characterIndex) {
+//				continue
+//			}
+
+			if foldedIndices.contains(characterIndex) {
 				properties[i] = .ControlCharacter
 				changed = true
 			}

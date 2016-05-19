@@ -91,7 +91,7 @@ extension Theme {
 		#if !os(OSX)
 			if !symbolicTraits.isEmpty {
 				let descriptor = font.fontDescriptor().fontDescriptorWithSymbolicTraits(symbolicTraits)
-				return Font(descriptor: descriptor, size: font.pointSize)
+				return Font(descriptor: descriptor, size: font.pointSize) ?? font
 			}
 		#endif
 
