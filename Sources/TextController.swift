@@ -229,18 +229,32 @@ public final class TextController {
 			return ([], [])
 		}
 
-		let blockStyle = Style(
-			range: range,
-			attributes: theme.attributes(block: block)
-		)
+		let attributes = theme.attributes(block: block)
 
-		var styles = [blockStyle]
+		var styles = [Style(range: range, attributes: attributes)]
 		var foldableRanges = [NSRange]()
 
-		if let container = block as? NodeContainer, font = blockStyle.attributes[NSFontAttributeName] as? Font {
-			let (innerStyles, innerFoldableRanges) = stylesForSpans(container.subnodes, currentFont: font)
-			styles += innerStyles
-			foldableRanges += innerFoldableRanges
+		if let font = attributes[NSFontAttributeName] as? Font {
+			// Foldable attributes
+			if let foldable = block as? Foldable {
+				let foldableAttributes = theme.foldingAttributes(currentFont: font)
+
+				for backingRange in foldable.foldableRanges {
+					let style = Style(
+						range: currentDocument.presentationRange(backingRange: backingRange),
+						attributes: foldableAttributes
+					)
+					styles.append(style)
+					foldableRanges.append(style.range)
+				}
+			}
+
+			// Contained nodes
+			if let container = block as? NodeContainer {
+				let (innerStyles, innerFoldableRanges) = stylesForSpans(container.subnodes, currentFont: font)
+				styles += innerStyles
+				foldableRanges += innerFoldableRanges
+			}
 		}
 
 		return (styles, foldableRanges)
@@ -479,7 +493,7 @@ extension TextController: DocumentControllerDelegate {
 
 		let (styles, foldableRanges) = stylesForBlock(block)
 		_textStorage.addStyles(styles)
-		_layoutManager.addFoldableRanges(foldableRanges)
+//		_layoutManager.addFoldableRanges(foldableRanges)
 
 		var range = controller.document.presentationRange(backingRange: block.visibleRange)
 		if range.location > 0 {
@@ -635,7 +649,7 @@ extension TextController: TextStorageDelegate {
 
 		dispatch_async(dispatch_get_main_queue()) { [weak self] in
 			self?.refreshAnnotations()
-			self?._layoutManager.invalidateFoldableGlyphsIfNeeded()
+//			self?._layoutManager.invalidateFoldableGlyphsIfNeeded()
 		}
 	}
 
