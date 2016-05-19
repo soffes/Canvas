@@ -39,11 +39,8 @@ public struct CodeSpan: SpanNode, Foldable {
 			"leadingDelimiterRange": leadingDelimiterRange.dictionary,
 			"textRange": textRange.dictionary,
 			"trailingDelimiterRange": trailingDelimiterRange.dictionary,
-			"subnodes": subnodes.map { $0.dictionary }
 		]
 	}
-
-	public var subnodes = [SpanNode]()
 
 
 	// MARK: - Initializers
@@ -52,7 +49,6 @@ public struct CodeSpan: SpanNode, Foldable {
 		self.leadingDelimiterRange = leadingDelimiterRange
 		self.textRange = textRange
 		self.trailingDelimiterRange = trailingDelimiterRange
-		self.subnodes = subnodes
 	}
 
 
