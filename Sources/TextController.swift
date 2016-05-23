@@ -405,6 +405,14 @@ public final class TextController {
 		_textStorage.addStyles([style])
 		_textStorage.applyStyles()
 	}
+
+	private func updateFolding() {
+		guard _layoutManager.foldingEnabled else { return }
+
+		var foldableRanges = [NSRange]()
+		currentDocument.blocks.forEach { foldableRanges += stylesForBlock($0).1 }
+		_layoutManager.foldableRanges = foldableRanges
+	}
 }
 
 
@@ -461,7 +469,6 @@ extension TextController: TransportControllerDelegate {
 extension TextController: DocumentControllerDelegate {
 	public func documentControllerWillUpdateDocument(controller: DocumentController) {
 		textStorage.beginEditing()
-		_layoutManager.clearFoldableRanges()
 	}
 
 	public func documentController(controller: DocumentController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
@@ -511,13 +518,6 @@ extension TextController: DocumentControllerDelegate {
 
 	public func documentControllerDidUpdateDocument(controller: DocumentController) {
 		textStorage.endEditing()
-
-		var foldableRanges = [NSRange]()
-		for block in controller.document.blocks {
-			let (_, ranges) = stylesForBlock(block)
-			foldableRanges += ranges
-		}
-		_layoutManager.addFoldableRanges(foldableRanges)
 
 		dispatch_async(dispatch_get_main_queue()) { [weak self] in
 			self?._textStorage.applyStyles()
@@ -643,6 +643,7 @@ extension TextController: TextStorageDelegate {
 
 		dispatch_async(dispatch_get_main_queue()) { [weak self] in
 			self?.refreshAnnotations()
+			self?.updateFolding()
 		}
 	}
 

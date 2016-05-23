@@ -110,19 +110,21 @@ final class AnnotationsController {
 			presentationRange.length += 1
 		}
 
-		guard let rects = rectsForPresentationRange(presentationRange), firstRect = rects.first else { return .zero }
 		var rect: CGRect
 
 		switch annotation.placement {
 		case .FirstLeadingGutter:
+			guard let firstRect = firstRectForPresentationRange(presentationRange) else { return .zero }
 			rect = firstRect
 			rect.size.width = rect.origin.x
 			rect.origin.x = 0
 		case .ExpandedLeadingGutter:
+			guard let rects = rectsForPresentationRange(presentationRange), firstRect = rects.first else { return .zero }
 			rect = rects.reduce(firstRect) { $0.union($1) }
 			rect.size.width = rect.origin.x
 			rect.origin.x = 0
 		case .ExpandedBackground:
+			guard let rects = rectsForPresentationRange(presentationRange), firstRect = rects.first else { return .zero }
 			rect = rects.reduce(firstRect) { $0.union($1) }
 			rect.origin.x = 0
 			rect.size.width = textController.textContainer.size.width

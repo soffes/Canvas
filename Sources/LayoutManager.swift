@@ -30,7 +30,7 @@ class LayoutManager: NSLayoutManager {
 	weak var layoutDelegate: LayoutManagerDelegate?
 
 	private let lineSpacing: CGFloat = 3
-	private let foldingEnabled = false
+	let foldingEnabled = false
 
 	/// The user selection. Adjacent foldings should be unfolded.
 	var presentationSelectedRange: NSRange? {
@@ -47,11 +47,11 @@ class LayoutManager: NSLayoutManager {
 	}
 
 	/// Folded ranges. Whenever this changes, it will trigger an invalidation of foldable glyphs.
-	private var foldableRanges = [NSRange]() {
+	var foldableRanges = [NSRange]() {
 		didSet {
-			let indicies = foldableRanges.map { $0.indices }
-			foldedIndices = Set(indicies.flatten())
-			setNeedsInvalidateFoldableGlyphs()
+			var set = Set<Int>()
+			foldableRanges.forEach { set.unionInPlace($0.indices) }
+			foldedIndices = set
 		}
 	}
 
@@ -64,7 +64,17 @@ class LayoutManager: NSLayoutManager {
 	private var needsInvalidateFoldableGlyphs = false
 
 	/// Set of indices that should be folded. Calculated from `foldableRanges`.
-	private var foldedIndices = Set<Int>()
+	private var foldedIndices = Set<Int>() {
+		didSet {
+			guard foldingEnabled else { return }
+			
+			for index in foldedIndices {
+				if !oldValue.contains(index) {
+					invalidateGlyphsForCharacterRange(NSRange(location: index, length: 1), changeInLength: 0, actualCharacterRange: nil)
+				}
+			}
+		}
+	}
 
 
 	// MARK: - Initializers
@@ -91,17 +101,6 @@ class LayoutManager: NSLayoutManager {
 		var rect = super.extraLineFragmentRect
 		rect.size.height += lineSpacing
 		return rect
-	}
-
-
-	// MARK: - Invalidation
-
-	func addFoldableRanges(presentationRanges: [NSRange]) {
-		foldableRanges += presentationRanges
-	}
-
-	func clearFoldableRanges() {
-		foldableRanges.removeAll()
 	}
 
 
