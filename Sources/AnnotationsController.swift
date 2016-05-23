@@ -134,7 +134,7 @@ final class AnnotationsController {
 				var nextRange = document.presentationRange(blockIndex: index + 1)
 				nextRange.length = min(presentationRange.length + 1, textController.textStorage.length - nextRange.location)
 
-				if let nextRect = firstRectsForPresentationRange(nextRange) {
+				if let nextRect = firstRectForPresentationRange(nextRange) {
 					if nextRect.minY > rect.maxY {
 						rect.size.height = nextRect.minY - rect.minY
 					}
@@ -151,7 +151,7 @@ final class AnnotationsController {
 
 	// MARK: - Private
 
-	private func firstRectsForPresentationRange(presentationRange: NSRange) -> CGRect? {
+	private func firstRectForPresentationRange(presentationRange: NSRange) -> CGRect? {
 		guard let textController = textController else { return nil }
 
 		let layoutManager = textController.layoutManager
@@ -160,7 +160,7 @@ final class AnnotationsController {
 		layoutManager.ensureLayoutForGlyphRange(glyphRange)
 
 		var rect: CGRect?
-		layoutManager.enumerateLineFragmentsForGlyphRange(glyphRange) { availableRect, usedRect, _, _, stop in
+		layoutManager.enumerateLineFragmentsForGlyphRange(glyphRange) { _, usedRect, _, _, stop in
 			rect = usedRect
 			stop.memory = true
 		}
@@ -183,7 +183,9 @@ final class AnnotationsController {
 
 		// Handle the last line
 		if rects.isEmpty {
-			rects.append(layoutManager.extraLineFragmentRect)
+			var rect = layoutManager.extraLineFragmentRect
+			rect.size.height += LayoutManager.lineSpacing
+			rects.append(rect)
 		}
 
 		return rects

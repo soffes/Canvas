@@ -29,6 +29,7 @@ class LayoutManager: NSLayoutManager {
 	weak var textController: TextController?
 	weak var layoutDelegate: LayoutManagerDelegate?
 
+	static let lineSpacing: CGFloat = 3
 	private let foldingEnabled = false
 
 	/// The user selection. Adjacent foldings should be unfolded.
@@ -182,7 +183,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
 
 	func layoutManager(layoutManager: NSLayoutManager, lineSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
 		// TODO: Get this from the theme and vary based on the block's font
-		return 3
+		return self.dynamicType.lineSpacing
 	}
 
 	// Adjust the top margin of lines based on their block type

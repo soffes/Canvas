@@ -39,8 +39,8 @@ class TextContainer: NSTextContainer {
 		var rect = proposedRect
 
 		if let textController = textController, block = textController.currentDocument.blockAt(presentationLocation: index) {
-			let spacing = textController.theme.blockSpacing(block: block, horizontalSizeClass: textController.traitCollection.horizontalSizeClass)
-			rect = spacing.applyPadding(rect)
+			let blockSpacing = textController.blockSpacing(block: block)
+			rect = blockSpacing.applyPadding(rect)
 		}
 
 		return super.lineFragmentRectForProposedRect(rect, atIndex: index, writingDirection: writingDirection, remainingRect: remainingRect)
