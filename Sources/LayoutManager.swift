@@ -29,7 +29,7 @@ class LayoutManager: NSLayoutManager {
 	weak var textController: TextController?
 	weak var layoutDelegate: LayoutManagerDelegate?
 
-	static let lineSpacing: CGFloat = 3
+	private let lineSpacing: CGFloat = 3
 	private let foldingEnabled = false
 
 	/// The user selection. Adjacent foldings should be unfolded.
@@ -85,6 +85,12 @@ class LayoutManager: NSLayoutManager {
 	override func textContainerChangedGeometry(container: NSTextContainer) {
 		super.textContainerChangedGeometry(container)
 		layoutDelegate?.layoutManager(self, textContainerChangedGeometry: container)
+	}
+
+	override var extraLineFragmentRect: CGRect {
+		var rect = super.extraLineFragmentRect
+		rect.size.height += lineSpacing
+		return rect
 	}
 
 
@@ -183,7 +189,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
 
 	func layoutManager(layoutManager: NSLayoutManager, lineSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
 		// TODO: Get this from the theme and vary based on the block's font
-		return self.dynamicType.lineSpacing
+		return lineSpacing
 	}
 
 	// Adjust the top margin of lines based on their block type

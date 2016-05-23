@@ -183,9 +183,7 @@ final class AnnotationsController {
 
 		// Handle the last line
 		if rects.isEmpty {
-			var rect = layoutManager.extraLineFragmentRect
-			rect.size.height += LayoutManager.lineSpacing
-			rects.append(rect)
+			rects.append(layoutManager.extraLineFragmentRect)
 		}
 
 		return rects
