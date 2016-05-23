@@ -173,6 +173,13 @@ public final class TextController {
 	}
 
 
+	// MARK: - Internal
+
+	func blockSpacing(block block: BlockNode) -> BlockSpacing {
+		return theme.blockSpacing(block: block, horizontalSizeClass: traitCollection.horizontalSizeClass)
+	}
+
+
 	// MARK: - Private
 
 	private func layoutAttachments() {
