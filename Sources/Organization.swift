@@ -28,7 +28,7 @@ extension Organization: JSONSerializable, JSONDeserializable {
 		]
 
 		if let color = color {
-			dictionary["hex"] = color.hex
+			dictionary["color"] = color.hex
 		}
 
 		return dictionary
