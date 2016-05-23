@@ -41,12 +41,6 @@ class TextContainer: NSTextContainer {
 		if let textController = textController, block = textController.currentDocument.blockAt(presentationLocation: index) {
 			let spacing = textController.theme.blockSpacing(block: block, horizontalSizeClass: textController.traitCollection.horizontalSizeClass)
 			rect = spacing.applyPadding(rect)
-
-			// Apply the top margin if it's not the second node
-			let blocks = textController.currentDocument.blocks
-			if spacing.marginTop > 0 && blocks.count >= 2 && block.range.location > blocks[1].range.location {
-				rect.origin.y += spacing.marginTop
-			}
 		}
 
 		return super.lineFragmentRectForProposedRect(rect, atIndex: index, writingDirection: writingDirection, remainingRect: remainingRect)

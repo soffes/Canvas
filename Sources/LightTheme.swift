@@ -43,23 +43,16 @@ public struct LightTheme: Theme {
 	// MARK: - Initializers
 
 	public init() {
-		smallParagraphSpacing = fontSize * 0.1
+		smallParagraphSpacing = round(fontSize * 0.1)
 	}
 
 
 	// MARK: - Theme
 
-	private var baseParagraph: NSMutableParagraphStyle {
-		let paragraph = NSMutableParagraphStyle()
-		paragraph.lineHeightMultiple = lineHeightMultiple
-		return paragraph
-	}
-
 	public var baseAttributes: Attributes {
 		return [
 			NSForegroundColorAttributeName: foregroundColor,
-			NSFontAttributeName: fontOfSize(fontSize),
-			NSParagraphStyleAttributeName: baseParagraph
+			NSFontAttributeName: fontOfSize(fontSize)
 		]
 	}
 
@@ -72,18 +65,12 @@ public struct LightTheme: Theme {
 	public var titleAttributes: Attributes {
 		var attributes = baseAttributes
 		attributes[NSForegroundColorAttributeName] = UIColor.blackColor()
-		attributes[NSFontAttributeName] = fontOfSize(fontSize * 1.7, symbolicTraits: [.TraitBold])
+		attributes[NSFontAttributeName] = fontOfSize(round(fontSize * 1.7), symbolicTraits: [.TraitBold])
 		return attributes
 	}
 
 	public func blockSpacing(block block: BlockNode, horizontalSizeClass: UserInterfaceSizeClass) -> BlockSpacing {
-		var spacing = BlockSpacing(marginBottom: fontSize * 1.5)
-
-		// Large left padding on title for icon
-		if block is Title {
-//			spacing.paddingLeft = 32
-			return spacing
-		}
+		var spacing = BlockSpacing(marginBottom: round(fontSize * 1.5))
 
 		// No margin if it's not at the bottom of a positionable list
 		if let block = block as? Positionable where !(block is Blockquote) {
@@ -94,14 +81,14 @@ public struct LightTheme: Theme {
 
 		// Heading spacing
 		if block is Heading {
-			spacing.marginTop = spacing.marginBottom * 0.25
-			spacing.marginBottom /= 2
+			spacing.marginTop = round(spacing.marginBottom * 0.25)
+			spacing.marginBottom = round(spacing.marginBottom / 2)
 			return spacing
 		}
 
 		// Indentation
 		if let listable = block as? Listable {
-			spacing.paddingLeft = listIndentation * CGFloat(listable.indentation.rawValue + 1)
+			spacing.paddingLeft = round(listIndentation * CGFloat(listable.indentation.rawValue + 1))
 			return spacing
 		}
 
@@ -139,21 +126,19 @@ public struct LightTheme: Theme {
 			return titleAttributes
 		}
 
-		let paragraph = baseParagraph
 		var attributes = baseAttributes
-		attributes[NSParagraphStyleAttributeName] = nil
 
 		if let heading = block as? Heading {
 			switch heading.level {
 			case .One:
 				attributes[NSForegroundColorAttributeName] = UIColor.blackColor()
-				attributes[NSFontAttributeName] = fontOfSize(fontSize * 1.5, symbolicTraits: .TraitBold)
+				attributes[NSFontAttributeName] = fontOfSize(round(fontSize * 1.5), symbolicTraits: .TraitBold)
 			case .Two:
 				attributes[NSForegroundColorAttributeName] = foregroundColor
-				attributes[NSFontAttributeName] = fontOfSize(fontSize * 1.2, symbolicTraits: .TraitBold)
+				attributes[NSFontAttributeName] = fontOfSize(round(fontSize * 1.2), symbolicTraits: .TraitBold)
 			case .Three:
 				attributes[NSForegroundColorAttributeName] = UIColor(white: 0.3, alpha: 1)
-				attributes[NSFontAttributeName] = fontOfSize(fontSize * 1.1, symbolicTraits: .TraitBold)
+				attributes[NSFontAttributeName] = fontOfSize(round(fontSize * 1.1), symbolicTraits: .TraitBold)
 			case .Four:
 				attributes[NSForegroundColorAttributeName] = mediumGray
 				attributes[NSFontAttributeName] = fontOfSize(fontSize, symbolicTraits: .TraitBold)
@@ -168,14 +153,15 @@ public struct LightTheme: Theme {
 			attributes[NSForegroundColorAttributeName] = mediumGray
 			attributes[NSFontAttributeName] = monospaceFontOfSize(fontSize)
 
+			// Indent wrapped lines in code blocks
+			let paragraph = NSMutableParagraphStyle()
 			paragraph.headIndent = fontSize
+			attributes[NSParagraphStyleAttributeName] = paragraph
 		}
 
 		else if block is Blockquote {
 			attributes[NSForegroundColorAttributeName] = mediumGray
 		}
-
-		attributes[NSParagraphStyleAttributeName] = paragraph
 
 		return attributes
 	}

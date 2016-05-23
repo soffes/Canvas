@@ -128,6 +128,16 @@ class LayoutManager: NSLayoutManager {
 		textContainer.replaceLayoutManager(self)
 		needsUpdateTextContainer = false
 	}
+
+	private func blockSpacing(glyphIndex glyphIndex: Int) -> BlockSpacing? {
+		guard let textController = textController else { return nil }
+
+		let characterIndex = characterIndexForGlyphAtIndex(glyphIndex)
+		guard let block = textController.currentDocument.blockAt(presentationLocation: characterIndex) else { return nil }
+
+		let sizeClass = textController.traitCollection.horizontalSizeClass
+		return textController.theme.blockSpacing(block: block, horizontalSizeClass: sizeClass)
+	}
 }
 
 
@@ -175,14 +185,32 @@ extension LayoutManager: NSLayoutManagerDelegate {
 		return action
 	}
 
-	// Adjust bottom margin of lines based on their block type
-	func layoutManager(layoutManager: NSLayoutManager, paragraphSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
+	func layoutManager(layoutManager: NSLayoutManager, lineSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
+		// TODO: Get this from the theme
+		return 2
+	}
+
+	// Adjust the top margin of lines based on their block type
+	func layoutManager(layoutManager: NSLayoutManager, paragraphSpacingBeforeGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
 		guard let textController = textController else { return 0 }
 
 		let characterIndex = characterIndexForGlyphAtIndex(glyphIndex)
 		guard let block = textController.currentDocument.blockAt(presentationLocation: characterIndex) else { return 0 }
 
-		return textController.theme.blockSpacing(block: block, horizontalSizeClass: textController.traitCollection.horizontalSizeClass).marginBottom
+		// Apply the top margin if it's not the second node
+		let blocks = textController.currentDocument.blocks
+		let spacing = textController.theme.blockSpacing(block: block, horizontalSizeClass: textController.traitCollection.horizontalSizeClass)
+		if spacing.marginTop > 0 && blocks.count >= 2 && block.range.location > blocks[1].range.location {
+			return spacing.marginTop
+		}
+
+		return 0
+	}
+
+	// Adjust bottom margin of lines based on their block type
+	func layoutManager(layoutManager: NSLayoutManager, paragraphSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
+		guard let blockSpacing = blockSpacing(glyphIndex: glyphIndex) else { return 0 }
+		return blockSpacing.marginBottom
 	}
 
 	// If we've updated folding, we need to replace the layout manager in the text container. I'm all ears for a way to

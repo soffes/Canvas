@@ -53,7 +53,6 @@ public protocol Theme {
 extension Theme {
 	public func foldingAttributes(currentFont currentFont: Font) -> Attributes {
 		var attributes = baseAttributes
-		attributes[NSParagraphStyleAttributeName] = nil
 		attributes[NSForegroundColorAttributeName] = placeholderColor
 		attributes[NSFontAttributeName] = currentFont
 		return attributes
