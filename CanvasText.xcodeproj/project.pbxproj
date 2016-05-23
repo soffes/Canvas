@@ -197,8 +197,8 @@
 			isa = PBXGroup;
 			children = (
 				21AD8C1D1C8A430B000A53F8 /* BlockSpacing.swift */,
-				21AD8C221C8A430B000A53F8 /* LightTheme.swift */,
 				21AD8C241C8A430B000A53F8 /* Theme.swift */,
+				21AD8C221C8A430B000A53F8 /* LightTheme.swift */,
 				21E1D9E51C8DF6B800283961 /* Themeable.swift */,
 			);
 			name = Theme;

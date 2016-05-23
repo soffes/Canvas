@@ -30,8 +30,6 @@ public struct LightTheme: Theme {
 	public let blockquoteBorderColor = Color(red: 0.925, green: 0.925, blue: 0.929, alpha: 1)
 	public let codeBackground = Color(red: 0.961, green: 0.961, blue: 0.965, alpha: 1)
 
-	public let lineHeightMultiple: CGFloat = 1.2
-
 	private let smallParagraphSpacing: CGFloat
 	private let mediumGray = UIColor(red: 0.494, green: 0.494, blue: 0.510, alpha: 1)
 

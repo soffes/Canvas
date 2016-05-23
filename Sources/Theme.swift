@@ -32,8 +32,6 @@ public protocol Theme {
 	var blockquoteBorderColor: Color { get }
 	var codeBackground: Color { get }
 
-	var lineHeightMultiple: CGFloat { get }
-
 	func fontOfSize(fontSize: CGFloat, symbolicTraits: FontDescriptorSymbolicTraits) -> Font
 	func monospaceFontOfSize(fontSize: CGFloat, symbolicTraits: FontDescriptorSymbolicTraits) -> Font
 
