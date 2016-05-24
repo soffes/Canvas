@@ -164,7 +164,7 @@ public final class TextController {
 		for block in currentDocument.blocks {
 			guard let container = block as? NodeContainer else { continue }
 			let font = theme.attributes(block: block)[NSFontAttributeName] as? Font ?? theme.fontOfSize(theme.fontSize)
-			styles += stylesForSpans(container.subnodes, currentFont: font, onlyLinks: true).0
+			styles += stylesForSpans(container.subnodes, currentFont: font, onlyTintable: true).0
 		}
 
 		if !styles.isEmpty {
@@ -301,7 +301,7 @@ public final class TextController {
 	}
 
 	// Returns an array of styles and an array of foldable ranges
-	private func stylesForSpans(spans: [SpanNode], currentFont: Font, onlyLinks: Bool = false) -> ([Style], [NSRange]) {
+	private func stylesForSpans(spans: [SpanNode], currentFont: Font, onlyTintable: Bool = false) -> ([Style], [NSRange]) {
 		var styles = [Style]()
 		var foldableRanges = [NSRange]()
 
@@ -310,7 +310,7 @@ public final class TextController {
 
 			let font: Font
 
-			if (onlyLinks && span is Link) || !onlyLinks {
+			if (onlyTintable && span is Link) || !onlyTintable {
 				let style = Style(
 					range: currentDocument.presentationRange(backingRange: span.visibleRange),
 					attributes: attributes
