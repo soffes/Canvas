@@ -99,6 +99,7 @@ public final class TextController {
 	let canvasID: String
 
 	private var needsTitle = false
+	private var needsUnfoldUpdate = false
 
 
 	// MARK: - Initializers
@@ -165,7 +166,10 @@ public final class TextController {
 	func setPresentationSelectedRange(range: NSRange?, updateTextView: Bool) {
 		presentationSelectedRange = range
 
-		_layoutManager.unfoldedRange = range.flatMap { unfoldableRange(presentationSelectedRange: $0) }
+		needsUnfoldUpdate = true
+		dispatch_async(dispatch_get_main_queue()) { [weak self] in
+			self?.updateUnfoldIfNeeded()
+		}
 
 		if updateTextView, let range = range {
 			displayDelegate?.textController(self, didUpdateSelectedRange: range)
@@ -181,6 +185,14 @@ public final class TextController {
 
 
 	// MARK: - Private
+
+	private func updateUnfoldIfNeeded() {
+		guard needsUnfoldUpdate else { return }
+
+		_layoutManager.unfoldedRange = presentationSelectedRange.flatMap { unfoldableRange(presentationSelectedRange: $0) }
+
+		needsUnfoldUpdate = false
+	}
 
 	/// Expand selection to the entire node.
 	///
@@ -662,6 +674,8 @@ extension TextController: TextStorageDelegate {
 		if textStorage.isEditing {
 			return
 		}
+
+		updateUnfoldIfNeeded()
 
 		dispatch_async(dispatch_get_main_queue()) { [weak self] in
 			self?.refreshAnnotations()
