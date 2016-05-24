@@ -154,6 +154,25 @@ public final class TextController {
 		annotationsController.horizontalSizeClass = traitCollection.horizontalSizeClass
 	}
 
+	public func setTintColor(tintColor: UIColor) {
+		guard tintColor != theme.tintColor else { return }
+
+		theme.tintColor = tintColor
+
+		// Update links
+		var styles = [Style]()
+		for block in currentDocument.blocks {
+			guard let container = block as? NodeContainer else { continue }
+			let font = theme.attributes(block: block)[NSFontAttributeName] as? Font ?? theme.fontOfSize(theme.fontSize)
+			styles += stylesForSpans(container.subnodes, currentFont: font, onlyLinks: true).0
+		}
+
+		if !styles.isEmpty {
+			_textStorage.addStyles(styles)
+			_textStorage.applyStyles()
+		}
+	}
+
 
 	// MARK: - Selection
 
@@ -282,50 +301,56 @@ public final class TextController {
 	}
 
 	// Returns an array of styles and an array of foldable ranges
-	private func stylesForSpans(spans: [SpanNode], currentFont: Font) -> ([Style], [NSRange]) {
+	private func stylesForSpans(spans: [SpanNode], currentFont: Font, onlyLinks: Bool = false) -> ([Style], [NSRange]) {
 		var styles = [Style]()
 		var foldableRanges = [NSRange]()
 
 		for span in spans {
 			guard let attributes = theme.attributes(span: span, currentFont: currentFont) else { continue }
 
-			let style = Style(
-				range: currentDocument.presentationRange(backingRange: span.visibleRange),
-				attributes: attributes
-			)
-			styles.append(style)
+			let font: Font
 
-			let font = attributes[NSFontAttributeName] as? Font ?? currentFont
-			let foldableAttributes = theme.foldingAttributes(currentFont: font)
+			if (onlyLinks && span is Link) || !onlyLinks {
+				let style = Style(
+					range: currentDocument.presentationRange(backingRange: span.visibleRange),
+					attributes: attributes
+				)
+				styles.append(style)
 
-			// Foldable attributes
-			if let foldable = span as? Foldable {
-				// Forward the background color
-				var attrs = foldableAttributes
-				attrs[NSBackgroundColorAttributeName] = attributes[NSBackgroundColorAttributeName]
+				font = attributes[NSFontAttributeName] as? Font ?? currentFont
+				let foldableAttributes = theme.foldingAttributes(currentFont: font)
 
-				for backingRange in foldable.foldableRanges {
-					let style = Style(
-						range: currentDocument.presentationRange(backingRange: backingRange),
-						attributes: attrs
-					)
-					styles.append(style)
-					foldableRanges.append(style.range)
+				// Foldable attributes
+				if let foldable = span as? Foldable {
+					// Forward the background color
+					var attrs = foldableAttributes
+					attrs[NSBackgroundColorAttributeName] = attributes[NSBackgroundColorAttributeName]
+
+					for backingRange in foldable.foldableRanges {
+						let style = Style(
+							range: currentDocument.presentationRange(backingRange: backingRange),
+							attributes: attrs
+						)
+						styles.append(style)
+						foldableRanges.append(style.range)
+					}
 				}
-			}
 
-			// Special case for link URL and title. Maybe we should consider having Themes emit Styles instead of
-			// attributes or at least have a style controller for all of this logic.
-			if let link = span as? Link {
-				// TODO: Derive from theme
-				var attrs = foldableAttributes
-				attrs[NSForegroundColorAttributeName] = Color(red: 0.420, green: 0.420, blue: 0.447, alpha: 1)
+				// Special case for link URL and title. Maybe we should consider having Themes emit Styles instead of
+				// attributes or at least have a style controller for all of this logic.
+				if let link = span as? Link {
+					// TODO: Derive from theme
+					var attrs = foldableAttributes
+					attrs[NSForegroundColorAttributeName] = Color(red: 0.420, green: 0.420, blue: 0.447, alpha: 1)
 
-				styles.append(Style(range: currentDocument.presentationRange(backingRange: link.urlRange), attributes: attrs))
+					styles.append(Style(range: currentDocument.presentationRange(backingRange: link.urlRange), attributes: attrs))
 
-				if let title = link.title {
-					styles.append(Style(range: currentDocument.presentationRange(backingRange: title.textRange), attributes: attrs))
+					if let title = link.title {
+						styles.append(Style(range: currentDocument.presentationRange(backingRange: title.textRange), attributes: attrs))
+					}
 				}
+			} else {
+				font = currentFont
 			}
 
 			if let container = span as? NodeContainer {
