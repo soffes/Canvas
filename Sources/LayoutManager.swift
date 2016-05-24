@@ -33,20 +33,6 @@ class LayoutManager: NSLayoutManager {
 	let foldingEnabled = true
 	var invalidFoldingRange: NSRange?
 
-	/// The user selection. Adjacent foldings should be unfolded.
-	var presentationSelectedRange: NSRange? {
-		didSet {
-			guard foldingEnabled else { return }
-
-			// TODO: Implement
-
-//			dispatch_async(dispatch_get_main_queue()) { [weak self] in
-//				self?.invalidateFoldableGlyphsIfNeeded()
-//				self?.updateTextContainerIfNeeded()
-//			}
-		}
-	}
-
 	/// Folded ranges. Whenever this changes, it will trigger an invalidation of foldable glyphs.
 	private var foldableRanges = [NSRange]() {
 		didSet {
@@ -96,11 +82,7 @@ class LayoutManager: NSLayoutManager {
 
 	override func processEditingForTextStorage(textStorage: NSTextStorage, edited editMask: NSTextStorageEditActions, range: NSRange, changeInLength delta: Int, invalidatedRange: NSRange) {
 		super.processEditingForTextStorage(textStorage, edited: editMask, range: range, changeInLength: delta, invalidatedRange: invalidatedRange)
-
-		if let invalidRange = invalidFoldingRange {
-			invalidateFoldableRanges(inRange: invalidRange)
-			invalidFoldingRange = nil
-		}
+		invalidateFoldingIfNeeded()
 	}
 
 
@@ -118,15 +100,26 @@ class LayoutManager: NSLayoutManager {
 		foldableRanges = foldableRanges.filter { range.intersection($0) == nil }
 	}
 
-	func invalidateFoldableRanges(inRange invalidRange: NSRange) {
-		guard foldingEnabled else { return }
+	func invalidateFoldableRanges(inRange invalidRange: NSRange) -> Bool {
+		guard foldingEnabled else { return false }
+
+		var invalidated = false
 
 		for range in foldableRanges {
 			if invalidRange.intersection(range) != nil {
-				print("invalidate: \(range)")
 				invalidateGlyphsForCharacterRange(range, changeInLength: 0, actualCharacterRange: nil)
+				invalidated = true
 			}
 		}
+
+		return invalidated
+	}
+
+	func invalidateFoldingIfNeeded() -> Bool {
+		guard let invalidRange = invalidFoldingRange else { return false }
+
+		invalidFoldingRange = nil
+		return invalidateFoldableRanges(inRange: invalidRange)
 	}
 
 

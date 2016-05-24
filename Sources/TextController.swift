@@ -165,7 +165,8 @@ public final class TextController {
 	func setPresentationSelectedRange(range: NSRange?, updateTextView: Bool) {
 		presentationSelectedRange = range
 
-		_layoutManager.presentationSelectedRange = range
+		// TODO: Unfold
+//		_layoutManager.presentationSelectedRange = range
 
 		if updateTextView, let range = range {
 			displayDelegate?.textController(self, didUpdateSelectedRange: range)
