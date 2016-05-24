@@ -165,8 +165,7 @@ public final class TextController {
 	func setPresentationSelectedRange(range: NSRange?, updateTextView: Bool) {
 		presentationSelectedRange = range
 
-		// TODO: Unfold
-//		_layoutManager.presentationSelectedRange = range
+		_layoutManager.unfoldedRange = range.flatMap { unfoldableRange(presentationSelectedRange: $0) }
 
 		if updateTextView, let range = range {
 			displayDelegate?.textController(self, didUpdateSelectedRange: range)
@@ -182,6 +181,30 @@ public final class TextController {
 
 
 	// MARK: - Private
+
+	/// Expand selection to the entire node.
+	///
+	/// - parameter displaySelection: Range of the selected text in the display text
+	/// - returns: Optional range of the expanded selection
+	private func unfoldableRange(presentationSelectedRange presentationSelectedRange: NSRange) -> NSRange? {
+		let selectedRange: NSRange = {
+			var range = presentationSelectedRange
+			range.location = max(0, range.location - 1)
+			range.length += (presentationSelectedRange.location - range.location) + 1
+			return currentDocument.backingRange(presentationRange: range)
+		}()
+
+		let foldableNodes = currentDocument.nodesIn(backingRange: selectedRange).filter { $0 is Foldable }
+		var foldableRanges = ArraySlice<NSRange>(foldableNodes.map { currentDocument.presentationRange(backingRange: $0.range) })
+
+		guard var range = foldableRanges.popFirst() else { return nil }
+
+		for r in foldableRanges {
+			range = range.union(r)
+		}
+
+		return range
+	}
 
 	private func layoutAttachments() {
 		var styles = [Style]()

@@ -29,6 +29,36 @@ class LayoutManager: NSLayoutManager {
 	weak var textController: TextController?
 	weak var layoutDelegate: LayoutManagerDelegate?
 
+	var unfoldedRange: NSRange? {
+		didSet {
+			let wasFolding: Set<Int>
+			if let oldValue = oldValue {
+				wasFolding = foldedIndices.subtract(oldValue.indices)
+			} else {
+				wasFolding = foldedIndices
+			}
+
+			let nowFolding: Set<Int>
+			if let newValue = unfoldedRange {
+				nowFolding = foldedIndices.subtract(newValue.indices)
+			} else {
+				nowFolding = foldedIndices
+			}
+
+			let updated = nowFolding.exclusiveOr(wasFolding)
+
+			if updated.isEmpty {
+				return
+			}
+
+			for range in NSRange.ranges(indices: updated) {
+				invalidateGlyphsForCharacterRange(range, changeInLength: 0, actualCharacterRange: nil)
+			}
+
+			needsUpdateTextContainer = true
+		}
+	}
+
 	private let lineSpacing: CGFloat = 3
 	let foldingEnabled = true
 	var invalidFoldingRange: NSRange?
@@ -154,9 +184,9 @@ extension LayoutManager: NSLayoutManagerDelegate {
 			let characterIndex = characterIndexes[i]
 
 			// Skip selected characters
-//			if let selection = presentationSelectedRange where selection.contains(characterIndex) {
-//				continue
-//			}
+			if let selection = unfoldedRange where selection.contains(characterIndex) {
+				continue
+			}
 
 			if foldedIndices.contains(characterIndex) {
 				properties[i] = .ControlCharacter
