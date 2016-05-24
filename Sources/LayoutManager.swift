@@ -30,7 +30,8 @@ class LayoutManager: NSLayoutManager {
 	weak var layoutDelegate: LayoutManagerDelegate?
 
 	private let lineSpacing: CGFloat = 3
-	let foldingEnabled = false
+	let foldingEnabled = true
+	var invalidFoldingRange: NSRange?
 
 	/// The user selection. Adjacent foldings should be unfolded.
 	var presentationSelectedRange: NSRange? {
@@ -47,7 +48,7 @@ class LayoutManager: NSLayoutManager {
 	}
 
 	/// Folded ranges. Whenever this changes, it will trigger an invalidation of foldable glyphs.
-	var foldableRanges = [NSRange]() {
+	private var foldableRanges = [NSRange]() {
 		didSet {
 			var set = Set<Int>()
 			foldableRanges.forEach { set.unionInPlace($0.indices) }
@@ -93,30 +94,43 @@ class LayoutManager: NSLayoutManager {
 		return rect
 	}
 
+	override func processEditingForTextStorage(textStorage: NSTextStorage, edited editMask: NSTextStorageEditActions, range: NSRange, changeInLength delta: Int, invalidatedRange: NSRange) {
+		super.processEditingForTextStorage(textStorage, edited: editMask, range: range, changeInLength: delta, invalidatedRange: invalidatedRange)
 
-	// MARK: - Private
-
-	private func setNeedsInvalidateFoldableGlyphs() {
-		needsInvalidateFoldableGlyphs = true
-	}
-
-	private func invalidateFoldableGlyphsIfNeeded() {
-		if needsInvalidateFoldableGlyphs {
-			invalidateFoldableGlyphs()
+		if let invalidRange = invalidFoldingRange {
+			invalidateFoldableRanges(inRange: invalidRange)
+			invalidFoldingRange = nil
 		}
 	}
 
-	private func invalidateFoldableGlyphs() {
+
+	// MARK: - Folding
+
+	func addFoldableRanges(ranges: [NSRange]) {
+		foldableRanges = (foldableRanges + ranges).sort { $0.location < $1.location }
+	}
+
+	func removeFoldableRanges() {
+		foldableRanges.removeAll()
+	}
+
+	func removeFoldableRanges(inRange range: NSRange) {
+		foldableRanges = foldableRanges.filter { range.intersection($0) == nil }
+	}
+
+	func invalidateFoldableRanges(inRange invalidRange: NSRange) {
 		guard foldingEnabled else { return }
 
-		let sorted = foldableRanges.sort { $0.location < $1.location }
-		guard let first = sorted.first, last = sorted.last else { return }
-
-		let characterRange = NSRange(location: first.location, length: last.max - first.location)
-		invalidateGlyphsForCharacterRange(characterRange, changeInLength: 0, actualCharacterRange: nil)
-		needsInvalidateFoldableGlyphs = false
-		needsUpdateTextContainer = true
+		for range in foldableRanges {
+			if invalidRange.intersection(range) != nil {
+				print("invalidate: \(range)")
+				invalidateGlyphsForCharacterRange(range, changeInLength: 0, actualCharacterRange: nil)
+			}
+		}
 	}
+
+
+	// MARK: - Private
 
 	private func updateTextContainerIfNeeded() {
 		guard foldingEnabled && needsUpdateTextContainer, let textContainer = textController?.textContainer else { return }

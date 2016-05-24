@@ -405,14 +405,6 @@ public final class TextController {
 		_textStorage.addStyles([style])
 		_textStorage.applyStyles()
 	}
-
-	private func updateFolding() {
-		guard _layoutManager.foldingEnabled else { return }
-
-		var foldableRanges = [NSRange]()
-		currentDocument.blocks.forEach { foldableRanges += stylesForBlock($0).1 }
-		_layoutManager.foldableRanges = foldableRanges
-	}
 }
 
 
@@ -472,7 +464,13 @@ extension TextController: DocumentControllerDelegate {
 	}
 
 	public func documentController(controller: DocumentController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
+		_layoutManager.removeFoldableRanges()
+		_layoutManager.invalidFoldingRange = range
 		_textStorage.actuallyReplaceCharactersInRange(range, withString: string)
+
+		var foldableRanges = [NSRange]()
+		controller.document.blocks.forEach { foldableRanges += stylesForBlock($0).1 }
+		_layoutManager.addFoldableRanges(foldableRanges)
 
 		guard let selection = presentationSelectedRange else { return }
 
@@ -484,13 +482,8 @@ extension TextController: DocumentControllerDelegate {
 	public func documentController(controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int) {
 		annotationsController.insert(block: block, index: index)
 
-		let (styles, foldableRanges) = stylesForBlock(block)
+		let (styles, _) = stylesForBlock(block)
 		_textStorage.addStyles(styles)
-		_layoutManager.foldableRanges = foldableRanges
-
-		foldableRanges.forEach {
-			_layoutManager.invalidateGlyphsForCharacterRange($0, changeInLength: 0, actualCharacterRange: nil)
-		}
 
 		var range = controller.document.presentationRange(block: block)
 		if range.location > 0 {
@@ -648,7 +641,6 @@ extension TextController: TextStorageDelegate {
 
 		dispatch_async(dispatch_get_main_queue()) { [weak self] in
 			self?.refreshAnnotations()
-			self?.updateFolding()
 		}
 	}
 
