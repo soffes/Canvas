@@ -64,17 +64,7 @@ class LayoutManager: NSLayoutManager {
 	private var needsInvalidateFoldableGlyphs = false
 
 	/// Set of indices that should be folded. Calculated from `foldableRanges`.
-	private var foldedIndices = Set<Int>() {
-		didSet {
-			guard foldingEnabled else { return }
-			
-			for index in foldedIndices {
-				if !oldValue.contains(index) {
-					invalidateGlyphsForCharacterRange(NSRange(location: index, length: 1), changeInLength: 0, actualCharacterRange: nil)
-				}
-			}
-		}
-	}
+	private var foldedIndices = Set<Int>()
 
 
 	// MARK: - Initializers

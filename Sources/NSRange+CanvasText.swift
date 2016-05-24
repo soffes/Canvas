@@ -47,4 +47,33 @@ extension NSRange {
 	func union(range: NSRange) -> NSRange {
 		return NSUnionRange(self, range)
 	}
+
+	static func ranges(indices indices: Set<Int>) -> [NSRange] {
+		var ranges = [NSRange]()
+		var range: NSRange?
+
+		let sorted = Array(indices).sort()
+
+		for location in sorted {
+			guard var r = range else {
+				range = NSRange(location: location, length: 1)
+				continue
+			}
+
+			if r.max == location {
+				r.length += 1
+				range = r
+				continue
+			}
+
+			ranges.append(r)
+			range = NSRange(location: location, length: 1)
+		}
+
+		if let r = range {
+			ranges.append(r)
+		}
+
+		return ranges
+	}
 }

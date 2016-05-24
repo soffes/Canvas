@@ -484,8 +484,13 @@ extension TextController: DocumentControllerDelegate {
 	public func documentController(controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int) {
 		annotationsController.insert(block: block, index: index)
 
-		let (styles, _) = stylesForBlock(block)
+		let (styles, foldableRanges) = stylesForBlock(block)
 		_textStorage.addStyles(styles)
+		_layoutManager.foldableRanges = foldableRanges
+
+		foldableRanges.forEach {
+			_layoutManager.invalidateGlyphsForCharacterRange($0, changeInLength: 0, actualCharacterRange: nil)
+		}
 
 		var range = controller.document.presentationRange(block: block)
 		if range.location > 0 {
