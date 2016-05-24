@@ -31,27 +31,15 @@ class LayoutManager: NSLayoutManager {
 
 	var unfoldedRange: NSRange? {
 		didSet {
-			let wasFolding: Set<Int>
-			if let oldValue = oldValue {
-				wasFolding = foldedIndices.subtract(oldValue.indices)
-			} else {
-				wasFolding = foldedIndices
-			}
-
-			let nowFolding: Set<Int>
-			if let newValue = unfoldedRange {
-				nowFolding = foldedIndices.subtract(newValue.indices)
-			} else {
-				nowFolding = foldedIndices
-			}
-
+			let wasFolding = oldValue.flatMap { foldedIndices.subtract($0.indices) } ?? foldedIndices
+			let nowFolding = unfoldedRange.flatMap { foldedIndices.subtract($0.indices) } ?? foldedIndices
 			let updated = nowFolding.exclusiveOr(wasFolding)
 
 			if updated.isEmpty {
 				return
 			}
 
-			for range in NSRange.ranges(indices: updated) {
+			NSRange.ranges(indices: updated).forEach { range in
 				invalidateGlyphsForCharacterRange(range, changeInLength: 0, actualCharacterRange: nil)
 			}
 
