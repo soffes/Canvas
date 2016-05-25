@@ -114,14 +114,33 @@ extension TextController {
 	}
 	
 	public func deleteLine() {
-		guard let selection = presentationSelectedRange else { return }
-		
-		let text = currentDocument.presentationString as NSString
-		var range = text.lineRangeForRange(selection)
-		textStorage.replaceCharactersInRange(range, withString: "")
+		guard let blocks = focusedBlocks else { return }
 
-		range.length = 0
-		setPresentationSelectedRange(range, updateTextView: true)
+		let length = (currentDocument.backingString as NSString).length
+		var range = NSRange(location: -1, length: 0)
+
+		for block in blocks {
+			if block is Title {
+				range = block.visibleRange
+				continue
+			}
+
+			if range.location == -1 {
+				range = block.range
+			} else {
+				range = range.union(block.range)
+			}
+
+			if range.max < length {
+				range.length += 1
+			}
+		}
+
+		if range.length == 0 {
+			return
+		}
+
+		edit(backingRange: range, replacement: "")
 	}
 
 	public func swapLineUp() {
