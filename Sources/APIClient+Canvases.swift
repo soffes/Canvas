@@ -15,30 +15,7 @@ extension APIClient {
 	}
 
 	public func listCanvases(organizationID organizationID: String, completion: Result<[Canvas]> -> Void) {
-		let request = self.request(path: "v1/orgs/\(organizationID)/canvases")
-		session.dataTaskWithRequest(request) { responseData, response, error in
-			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
-				dispatch_async(networkCompletionQueue) {
-					completion(.Failure("Unauthorized"))
-				}
-				return
-			}
-
-			guard let responseData = responseData,
-				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
-				dictionaries = json as? [JSONDictionary]
-			else {
-				dispatch_async(networkCompletionQueue) {
-					completion(.Failure("Invalid JSON"))
-				}
-				return
-			}
-
-			let canvases = dictionaries.flatMap(Canvas.init)
-			dispatch_async(networkCompletionQueue) {
-				completion(.Success(canvases))
-			}
-		}.resume()
+		request(path: "v1/orgs/\(organizationID)/canvases", completion: completion)
 	}
 
 
@@ -63,31 +40,7 @@ extension APIClient {
 			params["is_public_writable"] = isPublicWritable
 		}
 
-		let request = self.request(method: .POST, path: "v1/canvases", params: params)
-
-		session.dataTaskWithRequest(request) { responseData, response, error in
-			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
-				dispatch_async(networkCompletionQueue) {
-					completion(.Failure("Unauthorized"))
-				}
-				return
-			}
-
-			guard let responseData = responseData,
-				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
-				dictionary = json as? JSONDictionary,
-				canvas = Canvas(dictionary: dictionary)
-				else {
-					dispatch_async(networkCompletionQueue) {
-						completion(.Failure("Invalid JSON"))
-					}
-					return
-			}
-
-			dispatch_async(networkCompletionQueue) {
-				completion(.Success(canvas))
-			}
-		}.resume()
+		request(method: .POST, path: "v1/canvases", params: params, completion: completion)
 	}
 
 
@@ -98,19 +51,7 @@ extension APIClient {
 	}
 
 	public func destroyCanvas(canvasID canvasID: String, completion: Result<Void> -> Void) {
-		let request = self.request(method: .DELETE, path: "v1/canvases/\(canvasID)")
-		session.dataTaskWithRequest(request) { _, response, _ in
-			if let res = response as? NSHTTPURLResponse where res.statusCode == 204 {
-				dispatch_async(networkCompletionQueue) {
-					completion(.Success())
-				}
-				return
-			}
-
-			dispatch_async(networkCompletionQueue) {
-				completion(.Failure("Failed to destory Canvas."))
-			}
-		}.resume()
+		request(method: .DELETE, path: "v1/canvases/\(canvasID)", completion: completion)
 	}
 
 
@@ -121,32 +62,7 @@ extension APIClient {
 	}
 
 	public func archiveCanvas(canvasID canvasID: String, completion: Result<Canvas> -> Void) {
-		let request = self.request(method: .POST, path: "v1/canvases/\(canvasID)/actions/archive")
-
-		session.dataTaskWithRequest(request) { responseData, response, _ in
-			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
-				dispatch_async(networkCompletionQueue) {
-					completion(.Failure("Unauthorized"))
-				}
-				return
-			}
-
-			guard let responseData = responseData,
-				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
-				dictionary = json as? JSONDictionary,
-				canvas = Canvas(dictionary: dictionary)
-			where canvas.archivedAt != nil
-			else {
-				dispatch_async(networkCompletionQueue) {
-					completion(.Failure("Invalid JSON"))
-				}
-				return
-			}
-
-			dispatch_async(networkCompletionQueue) {
-				completion(.Success(canvas))
-			}
-		}.resume()
+		request(method: .POST, path: "v1/canvases/\(canvasID)/actions/archive", completion: completion)
 	}
 
 
@@ -157,29 +73,6 @@ extension APIClient {
 	}
 
 	public func searchCanvases(organizationID organizationID: String, query: String, completion: Result<[Canvas]> -> Void) {
-		let request = self.request(path: "v1/orgs/\(organizationID)/canvases/search", params: ["query": query])
-		session.dataTaskWithRequest(request) { responseData, response, error in
-			if let response = response as? NSHTTPURLResponse where response.statusCode == 401 {
-				dispatch_async(networkCompletionQueue) {
-					completion(.Failure("Unauthorized"))
-				}
-				return
-			}
-
-			guard let responseData = responseData,
-				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
-				dictionaries = json as? [JSONDictionary]
-			else {
-				dispatch_async(networkCompletionQueue) {
-					completion(.Failure("Invalid JSON"))
-				}
-				return
-			}
-
-			let canvases = dictionaries.flatMap(Canvas.init)
-			dispatch_async(networkCompletionQueue) {
-				completion(.Success(canvases))
-			}
-		}.resume()
+		request(path: "v1/orgs/\(organizationID)/canvases/search", params: ["query": query], completion: completion)
 	}
 }

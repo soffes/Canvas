@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct APIClient: NetworkClient {
+public class APIClient: NetworkClient {
 	
 	// MARK: - Types
 
@@ -40,10 +40,73 @@ public struct APIClient: NetworkClient {
 		self.session = session
 	}
 
+
+	// MARK: - Requests
+
+	public func shouldComplete<T>(request request: NSURLRequest, response: NSHTTPURLResponse?, data: NSData?, error: NSError?, completion: Result<T> -> Void) -> Bool {
+		if let error = error {
+			dispatch_async(networkCompletionQueue) {
+				completion(.Failure(error.localizedFailureReason ?? "Error"))
+			}
+			return false
+		}
+
+		return true
+	}
+
 	
 	// MARK: - Internal
+
+	func request(method method: Method = .GET, path: String, params: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8", completion: Result<Void> -> Void) {
+		let request = buildRequest(method: method, path: path, params: params, contentType: contentType)
+		sendRequest(request: request, completion: completion) { _, _, _ in
+			dispatch_async(networkCompletionQueue) {
+				completion(.Success(()))
+			}
+		}
+	}
+
+	func request<T: JSONDeserializable>(method method: Method = .GET, path: String, params: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8", completion: Result<T> -> Void) {
+		let request = buildRequest(method: method, path: path, params: params, contentType: contentType)
+		sendRequest(request: request, completion: completion) { data, _, _ in
+			guard let data = data,
+				json = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
+				dictionary = json as? JSONDictionary,
+				value = T.init(dictionary: dictionary)
+			else {
+				dispatch_async(networkCompletionQueue) {
+					completion(.Failure("Invalid response"))
+				}
+				return
+			}
+
+			dispatch_async(networkCompletionQueue) {
+				completion(.Success(value))
+			}
+		}
+	}
+
+	func request<T: JSONDeserializable>(method method: Method = .GET, path: String, params: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8", completion: Result<[T]> -> Void) {
+		let request = buildRequest(method: method, path: path, params: params, contentType: contentType)
+		sendRequest(request: request, completion: completion) { data, _, _ in
+			guard let data = data,
+				json = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
+				dictionaries = json as? [JSONDictionary]
+				else {
+					dispatch_async(networkCompletionQueue) {
+						completion(.Failure("Invalid response"))
+					}
+					return
+			}
+
+			dispatch_async(networkCompletionQueue) {
+				let values = dictionaries.flatMap(T.init)
+				completion(.Success(values))
+			}
+		}
+	}
 	
-	func request(method method: Method = .GET, path: String, params: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8") -> NSMutableURLRequest {
+	private func buildRequest(method method: Method = .GET, path: String, params: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8") -> NSMutableURLRequest {
 		// Create URL
 		var URL = baseURL.URLByAppendingPathComponent(path)
 
@@ -87,5 +150,13 @@ public struct APIClient: NetworkClient {
 		request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
 		
 		return request
+	}
+
+	private func sendRequest<T>(request request: NSURLRequest, completion: Result<T> -> Void, callback: (data: NSData?, response: NSHTTPURLResponse?, error: NSError?) -> Void) {
+		session.dataTaskWithRequest(request) { [weak self] data, res, error in
+			let response = res as? NSHTTPURLResponse
+			guard let this = self where this.shouldComplete(request: request, response: response, data: data, error: error, completion: completion) else { return }
+			callback(data: data, response: response, error: error)
+		}.resume()
 	}
 }
