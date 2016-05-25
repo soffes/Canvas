@@ -38,19 +38,31 @@ extension TextController {
 	}
 
 	public func indent() {
-		guard let block = focusedBlock as? Listable where !block.indentation.isMaximum else { return }
+		guard let blocks = focusedBlocks?.flatMap({ $0 as? Listable }) else { return }
 
-		let range = block.indentationRange
-		let replacement = block.indentation.successor.string
-		edit(backingRange: range, replacement: replacement)
+		for block in blocks {
+			if block.indentation.isMaximum {
+				continue
+			}
+
+			let range = block.indentationRange
+			let replacement = block.indentation.successor.string
+			edit(backingRange: range, replacement: replacement)
+		}
 	}
 
 	public func outdent() {
-		guard let block = focusedBlock as? Listable where !block.indentation.isMinimum else { return }
+		guard let blocks = focusedBlocks?.flatMap({ $0 as? Listable }) else { return }
 
-		let range = block.indentationRange
-		let replacement = block.indentation.predecessor.string
-		edit(backingRange: range, replacement: replacement)
+		for block in blocks {
+			if block.indentation.isMinimum {
+				continue
+			}
+
+			let range = block.indentationRange
+			let replacement = block.indentation.predecessor.string
+			edit(backingRange: range, replacement: replacement)
+		}
 	}
 
 	public func bold() {
