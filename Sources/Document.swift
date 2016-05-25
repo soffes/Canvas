@@ -144,7 +144,11 @@ public struct Document {
 	}
 
 	public func blocksIn(presentationRange presentationRange: NSRange) -> [BlockNode] {
-		return blocks.filter { self.presentationRange(block: $0).intersection(presentationRange) != nil }
+		return blocks.filter { block in
+			var range = self.presentationRange(block: block)
+			range.length += 1
+			return range.intersection(presentationRange) != nil
+		}
 	}
 
 	public func nodesIn(backingRange backingRange: NSRange) -> [Node] {
