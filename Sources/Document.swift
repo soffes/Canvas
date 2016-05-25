@@ -143,6 +143,10 @@ public struct Document {
 		return block.range.contains(backingLocation) || block.range.max == backingLocation ? block : nil
 	}
 
+	public func blocksIn(presentationRange presentationRange: NSRange) -> [BlockNode] {
+		return blocks.filter { self.presentationRange(block: $0).intersection(presentationRange) != nil }
+	}
+
 	public func nodesIn(backingRange backingRange: NSRange) -> [Node] {
 		return nodesIn(backingRange: backingRange, nodes: blocks.map({ $0 as Node }))
 	}
