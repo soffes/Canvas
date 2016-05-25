@@ -67,6 +67,12 @@ public final class TextController {
 		return selection.flatMap { document.blockAt(presentationLocation: $0.location) }
 	}
 
+	public var focusedBlocks: [BlockNode]? {
+		let selection = presentationSelectedRange
+		let document = currentDocument
+		return selection.flatMap { document.blocksIn(presentationRange: $0) }
+	}
+
 	public var textContainerInset: EdgeInsets = .zero {
 		didSet {
 			annotationsController.textContainerInset = textContainerInset
@@ -421,7 +427,7 @@ public final class TextController {
 		
 		// Missing attachment
 		else {
-			print("WARNING: Missing attachment for block \(block)")
+			print("[TextController] WARNING: Missing attachment for block \(block)")
 			return nil
 		}
 		
@@ -508,12 +514,12 @@ extension TextController: TransportControllerDelegate {
 	}
 
 	public func transportController(controller: TransportController, didReceiveWebErrorMessage errorMessage: String?, lineNumber: UInt?, columnNumber: UInt?) {
-		print("TransportController error \(errorMessage)")
+		print("[TextController] TransportController error \(errorMessage)")
 		connectionDelegate?.textController(self, didReceiveWebErrorMessage: errorMessage, lineNumber: lineNumber, columnNumber: columnNumber)
 	}
 
 	public func transportController(controller: TransportController, didDisconnectWithErrorMessage errorMessage: String?) {
-		print("TransportController disconnect \(errorMessage)")
+		print("[TextController] TransportController disconnect \(errorMessage)")
 		connectionDelegate?.textController(self, didDisconnectWithErrorMessage: errorMessage)
 	}
 }

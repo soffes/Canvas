@@ -10,11 +10,31 @@ import CanvasNative
 
 extension TextController {
 	public func toggleChecked() {
-		guard let block = focusedBlock as? ChecklistItem else { return }
+		guard let blocks = focusedBlocks?.flatMap({ $0 as? ChecklistItem }) else { return }
 
-		let range = block.stateRange
-		let replacement = block.state.opposite.string
-		edit(backingRange: range, replacement: replacement)
+		let states = Set<ChecklistItem.State>(blocks.map({ $0.state }))
+		let newState: ChecklistItem.State
+
+		// Has checked items
+		if states.contains(.Checked) {
+			// If any are unchecked, check all. If there are no unchecked items, uncheck all.
+			newState = states.contains(.Unchecked) ? .Checked : .Unchecked
+		} else {
+			// Only has unchecked items. Check all.
+			newState = .Checked
+		}
+
+		for block in blocks {
+			// Skip blocks that are the same
+			if block.state == newState {
+				continue
+			}
+
+			// Update block
+			let range = block.stateRange
+			let replacement = newState.string
+			edit(backingRange: range, replacement: replacement)
+		}
 	}
 
 	public func indent() {
