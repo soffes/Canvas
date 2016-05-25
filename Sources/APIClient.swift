@@ -153,9 +153,9 @@ public class APIClient: NetworkClient {
 	}
 
 	private func sendRequest<T>(request request: NSURLRequest, completion: Result<T> -> Void, callback: (data: NSData?, response: NSHTTPURLResponse?, error: NSError?) -> Void) {
-		session.dataTaskWithRequest(request) { [weak self] data, res, error in
+		session.dataTaskWithRequest(request) { data, res, error in
 			let response = res as? NSHTTPURLResponse
-			guard let this = self where this.shouldComplete(request: request, response: response, data: data, error: error, completion: completion) else { return }
+			guard self.shouldComplete(request: request, response: response, data: data, error: error, completion: completion) else { return }
 			callback(data: data, response: response, error: error)
 		}.resume()
 	}
