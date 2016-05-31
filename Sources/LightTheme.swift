@@ -91,34 +91,41 @@ public struct LightTheme: Theme {
 		}
 
 		if let code = block as? CodeBlock {
-			let codePadding: CGFloat = 16
-			let codeMargin: CGFloat = 5
+			let padding: CGFloat = 16
+			let margin: CGFloat = 5
 
 			// Top margin
 			if code.position.isTop {
-				spacing.paddingTop += codePadding
-				spacing.marginTop += codeMargin
+				spacing.paddingTop += padding
+				spacing.marginTop += margin
 			}
 
 			// Bottom margin
 			if code.position.isBottom {
-				spacing.paddingBottom += codePadding
-				spacing.marginBottom += codeMargin
+				spacing.paddingBottom += padding
+				spacing.marginBottom += margin
 			}
 
-			// Indent
-//			if horizontalSizeClass == .Regular {
-//				// TODO: Use a constant
-//				spacing.paddingLeft = 48
-//			} else {
-				spacing.paddingLeft = listIndentation
-//			}
+			spacing.paddingLeft = listIndentation
 
 			return spacing
 		}
 
-		if block is Blockquote {
+		if let blockquote = block as? Blockquote {
+			let padding: CGFloat = 4
+
+			// Top margin
+			if blockquote.position.isTop {
+				spacing.paddingTop += padding
+			}
+
+			// Bottom margin
+			if blockquote.position.isBottom {
+				spacing.paddingBottom += padding
+			}
+
 			spacing.paddingLeft = listIndentation
+
 			return spacing
 		}
 
