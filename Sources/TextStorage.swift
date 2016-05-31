@@ -93,11 +93,11 @@ class TextStorage: BaseTextStorage {
 		guard !styles.isEmpty else { return }
 
 		for style in styles {
-			if style.range.max > storage.length {
+			if style.range.max > storage.length || style.range.length < 0 {
 				print("WARNING: Invalid style: \(style.range)")
 				continue
 			}
-			
+
 			storage.setAttributes(style.attributes, range: style.range)
 			edited(.EditedAttributes, range: style.range, changeInLength: 0)
 		}
