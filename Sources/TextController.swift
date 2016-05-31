@@ -206,6 +206,7 @@ public final class TextController {
 		needsUnfoldUpdate = true
 		dispatch_async(dispatch_get_main_queue()) { [weak self] in
 			self?.updateUnfoldIfNeeded()
+			self?.annotationsController.layoutAnnotations()
 		}
 
 		if updateTextView, let range = range {
