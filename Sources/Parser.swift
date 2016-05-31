@@ -28,10 +28,10 @@ public struct Parser {
 
 	private static let spanParseOrder: [SpanNodeParseable.Type] = [
 		CodeSpan.self,
-		Link.self,
-//		ReferenceLink.self,
 		DoubleEmphasis.self,
-		Emphasis.self
+		Emphasis.self,
+		Link.self
+//		ReferenceLink.self
 	]
 
 
