@@ -73,6 +73,18 @@ public final class TextController {
 		return selection.flatMap { document.blocksIn(presentationRange: $0) }
 	}
 
+	public var isCodeFocused: Bool {
+		guard let block = focusedBlock else { return false }
+
+		if block is CodeBlock {
+			return true
+		}
+
+		// TODO: Look for CodeSpan and Link URL
+
+		return false
+	}
+
 	public var textContainerInset: EdgeInsets = .zero {
 		didSet {
 			annotationsController.textContainerInset = textContainerInset
