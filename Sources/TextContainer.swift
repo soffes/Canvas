@@ -39,8 +39,15 @@ class TextContainer: NSTextContainer {
 		var rect = proposedRect
 
 		if let textController = textController, block = textController.currentDocument.blockAt(presentationLocation: index) {
-			let blockSpacing = textController.blockSpacing(block: block)
-			rect = blockSpacing.applyHorizontalPadding(rect)
+			if block is Image, let attachment = layoutManager?.textStorage?.attribute(NSAttachmentAttributeName, atIndex: index, effectiveRange: nil) as? NSTextAttachment {
+				let imageSize = attachment.bounds.size
+				rect.origin.y = ceil(rect.origin.y)
+				rect.origin.x += floor((size.width - imageSize.width) / 2)
+				rect.size.width = imageSize.width
+			} else {
+				let blockSpacing = textController.blockSpacing(block: block)
+				rect = blockSpacing.applyHorizontalPadding(rect)
+			}
 		}
 
 		return super.lineFragmentRectForProposedRect(rect, atIndex: index, writingDirection: writingDirection, remainingRect: remainingRect)

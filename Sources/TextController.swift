@@ -419,8 +419,7 @@ public final class TextController {
 		else if let block = block as? Image {
 			let URL = displayDelegate?.textController(self, URLForImage: block) ?? block.url
 			
-			let width = floor(textContainer.size.width)
-			var size = attachmentSize(imageSize: block.size ?? CGSize(width: width, height: 300))
+			var size = attachmentSize(imageSize: block.size)
 			let image = imagesController.fetchImage(
 				ID: block.identifier,
 				URL: URL,
@@ -450,7 +449,8 @@ public final class TextController {
 		])
 	}
 	
-	private func attachmentSize(imageSize imageSize: CGSize) -> CGSize {
+	private func attachmentSize(imageSize input: CGSize?) -> CGSize {
+		let imageSize = input ?? CGSize(width: textContainer.size.width, height: 300)
 		let width = min(floor(textContainer.size.width), imageSize.width)
 		var size = imageSize
 		
