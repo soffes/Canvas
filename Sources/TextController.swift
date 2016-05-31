@@ -450,7 +450,7 @@ public final class TextController {
 	}
 	
 	private func attachmentSize(imageSize input: CGSize?) -> CGSize {
-		let imageSize = input ?? CGSize(width: textContainer.size.width, height: 300)
+		let imageSize = input ?? CGSize(width: floor(textContainer.size.width), height: 300)
 		let width = min(floor(textContainer.size.width), imageSize.width)
 		var size = imageSize
 		
