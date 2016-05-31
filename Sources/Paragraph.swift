@@ -37,11 +37,6 @@ public struct Paragraph: BlockNode, NodeContainer, Equatable {
 	// MARK: - Initializers
 
 	public init?(string: String, range: NSRange) {
-		// Prevent any Canvas Native from appearing in the documment
-		if string.hasPrefix(leadingNativePrefix) {
-			return nil
-		}
-
 		self.range = range
 	}
 
