@@ -8,6 +8,17 @@
 
 extension APIClient {
 
+	// MARK: - Showing a Canvas
+
+	public func showCanvas(canvas canvas: Canvas, completion: Result<Canvas> -> Void) {
+		showCanvas(canvasID: canvas.ID, completion: completion)
+	}
+
+	public func showCanvas(canvasID canvasID: String, completion: Result<Canvas> -> Void) {
+		request(path: "v1/canvases/\(canvasID)", completion: completion)
+	}
+
+
 	// MARK: - Listing Canvases
 
 	public func listCanvases(organization organization: Organization, completion: Result<[Canvas]> -> Void) {
