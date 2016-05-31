@@ -653,8 +653,28 @@ extension TextController: TextStorageDelegate {
 
 		// Return completion
 		if string == "\n" {
+			let currentBlock = document.blockAt(backingLocation: backingRange.location)
+
+			// Check inside paragraphs
+			if let block = currentBlock as? Paragraph {
+				let string = document.presentationString(block: block)
+
+				// Image
+				if let url = NSURL(string: string) where url.isImageURL {
+					backingRange = block.range
+					replacement = Image.nativeRepresentation(URL: url) + "\n"
+				}
+
+				// Code block
+				else if string.hasPrefix("```") {
+					// TODO: Support language
+					backingRange = block.range
+					replacement = CodeBlock.nativeRepresentation()
+				}
+			}
+
 			// Continue the previous node
-			if let block = document.blockAt(backingLocation: backingRange.location) as? ReturnCompletable {
+			else if let block = currentBlock as? ReturnCompletable {
 				// Bust out of completion
 				if block.visibleRange.length == 0 {
 					backingRange = block.range
@@ -669,19 +689,6 @@ extension TextController: TextStorageDelegate {
 							replacement = replacement.stringByReplacingOccurrencesOfString("- [x] ", withString: "- [ ] ")
 						}
 					}
-				}
-			}
-
-			// Code block
-			else {
-				let text = document.backingString as NSString
-				let lineRange = text.lineRangeForRange(backingRange)
-				let line = text.substringWithRange(lineRange)
-
-				// TODO: Support language
-				if line.hasPrefix("```") {
-					backingRange = lineRange.union(backingRange)
-					replacement = CodeBlock.nativeRepresentation() + "\n"
 				}
 			}
 		}
