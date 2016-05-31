@@ -144,6 +144,10 @@ final class AnnotationsController {
 			}
 		}
 
+		let spacing = textController.blockSpacing(block: annotation.block)
+		rect.origin.y -= spacing.paddingTop
+		rect.size.height += spacing.paddingTop + spacing.paddingBottom
+
 		rect.origin.x += textContainerInset.left
 		rect.origin.y += textContainerInset.top
 

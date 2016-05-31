@@ -40,7 +40,7 @@ class TextContainer: NSTextContainer {
 
 		if let textController = textController, block = textController.currentDocument.blockAt(presentationLocation: index) {
 			let blockSpacing = textController.blockSpacing(block: block)
-			rect = blockSpacing.applyPadding(rect)
+			rect = blockSpacing.applyHorizontalPadding(rect)
 		}
 
 		return super.lineFragmentRectForProposedRect(rect, atIndex: index, writingDirection: writingDirection, remainingRect: remainingRect)

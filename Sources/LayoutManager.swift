@@ -212,9 +212,9 @@ extension LayoutManager: NSLayoutManagerDelegate {
 
 		// Apply the top margin if it's not the second node
 		let blocks = textController.currentDocument.blocks
-		let blockSpacing = textController.blockSpacing(block: block)
-		if blockSpacing.marginTop > 0 && blocks.count >= 2 && block.range.location > blocks[1].range.location {
-			return blockSpacing.marginTop
+		let spacing = textController.blockSpacing(block: block)
+		if spacing.marginTop > 0 && blocks.count >= 2 && block.range.location > blocks[1].range.location {
+			return spacing.marginTop + spacing.paddingTop
 		}
 
 		return 0
@@ -223,7 +223,8 @@ extension LayoutManager: NSLayoutManagerDelegate {
 	// Adjust bottom margin of lines based on their block type
 	func layoutManager(layoutManager: NSLayoutManager, paragraphSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
 		guard let textController = textController, block = blockNodeAt(glyphIndex: glyphIndex) else { return 0 }
-		return textController.blockSpacing(block: block).marginBottom
+		let spacing = textController.blockSpacing(block: block)
+		return spacing.marginBottom + spacing.paddingBottom
 	}
 
 	// If we've updated folding, we need to replace the layout manager in the text container. I'm all ears for a way to

@@ -91,13 +91,19 @@ public struct LightTheme: Theme {
 		}
 
 		if let code = block as? CodeBlock {
+			let codePadding: CGFloat = 16
+			let codeMargin: CGFloat = 5
+
 			// Top margin
 			if code.position.isTop {
-				spacing.marginTop += 4
+				spacing.paddingTop += codePadding
+				spacing.marginTop += codeMargin
 			}
 
+			// Bottom margin
 			if code.position.isBottom {
-				spacing.marginBottom += 4
+				spacing.paddingBottom += codePadding
+				spacing.marginBottom += codeMargin
 			}
 
 			// Indent
