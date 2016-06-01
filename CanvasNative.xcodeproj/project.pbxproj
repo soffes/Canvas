@@ -200,6 +200,10 @@
 		21AD8CE81C8A4649000A53F8 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA21C8A4628000A53F8 /* Text.swift */; };
 		21AD8CE91C8A4649000A53F8 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA31C8A4628000A53F8 /* Title.swift */; };
 		21AD8CEA1C8A4649000A53F8 /* UnorderedListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CA41C8A4628000A53F8 /* UnorderedListItem.swift */; };
+		21B502481CFF52880067FB9A /* Strikethrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B502471CFF52880067FB9A /* Strikethrough.swift */; };
+		21B502491CFF52880067FB9A /* Strikethrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B502471CFF52880067FB9A /* Strikethrough.swift */; };
+		21B5024A1CFF52880067FB9A /* Strikethrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B502471CFF52880067FB9A /* Strikethrough.swift */; };
+		21B5024B1CFF52880067FB9A /* Strikethrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B502471CFF52880067FB9A /* Strikethrough.swift */; };
 		21BF7D4B1C937F4100CB1A7A /* CodeBlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D4A1C937F4100CB1A7A /* CodeBlockTests.swift */; };
 		21BF7D4C1C937F4100CB1A7A /* CodeBlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D4A1C937F4100CB1A7A /* CodeBlockTests.swift */; };
 		21BF7D4D1C937F4100CB1A7A /* CodeBlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF7D4A1C937F4100CB1A7A /* CodeBlockTests.swift */; };
@@ -303,6 +307,7 @@
 		21AD8CA61C8A4628000A53F8 /* CanvasNative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasNative.h; sourceTree = "<group>"; };
 		21AD8CA71C8A4628000A53F8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21AD8CC91C8A4637000A53F8 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		21B502471CFF52880067FB9A /* Strikethrough.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strikethrough.swift; sourceTree = "<group>"; };
 		21BF7D4A1C937F4100CB1A7A /* CodeBlockTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlockTests.swift; sourceTree = "<group>"; };
 		21BF7D4E1C93802100CB1A7A /* ParagraphTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphTests.swift; sourceTree = "<group>"; };
 		21C589FE1CBEB56C002EDC7E /* TitleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleTests.swift; sourceTree = "<group>"; };
@@ -538,6 +543,7 @@
 				21AD8C901C8A4628000A53F8 /* Emphasis.swift */,
 				21AD8C941C8A4628000A53F8 /* Link.swift */,
 				21AD8CA21C8A4628000A53F8 /* Text.swift */,
+				21B502471CFF52880067FB9A /* Strikethrough.swift */,
 			);
 			name = "Span Level";
 			sourceTree = "<group>";
@@ -853,6 +859,7 @@
 				21AD8CB21C8A4628000A53F8 /* Emphasis.swift in Sources */,
 				21AD8CAB1C8A4628000A53F8 /* Blockquote.swift in Sources */,
 				21AD8CB91C8A4628000A53F8 /* Node.swift in Sources */,
+				21B502481CFF52880067FB9A /* Strikethrough.swift in Sources */,
 				21673D7F1CBDC7CD0017190B /* Diff.swift in Sources */,
 				21AD8CBF1C8A4628000A53F8 /* Positionable.swift in Sources */,
 				21AD8CC21C8A4628000A53F8 /* SpanNodeContainer.swift in Sources */,
@@ -923,6 +930,7 @@
 				21AD8CD61C8A4649000A53F8 /* Emphasis.swift in Sources */,
 				21AD8CCF1C8A4649000A53F8 /* Blockquote.swift in Sources */,
 				21AD8CDD1C8A4649000A53F8 /* Node.swift in Sources */,
+				21B502491CFF52880067FB9A /* Strikethrough.swift in Sources */,
 				21673D801CBDC7CD0017190B /* Diff.swift in Sources */,
 				21AD8CE31C8A4649000A53F8 /* Positionable.swift in Sources */,
 				21AD8CE61C8A4649000A53F8 /* SpanNodeContainer.swift in Sources */,
@@ -993,6 +1001,7 @@
 				21632CF71C9235F500C40D7D /* Listable.swift in Sources */,
 				21632CF21C9235F000C40D7D /* Parser.swift in Sources */,
 				21632CFC1C9235F500C40D7D /* ReturnCompletable.swift in Sources */,
+				21B5024B1CFF52880067FB9A /* Strikethrough.swift in Sources */,
 				21673D821CBDC7CD0017190B /* Diff.swift in Sources */,
 				21632CF91C9235F500C40D7D /* Node.swift in Sources */,
 				21632CF81C9235F500C40D7D /* NativePrefixable.swift in Sources */,
@@ -1036,6 +1045,7 @@
 				21632D321C92367B00C40D7D /* Listable.swift in Sources */,
 				21632D2D1C92367800C40D7D /* Parser.swift in Sources */,
 				21632D371C92367B00C40D7D /* ReturnCompletable.swift in Sources */,
+				21B5024A1CFF52880067FB9A /* Strikethrough.swift in Sources */,
 				21673D811CBDC7CD0017190B /* Diff.swift in Sources */,
 				21632D341C92367B00C40D7D /* Node.swift in Sources */,
 				21632D331C92367B00C40D7D /* NativePrefixable.swift in Sources */,

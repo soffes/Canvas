@@ -30,6 +30,7 @@ public struct Parser {
 		CodeSpan.self,
 		DoubleEmphasis.self,
 		Emphasis.self,
+		Strikethrough.self,
 		Link.self
 //		ReferenceLink.self
 	]
