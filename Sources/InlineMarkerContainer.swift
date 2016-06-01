@@ -6,6 +6,6 @@
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
-protocol InlineMarkerContainer {
+public protocol InlineMarkerContainer {
 	var inlineMarkers: [InlineMarker] { get }
 }
