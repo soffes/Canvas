@@ -556,7 +556,7 @@ extension TextController: DocumentControllerDelegate {
 
 		let length = (string as NSString).length
 		let adjusted = SelectionController.adjust(selection: selection, replacementRange: range, replacementLength: length)
-		setPresentationSelectedRange(adjusted, updateTextView: true)
+		setPresentationSelectedRange(adjusted, updateTextView: !adjusted.equals(selection))
 	}
 
 	public func documentController(controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int) {
@@ -679,6 +679,9 @@ extension TextController: TextStorageDelegate {
 				if block.visibleRange.length == 0 {
 					backingRange = block.range
 					replacement = ""
+
+					// Keep selection in place
+					setPresentationSelectedRange(presentationSelectedRange, updateTextView: true)
 				} else {
 					// Complete the node
 					if let block = block as? NativePrefixable {

@@ -50,6 +50,7 @@ extension TextController {
 
 			// Reset selection
 			guard var selection = self?.presentationSelectedRange else { return }
+			selection.location += 1
 			selection.length = 0
 			self?.setPresentationSelectedRange(selection, updateTextView: true)
 		}
