@@ -187,6 +187,12 @@ public struct LightTheme: Theme {
 			attributes[NSBackgroundColorAttributeName] = UIColor(red: 0.961, green: 0.961, blue: 0.965, alpha: 1)
 		}
 
+		else if span is Strikethrough {
+			attributes[NSStrikethroughStyleAttributeName] = NSUnderlineStyle.StyleThick.rawValue
+			attributes[NSStrikethroughColorAttributeName] = mediumGray
+			attributes[NSForegroundColorAttributeName] = mediumGray
+		}
+
 		else if span is DoubleEmphasis {
 			traits.insert(.TraitBold)
 			attributes[NSFontAttributeName] = fontOfSize(fontSize, symbolicTraits: traits)
