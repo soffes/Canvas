@@ -1,6 +1,6 @@
 # Canvas Text
 
-Canvas text system for iOS.
+Canvas text system for iOS & OS X.
 
 ## Dependencies
 
