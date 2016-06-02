@@ -216,7 +216,7 @@ public struct Parser {
 				} else {
 					position = .Bottom
 				}
-				
+
 				codeLineNumber = 0
 			}
 
