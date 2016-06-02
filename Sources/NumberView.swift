@@ -51,7 +51,7 @@ final class NumberView: ViewType, Annotation {
 	override func drawRect(rect: CGRect) {
 		guard let block = block as? OrderedListItem else { return }
 
-		let string: NSString = "\(block.position.number)."
+		let string: NSString = "\(block.number)."
 		let attributes = [
 			NSForegroundColorAttributeName: theme.placeholderColor,
 			NSFontAttributeName: theme.fontOfSize(theme.fontSize - 4).fontWithMonoSpaceNumbers
