@@ -8,8 +8,9 @@
 
 import UIKit
 import CanvasNative
+import X
 
-final class BulletView: View, Annotation {
+final class BulletView: ViewType, Annotation {
 
 	// MARK: - Private
 

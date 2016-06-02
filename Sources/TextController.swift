@@ -6,10 +6,16 @@
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
-import UIKit
+#if os(OSX)
+	import AppKit
+#else
+	import UIKit
+#endif
+
 import WebKit
 import OperationTransport
 import CanvasNative
+import X
 
 public protocol TextControllerConnectionDelegate: class {
 	func textController(textController: TextController, willConnectWithWebView webView: WKWebView)
@@ -23,7 +29,7 @@ public protocol TextControllerDisplayDelegate: class {
 	func textController(textController: TextController, didUpdateTitle title: String?)
 	func textControllerWillProcessRemoteEdit(textController: TextController)
 	func textControllerDidProcessRemoteEdit(textController: TextController)
-	func textController(textController: TextController, URLForImage block: Image) -> NSURL?
+	func textController(textController: TextController, URLForImage block: CanvasNative.Image) -> NSURL?
 }
 
 public protocol TextControllerAnnotationDelegate: class {
@@ -92,11 +98,14 @@ public final class TextController {
 	}
 
 	public var theme: Theme
-	public var traitCollection = UITraitCollection(horizontalSizeClass: .Unspecified) {
-		didSet {
-			traitCollectionDidChange(oldValue)
+
+	#if !os(OSX)
+		public var traitCollection = UITraitCollection(horizontalSizeClass: .Unspecified) {
+			didSet {
+				traitCollectionDidChange(oldValue)
+			}
 		}
-	}
+	#endif
 
 	private var transportController: TransportController?
 	private let annotationsController: AnnotationsController
@@ -166,13 +175,15 @@ public final class TextController {
 	
 	
 	// MARK: - Traits
-	
-	public func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
-		layoutAttachments()
-		annotationsController.horizontalSizeClass = traitCollection.horizontalSizeClass
-	}
 
-	public func setTintColor(tintColor: UIColor) {
+	#if !os(OSX)
+		public func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+			layoutAttachments()
+			annotationsController.horizontalSizeClass = traitCollection.horizontalSizeClass
+		}
+	#endif
+
+	public func setTintColor(tintColor: Color) {
 		guard tintColor != theme.tintColor else { return }
 
 		theme.tintColor = tintColor
@@ -218,7 +229,12 @@ public final class TextController {
 	// MARK: - Internal
 
 	func blockSpacing(block block: BlockNode) -> BlockSpacing {
-		return theme.blockSpacing(block: block, horizontalSizeClass: traitCollection.horizontalSizeClass)
+		#if os(OSX)
+			let horizontalSizeClass = UserInterfaceSizeClass.Unspecified
+		#else
+			let horizontalSizeClass = traitCollection.horizontalSizeClass
+		#endif
+		return theme.blockSpacing(block: block, horizontalSizeClass: horizontalSizeClass)
 	}
 
 
@@ -407,24 +423,31 @@ public final class TextController {
 		let attachment: NSTextAttachment
 		
 		// Horizontal rule
-		if block is HorizontalRule {
-			guard let image = HorizontalRuleAttachment.image(theme: theme) else { return nil }
-			
-			attachment = NSTextAttachment()
-			attachment.image = image
-			attachment.bounds = CGRect(x: 0, y: 0, width: textContainer.size.width, height: HorizontalRuleAttachment.height)
-		}
-		
+//		if block is HorizontalRule {
+//			guard let image = HorizontalRuleAttachment.image(theme: theme) else { return nil }
+//			
+//			attachment = NSTextAttachment()
+//			attachment.image = image
+//			attachment.bounds = CGRect(x: 0, y: 0, width: textContainer.size.width, height: HorizontalRuleAttachment.height)
+//		}
+
 		// Image
-		else if let block = block as? Image {
+		if let block = block as? CanvasNative.Image {
 			let URL = displayDelegate?.textController(self, URLForImage: block) ?? block.url
-			
+
+			#if os(OSX)
+				// TODO: Use real scale
+				let scale: CGFloat = 2
+			#else
+				let scale = traitCollection.displayScale
+			#endif
+
 			var size = attachmentSize(imageSize: block.size)
 			let image = imagesController.fetchImage(
 				ID: block.identifier,
 				URL: URL,
 				size: size,
-				scale: traitCollection.displayScale,
+				scale: scale,
 				completion: updateImageAttachment
 			)
 
@@ -460,9 +483,9 @@ public final class TextController {
 		return size
 	}
 	
-	private func blockForImageID(ID: String) -> Image? {
+	private func blockForImageID(ID: String) -> CanvasNative.Image? {
 		for block in currentDocument.blocks {
-			if let image = block as? Image where image.identifier == ID {
+			if let image = block as? CanvasNative.Image where image.identifier == ID {
 				return image
 			}
 		}
@@ -470,7 +493,7 @@ public final class TextController {
 		return nil
 	}
 	
-	private func updateImageAttachment(ID ID: String, image: UIImage?) {
+	private func updateImageAttachment(ID ID: String, image: X.Image?) {
 		guard let image = image, block = blockForImageID(ID) else { return }
 		
 		let attachment = NSTextAttachment()

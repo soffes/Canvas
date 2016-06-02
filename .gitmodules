@@ -1,6 +1,0 @@
-[submodule "Carthage/Checkouts/CanvasNative"]
-	path = Carthage/Checkouts/CanvasNative
-	url = https://github.com/usecanvas/CanvasNative.git
-[submodule "Carthage/Checkouts/OperationTransport"]
-	path = Carthage/Checkouts/OperationTransport
-	url = https://github.com/usecanvas/OperationTransport.git

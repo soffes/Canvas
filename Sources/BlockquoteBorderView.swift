@@ -6,10 +6,16 @@
 //  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
 //
 
-import UIKit
-import CanvasNative
+#if os(OSX)
+	import AppKit
+#else
+	import UIKit
+#endif
 
-final class BlockquoteBorderView: View, Annotation {
+import CanvasNative
+import X
+
+final class BlockquoteBorderView: ViewType, Annotation {
 
 	// MARK: - Private
 

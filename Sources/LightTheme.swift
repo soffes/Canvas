@@ -6,16 +6,22 @@
 //  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
 //
 
+#if os(OSX)
+	import AppKit
+#else
+	import UIKit
+#endif
+
 import CanvasNative
-import UIKit
+import X
 
 public struct LightTheme: Theme {
 
 	// MARK: - Properties
 
 	public let fontSize: CGFloat = 18
-	public let backgroundColor = UIColor(white: 1, alpha: 1)
-	public let foregroundColor = UIColor(white: 0.133, alpha: 1)
+	public let backgroundColor = Color(white: 1, alpha: 1)
+	public let foregroundColor = Color(white: 0.133, alpha: 1)
 	public let placeholderColor = Color(red: 0.847, green: 0.847, blue: 0.863, alpha: 1)
 	public var tintColor = Color(red: 0.004, green: 0.412, blue: 1, alpha: 1)
 	
@@ -31,7 +37,7 @@ public struct LightTheme: Theme {
 	public let codeBackground = Color(red: 0.961, green: 0.961, blue: 0.965, alpha: 1)
 
 	private let smallParagraphSpacing: CGFloat
-	private let mediumGray = UIColor(red: 0.494, green: 0.494, blue: 0.510, alpha: 1)
+	private let mediumGray = Color(red: 0.494, green: 0.494, blue: 0.510, alpha: 1)
 
 	private var listIndentation: CGFloat {
 		return round(fontSize * 1.1)
@@ -56,13 +62,13 @@ public struct LightTheme: Theme {
 
 	public var foldingAttributes: Attributes {
 		return [
-			NSForegroundColorAttributeName: UIColor(red: 0.847, green: 0.847, blue: 0.863, alpha: 1)
+			NSForegroundColorAttributeName: Color(red: 0.847, green: 0.847, blue: 0.863, alpha: 1)
 		]
 	}
 
 	public var titleAttributes: Attributes {
 		var attributes = baseAttributes
-		attributes[NSForegroundColorAttributeName] = UIColor.blackColor()
+		attributes[NSForegroundColorAttributeName] = Color.blackColor()
 		attributes[NSFontAttributeName] = fontOfSize(round(fontSize * 1.7), symbolicTraits: [.TraitBold])
 		return attributes
 	}
@@ -142,13 +148,13 @@ public struct LightTheme: Theme {
 		if let heading = block as? Heading {
 			switch heading.level {
 			case .One:
-				attributes[NSForegroundColorAttributeName] = UIColor.blackColor()
+				attributes[NSForegroundColorAttributeName] = Color.blackColor()
 				attributes[NSFontAttributeName] = fontOfSize(round(fontSize * 1.5), symbolicTraits: .TraitBold)
 			case .Two:
 				attributes[NSForegroundColorAttributeName] = foregroundColor
 				attributes[NSFontAttributeName] = fontOfSize(round(fontSize * 1.2), symbolicTraits: .TraitBold)
 			case .Three:
-				attributes[NSForegroundColorAttributeName] = UIColor(white: 0.3, alpha: 1)
+				attributes[NSForegroundColorAttributeName] = Color(white: 0.3, alpha: 1)
 				attributes[NSFontAttributeName] = fontOfSize(round(fontSize * 1.1), symbolicTraits: .TraitBold)
 			case .Four:
 				attributes[NSForegroundColorAttributeName] = mediumGray
@@ -156,7 +162,7 @@ public struct LightTheme: Theme {
 			case .Five:
 				attributes[NSForegroundColorAttributeName] = mediumGray
 			case .Six:
-				attributes[NSForegroundColorAttributeName] = UIColor(white: 0.6, alpha: 1)
+				attributes[NSForegroundColorAttributeName] = Color(white: 0.6, alpha: 1)
 			}
 		}
 
@@ -178,13 +184,13 @@ public struct LightTheme: Theme {
 	}
 
 	public func attributes(span span: SpanNode, currentFont: Font) -> Attributes? {
-		var traits = currentFont.fontDescriptor().symbolicTraits
+		var traits = currentFont.symbolicTraits
 		var attributes = Attributes()
 
 		if span is CodeSpan {
 			attributes[NSFontAttributeName] = monospaceFontOfSize(fontSize, symbolicTraits: traits)
-			attributes[NSForegroundColorAttributeName] = UIColor(red: 0.494, green: 0.494, blue: 0.510, alpha: 1)
-			attributes[NSBackgroundColorAttributeName] = UIColor(red: 0.961, green: 0.961, blue: 0.965, alpha: 1)
+			attributes[NSForegroundColorAttributeName] = Color(red: 0.494, green: 0.494, blue: 0.510, alpha: 1)
+			attributes[NSBackgroundColorAttributeName] = Color(red: 0.961, green: 0.961, blue: 0.965, alpha: 1)
 		}
 
 		else if span is Strikethrough {

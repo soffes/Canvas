@@ -6,7 +6,11 @@
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
-import UIKit
+#if os(OSX)
+	import AppKit
+#else
+	import UIKit
+#endif
 
 typealias Style = (range: NSRange, attributes: Attributes)
 

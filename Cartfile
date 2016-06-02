@@ -1,3 +1,4 @@
 github "usecanvas/OperationTransport" "master"
 github "usecanvas/CanvasNative" "master"
 github "soffes/Cache" "master"
+github "soffes/X" "master"

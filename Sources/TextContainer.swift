@@ -27,10 +27,16 @@ class TextContainer: NSTextContainer {
 		super.init(size: size)
 		lineFragmentPadding = 0
 	}
-	
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
+
+	#if os(OSX)
+		required init(coder: NSCoder) {
+			fatalError("init(coder:) has not been implemented")
+		}
+	#else
+		required init?(coder: NSCoder) {
+			fatalError("init(coder:) has not been implemented")
+		}
+	#endif
 
 
 	// MARK: - NSTextContainer

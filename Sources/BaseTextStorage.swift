@@ -6,7 +6,11 @@
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
-import UIKit
+#if os(OSX)
+	import AppKit
+#else
+	import UIKit
+#endif
 
 /// Concrete text storage intended to be subclassed.
 public class BaseTextStorage: NSTextStorage {

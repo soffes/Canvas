@@ -13,6 +13,7 @@
 #endif
 
 import CanvasNative
+import X
 
 public typealias Attributes = [String: AnyObject]
 
@@ -70,12 +71,15 @@ extension Theme {
 	public func fontOfSize(fontSize: CGFloat, symbolicTraits: FontDescriptorSymbolicTraits = []) -> Font {
 		let font = Font.systemFontOfSize(fontSize)
 
-		#if !os(OSX)
-			if !symbolicTraits.isEmpty {
+		if !symbolicTraits.isEmpty {
+			#if os(OSX)
+				let descriptor = font.fontDescriptor.fontDescriptorWithSymbolicTraits(symbolicTraits.symbolicTraits)
+				return Font(descriptor: descriptor, size: font.pointSize) ?? font
+			#else
 				let descriptor = font.fontDescriptor().fontDescriptorWithSymbolicTraits(symbolicTraits)
 				return Font(descriptor: descriptor, size: font.pointSize)
-			}
-		#endif
+			#endif
+		}
 
 		return font
 	}

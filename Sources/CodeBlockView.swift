@@ -6,10 +6,16 @@
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
-import UIKit
-import CanvasNative
+#if os(OSX)
+	import AppKit
+#else
+	import UIKit
+#endif
 
-final class CodeBlockView: View, Annotation {
+import CanvasNative
+import X
+
+final class CodeBlockView: ViewType, Annotation {
 
 	// MARK: - Private
 

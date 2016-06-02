@@ -6,8 +6,14 @@
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
-import UIKit
+#if os(OSX)
+	import AppKit
+#else
+	import UIKit
+#endif
+
 import CanvasNative
+import X
 
 protocol AnnotationsControllerDelegate: class {
 	func annotationsController(annotationsController: AnnotationsController, willAddAnnotation annotation: Annotation)
@@ -66,11 +72,13 @@ final class AnnotationsController {
 		annotations.insert(annotation, atIndex: index)
 		delegate?.annotationsController(self, willAddAnnotation: annotation)
 
-		// Add taps
-		if annotation.view.userInteractionEnabled {
-			let tap = UITapGestureRecognizer(target: self, action: #selector(self.tap))
-			annotation.view.addGestureRecognizer(tap)
-		}
+		#if !os(OSX)
+			// Add taps
+			if annotation.view.userInteractionEnabled {
+				let tap = TapGestureRecognizer(target: self, action: #selector(self.tap))
+				annotation.view.addGestureRecognizer(tap)
+			}
+		#endif
 	}
 
 	func remove(block block: BlockNode, index: Int) {
@@ -199,13 +207,15 @@ final class AnnotationsController {
 		return block.annotation(theme: theme)
 	}
 
-	@objc private func tap(sender: UITapGestureRecognizer?) {
-		guard let annotation = sender?.view as? CheckboxView,
-			block = annotation.block as? ChecklistItem
-		else { return }
+	#if !os(OSX)
+		@objc private func tap(sender: TapGestureRecognizer?) {
+			guard let annotation = sender?.view as? CheckboxView,
+				block = annotation.block as? ChecklistItem
+			else { return }
 
-		let range = block.stateRange
-		let replacement = block.state.opposite.string
-		textController?.edit(backingRange: range, replacement: replacement)
-	}
+			let range = block.stateRange
+			let replacement = block.state.opposite.string
+			textController?.edit(backingRange: range, replacement: replacement)
+		}
+	#endif
 }

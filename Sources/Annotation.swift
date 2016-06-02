@@ -6,8 +6,14 @@
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
-import UIKit
+#if os(OSX)
+	import AppKit
+#else
+	import UIKit
+#endif
+
 import CanvasNative
+import X
 
 public enum AnnotationPlacement {
 	case FirstLeadingGutter
@@ -25,7 +31,7 @@ public enum AnnotationPlacement {
 public protocol Annotation: class {
 	var block: Annotatable { get set }
 	var theme: Theme { get set }
-	var view: View { get }
+	var view: ViewType { get }
 	var placement: AnnotationPlacement { get }
 
 	var horizontalSizeClass: UserInterfaceSizeClass { get set }
@@ -34,8 +40,8 @@ public protocol Annotation: class {
 }
 
 
-extension Annotation where Self: View {
-	public var view: View {
+extension Annotation where Self: ViewType {
+	public var view: ViewType {
 		return self
 	}
 

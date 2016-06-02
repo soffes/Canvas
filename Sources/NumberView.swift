@@ -8,8 +8,9 @@
 
 import UIKit
 import CanvasNative
+import X
 
-final class NumberView: View, Annotation {
+final class NumberView: ViewType, Annotation {
 
 	// MARK: - Private
 
@@ -53,7 +54,7 @@ final class NumberView: View, Annotation {
 		let string: NSString = "\(block.position.number)."
 		let attributes = [
 			NSForegroundColorAttributeName: theme.placeholderColor,
-			NSFontAttributeName: theme.fontOfSize(theme.fontSize - 4).fontWithMonospaceNumbers
+			NSFontAttributeName: theme.fontOfSize(theme.fontSize - 4).fontWithMonoSpaceNumbers
 		]
 
 		let size = string.sizeWithAttributes(attributes)

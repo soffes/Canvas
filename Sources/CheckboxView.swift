@@ -6,8 +6,14 @@
 //  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
 //
 
-import UIKit
+#if os(OSX)
+	import AppKit
+#else
+	import UIKit
+#endif
+
 import CanvasNative
+import X
 
 final class CheckboxView: UIButton, Annotation {
 
