@@ -77,7 +77,7 @@ extension Theme {
 				var output = font
 
 				if symbolicTraits.contains(.TraitBold) {
-					output = fontManager.fontWithFamily(font.familyName!, traits: [], weight: 8, size: output.pointSize)!
+					output = fontManager.fontWithFamily(font.familyName!, traits: [], weight: 8, size: output.pointSize) ?? output
 				}
 
 				if symbolicTraits.contains(.TraitItalic) {
