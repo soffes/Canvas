@@ -150,7 +150,7 @@ public struct Parser {
 		var blocks = blocks
 		let count = blocks.count
 
-		var indentations = [Indentation: UInt]()
+		var orderedIndentations = [Indentation: UInt]()
 		var lastIndentation: Indentation?
 
 		func isContinuous(lhs: Positionable?, _ rhs: Positionable?) -> Bool {
@@ -163,33 +163,37 @@ public struct Parser {
 			return true
 		}
 
-		var number: UInt = 0
+		var codeLineNumber: UInt = 0
 
 		for (i, block) in blocks.enumerate() {
-			guard var currentBlock = block as? Positionable else { continue }
+			guard var currentBlock = block as? Positionable else {
+				codeLineNumber = 0
+				orderedIndentations.removeAll()
+				continue
+			}
 
 			// Update ordered list items number
 			if var item = currentBlock as? OrderedListItem {
 				if let last = lastIndentation where last > item.indentation {
-					indentations.removeValueForKey(last)
+					orderedIndentations.removeValueForKey(last)
 				}
 				
-				let value = (indentations[item.indentation] ?? 0) + 1
-				indentations[item.indentation] = value
+				let value = (orderedIndentations[item.indentation] ?? 0) + 1
+				orderedIndentations[item.indentation] = value
 				item.number = value
 				currentBlock = item as Positionable
 				lastIndentation = item.indentation
 			} else {
-				indentations.removeAll()
+				orderedIndentations.removeAll()
 			}
 
 			// Code block line numbers
 			if var code = currentBlock as? CodeBlock {
-				number += 1
-				code.lineNumber = number
+				codeLineNumber += 1
+				code.lineNumber = codeLineNumber
 				currentBlock = code as Positionable
 			} else {
-				number = 0
+				codeLineNumber = 0
 			}
 
 			// Look behind and look ahead
