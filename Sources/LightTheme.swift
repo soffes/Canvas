@@ -114,6 +114,11 @@ public struct LightTheme: Theme {
 
 			spacing.paddingLeft = listIndentation
 
+			// Indent for line numbers
+			if horizontalSizeClass == .Regular {
+				spacing.paddingLeft += CodeBlockView.lineNumberWidth
+			}
+
 			return spacing
 		}
 
