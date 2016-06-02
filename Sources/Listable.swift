@@ -43,6 +43,24 @@ public enum Indentation: UInt {
 	}
 }
 
+extension Indentation: Comparable {}
+
+@warn_unused_result public func <(lhs: Indentation, rhs: Indentation) -> Bool {
+	return lhs.rawValue < rhs.rawValue
+}
+
+@warn_unused_result public func <=(lhs: Indentation, rhs: Indentation) -> Bool {
+	return lhs.rawValue <= rhs.rawValue
+}
+
+@warn_unused_result public func >=(lhs: Indentation, rhs: Indentation) -> Bool {
+	return lhs.rawValue >= rhs.rawValue
+}
+
+@warn_unused_result public func >(lhs: Indentation, rhs: Indentation) -> Bool {
+	return lhs.rawValue > rhs.rawValue
+}
+
 
 public protocol Listable: ReturnCompletable, NativePrefixable, Positionable {
 	var indentation: Indentation { get }

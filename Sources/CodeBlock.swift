@@ -34,6 +34,10 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Equa
 		return dictionary
 	}
 
+	public var lineNumber: UInt {
+		return position.number
+	}
+	
 
 	// MARK: - Initializers
 

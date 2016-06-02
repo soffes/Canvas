@@ -34,9 +34,12 @@ public struct OrderedListItem: Listable, NodeContainer, Equatable {
 			"indentationRange": indentationRange.dictionary,
 			"indentation": indentation.rawValue,
 			"position": position.number,
-			"subnodes": subnodes.map { $0.dictionary }
+			"subnodes": subnodes.map { $0.dictionary },
+			"number": number
 		]
 	}
+
+	public var number: UInt = 1
 
 
 	// MARK: - Initializers

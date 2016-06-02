@@ -12,7 +12,7 @@ public enum Position: Equatable {
 	case Bottom(UInt)
 	case Single
 
-	public var successor: Position? {
+	var successor: Position? {
 		switch self {
 		case .Top: return .Middle(2)
 		case .Middle(let number): return .Middle(number + 1)
@@ -20,7 +20,7 @@ public enum Position: Equatable {
 		}
 	}
 
-	public var number: UInt {
+	var number: UInt {
 		switch self {
 		case .Middle(let number): return number
 		case .Bottom(let number): return number

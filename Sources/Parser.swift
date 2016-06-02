@@ -150,12 +150,11 @@ public struct Parser {
 		var blocks = blocks
 		let count = blocks.count
 
+		var indentations = [Indentation: UInt]()
+		var lastIndentation: Indentation?
+
 		func isContinuous(lhs: Positionable?, _ rhs: Positionable?) -> Bool {
 			guard let lhs = lhs, rhs = rhs where lhs.dynamicType == rhs.dynamicType else { return false }
-
-			if let lhsItem = lhs as? Listable, rhsItem = rhs as? Listable where lhsItem.indentation != rhsItem.indentation {
-				return false
-			}
 
 			if let lhsCode = lhs as? CodeBlock, rhsCode = rhs as? CodeBlock where lhsCode.language != rhsCode.language {
 				return false
@@ -167,17 +166,35 @@ public struct Parser {
 		for (i, block) in blocks.enumerate() {
 			guard var currentBlock = block as? Positionable else { continue }
 
+			// Update ordered list items number
+			if var item = currentBlock as? OrderedListItem {
+				if let last = lastIndentation where last > item.indentation {
+					indentations.removeValueForKey(last)
+				}
+				
+				let value = (indentations[item.indentation] ?? 0) + 1
+				indentations[item.indentation] = value
+				item.number = value
+				currentBlock = item as Positionable
+				lastIndentation = item.indentation
+			} else {
+				indentations.removeAll()
+			}
+
+			// Look behind and look ahead
 			let previousBlock = i > 0 ? blocks[i - 1] as? Positionable : nil
 			let nextBlock = i < count - 1 ? blocks[i + 1] as? Positionable : nil
 
 			var position: Position
 
+			// Starting position
 			if isContinuous(previousBlock, currentBlock), let nextPosition = previousBlock?.position.successor {
 				position = nextPosition
 			} else {
 				position = .Top
 			}
 
+			// Check for ending
 			if !isContinuous(currentBlock, nextBlock) {
 				if position == .Top {
 					position = .Single
@@ -186,6 +203,7 @@ public struct Parser {
 				}
 			}
 
+			// Update block
 			currentBlock.position = position
 			blocks[i] = currentBlock
 		}
