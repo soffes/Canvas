@@ -73,8 +73,18 @@ extension Theme {
 
 		if !symbolicTraits.isEmpty {
 			#if os(OSX)
-				let descriptor = font.fontDescriptor.fontDescriptorWithSymbolicTraits(symbolicTraits.symbolicTraits)
-				return Font(descriptor: descriptor, size: font.pointSize) ?? font
+				let fontManager = NSFontManager()
+				var output = font
+
+				if symbolicTraits.contains(.TraitBold) {
+					output = fontManager.fontWithFamily(font.familyName!, traits: [], weight: 8, size: output.pointSize)!
+				}
+
+				if symbolicTraits.contains(.TraitItalic) {
+					output = fontManager.convertFont(output, toHaveTrait: .ItalicFontMask)
+				}
+
+				return output
 			#else
 				let descriptor = font.fontDescriptor().fontDescriptorWithSymbolicTraits(symbolicTraits)
 				return Font(descriptor: descriptor, size: font.pointSize)
