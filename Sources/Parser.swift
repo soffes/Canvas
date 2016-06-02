@@ -163,6 +163,8 @@ public struct Parser {
 			return true
 		}
 
+		var number: UInt = 0
+
 		for (i, block) in blocks.enumerate() {
 			guard var currentBlock = block as? Positionable else { continue }
 
@@ -179,6 +181,15 @@ public struct Parser {
 				lastIndentation = item.indentation
 			} else {
 				indentations.removeAll()
+			}
+
+			// Code block line numbers
+			if var code = currentBlock as? CodeBlock {
+				number += 1
+				code.lineNumber = number
+				currentBlock = code as Positionable
+			} else {
+				number = 0
 			}
 
 			// Look behind and look ahead
@@ -199,7 +210,7 @@ public struct Parser {
 				if position == .Top {
 					position = .Single
 				} else {
-					position = .Bottom(position.number)
+					position = .Bottom
 				}
 			}
 

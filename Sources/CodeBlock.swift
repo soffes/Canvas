@@ -24,7 +24,8 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Equa
 			"range": range.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
 			"visibleRange": visibleRange.dictionary,
-			"position": position.number
+			"position": position.description,
+			"lineNumber": lineNumber
 		]
 
 		if let language = language {
@@ -34,9 +35,7 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Equa
 		return dictionary
 	}
 
-	public var lineNumber: UInt {
-		return position.number
-	}
+	public var lineNumber: UInt = 0
 	
 
 	// MARK: - Initializers

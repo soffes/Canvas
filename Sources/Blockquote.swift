@@ -29,7 +29,7 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 			"range": range.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
 			"visibleRange": visibleRange.dictionary,
-			"position": position.number,
+			"position": position.description,
 			"subnodes": subnodes.map { $0.dictionary }
 		]
 	}

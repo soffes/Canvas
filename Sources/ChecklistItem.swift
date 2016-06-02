@@ -56,7 +56,7 @@ public struct ChecklistItem: Listable, NodeContainer, Equatable {
 			"indentation": indentation.rawValue,
 			"stateRange": stateRange.dictionary,
 			"state": state.rawValue,
-			"position": position.number,
+			"position": position.description,
 			"subnodes": subnodes.map { $0.dictionary }
 		]
 	}

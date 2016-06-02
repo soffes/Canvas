@@ -55,6 +55,21 @@ extension Document {
 				return false
 			}
 
+			// Check positionable
+			if let before = beforeBlock as? Positionable, after = afterBlock as? Positionable where before.position != after.position {
+				return false
+			}
+
+			// Check code block
+			if let before = beforeBlock as? CodeBlock, after = afterBlock as? CodeBlock where before.lineNumber != after.lineNumber {
+				return false
+			}
+
+			// Check ordered list
+			if let before = beforeBlock as? OrderedListItem, after = afterBlock as? OrderedListItem where before.number != after.number {
+				return false
+			}
+
 			// Compare their native representations
 			return (before.backingString as NSString).substringWithRange(beforeBlock.range) == (after.backingString as NSString).substringWithRange(afterBlock.range)
 		}
