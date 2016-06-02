@@ -6,11 +6,9 @@
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
-public struct CanvasNative {
-	/// The version of Canvas Native this library can parse.
-	public static let supportedNativeVersion = Set<String>(["0.0.0", "0.0.1"])
+/// The version of Canvas Native this library can parse.
+public let supportedNativeVersion = Set<String>(["0.0.0", "0.0.1"])
 
-	public static func supports(nativeVersion nativeVersion: String) -> Bool {
-		return supportedNativeVersion.contains(nativeVersion)
-	}
+public func supports(nativeVersion nativeVersion: String) -> Bool {
+	return supportedNativeVersion.contains(nativeVersion)
 }
