@@ -215,8 +215,9 @@ public struct Parser {
 					position = .Single
 				} else {
 					position = .Bottom
-					codeLineNumber = 0
 				}
+				
+				codeLineNumber = 0
 			}
 
 			// Update block
