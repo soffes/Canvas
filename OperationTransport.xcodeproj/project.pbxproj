@@ -19,6 +19,7 @@
 		215E6D6C1C75336C00126FE9 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D4A1C75212900126FE9 /* Operation.swift */; };
 		215E6D6D1C75337900126FE9 /* OperationTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 215E6D281C7520BD00126FE9 /* OperationTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		215E6D781C7539CB00126FE9 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 215E6D771C7539CB00126FE9 /* index.html */; };
+		2193F76F1CFFB5CF00EAA7F4 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 215E6D771C7539CB00126FE9 /* index.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -298,6 +299,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2193F76F1CFFB5CF00EAA7F4 /* index.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
