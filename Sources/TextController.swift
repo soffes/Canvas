@@ -690,9 +690,9 @@ extension TextController: TextStorageDelegate {
 
 				// Code block
 				else if string.hasPrefix("```") {
-					// TODO: Support language
+					let language = (string as NSString).substringFromIndex(3).stringByTrimmingCharactersInSet(.whitespaceCharacterSet())
 					backingRange = block.range
-					replacement = CodeBlock.nativeRepresentation()
+					replacement = CodeBlock.nativeRepresentation(language: language)
 				}
 			}
 
