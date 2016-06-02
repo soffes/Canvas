@@ -745,6 +745,15 @@ extension TextController: TextStorageDelegate {
 		backingRange.length = (replacement as NSString).length
 		presentationRange = document.presentationRange(backingRange: backingRange)
 		processMarkdownShortcuts(presentationRange)
+
+		// Handle selection when there is a user-driven replacement. This could definitely be cleaner.
+		dispatch_async(dispatch_get_main_queue()) { [weak self] in
+			if var selection = self?.presentationSelectedRange where selection.length > 0 {
+				selection.location += (string as NSString).length
+				selection.length = 0
+				self?.setPresentationSelectedRange(selection, updateTextView: true)
+			}
+		}
 	}
 
 	func textStorageDidProcessEditing(textStorage: TextStorage) {
