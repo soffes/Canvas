@@ -146,60 +146,50 @@ public struct Parser {
 		return output
 	}
 
-	private static func calculatePositions(nodes: [BlockNode]) -> [BlockNode] {
-		var nodes = nodes
+	private static func calculatePositions(blocks: [BlockNode]) -> [BlockNode] {
+		var blocks = blocks
+		let count = blocks.count
 
-		// Add position information
-		var positionableType: Positionable.Type?
-		var	positionables = [Positionable]()
+		func isContinuous(lhs: Positionable?, _ rhs: Positionable?) -> Bool {
+			guard let lhs = lhs, rhs = rhs where lhs.dynamicType == rhs.dynamicType else { return false }
 
-		func applyPositions(index: Int) {
-			if positionables.isEmpty {
-				return
+			if let lhsItem = lhs as? Listable, rhsItem = rhs as? Listable where lhsItem.indentation != rhsItem.indentation {
+				return false
 			}
 
-			let count = positionables.count
+			if let lhsCode = lhs as? CodeBlock, rhsCode = rhs as? CodeBlock where lhsCode.language != rhsCode.language {
+				return false
+			}
 
-			var number: UInt = 1
-			for (i, p) in positionables.enumerate() {
-				var positionable = p
+			return true
+		}
 
-				if count == 1 {
-					positionable.position = .Single
-				} else if i == 0 {
-					positionable.position = .Top
-				} else if i == count - 1 {
-					positionable.position = .Bottom(number)
+		for (i, block) in blocks.enumerate() {
+			guard var currentBlock = block as? Positionable else { continue }
+
+			let previousBlock = i > 0 ? blocks[i - 1] as? Positionable : nil
+			let nextBlock = i < count - 1 ? blocks[i + 1] as? Positionable : nil
+
+			var position: Position
+
+			if isContinuous(previousBlock, currentBlock), let nextPosition = previousBlock?.position.successor {
+				position = nextPosition
+			} else {
+				position = .Top
+			}
+
+			if !isContinuous(currentBlock, nextBlock) {
+				if position == .Top {
+					position = .Single
 				} else {
-					positionable.position = .Middle(number)
+					position = .Bottom(position.number)
 				}
-
-				guard let node = positionable as? BlockNode else { continue }
-				nodes[index - count + i] = node
-
-				number += 1
 			}
 
-			positionableType = nil
-			positionables.removeAll()
+			currentBlock.position = position
+			blocks[i] = currentBlock
 		}
 
-		for (i, node) in nodes.enumerate() {
-			guard let positionable = node as? Positionable else {
-				applyPositions(i)
-				continue
-			}
-
-			if positionableType != positionable.dynamicType {
-				applyPositions(i)
-				positionableType = positionable.dynamicType
-			}
-
-			positionables.append(positionable)
-		}
-
-		applyPositions(nodes.count)
-
-		return nodes
+		return blocks
 	}
 }
