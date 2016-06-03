@@ -30,7 +30,7 @@ class ListableTests: XCTestCase {
 
 		let expected: [Position] = [
 			.Top,
-			.Bottom(2),
+			.Bottom,
 			.Single,
 			.Single
 		]

@@ -46,10 +46,10 @@ class CodeBlockTestes: XCTestCase {
 		let expected: [Position] = [
 			.Single,
 			.Top,
-			.Bottom(2),
+			.Bottom,
 			.Top,
-			.Middle(2),
-			.Bottom(3)
+			.Middle,
+			.Bottom
 		]
 
 		XCTAssertEqual(actual, expected)
