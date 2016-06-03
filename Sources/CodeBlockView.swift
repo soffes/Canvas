@@ -71,10 +71,6 @@ final class CodeBlockView: ViewType, Annotation {
 	override func drawRect(rect: CGRect) {
 		guard let codeBlock = block as? CodeBlock, context = UIGraphicsGetCurrentContext() else { return }
 
-		if traitCollection.horizontalSizeClass != .Regular {
-			return
-		}
-
 		let path: CGPath?
 
 		switch codeBlock.position {
@@ -96,8 +92,11 @@ final class CodeBlockView: ViewType, Annotation {
 		CGContextSetFillColorWithColor(context, theme.codeBackground.CGColor)
 		CGContextFillRect(context, bounds)
 
-		CGContextSetFillColorWithColor(context, Color(red: 0.937, green: 0.937, blue: 0.946,alpha: 1).CGColor)
-		CGContextFillRect(context, CGRect(x: 0, y: 0, width: self.dynamicType.lineNumberWidth, height: bounds.height))
+		// Line numbers background
+		if traitCollection.horizontalSizeClass == .Regular {
+			CGContextSetFillColorWithColor(context, Color(red: 0.937, green: 0.937, blue: 0.946,alpha: 1).CGColor)
+			CGContextFillRect(context, CGRect(x: 0, y: 0, width: self.dynamicType.lineNumberWidth, height: bounds.height))
+		}
 	}
 
 	override func traitCollectionDidChange(previousTraitOrganization: UITraitCollection?) {
@@ -106,12 +105,9 @@ final class CodeBlockView: ViewType, Annotation {
 		guard let codeBlock = block as? CodeBlock else { return }
 
 		if traitCollection.horizontalSizeClass != .Regular {
-			backgroundColor = theme.codeBackground
 			textLabel.removeFromSuperview()
 			return
 		}
-
-		backgroundColor = theme.backgroundColor
 
 		if textLabel.superview == nil {
 			addSubview(textLabel)
