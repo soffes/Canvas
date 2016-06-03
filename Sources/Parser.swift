@@ -65,6 +65,13 @@ public struct Parser {
 			for type in self.blockParseOrder {
 				guard var node = type.init(string: substring, range: range) else { continue }
 
+				// Parse inline markers
+				if var container = node as? InlineMarkerContainer {
+					container.inlineMarkerPairs = self.parseInlineMarkers(string: string, container: container)
+					node = container as BlockNode
+				}
+
+				// Parse inline
 				if var container = node as? NodeContainer {
 					container.subnodes = self.parseInline(string: string, container: container)
 
@@ -100,7 +107,7 @@ public struct Parser {
 		for type in spanParseOrder {
 			let regularExpression = type.regularExpression
 			let matches = regularExpression.matchesInString(string, options: [], range: container.textRange)
-			if matches.count == 0 {
+			if matches.isEmpty {
 				continue
 			}
 
@@ -146,22 +153,41 @@ public struct Parser {
 		return output
 	}
 
+	private static func parseInlineMarkers(string string: String, container: InlineMarkerContainer) -> [InlineMarkerPair] {
+		let matches = InlineMarkerPair.regularExpression.matchesInString(string, options: [], range: container.visibleRange)
+		if matches.isEmpty {
+			return []
+		}
+
+		let text = (string as NSString)
+
+		return matches.flatMap { result in
+			guard result.numberOfRanges == 6 else { return nil }
+
+			let id = text.substringWithRange(result.rangeAtIndex(3))
+			return InlineMarkerPair(
+				openingMarker: InlineMarker(range: result.rangeAtIndex(1), position: .Opening, id: id),
+				closingMarker: InlineMarker(range: result.rangeAtIndex(5), position: .Closing, id: id)
+			)
+		}
+	}
+
+	private static func isContinuous(lhs: Positionable?, _ rhs: Positionable?) -> Bool {
+		guard let lhs = lhs, rhs = rhs where lhs.dynamicType == rhs.dynamicType else { return false }
+
+		if let lhsCode = lhs as? CodeBlock, rhsCode = rhs as? CodeBlock where lhsCode.language != rhsCode.language {
+			return false
+		}
+
+		return true
+	}
+
 	private static func calculatePositions(blocks: [BlockNode]) -> [BlockNode] {
 		var blocks = blocks
 		let count = blocks.count
 
 		var orderedIndentations = [Indentation: UInt]()
 		var lastIndentation: Indentation?
-
-		func isContinuous(lhs: Positionable?, _ rhs: Positionable?) -> Bool {
-			guard let lhs = lhs, rhs = rhs where lhs.dynamicType == rhs.dynamicType else { return false }
-
-			if let lhsCode = lhs as? CodeBlock, rhsCode = rhs as? CodeBlock where lhsCode.language != rhsCode.language {
-				return false
-			}
-
-			return true
-		}
 
 		var codeLineNumber: UInt = 0
 

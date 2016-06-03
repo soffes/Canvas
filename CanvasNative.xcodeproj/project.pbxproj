@@ -221,6 +221,10 @@
 		21C589FF1CBEB56C002EDC7E /* TitleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C589FE1CBEB56C002EDC7E /* TitleTests.swift */; };
 		21C58A001CBEB56C002EDC7E /* TitleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C589FE1CBEB56C002EDC7E /* TitleTests.swift */; };
 		21C58A011CBEB56C002EDC7E /* TitleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C589FE1CBEB56C002EDC7E /* TitleTests.swift */; };
+		21C58DB11D01FA10005AEFE1 /* InlineMarkerPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C58DB01D01FA10005AEFE1 /* InlineMarkerPair.swift */; };
+		21C58DB21D01FA10005AEFE1 /* InlineMarkerPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C58DB01D01FA10005AEFE1 /* InlineMarkerPair.swift */; };
+		21C58DB31D01FA10005AEFE1 /* InlineMarkerPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C58DB01D01FA10005AEFE1 /* InlineMarkerPair.swift */; };
+		21C58DB41D01FA10005AEFE1 /* InlineMarkerPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C58DB01D01FA10005AEFE1 /* InlineMarkerPair.swift */; };
 		21DF7A471C8FA1AF00C17A62 /* DocumentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* DocumentTests.swift */; };
 		21DF7A481C8FA1AF00C17A62 /* DocumentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* DocumentTests.swift */; };
 		21DF7A5A1C8FAF5B00C17A62 /* DocumentControllerReliabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A591C8FAF5B00C17A62 /* DocumentControllerReliabilityTests.swift */; };
@@ -321,6 +325,7 @@
 		21B502561CFF5F930067FB9A /* InlineMarkerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InlineMarkerTests.swift; sourceTree = "<group>"; };
 		21BF7D4A1C937F4100CB1A7A /* CodeBlockTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlockTests.swift; sourceTree = "<group>"; };
 		21C589FE1CBEB56C002EDC7E /* TitleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleTests.swift; sourceTree = "<group>"; };
+		21C58DB01D01FA10005AEFE1 /* InlineMarkerPair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InlineMarkerPair.swift; sourceTree = "<group>"; };
 		21DF7A461C8FA1AF00C17A62 /* DocumentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTests.swift; sourceTree = "<group>"; };
 		21DF7A591C8FAF5B00C17A62 /* DocumentControllerReliabilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentControllerReliabilityTests.swift; sourceTree = "<group>"; };
 		21DF7A5F1C90A09000C17A62 /* DocumentControllerInsertTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentControllerInsertTests.swift; sourceTree = "<group>"; };
@@ -508,11 +513,11 @@
 			children = (
 				215CD8201CE258260093C545 /* CanvasNative.swift */,
 				21AD8C9C1C8A4628000A53F8 /* Parser.swift */,
-				21B502511CFF5CB40067FB9A /* InlineMarker.swift */,
 				21673D871CBDD36D0017190B /* Document */,
 				21AD8CED1C8A4698000A53F8 /* Protocols */,
 				21AD8CEB1C8A4674000A53F8 /* Block Level */,
 				21AD8CEC1C8A4685000A53F8 /* Span Level */,
+				21C58DAF1D01F9F9005AEFE1 /* Inline Markers */,
 				21AD8CEE1C8A46A1000A53F8 /* Extensions */,
 				21673D7D1CBDC7BD0017190B /* Vendor */,
 			);
@@ -586,6 +591,15 @@
 				21AD8C991C8A4628000A53F8 /* NSRange+CanvasNative.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		21C58DAF1D01F9F9005AEFE1 /* Inline Markers */ = {
+			isa = PBXGroup;
+			children = (
+				21B502511CFF5CB40067FB9A /* InlineMarker.swift */,
+				21C58DB01D01FA10005AEFE1 /* InlineMarkerPair.swift */,
+			);
+			name = "Inline Markers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -900,6 +914,7 @@
 				21AD8CC31C8A4628000A53F8 /* SpanNodeParseable.swift in Sources */,
 				21AD8CB81C8A4628000A53F8 /* NativePrefixable.swift in Sources */,
 				21AD8CC61C8A4628000A53F8 /* UnorderedListItem.swift in Sources */,
+				21C58DB11D01FA10005AEFE1 /* InlineMarkerPair.swift in Sources */,
 				21AD8CC11C8A4628000A53F8 /* SpanNode.swift in Sources */,
 				21AD8CB31C8A4628000A53F8 /* Foldable.swift in Sources */,
 				21AD8CBE1C8A4628000A53F8 /* Parser.swift in Sources */,
@@ -973,6 +988,7 @@
 				21AD8CE71C8A4649000A53F8 /* SpanNodeParseable.swift in Sources */,
 				21AD8CDC1C8A4649000A53F8 /* NativePrefixable.swift in Sources */,
 				21AD8CEA1C8A4649000A53F8 /* UnorderedListItem.swift in Sources */,
+				21C58DB21D01FA10005AEFE1 /* InlineMarkerPair.swift in Sources */,
 				21AD8CE51C8A4649000A53F8 /* SpanNode.swift in Sources */,
 				21AD8CD71C8A4649000A53F8 /* Foldable.swift in Sources */,
 				21AD8CE21C8A4649000A53F8 /* Parser.swift in Sources */,
@@ -1046,6 +1062,7 @@
 				21632D051C9235F800C40D7D /* OrderedListItem.swift in Sources */,
 				21632D021C9235F800C40D7D /* CodeBlock.swift in Sources */,
 				21632D0E1C92360100C40D7D /* CGSize+CanvasNative.swift in Sources */,
+				21C58DB41D01FA10005AEFE1 /* InlineMarkerPair.swift in Sources */,
 				21632D061C9235F800C40D7D /* Paragraph.swift in Sources */,
 				21632CFB1C9235F500C40D7D /* Positionable.swift in Sources */,
 				21632CF51C9235F500C40D7D /* BlockNode.swift in Sources */,
@@ -1092,6 +1109,7 @@
 				21632D401C92367E00C40D7D /* OrderedListItem.swift in Sources */,
 				21632D3D1C92367E00C40D7D /* CodeBlock.swift in Sources */,
 				21632D491C92368600C40D7D /* CGSize+CanvasNative.swift in Sources */,
+				21C58DB31D01FA10005AEFE1 /* InlineMarkerPair.swift in Sources */,
 				21632D411C92367E00C40D7D /* Paragraph.swift in Sources */,
 				21632D361C92367B00C40D7D /* Positionable.swift in Sources */,
 				21632D301C92367B00C40D7D /* BlockNode.swift in Sources */,
