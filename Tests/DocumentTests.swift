@@ -104,5 +104,8 @@ class DocumentTests: XCTestCase {
 	func testPresentationRangeWithInlineMarkers() {
 		let document = Document(backingString: "⧙doc-heading⧘Title\nUn-markered text ☊co|3YA3fBfQystAGJj63asokU☋markered text☊Ωco|3YA3fBfQystAGJj63asokU☋un-markered text")
 		XCTAssertEqual(NSRange(location: 39, length: 8), document.presentationRange(backingRange: NSRange(location: 107, length: 8)))
+		XCTAssertEqual(NSRange(location: 6, length: 46), document.presentationRange(backingRange: NSRange(location: 19, length: 101)))
+		XCTAssertEqual(NSRange(location: 6, length: 46), document.presentationRange(blockIndex: 1))
+		XCTAssertEqual(NSRange(location: 6, length: 46), document.presentationRange(block: document.blocks[1]))
 	}
 }
