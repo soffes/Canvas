@@ -100,4 +100,9 @@ class DocumentTests: XCTestCase {
 		]
 		XCTAssertEqual(pairs.map { $0.dictionary }, paragraph.inlineMarkerPairs.map { $0.dictionary })
 	}
+
+	func testPresentationRangeWithInlineMarkers() {
+		let document = Document(backingString: "⧙doc-heading⧘Title\nUn-markered text ☊co|3YA3fBfQystAGJj63asokU☋markered text☊Ωco|3YA3fBfQystAGJj63asokU☋un-markered text")
+		XCTAssertEqual(NSRange(location: 39, length: 8), document.presentationRange(backingRange: NSRange(location: 107, length: 8)))
+	}
 }

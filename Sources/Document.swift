@@ -63,13 +63,31 @@ public struct Document {
 	public func presentationRange(backingRange backingRange: NSRange) -> NSRange {
 		var presentationRange = backingRange
 
-		for block in blocks {
-			guard let prefixRange = (block as? NativePrefixable)?.nativePrefixRange else { continue }
-
-			if prefixRange.max <= backingRange.location {
-				presentationRange.location -= prefixRange.length
-			} else if let intersection = backingRange.intersection(prefixRange) {
+		func removeRange(range: NSRange) {
+			if range.max <= backingRange.location {
+				presentationRange.location -= range.length
+			} else if let intersection = backingRange.intersection(range) {
 				presentationRange.length -= intersection
+			}
+		}
+
+		for block in blocks {
+			// Done adjusting
+			if block.range.location > backingRange.max {
+				break
+			}
+
+			// Inline markers
+			if let block = block as? InlineMarkerContainer {
+				for pair in block.inlineMarkerPairs {
+					removeRange(pair.openingMarker.range)
+					removeRange(pair.closingMarker.range)
+				}
+			}
+
+			// Native prefix
+			if let prefixRange = (block as? NativePrefixable)?.nativePrefixRange {
+				removeRange(prefixRange)
 			}
 		}
 
