@@ -118,8 +118,12 @@ public struct Document {
 
 	public func blockAt(presentationLocation presentationLocation: Int) -> BlockNode? {
 		guard presentationLocation >= 0  else { return nil }
+		return blockAt(presentationLocation: UInt(presentationLocation))
+	}
+
+	public func blockAt(presentationLocation presentationLocation: UInt) -> BlockNode? {
 		for (i, location) in blockPresentationLocations.enumerate() {
-			if presentationLocation < location {
+			if Int(presentationLocation) < location {
 				return blocks[i - 1]
 			}
 		}
@@ -127,20 +131,25 @@ public struct Document {
 		guard let block = blocks.last else { return nil }
 
 		let presentationRange = self.presentationRange(block: block)
-		return presentationRange.contains(presentationLocation) || presentationRange.max == presentationLocation ? block : nil
+		return presentationRange.contains(presentationLocation) || presentationRange.max == Int(presentationLocation) ? block : nil
 	}
 
 	public func blockAt(backingLocation backingLocation: Int) -> BlockNode? {
 		guard backingLocation >= 0  else { return nil }
+		return blockAt(backingLocation: UInt(backingLocation))
+	}
+
+	public func blockAt(backingLocation backingLocation: UInt) -> BlockNode? {
+		guard backingLocation >= 0  else { return nil }
 		for (i, block) in blocks.enumerate() {
-			if backingLocation < block.range.location {
+			if Int(backingLocation) < block.range.location {
 				return blocks[i - 1]
 			}
 		}
 
 		guard let block = blocks.last else { return nil }
-		
-		return block.range.contains(backingLocation) || block.range.max == backingLocation ? block : nil
+
+		return block.range.contains(backingLocation) || block.range.max == Int(backingLocation) ? block : nil
 	}
 
 	public func blocksIn(presentationRange presentationRange: NSRange) -> [BlockNode] {
