@@ -86,4 +86,18 @@ class DocumentTests: XCTestCase {
 		let document = Document(backingString: "⧙doc-heading⧘Demo\nParagraph.\n⧙ordered-list-0⧘1. One")
 		XCTAssertEqual("graph.\nOn", document.presentationString(backingRange: NSRange(location: 22, length: 28)))
 	}
+
+	func testParsingInlineMarkers() {
+		let document = Document(backingString: "⧙doc-heading⧘Title\nUn-markered text ☊co|3YA3fBfQystAGJj63asokU☋markered text☊Ωco|3YA3fBfQystAGJj63asokU☋un-markered text")
+		XCTAssertEqual("Title\nUn-markered text markered textun-markered text", document.presentationString)
+
+		let paragraph = document.blocks[1] as! Paragraph
+		let pairs = [
+			InlineMarkerPair(
+				openingMarker: InlineMarker(range: NSRange(location: 36, length: 27), position: .Opening, id: "3YA3fBfQystAGJj63asokU"),
+				closingMarker: InlineMarker(range: NSRange(location: 76, length: 28), position: .Closing, id: "3YA3fBfQystAGJj63asokU")
+			)
+		]
+		XCTAssertEqual(pairs.map { $0.dictionary }, paragraph.inlineMarkerPairs.map { $0.dictionary })
+	}
 }
