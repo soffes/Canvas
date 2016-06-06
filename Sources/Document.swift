@@ -43,14 +43,7 @@ public struct Document {
 
 	// MARK: - Initializers
 
-	public init() {
-		backingString = ""
-		blocks = []
-		blockPresentationLocations = []
-		presentationString = ""
-	}
-
-	public init(backingString: String, blocks: [BlockNode]? = nil) {
+	public init(backingString: String = "", blocks: [BlockNode]? = nil) {
 		self.backingString = backingString
 		self.blocks = blocks ?? Parser.parse(backingString)
 		blockPresentationLocations = documentPresentationLocations(blocks: self.blocks)
@@ -58,7 +51,7 @@ public struct Document {
 	}
 
 
-	// MARK: - Range Calculations
+	// MARK: - Converting Backing Ranges to Presentation Ranges
 
 	public func presentationRange(backingRange backingRange: NSRange) -> NSRange {
 		var presentationRange = backingRange
@@ -102,6 +95,32 @@ public struct Document {
 		return presentationRange
 	}
 
+	public func blockAt(presentationLocation presentationLocation: Int) -> BlockNode? {
+		guard presentationLocation >= 0  else { return nil }
+		return blockAt(presentationLocation: UInt(presentationLocation))
+	}
+
+	public func blockAt(presentationLocation presentationLocation: UInt) -> BlockNode? {
+		for (i, location) in blockPresentationLocations.enumerate() {
+			if Int(presentationLocation) < location {
+				return blocks[i - 1]
+			}
+		}
+
+		guard let block = blocks.last else { return nil }
+
+		let presentationRange = self.presentationRange(block: block)
+		return presentationRange.contains(presentationLocation) || presentationRange.max == Int(presentationLocation) ? block : nil
+	}
+
+	public func blocksIn(presentationRange presentationRange: NSRange) -> [BlockNode] {
+		return blocks.filter { block in
+			var range = self.presentationRange(block: block)
+			range.length += 1
+			return range.intersection(presentationRange) != nil
+		}
+	}
+
 	/// Remove a range from a presentation range.
 	///
 	/// - parameter range: Backing range to remove
@@ -133,6 +152,9 @@ public struct Document {
 		return presentationRange
 	}
 
+
+	// MARK: - Converting Presentation Ranges to Backing Ranges
+
 	public func backingRange(presentationRange presentationRange: NSRange) -> NSRange {
 		var backingRange = presentationRange
 
@@ -163,24 +185,6 @@ public struct Document {
 		return backingRange
 	}
 
-	public func blockAt(presentationLocation presentationLocation: Int) -> BlockNode? {
-		guard presentationLocation >= 0  else { return nil }
-		return blockAt(presentationLocation: UInt(presentationLocation))
-	}
-
-	public func blockAt(presentationLocation presentationLocation: UInt) -> BlockNode? {
-		for (i, location) in blockPresentationLocations.enumerate() {
-			if Int(presentationLocation) < location {
-				return blocks[i - 1]
-			}
-		}
-
-		guard let block = blocks.last else { return nil }
-
-		let presentationRange = self.presentationRange(block: block)
-		return presentationRange.contains(presentationLocation) || presentationRange.max == Int(presentationLocation) ? block : nil
-	}
-
 	public func blockAt(backingLocation backingLocation: Int) -> BlockNode? {
 		guard backingLocation >= 0  else { return nil }
 		return blockAt(backingLocation: UInt(backingLocation))
@@ -197,14 +201,6 @@ public struct Document {
 		guard let block = blocks.last else { return nil }
 
 		return block.range.contains(backingLocation) || block.range.max == Int(backingLocation) ? block : nil
-	}
-
-	public func blocksIn(presentationRange presentationRange: NSRange) -> [BlockNode] {
-		return blocks.filter { block in
-			var range = self.presentationRange(block: block)
-			range.length += 1
-			return range.intersection(presentationRange) != nil
-		}
 	}
 
 	public func nodesIn(backingRange backingRange: NSRange) -> [Node] {
@@ -252,6 +248,10 @@ public struct Document {
 
 
 private func documentPresentationLocations(blocks blocks: [BlockNode]) -> [Int] {
+	if blocks.isEmpty {
+		return []
+	}
+	
 	// Calculate block presentation locations
 	var offset = 0
 	var presentationLocations = [Int]()
