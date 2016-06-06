@@ -158,28 +158,38 @@ public struct Document {
 	public func backingRange(presentationRange presentationRange: NSRange) -> NSRange {
 		var backingRange = presentationRange
 
-		for block in blocks {
-			guard let range = (block as? NativePrefixable)?.nativePrefixRange else { continue }
-
+		func addRange(range: NSRange, isAttachable: Bool = false) {
 			// Shadow starts after backing range
 			// If the block is Attachable, make this inclusive so we delete the entire block.
-			if (block is Attachable && range.location >= backingRange.location) || range.location > backingRange.location {
+			if (isAttachable && range.location >= backingRange.location) || range.location > backingRange.location {
 
 				// Shadow intersects. Expand length.
 				if backingRange.intersection(range) > 0 {
 					backingRange.length += range.length
-					continue
+					return
 				}
 
 				// If the shadow starts directly after the backing range, expand to include it.
 				if range.location == backingRange.max {
 					backingRange.length += range.length
 				}
-
-				break
+				return
 			}
 
 			backingRange.location += range.length
+		}
+
+		for block in blocks {
+			if let block = block as? InlineMarkerContainer {
+				for pair in block.inlineMarkerPairs {
+					addRange(pair.openingMarker.range)
+					addRange(pair.closingMarker.range)
+				}
+			}
+
+			if let range = (block as? NativePrefixable)?.nativePrefixRange {
+				addRange(range, isAttachable: block is Attachable)
+			}
 		}
 
 		return backingRange
