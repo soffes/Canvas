@@ -124,8 +124,8 @@ final class AnnotationsController {
 		case .FirstLeadingGutter:
 			guard let firstRect = firstRectForPresentationRange(presentationRange) else { return .zero }
 			rect = firstRect
-			rect.size.width = rect.origin.x
-			rect.origin.x = 0
+			rect.size.width = rect.origin.x + 8
+			rect.origin.x = -8
 		case .ExpandedLeadingGutter:
 			guard let rects = rectsForPresentationRange(presentationRange), firstRect = rects.first else { return .zero }
 			rect = rects.reduce(firstRect) { $0.union($1) }
