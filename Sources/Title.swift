@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Title: NativePrefixable, NodeContainer, Equatable {
+public struct Title: NativePrefixable, NodeContainer, InlineMarkerContainer, Equatable {
 
 	// MARK: - Properties
 
@@ -21,6 +21,7 @@ public struct Title: NativePrefixable, NodeContainer, Equatable {
 	}
 
 	public var subnodes = [SpanNode]()
+	public var inlineMarkerPairs = [InlineMarkerPair]()
 
 	public var dictionary: [String: AnyObject] {
 		return [
@@ -28,7 +29,8 @@ public struct Title: NativePrefixable, NodeContainer, Equatable {
 			"range": range.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
 			"visibleRange": visibleRange.dictionary,
-			"subnodes": subnodes.map { $0.dictionary }
+			"subnodes": subnodes.map { $0.dictionary },
+			"inlineMarkerPairs": inlineMarkerPairs.map { $0.dictionary }
 		]
 	}
 
@@ -59,6 +61,12 @@ public struct Title: NativePrefixable, NodeContainer, Equatable {
 			var node = $0
 			node.offset(delta)
 			return node
+		}
+
+		inlineMarkerPairs = inlineMarkerPairs.map {
+			var pair = $0
+			pair.offset(delta)
+			return pair
 		}
 	}
 

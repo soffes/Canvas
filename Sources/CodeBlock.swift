@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Equatable {
+public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, InlineMarkerContainer, Equatable {
 
 	// MARK: - Properties
 
@@ -18,6 +18,8 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Equa
 	public var position: Position = .Single
 	public var language: String?
 
+	public var inlineMarkerPairs = [InlineMarkerPair]()
+
 	public var dictionary: [String: AnyObject] {
 		var dictionary: [String: AnyObject] = [
 			"type": "code-block",
@@ -25,7 +27,8 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Equa
 			"nativePrefixRange": nativePrefixRange.dictionary,
 			"visibleRange": visibleRange.dictionary,
 			"position": position.description,
-			"lineNumber": lineNumber
+			"lineNumber": lineNumber,
+			"inlineMarkerPairs": inlineMarkerPairs.map { $0.dictionary }
 		]
 
 		if let language = language {
@@ -84,6 +87,12 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Equa
 		range.location += delta
 		nativePrefixRange.location += delta
 		visibleRange.location += delta
+
+		inlineMarkerPairs = inlineMarkerPairs.map {
+			var pair = $0
+			pair.offset(delta)
+			return pair
+		}
 	}
 
 

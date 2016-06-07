@@ -30,7 +30,8 @@ public struct Paragraph: BlockNode, NodeContainer, InlineMarkerContainer, Equata
 			"type": "paragraph",
 			"range": range.dictionary,
 			"visibleRange": visibleRange.dictionary,
-			"subnodes": subnodes.map { $0.dictionary }
+			"subnodes": subnodes.map { $0.dictionary },
+			"inlineMarkerPairs": inlineMarkerPairs.map { $0.dictionary }
 		]
 	}
 

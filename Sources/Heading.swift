@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Heading: BlockNode, NodeContainer, Foldable, Equatable {
+public struct Heading: BlockNode, NodeContainer, Foldable, InlineMarkerContainer, Equatable {
 
 	// MARK: - Types
 
@@ -63,6 +63,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable, Equatable {
 	}
 
 	public var subnodes = [SpanNode]()
+	public var inlineMarkerPairs = [InlineMarkerPair]()
 
 	public var dictionary: [String: AnyObject] {
 		return [
@@ -72,7 +73,8 @@ public struct Heading: BlockNode, NodeContainer, Foldable, Equatable {
 			"leadingDelimiterRange": leadingDelimiterRange.dictionary,
 			"textRange": textRange.dictionary,
 			"level": level.rawValue,
-			"subnodes": subnodes.map { $0.dictionary }
+			"subnodes": subnodes.map { $0.dictionary },
+			"inlineMarkerPairs": inlineMarkerPairs.map { $0.dictionary }
 		]
 	}
 
@@ -121,6 +123,12 @@ public struct Heading: BlockNode, NodeContainer, Foldable, Equatable {
 			var node = $0
 			node.offset(delta)
 			return node
+		}
+
+		inlineMarkerPairs = inlineMarkerPairs.map {
+			var pair = $0
+			pair.offset(delta)
+			return pair
 		}
 	}
 

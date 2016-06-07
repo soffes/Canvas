@@ -62,7 +62,7 @@ extension Indentation: Comparable {}
 }
 
 
-public protocol Listable: ReturnCompletable, NativePrefixable, Positionable {
+public protocol Listable: ReturnCompletable, NativePrefixable, Positionable, NodeContainer, InlineMarkerContainer {
 	var indentation: Indentation { get }
 	var indentationRange: NSRange { get }
 }

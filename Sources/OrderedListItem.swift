@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct OrderedListItem: Listable, NodeContainer, Equatable {
+public struct OrderedListItem: Listable, Equatable {
 
 	// MARK: - Properties
 
@@ -24,6 +24,7 @@ public struct OrderedListItem: Listable, NodeContainer, Equatable {
 	}
 
 	public var subnodes = [SpanNode]()
+	public var inlineMarkerPairs = [InlineMarkerPair]()
 
 	public var dictionary: [String: AnyObject] {
 		return [
@@ -35,7 +36,8 @@ public struct OrderedListItem: Listable, NodeContainer, Equatable {
 			"indentation": indentation.rawValue,
 			"position": position.description,
 			"subnodes": subnodes.map { $0.dictionary },
-			"number": number
+			"number": number,
+			"inlineMarkerPairs": inlineMarkerPairs.map { $0.dictionary }
 		]
 	}
 
@@ -72,6 +74,12 @@ public struct OrderedListItem: Listable, NodeContainer, Equatable {
 			var node = $0
 			node.offset(delta)
 			return node
+		}
+
+		inlineMarkerPairs = inlineMarkerPairs.map {
+			var pair = $0
+			pair.offset(delta)
+			return pair
 		}
 	}
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ChecklistItem: Listable, NodeContainer, Equatable {
+public struct ChecklistItem: Listable, Equatable {
 
 	// MARK: - Types
 
@@ -45,6 +45,7 @@ public struct ChecklistItem: Listable, NodeContainer, Equatable {
 	}
 
 	public var subnodes = [SpanNode]()
+	public var inlineMarkerPairs = [InlineMarkerPair]()
 
 	public var dictionary: [String: AnyObject] {
 		return [
@@ -57,7 +58,8 @@ public struct ChecklistItem: Listable, NodeContainer, Equatable {
 			"stateRange": stateRange.dictionary,
 			"state": state.rawValue,
 			"position": position.description,
-			"subnodes": subnodes.map { $0.dictionary }
+			"subnodes": subnodes.map { $0.dictionary },
+			"inlineMarkerPairs": inlineMarkerPairs.map { $0.dictionary }
 		]
 	}
 
@@ -144,6 +146,12 @@ public struct ChecklistItem: Listable, NodeContainer, Equatable {
 			var node = $0
 			node.offset(delta)
 			return node
+		}
+
+		inlineMarkerPairs = inlineMarkerPairs.map {
+			var pair = $0
+			pair.offset(delta)
+			return pair
 		}
 	}
 

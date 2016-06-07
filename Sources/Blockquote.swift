@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, NodeContainer, Equatable {
+public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, NodeContainer, InlineMarkerContainer, Equatable {
 
 	// MARK: - Properties
 
@@ -22,6 +22,7 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 	}
 
 	public var subnodes = [SpanNode]()
+	public var inlineMarkerPairs = [InlineMarkerPair]()
 
 	public var dictionary: [String: AnyObject] {
 		return [
@@ -30,7 +31,8 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 			"nativePrefixRange": nativePrefixRange.dictionary,
 			"visibleRange": visibleRange.dictionary,
 			"position": position.description,
-			"subnodes": subnodes.map { $0.dictionary }
+			"subnodes": subnodes.map { $0.dictionary },
+			"inlineMarkerPairs": inlineMarkerPairs.map { $0.dictionary }
 		]
 	}
 
@@ -62,6 +64,12 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 			var node = $0
 			node.offset(delta)
 			return node
+		}
+
+		inlineMarkerPairs = inlineMarkerPairs.map {
+			var pair = $0
+			pair.offset(delta)
+			return pair
 		}
 	}
 
