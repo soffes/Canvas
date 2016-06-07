@@ -102,16 +102,22 @@ class DocumentTests: XCTestCase {
 	}
 
 	func testPresentationRangeWithInlineMarkers() {
-		let document = Document(backingString: "⧙doc-heading⧘Title\nUn-markered text ☊co|3YA3fBfQystAGJj63asokU☋markered text☊Ωco|3YA3fBfQystAGJj63asokU☋un-markered text")
+		var document = Document(backingString: "⧙doc-heading⧘Title\nUn-markered text ☊co|3YA3fBfQystAGJj63asokU☋markered text☊Ωco|3YA3fBfQystAGJj63asokU☋un-markered text\n⧙blockquote⧘> Hello")
 		XCTAssertEqual(NSRange(location: 39, length: 8), document.presentationRange(backingRange: NSRange(location: 107, length: 8)))
 		XCTAssertEqual(NSRange(location: 6, length: 46), document.presentationRange(backingRange: NSRange(location: 19, length: 101)))
 		XCTAssertEqual(NSRange(location: 6, length: 46), document.presentationRange(blockIndex: 1))
 		XCTAssertEqual(NSRange(location: 6, length: 46), document.presentationRange(block: document.blocks[1]))
+		XCTAssertEqual(NSRange(location: 55, length: 2), document.presentationRange(backingRange: NSRange(location: 137, length: 2)))
+
+		document = Document(backingString: "⧙doc-heading⧘Simple comments\nOne ☊co|6BsgU6S6zujYGINemEJwvi☋two☊Ωco|6BsgU6S6zujYGINemEJwvi☋\n⧙code-⧘Th☊co|0QgIo1DL4xqyTJlv2vuZb0☋r☊Ωco|0QgIo1DL4xqyTJlv2vuZb0☋ee")
+		XCTAssertEqual(NSRange(location: 24, length: 5), document.presentationRange(blockIndex: 2))
+
 	}
 
 	func testBackingRangeWithInlineMarkers() {
-		let document = Document(backingString: "⧙doc-heading⧘Title\nUn-markered text ☊co|3YA3fBfQystAGJj63asokU☋markered text☊Ωco|3YA3fBfQystAGJj63asokU☋un-markered text")
+		let document = Document(backingString: "⧙doc-heading⧘Title\nUn-markered text ☊co|3YA3fBfQystAGJj63asokU☋markered text☊Ωco|3YA3fBfQystAGJj63asokU☋un-markered text\n⧙blockquote⧘> Hello")
 		XCTAssertEqual(NSRange(location: 107, length: 8), document.backingRange(presentationRange: NSRange(location: 39, length: 8)))
 		XCTAssertEqual(NSRange(location: 19, length: 101), document.backingRange(presentationRange: NSRange(location: 6, length: 46)))
+		XCTAssertEqual(NSRange(location: 137, length: 2), document.backingRange(presentationRange: NSRange(location: 55, length: 2)))
 	}
 }

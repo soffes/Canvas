@@ -272,6 +272,13 @@ private func documentPresentationLocations(blocks blocks: [BlockNode]) -> [Int] 
 		}
 
 		presentationLocations.append(block.visibleRange.location - offset)
+
+		if let pairs = (block as? InlineMarkerContainer)?.inlineMarkerPairs {
+			for pair in pairs {
+				offset += pair.openingMarker.range.length
+				offset += pair.closingMarker.range.length
+			}
+		}
 	}
 
 	// Ensure the newly calculated presentations locations are accurate. If these are wrong, there will be all sorts
@@ -309,7 +316,7 @@ private func documentPresentationString(backingString backingString: String, bac
 			component = content
 		}
 
-		// Offset the end of it's too long
+		// Offset the end if it's too long
 		let delta = block.range.max - backingRange.max
 		if delta > 0 {
 			let string = component as NSString
