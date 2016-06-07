@@ -158,10 +158,9 @@ public struct Document {
 	public func backingRange(presentationRange presentationRange: NSRange) -> NSRange {
 		var backingRange = presentationRange
 
-		func addRange(range: NSRange, isAttachable: Bool = false) {
+		func addRange(range: NSRange, inclusive: Bool = false) {
 			// Shadow starts after backing range
-			// If the block is Attachable, make this inclusive so we delete the entire block.
-			if (isAttachable && range.location >= backingRange.location) || range.location > backingRange.location {
+			if (inclusive && range.location >= backingRange.location) || range.location > backingRange.location {
 
 				// Shadow intersects. Expand length.
 				if backingRange.intersection(range) > 0 {
@@ -182,14 +181,18 @@ public struct Document {
 		for block in blocks {
 			if let block = block as? InlineMarkerContainer {
 				for pair in block.inlineMarkerPairs {
-					addRange(pair.openingMarker.range)
-					addRange(pair.closingMarker.range)
+					addRange(pair.openingMarker.range, inclusive: true)
+					addRange(pair.closingMarker.range, inclusive: true)
 				}
 			}
 
 			if let range = (block as? NativePrefixable)?.nativePrefixRange {
-				addRange(range, isAttachable: block is Attachable)
+				addRange(range, inclusive: block is Attachable)
 			}
+		}
+
+		if presentationRange.length == 0 {
+			backingRange.length = 0
 		}
 
 		return backingRange

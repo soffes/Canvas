@@ -120,4 +120,26 @@ class DocumentTests: XCTestCase {
 		XCTAssertEqual(NSRange(location: 19, length: 101), document.backingRange(presentationRange: NSRange(location: 6, length: 46)))
 		XCTAssertEqual(NSRange(location: 137, length: 2), document.backingRange(presentationRange: NSRange(location: 55, length: 2)))
 	}
+
+	func testDeletingInlineMarkers() {
+		let document = Document(backingString: "⧙doc-heading⧘Title\nOne ☊co|3YA3fBfQystAGJj63asokU☋two☊Ωco|3YA3fBfQystAGJj63asokU☋ three")
+
+		// Insert at beginning, inserts outside marker
+		XCTAssertEqual(NSRange(location: 23, length: 0), document.backingRange(presentationRange: NSRange(location: 10, length: 0)))
+
+		// Insert at end, inserts inside marker
+		XCTAssertEqual(NSRange(location: 53, length: 0), document.backingRange(presentationRange: NSRange(location: 13, length: 0)))
+
+		// Delete last character, deletes inside marker
+		XCTAssertEqual(NSRange(location: 52, length: 1), document.backingRange(presentationRange: NSRange(location: 12, length: 1)))
+
+		// Delete first character, deletes inside marker
+		XCTAssertEqual(NSRange(location: 50, length: 1), document.backingRange(presentationRange: NSRange(location: 10, length: 1)))
+
+		// Delete before first character, deletes outside marker
+		XCTAssertEqual(NSRange(location: 22, length: 1), document.backingRange(presentationRange: NSRange(location: 9, length: 1)))
+
+		// Deleting the content of an inline marker deletes the whole marker
+		XCTAssertEqual(NSRange(location: 23, length: 58), document.backingRange(presentationRange: NSRange(location: 10, length: 3)))
+	}
 }
