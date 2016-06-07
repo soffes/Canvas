@@ -330,6 +330,20 @@ public final class TextController {
 				styles += innerStyles
 				foldableRanges += innerFoldableRanges
 			}
+
+			// Inline markers
+			if let block = block as? InlineMarkerContainer {
+				for pair in block.inlineMarkerPairs {
+					let style = Style(
+						range: currentDocument.presentationRange(backingRange: pair.visibleRange),
+						attributes: [
+							NSBackgroundColorAttributeName: Color(red: 1, green: 0.942, blue: 0.716, alpha: 1),
+							NSFontAttributeName: font
+						]
+					)
+					styles.append(style)
+				}
+			}
 		}
 
 		return (styles, foldableRanges)
