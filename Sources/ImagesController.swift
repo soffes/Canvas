@@ -125,7 +125,7 @@ final class ImagesController: Themeable {
 		#if os(OSX)
 			return nil
 		#else
-			let key = "\(size.width)x\(size.height)-\(scale)-\(theme.placeholderColor)-\(theme.placeholderImageBackgroundColor)"
+			let key = "\(size.width)x\(size.height)-\(scale)-\(theme.imagePlaceholderColor)-\(theme.imagePlaceholderBackgroundColor)"
 			if let image = placeholderCache[key] {
 				return image
 			}
@@ -137,11 +137,11 @@ final class ImagesController: Themeable {
 			UIGraphicsBeginImageContextWithOptions(size, true, scale ?? 0)
 			
 			// Background
-			theme.placeholderImageBackgroundColor.setFill()
+			theme.imagePlaceholderBackgroundColor.setFill()
 			UIBezierPath(rect: rect).fill()
 			
 			// Icon
-			theme.placeholderColor.setFill()
+			theme.imagePlaceholderColor.setFill()
 			let iconFrame = CGRect(
 				x: (size.width - icon.size.width) / 2,
 				y: (size.height - icon.size.height) / 2,

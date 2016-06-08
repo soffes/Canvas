@@ -77,7 +77,7 @@ final class CheckboxView: UIButton, Annotation {
 			return
 		}
 
-		theme.placeholderColor.setStroke()
+		theme.uncheckedCheckboxColor.setStroke()
 		let path = UIBezierPath(roundedRect: CGRectInset(rect, 1, 1), cornerRadius: 3)
 		path.lineWidth = 2
 		path.stroke()
