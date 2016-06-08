@@ -43,6 +43,8 @@
 		218944F11CFFA1C8003F743B /* CanvasNative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 218944EE1CFFA1C8003F743B /* CanvasNative.framework */; };
 		218944F21CFFA1C8003F743B /* OperationTransport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 218944EF1CFFA1C8003F743B /* OperationTransport.framework */; };
 		218944F31CFFA1C8003F743B /* X.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 218944F01CFFA1C8003F743B /* X.framework */; };
+		2193DC5F1D07A776004D8D0C /* Theme+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2193DC5E1D07A776004D8D0C /* Theme+Default.swift */; };
+		2193DC601D07A776004D8D0C /* Theme+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2193DC5E1D07A776004D8D0C /* Theme+Default.swift */; };
 		2193F7631CFFA3AE00EAA7F4 /* Cache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2193F7621CFFA3AE00EAA7F4 /* Cache.framework */; };
 		2193F7651CFFB0E700EAA7F4 /* X.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2193F7641CFFB0E700EAA7F4 /* X.framework */; };
 		2193F7671CFFB0F100EAA7F4 /* Cache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2193F7661CFFB0F100EAA7F4 /* Cache.framework */; };
@@ -109,6 +111,7 @@
 		218944EE1CFFA1C8003F743B /* CanvasNative.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CanvasNative.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Canvas-ahobezxsenavsybuynvlwyoflfyh/Build/Products/Debug/CanvasNative.framework"; sourceTree = "<group>"; };
 		218944EF1CFFA1C8003F743B /* OperationTransport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OperationTransport.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Canvas-ahobezxsenavsybuynvlwyoflfyh/Build/Products/Debug/OperationTransport.framework"; sourceTree = "<group>"; };
 		218944F01CFFA1C8003F743B /* X.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = X.framework; path = ../X/build/Debug/X.framework; sourceTree = "<group>"; };
+		2193DC5E1D07A776004D8D0C /* Theme+Default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Theme+Default.swift"; sourceTree = "<group>"; };
 		2193F7621CFFA3AE00EAA7F4 /* Cache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cache.framework; path = ../Cache/build/Debug/Cache.framework; sourceTree = "<group>"; };
 		2193F7641CFFB0E700EAA7F4 /* X.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = X.framework; path = "../X/build/Debug-iphoneos/X.framework"; sourceTree = "<group>"; };
 		2193F7661CFFB0F100EAA7F4 /* Cache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cache.framework; path = "../Cache/build/Debug-iphoneos/Cache.framework"; sourceTree = "<group>"; };
@@ -264,6 +267,7 @@
 			children = (
 				21AD8C1D1C8A430B000A53F8 /* BlockSpacing.swift */,
 				21AD8C241C8A430B000A53F8 /* Theme.swift */,
+				2193DC5E1D07A776004D8D0C /* Theme+Default.swift */,
 				21E1D9E51C8DF6B800283961 /* Themeable.swift */,
 			);
 			name = Theme;
@@ -515,6 +519,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2193DC5F1D07A776004D8D0C /* Theme+Default.swift in Sources */,
 				21E1D9E81C8E212300283961 /* Annotation.swift in Sources */,
 				21AD8D071C8A48EA000A53F8 /* TextContainer.swift in Sources */,
 				21DF7A3B1C8F9ADA00C17A62 /* Annotatable.swift in Sources */,
@@ -572,6 +577,7 @@
 				218944C91CFFA090003F743B /* UserInterfaceSizeClass.swift in Sources */,
 				218944B21CFFA07E003F743B /* SelectionController.swift in Sources */,
 				218944C31CFFA08C003F743B /* ImagesController.swift in Sources */,
+				2193DC601D07A776004D8D0C /* Theme+Default.swift in Sources */,
 				218944CA1CFFA096003F743B /* NSRange+CanvasText.swift in Sources */,
 				218944AE1CFFA07E003F743B /* TextController.swift in Sources */,
 				218944BC1CFFA08A003F743B /* Annotatable.swift in Sources */,
