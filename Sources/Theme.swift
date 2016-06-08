@@ -63,6 +63,24 @@ public protocol Theme {
 	/// Blockquote border color
 	var blockquoteBorderColor: Color { get }
 
+	/// Heading level one color
+	var headingOneColor: Color { get }
+
+	/// Heading level two color
+	var headingTwoColor: Color { get }
+
+	/// Heading level three color
+	var headingThreeColor: Color { get }
+
+	/// Heading level four color
+	var headingFourColor: Color { get }
+
+	/// Heading level five color
+	var headingFiveColor: Color { get }
+
+	/// Heading level six color
+	var headingSixColor: Color { get }
+
 	/// Horizontal rule fill color
 	var horizontalRuleColor: Color { get }
 

@@ -167,21 +167,21 @@ extension Theme {
 		if let heading = block as? Heading {
 			switch heading.level {
 			case .One:
-				attributes[NSForegroundColorAttributeName] = foregroundColor
+				attributes[NSForegroundColorAttributeName] = headingOneColor
 				attributes[NSFontAttributeName] = fontOfSize(round(fontSize * 1.5), symbolicTraits: .TraitBold)
 			case .Two:
-				attributes[NSForegroundColorAttributeName] = foregroundColor
+				attributes[NSForegroundColorAttributeName] = headingTwoColor
 				attributes[NSFontAttributeName] = fontOfSize(round(fontSize * 1.2), symbolicTraits: .TraitBold)
 			case .Three:
-				attributes[NSForegroundColorAttributeName] = foregroundColor
+				attributes[NSForegroundColorAttributeName] = headingThreeColor
 				attributes[NSFontAttributeName] = fontOfSize(round(fontSize * 1.1), symbolicTraits: .TraitBold)
 			case .Four:
-				attributes[NSForegroundColorAttributeName] = foregroundColor
+				attributes[NSForegroundColorAttributeName] = headingFourColor
 				attributes[NSFontAttributeName] = fontOfSize(fontSize, symbolicTraits: .TraitBold)
 			case .Five:
-				attributes[NSForegroundColorAttributeName] = foregroundColor
+				attributes[NSForegroundColorAttributeName] = headingFiveColor
 			case .Six:
-				attributes[NSForegroundColorAttributeName] = foregroundColor
+				attributes[NSForegroundColorAttributeName] = headingSixColor
 			}
 		}
 
