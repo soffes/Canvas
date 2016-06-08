@@ -97,7 +97,11 @@ public final class TextController {
 		}
 	}
 
-	public var theme: Theme
+	public var theme: Theme {
+		didSet {
+			imagesController.theme = theme
+		}
+	}
 
 	#if !os(OSX)
 		public var traitCollection = UITraitCollection(horizontalSizeClass: .Unspecified) {
@@ -110,9 +114,7 @@ public final class TextController {
 	private var transportController: TransportController?
 	private let annotationsController: AnnotationsController
 	
-	private var imagesController: ImagesController {
-		return ImagesController.sharedController
-	}
+	private let imagesController: ImagesController
 
 	private let documentController = DocumentController()
 
@@ -131,12 +133,13 @@ public final class TextController {
 
 	// MARK: - Initializers
 
-	public init(serverURL: NSURL, accessToken: String, organizationID: String, canvasID: String, theme: Theme = LightTheme()) {
+	public init(serverURL: NSURL, accessToken: String, organizationID: String, canvasID: String, theme: Theme) {
 		self.serverURL = serverURL
 		self.accessToken = accessToken
 		self.organizationID = organizationID
 		self.canvasID = canvasID
 		self.theme = theme
+		imagesController = ImagesController(theme: theme)
 
 		annotationsController = AnnotationsController(theme: theme)
 		annotationsController.textController = self
@@ -337,7 +340,7 @@ public final class TextController {
 					let style = Style(
 						range: currentDocument.presentationRange(backingRange: pair.visibleRange),
 						attributes: [
-							NSBackgroundColorAttributeName: Color(red: 1, green: 0.942, blue: 0.716, alpha: 1),
+							NSBackgroundColorAttributeName: theme.commentBackgroundColor,
 							NSFontAttributeName: font
 						]
 					)
@@ -390,7 +393,7 @@ public final class TextController {
 				if let link = span as? Link {
 					// TODO: Derive from theme
 					var attrs = foldableAttributes
-					attrs[NSForegroundColorAttributeName] = Color(red: 0.420, green: 0.420, blue: 0.447, alpha: 1)
+					attrs[NSForegroundColorAttributeName] = theme.linkURLColor
 
 					styles.append(Style(range: currentDocument.presentationRange(backingRange: link.urlRange), attributes: attrs))
 

@@ -71,7 +71,7 @@ final class CheckboxView: UIButton, Annotation {
 
 			let bundle = NSBundle(forClass: CheckboxView.self)
 			if let checkmark = UIImage(named: "checkmark", inBundle: bundle, compatibleWithTraitCollection: nil) {
-				Color.whiteColor().setFill()
+				theme.backgroundColor.setFill()
 				checkmark.drawAtPoint(CGPoint(x: rect.origin.x + (rect.width - checkmark.size.width) / 2, y: (bounds.height - checkmark.size.height) / 2))
 			}
 			return

@@ -31,7 +31,6 @@
 		218944B61CFFA081003F743B /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8D061C8A48EA000A53F8 /* TextContainer.swift */; };
 		218944B71CFFA084003F743B /* BlockSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C1D1C8A430B000A53F8 /* BlockSpacing.swift */; };
 		218944B81CFFA084003F743B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C241C8A430B000A53F8 /* Theme.swift */; };
-		218944B91CFFA084003F743B /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C221C8A430B000A53F8 /* LightTheme.swift */; };
 		218944BA1CFFA084003F743B /* Themeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E51C8DF6B800283961 /* Themeable.swift */; };
 		218944BB1CFFA08A003F743B /* AnnotationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E11C8DF65900283961 /* AnnotationsController.swift */; };
 		218944BC1CFFA08A003F743B /* Annotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A3A1C8F9ADA00C17A62 /* Annotatable.swift */; };
@@ -48,7 +47,6 @@
 		2193F7651CFFB0E700EAA7F4 /* X.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2193F7641CFFB0E700EAA7F4 /* X.framework */; };
 		2193F7671CFFB0F100EAA7F4 /* Cache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2193F7661CFFB0F100EAA7F4 /* Cache.framework */; };
 		21AD8C291C8A430B000A53F8 /* BlockSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C1D1C8A430B000A53F8 /* BlockSpacing.swift */; };
-		21AD8C2E1C8A430B000A53F8 /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C221C8A430B000A53F8 /* LightTheme.swift */; };
 		21AD8C2F1C8A430B000A53F8 /* TextController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C231C8A430B000A53F8 /* TextController.swift */; };
 		21AD8C301C8A430B000A53F8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C241C8A430B000A53F8 /* Theme.swift */; };
 		21AD8C311C8A430B000A53F8 /* UserInterfaceSizeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C251C8A430B000A53F8 /* UserInterfaceSizeClass.swift */; };
@@ -115,7 +113,6 @@
 		2193F7641CFFB0E700EAA7F4 /* X.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = X.framework; path = "../X/build/Debug-iphoneos/X.framework"; sourceTree = "<group>"; };
 		2193F7661CFFB0F100EAA7F4 /* Cache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cache.framework; path = "../Cache/build/Debug-iphoneos/Cache.framework"; sourceTree = "<group>"; };
 		21AD8C1D1C8A430B000A53F8 /* BlockSpacing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockSpacing.swift; sourceTree = "<group>"; };
-		21AD8C221C8A430B000A53F8 /* LightTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightTheme.swift; sourceTree = "<group>"; };
 		21AD8C231C8A430B000A53F8 /* TextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextController.swift; sourceTree = "<group>"; };
 		21AD8C241C8A430B000A53F8 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		21AD8C251C8A430B000A53F8 /* UserInterfaceSizeClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInterfaceSizeClass.swift; sourceTree = "<group>"; };
@@ -267,7 +264,6 @@
 			children = (
 				21AD8C1D1C8A430B000A53F8 /* BlockSpacing.swift */,
 				21AD8C241C8A430B000A53F8 /* Theme.swift */,
-				21AD8C221C8A430B000A53F8 /* LightTheme.swift */,
 				21E1D9E51C8DF6B800283961 /* Themeable.swift */,
 			);
 			name = Theme;
@@ -544,7 +540,6 @@
 				21E1D9E21C8DF65900283961 /* AnnotationsController.swift in Sources */,
 				21DF7A441C8FA11100C17A62 /* CheckboxView.swift in Sources */,
 				21AD8C301C8A430B000A53F8 /* Theme.swift in Sources */,
-				21AD8C2E1C8A430B000A53F8 /* LightTheme.swift in Sources */,
 				2138C2D11C9722DF00D93FF4 /* OrderedListItem+CanvasText.swift in Sources */,
 				21DF7A451C8FA11100C17A62 /* ChecklistItem+CanvasText.swift in Sources */,
 				21AD8D091C8A491E000A53F8 /* LayoutManager.swift in Sources */,
@@ -585,7 +580,6 @@
 				218944D11CFFA096003F743B /* NSURL+CanvasText.swift in Sources */,
 				218944B31CFFA081003F743B /* BaseTextStorage.swift in Sources */,
 				218944B51CFFA081003F743B /* LayoutManager.swift in Sources */,
-				218944B91CFFA084003F743B /* LightTheme.swift in Sources */,
 				218944B71CFFA084003F743B /* BlockSpacing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

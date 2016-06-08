@@ -30,8 +30,20 @@ public protocol Theme {
 	var titleAttributes: Attributes { get }
 
 	var bulletColor: Color { get }
+	var uncheckedCheckboxColor: Color { get }
+	var orderedListItemNumberColor: Color { get }
+	var codeColor: Color { get }
+	var codeBlockBackgroundColor: Color { get }
+	var codeBlockLineNumberColor: Color { get }
+	var codeBlockLineNumberBackgroundColor: Color { get }
+	var blockquoteColor: Color { get }
 	var blockquoteBorderColor: Color { get }
-	var codeBackground: Color { get }
+	var strikethroughColor: Color { get }
+	var commentBackgroundColor: Color { get }
+	var linkURLColor: Color { get }
+
+	var placeholderImageColor: Color { get }
+	var placeholderImageBackgroundColor: Color { get }
 
 	func fontOfSize(fontSize: CGFloat, symbolicTraits: FontDescriptorSymbolicTraits) -> Font
 	func monospaceFontOfSize(fontSize: CGFloat, symbolicTraits: FontDescriptorSymbolicTraits) -> Font
@@ -50,13 +62,6 @@ public protocol Theme {
 
 
 extension Theme {
-	public func foldingAttributes(currentFont currentFont: Font) -> Attributes {
-		var attributes = baseAttributes
-		attributes[NSForegroundColorAttributeName] = placeholderColor
-		attributes[NSFontAttributeName] = currentFont
-		return attributes
-	}
-
 	public var baseAttributes: Attributes {
 		return [
 			NSForegroundColorAttributeName: foregroundColor,
@@ -65,7 +70,10 @@ extension Theme {
 	}
 
 	public var titleAttributes: Attributes {
-		return baseAttributes
+		var attributes = baseAttributes
+		attributes[NSForegroundColorAttributeName] = foregroundColor
+		attributes[NSFontAttributeName] = fontOfSize(round(fontSize * 1.7), symbolicTraits: [.TraitBold])
+		return attributes
 	}
 
 	public func fontOfSize(fontSize: CGFloat, symbolicTraits: FontDescriptorSymbolicTraits = []) -> Font {

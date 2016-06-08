@@ -15,7 +15,7 @@
 import Cache
 import X
 
-final class ImagesController {
+final class ImagesController: Themeable {
 	
 	// MARK: - Types
 	
@@ -23,7 +23,8 @@ final class ImagesController {
 	
 	
 	// MARK: - Properties
-	
+
+	var theme: Theme
 	let session: NSURLSession
 	
 	private var downloading = [String: [Completion]]()
@@ -34,12 +35,11 @@ final class ImagesController {
 	private let imageCache: MultiCache<Image>
 	private let placeholderCache = MemoryCache<Image>()
 	
-	static let sharedController = ImagesController()
-	
 	
 	// MARK: - Initializers
 	
-	init(session: NSURLSession = NSURLSession.sharedSession()) {
+	init(theme: Theme, session: NSURLSession = NSURLSession.sharedSession()) {
+		self.theme = theme
 		self.session = session
 
 		var caches = [AnyCache(memoryCache)]
@@ -125,7 +125,7 @@ final class ImagesController {
 		#if os(OSX)
 			return nil
 		#else
-			let key = "\(size.width)x\(size.height)-\(scale)"
+			let key = "\(size.width)x\(size.height)-\(scale)-\(theme.placeholderColor)-\(theme.placeholderImageBackgroundColor)"
 			if let image = placeholderCache[key] {
 				return image
 			}
@@ -137,11 +137,11 @@ final class ImagesController {
 			UIGraphicsBeginImageContextWithOptions(size, true, scale ?? 0)
 			
 			// Background
-			Color(red: 0.957, green: 0.976, blue: 1, alpha: 1).setFill()
+			theme.placeholderImageBackgroundColor.setFill()
 			UIBezierPath(rect: rect).fill()
 			
 			// Icon
-			Color(red: 0.729, green: 0.773, blue: 0.835, alpha: 1).setFill()
+			theme.placeholderColor.setFill()
 			let iconFrame = CGRect(
 				x: (size.width - icon.size.width) / 2,
 				y: (size.height - icon.size.height) / 2,

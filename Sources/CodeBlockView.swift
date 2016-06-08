@@ -25,7 +25,7 @@ final class CodeBlockView: ViewType, Annotation {
 
 	var theme: Theme {
 		didSet {
-			backgroundColor = theme.codeBackground
+			backgroundColor = theme.codeBlockBackgroundColor
 			tintColor = theme.tintColor
 			setNeedsDisplay()
 		}
@@ -58,7 +58,7 @@ final class CodeBlockView: ViewType, Annotation {
 
 		textLabel.font = theme.monospaceFontOfSize(theme.fontSize)
 		textLabel.text = codeBlock.lineNumber.description
-		textLabel.textColor = Color(red: 0.847, green: 0.847, blue: 0.864, alpha: 1)
+		textLabel.textColor = theme.codeBlockLineNumberColor
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -89,12 +89,12 @@ final class CodeBlockView: ViewType, Annotation {
 			CGContextClip(context)
 		}
 
-		CGContextSetFillColorWithColor(context, theme.codeBackground.CGColor)
+		CGContextSetFillColorWithColor(context, theme.codeBlockBackgroundColor.CGColor)
 		CGContextFillRect(context, bounds)
 
 		// Line numbers background
 		if traitCollection.horizontalSizeClass == .Regular {
-			CGContextSetFillColorWithColor(context, Color(red: 0.937, green: 0.937, blue: 0.946,alpha: 1).CGColor)
+			CGContextSetFillColorWithColor(context, theme.codeBlockLineNumberBackgroundColor.CGColor)
 			CGContextFillRect(context, CGRect(x: 0, y: 0, width: self.dynamicType.lineNumberWidth, height: bounds.height))
 		}
 	}
