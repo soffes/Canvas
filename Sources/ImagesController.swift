@@ -129,8 +129,9 @@ final class ImagesController: Themeable {
 			if let image = placeholderCache[key] {
 				return image
 			}
-			
-			guard let icon = Image(named: "ImagePlaceholder") else { return nil }
+
+			let bundle = NSBundle(forClass: ImagesController.self)
+			guard let icon = Image(named: "PhotoLandscape", inBundle: bundle) else { return nil }
 			
 			let rect = CGRect(origin: .zero, size: size)
 			
