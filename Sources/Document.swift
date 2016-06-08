@@ -179,13 +179,20 @@ public struct Document {
 		}
 
 		for block in blocks {
+			// Inline markers
 			if let block = block as? InlineMarkerContainer {
 				for pair in block.inlineMarkerPairs {
 					addRange(pair.openingMarker.range, inclusive: true)
-					addRange(pair.closingMarker.range, inclusive: true)
+
+					// TODO: delete entire pair
+
+					if presentationRange.length == 0 || (presentationRange.length > 0 && backingRange.max != pair.closingMarker.range.location) {
+						addRange(pair.closingMarker.range, inclusive: true)
+					}
 				}
 			}
 
+			// Native prefix
 			if let range = (block as? NativePrefixable)?.nativePrefixRange {
 				addRange(range, inclusive: block is Attachable)
 			}

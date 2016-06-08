@@ -142,4 +142,12 @@ class DocumentTests: XCTestCase {
 		// Deleting the content of an inline marker deletes the whole marker
 		XCTAssertEqual(NSRange(location: 23, length: 58), document.backingRange(presentationRange: NSRange(location: 10, length: 3)))
 	}
+
+
+	/*
+		TODO:
+		
+		- [ ] New line at end of comment
+		- [ ] New line in the middle of a comment
+	*/
 }
