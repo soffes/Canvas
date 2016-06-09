@@ -16,6 +16,9 @@ class DocumentTests: XCTestCase {
 
 		document = Document(backingString: "⧙doc-heading⧘**Title**\nHello")
 		XCTAssertEqual("Title", document.title)
+
+		document = Document(backingString: "Hello")
+		XCTAssertNil(document.title)
 	}
 
 	func testBackingRangeToPresentationRange() {
