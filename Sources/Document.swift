@@ -27,11 +27,9 @@ public struct Document {
 	public var title: String? {
 		guard let title = blocks.first as? Title else { return nil }
 
-		let range = presentationRange(block: title)
-		if range.length == 0 {
-			return nil
-		}
-		return (presentationString as NSString).substringWithRange(range)
+		let titleDocument = Document(backingString: backingString, blocks: [title])
+		let renderer = PlainRenderer(document: titleDocument)
+		return renderer.render()
 	}
 
 	private var text: NSString {

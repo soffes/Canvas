@@ -10,6 +10,14 @@ import XCTest
 import CanvasNative
 
 class DocumentTests: XCTestCase {
+	func testTitle() {
+		var document = Document(backingString: "⧙doc-heading⧘Title\nHello")
+		XCTAssertEqual("Title", document.title)
+
+		document = Document(backingString: "⧙doc-heading⧘**Title**\nHello")
+		XCTAssertEqual("Title", document.title)
+	}
+
 	func testBackingRangeToPresentationRange() {
 		var document = Document(backingString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two\n⧙code⧘Three")
 

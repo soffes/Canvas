@@ -222,6 +222,17 @@
 		21C58DB21D01FA10005AEFE1 /* InlineMarkerPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C58DB01D01FA10005AEFE1 /* InlineMarkerPair.swift */; };
 		21C58DB31D01FA10005AEFE1 /* InlineMarkerPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C58DB01D01FA10005AEFE1 /* InlineMarkerPair.swift */; };
 		21C58DB41D01FA10005AEFE1 /* InlineMarkerPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C58DB01D01FA10005AEFE1 /* InlineMarkerPair.swift */; };
+		21CB79951D09E41A002F4830 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CB79941D09E41A002F4830 /* Renderer.swift */; };
+		21CB79961D09E41A002F4830 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CB79941D09E41A002F4830 /* Renderer.swift */; };
+		21CB79971D09E41A002F4830 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CB79941D09E41A002F4830 /* Renderer.swift */; };
+		21CB79981D09E41A002F4830 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CB79941D09E41A002F4830 /* Renderer.swift */; };
+		21CB799A1D09E4FE002F4830 /* PlainRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CB79991D09E4FE002F4830 /* PlainRenderer.swift */; };
+		21CB799B1D09E4FE002F4830 /* PlainRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CB79991D09E4FE002F4830 /* PlainRenderer.swift */; };
+		21CB799C1D09E4FE002F4830 /* PlainRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CB79991D09E4FE002F4830 /* PlainRenderer.swift */; };
+		21CB799D1D09E4FE002F4830 /* PlainRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CB79991D09E4FE002F4830 /* PlainRenderer.swift */; };
+		21CB79A01D09E776002F4830 /* PlainRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CB799F1D09E776002F4830 /* PlainRendererTests.swift */; };
+		21CB79A11D09E776002F4830 /* PlainRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CB799F1D09E776002F4830 /* PlainRendererTests.swift */; };
+		21CB79A21D09E776002F4830 /* PlainRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21CB799F1D09E776002F4830 /* PlainRendererTests.swift */; };
 		21DF7A471C8FA1AF00C17A62 /* DocumentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* DocumentTests.swift */; };
 		21DF7A481C8FA1AF00C17A62 /* DocumentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A461C8FA1AF00C17A62 /* DocumentTests.swift */; };
 		21DF7A5A1C8FAF5B00C17A62 /* DocumentControllerReliabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A591C8FAF5B00C17A62 /* DocumentControllerReliabilityTests.swift */; };
@@ -322,6 +333,9 @@
 		21BF7D4A1C937F4100CB1A7A /* CodeBlockTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlockTests.swift; sourceTree = "<group>"; };
 		21C589FE1CBEB56C002EDC7E /* TitleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleTests.swift; sourceTree = "<group>"; };
 		21C58DB01D01FA10005AEFE1 /* InlineMarkerPair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InlineMarkerPair.swift; sourceTree = "<group>"; };
+		21CB79941D09E41A002F4830 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		21CB79991D09E4FE002F4830 /* PlainRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlainRenderer.swift; sourceTree = "<group>"; };
+		21CB799F1D09E776002F4830 /* PlainRendererTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlainRendererTests.swift; sourceTree = "<group>"; };
 		21DF7A461C8FA1AF00C17A62 /* DocumentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentTests.swift; sourceTree = "<group>"; };
 		21DF7A591C8FAF5B00C17A62 /* DocumentControllerReliabilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentControllerReliabilityTests.swift; sourceTree = "<group>"; };
 		21DF7A5F1C90A09000C17A62 /* DocumentControllerInsertTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentControllerInsertTests.swift; sourceTree = "<group>"; };
@@ -477,6 +491,7 @@
 				2101767F1CBD6FA600614D61 /* Document */,
 				2101767E1CBD6E6B00614D61 /* Document Controller */,
 				212DD5C51CCFFD3900C3845A /* Parser */,
+				21CB799E1D09E763002F4830 /* Renderer */,
 				2101767C1CBD6E3A00614D61 /* Block Level */,
 				2101767D1CBD6E5C00614D61 /* Span Level */,
 				210C743B1C7E7C5000FBB665 /* Helpers */,
@@ -507,12 +522,12 @@
 			isa = PBXGroup;
 			children = (
 				215CD8201CE258260093C545 /* CanvasNative.swift */,
-				21AD8C9C1C8A4628000A53F8 /* Parser.swift */,
+				21CB79911D09E3F2002F4830 /* Parser */,
 				21673D871CBDD36D0017190B /* Document */,
-				21AD8CED1C8A4698000A53F8 /* Protocols */,
 				21AD8CEB1C8A4674000A53F8 /* Block Level */,
 				21AD8CEC1C8A4685000A53F8 /* Span Level */,
-				21C58DAF1D01F9F9005AEFE1 /* Inline Markers */,
+				21CB79931D09E408002F4830 /* Inline Markers */,
+				21CB79921D09E3F7002F4830 /* Renderes */,
 				21AD8CEE1C8A46A1000A53F8 /* Extensions */,
 				21673D7D1CBDC7BD0017190B /* Vendor */,
 			);
@@ -532,6 +547,13 @@
 		21AD8CEB1C8A4674000A53F8 /* Block Level */ = {
 			isa = PBXGroup;
 			children = (
+				21AD8C871C8A4628000A53F8 /* Attachable.swift */,
+				21AD8C881C8A4628000A53F8 /* BlockNode.swift */,
+				21AD8C951C8A4628000A53F8 /* Listable.swift */,
+				21AD8C961C8A4628000A53F8 /* NativePrefixable.swift */,
+				21B5024C1CFF5C7E0067FB9A /* InlineMarkerContainer.swift */,
+				21AD8C9D1C8A4628000A53F8 /* Positionable.swift */,
+				21AD8C9E1C8A4628000A53F8 /* ReturnCompletable.swift */,
 				21AD8C891C8A4628000A53F8 /* Blockquote.swift */,
 				21AD8C8C1C8A4628000A53F8 /* ChecklistItem.swift */,
 				21AD8C8D1C8A4628000A53F8 /* CodeBlock.swift */,
@@ -549,6 +571,9 @@
 		21AD8CEC1C8A4685000A53F8 /* Span Level */ = {
 			isa = PBXGroup;
 			children = (
+				21AD8C9F1C8A4628000A53F8 /* SpanNode.swift */,
+				21AD8CA01C8A4628000A53F8 /* SpanNodeContainer.swift */,
+				21AD8CA11C8A4628000A53F8 /* SpanNodeParseable.swift */,
 				21AD8C8E1C8A4628000A53F8 /* CodeSpan.swift */,
 				21AD8C8F1C8A4628000A53F8 /* DoubleEmphasis.swift */,
 				21AD8C901C8A4628000A53F8 /* Emphasis.swift */,
@@ -557,26 +582,6 @@
 				21B502471CFF52880067FB9A /* Strikethrough.swift */,
 			);
 			name = "Span Level";
-			sourceTree = "<group>";
-		};
-		21AD8CED1C8A4698000A53F8 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				21AD8C871C8A4628000A53F8 /* Attachable.swift */,
-				21AD8C881C8A4628000A53F8 /* BlockNode.swift */,
-				21AD8C911C8A4628000A53F8 /* Foldable.swift */,
-				21AD8C951C8A4628000A53F8 /* Listable.swift */,
-				21AD8C961C8A4628000A53F8 /* NativePrefixable.swift */,
-				21AD8C971C8A4628000A53F8 /* Node.swift */,
-				21AD8C981C8A4628000A53F8 /* NodeContainer.swift */,
-				21B5024C1CFF5C7E0067FB9A /* InlineMarkerContainer.swift */,
-				21AD8C9D1C8A4628000A53F8 /* Positionable.swift */,
-				21AD8C9E1C8A4628000A53F8 /* ReturnCompletable.swift */,
-				21AD8C9F1C8A4628000A53F8 /* SpanNode.swift */,
-				21AD8CA01C8A4628000A53F8 /* SpanNodeContainer.swift */,
-				21AD8CA11C8A4628000A53F8 /* SpanNodeParseable.swift */,
-			);
-			name = Protocols;
 			sourceTree = "<group>";
 		};
 		21AD8CEE1C8A46A1000A53F8 /* Extensions */ = {
@@ -588,13 +593,41 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
-		21C58DAF1D01F9F9005AEFE1 /* Inline Markers */ = {
+		21CB79911D09E3F2002F4830 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				21AD8C9C1C8A4628000A53F8 /* Parser.swift */,
+				21AD8C971C8A4628000A53F8 /* Node.swift */,
+				21AD8C911C8A4628000A53F8 /* Foldable.swift */,
+				21AD8C981C8A4628000A53F8 /* NodeContainer.swift */,
+			);
+			name = Parser;
+			sourceTree = "<group>";
+		};
+		21CB79921D09E3F7002F4830 /* Renderes */ = {
+			isa = PBXGroup;
+			children = (
+				21CB79941D09E41A002F4830 /* Renderer.swift */,
+				21CB79991D09E4FE002F4830 /* PlainRenderer.swift */,
+			);
+			name = Renderes;
+			sourceTree = "<group>";
+		};
+		21CB79931D09E408002F4830 /* Inline Markers */ = {
 			isa = PBXGroup;
 			children = (
 				21B502511CFF5CB40067FB9A /* InlineMarker.swift */,
 				21C58DB01D01FA10005AEFE1 /* InlineMarkerPair.swift */,
 			);
 			name = "Inline Markers";
+			sourceTree = "<group>";
+		};
+		21CB799E1D09E763002F4830 /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				21CB799F1D09E776002F4830 /* PlainRendererTests.swift */,
+			);
+			name = Renderer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -907,12 +940,14 @@
 				21AD8CC41C8A4628000A53F8 /* Text.swift in Sources */,
 				21AD8CA91C8A4628000A53F8 /* Attachable.swift in Sources */,
 				21AD8CC31C8A4628000A53F8 /* SpanNodeParseable.swift in Sources */,
+				21CB799A1D09E4FE002F4830 /* PlainRenderer.swift in Sources */,
 				21AD8CB81C8A4628000A53F8 /* NativePrefixable.swift in Sources */,
 				21AD8CC61C8A4628000A53F8 /* UnorderedListItem.swift in Sources */,
 				21C58DB11D01FA10005AEFE1 /* InlineMarkerPair.swift in Sources */,
 				21AD8CC11C8A4628000A53F8 /* SpanNode.swift in Sources */,
 				21AD8CB31C8A4628000A53F8 /* Foldable.swift in Sources */,
 				21AD8CBE1C8A4628000A53F8 /* Parser.swift in Sources */,
+				21CB79951D09E41A002F4830 /* Renderer.swift in Sources */,
 				21AD8CB01C8A4628000A53F8 /* CodeSpan.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -934,6 +969,7 @@
 				214FA0211CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */,
 				212DD5C21CCFFD0800C3845A /* ParserTests.swift in Sources */,
 				21260D351CCFD28000F7C9D7 /* ChecklistItemTests.swift in Sources */,
+				21CB79A01D09E776002F4830 /* PlainRendererTests.swift in Sources */,
 				21A9F0D21C7CFD1C009B40A0 /* DocumentControllerChangeTests.swift in Sources */,
 				215BABEA1C52B46B00118C8C /* HeadingTests.swift in Sources */,
 				21DF7A631C90A0E100C17A62 /* DocumentControllerRemoveTests.swift in Sources */,
@@ -980,12 +1016,14 @@
 				21AD8CE81C8A4649000A53F8 /* Text.swift in Sources */,
 				21AD8CCD1C8A4649000A53F8 /* Attachable.swift in Sources */,
 				21AD8CE71C8A4649000A53F8 /* SpanNodeParseable.swift in Sources */,
+				21CB799B1D09E4FE002F4830 /* PlainRenderer.swift in Sources */,
 				21AD8CDC1C8A4649000A53F8 /* NativePrefixable.swift in Sources */,
 				21AD8CEA1C8A4649000A53F8 /* UnorderedListItem.swift in Sources */,
 				21C58DB21D01FA10005AEFE1 /* InlineMarkerPair.swift in Sources */,
 				21AD8CE51C8A4649000A53F8 /* SpanNode.swift in Sources */,
 				21AD8CD71C8A4649000A53F8 /* Foldable.swift in Sources */,
 				21AD8CE21C8A4649000A53F8 /* Parser.swift in Sources */,
+				21CB79961D09E41A002F4830 /* Renderer.swift in Sources */,
 				21AD8CD41C8A4649000A53F8 /* CodeSpan.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1007,6 +1045,7 @@
 				214FA0221CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */,
 				212DD5C31CCFFD0800C3845A /* ParserTests.swift in Sources */,
 				21260D361CCFD28000F7C9D7 /* ChecklistItemTests.swift in Sources */,
+				21CB79A11D09E776002F4830 /* PlainRendererTests.swift in Sources */,
 				21A9F0D31C7CFD1C009B40A0 /* DocumentControllerChangeTests.swift in Sources */,
 				215BABEB1C52B46B00118C8C /* HeadingTests.swift in Sources */,
 				21DF7A641C90A0E100C17A62 /* DocumentControllerRemoveTests.swift in Sources */,
@@ -1053,12 +1092,14 @@
 				21632CFA1C9235F500C40D7D /* NodeContainer.swift in Sources */,
 				21632CFD1C9235F500C40D7D /* SpanNode.swift in Sources */,
 				21632D051C9235F800C40D7D /* OrderedListItem.swift in Sources */,
+				21CB799D1D09E4FE002F4830 /* PlainRenderer.swift in Sources */,
 				21632D021C9235F800C40D7D /* CodeBlock.swift in Sources */,
 				21632D0E1C92360100C40D7D /* CGSize+CanvasNative.swift in Sources */,
 				21C58DB41D01FA10005AEFE1 /* InlineMarkerPair.swift in Sources */,
 				21632D061C9235F800C40D7D /* Paragraph.swift in Sources */,
 				21632CFB1C9235F500C40D7D /* Positionable.swift in Sources */,
 				21632CF51C9235F500C40D7D /* BlockNode.swift in Sources */,
+				21CB79981D09E41A002F4830 /* Renderer.swift in Sources */,
 				21632D0B1C9235FE00C40D7D /* Emphasis.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1100,12 +1141,14 @@
 				21632D351C92367B00C40D7D /* NodeContainer.swift in Sources */,
 				21632D381C92367B00C40D7D /* SpanNode.swift in Sources */,
 				21632D401C92367E00C40D7D /* OrderedListItem.swift in Sources */,
+				21CB799C1D09E4FE002F4830 /* PlainRenderer.swift in Sources */,
 				21632D3D1C92367E00C40D7D /* CodeBlock.swift in Sources */,
 				21632D491C92368600C40D7D /* CGSize+CanvasNative.swift in Sources */,
 				21C58DB31D01FA10005AEFE1 /* InlineMarkerPair.swift in Sources */,
 				21632D411C92367E00C40D7D /* Paragraph.swift in Sources */,
 				21632D361C92367B00C40D7D /* Positionable.swift in Sources */,
 				21632D301C92367B00C40D7D /* BlockNode.swift in Sources */,
+				21CB79971D09E41A002F4830 /* Renderer.swift in Sources */,
 				21632D461C92368200C40D7D /* Emphasis.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1127,6 +1170,7 @@
 				214FA0231CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */,
 				212DD5C41CCFFD0800C3845A /* ParserTests.swift in Sources */,
 				21260D371CCFD28000F7C9D7 /* ChecklistItemTests.swift in Sources */,
+				21CB79A21D09E776002F4830 /* PlainRendererTests.swift in Sources */,
 				21632D4D1C92369A00C40D7D /* DocumentControllerInsertTests.swift in Sources */,
 				21632D571C9236A000C40D7D /* TestDocumentControllerControllerDelegate.swift in Sources */,
 				21632D521C92369A00C40D7D /* HeadingTests.swift in Sources */,
