@@ -12,23 +12,20 @@ public protocol InlineMarkerContainer: BlockNode {
 
 
 extension InlineMarkerContainer {
-	public func contentInString(string: String) -> String {
-		let text = NSMutableString(string: string)
+	public var hiddenRanges: [NSRange] {
+		var ranges = [NSRange]()
 
-		var offset = 0
-
-		func removeMarker(marker: InlineMarker) {
-			var range = marker.range
-			range.location -= offset
-			text.replaceCharactersInRange(range, withString: "")
-			offset += range.length
+		if let block = self as? NativePrefixable {
+			ranges.append(block.nativePrefixRange)
 		}
 
 		for pair in inlineMarkerPairs {
-			removeMarker(pair.openingMarker)
-			removeMarker(pair.closingMarker)
+			ranges += [
+				pair.openingMarker.range,
+				pair.closingMarker.range
+			]
 		}
 
-		return text.substringWithRange(NSRange(location: visibleRange.location, length: visibleRange.length - offset))
+		return ranges
 	}
 }

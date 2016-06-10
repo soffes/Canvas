@@ -6,7 +6,11 @@
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
-import Foundation
+#if os(OSX)
+	import AppKit
+#else
+	import UIKit
+#endif
 
 /// Model that contains Canvas Native backing string, BlockNodes, and presentation string. Several methods for doing
 /// calculations on the strings or nodes are provided.
@@ -36,7 +40,8 @@ public struct Document {
 		return backingString as NSString
 	}
 
-	private let blockPresentationLocations: [Int]
+	private let hiddenRanges: [NSRange]
+	private let blockRanges: [NSRange]
 
 
 	// MARK: - Initializers
@@ -44,8 +49,7 @@ public struct Document {
 	public init(backingString: String = "", blocks: [BlockNode]? = nil) {
 		self.backingString = backingString
 		self.blocks = blocks ?? Parser.parse(backingString)
-		blockPresentationLocations = documentPresentationLocations(blocks: self.blocks)
-		presentationString = documentPresentationString(backingString: backingString, blocks: self.blocks) ?? ""
+		(presentationString, hiddenRanges, blockRanges) = Document.present(backingString: backingString, blocks: self.blocks)
 	}
 
 
@@ -80,17 +84,7 @@ public struct Document {
 	}
 
 	public func presentationRange(blockIndex index: Int) -> NSRange {
-		let block = blocks[index]
-
-		let backingRange = block.range
-		var presentationRange = NSRange(location: blockPresentationLocations[index], length: block.visibleRange.length)
-
-		// Inline markers
-		if let block = block as? InlineMarkerContainer {
-			presentationRange = remove(inlineMarkerPairs: block.inlineMarkerPairs, presentationRange: presentationRange, backingRange: backingRange)
-		}
-
-		return presentationRange
+		return blockRanges[index]
 	}
 
 	public func blockAt(presentationLocation presentationLocation: Int) -> BlockNode? {
@@ -99,8 +93,8 @@ public struct Document {
 	}
 
 	public func blockAt(presentationLocation presentationLocation: UInt) -> BlockNode? {
-		for (i, location) in blockPresentationLocations.enumerate() {
-			if Int(presentationLocation) < location {
+		for (i, range) in blockRanges.enumerate() {
+			if Int(presentationLocation) < range.location {
 				return blocks[i - 1]
 			}
 		}
@@ -259,95 +253,80 @@ public struct Document {
 		return blocks.map { UInt($0.range.length) }.reduce(0, combine: +)
 	}
 
-	public func presentationString(backingRange backingRange: NSRange) -> String? {
-		return documentPresentationString(backingString: backingString, backingRange: backingRange, blocks: blocks)
-	}
-}
+	public func presentationString(backingRange backingRange: NSRange) -> String {
+		let text = NSMutableString(string: (backingString as NSString).substringWithRange(backingRange))
 
+		var offset = backingRange.location
+		for hiddenRange in hiddenRanges {
+			// Before the desired ranage
+			if hiddenRange.location < backingRange.location {
+				continue
+			}
 
-private func documentPresentationLocations(blocks blocks: [BlockNode]) -> [Int] {
-	if blocks.isEmpty {
-		return []
-	}
-	
-	// Calculate block presentation locations
-	var offset = 0
-	var presentationLocations = [Int]()
+			// After the desired range
+			if hiddenRange.location > backingRange.max {
+				break
+			}
 
-	for block in blocks {
-		if let range = (block as? NativePrefixable)?.nativePrefixRange {
+			// Adjust hidden range
+			var range = hiddenRange
+			range.location -= offset
+			range.length = min(text.length - range.location, range.length)
+
+			// Remove hidden range from presentation string
+			text.replaceCharactersInRange(range, withString: "")
 			offset += range.length
 		}
 
-		presentationLocations.append(block.visibleRange.location - offset)
+		return text as String
+	}
 
-		if let pairs = (block as? InlineMarkerContainer)?.inlineMarkerPairs {
-			for pair in pairs {
-				offset += pair.openingMarker.range.length
-				offset += pair.closingMarker.range.length
+
+	// MARK: - Private
+
+	private static func present(backingString backingString: String, blocks: [BlockNode]) -> (String, [NSRange], [NSRange]) {
+		let text = backingString as NSString
+
+		var presentationString = ""
+		var hiddenRanges = [NSRange]()
+		var blockRanges = [NSRange]()
+		var location: Int = 0
+
+		for (i, block) in blocks.enumerate() {
+			let isLast = i == blocks.count - 1
+			var blockRange = NSRange(location: location, length: 0)
+			hiddenRanges += block.hiddenRanges
+			
+			if block is Attachable {
+				// Special case for attachments
+				presentationString += String(Character(UnicodeScalar(NSAttachmentCharacter)))
+				location += 1
+			} else {
+				// Get the raw text of the line
+				let line = NSMutableString(string: text.substringWithRange(block.range))
+
+				// Remove hidden ranges
+				var offset = block.range.location
+				for range in block.hiddenRanges {
+					line.replaceCharactersInRange(NSRange(location: range.location - offset, length: range.length), withString: "")
+					offset += range.length
+				}
+
+				presentationString += line as String
+				location += block.range.length - offset + block.range.location
+			}
+
+			// Add block range.
+			blockRange.length = location - blockRange.location
+			blockRanges.append(blockRange)
+
+			// New line if we're not at the end. This isn't included in the block's range.
+			if !isLast {
+				presentationString += "\n"
+				location += 1
 			}
 		}
+
+		return (presentationString, hiddenRanges, blockRanges)
 	}
-
-	// Ensure the newly calculated presentations locations are accurate. If these are wrong, there will be all sorts
-	// of problems later. The first location must start at the beginning.
-	assert(!presentationLocations.isEmpty && presentationLocations[0] == 0, "Invalid presentations locations.")
-
-	return presentationLocations
-}
-
-private func documentPresentationString(backingString backingString: String, backingRange inBackingRange: NSRange? = nil, blocks: [BlockNode]) -> String? {
-	let backingRange = inBackingRange ?? NSRange(location: 0, length: (backingString as NSString).length)
-
-	var components = [String]()
-
-	let text = backingString as NSString
-
-	for block in blocks {
-		if block.visibleRange.max <= backingRange.location {
-			continue
-		}
-
-		if block.visibleRange.location > backingRange.max {
-			break
-		}
-
-		let content: String
-
-		if block is Attachable {
-			content = block.contentInString(backingString)
-		} else {
-			content = text.substringWithRange(block.visibleRange)
-		}
-
-		var component: String
-
-		// Offset if starting out
-		if components.isEmpty && backingRange.location > block.visibleRange.location {
-			let offset = backingRange.location - block.visibleRange.location
-			if offset < 0 {
-				continue
-			}
-			component = (content as NSString).substringFromIndex(offset) as String
-		} else {
-			component = content
-		}
-
-		// Offset the end if it's too long
-		let delta = block.visibleRange.max - backingRange.max
-		if delta > 0 {
-			let string = component as NSString
-			component = string.substringWithRange(NSRange(location: 0, length: string.length - delta))
-		}
-
-		components.append(component)
-	}
-
-	if components.isEmpty {
-		return nil
-	}
-
-	let output = components.joinWithSeparator("\n")
-	let bounds = NSRange(location: 0, length: (output as NSString).length)
-	return InlineMarkerPair.regularExpression.stringByReplacingMatchesInString(output, options: [], range: bounds, withTemplate: "$4")
 }

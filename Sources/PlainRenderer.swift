@@ -44,8 +44,8 @@ public struct PlainRenderer: Renderer {
 
 		for span in spans {
 			// Add plain text
-			if span is Text, let string = document.presentationString(backingRange: span.visibleRange) {
-				output += string
+			if span is Text {
+				output += document.presentationString(backingRange: span.visibleRange)
 			}
 
 			// Recurse

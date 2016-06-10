@@ -6,20 +6,14 @@
 //  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
 //
 
-#if os(OSX)
-	import AppKit
-#else
-	import UIKit
-#endif
-
 public protocol Attachable: NativePrefixable {}
 
 extension Attachable {
 	public var visibleRange: NSRange {
 		return NSRange(location: nativePrefixRange.max, length: 1)
 	}
-	
-	public func contentInString(string: String) -> String {
-		return String(Character(UnicodeScalar(NSAttachmentCharacter)))
+
+	public var hiddenRanges: [NSRange] {
+		return [NSRange(location: nativePrefixRange.location, length: nativePrefixRange.length - 1)]
 	}
 }

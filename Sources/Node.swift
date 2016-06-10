@@ -9,7 +9,6 @@
 import Foundation
 
 public protocol Node {
-
 	/// Range of the entire node in the backing text
 	var range: NSRange { get }
 
@@ -19,17 +18,8 @@ public protocol Node {
 	/// Dictionary representation
 	var dictionary: [String: AnyObject] { get }
 
-	func contentInString(string: String) -> String
-
 	/// Adjust all range locations by a delta.
 	///
 	/// - parameter delta: Amount to offset range locations
 	mutating func offset(delta: Int)
-}
-
-
-extension Node {
-	public func contentInString(string: String) -> String {
-		return (string as NSString).substringWithRange(visibleRange)
-	}
 }
