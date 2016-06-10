@@ -98,6 +98,11 @@ class DocumentTests: XCTestCase {
 		XCTAssertEqual("graph.\nOn", document.presentationString(backingRange: NSRange(location: 22, length: 28)))
 	}
 
+	func testPresentationStringWithBlock() {
+		let document = Document(backingString: "⧙doc-heading⧘Demo\nParagraph.\n⧙ordered-list-0⧘1. One")
+		XCTAssertEqual("One", document.presentationString(block: document.blocks.last!))
+	}
+
 	func testParsingInlineMarkers() {
 		let document = Document(backingString: "⧙doc-heading⧘Title\nUn-markered text ☊co|3YA3fBfQystAGJj63asokU☋markered text☊Ωco|3YA3fBfQystAGJj63asokU☋un-markered text")
 		XCTAssertEqual("Title\nUn-markered text markered textun-markered text", document.presentationString)

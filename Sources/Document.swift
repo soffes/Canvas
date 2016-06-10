@@ -243,15 +243,11 @@ public struct Document {
 	// MARK: - Presentation String
 
 	public func presentationString(block block: BlockNode) -> String {
-		return text.substringWithRange(block.visibleRange)
+		return presentationString(backingRange: block.range)
 	}
 
 
 	// MARK: - Block Calculations
-
-	public func characterLengthOfBlocks(blocks: [BlockNode]) -> UInt {
-		return blocks.map { UInt($0.range.length) }.reduce(0, combine: +)
-	}
 
 	public func presentationString(backingRange backingRange: NSRange) -> String {
 		let text = NSMutableString(string: (backingString as NSString).substringWithRange(backingRange))
