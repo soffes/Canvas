@@ -301,20 +301,29 @@ private func documentPresentationString(backingString backingString: String, bac
 
 	var components = [String]()
 
+	let text = backingString as NSString
+
 	for block in blocks {
-		if block.range.max <= backingRange.location {
+		if block.visibleRange.max <= backingRange.location {
 			continue
 		}
 
-		if block.range.location > backingRange.max {
+		if block.visibleRange.location > backingRange.max {
 			break
 		}
 
-		let content = block.contentInString(backingString)
+		let content: String
+
+		if block is Attachable {
+			content = block.contentInString(backingString)
+		} else {
+			content = text.substringWithRange(block.visibleRange)
+		}
+
 		var component: String
 
 		// Offset if starting out
-		if components.isEmpty && backingRange.location > block.range.location {
+		if components.isEmpty && backingRange.location > block.visibleRange.location {
 			let offset = backingRange.location - block.visibleRange.location
 			if offset < 0 {
 				continue
@@ -325,7 +334,7 @@ private func documentPresentationString(backingString backingString: String, bac
 		}
 
 		// Offset the end if it's too long
-		let delta = block.range.max - backingRange.max
+		let delta = block.visibleRange.max - backingRange.max
 		if delta > 0 {
 			let string = component as NSString
 			component = string.substringWithRange(NSRange(location: 0, length: string.length - delta))
@@ -334,5 +343,11 @@ private func documentPresentationString(backingString backingString: String, bac
 		components.append(component)
 	}
 
-	return components.isEmpty ? nil : components.joinWithSeparator("\n")
+	if components.isEmpty {
+		return nil
+	}
+
+	let output = components.joinWithSeparator("\n")
+	let bounds = NSRange(location: 0, length: (output as NSString).length)
+	return InlineMarkerPair.regularExpression.stringByReplacingMatchesInString(output, options: [], range: bounds, withTemplate: "$4")
 }
