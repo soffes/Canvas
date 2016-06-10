@@ -85,48 +85,37 @@ public struct Document {
 	public func backingRange(presentationRange presentationRange: NSRange) -> NSRange {
 		var backingRange = presentationRange
 
-		func addRange(range: NSRange, inclusive: Bool = false) {
+		// Account for all hidden ranges
+		for hiddenRange in hiddenRanges {
 			// Shadow starts after backing range
-			if (inclusive && range.location >= backingRange.location) || range.location > backingRange.location {
+			if hiddenRange.location > backingRange.location {
 
 				// Shadow intersects. Expand length.
-				if backingRange.intersection(range) > 0 {
-					backingRange.length += range.length
-					return
+				if backingRange.intersection(hiddenRange) > 0 {
+					backingRange.length += hiddenRange.length
+					continue
 				}
 
 				// If the shadow starts directly after the backing range, expand to include it.
-				if range.location == backingRange.max {
-					backingRange.length += range.length
+				if hiddenRange.location == backingRange.max {
+					backingRange.length += hiddenRange.length
 				}
-				return
+				
+				break
 			}
 
-			backingRange.location += range.length
+			backingRange.location += hiddenRange.length
 		}
 
-		for block in blocks {
-			// Inline markers
-			if let block = block as? InlineMarkerContainer {
-				for pair in block.inlineMarkerPairs {
-					addRange(pair.openingMarker.range, inclusive: true)
-
-					// TODO: delete entire pair
-
-					if presentationRange.length == 0 || (presentationRange.length > 0 && backingRange.max != pair.closingMarker.range.location) {
-						addRange(pair.closingMarker.range, inclusive: true)
-					}
+		// Inserting
+		if presentationRange.length > 0 {
+			
+			// Adjust for blocks
+			for block in blocksIn(backingRange: backingRange) {
+				if let attachable = block as? Attachable {
+					backingRange = backingRange.union(attachable.range)
 				}
 			}
-
-			// Native prefix
-			if let range = (block as? NativePrefixable)?.nativePrefixRange {
-				addRange(range, inclusive: block is Attachable)
-			}
-		}
-
-		if presentationRange.length == 0 {
-			backingRange.length = 0
 		}
 
 		return backingRange
@@ -176,6 +165,14 @@ public struct Document {
 			var range = self.presentationRange(block: block)
 			range.length += 1
 			return range.intersection(presentationRange) != nil
+		}
+	}
+
+	public func blocksIn(backingRange backingRange: NSRange) -> [BlockNode] {
+		return blocks.filter { block in
+			var range = block.range
+			range.length += 1
+			return range.intersection(backingRange) != nil
 		}
 	}
 
