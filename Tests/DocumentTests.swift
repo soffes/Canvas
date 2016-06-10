@@ -158,6 +158,7 @@ class DocumentTests: XCTestCase {
 	/*
 		TODO:
 		
+		- [ ] New line before a comment
 		- [ ] New line at end of comment
 		- [ ] New line in the middle of a comment
 	*/
