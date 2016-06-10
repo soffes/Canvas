@@ -205,6 +205,7 @@ extension Theme {
 	public func attributes(span span: SpanNode, currentFont: X.Font) -> Attributes? {
 		var traits = currentFont.symbolicTraits
 		var attributes = Attributes()
+		let fontSize = currentFont.pointSize
 
 		if span is CodeSpan {
 			attributes[NSFontAttributeName] = monospaceFontOfSize(fontSize, symbolicTraits: traits)
