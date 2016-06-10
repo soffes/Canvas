@@ -159,12 +159,9 @@ class DocumentTests: XCTestCase {
 		XCTAssertEqual(NSRange(location: 23, length: 58), document.backingRange(presentationRange: NSRange(location: 10, length: 3)))
 	}
 
-
-	/*
-		TODO:
-		
-		- [ ] New line before a comment
-		- [ ] New line at end of comment
-		- [ ] New line in the middle of a comment
-	*/
+	// - [ ] New line before a comment
+	// - [ ] New line at end of comment
+	// - [ ] New line in the middle of a comment
+	// - [ ] Deleting inside and outside a comment
+	// - [ ] Deleting inside and outside a comment with overlapping comments
 }

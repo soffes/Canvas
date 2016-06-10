@@ -82,6 +82,11 @@ public struct Document {
 
 	// MARK: - Converting Presentation Ranges to Backing Ranges
 
+//	public func backingRange(presentationRange presentationRange: NSRange) -> NSRange {
+//		let ranges: [NSRange] = backingRange(presentationRange: presentationRange)
+//		return ranges.reduce(ranges[0], combine: { $0.union($1) })
+//	}
+
 	public func backingRange(presentationRange presentationRange: NSRange) -> NSRange {
 		var backingRange = presentationRange
 
@@ -107,13 +112,44 @@ public struct Document {
 			backingRange.location += hiddenRange.length
 		}
 
-		// Inserting
-		if presentationRange.length > 0 {
-			
-			// Adjust for blocks
-			for block in blocksIn(backingRange: backingRange) {
-				if let attachable = block as? Attachable {
-					backingRange = backingRange.union(attachable.range)
+		let isDeleting = presentationRange.length > 0
+		var inlineMarkerPairs = [InlineMarkerPair]()
+
+		// Adjust for blocks
+		for block in blocksIn(backingRange: backingRange) {
+			// Attachables
+			if isDeleting, let attachable = block as? Attachable {
+				backingRange = backingRange.union(attachable.range)
+			}
+
+			// Collect inline markers
+			if let container = block as? InlineMarkerContainer {
+				inlineMarkerPairs += container.inlineMarkerPairs
+			}
+		}
+
+		// Adjust for inline markers
+		for pair in inlineMarkerPairs {
+			// Deleting
+			if isDeleting {
+				// Delete the entire pair if all of it is in the selection
+				if backingRange.intersection(pair.visibleRange) == pair.visibleRange.length {
+					backingRange = backingRange.union(pair.range)
+				} else {
+					// TODO: Remove any markers from the range
+				}
+			}
+
+			// Inserting
+			else {
+				// If inserting at the beginning of the pair, do it outside
+				if backingRange.location == pair.visibleRange.location {
+					backingRange.location = pair.openingMarker.range.location
+				}
+
+				// If inserting at the end of the pair, do it outside
+				else if backingRange.location == pair.closingMarker.range.max {
+					backingRange.location = pair.closingMarker.range.location
 				}
 			}
 		}
