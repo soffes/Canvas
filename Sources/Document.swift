@@ -54,20 +54,16 @@ public struct Document {
 	public func presentationRange(backingRange backingRange: NSRange) -> NSRange {
 		var presentationRange = backingRange
 
-		for block in blocks {
-			// Done adjusting
-			if block.range.location > backingRange.max {
+		for hiddenRange in hiddenRanges {
+			// After the desired range
+			if hiddenRange.location > backingRange.max {
 				break
 			}
 
-			// Inline markers
-			if let block = block as? InlineMarkerContainer {
-				presentationRange = remove(inlineMarkerPairs: block.inlineMarkerPairs, presentationRange: presentationRange, backingRange: backingRange)
-			}
-
-			// Native prefix
-			if let prefixRange = (block as? NativePrefixable)?.nativePrefixRange {
-				presentationRange = remove(range: prefixRange, presentationRange: presentationRange, backingRange: backingRange)
+			if hiddenRange.max <= backingRange.location {
+				presentationRange.location -= hiddenRange.length
+			} else if let intersection = backingRange.intersection(hiddenRange) {
+				presentationRange.length -= intersection
 			}
 		}
 
@@ -81,37 +77,6 @@ public struct Document {
 
 	public func presentationRange(blockIndex index: Int) -> NSRange {
 		return blockRanges[index]
-	}
-
-	/// Remove a range from a presentation range.
-	///
-	/// - parameter range: Backing range to remove
-	/// - parameter presentationRange: Working presentation range
-	/// - parameter backingRange: Original backing range
-	/// - returns: Updated presentation range
-	private func remove(range range: NSRange, presentationRange: NSRange, backingRange: NSRange) -> NSRange {
-		var presentationRange = presentationRange
-		if range.max <= backingRange.location {
-			presentationRange.location -= range.length
-		} else if let intersection = backingRange.intersection(range) {
-			presentationRange.length -= intersection
-		}
-		return presentationRange
-	}
-
-	/// Remove an inline marker from a presentation range.
-	///
-	/// - parameter inlineMarkerPairs: Array of inline marker pairs
-	/// - parameter presentationRange: Working presentation range
-	/// - parameter backingRange: Original backing range
-	/// - returns: Updated presentation range
-	private func remove(inlineMarkerPairs inlineMarkerPairs: [InlineMarkerPair], presentationRange: NSRange, backingRange: NSRange) -> NSRange {
-		var presentationRange = presentationRange
-		for pair in inlineMarkerPairs {
-			presentationRange = remove(range: pair.openingMarker.range, presentationRange: presentationRange, backingRange: backingRange)
-			presentationRange = remove(range: pair.closingMarker.range, presentationRange: presentationRange, backingRange: backingRange)
-		}
-		return presentationRange
 	}
 
 
