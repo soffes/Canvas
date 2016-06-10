@@ -36,10 +36,6 @@ public struct Document {
 		return renderer.render()
 	}
 
-	private var text: NSString {
-		return backingString as NSString
-	}
-
 	private let hiddenRanges: [NSRange]
 	private let blockRanges: [NSRange]
 
@@ -85,32 +81,6 @@ public struct Document {
 
 	public func presentationRange(blockIndex index: Int) -> NSRange {
 		return blockRanges[index]
-	}
-
-	public func blockAt(presentationLocation presentationLocation: Int) -> BlockNode? {
-		guard presentationLocation >= 0  else { return nil }
-		return blockAt(presentationLocation: UInt(presentationLocation))
-	}
-
-	public func blockAt(presentationLocation presentationLocation: UInt) -> BlockNode? {
-		for (i, range) in blockRanges.enumerate() {
-			if Int(presentationLocation) < range.location {
-				return blocks[i - 1]
-			}
-		}
-
-		guard let block = blocks.last else { return nil }
-
-		let presentationRange = self.presentationRange(block: block)
-		return presentationRange.contains(presentationLocation) || presentationRange.max == Int(presentationLocation) ? block : nil
-	}
-
-	public func blocksIn(presentationRange presentationRange: NSRange) -> [BlockNode] {
-		return blocks.filter { block in
-			var range = self.presentationRange(block: block)
-			range.length += 1
-			return range.intersection(presentationRange) != nil
-		}
 	}
 
 	/// Remove a range from a presentation range.
@@ -197,6 +167,9 @@ public struct Document {
 		return backingRange
 	}
 
+
+	// MARK: - Querying Blocks
+
 	public func blockAt(backingLocation backingLocation: Int) -> BlockNode? {
 		guard backingLocation >= 0  else { return nil }
 		return blockAt(backingLocation: UInt(backingLocation))
@@ -213,6 +186,32 @@ public struct Document {
 		guard let block = blocks.last else { return nil }
 
 		return block.range.contains(backingLocation) || block.range.max == Int(backingLocation) ? block : nil
+	}
+
+	public func blockAt(presentationLocation presentationLocation: Int) -> BlockNode? {
+		guard presentationLocation >= 0  else { return nil }
+		return blockAt(presentationLocation: UInt(presentationLocation))
+	}
+
+	public func blockAt(presentationLocation presentationLocation: UInt) -> BlockNode? {
+		for (i, range) in blockRanges.enumerate() {
+			if Int(presentationLocation) < range.location {
+				return blocks[i - 1]
+			}
+		}
+
+		guard let block = blocks.last else { return nil }
+
+		let presentationRange = self.presentationRange(block: block)
+		return presentationRange.contains(presentationLocation) || presentationRange.max == Int(presentationLocation) ? block : nil
+	}
+
+	public func blocksIn(presentationRange presentationRange: NSRange) -> [BlockNode] {
+		return blocks.filter { block in
+			var range = self.presentationRange(block: block)
+			range.length += 1
+			return range.intersection(presentationRange) != nil
+		}
 	}
 
 	public func nodesIn(backingRange backingRange: NSRange) -> [Node] {
@@ -245,9 +244,6 @@ public struct Document {
 	public func presentationString(block block: BlockNode) -> String {
 		return presentationString(backingRange: block.range)
 	}
-
-
-	// MARK: - Block Calculations
 
 	public func presentationString(backingRange backingRange: NSRange) -> String {
 		let text = NSMutableString(string: (backingString as NSString).substringWithRange(backingRange))
