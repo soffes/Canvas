@@ -82,12 +82,47 @@ public struct Document {
 
 	// MARK: - Converting Presentation Ranges to Backing Ranges
 
-//	public func backingRange(presentationRange presentationRange: NSRange) -> NSRange {
-//		let ranges: [NSRange] = backingRange(presentationRange: presentationRange)
-//		return ranges.reduce(ranges[0], combine: { $0.union($1) })
-//	}
+	public func backingRange(presentationLocation presentationLocation: UInt) -> NSRange {
+		var backingRange = preBackingRange(NSRange(location: Int(presentationLocation), length: 0))
+		let inlineMarkerPairs = blocks.flatMap { ($0 as? InlineMarkerContainer)?.inlineMarkerPairs }.reduce([], combine: +)
 
-	public func backingRange(presentationRange presentationRange: NSRange) -> NSRange {
+		// Adjust for inline markers
+		for pair in inlineMarkerPairs {
+			// If inserting at the beginning of the pair, do it outside
+			if backingRange.location == pair.visibleRange.location {
+				backingRange.location = pair.openingMarker.range.location
+			}
+
+				// If inserting at the end of the pair, do it outside
+			else if backingRange.location == pair.closingMarker.range.max {
+				backingRange.location = pair.closingMarker.range.location
+			}
+		}
+
+		return backingRange
+	}
+
+	public func backingRanges(presentationRange presentationRange: NSRange) -> [NSRange] {
+		var output = NoncontiguousRange(ranges: [preBackingRange(presentationRange)])
+		let inlineMarkerPairs = blocks.flatMap { ($0 as? InlineMarkerContainer)?.inlineMarkerPairs }.reduce([], combine: +)
+
+		// Adjust for inline markers
+		for pair in inlineMarkerPairs {
+
+			// Delete the entire pair if all of it is in the selection
+			if output.intersection(pair.visibleRange) == pair.visibleRange.length {
+				output.insert(range: pair.range)
+			} else {
+				// Remove any markers from the range
+				output.remove(range: pair.openingMarker.range)
+				output.remove(range: pair.closingMarker.range)
+			}
+		}
+
+		return output.ranges
+	}
+
+	private func preBackingRange(presentationRange: NSRange) -> NSRange {
 		var backingRange = presentationRange
 
 		// Account for all hidden ranges
@@ -105,7 +140,7 @@ public struct Document {
 				if hiddenRange.location == backingRange.max {
 					backingRange.length += hiddenRange.length
 				}
-				
+
 				break
 			}
 
@@ -113,44 +148,12 @@ public struct Document {
 		}
 
 		let isDeleting = presentationRange.length > 0
-		var inlineMarkerPairs = [InlineMarkerPair]()
 
 		// Adjust for blocks
 		for block in blocksIn(backingRange: backingRange) {
 			// Attachables
 			if isDeleting, let attachable = block as? Attachable {
 				backingRange = backingRange.union(attachable.range)
-			}
-
-			// Collect inline markers
-			if let container = block as? InlineMarkerContainer {
-				inlineMarkerPairs += container.inlineMarkerPairs
-			}
-		}
-
-		// Adjust for inline markers
-		for pair in inlineMarkerPairs {
-			// Deleting
-			if isDeleting {
-				// Delete the entire pair if all of it is in the selection
-				if backingRange.intersection(pair.visibleRange) == pair.visibleRange.length {
-					backingRange = backingRange.union(pair.range)
-				} else {
-					// TODO: Remove any markers from the range
-				}
-			}
-
-			// Inserting
-			else {
-				// If inserting at the beginning of the pair, do it outside
-				if backingRange.location == pair.visibleRange.location {
-					backingRange.location = pair.openingMarker.range.location
-				}
-
-				// If inserting at the end of the pair, do it outside
-				else if backingRange.location == pair.closingMarker.range.max {
-					backingRange.location = pair.closingMarker.range.location
-				}
 			}
 		}
 

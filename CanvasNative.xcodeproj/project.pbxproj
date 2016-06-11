@@ -241,6 +241,10 @@
 		21DF7A611C90A09000C17A62 /* DocumentControllerInsertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A5F1C90A09000C17A62 /* DocumentControllerInsertTests.swift */; };
 		21DF7A631C90A0E100C17A62 /* DocumentControllerRemoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A621C90A0E100C17A62 /* DocumentControllerRemoveTests.swift */; };
 		21DF7A641C90A0E100C17A62 /* DocumentControllerRemoveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A621C90A0E100C17A62 /* DocumentControllerRemoveTests.swift */; };
+		21E8EBCB1D0B8BE4007C60E5 /* NoncontiguousRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E8EBCA1D0B8BE4007C60E5 /* NoncontiguousRange.swift */; };
+		21E8EBCC1D0B8BE4007C60E5 /* NoncontiguousRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E8EBCA1D0B8BE4007C60E5 /* NoncontiguousRange.swift */; };
+		21E8EBCD1D0B8BE4007C60E5 /* NoncontiguousRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E8EBCA1D0B8BE4007C60E5 /* NoncontiguousRange.swift */; };
+		21E8EBCE1D0B8BE4007C60E5 /* NoncontiguousRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E8EBCA1D0B8BE4007C60E5 /* NoncontiguousRange.swift */; };
 		21FE16911CDD86B700028593 /* Diff+NSString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FE16901CDD86B700028593 /* Diff+NSString.swift */; };
 /* End PBXBuildFile section */
 
@@ -340,6 +344,7 @@
 		21DF7A591C8FAF5B00C17A62 /* DocumentControllerReliabilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentControllerReliabilityTests.swift; sourceTree = "<group>"; };
 		21DF7A5F1C90A09000C17A62 /* DocumentControllerInsertTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentControllerInsertTests.swift; sourceTree = "<group>"; };
 		21DF7A621C90A0E100C17A62 /* DocumentControllerRemoveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentControllerRemoveTests.swift; sourceTree = "<group>"; };
+		21E8EBCA1D0B8BE4007C60E5 /* NoncontiguousRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoncontiguousRange.swift; sourceTree = "<group>"; };
 		21FE16901CDD86B700028593 /* Diff+NSString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Diff+NSString.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -522,6 +527,7 @@
 			isa = PBXGroup;
 			children = (
 				215CD8201CE258260093C545 /* CanvasNative.swift */,
+				21E8EBCA1D0B8BE4007C60E5 /* NoncontiguousRange.swift */,
 				21CB79911D09E3F2002F4830 /* Parser */,
 				21673D871CBDD36D0017190B /* Document */,
 				21AD8CEB1C8A4674000A53F8 /* Block Level */,
@@ -939,6 +945,7 @@
 				21AD8CB11C8A4628000A53F8 /* DoubleEmphasis.swift in Sources */,
 				21AD8CC41C8A4628000A53F8 /* Text.swift in Sources */,
 				21AD8CA91C8A4628000A53F8 /* Attachable.swift in Sources */,
+				21E8EBCB1D0B8BE4007C60E5 /* NoncontiguousRange.swift in Sources */,
 				21AD8CC31C8A4628000A53F8 /* SpanNodeParseable.swift in Sources */,
 				21CB799A1D09E4FE002F4830 /* PlainRenderer.swift in Sources */,
 				21AD8CB81C8A4628000A53F8 /* NativePrefixable.swift in Sources */,
@@ -1015,6 +1022,7 @@
 				21AD8CD51C8A4649000A53F8 /* DoubleEmphasis.swift in Sources */,
 				21AD8CE81C8A4649000A53F8 /* Text.swift in Sources */,
 				21AD8CCD1C8A4649000A53F8 /* Attachable.swift in Sources */,
+				21E8EBCC1D0B8BE4007C60E5 /* NoncontiguousRange.swift in Sources */,
 				21AD8CE71C8A4649000A53F8 /* SpanNodeParseable.swift in Sources */,
 				21CB799B1D09E4FE002F4830 /* PlainRenderer.swift in Sources */,
 				21AD8CDC1C8A4649000A53F8 /* NativePrefixable.swift in Sources */,
@@ -1091,6 +1099,7 @@
 				21632D041C9235F800C40D7D /* Image.swift in Sources */,
 				21632CFA1C9235F500C40D7D /* NodeContainer.swift in Sources */,
 				21632CFD1C9235F500C40D7D /* SpanNode.swift in Sources */,
+				21E8EBCE1D0B8BE4007C60E5 /* NoncontiguousRange.swift in Sources */,
 				21632D051C9235F800C40D7D /* OrderedListItem.swift in Sources */,
 				21CB799D1D09E4FE002F4830 /* PlainRenderer.swift in Sources */,
 				21632D021C9235F800C40D7D /* CodeBlock.swift in Sources */,
@@ -1140,6 +1149,7 @@
 				21632D3F1C92367E00C40D7D /* Image.swift in Sources */,
 				21632D351C92367B00C40D7D /* NodeContainer.swift in Sources */,
 				21632D381C92367B00C40D7D /* SpanNode.swift in Sources */,
+				21E8EBCD1D0B8BE4007C60E5 /* NoncontiguousRange.swift in Sources */,
 				21632D401C92367E00C40D7D /* OrderedListItem.swift in Sources */,
 				21CB799C1D09E4FE002F4830 /* PlainRenderer.swift in Sources */,
 				21632D3D1C92367E00C40D7D /* CodeBlock.swift in Sources */,

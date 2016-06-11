@@ -62,14 +62,14 @@ class DocumentTests: XCTestCase {
 		let document = Document(backingString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two\n⧙code⧘Three")
 		XCTAssertEqual("Title\nOne\nTwo\nThree", document.presentationString)
 
-		XCTAssertEqual(NSRange(location: 38, length: 2), document.backingRange(presentationRange: NSRange(location: 11, length: 2)))
-		XCTAssertEqual(NSRange(location: 21, length: 27), document.backingRange(presentationRange: NSRange(location: 8, length: 7)))
+		XCTAssertEqual([NSRange(location: 38, length: 2)], document.backingRanges(presentationRange: NSRange(location: 11, length: 2)))
+		XCTAssertEqual([NSRange(location: 21, length: 27)], document.backingRanges(presentationRange: NSRange(location: 8, length: 7)))
 	}
 
 	func testEntirePresentationRange() {
 		let document = Document(backingString: "⧙doc-heading⧘Title\n⧙image⧘http://example.com/image.jpg")
-		let range = document.backingRange(presentationRange: NSRange(location: 6, length: 1))
-		XCTAssertEqual(NSRange(location: 19, length: 35), range)
+		let ranges = document.backingRanges(presentationRange: NSRange(location: 6, length: 1))
+		XCTAssertEqual([NSRange(location: 19, length: 35)], ranges)
 	}
 
 	func testBlockAtPresentationLocation() {
@@ -132,31 +132,31 @@ class DocumentTests: XCTestCase {
 
 	func testBackingRangeWithInlineMarkers() {
 		let document = Document(backingString: "⧙doc-heading⧘Title\nUn-markered text ☊co|3YA3fBfQystAGJj63asokU☋markered text☊Ωco|3YA3fBfQystAGJj63asokU☋un-markered text\n⧙blockquote⧘> Hello")
-		XCTAssertEqual(NSRange(location: 107, length: 8), document.backingRange(presentationRange: NSRange(location: 39, length: 8)))
-		XCTAssertEqual(NSRange(location: 19, length: 101), document.backingRange(presentationRange: NSRange(location: 6, length: 46)))
-		XCTAssertEqual(NSRange(location: 137, length: 2), document.backingRange(presentationRange: NSRange(location: 55, length: 2)))
+		XCTAssertEqual([NSRange(location: 107, length: 8)], document.backingRanges(presentationRange: NSRange(location: 39, length: 8)))
+		XCTAssertEqual([NSRange(location: 19, length: 101)], document.backingRanges(presentationRange: NSRange(location: 6, length: 46)))
+		XCTAssertEqual([NSRange(location: 137, length: 2)], document.backingRanges(presentationRange: NSRange(location: 55, length: 2)))
 	}
 
 	func testDeletingInlineMarkers() {
 		let document = Document(backingString: "⧙doc-heading⧘Title\nOne ☊co|3YA3fBfQystAGJj63asokU☋two☊Ωco|3YA3fBfQystAGJj63asokU☋ three")
 
 		// Insert at beginning, inserts outside marker
-		XCTAssertEqual(NSRange(location: 23, length: 0), document.backingRange(presentationRange: NSRange(location: 10, length: 0)))
+		XCTAssertEqual(NSRange(location: 23, length: 0), document.backingRange(presentationLocation: 10))
 
 		// Insert at end, inserts inside marker
-		XCTAssertEqual(NSRange(location: 53, length: 0), document.backingRange(presentationRange: NSRange(location: 13, length: 0)))
+		XCTAssertEqual(NSRange(location: 53, length: 0), document.backingRange(presentationLocation: 13))
 
 		// Delete last character, deletes inside marker
-		XCTAssertEqual(NSRange(location: 52, length: 1), document.backingRange(presentationRange: NSRange(location: 12, length: 1)))
+		XCTAssertEqual([NSRange(location: 52, length: 1)], document.backingRanges(presentationRange: NSRange(location: 12, length: 1)))
 
 		// Delete first character, deletes inside marker
-		XCTAssertEqual(NSRange(location: 50, length: 1), document.backingRange(presentationRange: NSRange(location: 10, length: 1)))
+		XCTAssertEqual([NSRange(location: 50, length: 1)], document.backingRanges(presentationRange: NSRange(location: 10, length: 1)))
 
 		// Delete before first character, deletes outside marker
-		XCTAssertEqual(NSRange(location: 22, length: 1), document.backingRange(presentationRange: NSRange(location: 9, length: 1)))
+		XCTAssertEqual([NSRange(location: 22, length: 1)], document.backingRanges(presentationRange: NSRange(location: 9, length: 1)))
 
 		// Deleting the content of an inline marker deletes the whole marker
-		XCTAssertEqual(NSRange(location: 23, length: 58), document.backingRange(presentationRange: NSRange(location: 10, length: 3)))
+		XCTAssertEqual([NSRange(location: 23, length: 58)], document.backingRanges(presentationRange: NSRange(location: 10, length: 3)))
 	}
 
 	// - [ ] New line before a comment
