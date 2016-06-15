@@ -103,7 +103,13 @@ public struct Document {
 	}
 
 	public func backingRanges(presentationRange presentationRange: NSRange) -> [NSRange] {
-		var output = NoncontiguousRange(ranges: [preBackingRange(presentationRange)])
+		if presentationRange.length == 0 {
+			return [backingRange(presentationLocation: UInt(presentationRange.location))]
+		}
+
+		let pre = preBackingRange(presentationRange)
+
+		var output = NoncontiguousRange(ranges: [pre])
 		let inlineMarkerPairs = blocks.flatMap { ($0 as? InlineMarkerContainer)?.inlineMarkerPairs }.reduce([], combine: +)
 
 		// Adjust for inline markers
@@ -217,6 +223,12 @@ public struct Document {
 
 	public func nodesIn(backingRange backingRange: NSRange) -> [Node] {
 		return nodesIn(backingRange: backingRange, nodes: blocks.map({ $0 as Node }))
+	}
+
+	public func nodesIn(backingRanges backingRanges: [NSRange]) -> [Node] {
+		guard let first = backingRanges.first else { return [] }
+		let range = backingRanges.reduce(first) { $0.union($1) }
+		return nodesIn(backingRange: range, nodes: blocks.map({ $0 as Node }))
 	}
 
 	private func nodesIn(backingRange backingRange: NSRange, nodes: [Node]) -> [Node] {

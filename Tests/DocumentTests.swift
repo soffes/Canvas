@@ -142,9 +142,11 @@ class DocumentTests: XCTestCase {
 
 		// Insert at beginning, inserts outside marker
 		XCTAssertEqual(NSRange(location: 23, length: 0), document.backingRange(presentationLocation: 10))
+		XCTAssertEqual([NSRange(location: 23, length: 0)], document.backingRanges(presentationRange: NSRange(location: 10, length: 0)))
 
 		// Insert at end, inserts inside marker
 		XCTAssertEqual(NSRange(location: 53, length: 0), document.backingRange(presentationLocation: 13))
+		XCTAssertEqual([NSRange(location: 53, length: 0)], document.backingRanges(presentationRange: NSRange(location: 13, length: 0)))
 
 		// Delete last character, deletes inside marker
 		XCTAssertEqual([NSRange(location: 52, length: 1)], document.backingRanges(presentationRange: NSRange(location: 12, length: 1)))
@@ -157,11 +159,16 @@ class DocumentTests: XCTestCase {
 
 		// Deleting the content of an inline marker deletes the whole marker
 		XCTAssertEqual([NSRange(location: 23, length: 58)], document.backingRanges(presentationRange: NSRange(location: 10, length: 3)))
+
+		// Deleting partially inside and partially outside leaves marker intact
+		let ranges = [
+			NSRange(location: 21, length: 2),
+			NSRange(location: 50, length: 2)
+		]
+		XCTAssertEqual(ranges, document.backingRanges(presentationRange: NSRange(location: 8, length: 4)))
 	}
 
 	// - [ ] New line before a comment
 	// - [ ] New line at end of comment
 	// - [ ] New line in the middle of a comment
-	// - [ ] Deleting inside and outside a comment
-	// - [ ] Deleting inside and outside a comment with overlapping comments
 }
