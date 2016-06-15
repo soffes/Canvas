@@ -61,6 +61,10 @@
 		21AD8D091C8A491E000A53F8 /* LayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8D081C8A491E000A53F8 /* LayoutManager.swift */; };
 		21AD8D0C1C8A496B000A53F8 /* NSRange+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8D0B1C8A496B000A53F8 /* NSRange+CanvasText.swift */; };
 		21B1E6171CD422A900E2902C /* ImagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B1E6161CD422A900E2902C /* ImagesController.swift */; };
+		21D24D3B1D12075500741038 /* BlockquoteBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A381C8F914900C17A62 /* BlockquoteBorderView.swift */; };
+		21D24D3C1D1207A600741038 /* Blockquote+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A3E1C8F9C0C00C17A62 /* Blockquote+CanvasText.swift */; };
+		21D24D3F1D120B7000741038 /* UnorderedListItem+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A3C1C8F9B5200C17A62 /* UnorderedListItem+CanvasText.swift */; };
+		21D24D401D120B7B00741038 /* BulletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9DD1C8DF54700283961 /* BulletView.swift */; };
 		21DF7A311C8F75ED00C17A62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21DF7A301C8F75ED00C17A62 /* Assets.xcassets */; };
 		21DF7A3B1C8F9ADA00C17A62 /* Annotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A3A1C8F9ADA00C17A62 /* Annotatable.swift */; };
 		21DF7A3D1C8F9B5200C17A62 /* UnorderedListItem+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A3C1C8F9B5200C17A62 /* UnorderedListItem+CanvasText.swift */; };
@@ -569,16 +573,20 @@
 				218944D01CFFA096003F743B /* Listable+CanvasText.swift in Sources */,
 				218944BA1CFFA084003F743B /* Themeable.swift in Sources */,
 				218944AF1CFFA07E003F743B /* TextController+Actions.swift in Sources */,
+				21D24D401D120B7B00741038 /* BulletView.swift in Sources */,
 				218944B41CFFA081003F743B /* TextStorage.swift in Sources */,
 				218944B01CFFA07E003F743B /* TextController+Gestures.swift in Sources */,
 				218944B61CFFA081003F743B /* TextContainer.swift in Sources */,
+				21D24D3C1D1207A600741038 /* Blockquote+CanvasText.swift in Sources */,
 				218944B81CFFA084003F743B /* Theme.swift in Sources */,
 				218944BD1CFFA08A003F743B /* Annotation.swift in Sources */,
 				218944C91CFFA090003F743B /* UserInterfaceSizeClass.swift in Sources */,
 				218944B21CFFA07E003F743B /* SelectionController.swift in Sources */,
 				218944C31CFFA08C003F743B /* ImagesController.swift in Sources */,
+				21D24D3F1D120B7000741038 /* UnorderedListItem+CanvasText.swift in Sources */,
 				2193DC601D07A776004D8D0C /* Theme+Default.swift in Sources */,
 				218944CA1CFFA096003F743B /* NSRange+CanvasText.swift in Sources */,
+				21D24D3B1D12075500741038 /* BlockquoteBorderView.swift in Sources */,
 				218944AE1CFFA07E003F743B /* TextController.swift in Sources */,
 				218944BC1CFFA08A003F743B /* Annotatable.swift in Sources */,
 				218944BB1CFFA08A003F743B /* AnnotationsController.swift in Sources */,

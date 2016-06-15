@@ -23,9 +23,12 @@ final class BlockquoteBorderView: ViewType, Annotation {
 
 	var theme: Theme {
 		didSet {
-			backgroundColor = theme.backgroundColor
-			tintColor = theme.tintColor
-			setNeedsDisplay()
+			#if os(OSX)
+				needsDisplay = true
+			#else
+				backgroundColor = theme.backgroundColor
+				setNeedsDisplay()
+			#endif
 		}
 	}
 
@@ -43,12 +46,14 @@ final class BlockquoteBorderView: ViewType, Annotation {
 
 		super.init(frame: .zero)
 
-		userInteractionEnabled = false
-		contentMode = .Redraw
-		backgroundColor = theme.backgroundColor
+		#if !os(OSX)
+			userInteractionEnabled = false
+			contentMode = .Redraw
+			backgroundColor = theme.backgroundColor
+		#endif
 	}
 
-	required init?(coder aDecoder: NSCoder) {
+	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 
@@ -56,19 +61,20 @@ final class BlockquoteBorderView: ViewType, Annotation {
 	// MARK: - UIView
 
 	override func drawRect(rect: CGRect) {
-		guard let context = UIGraphicsGetCurrentContext() else { return }
+		#if os(OSX)
+			guard let context = NSGraphicsContext.currentContext()?.CGContext else { return }
+
+			theme.backgroundColor.setFill()
+			CGContextFillRect(context, bounds)
+		#else
+			guard let context = UIGraphicsGetCurrentContext() else { return }
+		#endif
 
 		theme.blockquoteBorderColor.setFill()
 
 		let rect = borderRectForBounds(bounds)
 		CGContextFillRect(context, rect)
 	}
-
-	override func tintColorDidChange() {
-		super.tintColorDidChange()
-		setNeedsDisplay()
-	}
-
 
 
 	// MARK: - Private

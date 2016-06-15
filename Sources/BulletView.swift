@@ -6,7 +6,12 @@
 //  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
 //
 
-import UIKit
+#if os(OSX)
+	import AppKit
+#else
+	import UIKit
+#endif
+
 import CanvasNative
 import X
 
@@ -19,16 +24,23 @@ final class BulletView: ViewType, Annotation {
 			guard let old = oldValue as? UnorderedListItem, new = block as? UnorderedListItem else { return }
 
 			if old.indentation.isFilled != new.indentation.isFilled {
-				setNeedsDisplay()
+				#if os(OSX)
+					needsDisplay = true
+				#else
+					setNeedsDisplay()
+				#endif
 			}
 		}
 	}
 
 	var theme: Theme {
 		didSet {
-			backgroundColor = theme.backgroundColor
-			tintColor = theme.tintColor
-			setNeedsDisplay()
+			#if os(OSX)
+				needsDisplay = true
+			#else
+				backgroundColor = theme.backgroundColor
+				setNeedsDisplay()
+			#endif
 		}
 	}
 
@@ -44,9 +56,11 @@ final class BulletView: ViewType, Annotation {
 
 		super.init(frame: .zero)
 
-		userInteractionEnabled = false
-		contentMode = .Redraw
-		backgroundColor = theme.backgroundColor
+		#if !os(OSX)
+			userInteractionEnabled = false
+			contentMode = .Redraw
+			backgroundColor = theme.backgroundColor
+		#endif
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -57,7 +71,16 @@ final class BulletView: ViewType, Annotation {
 	// MARK: - UIView
 
 	override func drawRect(rect: CGRect) {
-		guard let context = UIGraphicsGetCurrentContext(), unorderedListItem = block as? UnorderedListItem else { return }
+		guard let unorderedListItem = block as? UnorderedListItem else { return }
+
+		#if os(OSX)
+			guard let context = NSGraphicsContext.currentContext()?.CGContext else { return }
+
+			theme.backgroundColor.setFill()
+			CGContextFillRect(context, bounds)
+		#else
+			guard let context = UIGraphicsGetCurrentContext() else { return }
+		#endif
 
 		theme.bulletColor.set()
 
