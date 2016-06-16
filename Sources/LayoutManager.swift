@@ -150,9 +150,13 @@ class LayoutManager: NSLayoutManager {
 	// MARK: - Private
 
 	private func updateTextContainerIfNeeded() {
-		guard foldingEnabled && needsUpdateTextContainer, let textContainer = textController?.textContainer else { return }
+		guard foldingEnabled && needsUpdateTextContainer, let textStorage = textStorage else { return }
+		
+		// Trigger the text view to update its selection
+		textStorage.beginEditing()
+		textStorage.edited(.EditedCharacters, range: NSRange(location: 0, length: 0), changeInLength: 0)
+		textStorage.endEditing()
 
-		textContainer.replaceLayoutManager(self)
 		needsUpdateTextContainer = false
 	}
 
