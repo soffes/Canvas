@@ -30,6 +30,7 @@ public protocol TextControllerDisplayDelegate: class {
 	func textControllerWillProcessRemoteEdit(textController: TextController)
 	func textControllerDidProcessRemoteEdit(textController: TextController)
 	func textController(textController: TextController, URLForImage block: CanvasNative.Image) -> NSURL?
+	func textControllerDidUpdateFolding(textController: TextController)
 }
 
 public protocol TextControllerAnnotationDelegate: class {
@@ -799,5 +800,14 @@ extension TextController: TextStorageDelegate {
 extension TextController: LayoutManagerDelegate {
 	func layoutManager(layoutManager: NSLayoutManager, textContainerChangedGeometry textContainer: NSTextContainer) {
 		layoutAttachments()
+	}
+
+	func layoutManagerDidUpdateFolding(layoutManager: NSLayoutManager) {
+		// Trigger the text view to update its selection. Two Apple engineers recommended this.
+		textStorage.beginEditing()
+		textStorage.edited(.EditedCharacters, range: NSRange(location: 0, length: 0), changeInLength: 0)
+		textStorage.endEditing()
+
+		displayDelegate?.textControllerDidUpdateFolding(self)
 	}
 }

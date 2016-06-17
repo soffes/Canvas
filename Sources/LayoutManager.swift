@@ -19,6 +19,7 @@ protocol LayoutManagerDelegate: class {
 	// Used so the TextController can relayout annotations and attachments if the text view changes its bounds (and
 	// as a result changes the text container's geometry).
 	func layoutManager(layoutManager: NSLayoutManager, textContainerChangedGeometry textContainer: NSTextContainer)
+	func layoutManagerDidUpdateFolding(layoutManager: NSLayoutManager)
 }
 
 /// Custom layout manager to handle proper line spacing and folding. This must be its own delegate.
@@ -150,12 +151,9 @@ class LayoutManager: NSLayoutManager {
 	// MARK: - Private
 
 	private func updateTextContainerIfNeeded() {
-		guard foldingEnabled && needsUpdateTextContainer, let textStorage = textStorage else { return }
-		
-		// Trigger the text view to update its selection
-		textStorage.beginEditing()
-		textStorage.edited(.EditedCharacters, range: NSRange(location: 0, length: 0), changeInLength: 0)
-		textStorage.endEditing()
+		guard foldingEnabled && needsUpdateTextContainer else { return }
+
+		layoutDelegate?.layoutManagerDidUpdateFolding(self)
 
 		needsUpdateTextContainer = false
 	}
