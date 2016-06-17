@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "21EC4F031D077F5B00FA439F"
-               BuildableName = "CanvasKit-tvOS.framework"
+               BuildableName = "CanvasKit.framework"
                BlueprintName = "CanvasKit-tvOS"
                ReferencedContainer = "container:CanvasKit.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "21EC4F0C1D077F5B00FA439F"
-               BuildableName = "CanvasKit-tvOSTests.xctest"
+               BuildableName = "CanvasKitTests.xctest"
                BlueprintName = "CanvasKit-tvOSTests"
                ReferencedContainer = "container:CanvasKit.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "21EC4F031D077F5B00FA439F"
-            BuildableName = "CanvasKit-tvOS.framework"
+            BuildableName = "CanvasKit.framework"
             BlueprintName = "CanvasKit-tvOS"
             ReferencedContainer = "container:CanvasKit.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "21EC4F031D077F5B00FA439F"
-            BuildableName = "CanvasKit-tvOS.framework"
+            BuildableName = "CanvasKit.framework"
             BlueprintName = "CanvasKit-tvOS"
             ReferencedContainer = "container:CanvasKit.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "21EC4F031D077F5B00FA439F"
-            BuildableName = "CanvasKit-tvOS.framework"
+            BuildableName = "CanvasKit.framework"
             BlueprintName = "CanvasKit-tvOS"
             ReferencedContainer = "container:CanvasKit.xcodeproj">
          </BuildableReference>
