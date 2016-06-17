@@ -26,7 +26,6 @@
 		21AD8BAF1C8A37D6000A53F8 /* JSONSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */; };
 		21AD8BB01C8A37D6000A53F8 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */; };
 		21AD8BB11C8A37D6000A53F8 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B951C8A37D5000A53F8 /* Organization.swift */; };
-		21AD8BB21C8A37D6000A53F8 /* SearchCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B961C8A37D5000A53F8 /* SearchCredential.swift */; };
 		21AD8BB31C8A37D6000A53F8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B971C8A37D5000A53F8 /* User.swift */; };
 		21AD8BBF1C8A37DE000A53F8 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B891C8A37D5000A53F8 /* Account.swift */; };
 		21AD8BC01C8A37DE000A53F8 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8A1C8A37D5000A53F8 /* AccountController.swift */; };
@@ -39,7 +38,6 @@
 		21AD8BC81C8A37DE000A53F8 /* JSONSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */; };
 		21AD8BC91C8A37DE000A53F8 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */; };
 		21AD8BCA1C8A37DE000A53F8 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B951C8A37D5000A53F8 /* Organization.swift */; };
-		21AD8BCB1C8A37DE000A53F8 /* SearchCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B961C8A37D5000A53F8 /* SearchCredential.swift */; };
 		21AD8BCC1C8A37DE000A53F8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B971C8A37D5000A53F8 /* User.swift */; };
 		21AD8BD01C8A380E000A53F8 /* CanvasKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AD8BCE1C8A380E000A53F8 /* CanvasKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21AD8BD21C8A381A000A53F8 /* APIClientCanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B991C8A37D5000A53F8 /* APIClientCanvasTests.swift */; };
@@ -80,7 +78,6 @@
 		21EC4F231D077F7900FA439F /* JSONSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */; };
 		21EC4F241D077F7900FA439F /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */; };
 		21EC4F251D077F7900FA439F /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B951C8A37D5000A53F8 /* Organization.swift */; };
-		21EC4F261D077F7900FA439F /* SearchCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B961C8A37D5000A53F8 /* SearchCredential.swift */; };
 		21EC4F271D077F7900FA439F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B971C8A37D5000A53F8 /* User.swift */; };
 		21EC4F281D077F7D00FA439F /* APIClientCanvasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B991C8A37D5000A53F8 /* APIClientCanvasTests.swift */; };
 		21EC4F291D077F7D00FA439F /* APIClientOrganizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B9A1C8A37D5000A53F8 /* APIClientOrganizationTests.swift */; };
@@ -166,7 +163,6 @@
 		21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerialization.swift; sourceTree = "<group>"; };
 		21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		21AD8B951C8A37D5000A53F8 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
-		21AD8B961C8A37D5000A53F8 /* SearchCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCredential.swift; sourceTree = "<group>"; };
 		21AD8B971C8A37D5000A53F8 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		21AD8B991C8A37D5000A53F8 /* APIClientCanvasTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientCanvasTests.swift; sourceTree = "<group>"; };
 		21AD8B9A1C8A37D5000A53F8 /* APIClientOrganizationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClientOrganizationTests.swift; sourceTree = "<group>"; };
@@ -288,7 +284,6 @@
 				21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */,
 				21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */,
 				21AD8B951C8A37D5000A53F8 /* Organization.swift */,
-				21AD8B961C8A37D5000A53F8 /* SearchCredential.swift */,
 				21AD8B971C8A37D5000A53F8 /* User.swift */,
 			);
 			path = Sources;
@@ -648,7 +643,6 @@
 				21AD8BCC1C8A37DE000A53F8 /* User.swift in Sources */,
 				21AD8BC51C8A37DE000A53F8 /* Canvas.swift in Sources */,
 				21AD8BC91C8A37DE000A53F8 /* NetworkClient.swift in Sources */,
-				21AD8BCB1C8A37DE000A53F8 /* SearchCredential.swift in Sources */,
 				21AD8BCA1C8A37DE000A53F8 /* Organization.swift in Sources */,
 				21AD8BC41C8A37DE000A53F8 /* AuthorizationClient.swift in Sources */,
 				21AD8BC21C8A37DE000A53F8 /* APIClient+Organizations.swift in Sources */,
@@ -678,7 +672,6 @@
 				21EC4F271D077F7900FA439F /* User.swift in Sources */,
 				21EC4F211D077F7900FA439F /* Canvas.swift in Sources */,
 				21EC4F241D077F7900FA439F /* NetworkClient.swift in Sources */,
-				21EC4F261D077F7900FA439F /* SearchCredential.swift in Sources */,
 				21EC4F251D077F7900FA439F /* Organization.swift in Sources */,
 				21EC4F201D077F7900FA439F /* AuthorizationClient.swift in Sources */,
 				21EC4F1E1D077F7900FA439F /* APIClient+Organizations.swift in Sources */,
@@ -708,7 +701,6 @@
 				21AD8BB31C8A37D6000A53F8 /* User.swift in Sources */,
 				21AD8BAB1C8A37D6000A53F8 /* Canvas.swift in Sources */,
 				21AD8BB01C8A37D6000A53F8 /* NetworkClient.swift in Sources */,
-				21AD8BB21C8A37D6000A53F8 /* SearchCredential.swift in Sources */,
 				21AD8BB11C8A37D6000A53F8 /* Organization.swift in Sources */,
 				21AD8BAA1C8A37D6000A53F8 /* AuthorizationClient.swift in Sources */,
 				21AD8BA81C8A37D6000A53F8 /* APIClient+Organizations.swift in Sources */,
@@ -1096,6 +1088,7 @@
 				21EC4F161D077F5B00FA439F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		21EC4F1A1D077F5B00FA439F /* Build configuration list for PBXNativeTarget "CanvasKit-tvOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1104,6 +1097,7 @@
 				21EC4F181D077F5B00FA439F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		21FB6AB51BF53C9D003C82BB /* Build configuration list for PBXProject "CanvasKit" */ = {
 			isa = XCConfigurationList;

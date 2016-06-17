@@ -10,7 +10,7 @@ public struct Organization {
 
 	// MARK: - Properties
 
-	public let ID: String
+	public let id: String
 	public let name: String
 	public let slug: String
 	public let membersCount: UInt
@@ -21,7 +21,7 @@ public struct Organization {
 extension Organization: JSONSerializable, JSONDeserializable {
 	public var dictionary: JSONDictionary {
 		var dictionary: JSONDictionary = [
-			"id": ID,
+			"id": id,
 			"name": name,
 			"slug": slug,
 			"members_count": membersCount
@@ -35,13 +35,13 @@ extension Organization: JSONSerializable, JSONDeserializable {
 	}
 
 	public init?(dictionary: JSONDictionary) {
-		guard let ID = dictionary["id"] as? String,
+		guard let id = dictionary["id"] as? String,
 			name = dictionary["name"] as? String,
 			slug = dictionary["slug"] as? String,
 			membersCount = dictionary["members_count"] as? UInt
 		else { return nil }
 
-		self.ID = ID
+		self.id = id
 		self.name = name
 		self.slug = slug
 		self.membersCount = membersCount
@@ -52,11 +52,11 @@ extension Organization: JSONSerializable, JSONDeserializable {
 
 extension Organization: Hashable {
 	public var hashValue: Int {
-		return ID.hashValue
+		return id.hashValue
 	}
 }
 
 
 public func ==(lhs: Organization, rhs: Organization) -> Bool {
-	return lhs.ID == rhs.ID
+	return lhs.id == rhs.id
 }

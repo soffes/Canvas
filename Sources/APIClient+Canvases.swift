@@ -11,7 +11,7 @@ extension APIClient {
 	// MARK: - Showing a Canvas
 
 	public func showCanvas(canvas canvas: Canvas, completion: Result<Canvas> -> Void) {
-		showCanvas(canvasID: canvas.ID, completion: completion)
+		showCanvas(canvasID: canvas.id, completion: completion)
 	}
 
 	public func showCanvas(canvasID canvasID: String, completion: Result<Canvas> -> Void) {
@@ -22,7 +22,7 @@ extension APIClient {
 	// MARK: - Listing Canvases
 
 	public func listCanvases(organization organization: Organization, completion: Result<[Canvas]> -> Void) {
-		listCanvases(organizationID: organization.ID, completion: completion)
+		listCanvases(organizationID: organization.id, completion: completion)
 	}
 
 	public func listCanvases(organizationID organizationID: String, completion: Result<[Canvas]> -> Void) {
@@ -33,7 +33,7 @@ extension APIClient {
 	// MARK: - Creating a Canvas
 
 	public func createCanvas(organization organization: Organization, content: String? = nil, isPublicWritable: Bool? = nil, completion: Result<Canvas> -> Void) {
-		createCanvas(organizationID: organization.ID, content: content, isPublicWritable: isPublicWritable, completion: completion)
+		createCanvas(organizationID: organization.id, content: content, isPublicWritable: isPublicWritable, completion: completion)
 	}
 
 	public func createCanvas(organizationID organizationID: String, content: String? = nil, isPublicWritable: Bool? = nil, completion: Result<Canvas> -> Void) {
@@ -58,7 +58,7 @@ extension APIClient {
 	// MARK: - Destorying a Canvas
 
 	public func destroyCanvas(canvas canvas: Canvas, completion: Result<Void> -> Void) {
-		destroyCanvas(canvasID: canvas.ID, completion: completion)
+		destroyCanvas(canvasID: canvas.id, completion: completion)
 	}
 
 	public func destroyCanvas(canvasID canvasID: String, completion: Result<Void> -> Void) {
@@ -69,7 +69,7 @@ extension APIClient {
 	// MARK: - Archiving a Canvas
 
 	public func archiveCanvas(canvas canvas: Canvas, completion: Result<Canvas> -> Void) {
-		archiveCanvas(canvasID: canvas.ID, completion: completion)
+		archiveCanvas(canvasID: canvas.id, completion: completion)
 	}
 
 	public func archiveCanvas(canvasID canvasID: String, completion: Result<Canvas> -> Void) {
@@ -80,7 +80,7 @@ extension APIClient {
 	// MARK: - Searching for Canvases
 
 	public func searchCanvases(organization organization: Organization, query: String, completion: Result<[Canvas]> -> Void) {
-		searchCanvases(organizationID: organization.ID, query: query, completion: completion)
+		searchCanvases(organizationID: organization.id, query: query, completion: completion)
 	}
 
 	public func searchCanvases(organizationID organizationID: String, query: String, completion: Result<[Canvas]> -> Void) {

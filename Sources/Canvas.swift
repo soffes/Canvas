@@ -13,7 +13,7 @@ public struct Canvas {
 
 	// MARK: - Properties
 
-	public let ID: String
+	public let id: String
 	public let organization: Organization
 	public let isWritable: Bool
 	public let isPublicWritable: Bool
@@ -27,8 +27,8 @@ public struct Canvas {
 		return summary.isEmpty
 	}
 
-	public var URL: NSURL? {
-		return NSURL(string: "https://usecanvas.com/\(organization.slug)/-/\(ID)")
+	public var url: NSURL? {
+		return NSURL(string: "https://usecanvas.com/\(organization.slug)/-/\(id)")
 	}
 }
 
@@ -36,7 +36,7 @@ public struct Canvas {
 extension Canvas: JSONSerializable, JSONDeserializable {
 	public var dictionary: JSONDictionary {
 		var dictionary: [String: AnyObject] = [
-			"id": ID,
+			"id": id,
 			"collection": organization.dictionary,
 			"is_writable": isWritable,
 			"is_public_writable": isPublicWritable,
@@ -54,7 +54,7 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 	}
 
 	public init?(dictionary: JSONDictionary) {
-		guard let ID = dictionary["id"] as? String,
+		guard let id = dictionary["id"] as? String,
 			org = dictionary["org"] as? JSONDictionary,
 			organization = Organization(dictionary: org),
 			isWritable = dictionary["is_writable"] as? Bool,
@@ -66,7 +66,7 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 			nativeVersion = dictionary["native_version"] as? String
 		else { return nil }
 
-		self.ID = ID
+		self.id = id
 		self.organization = organization
 		self.isWritable = isWritable
 		self.isPublicWritable = isPublicWritable
@@ -83,11 +83,11 @@ extension Canvas: JSONSerializable, JSONDeserializable {
 
 extension Canvas: Hashable {
 	public var hashValue: Int {
-		return ID.hashValue
+		return id.hashValue
 	}
 }
 
 
 public func ==(lhs: Canvas, rhs: Canvas) -> Bool {
-	return lhs.ID == rhs.ID
+	return lhs.id == rhs.id
 }
