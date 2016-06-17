@@ -80,12 +80,10 @@ final class BlockquoteBorderView: ViewType, Annotation {
 	// MARK: - Private
 
 	private func borderRectForBounds(bounds: CGRect) -> CGRect {
-		let dimension: CGFloat = 4
-
 		return CGRect(
-			x: bounds.width - dimension - 8,
+			x: 1,
 			y: 0,
-			width: dimension,
+			width: 4,
 			height: bounds.height
 		)
 	}
