@@ -13,3 +13,6 @@ FOUNDATION_EXPORT double CanvasTextVersionNumber;
 
 //! Project version string for CanvasText.
 FOUNDATION_EXPORT const unsigned char CanvasTextVersionString[];
+
+#import <CanvasText/BaseTextStorage.h>
+#import <CanvasText/CanvasTextStorage.h>

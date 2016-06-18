@@ -15,6 +15,14 @@
 		214F9FF31CC6B2E400927A07 /* TextController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214F9FF21CC6B2E400927A07 /* TextController+Actions.swift */; };
 		214F9FF51CC6C9ED00927A07 /* Listable+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214F9FF41CC6C9EC00927A07 /* Listable+CanvasText.swift */; };
 		216459AA1CC1957C00033B7F /* TextController+MarkdownShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216459A91CC1957C00033B7F /* TextController+MarkdownShortcuts.swift */; };
+		2166E3021D14AA7300470366 /* BaseTextStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 2166E3001D14AA7300470366 /* BaseTextStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2166E3031D14AA7300470366 /* BaseTextStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 2166E3001D14AA7300470366 /* BaseTextStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2166E3041D14AA7300470366 /* BaseTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2166E3011D14AA7300470366 /* BaseTextStorage.m */; };
+		2166E3051D14AA7300470366 /* BaseTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2166E3011D14AA7300470366 /* BaseTextStorage.m */; };
+		2166E3081D14B18E00470366 /* CanvasTextStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 2166E3061D14B18E00470366 /* CanvasTextStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2166E3091D14B18E00470366 /* CanvasTextStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 2166E3061D14B18E00470366 /* CanvasTextStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2166E30A1D14B18E00470366 /* CanvasTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2166E3071D14B18E00470366 /* CanvasTextStorage.m */; };
+		2166E30B1D14B18E00470366 /* CanvasTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2166E3071D14B18E00470366 /* CanvasTextStorage.m */; };
 		2189449D1CFFA041003F743B /* CanvasText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 218944931CFFA041003F743B /* CanvasText.framework */; };
 		218944AA1CFFA06D003F743B /* SelectionControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7EEED1CD7F82F004E80E2 /* SelectionControllerTests.swift */; };
 		218944AB1CFFA06D003F743B /* NSRange+CanvasTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7EEF01CD7F8EA004E80E2 /* NSRange+CanvasTextTests.swift */; };
@@ -25,8 +33,6 @@
 		218944B01CFFA07E003F743B /* TextController+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B4EAC1CD94E2A006E3C11 /* TextController+Gestures.swift */; };
 		218944B11CFFA07E003F743B /* TextController+MarkdownShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216459A91CC1957C00033B7F /* TextController+MarkdownShortcuts.swift */; };
 		218944B21CFFA07E003F743B /* SelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7EEEB1CD7F77D004E80E2 /* SelectionController.swift */; };
-		218944B31CFFA081003F743B /* BaseTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8D011C8A4886000A53F8 /* BaseTextStorage.swift */; };
-		218944B41CFFA081003F743B /* TextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CFF1C8A487E000A53F8 /* TextStorage.swift */; };
 		218944B51CFFA081003F743B /* LayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8D081C8A491E000A53F8 /* LayoutManager.swift */; };
 		218944B61CFFA081003F743B /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8D061C8A48EA000A53F8 /* TextContainer.swift */; };
 		218944B71CFFA084003F743B /* BlockSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8C1D1C8A430B000A53F8 /* BlockSpacing.swift */; };
@@ -55,8 +61,6 @@
 		21AD8C381C8A433D000A53F8 /* CanvasText.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AD8C351C8A433D000A53F8 /* CanvasText.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21AD8C3E1C8A43E2000A53F8 /* OperationTransport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AD8C3D1C8A43E2000A53F8 /* OperationTransport.framework */; };
 		21AD8C401C8A443A000A53F8 /* CanvasNative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AD8C3F1C8A443A000A53F8 /* CanvasNative.framework */; };
-		21AD8D001C8A487E000A53F8 /* TextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8CFF1C8A487E000A53F8 /* TextStorage.swift */; };
-		21AD8D021C8A4886000A53F8 /* BaseTextStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8D011C8A4886000A53F8 /* BaseTextStorage.swift */; };
 		21AD8D071C8A48EA000A53F8 /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8D061C8A48EA000A53F8 /* TextContainer.swift */; };
 		21AD8D091C8A491E000A53F8 /* LayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8D081C8A491E000A53F8 /* LayoutManager.swift */; };
 		21AD8D0C1C8A496B000A53F8 /* NSRange+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8D0B1C8A496B000A53F8 /* NSRange+CanvasText.swift */; };
@@ -110,6 +114,10 @@
 		214F9FF21CC6B2E400927A07 /* TextController+Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextController+Actions.swift"; sourceTree = "<group>"; };
 		214F9FF41CC6C9EC00927A07 /* Listable+CanvasText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Listable+CanvasText.swift"; sourceTree = "<group>"; };
 		216459A91CC1957C00033B7F /* TextController+MarkdownShortcuts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextController+MarkdownShortcuts.swift"; sourceTree = "<group>"; };
+		2166E3001D14AA7300470366 /* BaseTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTextStorage.h; sourceTree = "<group>"; };
+		2166E3011D14AA7300470366 /* BaseTextStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTextStorage.m; sourceTree = "<group>"; };
+		2166E3061D14B18E00470366 /* CanvasTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasTextStorage.h; sourceTree = "<group>"; };
+		2166E3071D14B18E00470366 /* CanvasTextStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasTextStorage.m; sourceTree = "<group>"; };
 		218944931CFFA041003F743B /* CanvasText.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasText.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2189449C1CFFA041003F743B /* CanvasTextTests-OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CanvasTextTests-OSX.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		218944EE1CFFA1C8003F743B /* CanvasNative.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CanvasNative.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Canvas-ahobezxsenavsybuynvlwyoflfyh/Build/Products/Debug/CanvasNative.framework"; sourceTree = "<group>"; };
@@ -128,8 +136,6 @@
 		21AD8C371C8A433D000A53F8 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		21AD8C3D1C8A43E2000A53F8 /* OperationTransport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OperationTransport.framework; path = Carthage/Build/iOS/OperationTransport.framework; sourceTree = "<group>"; };
 		21AD8C3F1C8A443A000A53F8 /* CanvasNative.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CanvasNative.framework; path = Carthage/Build/iOS/CanvasNative.framework; sourceTree = "<group>"; };
-		21AD8CFF1C8A487E000A53F8 /* TextStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextStorage.swift; sourceTree = "<group>"; };
-		21AD8D011C8A4886000A53F8 /* BaseTextStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTextStorage.swift; sourceTree = "<group>"; };
 		21AD8D061C8A48EA000A53F8 /* TextContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextContainer.swift; sourceTree = "<group>"; };
 		21AD8D081C8A491E000A53F8 /* LayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutManager.swift; sourceTree = "<group>"; };
 		21AD8D0B1C8A496B000A53F8 /* NSRange+CanvasText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+CanvasText.swift"; sourceTree = "<group>"; };
@@ -280,8 +286,10 @@
 		21AD8CFE1C8A4869000A53F8 /* Text Kit */ = {
 			isa = PBXGroup;
 			children = (
-				21AD8D011C8A4886000A53F8 /* BaseTextStorage.swift */,
-				21AD8CFF1C8A487E000A53F8 /* TextStorage.swift */,
+				2166E3001D14AA7300470366 /* BaseTextStorage.h */,
+				2166E3011D14AA7300470366 /* BaseTextStorage.m */,
+				2166E3061D14B18E00470366 /* CanvasTextStorage.h */,
+				2166E3071D14B18E00470366 /* CanvasTextStorage.m */,
 				21AD8D081C8A491E000A53F8 /* LayoutManager.swift */,
 				21AD8D061C8A48EA000A53F8 /* TextContainer.swift */,
 			);
@@ -354,6 +362,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2166E3021D14AA7300470366 /* BaseTextStorage.h in Headers */,
+				2166E3081D14B18E00470366 /* CanvasTextStorage.h in Headers */,
 				21AD8C381C8A433D000A53F8 /* CanvasText.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,6 +372,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2166E3031D14AA7300470366 /* BaseTextStorage.h in Headers */,
+				2166E3091D14B18E00470366 /* CanvasTextStorage.h in Headers */,
 				218944AC1CFFA071003F743B /* CanvasText.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,8 +536,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2193DC5F1D07A776004D8D0C /* Theme+Default.swift in Sources */,
+				2166E3041D14AA7300470366 /* BaseTextStorage.m in Sources */,
 				21E1D9E81C8E212300283961 /* Annotation.swift in Sources */,
 				21AD8D071C8A48EA000A53F8 /* TextContainer.swift in Sources */,
+				2166E30A1D14B18E00470366 /* CanvasTextStorage.m in Sources */,
 				21DF7A3B1C8F9ADA00C17A62 /* Annotatable.swift in Sources */,
 				216459AA1CC1957C00033B7F /* TextController+MarkdownShortcuts.swift in Sources */,
 				2122BFD81CFE35EB00A038DE /* NSURL+CanvasText.swift in Sources */,
@@ -534,10 +548,8 @@
 				21DF7A421C8FA08300C17A62 /* BlockquoteBorderView.swift in Sources */,
 				21AD8D0C1C8A496B000A53F8 /* NSRange+CanvasText.swift in Sources */,
 				21F7EEEC1CD7F77D004E80E2 /* SelectionController.swift in Sources */,
-				21AD8D001C8A487E000A53F8 /* TextStorage.swift in Sources */,
 				210B4EAD1CD94E2A006E3C11 /* TextController+Gestures.swift in Sources */,
 				21AD8C291C8A430B000A53F8 /* BlockSpacing.swift in Sources */,
-				21AD8D021C8A4886000A53F8 /* BaseTextStorage.swift in Sources */,
 				214F9FF51CC6C9ED00927A07 /* Listable+CanvasText.swift in Sources */,
 				2138C2CF1C97228100D93FF4 /* NumberView.swift in Sources */,
 				21E1D9DE1C8DF54700283961 /* BulletView.swift in Sources */,
@@ -571,10 +583,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				218944D01CFFA096003F743B /* Listable+CanvasText.swift in Sources */,
+				2166E3051D14AA7300470366 /* BaseTextStorage.m in Sources */,
 				218944BA1CFFA084003F743B /* Themeable.swift in Sources */,
 				218944AF1CFFA07E003F743B /* TextController+Actions.swift in Sources */,
 				21D24D401D120B7B00741038 /* BulletView.swift in Sources */,
-				218944B41CFFA081003F743B /* TextStorage.swift in Sources */,
 				218944B01CFFA07E003F743B /* TextController+Gestures.swift in Sources */,
 				218944B61CFFA081003F743B /* TextContainer.swift in Sources */,
 				21D24D3C1D1207A600741038 /* Blockquote+CanvasText.swift in Sources */,
@@ -591,8 +603,8 @@
 				218944BC1CFFA08A003F743B /* Annotatable.swift in Sources */,
 				218944BB1CFFA08A003F743B /* AnnotationsController.swift in Sources */,
 				218944B11CFFA07E003F743B /* TextController+MarkdownShortcuts.swift in Sources */,
+				2166E30B1D14B18E00470366 /* CanvasTextStorage.m in Sources */,
 				218944D11CFFA096003F743B /* NSURL+CanvasText.swift in Sources */,
-				218944B31CFFA081003F743B /* BaseTextStorage.swift in Sources */,
 				218944B51CFFA081003F743B /* LayoutManager.swift in Sources */,
 				218944B71CFFA084003F743B /* BlockSpacing.swift in Sources */,
 			);
@@ -737,6 +749,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasText;
 				PRODUCT_NAME = CanvasText;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -786,6 +799,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -800,6 +814,7 @@
 				PRODUCT_NAME = CanvasText;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -807,6 +822,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;

@@ -17,6 +17,8 @@ import OperationTransport
 import CanvasNative
 import X
 
+typealias Style = (range: NSRange, attributes: Attributes)
+
 public protocol TextControllerConnectionDelegate: class {
 	func textController(textController: TextController, willConnectWithWebView webView: WKWebView)
 	func textControllerDidConnect(textController: TextController)
@@ -39,7 +41,7 @@ public protocol TextControllerAnnotationDelegate: class {
 }
 
 
-public final class TextController {
+public final class TextController: NSObject {
 
 	// MARK: - Properties
 
@@ -47,7 +49,7 @@ public final class TextController {
 	public weak var displayDelegate: TextControllerDisplayDelegate?
 	public weak var annotationDelegate: TextControllerAnnotationDelegate?
 
-	let _textStorage = TextStorage()
+	let _textStorage = CanvasTextStorage()
 	public var textStorage: NSTextStorage {
 		return _textStorage
 	}
@@ -130,6 +132,8 @@ public final class TextController {
 
 	private var needsTitle = false
 	private var needsUnfoldUpdate = false
+	private var styles = [Style]()
+	private var invalidDisplayRange: NSRange?
 
 
 	// MARK: - Initializers
@@ -143,6 +147,9 @@ public final class TextController {
 		imagesController = ImagesController(theme: theme)
 
 		annotationsController = AnnotationsController(theme: theme)
+		
+		super.init()
+		
 		annotationsController.textController = self
 		annotationsController.delegate = self
 
@@ -150,8 +157,8 @@ public final class TextController {
 		_textContainer.textController = self
 		_layoutManager.textController = self
 		_layoutManager.layoutDelegate = self
-		_textStorage.textController = self
-		_textStorage.customDelegate = self
+		_textStorage.canvasDelegate = self
+		textStorage.delegate = self
 		layoutManager.addTextContainer(textContainer)
 		textStorage.addLayoutManager(layoutManager)
 
@@ -201,8 +208,8 @@ public final class TextController {
 		}
 
 		if !styles.isEmpty {
-			_textStorage.addStyles(styles)
-			_textStorage.applyStyles()
+			self.styles += styles
+			applyStyles()
 		}
 	}
 
@@ -227,6 +234,26 @@ public final class TextController {
 		if updateTextView, let range = range {
 			displayDelegate?.textController(self, didUpdateSelectedRange: range)
 		}
+	}
+	
+	
+	// MARK: - Styles
+	
+	/// This should not be called while the text view is editing. Ideally, this will be called in the text view's did
+	/// change delegate method.
+	public func applyStyles() {
+		guard !styles.isEmpty else { return }
+		
+		for style in styles {
+			if style.range.max > textStorage.length || style.range.length < 0 {
+				print("WARNING: Invalid style: \(style.range)")
+				continue
+			}
+			
+			textStorage.setAttributes(style.attributes, range: style.range)
+		}
+		
+		styles.removeAll()
 	}
 
 
@@ -287,8 +314,8 @@ public final class TextController {
 			styles.append(style)
 		}
 		
-		_textStorage.addStyles(styles)
-		_textStorage.applyStyles()
+		self.styles += styles
+		applyStyles()
 	}
 
 	// Returns an array of styles and an array of foldable ranges
@@ -523,8 +550,8 @@ public final class TextController {
 			NSAttachmentAttributeName: attachment
 		])
 		
-		_textStorage.addStyles([style])
-		_textStorage.applyStyles()
+		styles.append(style)
+		applyStyles()
 	}
 }
 
@@ -549,6 +576,8 @@ extension TextController: TransportControllerDelegate {
 		documentController.replaceCharactersInRange(bounds, withString: string)
 		connectionDelegate?.textControllerDidConnect(self)
 		displayDelegate?.textControllerDidProcessRemoteEdit(self)
+		
+		applyStyles()
 	}
 
 	public func transportController(controller: TransportController, didReceiveOperation operation: Operation) {
@@ -604,7 +633,7 @@ extension TextController: DocumentControllerDelegate {
 		annotationsController.insert(block: block, index: index)
 
 		let (styles, _) = stylesForBlock(block)
-		_textStorage.addStyles(styles)
+		self.styles += styles
 
 		var range = controller.document.presentationRange(block: block)
 		if range.location > 0 {
@@ -616,10 +645,10 @@ extension TextController: DocumentControllerDelegate {
 			range.length += 1
 		}
 
-		_textStorage.invalidRange(range)
+//		_textStorage.invalidRange(range)
 		
 		if let block = block as? Attachable, style = attachmentStyle(block: block) {
-			_textStorage.addStyles([style])
+			self.styles.append(style)
 		}
 
 		if index == 0 {
@@ -637,12 +666,6 @@ extension TextController: DocumentControllerDelegate {
 
 	public func documentControllerDidUpdateDocument(controller: DocumentController) {
 		textStorage.endEditing()
-
-		dispatch_async(dispatch_get_main_queue()) { [weak self] in
-			self?._textStorage.applyStyles()
-			self?._textStorage.invalidateLayoutIfNeeded()
-		}
-
 		updateTitleIfNeeded(controller)
 	}
 
@@ -685,8 +708,8 @@ extension TextController: AnnotationsControllerDelegate {
 }
 
 
-extension TextController: TextStorageDelegate {
-	func textStorage(textStorage: TextStorage, didReplaceCharactersInRange range: NSRange, withString string: String) {		
+extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
+	public func canvasTextStorage(textStorage: CanvasTextStorage, willReplaceCharactersInRange range: NSRange, withString string: String) {
 		let document = currentDocument
 		var presentationRange = range
 		var backingRange = document.backingRange(presentationRange: presentationRange)
@@ -773,9 +796,9 @@ extension TextController: TextStorageDelegate {
 			}
 		}
 	}
-
-	func textStorageDidProcessEditing(textStorage: TextStorage) {
-		if textStorage.isEditing {
+	
+	public func textStorage(textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorageEditActions, range editedRange: NSRange, changeInLength delta: Int) {
+		if _textStorage.isEditing {
 			return
 		}
 
