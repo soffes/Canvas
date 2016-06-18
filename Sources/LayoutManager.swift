@@ -54,8 +54,6 @@ class LayoutManager: NSLayoutManager {
 		}
 	}
 
-	private let lineSpacing: CGFloat = 3
-	let foldingEnabled = true
 	var invalidFoldingRange: NSRange?
 
 	/// Folded ranges. Whenever this changes, it will trigger an invalidation of foldable glyphs.
@@ -71,12 +69,11 @@ class LayoutManager: NSLayoutManager {
 	/// the changes.
 	private var needsUpdateTextContainer = false
 
-	/// If changes have been made to folding, we need to invalid the layout manager's glyphs for that range and
-	/// recalculate them so we can control which are marked as control characters with zero advancement.
-	private var needsInvalidateFoldableGlyphs = false
-
 	/// Set of indices that should be folded. Calculated from `foldableRanges`.
 	private var foldedIndices = Set<Int>()
+	
+	// TODO: Get this from the theme and vary based on the block's font
+	private let lineSpacing: CGFloat = 3
 
 
 	// MARK: - Initializers
@@ -126,8 +123,6 @@ class LayoutManager: NSLayoutManager {
 	}
 
 	func invalidateFoldableRanges(inRange invalidRange: NSRange) -> Bool {
-		guard foldingEnabled else { return false }
-
 		var invalidated = false
 
 		for range in foldableRanges {
@@ -151,8 +146,9 @@ class LayoutManager: NSLayoutManager {
 	// MARK: - Private
 
 	private func updateTextContainerIfNeeded() {
-		guard foldingEnabled && needsUpdateTextContainer else { return }
-
+		guard needsUpdateTextContainer else { return }
+		
+		textContainers.forEach(ensureLayoutForTextContainer)
 		layoutDelegate?.layoutManagerDidUpdateFolding(self)
 
 		needsUpdateTextContainer = false
@@ -169,7 +165,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
 	// Mark folded characters as control characters so we can give them a zero width in
 	// `layoutManager:shouldUseAction:forControlCharacterAtIndex:`.
 	func layoutManager(layoutManager: NSLayoutManager, shouldGenerateGlyphs glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSGlyphProperty>, characterIndexes: UnsafePointer<Int>, font: Font, forGlyphRange glyphRange: NSRange) -> Int {
-		if !foldingEnabled || foldedIndices.isEmpty {
+		if foldedIndices.isEmpty {
 			return 0
 		}
 
@@ -201,7 +197,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
 	// Folded characters should have a zero width
 	func layoutManager(layoutManager: NSLayoutManager, shouldUseAction action: NSControlCharacterAction, forControlCharacterAtIndex characterIndex: Int) -> NSControlCharacterAction {
 		// Don't advance if it's a control character we changed
-		if foldingEnabled && foldedIndices.contains(characterIndex) {
+		if foldedIndices.contains(characterIndex) {
 			return .ZeroAdvancement
 		}
 
@@ -210,7 +206,6 @@ extension LayoutManager: NSLayoutManagerDelegate {
 	}
 
 	func layoutManager(layoutManager: NSLayoutManager, lineSpacingAfterGlyphAtIndex glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
-		// TODO: Get this from the theme and vary based on the block's font
 		return lineSpacing
 	}
 
