@@ -1,0 +1,12 @@
+[submodule "Vendor/Starscream"]
+	path = Vendor/Starscream
+	url = https://github.com/daltoniam/Starscream
+[submodule "Vendor/CanvasKit"]
+	path = Vendor/CanvasKit
+	url = https://github.com/usecanvas/CanvasKit
+[submodule "Vendor/ISO8601"]
+	path = Vendor/ISO8601
+	url = https://github.com/soffes/ISO8601
+[submodule "Vendor/SSKeychain"]
+	path = Vendor/SSKeychain
+	url = https://github.com/soffes/SSKeychain
