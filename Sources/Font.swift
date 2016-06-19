@@ -8,37 +8,37 @@
 
 import UIKit
 
-struct Font {
+public struct Font {
 
-	enum Weight {
-		case Regular
-		case Bold
+	public enum Weight {
+		case regular
+		case bold
 
 		var weight: CGFloat {
 			switch self {
-			case .Regular: return UIFontWeightRegular
-			case .Bold: return UIFontWeightMedium
+			case .regular: return UIFontWeightRegular
+			case .bold: return UIFontWeightMedium
 			}
 		}
 	}
 
-	enum Style {
-		case Regular
-		case Italic
+	public enum Style {
+		case regular
+		case italic
 	}
 
-	enum Size: UInt {
-		case Small = 14
-		case Subtitle = 16
-		case Body = 18
+	public enum Size: UInt {
+		case small = 14
+		case subtitle = 16
+		case body = 18
 
 		var pointSize: CGFloat {
 			return CGFloat(rawValue)
 		}
 	}
 
-	static func sansSerif(weight weight: Weight = .Regular, style: Style = .Regular, size: Size = .Body) -> UIFont! {
-		if style == .Italic {
+	public static func sansSerif(weight weight: Weight = .regular, style: Style = .regular, size: Size = .body) -> UIFont! {
+		if style == .italic {
 			// TODO: Weight is currently ignored for italic
 			return .italicSystemFontOfSize(size.pointSize)
 		}

@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum LocalizedString {
+public enum LocalizedString {
 	
 	// Login
 	case LoginLabel
@@ -71,7 +71,7 @@ enum LocalizedString {
 
 	// MARK: - Properties
 
-	var string: String {
+	public var string: String {
 		switch self {
 		case .LoginLabel: return string("LOGIN_LABEL")
 		case .LoginPlaceholder: return string("LOGIN_PLACEHOLDER")

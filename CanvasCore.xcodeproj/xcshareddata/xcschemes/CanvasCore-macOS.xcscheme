@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2175D3191D1722AD009C6845"
-               BuildableName = "CanvasCore-macOS.framework"
+               BuildableName = "CanvasCore.framework"
                BlueprintName = "CanvasCore-macOS"
                ReferencedContainer = "container:CanvasCore.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2175D3191D1722AD009C6845"
-            BuildableName = "CanvasCore-macOS.framework"
+            BuildableName = "CanvasCore.framework"
             BlueprintName = "CanvasCore-macOS"
             ReferencedContainer = "container:CanvasCore.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2175D3191D1722AD009C6845"
-            BuildableName = "CanvasCore-macOS.framework"
+            BuildableName = "CanvasCore.framework"
             BlueprintName = "CanvasCore-macOS"
             ReferencedContainer = "container:CanvasCore.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2175D3191D1722AD009C6845"
-            BuildableName = "CanvasCore-macOS.framework"
+            BuildableName = "CanvasCore.framework"
             BlueprintName = "CanvasCore-macOS"
             ReferencedContainer = "container:CanvasCore.xcodeproj">
          </BuildableReference>

@@ -9,51 +9,51 @@
 import CanvasText
 import X
 
-struct LightTheme: Theme {
+public struct LightTheme: Theme {
 
 	// MARK: - Primary Colors
 
-	let backgroundColor = Color.white
-	let foregroundColor = Color.black
-	var tintColor: X.Color
+	public let backgroundColor = Color.white
+	public let foregroundColor = Color.black
+	public var tintColor: X.Color
 
 
 	// MARK: - Block Colors
 	
-	let titlePlaceholderColor = Color.lightGray
-	let bulletColor = Color.gray
-	let uncheckedCheckboxColor = Color.gray
-	let orderedListItemNumberColor = Color.gray
-	let codeColor = Color.gray
-	let codeBlockBackgroundColor = Color.extraLightGray
-	let codeBlockLineNumberColor = Color.lightGray
-	let codeBlockLineNumberBackgroundColor = Color.lightGray
-	let blockquoteColor = Color.gray
-	let blockquoteBorderColor = Color.lightGray
-	let headingOneColor = Color.black
-	let headingTwoColor = Color.black
-	let headingThreeColor = Color.black
-	let headingFourColor = Color.black
-	let headingFiveColor = Color.black
-	let headingSixColor = Color.black
-	let horizontalRuleColor = Color.gray
-	let imagePlaceholderColor = Color.gray
-	let imagePlaceholderBackgroundColor = Color.extraLightGray
+	public let titlePlaceholderColor = Color.lightGray
+	public let bulletColor = Color.gray
+	public let uncheckedCheckboxColor = Color.gray
+	public let orderedListItemNumberColor = Color.gray
+	public let codeColor = Color.gray
+	public let codeBlockBackgroundColor = Color.extraLightGray
+	public let codeBlockLineNumberColor = Color.lightGray
+	public let codeBlockLineNumberBackgroundColor = Color.lightGray
+	public let blockquoteColor = Color.gray
+	public let blockquoteBorderColor = Color.lightGray
+	public let headingOneColor = Color.black
+	public let headingTwoColor = Color.black
+	public let headingThreeColor = Color.black
+	public let headingFourColor = Color.black
+	public let headingFiveColor = Color.black
+	public let headingSixColor = Color.black
+	public let horizontalRuleColor = Color.gray
+	public let imagePlaceholderColor = Color.gray
+	public let imagePlaceholderBackgroundColor = Color.extraLightGray
 
 
 	// MARK: - Span Colors
 
-	let foldedColor = Color.gray
-	let strikethroughColor = Color.gray
-	let linkURLColor = Color.gray
-	let codeSpanColor = Color.gray
-	let codeSpanBackgroundColor = Color.extraLightGray
-	let commentBackgroundColor = Color.comment
+	public let foldedColor = Color.gray
+	public let strikethroughColor = Color.gray
+	public let linkURLColor = Color.gray
+	public let codeSpanColor = Color.gray
+	public let codeSpanBackgroundColor = Color.extraLightGray
+	public let commentBackgroundColor = Color.comment
 
 
 	// MARK: - Initializers
 
-	init(tintColor: X.Color) {
+	public init(tintColor: X.Color) {
 		self.tintColor = tintColor
 	}
 }

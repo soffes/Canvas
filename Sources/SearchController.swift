@@ -10,15 +10,15 @@ import Foundation
 import CanvasKit
 
 /// Object for coordinating searches
-final class SearchController: NSObject {
+public final class SearchController: NSObject {
 
 	// MARK: - Properties
 
-	let account: Account
-	let organization: Organization
+	public let account: Account
+	public let organization: Organization
 
 	/// Results are delivered to this callback
-	var callback: ([Canvas] -> Void)?
+	public var callback: ([Canvas] -> Void)?
 
 	private let semaphore = dispatch_semaphore_create(0)
 
@@ -33,7 +33,7 @@ final class SearchController: NSObject {
 
 	// MARK: - Initializers
 
-	init(account: Account, organization: Organization) {
+	public init(account: Account, organization: Organization) {
 		self.account = account
 		self.organization = organization
 		client = APIClient(accessToken: account.accessToken)
@@ -46,7 +46,7 @@ final class SearchController: NSObject {
 
 	// MARK: - Search
 
-	func search(query: String) {
+	public func search(withQuery query: String) {
 		nextQuery = query.isEmpty ? nil : query
 	}
 
@@ -91,9 +91,9 @@ final class SearchController: NSObject {
 	import UIKit
 
 	extension SearchController: UISearchResultsUpdating {
-		func updateSearchResultsForSearchController(searchController: UISearchController) {
+		public func updateSearchResultsForSearchController(searchController: UISearchController) {
 			guard let text = searchController.searchBar.text else { return }
-			search(text)
+			search(withQuery: text)
 		}
 	}
 #endif
