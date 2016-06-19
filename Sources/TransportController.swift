@@ -1,6 +1,6 @@
 //
 //  TransportController.swift
-//  OperationTransport
+//  OperationalTransformation
 //
 //  Created by Sam Soffes on 11/10/15.
 //  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
@@ -96,24 +96,24 @@ public class TransportController: NSObject {
 		webView.loadHTMLString(html, baseURL: serverURL)
 	}
 
-	public func disconnect(reason reason: String? = nil) {
+	public func disconnect(withReason reason: String? = nil) {
 		webView.removeFromSuperview()
 		delegate?.transportController(self, didDisconnectWithErrorMessage: reason)
 	}
 	
 	// MARK: - Operations
 	
-	public func submitOperation(operation: Operation) {
+	public func submit(operation operation: Operation) {
 		switch operation {
-		case .Insert(let location, let string): insert(location: location, string: string)
-		case .Remove(let location, let length): remove(location: location, length: length)
+		case .insert(let location, let string): insert(atLocation: location, string: string)
+		case .remove(let location, let length): remove(atLocation: location, length: length)
 		}
 	}
 
 	
 	// MARK: - Private
 	
-	private func insert(location location: UInt, string: String) {
+	private func insert(atLocation location: UInt, string: String) {
 		guard let data = try? NSJSONSerialization.dataWithJSONObject([string], options: []),
 			json = String(data: data, encoding: NSUTF8StringEncoding)
 		else { return }
@@ -121,7 +121,7 @@ public class TransportController: NSObject {
 		webView.evaluateJavaScript("Canvas.insert(\(location), \(json)[0]);", completionHandler: nil)
 	}
 	
-	private func remove(location location: UInt, length: UInt) {
+	private func remove(atLocation location: UInt, length: UInt) {
 		webView.evaluateJavaScript("Canvas.remove(\(location), \(length));", completionHandler: nil)
 	}
 }
@@ -137,13 +137,13 @@ extension TransportController: WKScriptMessageHandler {
 		}
 
 		switch message {
-		case .Operation(let operation):
+		case .operation(let operation):
 			delegate?.transportController(self, didReceiveOperation: operation)
-		case .Snapshot(let content):
+		case .snapshot(let content):
 			delegate?.transportController(self, didReceiveSnapshot: content)
-		case .Disconnect(let errorMessage):
-			disconnect(reason: errorMessage)
-		case .Error(let errorMessage, let lineNumber, let columnNumber):
+		case .disconnect(let errorMessage):
+			disconnect(withReason: errorMessage)
+		case .error(let errorMessage, let lineNumber, let columnNumber):
 			delegate?.transportController(self, didReceiveWebErrorMessage: errorMessage, lineNumber: lineNumber, columnNumber: columnNumber)
 		}
 	}

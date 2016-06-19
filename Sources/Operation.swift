@@ -1,6 +1,6 @@
 //
 //  Operation.swift
-//  OperationTransport
+//  OperationalTransformation
 //
 //  Created by Sam Soffes on 11/10/15.
 //  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
@@ -12,17 +12,17 @@ public enum Operation {
 	
 	// MARK: - Cases
 	
-	case Insert(location: UInt, string: String)
-	case Remove(location: UInt, length: UInt)
+	case insert(location: UInt, string: String)
+	case remove(location: UInt, length: UInt)
 	
 	
 	// MARK: - Properties
 	
 	public var range: NSRange {
 		switch self {
-		case .Insert(let location, _):
+		case .insert(let location, _):
 			return NSRange(location: Int(location), length: 0)
-		case .Remove(let location, let length):
+		case .remove(let location, let length):
 			return NSRange(location: Int(location), length: Int(length))
 		}
 	}
@@ -36,12 +36,12 @@ public enum Operation {
 			else { return nil }
 		
 		if let string = dictionary["text"] as? String where type == "insert" {
-			self = .Insert(location: location, string: string)
+			self = .insert(location: location, string: string)
 			return
 		}
 		
 		if let length = dictionary["length"] as? UInt where type == "remove" {
-			self = .Remove(location: location, length: length)
+			self = .remove(location: location, length: length)
 			return
 		}
 		

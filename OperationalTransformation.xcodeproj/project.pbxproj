@@ -7,19 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		215E6D291C7520BD00126FE9 /* OperationTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 215E6D281C7520BD00126FE9 /* OperationTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		215E6D301C7520BD00126FE9 /* OperationTransport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215E6D251C7520BD00126FE9 /* OperationTransport.framework */; };
-		215E6D351C7520BD00126FE9 /* OperationTransportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D341C7520BD00126FE9 /* OperationTransportTests.swift */; };
-		215E6D411C75210200126FE9 /* TransportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D3F1C75210200126FE9 /* TransportController.swift */; };
-		215E6D421C75210200126FE9 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D401C75210200126FE9 /* Message.swift */; };
-		215E6D4B1C75212900126FE9 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D4A1C75212900126FE9 /* Operation.swift */; };
-		215E6D5D1C7532E200126FE9 /* OperationTransport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215E6D531C7532E200126FE9 /* OperationTransport.framework */; };
-		215E6D6A1C75336C00126FE9 /* TransportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D3F1C75210200126FE9 /* TransportController.swift */; };
-		215E6D6B1C75336C00126FE9 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D401C75210200126FE9 /* Message.swift */; };
-		215E6D6C1C75336C00126FE9 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215E6D4A1C75212900126FE9 /* Operation.swift */; };
-		215E6D6D1C75337900126FE9 /* OperationTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 215E6D281C7520BD00126FE9 /* OperationTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		215E6D781C7539CB00126FE9 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 215E6D771C7539CB00126FE9 /* index.html */; };
-		2193F76F1CFFB5CF00EAA7F4 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 215E6D771C7539CB00126FE9 /* index.html */; };
+		215E6D301C7520BD00126FE9 /* OperationalTransformation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215E6D251C7520BD00126FE9 /* OperationalTransformation.framework */; };
+		215E6D5D1C7532E200126FE9 /* OperationalTransformation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215E6D531C7532E200126FE9 /* OperationalTransformation.framework */; };
+		21A739B51D1712DF006CE2C7 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A739AA1D1712DF006CE2C7 /* Message.swift */; };
+		21A739B61D1712DF006CE2C7 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A739AA1D1712DF006CE2C7 /* Message.swift */; };
+		21A739B71D1712DF006CE2C7 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A739AB1D1712DF006CE2C7 /* Operation.swift */; };
+		21A739B81D1712DF006CE2C7 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A739AB1D1712DF006CE2C7 /* Operation.swift */; };
+		21A739B91D1712DF006CE2C7 /* TransportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A739AC1D1712DF006CE2C7 /* TransportController.swift */; };
+		21A739BA1D1712DF006CE2C7 /* TransportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A739AC1D1712DF006CE2C7 /* TransportController.swift */; };
+		21A739BB1D1712DF006CE2C7 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 21A739AE1D1712DF006CE2C7 /* index.html */; };
+		21A739BC1D1712DF006CE2C7 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 21A739AE1D1712DF006CE2C7 /* index.html */; };
+		21A739C11D1712DF006CE2C7 /* OperationTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A739B11D1712DF006CE2C7 /* OperationTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21A739C21D1712DF006CE2C7 /* OperationTransport.h in Headers */ = {isa = PBXBuildFile; fileRef = 21A739B11D1712DF006CE2C7 /* OperationTransport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21A739C71D171327006CE2C7 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A739B41D1712DF006CE2C7 /* Tests.swift */; };
+		21A739C81D171327006CE2C7 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A739B41D1712DF006CE2C7 /* Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,18 +41,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		215E6D251C7520BD00126FE9 /* OperationTransport.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OperationTransport.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		215E6D281C7520BD00126FE9 /* OperationTransport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OperationTransport.h; sourceTree = "<group>"; };
-		215E6D2F1C7520BD00126FE9 /* OperationTransportTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OperationTransportTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		215E6D341C7520BD00126FE9 /* OperationTransportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationTransportTests.swift; sourceTree = "<group>"; };
-		215E6D361C7520BD00126FE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		215E6D3F1C75210200126FE9 /* TransportController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportController.swift; sourceTree = "<group>"; };
-		215E6D401C75210200126FE9 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		215E6D4A1C75212900126FE9 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
-		215E6D4C1C7521DE00126FE9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		215E6D531C7532E200126FE9 /* OperationTransport.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OperationTransport.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		215E6D5C1C7532E200126FE9 /* OperationTransportTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OperationTransportTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		215E6D771C7539CB00126FE9 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		215E6D251C7520BD00126FE9 /* OperationalTransformation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OperationalTransformation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		215E6D2F1C7520BD00126FE9 /* OperationalTransformation.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OperationalTransformation.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		215E6D531C7532E200126FE9 /* OperationalTransformation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OperationalTransformation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		215E6D5C1C7532E200126FE9 /* OperationalTransformation.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OperationalTransformation.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		21A739AA1D1712DF006CE2C7 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		21A739AB1D1712DF006CE2C7 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
+		21A739AC1D1712DF006CE2C7 /* TransportController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportController.swift; sourceTree = "<group>"; };
+		21A739AE1D1712DF006CE2C7 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		21A739AF1D1712DF006CE2C7 /* index.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = index.js; sourceTree = "<group>"; };
+		21A739B01D1712DF006CE2C7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21A739B11D1712DF006CE2C7 /* OperationTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationTransport.h; sourceTree = "<group>"; };
+		21A739B21D1712DF006CE2C7 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		21A739B41D1712DF006CE2C7 /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				215E6D301C7520BD00126FE9 /* OperationTransport.framework in Frameworks */,
+				215E6D301C7520BD00126FE9 /* OperationalTransformation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				215E6D5D1C7532E200126FE9 /* OperationTransport.framework in Frameworks */,
+				215E6D5D1C7532E200126FE9 /* OperationalTransformation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,8 +93,9 @@
 		215E6D1B1C7520BD00126FE9 = {
 			isa = PBXGroup;
 			children = (
-				215E6D271C7520BD00126FE9 /* OperationTransport */,
-				215E6D331C7520BD00126FE9 /* OperationTransportTests */,
+				21A739A91D1712DF006CE2C7 /* Sources */,
+				21A739AD1D1712DF006CE2C7 /* Support */,
+				21A739B31D1712DF006CE2C7 /* Tests */,
 				215E6D261C7520BD00126FE9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -101,42 +104,42 @@
 		215E6D261C7520BD00126FE9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				215E6D251C7520BD00126FE9 /* OperationTransport.framework */,
-				215E6D2F1C7520BD00126FE9 /* OperationTransportTests.xctest */,
-				215E6D531C7532E200126FE9 /* OperationTransport.framework */,
-				215E6D5C1C7532E200126FE9 /* OperationTransportTests.xctest */,
+				215E6D251C7520BD00126FE9 /* OperationalTransformation.framework */,
+				215E6D2F1C7520BD00126FE9 /* OperationalTransformation.xctest */,
+				215E6D531C7532E200126FE9 /* OperationalTransformation.framework */,
+				215E6D5C1C7532E200126FE9 /* OperationalTransformation.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		215E6D271C7520BD00126FE9 /* OperationTransport */ = {
+		21A739A91D1712DF006CE2C7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				215E6D281C7520BD00126FE9 /* OperationTransport.h */,
-				215E6D3F1C75210200126FE9 /* TransportController.swift */,
-				215E6D401C75210200126FE9 /* Message.swift */,
-				215E6D4A1C75212900126FE9 /* Operation.swift */,
-				215E6D431C75210500126FE9 /* Resources */,
+				21A739AA1D1712DF006CE2C7 /* Message.swift */,
+				21A739AB1D1712DF006CE2C7 /* Operation.swift */,
+				21A739AC1D1712DF006CE2C7 /* TransportController.swift */,
 			);
-			path = OperationTransport;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		215E6D331C7520BD00126FE9 /* OperationTransportTests */ = {
+		21A739AD1D1712DF006CE2C7 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				215E6D341C7520BD00126FE9 /* OperationTransportTests.swift */,
-				215E6D361C7520BD00126FE9 /* Info.plist */,
+				21A739AE1D1712DF006CE2C7 /* index.html */,
+				21A739AF1D1712DF006CE2C7 /* index.js */,
+				21A739B01D1712DF006CE2C7 /* Info.plist */,
+				21A739B11D1712DF006CE2C7 /* OperationTransport.h */,
+				21A739B21D1712DF006CE2C7 /* Tests-Info.plist */,
 			);
-			path = OperationTransportTests;
+			path = Support;
 			sourceTree = "<group>";
 		};
-		215E6D431C75210500126FE9 /* Resources */ = {
+		21A739B31D1712DF006CE2C7 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				215E6D4C1C7521DE00126FE9 /* Info.plist */,
-				215E6D771C7539CB00126FE9 /* index.html */,
+				21A739B41D1712DF006CE2C7 /* Tests.swift */,
 			);
-			path = Resources;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,7 +149,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				215E6D291C7520BD00126FE9 /* OperationTransport.h in Headers */,
+				21A739C11D1712DF006CE2C7 /* OperationTransport.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,16 +157,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				215E6D6D1C75337900126FE9 /* OperationTransport.h in Headers */,
+				21A739C21D1712DF006CE2C7 /* OperationTransport.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		215E6D241C7520BD00126FE9 /* OperationTransport-iOS */ = {
+		215E6D241C7520BD00126FE9 /* OperationalTransformation-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 215E6D391C7520BD00126FE9 /* Build configuration list for PBXNativeTarget "OperationTransport-iOS" */;
+			buildConfigurationList = 215E6D391C7520BD00126FE9 /* Build configuration list for PBXNativeTarget "OperationalTransformation-iOS" */;
 			buildPhases = (
 				215E6D201C7520BD00126FE9 /* Sources */,
 				215E6D211C7520BD00126FE9 /* Frameworks */,
@@ -175,14 +178,14 @@
 			);
 			dependencies = (
 			);
-			name = "OperationTransport-iOS";
+			name = "OperationalTransformation-iOS";
 			productName = OperationTransport;
-			productReference = 215E6D251C7520BD00126FE9 /* OperationTransport.framework */;
+			productReference = 215E6D251C7520BD00126FE9 /* OperationalTransformation.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		215E6D2E1C7520BD00126FE9 /* OperationTransportTests-iOS */ = {
+		215E6D2E1C7520BD00126FE9 /* OperationalTransformationTests-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 215E6D3C1C7520BD00126FE9 /* Build configuration list for PBXNativeTarget "OperationTransportTests-iOS" */;
+			buildConfigurationList = 215E6D3C1C7520BD00126FE9 /* Build configuration list for PBXNativeTarget "OperationalTransformationTests-iOS" */;
 			buildPhases = (
 				215E6D2B1C7520BD00126FE9 /* Sources */,
 				215E6D2C1C7520BD00126FE9 /* Frameworks */,
@@ -193,14 +196,14 @@
 			dependencies = (
 				215E6D321C7520BD00126FE9 /* PBXTargetDependency */,
 			);
-			name = "OperationTransportTests-iOS";
+			name = "OperationalTransformationTests-iOS";
 			productName = OperationTransportTests;
-			productReference = 215E6D2F1C7520BD00126FE9 /* OperationTransportTests.xctest */;
+			productReference = 215E6D2F1C7520BD00126FE9 /* OperationalTransformation.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		215E6D521C7532E200126FE9 /* OperationTransport-OSX */ = {
+		215E6D521C7532E200126FE9 /* OperationalTransformation-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 215E6D641C7532E200126FE9 /* Build configuration list for PBXNativeTarget "OperationTransport-OSX" */;
+			buildConfigurationList = 215E6D641C7532E200126FE9 /* Build configuration list for PBXNativeTarget "OperationalTransformation-macOS" */;
 			buildPhases = (
 				215E6D4E1C7532E200126FE9 /* Sources */,
 				215E6D4F1C7532E200126FE9 /* Frameworks */,
@@ -212,14 +215,14 @@
 			);
 			dependencies = (
 			);
-			name = "OperationTransport-OSX";
+			name = "OperationalTransformation-macOS";
 			productName = OperationTransport;
-			productReference = 215E6D531C7532E200126FE9 /* OperationTransport.framework */;
+			productReference = 215E6D531C7532E200126FE9 /* OperationalTransformation.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		215E6D5B1C7532E200126FE9 /* OperationTransportTests-OSX */ = {
+		215E6D5B1C7532E200126FE9 /* OperationalTransformationTests-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 215E6D671C7532E200126FE9 /* Build configuration list for PBXNativeTarget "OperationTransportTests-OSX" */;
+			buildConfigurationList = 215E6D671C7532E200126FE9 /* Build configuration list for PBXNativeTarget "OperationalTransformationTests-macOS" */;
 			buildPhases = (
 				215E6D581C7532E200126FE9 /* Sources */,
 				215E6D591C7532E200126FE9 /* Frameworks */,
@@ -230,9 +233,9 @@
 			dependencies = (
 				215E6D5F1C7532E200126FE9 /* PBXTargetDependency */,
 			);
-			name = "OperationTransportTests-OSX";
+			name = "OperationalTransformationTests-macOS";
 			productName = OperationTransportTests;
-			productReference = 215E6D5C1C7532E200126FE9 /* OperationTransportTests.xctest */;
+			productReference = 215E6D5C1C7532E200126FE9 /* OperationalTransformation.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -259,7 +262,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 215E6D1F1C7520BD00126FE9 /* Build configuration list for PBXProject "OperationTransport" */;
+			buildConfigurationList = 215E6D1F1C7520BD00126FE9 /* Build configuration list for PBXProject "OperationalTransformation" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -271,10 +274,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				215E6D241C7520BD00126FE9 /* OperationTransport-iOS */,
-				215E6D2E1C7520BD00126FE9 /* OperationTransportTests-iOS */,
-				215E6D521C7532E200126FE9 /* OperationTransport-OSX */,
-				215E6D5B1C7532E200126FE9 /* OperationTransportTests-OSX */,
+				215E6D241C7520BD00126FE9 /* OperationalTransformation-iOS */,
+				215E6D2E1C7520BD00126FE9 /* OperationalTransformationTests-iOS */,
+				215E6D521C7532E200126FE9 /* OperationalTransformation-macOS */,
+				215E6D5B1C7532E200126FE9 /* OperationalTransformationTests-macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -284,7 +287,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				215E6D781C7539CB00126FE9 /* index.html in Resources */,
+				21A739BB1D1712DF006CE2C7 /* index.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +302,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2193F76F1CFFB5CF00EAA7F4 /* index.html in Resources */,
+				21A739BC1D1712DF006CE2C7 /* index.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,9 +351,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				215E6D411C75210200126FE9 /* TransportController.swift in Sources */,
-				215E6D421C75210200126FE9 /* Message.swift in Sources */,
-				215E6D4B1C75212900126FE9 /* Operation.swift in Sources */,
+				21A739B51D1712DF006CE2C7 /* Message.swift in Sources */,
+				21A739B71D1712DF006CE2C7 /* Operation.swift in Sources */,
+				21A739B91D1712DF006CE2C7 /* TransportController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,7 +361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				215E6D351C7520BD00126FE9 /* OperationTransportTests.swift in Sources */,
+				21A739C81D171327006CE2C7 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,9 +369,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				215E6D6A1C75336C00126FE9 /* TransportController.swift in Sources */,
-				215E6D6B1C75336C00126FE9 /* Message.swift in Sources */,
-				215E6D6C1C75336C00126FE9 /* Operation.swift in Sources */,
+				21A739B61D1712DF006CE2C7 /* Message.swift in Sources */,
+				21A739B81D1712DF006CE2C7 /* Operation.swift in Sources */,
+				21A739BA1D1712DF006CE2C7 /* TransportController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21A739C71D171327006CE2C7 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,12 +388,12 @@
 /* Begin PBXTargetDependency section */
 		215E6D321C7520BD00126FE9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 215E6D241C7520BD00126FE9 /* OperationTransport-iOS */;
+			target = 215E6D241C7520BD00126FE9 /* OperationalTransformation-iOS */;
 			targetProxy = 215E6D311C7520BD00126FE9 /* PBXContainerItemProxy */;
 		};
 		215E6D5F1C7532E200126FE9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 215E6D521C7532E200126FE9 /* OperationTransport-OSX */;
+			target = 215E6D521C7532E200126FE9 /* OperationalTransformation-macOS */;
 			targetProxy = 215E6D5E1C7532E200126FE9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -498,11 +502,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/OperationTransport/Resources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.OperationTransport;
-				PRODUCT_NAME = OperationTransport;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.operationaltransformation;
+				PRODUCT_NAME = OperationalTransformation;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -516,11 +520,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/OperationTransport/Resources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.OperationTransport;
-				PRODUCT_NAME = OperationTransport;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.operationaltransformation;
+				PRODUCT_NAME = OperationalTransformation;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -528,20 +532,20 @@
 		215E6D3D1C7520BD00126FE9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = OperationTransportTests/Info.plist;
+				INFOPLIST_FILE = "Support/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.OperationTransportTests;
-				PRODUCT_NAME = OperationTransportTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.operationaltransformation.tests;
+				PRODUCT_NAME = OperationalTransformation;
 			};
 			name = Debug;
 		};
 		215E6D3E1C7520BD00126FE9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = OperationTransportTests/Info.plist;
+				INFOPLIST_FILE = "Support/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.OperationTransportTests;
-				PRODUCT_NAME = OperationTransportTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.operationaltransformation.tests;
+				PRODUCT_NAME = OperationalTransformation;
 			};
 			name = Release;
 		};
@@ -555,11 +559,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = OperationTransport/Resources/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.OperationTransport;
-				PRODUCT_NAME = OperationTransport;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.operationaltransformation;
+				PRODUCT_NAME = OperationalTransformation;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -575,11 +579,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = OperationTransport/Resources/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.OperationTransport;
-				PRODUCT_NAME = OperationTransport;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.operationaltransformation;
+				PRODUCT_NAME = OperationalTransformation;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -590,11 +594,11 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = OperationTransportTests/Info.plist;
+				INFOPLIST_FILE = "Support/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.OperationTransportTests;
-				PRODUCT_NAME = OperationTransportTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.operationaltransformation.tests;
+				PRODUCT_NAME = OperationalTransformation;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -604,11 +608,11 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = OperationTransportTests/Info.plist;
+				INFOPLIST_FILE = "Support/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.OperationTransportTests;
-				PRODUCT_NAME = OperationTransportTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.operationaltransformation.tests;
+				PRODUCT_NAME = OperationalTransformation;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -616,7 +620,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		215E6D1F1C7520BD00126FE9 /* Build configuration list for PBXProject "OperationTransport" */ = {
+		215E6D1F1C7520BD00126FE9 /* Build configuration list for PBXProject "OperationalTransformation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				215E6D371C7520BD00126FE9 /* Debug */,
@@ -625,7 +629,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		215E6D391C7520BD00126FE9 /* Build configuration list for PBXNativeTarget "OperationTransport-iOS" */ = {
+		215E6D391C7520BD00126FE9 /* Build configuration list for PBXNativeTarget "OperationalTransformation-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				215E6D3A1C7520BD00126FE9 /* Debug */,
@@ -634,7 +638,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		215E6D3C1C7520BD00126FE9 /* Build configuration list for PBXNativeTarget "OperationTransportTests-iOS" */ = {
+		215E6D3C1C7520BD00126FE9 /* Build configuration list for PBXNativeTarget "OperationalTransformationTests-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				215E6D3D1C7520BD00126FE9 /* Debug */,
@@ -643,7 +647,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		215E6D641C7532E200126FE9 /* Build configuration list for PBXNativeTarget "OperationTransport-OSX" */ = {
+		215E6D641C7532E200126FE9 /* Build configuration list for PBXNativeTarget "OperationalTransformation-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				215E6D651C7532E200126FE9 /* Debug */,
@@ -652,7 +656,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		215E6D671C7532E200126FE9 /* Build configuration list for PBXNativeTarget "OperationTransportTests-OSX" */ = {
+		215E6D671C7532E200126FE9 /* Build configuration list for PBXNativeTarget "OperationalTransformationTests-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				215E6D681C7532E200126FE9 /* Debug */,
