@@ -34,7 +34,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "21EC4F0C1D077F5B00FA439F"
                BuildableName = "CanvasKitTests.xctest"
-               BlueprintName = "CanvasKit-tvOSTests"
+               BlueprintName = "CanvasKitTests-tvOS"
                ReferencedContainer = "container:CanvasKit.xcodeproj">
             </BuildableReference>
          </TestableReference>

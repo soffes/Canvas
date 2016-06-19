@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "21FB6ABA1BF53C9D003C82BB"
-               BuildableName = "CanvasKit.framework"
-               BlueprintName = "CanvasKit-iOS"
+               BlueprintIdentifier = "2175D2991D171DC3009C6845"
+               BuildableName = "CanvasKit-watchOS.framework"
+               BlueprintName = "CanvasKit-watchOS"
                ReferencedContainer = "container:CanvasKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "21FB6AC41BF53C9D003C82BB"
-               BuildableName = "CanvasKitTests-iOS.xctest"
-               BlueprintName = "CanvasKitTests-iOS"
-               ReferencedContainer = "container:CanvasKit.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "21FB6ABA1BF53C9D003C82BB"
-            BuildableName = "CanvasKit.framework"
-            BlueprintName = "CanvasKit-iOS"
-            ReferencedContainer = "container:CanvasKit.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -64,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "21FB6ABA1BF53C9D003C82BB"
-            BuildableName = "CanvasKit.framework"
-            BlueprintName = "CanvasKit-iOS"
+            BlueprintIdentifier = "2175D2991D171DC3009C6845"
+            BuildableName = "CanvasKit-watchOS.framework"
+            BlueprintName = "CanvasKit-watchOS"
             ReferencedContainer = "container:CanvasKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "21FB6ABA1BF53C9D003C82BB"
-            BuildableName = "CanvasKit.framework"
-            BlueprintName = "CanvasKit-iOS"
+            BlueprintIdentifier = "2175D2991D171DC3009C6845"
+            BuildableName = "CanvasKit-watchOS.framework"
+            BlueprintName = "CanvasKit-watchOS"
             ReferencedContainer = "container:CanvasKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

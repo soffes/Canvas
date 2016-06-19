@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "216C4B961BF54AB100260B8E"
                BuildableName = "CanvasKit.framework"
-               BlueprintName = "CanvasKit-OSX"
+               BlueprintName = "CanvasKit-macOS"
                ReferencedContainer = "container:CanvasKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "216C4B9F1BF54AB100260B8E"
-               BuildableName = "CanvasKit-OSXTests.xctest"
-               BlueprintName = "CanvasKit-OSXTests"
+               BuildableName = "CanvasKitTests-macOS.xctest"
+               BlueprintName = "CanvasKitTests-macOS"
                ReferencedContainer = "container:CanvasKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -44,7 +44,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "216C4B961BF54AB100260B8E"
             BuildableName = "CanvasKit.framework"
-            BlueprintName = "CanvasKit-OSX"
+            BlueprintName = "CanvasKit-macOS"
             ReferencedContainer = "container:CanvasKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -66,7 +66,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "216C4B961BF54AB100260B8E"
             BuildableName = "CanvasKit.framework"
-            BlueprintName = "CanvasKit-OSX"
+            BlueprintName = "CanvasKit-macOS"
             ReferencedContainer = "container:CanvasKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -84,7 +84,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "216C4B961BF54AB100260B8E"
             BuildableName = "CanvasKit.framework"
-            BlueprintName = "CanvasKit-OSX"
+            BlueprintName = "CanvasKit-macOS"
             ReferencedContainer = "container:CanvasKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -1,3 +1,2 @@
-github "venmo/DVR" "v0.2.1"
-github "soffes/ISO8601" "v0.5.0"
-github "soffes/sskeychain" "v1.3.1"
+github "venmo/DVR" "v0.3.0"
+github "soffes/ISO8601" "v0.6.0"
