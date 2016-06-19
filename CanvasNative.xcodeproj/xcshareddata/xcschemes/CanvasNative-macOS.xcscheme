@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "215BAB4B1C52B18B00118C8C"
                BuildableName = "CanvasNative.framework"
-               BlueprintName = "CanvasNative-OSX"
+               BlueprintName = "CanvasNative-macOS"
                ReferencedContainer = "container:CanvasNative.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -35,7 +35,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "215BAB541C52B18C00118C8C"
                BuildableName = "CanvasNativeTests.xctest"
-               BlueprintName = "CanvasNativeTests-OSX"
+               BlueprintName = "CanvasNativeTests-macOS"
                ReferencedContainer = "container:CanvasNative.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -45,7 +45,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "215BAB4B1C52B18B00118C8C"
             BuildableName = "CanvasNative.framework"
-            BlueprintName = "CanvasNative-OSX"
+            BlueprintName = "CanvasNative-macOS"
             ReferencedContainer = "container:CanvasNative.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -67,7 +67,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "215BAB4B1C52B18B00118C8C"
             BuildableName = "CanvasNative.framework"
-            BlueprintName = "CanvasNative-OSX"
+            BlueprintName = "CanvasNative-macOS"
             ReferencedContainer = "container:CanvasNative.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -85,7 +85,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "215BAB4B1C52B18B00118C8C"
             BuildableName = "CanvasNative.framework"
-            BlueprintName = "CanvasNative-OSX"
+            BlueprintName = "CanvasNative-macOS"
             ReferencedContainer = "container:CanvasNative.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

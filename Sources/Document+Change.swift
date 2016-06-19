@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Diff
 
 typealias BlockChange = (range: Range<Int>, replacement: [BlockNode])
 typealias StringChange = (range: NSRange, replacement: NSString)

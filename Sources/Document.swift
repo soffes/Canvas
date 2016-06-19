@@ -304,7 +304,12 @@ public struct Document {
 			
 			if block is Attachable {
 				// Special case for attachments
-				presentationString += String(Character(UnicodeScalar(NSAttachmentCharacter)))
+				#if os(watchOS)
+					presentationString += "🖼"
+				#else
+					presentationString += String(Character(UnicodeScalar(NSAttachmentCharacter)))
+				#endif
+				
 				location += 1
 			} else {
 				// Get the raw text of the line

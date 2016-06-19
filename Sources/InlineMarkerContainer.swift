@@ -6,6 +6,8 @@
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
+import Foundation
+
 public protocol InlineMarkerContainer: BlockNode {
 	var inlineMarkerPairs: [InlineMarkerPair] { get set }
 }
