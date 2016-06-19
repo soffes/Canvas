@@ -13,7 +13,7 @@
 #endif
 
 import WebKit
-import OperationTransport
+import OperationalTransformation
 import CanvasNative
 import X
 
@@ -179,8 +179,8 @@ public final class TextController: NSObject {
 		self.transportController = transportController
 	}
 
-	public func disconnect(reason reason: String?) {
-		transportController?.disconnect(reason: reason)
+	public func disconnect(withReason reason: String?) {
+		transportController?.disconnect(withReason: reason)
 		transportController = nil
 	}
 	
@@ -288,7 +288,9 @@ public final class TextController: NSObject {
 			var range = presentationSelectedRange
 			range.location = max(0, range.location - 1)
 			range.length += (presentationSelectedRange.location - range.location) + 1
-			return currentDocument.backingRange(presentationRange: range)
+			
+			// TODO: Update to support inline markers
+			return currentDocument.backingRanges(presentationRange: range)[0]
 		}()
 
 		let foldableNodes = currentDocument.nodesIn(backingRange: selectedRange).filter { $0 is Foldable }
@@ -451,16 +453,16 @@ public final class TextController: NSObject {
 
 		// Insert
 		if backingRange.length == 0 {
-			transportController.submitOperation(.Insert(location: UInt(backingRange.location), string: string))
+			transportController.submit(operation: .insert(location: UInt(backingRange.location), string: string))
 			return
 		}
 
 		// Remove
-		transportController.submitOperation(.Remove(location: UInt(backingRange.location), length: UInt(backingRange.length)))
+		transportController.submit(operation: .remove(location: UInt(backingRange.location), length: UInt(backingRange.length)))
 
 		// Insert after removing
 		if backingRange.length > 0 {
-			transportController.submitOperation(.Insert(location: UInt(backingRange.location), string: string))
+			transportController.submit(operation: .insert(location: UInt(backingRange.location), string: string))
 		}
 	}
 	
@@ -584,11 +586,11 @@ extension TextController: TransportControllerDelegate {
 		displayDelegate?.textControllerWillProcessRemoteEdit(self)
 
 		switch operation {
-		case .Insert(let location, let string):
+		case .insert(let location, let string):
 			let range = NSRange(location: Int(location), length: 0)
 			documentController.replaceCharactersInRange(range, withString: string)
 
-		case .Remove(let location, let length):
+		case .remove(let location, let length):
 			let range = NSRange(location: Int(location), length: Int(length))
 			documentController.replaceCharactersInRange(range, withString: "")
 		}
@@ -712,7 +714,9 @@ extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 	public func canvasTextStorage(textStorage: CanvasTextStorage, willReplaceCharactersInRange range: NSRange, withString string: String) {
 		let document = currentDocument
 		var presentationRange = range
-		var backingRange = document.backingRange(presentationRange: presentationRange)
+		
+		// TODO: Update to support inline markers
+		var backingRange = document.backingRanges(presentationRange: presentationRange)[0]
 		var replacement = string
 
 		// Return completion
@@ -773,7 +777,9 @@ extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 				// Add a new line after edits immediately before an Attachable {
 				else if range.location == presentationRange.location {
 					presentationRange.location -= 1
-					backingRange = document.backingRange(presentationRange: presentationRange)
+					
+					// TODO: Update to support inline markers
+					backingRange = document.backingRanges(presentationRange: presentationRange)[0]
 					replacement = "\n" + replacement
 				}
 			}

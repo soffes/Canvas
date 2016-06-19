@@ -30,7 +30,8 @@ extension TextController {
 			where (string as NSString).length > 0
 			else { return }
 
-			let backingRange = document.backingRange(presentationRange: range)
+			// TODO: Update to support inline markers
+			let backingRange = document.backingRanges(presentationRange: range)[0]
 			var replacementRange = backingRange
 			let replacement: String
 
