@@ -1,16 +1,22 @@
 //
 //  SpaceView.swift
-//  Canvas
+//  CanvasCore
 //
 //  Created by Sam Soffes on 5/16/16.
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
-import UIKit
+import X
+
+#if os(OSX)
+	import AppKit
+#else
+	import UIKit
+#endif
 
 /// Space view intented to be used with auto layout.
 /// Similar to UIStackView, setting a background color is not supported.
-final class SpaceView: UIView {
+public final class SpaceView: View {
 
 	// MARK: - Properties
 
@@ -19,41 +25,66 @@ final class SpaceView: UIView {
 
 	// MARK: - Initializers
 
-	init(size: CGSize) {
+	public init(size: CGSize) {
 		contentSize = size
 		super.init(frame: .zero)
 	}
 
-	convenience init(height: CGFloat) {
-		self.init(size: CGSize(width: UIViewNoIntrinsicMetric, height: height))
+	public convenience init(height: CGFloat) {
+		#if os(OSX)
+			self.init(size: CGSize(width: NSViewNoIntrinsicMetric, height: height))
+		#else
+			self.init(size: CGSize(width: UIViewNoIntrinsicMetric, height: height))
+		#endif
 	}
 
-	convenience init(width: CGFloat) {
-		self.init(size: CGSize(width: width, height: UIViewNoIntrinsicMetric))
+	public convenience init(width: CGFloat) {
+		#if os(OSX)
+			self.init(size: CGSize(width: width, height: NSViewNoIntrinsicMetric))
+		#else
+			self.init(size: CGSize(width: width, height: UIViewNoIntrinsicMetric))
+		#endif
 	}
 
-	required init?(coder aDecoder: NSCoder) {
+	public required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 
 
 	// MARK: - UIView
 
-	override class func layerClass() -> AnyClass {
-		return CATransformLayer.self
-	}
-
-	override func intrinsicContentSize() -> CGSize {
-		return contentSize
-	}
+	#if os(OSX)
+		public override var intrinsicContentSize: NSSize {
+			return contentSize
+		}
+	#else
+		public override func intrinsicContentSize() -> CGSize {
+			return contentSize
+		}
+	
+		public override class func layerClass() -> AnyClass {
+			return CATransformLayer.self
+		}
+	#endif
 }
 
 
-extension UIStackView {
-	func addSpace(length: CGFloat) {
-		switch axis {
-		case .Horizontal: addArrangedSubview(SpaceView(width: length))
-		case .Vertical: addArrangedSubview(SpaceView(height: length))
+#if os(OSX)
+	extension NSStackView {
+		public func addSpace(length: CGFloat) {
+			switch orientation {
+			case .Horizontal: addArrangedSubview(SpaceView(width: length))
+			case .Vertical: addArrangedSubview(SpaceView(height: length))
+			}
 		}
 	}
-}
+#elseif os(iOS) || os(tvOS)
+	extension UIStackView {
+		public func addSpace(length: CGFloat) {
+			switch axis {
+			case .Horizontal: addArrangedSubview(SpaceView(width: length))
+			case .Vertical: addArrangedSubview(SpaceView(height: length))
+			}
+		}
+	}
+#endif

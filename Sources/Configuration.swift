@@ -1,9 +1,9 @@
 //
 //  Configuration.swift
-//  Canvas
+//  CanvasCore
 //
 //  Created by Sam Soffes on 12/2/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
+//  Copyright © 2015–2016 Canvas Labs, Inc. All rights reserved.
 //
 
 import Foundation

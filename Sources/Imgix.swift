@@ -1,6 +1,6 @@
 //
 //  Imgix.swift
-//  Canvas
+//  CanvasCore
 //
 //  Created by Sam Soffes on 5/5/16.
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
@@ -9,18 +9,18 @@
 import Foundation
 import Crypto
 
-struct Imgix {
+public struct Imgix {
 	
 	// MARK: - Properties
 	
-	let host: String
-	let secret: String
-	let defaultParameters: [NSURLQueryItem]?
+	public let host: String
+	public let secret: String
+	public let defaultParameters: [NSURLQueryItem]?
 	
 	
 	// MARK: - Initializers
 	
-	init(host: String, secret: String, defaultParameters: [NSURLQueryItem]? = nil) {
+	public init(host: String, secret: String, defaultParameters: [NSURLQueryItem]? = nil) {
 		self.host = host
 		self.secret = secret
 		self.defaultParameters = defaultParameters
@@ -29,7 +29,7 @@ struct Imgix {
 	
 	// MARK: - Building URLs
 	
-	func signPath(input: String) -> NSURL? {
+	public func sign(path input: String) -> NSURL? {
 		// Get components
 		let path = (input.hasPrefix("/") ? "" : "/") + input
 		guard let components = NSURLComponents(string: "https://\(host + path)") else { return nil }

@@ -1,12 +1,11 @@
 //
 //  AvatarsController.swift
-//  Canvas
+//  CanvasCore
 //
 //  Created by Sam Soffes on 6/8/16.
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
-import UIKit
 import Cache
 import X
 
@@ -14,7 +13,7 @@ final class AvatarsController {
 
 	// MARK: - Types
 
-	typealias Completion = (ID: String, image: UIImage?) -> Void
+	typealias Completion = (ID: String, image: Image?) -> Void
 
 
 	// MARK: - Properties
@@ -54,7 +53,7 @@ final class AvatarsController {
 
 	// MARK: - Accessing
 
-	func fetchImage(ID ID: String, URL: NSURL, completion: Completion) -> UIImage? {
+	func fetchImage(ID ID: String, URL: NSURL, completion: Completion) -> Image? {
 		if let image = memoryCache[ID] {
 			return image
 		}

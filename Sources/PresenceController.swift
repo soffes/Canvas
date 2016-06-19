@@ -1,14 +1,17 @@
 //
 //  PresenceController.swift
-//  Canvas
+//  CanvasCore
 //
 //  Created by Sam Soffes on 6/1/16.
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
-import UIKit
 import CanvasKit
 import Starscream
+
+#if !os(OSX)
+	import UIKit
+#endif
 
 public protocol PresenceObserver: NSObjectProtocol {
 	func presenceDidChange(canvasID: String)
@@ -73,9 +76,11 @@ public class PresenceController: Accountable {
 		
 		connect()
 
-		let notificationCenter = NSNotificationCenter.defaultCenter()
-		notificationCenter.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplicationDidEnterBackgroundNotification, object: nil)
-		notificationCenter.addObserver(self, selector: #selector(applicationWillEnterForeground), name: UIApplicationWillEnterForegroundNotification, object: nil)
+		#if !os(OSX)
+			let notificationCenter = NSNotificationCenter.defaultCenter()
+			notificationCenter.addObserver(self, selector: #selector(applicationDidEnterBackground), name: UIApplicationDidEnterBackgroundNotification, object: nil)
+			notificationCenter.addObserver(self, selector: #selector(applicationWillEnterForeground), name: UIApplicationWillEnterForegroundNotification, object: nil)
+		#endif
 	}
 
 	deinit {
