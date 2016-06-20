@@ -282,15 +282,15 @@ public final class TextController: NSObject {
 	/// Expand selection to the entire node.
 	///
 	/// - parameter displaySelection: Range of the selected text in the display text
-	/// - returns: Optional range of the expanded selection
+	/// - returns: Optional presentation range of the expanded selection
 	private func unfoldableRange(presentationSelectedRange presentationSelectedRange: NSRange) -> NSRange? {
 		let selectedRange: NSRange = {
 			var range = presentationSelectedRange
 			range.location = max(0, range.location - 1)
 			range.length += (presentationSelectedRange.location - range.location) + 1
-			
-			// FIXME: Update to support inline markers
-			return currentDocument.backingRanges(presentationRange: range)[0]
+
+			let backingRanges = currentDocument.backingRanges(presentationRange: range)
+			return backingRanges.reduce(backingRanges[0]) { $0.union($1) }
 		}()
 
 		let foldableNodes = currentDocument.nodesIn(backingRange: selectedRange).filter { $0 is Foldable }
