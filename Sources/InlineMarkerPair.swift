@@ -12,8 +12,6 @@ public struct InlineMarkerPair: Node {
 
 	// MARK: - Properties
 
-	static let regularExpression: NSRegularExpression! = try? NSRegularExpression(pattern: "(☊([a-z]{2})\\|([a-zA-Z0-9]{22})☋)(.*)(☊Ω\\2\\|\\3☋)", options: [])
-
 	public var range: NSRange {
 		return openingMarker.range.union(closingMarker.range)
 	}
@@ -40,6 +38,27 @@ public struct InlineMarkerPair: Node {
 	public init(openingMarker: InlineMarker, closingMarker: InlineMarker) {
 		self.openingMarker = openingMarker
 		self.closingMarker = closingMarker
+	}
+
+
+	// MARK: - Processing
+
+	static func pairs(markers markers: [InlineMarker]) -> [InlineMarkerPair] {
+		var pairs = [InlineMarkerPair]()
+		var openingMarkers = [String: InlineMarker]()
+
+		for marker in markers {
+			switch marker.position {
+			case .opening:
+				openingMarkers[marker.id] = marker
+			case .closing:
+				if let opening = openingMarkers[marker.id] {
+					pairs.append(InlineMarkerPair(openingMarker: opening, closingMarker: marker))
+				}
+			}
+		}
+
+		return pairs.sort { $0.openingMarker.range.location < $1.openingMarker.range.location }
 	}
 
 

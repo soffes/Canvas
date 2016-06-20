@@ -13,12 +13,14 @@ public struct InlineMarker: Node {
 	// MARK: - Types
 
 	public enum Position: Int {
-		case Opening
-		case Closing
+		case opening
+		case closing
 	}
 
 
 	// MARK: - Properties
+
+	static let regularExpression: NSRegularExpression! = try? NSRegularExpression(pattern: "(☊(Ω)?([a-z]{2})\\|([a-zA-Z0-9]{22})☋)", options: [])
 
 	public var range: NSRange
 	

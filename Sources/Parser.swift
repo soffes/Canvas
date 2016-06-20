@@ -154,22 +154,21 @@ public struct Parser {
 	}
 
 	private static func parseInlineMarkers(string string: String, container: InlineMarkerContainer) -> [InlineMarkerPair] {
-		let matches = InlineMarkerPair.regularExpression.matchesInString(string, options: [], range: container.visibleRange)
+		let matches = InlineMarker.regularExpression.matchesInString(string, options: [], range: container.visibleRange)
 		if matches.isEmpty {
 			return []
 		}
 
 		let text = (string as NSString)
 
-		return matches.flatMap { result in
-			guard result.numberOfRanges == 6 else { return nil }
-
-			let id = text.substringWithRange(result.rangeAtIndex(3))
-			return InlineMarkerPair(
-				openingMarker: InlineMarker(range: result.rangeAtIndex(1), position: .Opening, id: id),
-				closingMarker: InlineMarker(range: result.rangeAtIndex(5), position: .Closing, id: id)
-			)
+		let markers: [InlineMarker] = matches.flatMap { result in
+			guard result.numberOfRanges == 5 else { return nil }
+			let id = text.substringWithRange(result.rangeAtIndex(4))
+			let position: InlineMarker.Position = result.rangeAtIndex(2).length == 0 ? .opening : .closing
+			return InlineMarker(range: result.rangeAtIndex(0), position: position, id: id)
 		}
+
+		return InlineMarkerPair.pairs(markers: markers)
 	}
 
 	private static func isContinuous(lhs: Positionable?, _ rhs: Positionable?) -> Bool {

@@ -21,8 +21,8 @@ final class DocumentInlineMarkerTests: XCTestCase {
 		let paragraph = document.blocks[1] as! Paragraph
 		let pairs = [
 			InlineMarkerPair(
-				openingMarker: InlineMarker(range: NSRange(location: 36, length: 27), position: .Opening, id: "3YA3fBfQystAGJj63asokU"),
-				closingMarker: InlineMarker(range: NSRange(location: 76, length: 28), position: .Closing, id: "3YA3fBfQystAGJj63asokU")
+				openingMarker: InlineMarker(range: NSRange(location: 36, length: 27), position: .opening, id: "3YA3fBfQystAGJj63asokU"),
+				closingMarker: InlineMarker(range: NSRange(location: 76, length: 28), position: .closing, id: "3YA3fBfQystAGJj63asokU")
 			)
 		]
 		XCTAssertEqual(pairs.map { $0.dictionary }, paragraph.inlineMarkerPairs.map { $0.dictionary })
@@ -77,5 +77,15 @@ final class DocumentInlineMarkerTests: XCTestCase {
 			NSRange(location: 50, length: 2)
 		]
 		XCTAssertEqual(ranges, document.backingRanges(presentationRange: NSRange(location: 8, length: 4)))
+	}
+
+	func testOverlappingInlineMarkers() {
+		let document = Document(backingString: "⧙doc-heading⧘Test\nHere is a ☊co|0znjeejIniX7iIEkKGMpPS☋com☊co|2SjhCeld7wLFEAyXsYK8eG☋ment☊Ωco|0znjeejIniX7iIEkKGMpPS☋. What☊Ωco|2SjhCeld7wLFEAyXsYK8eG☋ about after?")
+
+		let paragraph = document.blocks[1] as! Paragraph
+		XCTAssertEqual(2, paragraph.inlineMarkerPairs.count)
+
+//		let pair1 = paragraph.inlineMarkerPairs[0]
+//		let pair2 = paragraph.inlineMarkerPairs[1]
 	}
 }

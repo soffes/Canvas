@@ -33,7 +33,7 @@ public struct PlainRenderer: Renderer {
 
 		let output = lines.joinWithSeparator("\n")
 		let bounds = NSRange(location: 0, length: (output as NSString).length)
-		return InlineMarkerPair.regularExpression.stringByReplacingMatchesInString(output, options: [], range: bounds, withTemplate: "$4")
+		return InlineMarker.regularExpression.stringByReplacingMatchesInString(output, options: [], range: bounds, withTemplate: "")
 	}
 
 
