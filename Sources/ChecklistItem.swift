@@ -13,8 +13,8 @@ public struct ChecklistItem: Listable, Equatable {
 	// MARK: - Types
 
 	public enum State: String {
-		case Unchecked = " "
-		case Checked = "x"
+		case unchecked = " "
+		case checked = "x"
 
 		public var string: String {
 			return rawValue
@@ -22,8 +22,8 @@ public struct ChecklistItem: Listable, Equatable {
 
 		public var opposite: State {
 			switch self {
-			case .Unchecked: return .Checked
-			case . Checked: return .Unchecked
+			case .unchecked: return .checked
+			case .checked: return .unchecked
 			}
 		}
 	}
@@ -38,7 +38,7 @@ public struct ChecklistItem: Listable, Equatable {
 	public var indentation: Indentation
 	public var stateRange: NSRange
 	public var state: State
-	public var position: Position = .Single
+	public var position: Position = .single
 
 	public var textRange: NSRange {
 		return visibleRange
@@ -158,7 +158,7 @@ public struct ChecklistItem: Listable, Equatable {
 
 	// MARK: - Native
 
-	public static func nativeRepresentation(indentation indentation: Indentation = .Zero, state: State = .Unchecked) -> String {
+	public static func nativeRepresentation(indentation indentation: Indentation = .zero, state: State = .unchecked) -> String {
 		return "\(leadingNativePrefix)checklist-\(indentation.string)\(trailingNativePrefix)- [\(state.string)] "
 	}
 }

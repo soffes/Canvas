@@ -44,12 +44,12 @@ final class CodeBlockTestes: XCTestCase {
 		let actual = blocks.flatMap { ($0 as? Positionable)?.position }
 
 		let expected: [Position] = [
-			.Single,
-			.Top,
-			.Bottom,
-			.Top,
-			.Middle,
-			.Bottom
+			.single,
+			.top,
+			.bottom,
+			.top,
+			.middle,
+			.bottom
 		]
 
 		XCTAssertEqual(actual, expected)

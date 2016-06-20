@@ -15,7 +15,7 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 	public var range: NSRange
 	public var nativePrefixRange: NSRange
 	public var visibleRange: NSRange
-	public var position: Position = .Single
+	public var position: Position = .single
 
 	public var textRange: NSRange {
 		return visibleRange

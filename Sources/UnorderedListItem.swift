@@ -17,7 +17,7 @@ public struct UnorderedListItem: Listable, Equatable {
 	public var visibleRange: NSRange
 	public var indentationRange: NSRange
 	public var indentation: Indentation
-	public var position: Position = .Single
+	public var position: Position = .single
 
 	public var textRange: NSRange {
 		return visibleRange
@@ -83,7 +83,7 @@ public struct UnorderedListItem: Listable, Equatable {
 
 	// MARK: - Native
 
-	public static func nativeRepresentation(indentation indentation: Indentation = .Zero) -> String {
+	public static func nativeRepresentation(indentation indentation: Indentation = .zero) -> String {
 		return "\(leadingNativePrefix)unordered-list-\(indentation.string)\(trailingNativePrefix)- "
 	}
 }

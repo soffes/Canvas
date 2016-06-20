@@ -7,10 +7,10 @@
 //
 
 public enum Position: String, CustomStringConvertible {
-	case Top
-	case Middle
-	case Bottom
-	case Single
+	case top
+	case middle
+	case bottom
+	case single
 
 	public var description: String {
 		return rawValue
@@ -18,28 +18,28 @@ public enum Position: String, CustomStringConvertible {
 
 	var successor: Position? {
 		switch self {
-		case .Top, .Middle: return .Middle
+		case .top, .middle: return .middle
 		default: return nil
 		}
 	}
 
 	public var isTop: Bool {
 		switch self {
-		case .Top, .Single: return true
+		case .top, .single: return true
 		default: return false
 		}
 	}
 
 	public var isMiddle: Bool {
 		switch self {
-		case .Middle, .Single: return true
+		case .middle, .single: return true
 		default: return false
 		}
 	}
 
 	public var isBottom: Bool {
 		switch self {
-		case .Bottom, .Single: return true
+		case .bottom, .single: return true
 		default: return false
 		}
 	}

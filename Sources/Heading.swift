@@ -13,15 +13,15 @@ public struct Heading: BlockNode, NodeContainer, Foldable, InlineMarkerContainer
 	// MARK: - Types
 
 	public enum Level: UInt {
-		case One = 1
-		case Two = 2
-		case Three = 3
-		case Four = 4
-		case Five = 5
-		case Six = 6
+		case one = 1
+		case two = 2
+		case three = 3
+		case four = 4
+		case five = 5
+		case six = 6
 
 		public var successor: Level {
-			if self == .Six {
+			if self == .six {
 				return self
 			}
 
@@ -29,7 +29,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable, InlineMarkerContainer
 		}
 
 		public var predecessor: Level {
-			if self == .One {
+			if self == .one {
 				return self
 			}
 
@@ -37,11 +37,11 @@ public struct Heading: BlockNode, NodeContainer, Foldable, InlineMarkerContainer
 		}
 
 		public var isMinimum: Bool {
-			return self == .One
+			return self == .one
 		}
 
 		public var isMaximum: Bool {
-			return self == .Six
+			return self == .six
 		}
 
 		public var string: String {
@@ -135,7 +135,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable, InlineMarkerContainer
 
 	// MARK: - Native
 
-	public static func nativeRepresentation(level level: Level = .One) -> String {
+	public static func nativeRepresentation(level level: Level = .one) -> String {
 		var prefix = ""
 
 		for _ in 0..<level.rawValue {

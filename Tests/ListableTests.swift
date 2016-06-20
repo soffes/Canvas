@@ -14,14 +14,14 @@ final class ListableTests: XCTestCase {
 		let node = UnorderedListItem(string: "⧙unordered-list-0⧘- Hello", range: NSRange(location: 0, length: 25))!
 		XCTAssertEqual(NSRange(location: 0, length: 20), node.nativePrefixRange)
 		XCTAssertEqual(NSRange(location: 20, length: 5), node.visibleRange)
-		XCTAssertEqual(Indentation.Zero, node.indentation)
+		XCTAssertEqual(Indentation.zero, node.indentation)
 	}
 
 	func testOrdered() {
 		let node = OrderedListItem(string: "⧙ordered-list-0⧘1. Hello", range: NSRange(location: 0, length: 24))!
 		XCTAssertEqual(NSRange(location: 0, length: 19), node.nativePrefixRange)
 		XCTAssertEqual(NSRange(location: 19, length: 5), node.visibleRange)
-		XCTAssertEqual(Indentation.Zero, node.indentation)
+		XCTAssertEqual(Indentation.zero, node.indentation)
 	}
 
 	func testMixedPositions() {
@@ -29,10 +29,10 @@ final class ListableTests: XCTestCase {
 		let actual = blocks.flatMap { ($0 as? Positionable)?.position }
 
 		let expected: [Position] = [
-			.Top,
-			.Bottom,
-			.Single,
-			.Single
+			.top,
+			.bottom,
+			.single,
+			.single
 		]
 
 		XCTAssertEqual(actual, expected)

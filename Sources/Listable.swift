@@ -9,10 +9,10 @@
 import Foundation
 
 public enum Indentation: UInt {
-	case Zero = 0
-	case One = 1
-	case Two = 2
-	case Three = 3
+	case zero = 0
+	case one = 1
+	case two = 2
+	case three = 3
 
 	public var successor: Indentation {
 		if isMaximum {
@@ -31,11 +31,11 @@ public enum Indentation: UInt {
 	}
 
 	public var isMinimum: Bool {
-		return self == .Zero
+		return self == .zero
 	}
 
 	public var isMaximum: Bool {
-		return self == .Three
+		return self == .three
 	}
 
 	public var string: String {

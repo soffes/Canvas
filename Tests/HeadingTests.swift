@@ -31,10 +31,10 @@ final class HeadingTest: XCTestCase {
 	}
 
 	func testLevel() {
-		XCTAssertEqual(Heading.Level.One, Heading.Level.One.predecessor)
-		XCTAssertEqual(Heading.Level.One, Heading.Level.Two.predecessor)
-		XCTAssertEqual(Heading.Level.Six, Heading.Level.Five.successor)
-		XCTAssertEqual(Heading.Level.Six, Heading.Level.Six.successor)
+		XCTAssertEqual(Heading.Level.one, Heading.Level.one.predecessor)
+		XCTAssertEqual(Heading.Level.one, Heading.Level.two.predecessor)
+		XCTAssertEqual(Heading.Level.six, Heading.Level.five.successor)
+		XCTAssertEqual(Heading.Level.six, Heading.Level.six.successor)
 	}
 
 	func testOffset() {
@@ -49,7 +49,7 @@ final class HeadingTest: XCTestCase {
 	}
 
 	func testNativeRepresentation() {
-		XCTAssertEqual("# ", Heading.nativeRepresentation(level: .One))
-		XCTAssertEqual("###### ", Heading.nativeRepresentation(level: .Six))
+		XCTAssertEqual("# ", Heading.nativeRepresentation(level: .one))
+		XCTAssertEqual("###### ", Heading.nativeRepresentation(level: .six))
 	}
 }

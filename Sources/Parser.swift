@@ -231,15 +231,15 @@ public struct Parser {
 			if isContinuous(previousBlock, currentBlock), let nextPosition = previousBlock?.position.successor {
 				position = nextPosition
 			} else {
-				position = .Top
+				position = .top
 			}
 
 			// Check for ending
 			if !isContinuous(currentBlock, nextBlock) {
-				if position == .Top {
-					position = .Single
+				if position == .top {
+					position = .single
 				} else {
-					position = .Bottom
+					position = .bottom
 				}
 
 				codeLineNumber = 0

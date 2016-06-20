@@ -15,7 +15,7 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Inli
 	public var range: NSRange
 	public var nativePrefixRange: NSRange
 	public var visibleRange: NSRange
-	public var position: Position = .Single
+	public var position: Position = .single
 	public var language: String?
 
 	public var inlineMarkerPairs = [InlineMarkerPair]()
