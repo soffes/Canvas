@@ -10,11 +10,18 @@ extension APIClient {
 
 	// MARK: - Revoking Access Tokens
 
-	public func revokeAccessToken(completion: Result<Void> -> Void) {
+	public func revokeAccessToken(completion: (Result<Void> -> Void)? = nil) {
 		let params = [
 			"token": accessToken
 		]
-		request(method: .POST, path: "v1/oauth/access-tokens/actions/revoke", parameters: params, completion: completion)
+
+		let block: Result<Void> -> Void
+		if let completion = completion {
+			block = completion
+		} else {
+			block = { _ in }
+		}
+
+		request(method: .POST, path: "v1/oauth/access-tokens/actions/revoke", parameters: params, completion: block)
 	}
 }
-
