@@ -289,7 +289,7 @@ public final class TextController: NSObject {
 			range.location = max(0, range.location - 1)
 			range.length += (presentationSelectedRange.location - range.location) + 1
 			
-			// TODO: Update to support inline markers
+			// FIXME: Update to support inline markers
 			return currentDocument.backingRanges(presentationRange: range)[0]
 		}()
 
@@ -421,7 +421,6 @@ public final class TextController: NSObject {
 				// Special case for link URL and title. Maybe we should consider having Themes emit Styles instead of
 				// attributes or at least have a style controller for all of this logic.
 				if let link = span as? Link {
-					// TODO: Derive from theme
 					var attrs = foldableAttributes
 					attrs[NSForegroundColorAttributeName] = theme.linkURLColor
 
@@ -715,9 +714,9 @@ extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 	public func canvasTextStorage(textStorage: CanvasTextStorage, willReplaceCharactersInRange range: NSRange, withString string: String) {
 		let document = currentDocument
 		var presentationRange = range
-		
-		// TODO: Update to support inline markers
-		var backingRange = document.backingRanges(presentationRange: presentationRange)[0]
+
+		let backingRanges = document.backingRanges(presentationRange: presentationRange)
+		var backingRange = backingRanges[0]
 		var replacement = string
 
 		// Return completion
@@ -779,16 +778,36 @@ extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 				else if range.location == presentationRange.location {
 					presentationRange.location -= 1
 					
-					// TODO: Update to support inline markers
+					// FIXME: Update to support inline markers
 					backingRange = document.backingRanges(presentationRange: presentationRange)[0]
 					replacement = "\n" + replacement
 				}
 			}
 
-			// TODO: Handle a replacement of the new line before the attachment
+			// FIXME: Handle a replacement of the new line before the attachment
 		}
 
 		edit(backingRange: backingRange, replacement: replacement)
+
+		// Remove other backing ranges
+		if backingRanges.count > 1 {
+			var ranges = backingRanges
+			ranges.removeAtIndex(0)
+
+			var offset = replacement.isEmpty ? backingRange.length : 0
+
+			for r in ranges {
+				if backingRange.intersection(r) != nil {
+					continue
+				}
+
+				var range = r
+				range.location -= offset
+				edit(backingRange: range, replacement: "")
+
+				offset += range.length
+			}
+		}
 
 		backingRange.length = (replacement as NSString).length
 		presentationRange = document.presentationRange(backingRange: backingRange)
