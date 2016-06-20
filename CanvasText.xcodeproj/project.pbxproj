@@ -71,6 +71,16 @@
 		21D24D3C1D1207A600741038 /* Blockquote+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A3E1C8F9C0C00C17A62 /* Blockquote+CanvasText.swift */; };
 		21D24D3F1D120B7000741038 /* UnorderedListItem+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A3C1C8F9B5200C17A62 /* UnorderedListItem+CanvasText.swift */; };
 		21D24D401D120B7B00741038 /* BulletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9DD1C8DF54700283961 /* BulletView.swift */; };
+		21D70D011D18712C00DF4E9B /* Cache.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D4B21D173659009C6845 /* Cache.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		21D70D021D18712C00DF4E9B /* CanvasNative.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D4B31D173659009C6845 /* CanvasNative.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		21D70D031D18712C00DF4E9B /* Diff.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D4B41D173659009C6845 /* Diff.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		21D70D041D18712C00DF4E9B /* OperationalTransformation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D4B51D173659009C6845 /* OperationalTransformation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		21D70D051D18712C00DF4E9B /* X.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D4B61D173659009C6845 /* X.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		21D70D071D18714800DF4E9B /* Cache.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D4BD1D17366D009C6845 /* Cache.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		21D70D081D18714800DF4E9B /* CanvasNative.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D4BE1D17366D009C6845 /* CanvasNative.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		21D70D091D18714800DF4E9B /* Diff.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D4BF1D17366D009C6845 /* Diff.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		21D70D0A1D18714800DF4E9B /* OperationalTransformation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D4C01D17366D009C6845 /* OperationalTransformation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		21D70D0B1D18714800DF4E9B /* X.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D4C11D17366D009C6845 /* X.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		21DF7A311C8F75ED00C17A62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21DF7A301C8F75ED00C17A62 /* Assets.xcassets */; };
 		21DF7A3B1C8F9ADA00C17A62 /* Annotatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A3A1C8F9ADA00C17A62 /* Annotatable.swift */; };
 		21DF7A3D1C8F9B5200C17A62 /* UnorderedListItem+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DF7A3C1C8F9B5200C17A62 /* UnorderedListItem+CanvasText.swift */; };
@@ -106,6 +116,39 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		21D70D001D18711D00DF4E9B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				21D70D011D18712C00DF4E9B /* Cache.framework in Embed Frameworks */,
+				21D70D021D18712C00DF4E9B /* CanvasNative.framework in Embed Frameworks */,
+				21D70D031D18712C00DF4E9B /* Diff.framework in Embed Frameworks */,
+				21D70D041D18712C00DF4E9B /* OperationalTransformation.framework in Embed Frameworks */,
+				21D70D051D18712C00DF4E9B /* X.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21D70D061D18713000DF4E9B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				21D70D071D18714800DF4E9B /* Cache.framework in Embed Frameworks */,
+				21D70D081D18714800DF4E9B /* CanvasNative.framework in Embed Frameworks */,
+				21D70D091D18714800DF4E9B /* Diff.framework in Embed Frameworks */,
+				21D70D0A1D18714800DF4E9B /* OperationalTransformation.framework in Embed Frameworks */,
+				21D70D0B1D18714800DF4E9B /* X.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		210B4EAC1CD94E2A006E3C11 /* TextController+Gestures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextController+Gestures.swift"; sourceTree = "<group>"; };
 		211483C41C8A3034002CA206 /* CanvasText.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasText.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,7 +174,7 @@
 		2175D4C01D17366D009C6845 /* OperationalTransformation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OperationalTransformation.framework; path = Carthage/Build/Mac/OperationalTransformation.framework; sourceTree = "<group>"; };
 		2175D4C11D17366D009C6845 /* X.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = X.framework; path = Carthage/Build/Mac/X.framework; sourceTree = "<group>"; };
 		218944931CFFA041003F743B /* CanvasText.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasText.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2189449C1CFFA041003F743B /* CanvasTextTests-OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CanvasTextTests-OSX.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2189449C1CFFA041003F743B /* CanvasTextTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CanvasTextTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2193DC5E1D07A776004D8D0C /* Theme+Default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Theme+Default.swift"; sourceTree = "<group>"; };
 		21AD8C1D1C8A430B000A53F8 /* BlockSpacing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockSpacing.swift; sourceTree = "<group>"; };
 		21AD8C231C8A430B000A53F8 /* TextController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextController.swift; sourceTree = "<group>"; };
@@ -224,7 +267,7 @@
 				211483C41C8A3034002CA206 /* CanvasText.framework */,
 				211483CE1C8A3034002CA206 /* CanvasTextTests.xctest */,
 				218944931CFFA041003F743B /* CanvasText.framework */,
-				2189449C1CFFA041003F743B /* CanvasTextTests-OSX.xctest */,
+				2189449C1CFFA041003F743B /* CanvasTextTests-macOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -430,6 +473,7 @@
 				211483CA1C8A3034002CA206 /* Sources */,
 				211483CB1C8A3034002CA206 /* Frameworks */,
 				211483CC1C8A3034002CA206 /* Resources */,
+				21D70D001D18711D00DF4E9B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -441,9 +485,9 @@
 			productReference = 211483CE1C8A3034002CA206 /* CanvasTextTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		218944921CFFA041003F743B /* CanvasText-OSX */ = {
+		218944921CFFA041003F743B /* CanvasText-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 218944A81CFFA041003F743B /* Build configuration list for PBXNativeTarget "CanvasText-OSX" */;
+			buildConfigurationList = 218944A81CFFA041003F743B /* Build configuration list for PBXNativeTarget "CanvasText-macOS" */;
 			buildPhases = (
 				2189448E1CFFA041003F743B /* Sources */,
 				2189448F1CFFA041003F743B /* Frameworks */,
@@ -454,27 +498,28 @@
 			);
 			dependencies = (
 			);
-			name = "CanvasText-OSX";
+			name = "CanvasText-macOS";
 			productName = "CanvasText-OSX";
 			productReference = 218944931CFFA041003F743B /* CanvasText.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		2189449B1CFFA041003F743B /* CanvasTextTests-OSX */ = {
+		2189449B1CFFA041003F743B /* CanvasTextTests-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 218944A91CFFA041003F743B /* Build configuration list for PBXNativeTarget "CanvasTextTests-OSX" */;
+			buildConfigurationList = 218944A91CFFA041003F743B /* Build configuration list for PBXNativeTarget "CanvasTextTests-macOS" */;
 			buildPhases = (
 				218944981CFFA041003F743B /* Sources */,
 				218944991CFFA041003F743B /* Frameworks */,
 				2189449A1CFFA041003F743B /* Resources */,
+				21D70D061D18713000DF4E9B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				2189449F1CFFA041003F743B /* PBXTargetDependency */,
 			);
-			name = "CanvasTextTests-OSX";
+			name = "CanvasTextTests-macOS";
 			productName = "CanvasText-OSXTests";
-			productReference = 2189449C1CFFA041003F743B /* CanvasTextTests-OSX.xctest */;
+			productReference = 2189449C1CFFA041003F743B /* CanvasTextTests-macOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -515,8 +560,8 @@
 			targets = (
 				211483C31C8A3034002CA206 /* CanvasText-iOS */,
 				211483CD1C8A3034002CA206 /* CanvasTextTests-iOS */,
-				218944921CFFA041003F743B /* CanvasText-OSX */,
-				2189449B1CFFA041003F743B /* CanvasTextTests-OSX */,
+				218944921CFFA041003F743B /* CanvasText-macOS */,
+				2189449B1CFFA041003F743B /* CanvasTextTests-macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -653,7 +698,7 @@
 		};
 		2189449F1CFFA041003F743B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 218944921CFFA041003F743B /* CanvasText-OSX */;
+			target = 218944921CFFA041003F743B /* CanvasText-macOS */;
 			targetProxy = 2189449E1CFFA041003F743B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -770,7 +815,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasText;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvastext;
 				PRODUCT_NAME = CanvasText;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -793,7 +838,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasText;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvastext;
 				PRODUCT_NAME = CanvasText;
 				SKIP_INSTALL = YES;
 			};
@@ -804,7 +849,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = "Support/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasTextTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvastext.tests;
 				PRODUCT_NAME = CanvasTextTests;
 			};
 			name = Debug;
@@ -814,7 +859,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = "Support/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.CanvasTextTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvastext.tests;
 				PRODUCT_NAME = CanvasTextTests;
 			};
 			name = Release;
@@ -877,10 +922,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "CanvasText-OSXTests/Info.plist";
+				INFOPLIST_FILE = "Support/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.usecanvas.CanvasText-OSXTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvastext.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -891,10 +936,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "CanvasText-OSXTests/Info.plist";
+				INFOPLIST_FILE = "Support/Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.usecanvas.CanvasText-OSXTests";
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvastext.tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -930,7 +975,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		218944A81CFFA041003F743B /* Build configuration list for PBXNativeTarget "CanvasText-OSX" */ = {
+		218944A81CFFA041003F743B /* Build configuration list for PBXNativeTarget "CanvasText-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				218944A41CFFA041003F743B /* Debug */,
@@ -939,7 +984,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		218944A91CFFA041003F743B /* Build configuration list for PBXNativeTarget "CanvasTextTests-OSX" */ = {
+		218944A91CFFA041003F743B /* Build configuration list for PBXNativeTarget "CanvasTextTests-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				218944A61CFFA041003F743B /* Debug */,

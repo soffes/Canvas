@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "218944921CFFA041003F743B"
                BuildableName = "CanvasText.framework"
-               BlueprintName = "CanvasText-OSX"
+               BlueprintName = "CanvasText-macOS"
                ReferencedContainer = "container:CanvasText.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2189449B1CFFA041003F743B"
-               BuildableName = "CanvasTextTests-OSX.xctest"
-               BlueprintName = "CanvasTextTests-OSX"
+               BuildableName = "CanvasTextTests-macOS.xctest"
+               BlueprintName = "CanvasTextTests-macOS"
                ReferencedContainer = "container:CanvasText.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -44,7 +44,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "218944921CFFA041003F743B"
             BuildableName = "CanvasText.framework"
-            BlueprintName = "CanvasText-OSX"
+            BlueprintName = "CanvasText-macOS"
             ReferencedContainer = "container:CanvasText.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -66,7 +66,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "218944921CFFA041003F743B"
             BuildableName = "CanvasText.framework"
-            BlueprintName = "CanvasText-OSX"
+            BlueprintName = "CanvasText-macOS"
             ReferencedContainer = "container:CanvasText.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -84,7 +84,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "218944921CFFA041003F743B"
             BuildableName = "CanvasText.framework"
-            BlueprintName = "CanvasText-OSX"
+            BlueprintName = "CanvasText-macOS"
             ReferencedContainer = "container:CanvasText.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
