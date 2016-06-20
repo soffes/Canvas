@@ -6,7 +6,7 @@
 //  Copyright © 2015–2016 Canvas Labs, Inc. All rights reserved.
 //
 
-import UIKit
+import X
 
 public struct Font {
 
@@ -16,8 +16,18 @@ public struct Font {
 
 		var weight: CGFloat {
 			switch self {
-			case .regular: return UIFontWeightRegular
-			case .bold: return UIFontWeightMedium
+			case .regular:
+				#if os(OSX)
+					return NSFontWeightRegular
+				#else
+					return UIFontWeightRegular
+				#endif
+			case .bold:
+				#if os(OSX)
+					return NSFontWeightMedium
+				#else
+					return UIFontWeightMedium
+				#endif
 			}
 		}
 	}
@@ -37,12 +47,15 @@ public struct Font {
 		}
 	}
 
-	public static func sansSerif(weight weight: Weight = .regular, style: Style = .regular, size: Size = .body) -> UIFont! {
-		if style == .italic {
-			// TODO: Weight is currently ignored for italic
-			return .italicSystemFontOfSize(size.pointSize)
-		}
+	public static func sansSerif(weight weight: Weight = .regular, style: Style = .regular, size: Size = .body) -> X.Font! {
+		// TODO: Italic isn't supported on macOS yet
+		#if !os(OSX)
+			if style == .italic {
+				// TODO: Weight is currently ignored for italic
+				return X.Font.italicSystemFontOfSize(size.pointSize)
+			}
+		#endif
 
-		return .systemFontOfSize(size.pointSize, weight: weight.weight)
+		return X.Font.systemFontOfSize(size.pointSize, weight: weight.weight)
 	}
 }

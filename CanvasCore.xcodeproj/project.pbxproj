@@ -60,6 +60,7 @@
 		2175D5361D173933009C6845 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2175D5341D173933009C6845 /* Localizable.strings */; };
 		2175D5371D173936009C6845 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2175D5341D173933009C6845 /* Localizable.strings */; };
 		2175D5381D173995009C6845 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D23001D171B4900D32F65 /* Font.swift */; };
+		2176785E1D17589300003D89 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D23001D171B4900D32F65 /* Font.swift */; };
 		219D23081D171B4900D32F65 /* Accountable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D22FD1D171B4900D32F65 /* Accountable.swift */; };
 		219D239E1D171C0900D32F65 /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219D23911D171BFB00D32F65 /* CanvasKit.framework */; };
 		219D23B61D171C6900D32F65 /* ISO8601.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219D23A91D171C5E00D32F65 /* ISO8601.framework */; };
@@ -1821,6 +1822,7 @@
 			files = (
 				2175D52C1D173880009C6845 /* AvatarsController.swift in Sources */,
 				2175D52E1D173922009C6845 /* LocalizedString.swift in Sources */,
+				2176785E1D17589300003D89 /* Font.swift in Sources */,
 				2175D3311D1722CA009C6845 /* AccountController.swift in Sources */,
 				2175D5281D173753009C6845 /* SearchController.swift in Sources */,
 				2175D4D11D1736FC009C6845 /* SpaceView.swift in Sources */,
