@@ -9,7 +9,7 @@
 import XCTest
 import CanvasNative
 
-class ChecklistItemTests: XCTestCase {
+final class ChecklistItemTests: XCTestCase {
 	func testUncompleted() {
 		let node = ChecklistItem(
 			string: "⧙checklist-0⧘- [ ] Hello",

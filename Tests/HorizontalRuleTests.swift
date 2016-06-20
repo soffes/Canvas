@@ -9,7 +9,7 @@
 import XCTest
 import CanvasNative
 
-class HorizontalRuleTests: XCTestCase {
+final class HorizontalRuleTests: XCTestCase {
 	func testParsing() {
 		var native = "***"
 		var range = NSRange(location: 0, length: (native as NSString).length)

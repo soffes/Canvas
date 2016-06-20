@@ -9,7 +9,7 @@
 import XCTest
 import CanvasNative
 
-class ImageTests: XCTestCase {
+final class ImageTests: XCTestCase {
 	func testUploadedImage() {
 		let native = "⧙image-{\"ci\":\"1-a-b\",\"width\":1011,\"height\":679,\"url\":\"https://example.com/cover.jpg\"}⧘"
 		let length = (native as NSString).length

@@ -9,7 +9,7 @@
 import XCTest
 import CanvasNative
 
-class CodeBlockTestes: XCTestCase {
+final class CodeBlockTestes: XCTestCase {
 	func testLanguage() {
 		let node1 = CodeBlock(string: "⧙code⧘puts hi", range: NSRange(location: 0, length: 13))!
 		XCTAssertEqual(NSRange(location: 0, length: 6), node1.nativePrefixRange)

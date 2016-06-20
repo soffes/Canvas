@@ -9,7 +9,7 @@
 import XCTest
 import CanvasNative
 
-class NodeTests: XCTestCase {
+final class NodeTests: XCTestCase {
 	func testOffset() {
 		let before = Paragraph(string: "Hello", range: NSRange(location: 0, length: 5))!
 

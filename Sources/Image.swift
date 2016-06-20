@@ -36,6 +36,10 @@ public struct Image: Attachable, Equatable {
 		return dictionary
 	}
 
+	public var hiddenRanges: [NSRange] {
+		return [nativePrefixRange]
+	}
+
 
 	// MARK: - Initializers
 

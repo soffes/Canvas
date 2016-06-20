@@ -9,7 +9,7 @@
 import XCTest
 import CanvasNative
 
-class TitleTest: XCTestCase {
+final class TitleTest: XCTestCase {
 	func testTitle() {
 		let node = Title(string: "⧙doc-heading⧘Hello", range: NSRange(location: 0, length: 18))!
 		XCTAssertEqual(NSRange(location: 0, length: 13), node.nativePrefixRange)

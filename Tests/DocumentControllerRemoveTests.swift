@@ -9,7 +9,7 @@
 import XCTest
 import CanvasNative
 
-class DocumentControllerRemoveTests: XCTestCase {
+final class DocumentControllerRemoveTests: XCTestCase {
 
 	// MARK: - Properties
 

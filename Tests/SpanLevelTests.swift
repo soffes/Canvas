@@ -9,7 +9,7 @@
 import XCTest
 import CanvasNative
 
-class SpanLevelTests: XCTestCase {
+final class SpanLevelTests: XCTestCase {
 
 	// MARK: - Tests
 

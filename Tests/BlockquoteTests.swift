@@ -9,7 +9,7 @@
 import XCTest
 import CanvasNative
 
-class BlockquoteTest: XCTestCase {
+final class BlockquoteTest: XCTestCase {
 	func testBlockquote() {
 		let node = Blockquote(string: "⧙blockquote⧘> Hello", range: NSRange(location: 0, length: 19))!
 		XCTAssertEqual(NSRange(location: 0, length: 14), node.nativePrefixRange)

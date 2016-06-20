@@ -9,7 +9,7 @@
 import XCTest
 import CanvasNative
 
-class HeadingTest: XCTestCase {
+final class HeadingTest: XCTestCase {
 	func testHeading1() {
 		let node = Heading(string: "# Hello", range: NSRange(location: 0, length: 7))!
 		XCTAssertEqual(NSRange(location: 0, length: 2), node.leadingDelimiterRange)

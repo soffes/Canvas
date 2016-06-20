@@ -9,7 +9,7 @@
 import XCTest
 import CanvasNative
 
-class PlainRendererTests: XCTestCase {
+final class PlainRendererTests: XCTestCase {
 	func testRenderer() {
 		let document = Document(backingString: "⧙doc-heading⧘Hello **world**\nHere's a [link](https://usecanvas.com).")
 		let renderer = PlainRenderer(document: document)

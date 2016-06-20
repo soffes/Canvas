@@ -9,7 +9,7 @@
 import XCTest
 import CanvasNative
 
-class DocumentControllerReliabilityTests: XCTestCase {
+final class DocumentControllerReliabilityTests: XCTestCase {
 
 	// MARK: - Properties
 

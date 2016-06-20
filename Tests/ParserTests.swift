@@ -10,7 +10,7 @@ import XCTest
 import CanvasNative
 
 // Most of the parser is tested in the node tests.
-class ParserTests: XCTestCase {
+final class ParserTests: XCTestCase {
 	func testTrailingNewLine() {
 		let blocks = Parser.parse("⧙doc-heading⧘Hello\n")
 

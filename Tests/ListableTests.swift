@@ -9,7 +9,7 @@
 import XCTest
 import CanvasNative
 
-class ListableTests: XCTestCase {
+final class ListableTests: XCTestCase {
 	func testUnordered() {
 		let node = UnorderedListItem(string: "⧙unordered-list-0⧘- Hello", range: NSRange(location: 0, length: 25))!
 		XCTAssertEqual(NSRange(location: 0, length: 20), node.nativePrefixRange)
