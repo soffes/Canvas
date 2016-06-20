@@ -57,8 +57,8 @@ public class APIClient: NetworkClient {
 	
 	// MARK: - Internal
 
-	func request(method method: Method = .GET, path: String, params: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8", completion: Result<Void> -> Void) {
-		let request = buildRequest(method: method, path: path, params: params, contentType: contentType)
+	func request(method method: Method = .GET, path: String, parameters: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8", completion: Result<Void> -> Void) {
+		let request = buildRequest(method: method, path: path, parameters: parameters, contentType: contentType)
 		sendRequest(request: request, completion: completion) { _, _, _ in
 			dispatch_async(networkCompletionQueue) {
 				completion(.Success(()))
@@ -66,8 +66,8 @@ public class APIClient: NetworkClient {
 		}
 	}
 
-	func request<T: JSONDeserializable>(method method: Method = .GET, path: String, params: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8", completion: Result<T> -> Void) {
-		let request = buildRequest(method: method, path: path, params: params, contentType: contentType)
+	func request<T: JSONDeserializable>(method method: Method = .GET, path: String, parameters: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8", completion: Result<T> -> Void) {
+		let request = buildRequest(method: method, path: path, parameters: parameters, contentType: contentType)
 		sendRequest(request: request, completion: completion) { data, _, _ in
 			guard let data = data,
 				json = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
@@ -86,8 +86,8 @@ public class APIClient: NetworkClient {
 		}
 	}
 
-	func request<T: JSONDeserializable>(method method: Method = .GET, path: String, params: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8", completion: Result<[T]> -> Void) {
-		let request = buildRequest(method: method, path: path, params: params, contentType: contentType)
+	func request<T: JSONDeserializable>(method method: Method = .GET, path: String, parameters: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8", completion: Result<[T]> -> Void) {
+		let request = buildRequest(method: method, path: path, parameters: parameters, contentType: contentType)
 		sendRequest(request: request, completion: completion) { data, _, _ in
 			guard let data = data,
 				json = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
@@ -106,15 +106,15 @@ public class APIClient: NetworkClient {
 		}
 	}
 	
-	private func buildRequest(method method: Method = .GET, path: String, params: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8") -> NSMutableURLRequest {
+	private func buildRequest(method method: Method = .GET, path: String, parameters: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8") -> NSMutableURLRequest {
 		// Create URL
 		var URL = baseURL.URLByAppendingPathComponent(path)
 
 		// Add GET params
 		if method == .GET {
-			if let params = params, components = NSURLComponents(URL: URL, resolvingAgainstBaseURL: true) {
+			if let parameters = parameters, components = NSURLComponents(URL: URL, resolvingAgainstBaseURL: true) {
 				var queryItems = [NSURLQueryItem]()
-				for (name, value) in params {
+				for (name, value) in parameters {
 					if let value = value as? String {
 						queryItems.append(NSURLQueryItem(name: name, value: value))
 					} else {
@@ -139,8 +139,8 @@ public class APIClient: NetworkClient {
 		request.setValue(contentType, forHTTPHeaderField: "Content-Type")
 
 		// Add POST params
-		if let params = params where method != .GET {
-			request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(params, options: [])
+		if let parameters = parameters where method != .GET {
+			request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(parameters, options: [])
 		}
 
 		// Accept JSON

@@ -51,7 +51,7 @@ extension APIClient {
 			params["is_public_writable"] = isPublicWritable
 		}
 
-		request(method: .POST, path: "v1/canvases", params: params, completion: completion)
+		request(method: .POST, path: "v1/canvases", parameters: params, completion: completion)
 	}
 
 
@@ -84,6 +84,6 @@ extension APIClient {
 	}
 
 	public func searchCanvases(organizationID organizationID: String, query: String, completion: Result<[Canvas]> -> Void) {
-		request(path: "v1/orgs/\(organizationID)/canvases/search", params: ["query": query], completion: completion)
+		request(path: "v1/orgs/\(organizationID)/canvases/search", parameters: ["query": query], completion: completion)
 	}
 }
