@@ -6,6 +6,12 @@
 //  Copyright © 2015–2016 Canvas Labs, Inc. All rights reserved.
 //
 
+#if os(OSX)
+	import AppKit
+#else
+	import UIKit
+#endif
+
 import X
 
 public struct Font {
