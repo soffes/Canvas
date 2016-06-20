@@ -16,12 +16,12 @@ extension TextController {
 		let newState: ChecklistItem.State
 
 		// Has checked items
-		if states.contains(.Checked) {
+		if states.contains(.checked) {
 			// If any are unchecked, check all. If there are no unchecked items, uncheck all.
-			newState = states.contains(.Unchecked) ? .Checked : .Unchecked
+			newState = states.contains(.unchecked) ? .checked : .unchecked
 		} else {
 			// Only has unchecked items. Check all.
-			newState = .Checked
+			newState = .checked
 		}
 
 		for block in blocks {

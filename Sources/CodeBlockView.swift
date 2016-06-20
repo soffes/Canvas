@@ -74,11 +74,11 @@ final class CodeBlockView: ViewType, Annotation {
 		let path: CGPath?
 
 		switch codeBlock.position {
-		case .Single:
+		case .single:
 			path = UIBezierPath(roundedRect: bounds, cornerRadius: 4).CGPath
-		case .Top:
+		case .top:
 			path = UIBezierPath(roundedRect: bounds, byRoundingCorners: [.TopLeft, .TopRight], cornerRadii: CGSize(width: 4, height: 4)).CGPath
-		case .Bottom(_):
+		case .bottom(_):
 			path = UIBezierPath(roundedRect: bounds, byRoundingCorners: [.BottomLeft, .BottomRight], cornerRadii: CGSize(width: 4, height: 4)).CGPath
 		default:
 			path = nil

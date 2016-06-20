@@ -756,7 +756,7 @@ extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 						replacement += (document.backingString as NSString).substringWithRange(block.nativePrefixRange)
 
 						// Make checkboxes unchecked by default
-						if let checklist = block as? ChecklistItem where checklist.state == .Checked {
+						if let checklist = block as? ChecklistItem where checklist.state == .checked {
 							replacement = replacement.stringByReplacingOccurrencesOfString("- [x] ", withString: "- [ ] ")
 						}
 					}

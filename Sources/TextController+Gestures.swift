@@ -44,7 +44,7 @@ extension TextController {
 		// Decrease headings
 		if let block = block as? Heading {
 			// Convert to Paragraph
-			if block.level == .Three {
+			if block.level == .three {
 				edit(backingRange: block.leadingDelimiterRange, replacement: "")
 				return
 			}
@@ -80,7 +80,7 @@ extension TextController {
 
 		// Convert Paragraph to Heading
 		if block is Paragraph {
-			let string = Heading.nativeRepresentation(level: .Three)
+			let string = Heading.nativeRepresentation(level: .three)
 			var range = block.visibleRange
 			range.length = 0
 			edit(backingRange: range, replacement: string)
@@ -88,7 +88,7 @@ extension TextController {
 		}
 
 		// Increase Heading level
-		if let block = block as? Heading where block.level != .One {
+		if let block = block as? Heading where block.level != .one {
 			let string = Heading.nativeRepresentation(level: block.level.predecessor)
 			edit(backingRange: block.leadingDelimiterRange, replacement: string)
 			return

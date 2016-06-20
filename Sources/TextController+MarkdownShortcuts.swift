@@ -129,12 +129,12 @@ extension TextController {
 		let state: ChecklistItem.State
 		if !scanner.scanString(" ", intoString: nil) {
 			if scanner.scanString("x", intoString: nil) {
-				state = .Checked
+				state = .checked
 			} else {
-				state = .Unchecked
+				state = .unchecked
 			}
 		} else {
-			state = .Unchecked
+			state = .unchecked
 		}
 
 		// Trailing delimiter with required trailing space
@@ -165,6 +165,6 @@ extension TextController {
 		while scanner.scanString("    ", intoString: nil) || scanner.scanString("\t", intoString: nil) {
 			level += 1
 		}
-		return Indentation(rawValue: level) ?? .Three
+		return Indentation(rawValue: level) ?? .three
 	}
 }

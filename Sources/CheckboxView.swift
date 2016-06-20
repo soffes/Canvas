@@ -65,7 +65,7 @@ final class CheckboxView: UIButton, Annotation {
 
 		let rect = checkboxRectForBounds(bounds)
 
-		if checklistItem.state == .Checked {
+		if checklistItem.state == .checked {
 			tintColor.setFill()
 			UIBezierPath(roundedRect: rect, cornerRadius: 3).fill()
 
