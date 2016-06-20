@@ -82,10 +82,11 @@ final class DocumentInlineMarkerTests: XCTestCase {
 	func testOverlappingInlineMarkers() {
 		let document = Document(backingString: "⧙doc-heading⧘Test\nHere is a ☊co|0znjeejIniX7iIEkKGMpPS☋com☊co|2SjhCeld7wLFEAyXsYK8eG☋ment☊Ωco|0znjeejIniX7iIEkKGMpPS☋. What☊Ωco|2SjhCeld7wLFEAyXsYK8eG☋ about after?")
 
+		XCTAssertEqual("Test\nHere is a comment. What about after?", document.presentationString)
+
 		let paragraph = document.blocks[1] as! Paragraph
 		XCTAssertEqual(2, paragraph.inlineMarkerPairs.count)
-
-//		let pair1 = paragraph.inlineMarkerPairs[0]
-//		let pair2 = paragraph.inlineMarkerPairs[1]
+		XCTAssertEqual("0znjeejIniX7iIEkKGMpPS", paragraph.inlineMarkerPairs[0].openingMarker.id)
+		XCTAssertEqual("2SjhCeld7wLFEAyXsYK8eG", paragraph.inlineMarkerPairs[1].openingMarker.id)
 	}
 }
