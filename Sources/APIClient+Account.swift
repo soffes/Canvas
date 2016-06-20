@@ -14,14 +14,6 @@ extension APIClient {
 		let params = [
 			"token": accessToken
 		]
-
-		let block: Result<Void> -> Void
-		if let completion = completion {
-			block = completion
-		} else {
-			block = { _ in }
-		}
-
-		request(method: .POST, path: "v1/oauth/access-tokens/actions/revoke", parameters: params, completion: block)
+		request(method: .POST, path: "v1/oauth/access-tokens/actions/revoke", parameters: params, completion: completion)
 	}
 }

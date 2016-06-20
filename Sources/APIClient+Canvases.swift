@@ -57,11 +57,11 @@ extension APIClient {
 
 	// MARK: - Destorying a Canvas
 
-	public func destroyCanvas(canvas canvas: Canvas, completion: Result<Void> -> Void) {
+	public func destroyCanvas(canvas canvas: Canvas, completion: (Result<Void> -> Void)? = nil) {
 		destroyCanvas(canvasID: canvas.id, completion: completion)
 	}
 
-	public func destroyCanvas(canvasID canvasID: String, completion: Result<Void> -> Void) {
+	public func destroyCanvas(canvasID canvasID: String, completion: (Result<Void> -> Void)? = nil) {
 		request(method: .DELETE, path: "v1/canvases/\(canvasID)", completion: completion)
 	}
 
