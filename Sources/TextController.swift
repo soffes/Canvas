@@ -580,6 +580,7 @@ extension TextController: TransportControllerDelegate {
 		displayDelegate?.textControllerDidProcessRemoteEdit(self)
 		
 		applyStyles()
+		annotationsController.layoutAnnotations()
 	}
 
 	public func transportController(controller: TransportController, didReceiveOperation operation: Operation) {
