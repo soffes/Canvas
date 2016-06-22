@@ -363,20 +363,6 @@ public final class TextController: NSObject {
 				styles += innerStyles
 				foldableRanges += innerFoldableRanges
 			}
-
-			// Inline markers
-			if let block = block as? InlineMarkerContainer {
-				for pair in block.inlineMarkerPairs {
-					let style = Style(
-						range: currentDocument.presentationRange(backingRange: pair.visibleRange),
-						attributes: [
-							NSBackgroundColorAttributeName: theme.commentBackgroundColor,
-							NSFontAttributeName: font
-						]
-					)
-					styles.append(style)
-				}
-			}
 		}
 
 		return (styles, foldableRanges)
