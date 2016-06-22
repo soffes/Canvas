@@ -18,6 +18,10 @@ struct SelectionController {
 		// Inserting
 		if replacementLength > 0 {
 
+			if selection.location == replacementRange.location {
+				return NSRange(location: selection.location + replacementLength, length: 0)
+			}
+
 			// Shift selection
 			if replacementRange.max < output.location {
 				output.location += replacementLength - replacementRange.length

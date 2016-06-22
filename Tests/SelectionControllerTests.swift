@@ -150,6 +150,15 @@ class SelectionControllerTests: XCTestCase {
 		XCTAssertEqual(NSRange(location: 10, length: 9), output)
 	}
 
+	func testReplaceAll() {
+		let output = SelectionController.adjust(
+			selection: NSRange(location: 6, length: 5),
+			replacementRange: NSRange(location: 6, length: 5),
+			replacementLength: 1
+		)
+		XCTAssertEqual(NSRange(location: 7, length: 0), output)
+	}
+
 
 	// MARK: - Invalid Input Tests
 
