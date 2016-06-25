@@ -27,8 +27,8 @@
 		2175D34A1D172370009C6845 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175D3481D17236D009C6845 /* Configuration.swift */; };
 		2175D3691D172549009C6845 /* X.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D35C1D17252B009C6845 /* X.framework */; };
 		2175D36C1D172554009C6845 /* X.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D35E1D17252B009C6845 /* X.framework */; };
-		2175D36D1D17255D009C6845 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D22FF1D171B4900D32F65 /* Color.swift */; };
-		2175D36E1D17255D009C6845 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D22FF1D171B4900D32F65 /* Color.swift */; };
+		2175D36D1D17255D009C6845 /* Swatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D22FF1D171B4900D32F65 /* Swatch.swift */; };
+		2175D36E1D17255D009C6845 /* Swatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D22FF1D171B4900D32F65 /* Swatch.swift */; };
 		2175D36F1D1725A0009C6845 /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D23031D171B4900D32F65 /* LightTheme.swift */; };
 		2175D3701D1725A0009C6845 /* LightTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D23031D171B4900D32F65 /* LightTheme.swift */; };
 		2175D3931D172618009C6845 /* CanvasText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D3791D1725E8009C6845 /* CanvasText.framework */; };
@@ -736,7 +736,7 @@
 		2175D5351D173933009C6845 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		219D22FD1D171B4900D32F65 /* Accountable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accountable.swift; sourceTree = "<group>"; };
 		219D22FE1D171B4900D32F65 /* AvatarsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarsController.swift; sourceTree = "<group>"; };
-		219D22FF1D171B4900D32F65 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		219D22FF1D171B4900D32F65 /* Swatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swatch.swift; sourceTree = "<group>"; };
 		219D23001D171B4900D32F65 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		219D23011D171B4900D32F65 /* Imgix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Imgix.swift; sourceTree = "<group>"; };
 		219D23021D171B4900D32F65 /* ImgixController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgixController.swift; sourceTree = "<group>"; };
@@ -997,7 +997,7 @@
 		219D23151D171B5A00D32F65 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
-				219D22FF1D171B4900D32F65 /* Color.swift */,
+				219D22FF1D171B4900D32F65 /* Swatch.swift */,
 				219D23001D171B4900D32F65 /* Font.swift */,
 				219D23031D171B4900D32F65 /* LightTheme.swift */,
 			);
@@ -1397,7 +1397,7 @@
 		2175D37F1D1725E8009C6845 /* CanvasTextTests-OSX.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = "CanvasTextTests-OSX.xctest";
+			path = "CanvasTextTests-macOS.xctest";
 			remoteRef = 2175D37E1D1725E8009C6845 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1804,7 +1804,7 @@
 				2175D5271D173744009C6845 /* Imgix.swift in Sources */,
 				2175D3431D1722FF009C6845 /* PresenceController.swift in Sources */,
 				2175D3701D1725A0009C6845 /* LightTheme.swift in Sources */,
-				2175D36E1D17255D009C6845 /* Color.swift in Sources */,
+				2175D36E1D17255D009C6845 /* Swatch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1833,7 +1833,7 @@
 				2175D5261D173744009C6845 /* Imgix.swift in Sources */,
 				2175D3421D1722FF009C6845 /* PresenceController.swift in Sources */,
 				2175D36F1D1725A0009C6845 /* LightTheme.swift in Sources */,
-				2175D36D1D17255D009C6845 /* Color.swift in Sources */,
+				2175D36D1D17255D009C6845 /* Swatch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
