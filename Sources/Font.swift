@@ -18,7 +18,7 @@ public struct Font {
 
 	public enum Weight {
 		case regular
-		case bold
+		case medium
 
 		var weight: CGFloat {
 			switch self {
@@ -28,7 +28,7 @@ public struct Font {
 				#else
 					return UIFontWeightRegular
 				#endif
-			case .bold:
+			case .medium:
 				#if os(OSX)
 					return NSFontWeightMedium
 				#else
