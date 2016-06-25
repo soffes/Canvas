@@ -133,7 +133,7 @@ public final class TextController: NSObject {
 	private var needsTitle = false
 	private var needsUnfoldUpdate = false
 	private var styles = [Style]()
-	private var invalidDisplayRange: NSRange?
+	private var invalidPresentationRange: NSRange?
 
 
 	// MARK: - Initializers
@@ -257,7 +257,7 @@ public final class TextController: NSObject {
 	}
 
 
-	// MARK: - Internal
+	// MARK: - Layout
 
 	func blockSpacing(block block: BlockNode) -> BlockSpacing {
 		#if os(OSX)
@@ -266,6 +266,42 @@ public final class TextController: NSObject {
 			let horizontalSizeClass = traitCollection.horizontalSizeClass
 		#endif
 		return theme.blockSpacing(block: block, horizontalSizeClass: horizontalSizeClass)
+	}
+
+	private func invalidatePresentationRange(range: NSRange) {
+		invalidPresentationRange = invalidPresentationRange.flatMap { $0.union(range) } ?? range
+	}
+	
+	private func invalidateLayoutIfNeeded() {
+		guard var range = invalidPresentationRange else { return }
+		
+		if range.max > textStorage.length {
+			print("WARNING: Invalid range is too long. Adjusting.")
+			range.length = min(textStorage.length - range.location, range.length)
+		}
+		
+		layoutManager.ensureGlyphsForCharacterRange(range)
+		layoutManager.invalidateLayoutForCharacterRange(range, actualCharacterRange: nil)
+		
+		applyStyles()
+		refreshAnnotations()
+		
+		self.invalidPresentationRange = nil
+	}
+
+	private func layoutAttachments() {
+		var styles = [Style]()
+		
+		for block in currentDocument.blocks {
+			guard let block = block as? Attachable,
+				style = attachmentStyle(block: block)
+				else { continue }
+			
+			styles.append(style)
+		}
+		
+		self.styles += styles
+		applyStyles()
 	}
 
 
@@ -304,22 +340,7 @@ public final class TextController: NSObject {
 
 		return range
 	}
-
-	private func layoutAttachments() {
-		var styles = [Style]()
-		
-		for block in currentDocument.blocks {
-			guard let block = block as? Attachable,
-				style = attachmentStyle(block: block)
-			else { continue }
-			
-			styles.append(style)
-		}
-		
-		self.styles += styles
-		applyStyles()
-	}
-
+	
 	// Returns an array of styles and an array of foldable ranges
 	private func stylesForBlock(block: BlockNode) -> ([Style], [NSRange]) {
 		var range = currentDocument.presentationRange(block: block)
@@ -605,6 +626,20 @@ extension TextController: DocumentControllerDelegate {
 		_layoutManager.removeFoldableRanges()
 		_layoutManager.invalidFoldingRange = range
 		_textStorage.actuallyReplaceCharactersInRange(range, withString: string)
+		
+		// Calculate the line range
+		let text = textStorage.string as NSString
+		var lineRange = range
+		lineRange.length = (string as NSString).length
+		lineRange = text.lineRangeForRange(lineRange)
+		
+		// Include the line before
+		if lineRange.location > 0 {
+			lineRange.location -= 1
+			lineRange.length += 1
+		}
+		
+		invalidatePresentationRange(lineRange)
 
 		var foldableRanges = [NSRange]()
 		controller.document.blocks.forEach { foldableRanges += stylesForBlock($0).1 }
@@ -633,7 +668,7 @@ extension TextController: DocumentControllerDelegate {
 			range.length += 1
 		}
 
-//		_textStorage.invalidRange(range)
+		invalidatePresentationRange(range)
 		
 		if let block = block as? Attachable, style = attachmentStyle(block: block) {
 			self.styles.append(style)
@@ -655,6 +690,10 @@ extension TextController: DocumentControllerDelegate {
 	public func documentControllerDidUpdateDocument(controller: DocumentController) {
 		textStorage.endEditing()
 		updateTitleIfNeeded(controller)
+		
+		dispatch_async(dispatch_get_main_queue()) { [weak self] in
+			self?.invalidateLayoutIfNeeded()
+		}
 	}
 
 	private func refreshAnnotations() {
@@ -817,7 +856,7 @@ extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 		updateUnfoldIfNeeded()
 
 		dispatch_async(dispatch_get_main_queue()) { [weak self] in
-			self?.refreshAnnotations()
+			self?.invalidateLayoutIfNeeded()
 		}
 	}
 
