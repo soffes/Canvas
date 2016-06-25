@@ -32,14 +32,12 @@ public struct Swatch {
 
 	// MARK: - Bars
 
-	public static let navigationBarBorder = lightGray
-	public static let searchBarBorder = lightGray
+	public static let border = lightGray
 
 
 	// MARK: - Tables
 
 	public static let groupedTableBackground = extraLightGray
-	public static let cellSeparator = lightGray
 
 	/// Chevron in table view cells
 	public static let cellDisclosureIndicator = gray
