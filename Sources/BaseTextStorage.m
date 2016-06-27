@@ -45,7 +45,7 @@
 
 - (void)setAttributes:(NSDictionary<NSString *,id> *)attributes range:(NSRange)range {
 	if (NSMaxRange(range) > self.length) {
-		NSLog(@"WARNING: Tried to set attributes at out of bounds range \(range). Length: \(length)");
+		NSLog(@"WARNING: Tried to set attributes at out of bounds range %@. Length: %lu", NSStringFromRange(range), (unsigned long)self.length);
 		return;
 	}
 	

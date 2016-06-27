@@ -203,8 +203,8 @@ public final class TextController: NSObject {
 		var styles = [Style]()
 		for block in currentDocument.blocks {
 			guard let container = block as? NodeContainer else { continue }
-			let font = theme.attributes(block: block)[NSFontAttributeName] as? Font ?? theme.fontOfSize(theme.fontSize)
-			styles += stylesForSpans(container.subnodes, currentFont: font, onlyTintable: true).0
+			let attributes = theme.attributes(block: block)
+			styles += stylesForSpans(container.subnodes, parentAttributes: attributes, onlyTintable: true).0
 		}
 
 		if !styles.isEmpty {
@@ -363,41 +363,37 @@ public final class TextController: NSObject {
 		var styles = [Style(range: range, attributes: attributes)]
 		var foldableRanges = [NSRange]()
 
-		if let font = attributes[NSFontAttributeName] as? Font {
-			// Foldable attributes
-			if let foldable = block as? Foldable {
-				let foldableAttributes = theme.foldingAttributes(currentFont: font)
+		// Foldable attributes
+		if let foldable = block as? Foldable {
+			let foldableAttributes = theme.foldingAttributes(parentAttributes: attributes)
 
-				for backingRange in foldable.foldableRanges {
-					let style = Style(
-						range: currentDocument.presentationRange(backingRange: backingRange),
-						attributes: foldableAttributes
-					)
-					styles.append(style)
-					foldableRanges.append(style.range)
-				}
+			for backingRange in foldable.foldableRanges {
+				let style = Style(
+					range: currentDocument.presentationRange(backingRange: backingRange),
+					attributes: foldableAttributes
+				)
+				styles.append(style)
+				foldableRanges.append(style.range)
 			}
+		}
 
-			// Contained nodes
-			if let container = block as? NodeContainer {
-				let (innerStyles, innerFoldableRanges) = stylesForSpans(container.subnodes, currentFont: font)
-				styles += innerStyles
-				foldableRanges += innerFoldableRanges
-			}
+		// Contained nodes
+		if let container = block as? NodeContainer {
+			let (innerStyles, innerFoldableRanges) = stylesForSpans(container.subnodes, parentAttributes: attributes)
+			styles += innerStyles
+			foldableRanges += innerFoldableRanges
 		}
 
 		return (styles, foldableRanges)
 	}
 
 	// Returns an array of styles and an array of foldable ranges
-	private func stylesForSpans(spans: [SpanNode], currentFont: Font, onlyTintable: Bool = false) -> ([Style], [NSRange]) {
+	private func stylesForSpans(spans: [SpanNode], parentAttributes: Attributes, onlyTintable: Bool = false) -> ([Style], [NSRange]) {
 		var styles = [Style]()
 		var foldableRanges = [NSRange]()
 
 		for span in spans {
-			guard let attributes = theme.attributes(span: span, currentFont: currentFont) else { continue }
-
-			let font: Font
+			guard let attributes = theme.attributes(span: span, parentAttributes: parentAttributes) else { continue }
 
 			if (onlyTintable && span is Link) || !onlyTintable {
 				let style = Style(
@@ -406,8 +402,7 @@ public final class TextController: NSObject {
 				)
 				styles.append(style)
 
-				font = attributes[NSFontAttributeName] as? Font ?? currentFont
-				let foldableAttributes = theme.foldingAttributes(currentFont: font)
+				let foldableAttributes = theme.foldingAttributes(parentAttributes: attributes)
 
 				// Foldable attributes
 				if let foldable = span as? Foldable {
@@ -437,12 +432,10 @@ public final class TextController: NSObject {
 						styles.append(Style(range: currentDocument.presentationRange(backingRange: title.textRange), attributes: attrs))
 					}
 				}
-			} else {
-				font = currentFont
 			}
 
 			if let container = span as? NodeContainer {
-				let (innerStyles, innerFoldableRanges) = stylesForSpans(container.subnodes, currentFont: font)
+				let (innerStyles, innerFoldableRanges) = stylesForSpans(container.subnodes, parentAttributes: attributes)
 				styles += innerStyles
 				foldableRanges += innerFoldableRanges
 			}

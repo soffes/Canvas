@@ -153,17 +153,17 @@ public protocol Theme {
 	/// NSFontAttributeName must be present.
 	///
 	/// - parameter block: Span node to style
-	/// - parameter currentFont: Font of the parent node
+	/// - parameter parentAttributes: Attributes of the parent node
 	/// - returns: Attributes for given block
-	func attributes(span span: SpanNode, currentFont: Font) -> Attributes?
+	func attributes(span span: SpanNode, parentAttributes: Attributes) -> Attributes?
 
 	/// Attributes for a folded range.
 	///
 	/// NSFontAttributeName must be present.
 	///
-	/// - parameter currentFont: Font of the parent node
+	/// - parameter parentAttributes: Attributes of the parent node
 	/// - returns: Attributes for given block
-	func foldingAttributes(currentFont currentFont: Font) -> Attributes
+	func foldingAttributes(parentAttributes parentAttributes: Attributes) -> Attributes
 
 	/// Calculate spacing for a given block.
 	///

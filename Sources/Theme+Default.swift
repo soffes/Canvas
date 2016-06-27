@@ -38,10 +38,9 @@ extension Theme {
 		return attributes
 	}
 
-	public func foldingAttributes(currentFont currentFont: X.Font) -> Attributes {
-		var attributes = baseAttributes
+	public func foldingAttributes(parentAttributes parentAttributes: Attributes) -> Attributes {
+		var attributes = parentAttributes
 		attributes[NSForegroundColorAttributeName] = foldedColor
-		attributes[NSFontAttributeName] = currentFont
 		return attributes
 	}
 
@@ -202,9 +201,10 @@ extension Theme {
 		return attributes
 	}
 
-	public func attributes(span span: SpanNode, currentFont: X.Font) -> Attributes? {
+	public func attributes(span span: SpanNode, parentAttributes: Attributes) -> Attributes? {
+		guard let currentFont = parentAttributes[NSFontAttributeName] as? X.Font else { return nil }
 		var traits = currentFont.symbolicTraits
-		var attributes = Attributes()
+		var attributes = parentAttributes
 		let fontSize = currentFont.pointSize
 
 		if span is CodeSpan {
@@ -236,11 +236,6 @@ extension Theme {
 		// If there aren't any attributes set yet, return nil and inherit from parent.
 		if attributes.isEmpty {
 			return nil
-		}
-
-		// Ensure a font is set
-		if attributes[NSFontAttributeName] == nil {
-			attributes[NSFontAttributeName] = currentFont
 		}
 		
 		return attributes
