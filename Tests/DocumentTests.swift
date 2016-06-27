@@ -21,6 +21,11 @@ final class DocumentTests: XCTestCase {
 		XCTAssertNil(document.title)
 	}
 
+	func testBlockAt() {
+		let document = Document(backingString: "⧙doc-heading⧘Title\n")
+		XCTAssert(document.blockAt(presentationLocation: 5) is Paragraph)
+	}
+
 	func testBackingRangeToPresentationRange() {
 		var document = Document(backingString: "⧙doc-heading⧘Title\nOne\n⧙blockquote⧘> Two\n⧙code⧘Three")
 
@@ -80,17 +85,10 @@ final class DocumentTests: XCTestCase {
 		XCTAssert(document.blockAt(presentationLocation: 1)! is Title)
 		XCTAssert(document.blockAt(presentationLocation: 6)! is Paragraph)
 		XCTAssert(document.blockAt(presentationLocation: 7)! is Paragraph)
-		XCTAssert(document.blockAt(presentationLocation: 9)! is Paragraph)
 		XCTAssert(document.blockAt(presentationLocation: 10)! is Blockquote)
 		XCTAssert(document.blockAt(presentationLocation: 11)! is Blockquote)
 		XCTAssertNil(document.blockAt(presentationLocation: 14))
 		XCTAssertNil(document.blockAt(presentationLocation: -1))
-	}
-
-	func testBlockAtPresentationLocationEmpty() {
-		let document = Document(backingString: "⧙doc-heading⧘Great!\n⧙unordered-list-0⧘- This is a list\n\nOkay.")
-		XCTAssertEqual("Great!\nThis is a list\n\nOkay.", document.presentationString)
-		XCTAssertEqual(document.blockAt(presentationLocation: 22)!.range, document.blocks[2].range)
 	}
 
 	func testPresentationStringWithBackingRange() {

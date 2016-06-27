@@ -193,8 +193,15 @@ public struct Document {
 	}
 
 	public func blockAt(presentationLocation presentationLocation: UInt) -> BlockNode? {
+		let location = Int(presentationLocation)
+
 		for (i, range) in blockRanges.enumerate() {
-			if Int(presentationLocation) < range.location {
+			// If it's the new line between two blocks, use the second block
+			if location + 1 == range.location {
+				return blocks[i]
+			}
+
+			if location < range.location {
 				return blocks[i - 1]
 			}
 		}
@@ -202,7 +209,7 @@ public struct Document {
 		guard let block = blocks.last else { return nil }
 
 		let presentationRange = self.presentationRange(block: block)
-		return presentationRange.contains(presentationLocation) || presentationRange.max == Int(presentationLocation) ? block : nil
+		return presentationRange.contains(presentationLocation) || presentationRange.max == location ? block : nil
 	}
 
 	public func blocksIn(presentationRange presentationRange: NSRange) -> [BlockNode] {
