@@ -10,10 +10,6 @@ extension APIClient {
 
 	// MARK: - Showing a Canvas
 
-	public func showCanvas(canvas canvas: Canvas, completion: Result<Canvas> -> Void) {
-		showCanvas(canvasID: canvas.id, completion: completion)
-	}
-
 	public func showCanvas(canvasID canvasID: String, completion: Result<Canvas> -> Void) {
 		request(path: "v1/canvases/\(canvasID)", completion: completion)
 	}
@@ -21,20 +17,12 @@ extension APIClient {
 
 	// MARK: - Listing Canvases
 
-	public func listCanvases(organization organization: Organization, completion: Result<[Canvas]> -> Void) {
-		listCanvases(organizationID: organization.id, completion: completion)
-	}
-
 	public func listCanvases(organizationID organizationID: String, completion: Result<[Canvas]> -> Void) {
 		request(path: "v1/orgs/\(organizationID)/canvases", completion: completion)
 	}
 
 
 	// MARK: - Creating a Canvas
-
-	public func createCanvas(organization organization: Organization, content: String? = nil, isPublicWritable: Bool? = nil, completion: Result<Canvas> -> Void) {
-		createCanvas(organizationID: organization.id, content: content, isPublicWritable: isPublicWritable, completion: completion)
-	}
 
 	public func createCanvas(organizationID organizationID: String, content: String? = nil, isPublicWritable: Bool? = nil, completion: Result<Canvas> -> Void) {
 		var params: JSONDictionary = [
@@ -57,31 +45,40 @@ extension APIClient {
 
 	// MARK: - Destorying a Canvas
 
-	public func destroyCanvas(canvas canvas: Canvas, completion: (Result<Void> -> Void)? = nil) {
-		destroyCanvas(canvasID: canvas.id, completion: completion)
-	}
-
 	public func destroyCanvas(canvasID canvasID: String, completion: (Result<Void> -> Void)? = nil) {
 		request(method: .DELETE, path: "v1/canvases/\(canvasID)", completion: completion)
 	}
 
 
-	// MARK: - Archiving a Canvas
+	// MARK: - Archiving & Unarchiving Canvases
 
-	public func archiveCanvas(canvas canvas: Canvas, completion: Result<Canvas> -> Void) {
-		archiveCanvas(canvasID: canvas.id, completion: completion)
+	public func archiveCanvas(canvasID canvasID: String, completion: (Result<Canvas> -> Void)? = nil) {
+		request(method: .POST, path: "v1/canvases/\(canvasID)/actions/archive", completion: completion)
 	}
 
-	public func archiveCanvas(canvasID canvasID: String, completion: Result<Canvas> -> Void) {
-		request(method: .POST, path: "v1/canvases/\(canvasID)/actions/archive", completion: completion)
+	public func unarchiveCanvas(canvasID canvasID: String, completion: (Result<Canvas> -> Void)? = nil) {
+		request(method: .POST, path: "v1/canvases/\(canvasID)/actions/unarchive", completion: completion)
+	}
+
+
+	// MARK: - Allowing & Disallowing Public Edits
+
+	public func enablePublicEdits(canvasID canvasID: String, completion: (Result<Canvas> -> Void)? = nil) {
+		let params = [
+			"is_public_writable": true
+		]
+		request(method: .PATCH, path: "v1/canvases/\(canvasID)", parameters: params, completion: completion)
+	}
+
+	public func disablePublicEdits(canvasID canvasID: String, completion: (Result<Canvas> -> Void)? = nil) {
+		let params = [
+			"is_public_writable": false
+		]
+		request(method: .PATCH, path: "v1/canvases/\(canvasID)", parameters: params, completion: completion)
 	}
 
 
 	// MARK: - Searching for Canvases
-
-	public func searchCanvases(organization organization: Organization, query: String, completion: Result<[Canvas]> -> Void) {
-		searchCanvases(organizationID: organization.id, query: query, completion: completion)
-	}
 
 	public func searchCanvases(organizationID organizationID: String, query: String, completion: Result<[Canvas]> -> Void) {
 		request(path: "v1/orgs/\(organizationID)/canvases/search", parameters: ["query": query], completion: completion)
