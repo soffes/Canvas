@@ -648,8 +648,8 @@ extension TextController: DocumentControllerDelegate {
 	public func documentController(controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int) {
 		annotationsController.insert(block: block, index: index)
 
-		let (styles, _) = stylesForBlock(block)
-		self.styles += styles
+		let (blockStyles, _) = stylesForBlock(block)
+		styles += blockStyles
 
 		var range = controller.document.presentationRange(block: block)
 		if range.location > 0 {
@@ -664,7 +664,7 @@ extension TextController: DocumentControllerDelegate {
 		invalidatePresentationRange(range)
 		
 		if let block = block as? Attachable, style = attachmentStyle(block: block) {
-			self.styles.append(style)
+			styles.append(style)
 		}
 
 		if index == 0 {
