@@ -16,6 +16,13 @@
 /// calculations on the strings or nodes are provided.
 public struct Document {
 
+	// MARK: - Types
+
+	public enum Direction: String {
+		case leading, trailing
+	}
+
+
 	// MARK: - Properties
 
 	/// Backing Canvas Native string
@@ -187,17 +194,22 @@ public struct Document {
 		return block.range.contains(backingLocation) || block.range.max == Int(backingLocation) ? block : nil
 	}
 
-	public func blockAt(presentationLocation presentationLocation: Int) -> BlockNode? {
+	public func blockAt(presentationLocation presentationLocation: Int, direction: Direction = .leading) -> BlockNode? {
 		guard presentationLocation >= 0  else { return nil }
-		return blockAt(presentationLocation: UInt(presentationLocation))
+		return blockAt(presentationLocation: UInt(presentationLocation), direction: direction)
 	}
 
-	public func blockAt(presentationLocation presentationLocation: UInt) -> BlockNode? {
+	/// Find a blog at a given location in the presentation string.
+	///
+	/// - parameter presentationLocation: Location in the presentation string
+	/// - parameter direction: Specify which block should be returned if the character is a new line.
+	/// - returns: A block if one is found.
+	public func blockAt(presentationLocation presentationLocation: UInt, direction: Direction = .leading) -> BlockNode? {
 		let location = Int(presentationLocation)
 
 		for (i, range) in blockRanges.enumerate() {
 			// If it's the new line between two blocks, use the second block
-			if location + 1 == range.location {
+			if direction == .trailing && location + 1 == range.location {
 				return blocks[i]
 			}
 
