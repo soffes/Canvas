@@ -12,6 +12,8 @@
 		2122BFD81CFE35EB00A038DE /* NSURL+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122BFD71CFE35EB00A038DE /* NSURL+CanvasText.swift */; };
 		2138C2CF1C97228100D93FF4 /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138C2CE1C97228100D93FF4 /* NumberView.swift */; };
 		2138C2D11C9722DF00D93FF4 /* OrderedListItem+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138C2D01C9722DF00D93FF4 /* OrderedListItem+CanvasText.swift */; };
+		213A57521D25DC6500DFECFA /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213A57511D25DC6500DFECFA /* TextStyle.swift */; };
+		213A57531D25DC6500DFECFA /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213A57511D25DC6500DFECFA /* TextStyle.swift */; };
 		214F9FF31CC6B2E400927A07 /* TextController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214F9FF21CC6B2E400927A07 /* TextController+Actions.swift */; };
 		214F9FF51CC6C9ED00927A07 /* Listable+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214F9FF41CC6C9EC00927A07 /* Listable+CanvasText.swift */; };
 		216459AA1CC1957C00033B7F /* TextController+MarkdownShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216459A91CC1957C00033B7F /* TextController+MarkdownShortcuts.swift */; };
@@ -156,6 +158,7 @@
 		2122BFD71CFE35EB00A038DE /* NSURL+CanvasText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+CanvasText.swift"; sourceTree = "<group>"; };
 		2138C2CE1C97228100D93FF4 /* NumberView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
 		2138C2D01C9722DF00D93FF4 /* OrderedListItem+CanvasText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OrderedListItem+CanvasText.swift"; sourceTree = "<group>"; };
+		213A57511D25DC6500DFECFA /* TextStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
 		214F9FF21CC6B2E400927A07 /* TextController+Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextController+Actions.swift"; sourceTree = "<group>"; };
 		214F9FF41CC6C9EC00927A07 /* Listable+CanvasText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Listable+CanvasText.swift"; sourceTree = "<group>"; };
 		216459A91CC1957C00033B7F /* TextController+MarkdownShortcuts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TextController+MarkdownShortcuts.swift"; sourceTree = "<group>"; };
@@ -346,6 +349,7 @@
 				21AD8C241C8A430B000A53F8 /* Theme.swift */,
 				2193DC5E1D07A776004D8D0C /* Theme+Default.swift */,
 				21E1D9E51C8DF6B800283961 /* Themeable.swift */,
+				213A57511D25DC6500DFECFA /* TextStyle.swift */,
 			);
 			name = Theme;
 			sourceTree = "<group>";
@@ -604,6 +608,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				213A57521D25DC6500DFECFA /* TextStyle.swift in Sources */,
 				2193DC5F1D07A776004D8D0C /* Theme+Default.swift in Sources */,
 				2166E3041D14AA7300470366 /* BaseTextStorage.m in Sources */,
 				21E1D9E81C8E212300283961 /* Annotation.swift in Sources */,
@@ -669,6 +674,7 @@
 				218944CA1CFFA096003F743B /* NSRange+CanvasText.swift in Sources */,
 				21D24D3B1D12075500741038 /* BlockquoteBorderView.swift in Sources */,
 				218944AE1CFFA07E003F743B /* TextController.swift in Sources */,
+				213A57531D25DC6500DFECFA /* TextStyle.swift in Sources */,
 				218944BC1CFFA08A003F743B /* Annotatable.swift in Sources */,
 				218944BB1CFFA08A003F743B /* AnnotationsController.swift in Sources */,
 				218944B11CFFA07E003F743B /* TextController+MarkdownShortcuts.swift in Sources */,
