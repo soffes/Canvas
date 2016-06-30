@@ -67,7 +67,7 @@ public enum TextStyle {
 		}
 	}
 	
-	public func font(traits: UIFontDescriptorSymbolicTraits = [], semibold: Bool = false) -> UIFont {
+	public func font(traits traits: UIFontDescriptorSymbolicTraits = [], semibold: Bool = false) -> UIFont {
 		var systemFont = UIFont.preferredFontForTextStyle(textStyle)
 		
 		if semibold {
@@ -77,7 +77,7 @@ public enum TextStyle {
 		return applySymbolicTraits(traits, toFont: systemFont, sanitize: false)
 	}
 	
-	public func monoSpaceFont(traits: UIFontDescriptorSymbolicTraits = []) -> UIFont {
+	public func monoSpaceFont(traits traits: UIFontDescriptorSymbolicTraits = []) -> UIFont {
 		let systemFont = UIFont.preferredFontForTextStyle(textStyle)
 		let monoSpaceFont = UIFont(name: "Menlo", size: systemFont.pointSize * 0.9)!
 		return applySymbolicTraits(traits, toFont: monoSpaceFont)
