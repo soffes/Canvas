@@ -29,6 +29,7 @@ public enum LocalizedString {
 	case ArchiveSelectedCanvasCommand
 	case DeleteSelectedCanvasCommand
 	case ArchiveButton
+	case UnarchiveButton
 	case DeleteButton
 	case CancelButton
 	case DeleteConfirmationMessage(canvasTitle: String)
@@ -61,10 +62,21 @@ public enum LocalizedString {
 	case SwapLineDownCommand
 	case Connecting
 	case Disconnected
+	case EditorError
+	case EditorConnectionLost
+	case CloseCanvas
+	case ShareButton
+	case ArchiveCanvasTitle
+	case ArchiveCanvasMessage
+	case DisablePublicEditsButton
+	case EnablePublicEditsButton
 
+	// Shared
 	case Okay
 	case Cancel
+	case Retry
 	case Untitled
+	case Error
 
 
 	// MARK: - Properties
@@ -87,6 +99,7 @@ public enum LocalizedString {
 		case .ArchiveSelectedCanvasCommand: return string("ARCHIVE_SELECTED_CANVAS_COMMAND")
 		case .DeleteSelectedCanvasCommand: return string("DELETE_SELECTED_CANVAS_COMMAND")
 		case .ArchiveButton: return string("ARCHIVE_BUTTON")
+		case .UnarchiveButton: return string("UNARCHIVE_BUTTON")
 		case .DeleteButton: return string("DELETE_BUTTON")
 		case .CancelButton: return string("CANCEL_BUTTON")
 		case .DeleteConfirmationMessage(let canvasTitle): return String(format: string("DELETE_CONFIRMATION_MESSAGE"), arguments: [canvasTitle])
@@ -118,10 +131,20 @@ public enum LocalizedString {
 		case .SwapLineDownCommand: return string("SWAP_LINE_DOWN_COMMAND")
 		case .Connecting: return string("CONNECTING")
 		case .Disconnected: return string("DISCONNECTED")
+		case .EditorError: return string("EDITOR_ERROR")
+		case .EditorConnectionLost: return string("EDITOR_CONNECTION_LOST")
+		case .CloseCanvas: return string("CLOSE_CANVAS")
+		case .ShareButton: return string("SHARE_BUTTON")
+		case .ArchiveCanvasTitle: return string("ARCHIVE_CANVAS_TITLE")
+		case .ArchiveCanvasMessage: return string("ARCHIVE_CANVAS_MESSAGE")
+		case .DisablePublicEditsButton: return string("DISABLE_PUBLIC_EDITS_BUTTON")
+		case .EnablePublicEditsButton: return string("ENABLE_PUBLIC_EDITS_BUTTON")
 
 		case .Okay: return string("OK")
 		case .Cancel: return string("CANCEL")
+		case .Retry: return string("RETRY")
 		case .Untitled: return string("UNTITLED")
+		case .Error: return string("ERROR")
 		}
 	}
 

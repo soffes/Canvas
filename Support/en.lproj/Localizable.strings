@@ -30,6 +30,7 @@
 "ARCHIVE_SELECTED_CANVAS_COMMAND" = "Archive Selected Canvas";
 "DELETE_SELECTED_CANVAS_COMMAND" = "Delete Selected Canvas";
 "ARCHIVE_BUTTON" = "Archive";
+"UNARCHIVE_BUTTON" = "Unarchive";
 "DELETE_BUTTON" = "Delete";
 "CANCEL_BUTTON" = "Cancel";
 "DELETE_CONFIRMATION_MESSAGE" = "Are you sure you want to delete “%@”?";
@@ -64,7 +65,20 @@
 "SWAP_LINE_DOWN_COMMAND" = "Swap Line Down";
 "CONNECTING" = "Connecting…";
 "DISCONNECTED" = "Disconnected";
+"EDITOR_ERROR" = "We’re still a bit buggy and hit a wall. We’ve reported the error.";
+"EDITOR_CONNECTION_LOST" = "The connection to Canvas was lost.";
+"CLOSE_CANVAS" = "Close Canvas";
+"SHARE_BUTTON" = "Share…";
+"ARCHIVE_CANVAS_TITLE" = "Archive Canvas";
+"ARCHIVE_CANVAS_MESSAGE" = "You can find archived canvases by searching for “is:archived”. Deleted canvases are permanently erased.";
+"DISABLE_PUBLIC_EDITS_BUTTON" = "Disable Public Edits";
+"ENABLE_PUBLIC_EDITS_BUTTON" = "Enable Public Edits";
+
+
+// ----- Shared -----
 
 "OK" = "OK";
 "CANCEL" = "Cancel";
+"RETRY" = "Retry";
 "UNTITLED" = "Untitled";
+"ERROR" = "Error";
