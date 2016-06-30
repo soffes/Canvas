@@ -255,6 +255,18 @@ public final class TextController: NSObject {
 		
 		styles.removeAll()
 	}
+	
+	public func invalidateFonts() {
+		styles.removeAll()
+		
+		for block in currentDocument.blocks {
+			let (blockStyles, _) = stylesForBlock(block)
+			styles += blockStyles
+		}
+		
+		applyStyles()
+		annotationsController.layoutAnnotations()
+	}
 
 
 	// MARK: - Layout

@@ -17,24 +17,25 @@ import X
 
 extension Theme {
 	public var fontSize: CGFloat {
-		return 18
+		return UIFont.preferredFontForTextStyle(UIFontTextStyleBody).pointSize
 	}
 
 	private var listIndentation: CGFloat {
-		return round(fontSize * 1.1)
+		let font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+		return ("    " as NSString).sizeWithAttributes([NSFontAttributeName: font]).width
 	}
 
 	public var baseAttributes: Attributes {
 		return [
 			NSForegroundColorAttributeName: foregroundColor,
-			NSFontAttributeName: fontOfSize(fontSize)
+			NSFontAttributeName: TextStyle.Body.font()
 		]
 	}
 
 	public var titleAttributes: Attributes {
 		var attributes = baseAttributes
 		attributes[NSForegroundColorAttributeName] = foregroundColor
-		attributes[NSFontAttributeName] = fontOfSize(round(fontSize * 1.7), symbolicTraits: [.TraitBold])
+		attributes[NSFontAttributeName] = TextStyle.Title1.font(semibold: true)
 		return attributes
 	}
 
@@ -42,47 +43,6 @@ extension Theme {
 		var attributes = parentAttributes
 		attributes[NSForegroundColorAttributeName] = foldedColor
 		return attributes
-	}
-
-	public func fontOfSize(fontSize: CGFloat, symbolicTraits: FontDescriptorSymbolicTraits = []) -> Font {
-		let font = Font.systemFontOfSize(fontSize)
-
-		if !symbolicTraits.isEmpty {
-			#if os(OSX)
-				let fontManager = NSFontManager()
-				var output = font
-
-				if symbolicTraits.contains(.TraitBold) {
-					output = fontManager.fontWithFamily(font.familyName!, traits: [], weight: 8, size: output.pointSize) ?? output
-				}
-
-				if symbolicTraits.contains(.TraitItalic) {
-					output = fontManager.convertFont(output, toHaveTrait: .ItalicFontMask)
-				}
-
-				return output
-			#else
-				let descriptor = font.fontDescriptor().fontDescriptorWithSymbolicTraits(symbolicTraits)
-				return Font(descriptor: descriptor, size: font.pointSize)
-			#endif
-		}
-
-		return font
-	}
-
-	public func monospaceFontOfSize(fontSize: CGFloat, symbolicTraits: FontDescriptorSymbolicTraits = []) -> Font {
-		guard let font = Font(name: "Menlo", size: fontSize) else {
-			return fontOfSize(fontSize, symbolicTraits: symbolicTraits)
-		}
-
-		#if !os(OSX)
-			if !symbolicTraits.isEmpty {
-				let descriptor = font.fontDescriptor().fontDescriptorWithSymbolicTraits(symbolicTraits)
-				return Font(descriptor: descriptor, size: font.pointSize) ?? font
-			}
-		#endif
-
-		return font
 	}
 
 	public func blockSpacing(block block: BlockNode, horizontalSizeClass: UserInterfaceSizeClass) -> BlockSpacing {
@@ -167,26 +127,28 @@ extension Theme {
 			switch heading.level {
 			case .one:
 				attributes[NSForegroundColorAttributeName] = headingOneColor
-				attributes[NSFontAttributeName] = fontOfSize(round(fontSize * 1.5), symbolicTraits: .TraitBold)
+				attributes[NSFontAttributeName] = TextStyle.Title1.font(semibold: true)
 			case .two:
 				attributes[NSForegroundColorAttributeName] = headingTwoColor
-				attributes[NSFontAttributeName] = fontOfSize(round(fontSize * 1.2), symbolicTraits: .TraitBold)
+				attributes[NSFontAttributeName] = TextStyle.Title2.font(semibold: true)
 			case .three:
 				attributes[NSForegroundColorAttributeName] = headingThreeColor
-				attributes[NSFontAttributeName] = fontOfSize(round(fontSize * 1.1), symbolicTraits: .TraitBold)
+				attributes[NSFontAttributeName] = TextStyle.Title3.font(semibold: true)
 			case .four:
 				attributes[NSForegroundColorAttributeName] = headingFourColor
-				attributes[NSFontAttributeName] = fontOfSize(fontSize, symbolicTraits: .TraitBold)
+				attributes[NSFontAttributeName] = TextStyle.Headline.font(semibold: true)
 			case .five:
 				attributes[NSForegroundColorAttributeName] = headingFiveColor
+				attributes[NSFontAttributeName] = TextStyle.Subheadline.font(semibold: true)
 			case .six:
 				attributes[NSForegroundColorAttributeName] = headingSixColor
+				attributes[NSFontAttributeName] = TextStyle.Footnote.font(semibold: true)
 			}
 		}
 
 		else if block is CodeBlock {
 			attributes[NSForegroundColorAttributeName] = codeColor
-			attributes[NSFontAttributeName] = monospaceFontOfSize(fontSize)
+			attributes[NSFontAttributeName] = TextStyle.Body.monoSpaceFont()
 
 			// Indent wrapped lines in code blocks
 			let paragraph = NSMutableParagraphStyle()
@@ -205,10 +167,11 @@ extension Theme {
 		guard let currentFont = parentAttributes[NSFontAttributeName] as? X.Font else { return nil }
 		var traits = currentFont.symbolicTraits
 		var attributes = parentAttributes
-		let fontSize = currentFont.pointSize
 
 		if span is CodeSpan {
-			attributes[NSFontAttributeName] = monospaceFontOfSize(fontSize, symbolicTraits: traits)
+			let monoSpaceFont = UIFont(name: "Menlo", size: currentFont.pointSize * 0.9)!
+			let font = applySymbolicTraits(traits, toFont: monoSpaceFont)
+			attributes[NSFontAttributeName] = font
 			attributes[NSForegroundColorAttributeName] = codeSpanColor
 			attributes[NSBackgroundColorAttributeName] = codeSpanBackgroundColor
 		}
@@ -221,12 +184,12 @@ extension Theme {
 
 		else if span is DoubleEmphasis {
 			traits.insert(.TraitBold)
-			attributes[NSFontAttributeName] = fontOfSize(fontSize, symbolicTraits: traits)
+			attributes[NSFontAttributeName] = applySymbolicTraits(traits, toFont: currentFont)
 		}
 
 		else if span is Emphasis {
 			traits.insert(.TraitItalic)
-			attributes[NSFontAttributeName] = fontOfSize(fontSize, symbolicTraits: traits)
+			attributes[NSFontAttributeName] = applySymbolicTraits(traits, toFont: currentFont)
 		}
 
 		else if span is Link {

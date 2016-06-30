@@ -15,6 +15,75 @@
 import CanvasNative
 import X
 
+func applySymbolicTraits(traits: UIFontDescriptorSymbolicTraits, toFont font: UIFont, sanitize: Bool = true) -> UIFont {
+	var traits = traits
+	
+	if sanitize && !traits.isEmpty {
+		var t = UIFontDescriptorSymbolicTraits()
+		
+		if traits.contains(.TraitBold) {
+			t.insert(.TraitBold)
+		}
+		
+		if traits.contains(.TraitItalic) {
+			t.insert(.TraitItalic)
+		}
+		
+		traits = t
+	}
+	
+	if traits.isEmpty {
+		return font
+	}
+	
+	let fontDescriptor = font.fontDescriptor().fontDescriptorWithSymbolicTraits(traits)
+	return UIFont(descriptor: fontDescriptor, size: font.pointSize)
+}
+
+public enum TextStyle {
+	case Title1
+	case Title2
+	case Title3
+	case Headline
+	case Subheadline
+	case Body
+	case Footnote
+	case Caption1
+	case Caption2
+	case Callout
+	
+	public var textStyle: String {
+		switch self {
+		case .Title1: return UIFontTextStyleTitle1
+		case .Title2: return UIFontTextStyleTitle2
+		case .Title3: return UIFontTextStyleTitle3
+		case .Headline: return UIFontTextStyleHeadline
+		case .Subheadline: return UIFontTextStyleSubheadline
+		case .Body: return UIFontTextStyleBody
+		case .Footnote: return UIFontTextStyleFootnote
+		case .Caption1: return UIFontTextStyleCaption1
+		case .Caption2: return UIFontTextStyleCaption2
+		case .Callout: return UIFontTextStyleCallout
+		}
+	}
+	
+	public func font(traits: UIFontDescriptorSymbolicTraits = [], semibold: Bool = false) -> UIFont {
+		var systemFont = UIFont.preferredFontForTextStyle(textStyle)
+		
+		if semibold {
+			systemFont = UIFont.systemFontOfSize(systemFont.pointSize, weight: UIFontWeightSemibold)
+		}
+		
+		return applySymbolicTraits(traits, toFont: systemFont, sanitize: false)
+	}
+	
+	public func monoSpaceFont(traits: UIFontDescriptorSymbolicTraits = []) -> UIFont {
+		let systemFont = UIFont.preferredFontForTextStyle(textStyle)
+		let monoSpaceFont = UIFont(name: "Menlo", size: systemFont.pointSize * 0.9)!
+		return applySymbolicTraits(traits, toFont: monoSpaceFont)
+	}
+}
+
 public typealias Attributes = [String: AnyObject]
 
 public protocol Theme {
@@ -110,26 +179,6 @@ public protocol Theme {
 
 	/// Comment background color
 	var commentBackgroundColor: Color { get }
-
-
-	/// MARK: - Fonts
-
-	/// Base font size
-	var fontSize: CGFloat { get }
-
-	/// Get a font for given size and traits
-	///
-	/// - parameter fontSize: Font size in points
-	/// - parameter symbolicTraits: Traits to use for the font
-	/// - returns: A font with given font size and traits
-	func fontOfSize(fontSize: CGFloat, symbolicTraits: FontDescriptorSymbolicTraits) -> Font
-
-	/// Get a monospace font for given size and traits
-	///
-	/// - parameter fontSize: Font size in points
-	/// - parameter symbolicTraits: Traits to use for the font
-	/// - returns: A monospace font with given font size and traits
-	func monospaceFontOfSize(fontSize: CGFloat, symbolicTraits: FontDescriptorSymbolicTraits) -> Font
 
 
 	// MARK: - Attributes
