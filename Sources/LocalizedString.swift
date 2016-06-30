@@ -11,11 +11,9 @@ import Foundation
 public enum LocalizedString {
 	
 	// Login
-	case LoginLabel
 	case LoginPlaceholder
-	case PasswordLabel
 	case PasswordPlaceholder
-	case LoginButton
+	case LogInButton
 
 	// Organizations
 	case OrganizationsTitle
@@ -73,11 +71,9 @@ public enum LocalizedString {
 
 	public var string: String {
 		switch self {
-		case .LoginLabel: return string("LOGIN_LABEL")
 		case .LoginPlaceholder: return string("LOGIN_PLACEHOLDER")
-		case .PasswordLabel: return string("PASSWORD_LABEL")
 		case .PasswordPlaceholder: return string("PASSWORD_PLACEHOLDER")
-		case .LoginButton: return string("LOGIN_BUTTON")
+		case .LogInButton: return string("LOGIN_BUTTON")
 
 		case .OrganizationsTitle: return string("ORGANIZATIONS_TITLE")
 		case .PersonalNotes: return string("PERSONAL_NOTES")
@@ -133,6 +129,6 @@ public enum LocalizedString {
 	// MARK: - Private
 
 	private func string(key: String) -> String {
-		return NSLocalizedString(key, comment: "")
+		return NSLocalizedString(key, tableName: nil, bundle: bundle, value: "", comment: "")
 	}
 }

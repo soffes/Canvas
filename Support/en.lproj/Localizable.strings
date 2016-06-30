@@ -8,9 +8,7 @@
 
 // ----- Login -----
 
-"LOGIN_LABEL" = "Email or username";
-"LOGIN_PLACEHOLDER" = "email@example.com";
-"PASSWORD_LABEL" = "Password";
+"LOGIN_PLACEHOLDER" = "email or username";
 "PASSWORD_PLACEHOLDER" = "password";
 "LOGIN_BUTTON" = "Log In";
 

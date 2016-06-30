@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21298C291D2593CF00E741EE /* CanvasCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21298C281D2593CF00E741EE /* CanvasCore.swift */; };
+		21298C2A1D2593CF00E741EE /* CanvasCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21298C281D2593CF00E741EE /* CanvasCore.swift */; };
 		216B1C971D17199B007D022B /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216B1C8C1D17199B007D022B /* CanvasCore.framework */; };
 		216B1CAD1D1719F6007D022B /* CanvasCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 216B1CA81D1719F6007D022B /* CanvasCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		216B1CB11D171A04007D022B /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B1CAC1D1719F6007D022B /* Tests.swift */; };
@@ -715,6 +717,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		21298C281D2593CF00E741EE /* CanvasCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasCore.swift; sourceTree = "<group>"; };
 		216B1C8C1D17199B007D022B /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		216B1C961D17199B007D022B /* CanvasCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		216B1CA81D1719F6007D022B /* CanvasCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasCore.h; sourceTree = "<group>"; };
@@ -834,6 +837,7 @@
 		216B1CA61D1719F6007D022B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				21298C281D2593CF00E741EE /* CanvasCore.swift */,
 				2175D3481D17236D009C6845 /* Configuration.swift */,
 				219D23141D171B5400D32F65 /* Controllers */,
 				2175D3461D172322009C6845 /* Models */,
@@ -903,7 +907,7 @@
 				2175D3791D1725E8009C6845 /* CanvasText.framework */,
 				2175D37B1D1725E8009C6845 /* CanvasTextTests.xctest */,
 				2175D37D1D1725E8009C6845 /* CanvasText.framework */,
-				2175D37F1D1725E8009C6845 /* CanvasTextTests-OSX.xctest */,
+				2175D37F1D1725E8009C6845 /* CanvasTextTests-macOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1394,7 +1398,7 @@
 			remoteRef = 2175D37C1D1725E8009C6845 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		2175D37F1D1725E8009C6845 /* CanvasTextTests-OSX.xctest */ = {
+		2175D37F1D1725E8009C6845 /* CanvasTextTests-macOS.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "CanvasTextTests-macOS.xctest";
@@ -1793,6 +1797,7 @@
 			files = (
 				2175D52D1D173880009C6845 /* AvatarsController.swift in Sources */,
 				2175D52F1D173922009C6845 /* LocalizedString.swift in Sources */,
+				21298C291D2593CF00E741EE /* CanvasCore.swift in Sources */,
 				2175D5381D173995009C6845 /* Font.swift in Sources */,
 				219D23081D171B4900D32F65 /* Accountable.swift in Sources */,
 				2175D5291D173753009C6845 /* SearchController.swift in Sources */,
@@ -1822,6 +1827,7 @@
 			files = (
 				2175D52C1D173880009C6845 /* AvatarsController.swift in Sources */,
 				2175D52E1D173922009C6845 /* LocalizedString.swift in Sources */,
+				21298C2A1D2593CF00E741EE /* CanvasCore.swift in Sources */,
 				2176785E1D17589300003D89 /* Font.swift in Sources */,
 				2175D3311D1722CA009C6845 /* AccountController.swift in Sources */,
 				2175D5281D173753009C6845 /* SearchController.swift in Sources */,
