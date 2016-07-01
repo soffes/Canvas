@@ -9,54 +9,54 @@
 import UIKit
 
 public enum FontWeight: CustomStringConvertible {
-	case UltraLight
-	case Thin
-	case Light
-	case Regular
-	case Medium
-	case Semibold
-	case Bold
-	case Heavy
-	case Black
+	case ultraLight
+	case thin
+	case light
+	case regular
+	case medium
+	case semibold
+	case bold
+	case heavy
+	case black
 
 	public var fontWeight: CGFloat {
 		switch self {
-		case .UltraLight: return UIFontWeightUltraLight
-		case .Thin: return UIFontWeightThin
-		case .Light: return UIFontWeightLight
-		case .Regular: return UIFontWeightRegular
-		case .Medium: return UIFontWeightMedium
-		case .Semibold: return UIFontWeightSemibold
-		case .Bold: return UIFontWeightBold
-		case .Heavy: return UIFontWeightHeavy
-		case .Black: return UIFontWeightBlack
+		case .ultraLight: return UIFontWeightUltraLight
+		case .thin: return UIFontWeightThin
+		case .light: return UIFontWeightLight
+		case .regular: return UIFontWeightRegular
+		case .medium: return UIFontWeightMedium
+		case .semibold: return UIFontWeightSemibold
+		case .bold: return UIFontWeightBold
+		case .heavy: return UIFontWeightHeavy
+		case .black: return UIFontWeightBlack
 		}
 	}
 
 	public var description: String {
 		switch self {
-		case .UltraLight: return "UltraLight"
-		case .Thin: return "Thin"
-		case .Light: return "Light"
-		case .Regular: return "Regular"
-		case .Medium: return "Medium"
-		case .Semibold: return "Semibold"
-		case .Bold: return "Bold"
-		case .Heavy: return "Heavy"
-		case .Black: return "Black"
+		case .ultraLight: return "UltraLight"
+		case .thin: return "Thin"
+		case .light: return "Light"
+		case .regular: return "Regular"
+		case .medium: return "Medium"
+		case .semibold: return "Semibold"
+		case .bold: return "Bold"
+		case .heavy: return "Heavy"
+		case .black: return "Black"
 		}
 	}
 
 	private static let faces: [String: FontWeight] = [
-		"UltraLight": .UltraLight,
-		"Thin": .Thin,
-		"Light": .Light,
-		"Regular": .Regular,
-		"Medium": .Medium,
-		"SemiBold": .Semibold,
-		"Bold": .Bold,
-		"Heavy": .Heavy,
-		"Black": .Black
+		"UltraLight": .ultraLight,
+		"Thin": .thin,
+		"Light": .light,
+		"Regular": .regular,
+		"Medium": .medium,
+		"SemiBold": .semibold,
+		"Bold": .bold,
+		"Heavy": .heavy,
+		"Black": .black
 	]
 
 	init?(face: String) {

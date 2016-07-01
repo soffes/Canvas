@@ -56,7 +56,7 @@ final class CodeBlockView: ViewType, Annotation {
 		contentMode = .Redraw
 		backgroundColor = theme.backgroundColor
 
-		textLabel.font = TextStyle.Body.monoSpaceFont()
+		textLabel.font = TextStyle.body.monoSpaceFont()
 		textLabel.text = codeBlock.lineNumber.description
 		textLabel.textColor = theme.codeBlockLineNumberColor
 	}

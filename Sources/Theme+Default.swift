@@ -28,14 +28,14 @@ extension Theme {
 	public var baseAttributes: Attributes {
 		return [
 			NSForegroundColorAttributeName: foregroundColor,
-			NSFontAttributeName: TextStyle.Body.font()
+			NSFontAttributeName: TextStyle.body.font()
 		]
 	}
 
 	public var titleAttributes: Attributes {
 		var attributes = baseAttributes
 		attributes[NSForegroundColorAttributeName] = foregroundColor
-		attributes[NSFontAttributeName] = TextStyle.Title1.font(weight: .Semibold)
+		attributes[NSFontAttributeName] = TextStyle.title1.font(weight: .semibold)
 		return attributes
 	}
 
@@ -127,28 +127,28 @@ extension Theme {
 			switch heading.level {
 			case .one:
 				attributes[NSForegroundColorAttributeName] = headingOneColor
-				attributes[NSFontAttributeName] = TextStyle.Title1.font(weight: .Medium)
+				attributes[NSFontAttributeName] = TextStyle.title1.font(weight: .medium)
 			case .two:
 				attributes[NSForegroundColorAttributeName] = headingTwoColor
-				attributes[NSFontAttributeName] = TextStyle.Title2.font(weight: .Medium)
+				attributes[NSFontAttributeName] = TextStyle.title2.font(weight: .medium)
 			case .three:
 				attributes[NSForegroundColorAttributeName] = headingThreeColor
-				attributes[NSFontAttributeName] = TextStyle.Title3.font(weight: .Medium)
+				attributes[NSFontAttributeName] = TextStyle.title3.font(weight: .medium)
 			case .four:
 				attributes[NSForegroundColorAttributeName] = headingFourColor
-				attributes[NSFontAttributeName] = TextStyle.Headline.font(weight: .Medium)
+				attributes[NSFontAttributeName] = TextStyle.headline.font(weight: .medium)
 			case .five:
 				attributes[NSForegroundColorAttributeName] = headingFiveColor
-				attributes[NSFontAttributeName] = TextStyle.Headline.font(weight: .Medium)
+				attributes[NSFontAttributeName] = TextStyle.headline.font(weight: .medium)
 			case .six:
 				attributes[NSForegroundColorAttributeName] = headingSixColor
-				attributes[NSFontAttributeName] = TextStyle.Headline.font(weight: .Medium)
+				attributes[NSFontAttributeName] = TextStyle.headline.font(weight: .medium)
 			}
 		}
 
 		else if block is CodeBlock {
 			attributes[NSForegroundColorAttributeName] = codeColor
-			attributes[NSFontAttributeName] = TextStyle.Body.monoSpaceFont()
+			attributes[NSFontAttributeName] = TextStyle.body.monoSpaceFont()
 
 			// Indent wrapped lines in code blocks
 			let paragraph = NSMutableParagraphStyle()

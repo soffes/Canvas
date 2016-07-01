@@ -54,7 +54,7 @@ final class NumberView: ViewType, Annotation {
 		let string: NSString = "\(block.number)."
 		let attributes = [
 			NSForegroundColorAttributeName: theme.orderedListItemNumberColor,
-			NSFontAttributeName: TextStyle.Body.font().fontWithMonospacedNumbers
+			NSFontAttributeName: TextStyle.body.font().fontWithMonospacedNumbers
 		]
 
 		let size = string.sizeWithAttributes(attributes)

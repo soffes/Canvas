@@ -9,29 +9,29 @@
 import UIKit
 
 public enum TextStyle {
-	case Title1
-	case Title2
-	case Title3
-	case Headline
-	case Subheadline
-	case Body
-	case Footnote
-	case Caption1
-	case Caption2
-	case Callout
+	case title1
+	case title2
+	case title3
+	case headline
+	case subheadline
+	case body
+	case footnote
+	case caption1
+	case caption2
+	case callout
 	
 	public var textStyle: String {
 		switch self {
-		case .Title1: return UIFontTextStyleTitle1
-		case .Title2: return UIFontTextStyleTitle2
-		case .Title3: return UIFontTextStyleTitle3
-		case .Headline: return UIFontTextStyleHeadline
-		case .Subheadline: return UIFontTextStyleSubheadline
-		case .Body: return UIFontTextStyleBody
-		case .Footnote: return UIFontTextStyleFootnote
-		case .Caption1: return UIFontTextStyleCaption1
-		case .Caption2: return UIFontTextStyleCaption2
-		case .Callout: return UIFontTextStyleCallout
+		case .title1: return UIFontTextStyleTitle1
+		case .title2: return UIFontTextStyleTitle2
+		case .title3: return UIFontTextStyleTitle3
+		case .headline: return UIFontTextStyleHeadline
+		case .subheadline: return UIFontTextStyleSubheadline
+		case .body: return UIFontTextStyleBody
+		case .footnote: return UIFontTextStyleFootnote
+		case .caption1: return UIFontTextStyleCaption1
+		case .caption2: return UIFontTextStyleCaption2
+		case .callout: return UIFontTextStyleCallout
 		}
 	}
 	
