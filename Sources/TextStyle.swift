@@ -8,7 +8,7 @@
 
 import UIKit
 
-public enum FontWeight {
+public enum FontWeight: Int, CustomStringConvertible {
 	case UltraLight
 	case Thin
 	case Light
@@ -31,6 +31,37 @@ public enum FontWeight {
 		case .Heavy: return UIFontWeightHeavy
 		case .Black: return UIFontWeightBlack
 		}
+	}
+
+	public var description: String {
+		switch self {
+		case .UltraLight: return "UltraLight"
+		case .Thin: return "Thin"
+		case .Light: return "Light"
+		case .Regular: return "Regular"
+		case .Medium: return "Medium"
+		case .Semibold: return "Semibold"
+		case .Bold: return "Bold"
+		case .Heavy: return "Heavy"
+		case .Black: return "Black"
+		}
+	}
+
+	private static let faces: [String: FontWeight] = [
+		"UltraLight": .UltraLight,
+		"Thin": .Thin,
+		"Light": .Light,
+		"Regular": .Regular,
+		"Medium": .Medium,
+		"SemiBold": .Semibold,
+		"Bold": .Bold,
+		"Heavy": .Heavy,
+		"Black": .Black
+	]
+
+	init?(face: String) {
+		guard let weight = FontWeight.faces[face] else { return nil }
+		self = weight
 	}
 }
 
@@ -63,9 +94,13 @@ public enum TextStyle {
 	
 	public func font(traits traits: UIFontDescriptorSymbolicTraits = [], weight: FontWeight? = nil) -> UIFont {
 		var systemFont = UIFont.preferredFontForTextStyle(textStyle)
-		
+
+		// Apply minimum weight
 		if let weight = weight {
-			systemFont = UIFont.systemFontOfSize(systemFont.pointSize, weight: weight.fontWeight)
+			let currentWeight = (systemFont.fontDescriptor().objectForKey(UIFontDescriptorFaceAttribute) as? String).flatMap(FontWeight.init)
+			if weight.rawValue > currentWeight?.rawValue ?? -1 {
+				systemFont = UIFont.systemFontOfSize(systemFont.pointSize, weight: weight.fontWeight)
+			}
 		}
 		
 		return applySymbolicTraits(traits, toFont: systemFont, sanitize: false)

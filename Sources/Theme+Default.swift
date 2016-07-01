@@ -139,10 +139,10 @@ extension Theme {
 				attributes[NSFontAttributeName] = TextStyle.Headline.font(weight: .Medium)
 			case .five:
 				attributes[NSForegroundColorAttributeName] = headingFiveColor
-				attributes[NSFontAttributeName] = TextStyle.Subheadline.font(weight: .Medium)
+				attributes[NSFontAttributeName] = TextStyle.Headline.font(weight: .Medium)
 			case .six:
 				attributes[NSForegroundColorAttributeName] = headingSixColor
-				attributes[NSFontAttributeName] = TextStyle.Footnote.font(weight: .Medium)
+				attributes[NSFontAttributeName] = TextStyle.Headline.font(weight: .Medium)
 			}
 		}
 
