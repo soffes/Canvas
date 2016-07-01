@@ -127,22 +127,22 @@ extension Theme {
 			switch heading.level {
 			case .one:
 				attributes[NSForegroundColorAttributeName] = headingOneColor
-				attributes[NSFontAttributeName] = TextStyle.Title1.font(weight: .Semibold)
+				attributes[NSFontAttributeName] = TextStyle.Title1.font(weight: .Medium)
 			case .two:
 				attributes[NSForegroundColorAttributeName] = headingTwoColor
-				attributes[NSFontAttributeName] = TextStyle.Title2.font(weight: .Semibold)
+				attributes[NSFontAttributeName] = TextStyle.Title2.font(weight: .Medium)
 			case .three:
 				attributes[NSForegroundColorAttributeName] = headingThreeColor
-				attributes[NSFontAttributeName] = TextStyle.Title3.font(weight: .Semibold)
+				attributes[NSFontAttributeName] = TextStyle.Title3.font(weight: .Medium)
 			case .four:
 				attributes[NSForegroundColorAttributeName] = headingFourColor
-				attributes[NSFontAttributeName] = TextStyle.Headline.font(weight: .Semibold)
+				attributes[NSFontAttributeName] = TextStyle.Headline.font(weight: .Medium)
 			case .five:
 				attributes[NSForegroundColorAttributeName] = headingFiveColor
-				attributes[NSFontAttributeName] = TextStyle.Subheadline.font(weight: .Semibold)
+				attributes[NSFontAttributeName] = TextStyle.Subheadline.font(weight: .Medium)
 			case .six:
 				attributes[NSForegroundColorAttributeName] = headingSixColor
-				attributes[NSFontAttributeName] = TextStyle.Footnote.font(weight: .Semibold)
+				attributes[NSFontAttributeName] = TextStyle.Footnote.font(weight: .Medium)
 			}
 		}
 
