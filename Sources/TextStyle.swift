@@ -8,6 +8,32 @@
 
 import UIKit
 
+public enum FontWeight {
+	case UltraLight
+	case Thin
+	case Light
+	case Regular
+	case Medium
+	case Semibold
+	case Bold
+	case Heavy
+	case Black
+
+	public var fontWeight: CGFloat {
+		switch self {
+		case .UltraLight: return UIFontWeightUltraLight
+		case .Thin: return UIFontWeightThin
+		case .Light: return UIFontWeightLight
+		case .Regular: return UIFontWeightRegular
+		case .Medium: return UIFontWeightMedium
+		case .Semibold: return UIFontWeightSemibold
+		case .Bold: return UIFontWeightBold
+		case .Heavy: return UIFontWeightHeavy
+		case .Black: return UIFontWeightBlack
+		}
+	}
+}
+
 public enum TextStyle {
 	case Title1
 	case Title2
@@ -35,11 +61,11 @@ public enum TextStyle {
 		}
 	}
 	
-	public func font(traits traits: UIFontDescriptorSymbolicTraits = [], semibold: Bool = false) -> UIFont {
+	public func font(traits traits: UIFontDescriptorSymbolicTraits = [], weight: FontWeight? = nil) -> UIFont {
 		var systemFont = UIFont.preferredFontForTextStyle(textStyle)
 		
-		if semibold {
-			systemFont = UIFont.systemFontOfSize(systemFont.pointSize, weight: UIFontWeightSemibold)
+		if let weight = weight {
+			systemFont = UIFont.systemFontOfSize(systemFont.pointSize, weight: weight.fontWeight)
 		}
 		
 		return applySymbolicTraits(traits, toFont: systemFont, sanitize: false)

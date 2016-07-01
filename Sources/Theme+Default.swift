@@ -35,7 +35,7 @@ extension Theme {
 	public var titleAttributes: Attributes {
 		var attributes = baseAttributes
 		attributes[NSForegroundColorAttributeName] = foregroundColor
-		attributes[NSFontAttributeName] = TextStyle.Title1.font(semibold: true)
+		attributes[NSFontAttributeName] = TextStyle.Title1.font(weight: .Semibold)
 		return attributes
 	}
 
@@ -127,22 +127,22 @@ extension Theme {
 			switch heading.level {
 			case .one:
 				attributes[NSForegroundColorAttributeName] = headingOneColor
-				attributes[NSFontAttributeName] = TextStyle.Title1.font(semibold: true)
+				attributes[NSFontAttributeName] = TextStyle.Title1.font(weight: .Semibold)
 			case .two:
 				attributes[NSForegroundColorAttributeName] = headingTwoColor
-				attributes[NSFontAttributeName] = TextStyle.Title2.font(semibold: true)
+				attributes[NSFontAttributeName] = TextStyle.Title2.font(weight: .Semibold)
 			case .three:
 				attributes[NSForegroundColorAttributeName] = headingThreeColor
-				attributes[NSFontAttributeName] = TextStyle.Title3.font(semibold: true)
+				attributes[NSFontAttributeName] = TextStyle.Title3.font(weight: .Semibold)
 			case .four:
 				attributes[NSForegroundColorAttributeName] = headingFourColor
-				attributes[NSFontAttributeName] = TextStyle.Headline.font(semibold: true)
+				attributes[NSFontAttributeName] = TextStyle.Headline.font(weight: .Semibold)
 			case .five:
 				attributes[NSForegroundColorAttributeName] = headingFiveColor
-				attributes[NSFontAttributeName] = TextStyle.Subheadline.font(semibold: true)
+				attributes[NSFontAttributeName] = TextStyle.Subheadline.font(weight: .Semibold)
 			case .six:
 				attributes[NSForegroundColorAttributeName] = headingSixColor
-				attributes[NSFontAttributeName] = TextStyle.Footnote.font(semibold: true)
+				attributes[NSFontAttributeName] = TextStyle.Footnote.font(weight: .Semibold)
 			}
 		}
 
