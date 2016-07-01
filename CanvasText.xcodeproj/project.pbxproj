@@ -10,6 +10,7 @@
 		210B4EAD1CD94E2A006E3C11 /* TextController+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B4EAC1CD94E2A006E3C11 /* TextController+Gestures.swift */; };
 		211483CF1C8A3034002CA206 /* CanvasText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 211483C41C8A3034002CA206 /* CanvasText.framework */; };
 		2122BFD81CFE35EB00A038DE /* NSURL+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122BFD71CFE35EB00A038DE /* NSURL+CanvasText.swift */; };
+		21298C6D1D26C8BC00E741EE /* FontWeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21298C6C1D26C8BC00E741EE /* FontWeight.swift */; };
 		2138C2CF1C97228100D93FF4 /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138C2CE1C97228100D93FF4 /* NumberView.swift */; };
 		2138C2D11C9722DF00D93FF4 /* OrderedListItem+CanvasText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2138C2D01C9722DF00D93FF4 /* OrderedListItem+CanvasText.swift */; };
 		213A57521D25DC6500DFECFA /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213A57511D25DC6500DFECFA /* TextStyle.swift */; };
@@ -156,6 +157,7 @@
 		211483C41C8A3034002CA206 /* CanvasText.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasText.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		211483CE1C8A3034002CA206 /* CanvasTextTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasTextTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2122BFD71CFE35EB00A038DE /* NSURL+CanvasText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+CanvasText.swift"; sourceTree = "<group>"; };
+		21298C6C1D26C8BC00E741EE /* FontWeight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontWeight.swift; sourceTree = "<group>"; };
 		2138C2CE1C97228100D93FF4 /* NumberView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
 		2138C2D01C9722DF00D93FF4 /* OrderedListItem+CanvasText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OrderedListItem+CanvasText.swift"; sourceTree = "<group>"; };
 		213A57511D25DC6500DFECFA /* TextStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 				2193DC5E1D07A776004D8D0C /* Theme+Default.swift */,
 				21E1D9E51C8DF6B800283961 /* Themeable.swift */,
 				213A57511D25DC6500DFECFA /* TextStyle.swift */,
+				21298C6C1D26C8BC00E741EE /* FontWeight.swift */,
 			);
 			name = Theme;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				21DF7A451C8FA11100C17A62 /* ChecklistItem+CanvasText.swift in Sources */,
 				21AD8D091C8A491E000A53F8 /* LayoutManager.swift in Sources */,
 				21DF7A431C8FA08300C17A62 /* Blockquote+CanvasText.swift in Sources */,
+				21298C6D1D26C8BC00E741EE /* FontWeight.swift in Sources */,
 				21DF7A4C1C8FA3A300C17A62 /* CodeBlock+CanvasText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
