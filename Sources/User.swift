@@ -13,7 +13,7 @@ public struct User {
 	// MARK: - Properties
 	
 	public let id: String
-	public let username: String
+	public let username: String?
 	public let avatarURL: NSURL?
 }
 
@@ -21,9 +21,12 @@ public struct User {
 extension User: JSONSerializable, JSONDeserializable {
 	public var dictionary: JSONDictionary {
 		var dictionary = [
-			"id": id,
-			"username": username,
+			"id": id
 		]
+		
+		if let username = username {
+			dictionary["username"] = username
+		}
 
 		if let avatarURL = avatarURL {
 			dictionary["avatar_url"] = avatarURL.absoluteString
@@ -33,12 +36,10 @@ extension User: JSONSerializable, JSONDeserializable {
 	}
 	
 	public init?(dictionary: JSONDictionary) {
-		guard let id = dictionary["id"] as? String,
-			username = dictionary["username"] as? String
-		else { return nil }
+		guard let id = dictionary["id"] as? String else { return nil }
 		
 		self.id = id
-		self.username = username
+		username = dictionary["username"] as? String
 		avatarURL = (dictionary["avatar_url"] as? String).flatMap { NSURL(string: $0) }
 	}
 }
