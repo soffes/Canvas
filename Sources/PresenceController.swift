@@ -155,15 +155,15 @@ public class PresenceController: Accountable {
 	public func users(canvasID canvasID: String) -> [User] {
 		guard let connection = connections[canvasID] else { return [] }
 
-		var seen = Set<String>()
+		var seen = Set<User>()
 		var users = [User]()
 
 		for client in connection.clients {
-			if seen.contains(client.user.id) {
+			if seen.contains(client.user) {
 				continue
 			}
 
-			seen.insert(client.user.id)
+			seen.insert(client.user)
 			users.append(client.user)
 		}
 
@@ -286,7 +286,7 @@ extension PresenceController: WebSocketDelegate {
 
 		// Join
 		if event == "phx_reply", let response = payload["response"] as? JSONDictionary, clients = response["clients"] as? [JSONDictionary] {
-			let clients = clients.flatMap(Client.init)
+			let clients = clients.flatMap(Client.init).filter { $0.user != account.user }
 
 			if !clients.isEmpty {
 				connection.clients = clients
@@ -295,25 +295,25 @@ extension PresenceController: WebSocketDelegate {
 			}
 		}
 
-		// Remove join
-		else if event == "remote_join", let client = Client(dictionary: payload) {
+		// Remote join
+		else if event == "remote_join", let client = Client(dictionary: payload) where client.user != account.user {
 			var clients = connection.clients ?? []
-			let before = Set(clients.map { $0.user.id })
+			let before = Set(clients.map { $0.user })
 
 			clients.append(client)
 			connection.clients = clients
 			connections[canvasID] = connection
 
-			let after = Set(clients.map { $0.user.id })
+			let after = Set(clients.map { $0.user })
 			if before != after {
 				updateObservers(canvasID: canvasID)
 			}
 		}
 
 		// Remove leave
-		else if event == "remote_leave", let client = Client(dictionary: payload) {
+		else if event == "remote_leave", let client = Client(dictionary: payload) where client.user != account.user {
 			var clients = connection.clients ?? []
-			let before = Set(clients.map { $0.user.id })
+			let before = Set(clients.map { $0.user })
 
 			if let index = clients.indexOf({ $0.id == client.id }) {
 				clients.removeAtIndex(index)
@@ -321,7 +321,7 @@ extension PresenceController: WebSocketDelegate {
 				connections[canvasID] = connection
 			}
 
-			let after = Set(clients.map { $0.user.id })
+			let after = Set(clients.map { $0.user })
 			if before != after {
 				updateObservers(canvasID: canvasID)
 			}
