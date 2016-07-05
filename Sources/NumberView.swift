@@ -62,7 +62,7 @@ final class NumberView: ViewType, Annotation {
 		// TODO: It would be better if we could calculate this from the font
 		let rect = CGRect(
 			x: bounds.width - size.width - 4,
-			y: ((bounds.height - size.height) / 2) + 0.5,
+			y: ((bounds.height - size.height) / 2) - 1,
 			width: size.width,
 			height: size.height
 		).integral

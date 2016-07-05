@@ -102,7 +102,7 @@ final class BulletView: ViewType, Annotation {
 
 		return CGRect(
 			x: bounds.width - dimension - 8,
-			y: round((bounds.height - dimension) / 2),
+			y: round((bounds.height - dimension) / 2) - 1,
 			width: dimension,
 			height: dimension
 		)
