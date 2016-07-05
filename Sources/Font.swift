@@ -45,9 +45,7 @@ public struct Font {
 
 	public enum Size: UInt {
 		case small = 14
-		case subtitle = 16
-		case body = 18
-		case heading = 22
+		case body = 17
 
 		var pointSize: CGFloat {
 			return CGFloat(rawValue)
