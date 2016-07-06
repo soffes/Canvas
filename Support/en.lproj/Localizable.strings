@@ -73,6 +73,9 @@
 "ARCHIVE_CANVAS_MESSAGE" = "You can find archived canvases by searching for “is:archived”. Deleted canvases are permanently erased.";
 "DISABLE_PUBLIC_EDITS_BUTTON" = "Disable Public Edits";
 "ENABLE_PUBLIC_EDITS_BUTTON" = "Enable Public Edits";
+"NOT_FOUND" = "Not Found";
+"NOT_FOUND_HEADING" = "Uh oh, four-oh-four.";
+"NOT_FOUND_MESSAGE" = "We couldn't find the canvas you're looking for.";
 
 
 // ----- Shared -----

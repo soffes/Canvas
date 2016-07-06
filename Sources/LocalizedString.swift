@@ -70,6 +70,9 @@ public enum LocalizedString {
 	case ArchiveCanvasMessage
 	case DisablePublicEditsButton
 	case EnablePublicEditsButton
+	case NotFoundTitle
+	case NotFoundHeading
+	case NotFoundMessage
 
 	// Shared
 	case Okay
@@ -139,6 +142,9 @@ public enum LocalizedString {
 		case .ArchiveCanvasMessage: return string("ARCHIVE_CANVAS_MESSAGE")
 		case .DisablePublicEditsButton: return string("DISABLE_PUBLIC_EDITS_BUTTON")
 		case .EnablePublicEditsButton: return string("ENABLE_PUBLIC_EDITS_BUTTON")
+		case .NotFoundTitle: return string("NOT_FOUND")
+		case .NotFoundHeading: return string("NOT_FOUND_HEADING")
+		case .NotFoundMessage: return string("NOT_FOUND_MESSAGE")
 
 		case .Okay: return string("OK")
 		case .Cancel: return string("CANCEL")
