@@ -1,8 +1,10 @@
 require 'open-uri'
 
+WRAPPER_VERSION = '1.0.8'
+
 desc 'Compile index.html'
 task :html do
-  sharejs = open('https://raw.githubusercontent.com/usecanvas/sharejs-wrapper/v1.0.7/dist/index.js').read.chomp
+  sharejs = open("https://raw.githubusercontent.com/usecanvas/sharejs-wrapper/v#{WRAPPER_VERSION}/dist/index.js").read.chomp
   editor = File.read('Support/canvas.js').chomp
 
   html = %Q{<!DOCTYPE html>
