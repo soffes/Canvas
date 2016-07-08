@@ -93,7 +93,7 @@ public class TransportController: NSObject {
 			delegate?.transportController(self, willConnectWithWebView: webView)
 		}
 		
-		webView.loadHTMLString(html, baseURL: serverURL)
+		webView.loadHTMLString(html, baseURL: NSURL(string: "https://usecanvas.com/"))
 	}
 
 	public func disconnect(withReason reason: String? = nil) {
