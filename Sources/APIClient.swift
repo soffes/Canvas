@@ -109,13 +109,13 @@ public class APIClient: NetworkClient {
 		}
 	}
 	
-	private func buildRequest(method method: Method = .GET, path: String, parameters: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8") -> NSMutableURLRequest {
+	func buildRequest(method method: Method = .GET, path: String, parameters: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8") -> NSMutableURLRequest {
 		// Create URL
-		var URL = baseURL.URLByAppendingPathComponent(path)
+		var url = baseURL.URLByAppendingPathComponent(path)
 
 		// Add GET params
 		if method == .GET {
-			if let parameters = parameters, components = NSURLComponents(URL: URL, resolvingAgainstBaseURL: true) {
+			if let parameters = parameters, components = NSURLComponents(URL: url, resolvingAgainstBaseURL: true) {
 				var queryItems = [NSURLQueryItem]()
 				for (name, value) in parameters {
 					if let value = value as? String {
@@ -127,13 +127,13 @@ public class APIClient: NetworkClient {
 				components.queryItems = queryItems
 
 				if let updatedURL = components.URL {
-					URL = updatedURL
+					url = updatedURL
 				}
 			}
 		}
 
 		// Create request
-		let request = NSMutableURLRequest(URL: URL)
+		let request = NSMutableURLRequest(URL: url)
 
 		// Set HTTP method
 		request.HTTPMethod = method.rawValue
@@ -155,7 +155,7 @@ public class APIClient: NetworkClient {
 		return request
 	}
 
-	private func sendRequest<T>(request request: NSURLRequest, completion: (Result<T> -> Void)?, callback: (data: NSData?, response: NSHTTPURLResponse?, error: NSError?) -> Void) {
+	func sendRequest<T>(request request: NSURLRequest, completion: (Result<T> -> Void)?, callback: (data: NSData?, response: NSHTTPURLResponse?, error: NSError?) -> Void) {
 		session.dataTaskWithRequest(request) { data, res, error in
 			let response = res as? NSHTTPURLResponse
 

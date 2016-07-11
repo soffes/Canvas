@@ -7,6 +7,18 @@
 //
 
 public struct Organization {
+	
+	// MARK: - Types
+	
+	public struct Color {
+		
+		// MARK: - Properties
+		
+		public var red: Double
+		public var green: Double
+		public var blue: Double
+	}
+	
 
 	// MARK: - Types
 
@@ -66,6 +78,17 @@ public struct Organization {
 	public let slug: String
 	public let membersCount: UInt
 	public let color: Color?
+}
+
+
+extension Organization: Entity {
+	init(data: EntityData) throws {
+		id = data.id
+		name = try data.decode(attribute: "name")
+		slug = try data.decode(attribute: "slug")
+		membersCount = try data.decode(attribute: "members_count")
+		color = (data.attributes["color"] as? String).flatMap(Color.init)
+	}
 }
 
 

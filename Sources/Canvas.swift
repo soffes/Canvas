@@ -33,6 +33,21 @@ public struct Canvas {
 }
 
 
+extension Canvas: Entity {
+	init(data: EntityData) throws {
+		id = data.id
+		organization = try data.decode(relationship: "org")
+		isWritable = try data.decode(attribute: "is_writable")
+		isPublicWritable = try data.decode(attribute: "is_public_writable")
+		updatedAt = try data.decode(attribute: "updated_at")
+		title = try data.decode(attribute: "title")
+		summary = try data.decode(attribute: "summary")
+		nativeVersion = try data.decode(attribute: "native_version")
+		archivedAt = data.decode(attribute: "archived_at")
+	}
+}
+
+
 extension Canvas: JSONSerializable, JSONDeserializable {
 	public var dictionary: JSONDictionary {
 		var dictionary: [String: AnyObject] = [

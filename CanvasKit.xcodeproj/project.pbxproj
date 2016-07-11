@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		211A68B31D33D37F00DF098D /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A68B21D33D37F00DF098D /* Entity.swift */; };
+		211A68B41D33D37F00DF098D /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A68B21D33D37F00DF098D /* Entity.swift */; };
+		211A68B51D33D37F00DF098D /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A68B21D33D37F00DF098D /* Entity.swift */; };
+		211A68B61D33D37F00DF098D /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A68B21D33D37F00DF098D /* Entity.swift */; };
+		211A69021D33EBB900DF098D /* JSONAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A69011D33EBB900DF098D /* JSONAPIClient.swift */; };
+		211A69031D33EBB900DF098D /* JSONAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A69011D33EBB900DF098D /* JSONAPIClient.swift */; };
+		211A69041D33EBB900DF098D /* JSONAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A69011D33EBB900DF098D /* JSONAPIClient.swift */; };
+		211A69051D33EBB900DF098D /* JSONAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A69011D33EBB900DF098D /* JSONAPIClient.swift */; };
 		216C4BA11BF54AB100260B8E /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4B971BF54AB100260B8E /* CanvasKit.framework */; };
 		2175D2A21D171E4C009C6845 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B891C8A37D5000A53F8 /* Account.swift */; };
 		2175D2A31D171E4C009C6845 /* APIClient+Canvases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8B1C8A37D5000A53F8 /* APIClient+Canvases.swift */; };
@@ -141,6 +149,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		211A68B21D33D37F00DF098D /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		211A69011D33EBB900DF098D /* JSONAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONAPIClient.swift; sourceTree = "<group>"; };
 		216C4B971BF54AB100260B8E /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		216C4BA01BF54AB100260B8E /* CanvasKitTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CanvasKitTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2175D29A1D171DC3009C6845 /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -294,12 +304,14 @@
 				21AD8B8C1C8A37D5000A53F8 /* APIClient+Organizations.swift */,
 				21F35A731D189490003D2757 /* APIClient+Account.swift */,
 				21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */,
+				211A69011D33EBB900DF098D /* JSONAPIClient.swift */,
 				21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */,
 				21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */,
 				21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */,
 				21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */,
 				21AD8B951C8A37D5000A53F8 /* Organization.swift */,
 				21AD8B971C8A37D5000A53F8 /* User.swift */,
+				211A68B21D33D37F00DF098D /* Entity.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -700,8 +712,10 @@
 				21AD8BC41C8A37DE000A53F8 /* AuthorizationClient.swift in Sources */,
 				21AD8BC21C8A37DE000A53F8 /* APIClient+Organizations.swift in Sources */,
 				21AD8BBF1C8A37DE000A53F8 /* Account.swift in Sources */,
+				211A69031D33EBB900DF098D /* JSONAPIClient.swift in Sources */,
 				21AD8BC81C8A37DE000A53F8 /* JSONSerialization.swift in Sources */,
 				21AD8BC11C8A37DE000A53F8 /* APIClient+Canvases.swift in Sources */,
+				211A68B41D33D37F00DF098D /* Entity.swift in Sources */,
 				21AD8BC31C8A37DE000A53F8 /* APIClient.swift in Sources */,
 				21F35A751D189490003D2757 /* APIClient+Account.swift in Sources */,
 			);
@@ -727,9 +741,11 @@
 				2175D2A61D171E4C009C6845 /* AuthorizationClient.swift in Sources */,
 				2175D2AA1D171E4C009C6845 /* NetworkClient.swift in Sources */,
 				2175D2A41D171E4C009C6845 /* APIClient+Organizations.swift in Sources */,
+				211A69051D33EBB900DF098D /* JSONAPIClient.swift in Sources */,
 				2175D2A51D171E4C009C6845 /* APIClient.swift in Sources */,
 				2175D2AB1D171E4C009C6845 /* Organization.swift in Sources */,
 				2175D2A71D171E4C009C6845 /* Canvas.swift in Sources */,
+				211A68B61D33D37F00DF098D /* Entity.swift in Sources */,
 				2175D2AC1D171E4C009C6845 /* User.swift in Sources */,
 				21F35A771D189490003D2757 /* APIClient+Account.swift in Sources */,
 			);
@@ -746,8 +762,10 @@
 				21EC4F201D077F7900FA439F /* AuthorizationClient.swift in Sources */,
 				21EC4F1E1D077F7900FA439F /* APIClient+Organizations.swift in Sources */,
 				21EC4F1B1D077F7900FA439F /* Account.swift in Sources */,
+				211A69041D33EBB900DF098D /* JSONAPIClient.swift in Sources */,
 				21EC4F231D077F7900FA439F /* JSONSerialization.swift in Sources */,
 				21EC4F1D1D077F7900FA439F /* APIClient+Canvases.swift in Sources */,
+				211A68B51D33D37F00DF098D /* Entity.swift in Sources */,
 				21EC4F1F1D077F7900FA439F /* APIClient.swift in Sources */,
 				21F35A761D189490003D2757 /* APIClient+Account.swift in Sources */,
 			);
@@ -774,8 +792,10 @@
 				21AD8BAA1C8A37D6000A53F8 /* AuthorizationClient.swift in Sources */,
 				21AD8BA81C8A37D6000A53F8 /* APIClient+Organizations.swift in Sources */,
 				21AD8BA51C8A37D6000A53F8 /* Account.swift in Sources */,
+				211A69021D33EBB900DF098D /* JSONAPIClient.swift in Sources */,
 				21AD8BAF1C8A37D6000A53F8 /* JSONSerialization.swift in Sources */,
 				21AD8BA71C8A37D6000A53F8 /* APIClient+Canvases.swift in Sources */,
+				211A68B31D33D37F00DF098D /* Entity.swift in Sources */,
 				21AD8BA91C8A37D6000A53F8 /* APIClient.swift in Sources */,
 				21F35A741D189490003D2757 /* APIClient+Account.swift in Sources */,
 			);
