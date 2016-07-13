@@ -50,7 +50,7 @@ public struct AuthorizationClient: NetworkClient {
 	
 	// MARK: - Creating an Account
 	
-	public func createAccount(email email: String, username: String, password: String, completion: Result<Account> -> Void) {
+	public func createAccount(email email: String, username: String, password: String, completion: Result<Void> -> Void) {
 		let params = [
 			"email": email,
 			"password": password,
@@ -108,6 +108,61 @@ public struct AuthorizationClient: NetworkClient {
 
 		let base64 = data.base64EncodedStringWithOptions([])
 		return "Basic \(base64)"
+	}
+	
+	// TODO: DRY
+	private func send(request request: NSMutableURLRequest, completion: Result<Void> -> Void) {
+		request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+		
+		if let authorization = authorizationHeader(username: clientID, password: clientSecret) {
+			request.setValue(authorization, forHTTPHeaderField: "Authorization")
+		} else {
+			dispatch_async(networkCompletionQueue) {
+				completion(.Failure("Failed to create request"))
+			}
+			return
+		}
+		
+		let session = self.session
+		session.dataTaskWithRequest(request) { responseData, response, error in
+			guard let responseData = responseData,
+				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
+				dictionary = json as? JSONDictionary
+			else {
+				dispatch_async(networkCompletionQueue) {
+					completion(.Failure("Invalid response."))
+				}
+				return
+			}
+			
+			if let status = (response as? NSHTTPURLResponse)?.statusCode where status == 201 {
+				dispatch_async(networkCompletionQueue) {
+					completion(.Success())
+				}
+				return
+			}
+			
+			if let errors = dictionary["errors"] as? JSONDictionary {
+				var errorMessages = [String]()
+				
+				for (key, values) in errors {
+					guard let values = values as? [String] else { continue }
+					
+					for value in values {
+						errorMessages.append("\(key.capitalizedString) \(value).")
+					}
+				}
+				
+				dispatch_async(networkCompletionQueue) {
+					completion(.Failure(errorMessages.joinWithSeparator(" ")))
+				}
+				return
+			}
+			
+			dispatch_async(networkCompletionQueue) {
+				completion(.Failure("Invalid response."))
+			}
+		}.resume()
 	}
 	
 	private func send(request request: NSMutableURLRequest, completion: Result<Account> -> Void) {
