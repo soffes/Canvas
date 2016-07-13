@@ -43,47 +43,43 @@ public struct AuthorizationClient: NetworkClient {
 		request.HTTPMethod = "POST"
 		request.HTTPBody = formEncode(queryItems).dataUsingEncoding(NSUTF8StringEncoding)
 		request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-		request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
-
-		if let authorization = authorizationHeader(username: clientID, password: clientSecret) {
-			request.setValue(authorization, forHTTPHeaderField: "Authorization")
-		} else {
-			dispatch_async(networkCompletionQueue) {
-				completion(.Failure("Failed to create request"))
-			}
-			return
-		}
-
-		let session = self.session
-		session.dataTaskWithRequest(request) { responseData, response, error in
-			guard let responseData = responseData,
-				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
-				dictionary = json as? JSONDictionary
-			else {
-				dispatch_async(networkCompletionQueue) {
-					completion(.Failure("Invalid response."))
-				}
-				return
-			}
-
-			if let account = Account(dictionary: dictionary) {
-				dispatch_async(networkCompletionQueue) {
-					completion(.Success(account))
-				}
-				return
-			}
-
-			if let error = dictionary["error"] as? String where error == "invalid_resource_owner" {
-				dispatch_async(networkCompletionQueue) {
-					completion(.Failure("Username/email or password incorrect."))
-				}
-				return
-			}
-
-			dispatch_async(networkCompletionQueue) {
-				completion(.Failure("Invalid response."))
-			}
-		}.resume()
+		
+		send(request: request, completion: completion)
+	}
+	
+	
+	// MARK: - Creating an Account
+	
+	public func createAccount(email email: String, username: String, password: String, completion: Result<Account> -> Void) {
+		let params = [
+			"email": email,
+			"password": password,
+			"user": [
+				"username": username
+			]
+		]
+		
+		let baseURL = self.baseURL
+		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("v1/account"))
+		request.HTTPMethod = "POST"
+		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(params, options: [])
+		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+	
+		send(request: request, completion: completion)
+	}
+	
+	public func verifyAccount(token token: String, completion: Result<Account> -> Void) {
+		let params = [
+			"token": token
+		]
+		
+		let baseURL = self.baseURL
+		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("account/actions/verify"))
+		request.HTTPMethod = "POST"
+		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(params, options: [])
+		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+		
+		send(request: request, completion: completion)
 	}
 
 
@@ -112,5 +108,66 @@ public struct AuthorizationClient: NetworkClient {
 
 		let base64 = data.base64EncodedStringWithOptions([])
 		return "Basic \(base64)"
+	}
+	
+	private func send(request request: NSMutableURLRequest, completion: Result<Account> -> Void) {
+		request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
+		
+		if let authorization = authorizationHeader(username: clientID, password: clientSecret) {
+			request.setValue(authorization, forHTTPHeaderField: "Authorization")
+		} else {
+			dispatch_async(networkCompletionQueue) {
+				completion(.Failure("Failed to create request"))
+			}
+			return
+		}
+		
+		let session = self.session
+		session.dataTaskWithRequest(request) { responseData, response, error in
+			guard let responseData = responseData,
+				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
+				dictionary = json as? JSONDictionary
+				else {
+					dispatch_async(networkCompletionQueue) {
+						completion(.Failure("Invalid response."))
+					}
+					return
+			}
+			
+			if let account = Account(dictionary: dictionary) {
+				dispatch_async(networkCompletionQueue) {
+					completion(.Success(account))
+				}
+				return
+			}
+			
+			if let errors = dictionary["errors"] as? JSONDictionary {
+				var errorMessages = [String]()
+				
+				for (key, values) in errors {
+					guard let values = values as? [String] else { continue }
+					
+					for value in values {
+						errorMessages.append("\(key.capitalizedString) \(value).")
+					}
+				}
+				
+				dispatch_async(networkCompletionQueue) {
+					completion(.Failure(errorMessages.joinWithSeparator(" ")))
+				}
+				return
+			}
+			
+			if let error = dictionary["error"] as? String where error == "invalid_resource_owner" {
+				dispatch_async(networkCompletionQueue) {
+					completion(.Failure("Username/email or password incorrect."))
+				}
+				return
+			}
+			
+			dispatch_async(networkCompletionQueue) {
+				completion(.Failure("Invalid response."))
+			}
+		}.resume()
 	}
 }
