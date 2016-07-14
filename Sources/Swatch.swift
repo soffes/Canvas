@@ -24,6 +24,7 @@ public struct Swatch {
 	private static let pink = Color(red: 1, green: 0.216, blue: 0.502, alpha: 1)
 	private static let yellow = Color(red: 1, green: 0.942, blue: 0.716, alpha: 1)
 
+
 	// MARK: - Shared
 
 	public static let brand = blue
