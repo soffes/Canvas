@@ -565,6 +565,7 @@ public final class TextController: NSObject {
 		
 		styles.append(style)
 		applyStyles()
+		annotationsController.layoutAnnotations()
 	}
 }
 
