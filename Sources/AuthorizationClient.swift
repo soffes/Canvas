@@ -74,7 +74,7 @@ public struct AuthorizationClient: NetworkClient {
 		]
 		
 		let baseURL = self.baseURL
-		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("account/actions/verify"))
+		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("v1/account/actions/verify"))
 		request.HTTPMethod = "POST"
 		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(params, options: [])
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -192,6 +192,13 @@ public struct AuthorizationClient: NetworkClient {
 			if let account = Account(dictionary: dictionary) {
 				dispatch_async(networkCompletionQueue) {
 					completion(.Success(account))
+				}
+				return
+			}
+
+			if let message = dictionary["message"] as? String {
+				dispatch_async(networkCompletionQueue) {
+					completion(.Failure(message))
 				}
 				return
 			}
