@@ -14,7 +14,8 @@ public struct Swatch {
 
 	public static let black = Color(red: 0.161, green: 0.180, blue: 0.192, alpha: 1)
 	public static let white = Color.whiteColor()
-	public static let gray = Color(red: 0.514, green: 0.569, blue: 0.592, alpha: 1)
+	public static let darkGray = Color(red: 0.514, green: 0.569, blue: 0.592, alpha: 1)
+	public static let gray = Color(red: 0.752, green: 0.796, blue: 0.821, alpha: 1)
 	public static let lightGray = Color(red: 0.906, green: 0.918, blue: 0.925, alpha: 1)
 	public static let extraLightGray = Color(red: 0.961, green: 0.969, blue: 0.976, alpha: 1)
 
@@ -34,7 +35,7 @@ public struct Swatch {
 
 	// MARK: - Bars
 
-	public static let border = lightGray
+	public static let border = gray
 
 
 	// MARK: - Tables
@@ -42,5 +43,5 @@ public struct Swatch {
 	public static let groupedTableBackground = extraLightGray
 
 	/// Chevron in table view cells
-	public static let cellDisclosureIndicator = gray
+	public static let cellDisclosureIndicator = darkGray
 }

@@ -21,14 +21,14 @@ public struct LightTheme: Theme {
 	// MARK: - Block Colors
 	
 	public let titlePlaceholderColor = Swatch.lightGray
-	public let bulletColor = Swatch.gray
-	public let uncheckedCheckboxColor = Swatch.gray
-	public let orderedListItemNumberColor = Swatch.gray
-	public let codeColor = Swatch.gray
+	public let bulletColor = Swatch.darkGray
+	public let uncheckedCheckboxColor = Swatch.darkGray
+	public let orderedListItemNumberColor = Swatch.darkGray
+	public let codeColor = Swatch.darkGray
 	public let codeBlockBackgroundColor = Swatch.extraLightGray
 	public let codeBlockLineNumberColor = Swatch.lightGray
 	public let codeBlockLineNumberBackgroundColor = Swatch.lightGray
-	public let blockquoteColor = Swatch.gray
+	public let blockquoteColor = Swatch.darkGray
 	public let blockquoteBorderColor = Swatch.lightGray
 	public let headingOneColor = Swatch.black
 	public let headingTwoColor = Swatch.black
@@ -36,17 +36,17 @@ public struct LightTheme: Theme {
 	public let headingFourColor = Swatch.black
 	public let headingFiveColor = Swatch.black
 	public let headingSixColor = Swatch.black
-	public let horizontalRuleColor = Swatch.gray
-	public let imagePlaceholderColor = Swatch.gray
+	public let horizontalRuleColor = Swatch.darkGray
+	public let imagePlaceholderColor = Swatch.darkGray
 	public let imagePlaceholderBackgroundColor = Swatch.extraLightGray
 
 
 	// MARK: - Span Colors
 
-	public let foldedColor = Swatch.gray
-	public let strikethroughColor = Swatch.gray
-	public let linkURLColor = Swatch.gray
-	public let codeSpanColor = Swatch.gray
+	public let foldedColor = Swatch.darkGray
+	public let strikethroughColor = Swatch.darkGray
+	public let linkURLColor = Swatch.darkGray
+	public let codeSpanColor = Swatch.darkGray
 	public let codeSpanBackgroundColor = Swatch.extraLightGray
 	public let commentBackgroundColor = Swatch.comment
 
