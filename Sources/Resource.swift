@@ -159,16 +159,16 @@ struct ResourceSerialization {
 		}
 	}
 	
-//	static func deserialize<T: Resource>(dictionary dictionary: JSONDictionary) -> T? {
-//		guard let data = dictionary["data"] as? JSONDictionary else { return nil }
-//		
-//		let includes = self.includes(dictionary)
-//		
-//		guard let resourceData = ResourceData(dictionary: data, includes: includes),
-//			resource = try? resourceData.type.resource.init(data: resourceData)
-//		else { return nil }
-//		
-//		return resource as? T
-//	}
+	static func deserialize<T: Resource>(dictionary dictionary: JSONDictionary) -> T? {
+		guard let data = dictionary["data"] as? JSONDictionary else { return nil }
+
+		let includes = self.includes(dictionary)
+
+		guard let resourceData = ResourceData(dictionary: data, includes: includes),
+			resource = try? resourceData.type.resource.init(data: resourceData)
+		else { return nil }
+
+		return resource as? T
+	}
 }
 
