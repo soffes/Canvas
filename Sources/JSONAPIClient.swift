@@ -34,7 +34,14 @@ public final class JSONAPIClient: APIClient {
 	}
 	
 	public func canvases(organizationID organizationID: String? = nil, completion: Result<[Canvas]> -> Void) {
-		let params = organizationID.flatMap { ["filter[org.id]": $0] }
+		var params: JSONDictionary = [
+			"include": "org"
+		]
+
+		if let organizationID = organizationID {
+			params["filter[org.id]"] = organizationID
+		}
+		
 		request(path: "canvases", parameters: params, completion: completion)
 	}
 }

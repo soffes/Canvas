@@ -11,7 +11,7 @@ import ISO8601
 
 typealias Attributes = [String: AnyObject]
 typealias Includes = [ResourceType: [String: Resource]]
-typealias Relationships = [String: AnyObject]
+typealias ResourceIdentifiers = [String: AnyObject]
 
 protocol Resource {
 	var id: String { get }
@@ -35,16 +35,17 @@ enum ResourceType: String {
 enum ResourceError: ErrorType {
 	case missingAttribute(String)
 	case missingInclude(ResourceType)
-	case missingRelationship(String)
+	case missingResourceIdentifier(String)
 }
 
-struct Relationship {
-	let type: ResourceType
+struct ResourceIdentifier {
 	let id: String
+	let type: ResourceType
 	
 	init?(dictionary: JSONDictionary) {
-		guard let id = dictionary["id"] as? String,
-			type = (dictionary["type"] as? String).flatMap(ResourceType.init)
+		guard let data = dictionary["data"] as? JSONDictionary,
+			id = data["id"] as? String,
+			type = (data["type"] as? String).flatMap(ResourceType.init)
 		else { return nil }
 		
 		self.id = id
@@ -57,7 +58,7 @@ struct ResourceData {
 	let type: ResourceType
 	let id: String
 	let attributes: JSONDictionary
-	let relationships: [String: Relationship]?
+	let relationships: [String: ResourceIdentifier]?
 	let includes: Includes?
 	
 	init?(dictionary: JSONDictionary, includes: Includes? = nil) {
@@ -71,9 +72,9 @@ struct ResourceData {
 		self.attributes = attributes
 		
 		if let rels = dictionary["relationships"] as? [String: JSONDictionary] {
-			var relationships = [String: Relationship]()
+			var relationships = [String: ResourceIdentifier]()
 			for (key, dictionary) in rels {
-				guard let relationship = Relationship(dictionary: dictionary) else { continue }
+				guard let relationship = ResourceIdentifier(dictionary: dictionary) else { continue }
 				relationships[key] = relationship
 			}
 			self.relationships = relationships
@@ -111,7 +112,7 @@ struct ResourceData {
 	
 	func decode<T>(relationship key: String) throws -> T {
 		guard let relationship = relationships?[key] else {
-			throw ResourceError.missingRelationship(key)
+			throw ResourceError.missingResourceIdentifier(key)
 		}
 		
 		guard let resource = includes?[relationship.type]?[relationship.id] as? T else {
