@@ -7,18 +7,6 @@
 //
 
 public struct Organization {
-	
-	// MARK: - Types
-	
-	public struct Color {
-		
-		// MARK: - Properties
-		
-		public var red: Double
-		public var green: Double
-		public var blue: Double
-	}
-	
 
 	// MARK: - Types
 
