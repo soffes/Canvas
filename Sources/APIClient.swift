@@ -54,10 +54,148 @@ public class APIClient: NetworkClient {
 		return true
 	}
 
-	
-	// MARK: - Internal
 
-	func request(method method: Method = .GET, path: String, parameters: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8", completion: (Result<Void> -> Void)?) {
+	// MARK: - Account
+
+	/// Revoke an access token.
+	///
+	/// - parameter completion: A function to call when the request finishes.
+	public func revokeAccessToken(completion: (Result<Void> -> Void)? = nil) {
+		let params = [
+			"token": accessToken
+		]
+		request(method: .POST, path: "access-tokens/actions/revoke", parameters: params, completion: completion)
+	}
+
+
+	// MARK: - Organizations
+
+	/// List organizations.
+	///
+	/// - parameter completion: A function to call when the request finishes.
+	public func listOrganizations(completion: Result<[Organization]> -> Void) {
+		request(path: "orgs", completion: completion)
+	}
+
+	// MARK: - Canvases
+
+	/// Show a canvas.
+	///
+	/// - parameter id: The canvas ID.
+	/// - parameter completion: A function to call when the request finishes.
+	public func showCanvas(id id: String, completion: Result<Canvas> -> Void) {
+		request(path: "canvases", parameters: ["include": "org"], completion: completion)
+	}
+
+	/// Create a canvas.
+	///
+	/// - parameter organizationID: The ID of the organization to own the created canvas.
+	/// - parameter content: Optional content for the new canvas.
+	/// - parameter isPublicWritable: Boolean indicating if the new canvas should be publicly writable.
+	/// - parameter completion: A function to call when the request finishes.
+	public func createCanvas(organizationID organizationID: String, content: String? = nil, isPublicWritable: Bool? = nil, completion: Result<Canvas> -> Void) {
+		var attributes = JSONDictionary()
+
+		if let content = content {
+			attributes["content"] = content
+		}
+
+		if let isPublicWritable = isPublicWritable {
+			attributes["is_public_writable"] = isPublicWritable
+		}
+
+		let params = [
+			"data": [
+				"type": "canvases",
+				"attributes": attributes
+			],
+			"relationships": [
+				"org": [
+					"data": [
+						"type": "orgs",
+						"id": organizationID
+					]
+				]
+			],
+			"include": "org"
+		]
+
+		request(method: .POST, path: "canvases", parameters: params, completion: completion)
+	}
+
+	/// List canvases.
+	///
+	/// - parameter organizationID: Limit the results to a given organization.
+	/// - parameter completion: A function to call when the request finishes.
+	public func listCanvases(organizationID organizationID: String? = nil, completion: Result<[Canvas]> -> Void) {
+		var params: JSONDictionary = [
+			"include": "org"
+		]
+
+		if let organizationID = organizationID {
+			params["filter[org.id]"] = organizationID
+		}
+
+		request(path: "canvases", parameters: params, completion: completion)
+	}
+
+	/// Search for canvases in an organization.
+	///
+	/// - parameter organizationID: The organization ID.
+	/// - parameter query: The search query.
+	/// - parameter completion: A function to call when the request finishes.
+	public func searchCanvases(organizationID organizationID: String, query: String, completion: Result<[Canvas]> -> Void) {
+		let params = [
+			"query": query,
+			"include": "org"
+		]
+		request(path: "orgs/\(organizationID)/actions/search", parameters: params, completion: completion)
+	}
+
+	/// Destroy a canvas.
+	///
+	/// - parameter id: The canvas ID.
+	/// - parameter completion: A function to call when the request finishes.
+	public func destroyCanvas(id id: String, completion: (Result<Void> -> Void)? = nil) {
+		request(method: .DELETE, path: "canvases/\(id)", completion: completion)
+	}
+
+	/// Archive a canvas.
+	///
+	/// - parameter id: The canvas ID.
+	/// - parameter completion: A function to call when the request finishes.
+	public func archiveCanvas(id id: String, completion: (Result<Canvas> -> Void)? = nil) {
+		canvasAction(name: "archive", id: id, completion: completion)
+	}
+
+	/// Unarchive a canvas.
+	///
+	/// - parameter id: The canvas ID.
+	/// - parameter completion: A function to call when the request finishes.
+	public func unarchiveCanvas(id id: String, completion: (Result<Canvas> -> Void)? = nil) {
+		canvasAction(name: "unarchive", id: id, completion: completion)
+	}
+
+	/// Change public edits setting for a canvas.
+	///
+	/// - parameter id: The canvas ID.
+	/// - parameter completion: A function to call when the request finishes.
+	public func changePublicEdits(id id: String, enabled: Bool, completion: (Result<Canvas> -> Void)? = nil) {
+		let params: JSONDictionary = [
+			"data": [
+				"attributes": [
+					"is_public_writable": enabled
+				]
+			],
+			"include": "org"
+		]
+		request(method: .PATCH, path: "canvases/\(id)", parameters: params, completion: completion)
+	}
+
+	
+	// MARK: - Private
+
+	private func request(method method: Method = .GET, path: String, parameters: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8", completion: (Result<Void> -> Void)?) {
 		let request = buildRequest(method: method, path: path, parameters: parameters, contentType: contentType)
 		sendRequest(request: request, completion: completion) { _, _, _ in
 			guard let completion = completion else { return }
@@ -67,14 +205,14 @@ public class APIClient: NetworkClient {
 		}
 	}
 
-	func request<T: JSONDeserializable>(method method: Method = .GET, path: String, parameters: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8", completion: (Result<T> -> Void)?) {
+	private func request<T: Resource>(method method: Method = .GET, path: String, parameters: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8", completion: (Result<[T]> -> Void)?) {
 		let request = buildRequest(method: method, path: path, parameters: parameters, contentType: contentType)
 		sendRequest(request: request, completion: completion) { data, _, _ in
 			guard let completion = completion else { return }
 			guard let data = data,
 				json = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
 				dictionary = json as? JSONDictionary,
-				value = T.init(dictionary: dictionary)
+				values = ResourceSerialization.deserialize(dictionary: dictionary) as [T]?
 			else {
 				dispatch_async(networkCompletionQueue) {
 					completion(.Failure("Invalid response"))
@@ -83,33 +221,33 @@ public class APIClient: NetworkClient {
 			}
 
 			dispatch_async(networkCompletionQueue) {
-				completion(.Success(value))
+				completion(.Success(values))
 			}
 		}
 	}
 
-	func request<T: JSONDeserializable>(method method: Method = .GET, path: String, parameters: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8", completion: (Result<[T]> -> Void)?) {
+	private func request<T: Resource>(method method: Method = .GET, path: String, parameters: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8", completion: (Result<T> -> Void)?) {
 		let request = buildRequest(method: method, path: path, parameters: parameters, contentType: contentType)
 		sendRequest(request: request, completion: completion) { data, _, _ in
 			guard let completion = completion else { return }
 			guard let data = data,
 				json = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
-				dictionaries = json as? [JSONDictionary]
-				else {
-					dispatch_async(networkCompletionQueue) {
-						completion(.Failure("Invalid response"))
-					}
-					return
+				dictionary = json as? JSONDictionary,
+				values = ResourceSerialization.deserialize(dictionary: dictionary) as T?
+			else {
+				dispatch_async(networkCompletionQueue) {
+					completion(.Failure("Invalid response"))
+				}
+				return
 			}
 
 			dispatch_async(networkCompletionQueue) {
-				let values = dictionaries.flatMap(T.init)
 				completion(.Success(values))
 			}
 		}
 	}
 	
-	func buildRequest(method method: Method = .GET, path: String, parameters: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8") -> NSMutableURLRequest {
+	private func buildRequest(method method: Method = .GET, path: String, parameters: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8") -> NSMutableURLRequest {
 		// Create URL
 		var url = baseURL.URLByAppendingPathComponent(path)
 
@@ -155,7 +293,7 @@ public class APIClient: NetworkClient {
 		return request
 	}
 
-	func sendRequest<T>(request request: NSURLRequest, completion: (Result<T> -> Void)?, callback: (data: NSData?, response: NSHTTPURLResponse?, error: NSError?) -> Void) {
+	private func sendRequest<T>(request request: NSURLRequest, completion: (Result<T> -> Void)?, callback: (data: NSData?, response: NSHTTPURLResponse?, error: NSError?) -> Void) {
 		session.dataTaskWithRequest(request) { data, res, error in
 			let response = res as? NSHTTPURLResponse
 
@@ -165,5 +303,11 @@ public class APIClient: NetworkClient {
 			
 			callback(data: data, response: response, error: error)
 		}.resume()
+	}
+
+	private func canvasAction(name name: String, id: String, completion: (Result<Canvas> -> Void)?) {
+		let path = "canvases/\(id)/actions/archive"
+		let params = ["include": "org"]
+		request(method: .POST, path: path, parameters: params, completion: completion)
 	}
 }

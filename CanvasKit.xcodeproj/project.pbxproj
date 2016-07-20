@@ -11,14 +11,8 @@
 		211A68B41D33D37F00DF098D /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A68B21D33D37F00DF098D /* Resource.swift */; };
 		211A68B51D33D37F00DF098D /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A68B21D33D37F00DF098D /* Resource.swift */; };
 		211A68B61D33D37F00DF098D /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A68B21D33D37F00DF098D /* Resource.swift */; };
-		211A69021D33EBB900DF098D /* JSONAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A69011D33EBB900DF098D /* JSONAPIClient.swift */; };
-		211A69031D33EBB900DF098D /* JSONAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A69011D33EBB900DF098D /* JSONAPIClient.swift */; };
-		211A69041D33EBB900DF098D /* JSONAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A69011D33EBB900DF098D /* JSONAPIClient.swift */; };
-		211A69051D33EBB900DF098D /* JSONAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A69011D33EBB900DF098D /* JSONAPIClient.swift */; };
 		216C4BA11BF54AB100260B8E /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4B971BF54AB100260B8E /* CanvasKit.framework */; };
 		2175D2A21D171E4C009C6845 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B891C8A37D5000A53F8 /* Account.swift */; };
-		2175D2A31D171E4C009C6845 /* APIClient+Canvases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8B1C8A37D5000A53F8 /* APIClient+Canvases.swift */; };
-		2175D2A41D171E4C009C6845 /* APIClient+Organizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8C1C8A37D5000A53F8 /* APIClient+Organizations.swift */; };
 		2175D2A51D171E4C009C6845 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */; };
 		2175D2A61D171E4C009C6845 /* AuthorizationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */; };
 		2175D2A71D171E4C009C6845 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */; };
@@ -34,8 +28,6 @@
 		2175D2CC1D17216E009C6845 /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D2C41D172157009C6845 /* DVR.framework */; };
 		2175D2CD1D172171009C6845 /* DVR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D2C81D17216B009C6845 /* DVR.framework */; };
 		21AD8BA51C8A37D6000A53F8 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B891C8A37D5000A53F8 /* Account.swift */; };
-		21AD8BA71C8A37D6000A53F8 /* APIClient+Canvases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8B1C8A37D5000A53F8 /* APIClient+Canvases.swift */; };
-		21AD8BA81C8A37D6000A53F8 /* APIClient+Organizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8C1C8A37D5000A53F8 /* APIClient+Organizations.swift */; };
 		21AD8BA91C8A37D6000A53F8 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */; };
 		21AD8BAA1C8A37D6000A53F8 /* AuthorizationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */; };
 		21AD8BAB1C8A37D6000A53F8 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */; };
@@ -44,8 +36,6 @@
 		21AD8BB11C8A37D6000A53F8 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B951C8A37D5000A53F8 /* Organization.swift */; };
 		21AD8BB31C8A37D6000A53F8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B971C8A37D5000A53F8 /* User.swift */; };
 		21AD8BBF1C8A37DE000A53F8 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B891C8A37D5000A53F8 /* Account.swift */; };
-		21AD8BC11C8A37DE000A53F8 /* APIClient+Canvases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8B1C8A37D5000A53F8 /* APIClient+Canvases.swift */; };
-		21AD8BC21C8A37DE000A53F8 /* APIClient+Organizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8C1C8A37D5000A53F8 /* APIClient+Organizations.swift */; };
 		21AD8BC31C8A37DE000A53F8 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */; };
 		21AD8BC41C8A37DE000A53F8 /* AuthorizationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */; };
 		21AD8BC51C8A37DE000A53F8 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */; };
@@ -75,8 +65,6 @@
 		21AD8C1B1C8A41E9000A53F8 /* list-canvases.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8C191C8A41E9000A53F8 /* list-canvases.json */; };
 		21EC4F0E1D077F5B00FA439F /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21EC4F041D077F5B00FA439F /* CanvasKit.framework */; };
 		21EC4F1B1D077F7900FA439F /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B891C8A37D5000A53F8 /* Account.swift */; };
-		21EC4F1D1D077F7900FA439F /* APIClient+Canvases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8B1C8A37D5000A53F8 /* APIClient+Canvases.swift */; };
-		21EC4F1E1D077F7900FA439F /* APIClient+Organizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8C1C8A37D5000A53F8 /* APIClient+Organizations.swift */; };
 		21EC4F1F1D077F7900FA439F /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */; };
 		21EC4F201D077F7900FA439F /* AuthorizationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */; };
 		21EC4F211D077F7900FA439F /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */; };
@@ -94,10 +82,6 @@
 		21EC4F2F1D077F8100FA439F /* create-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8C161C8A419E000A53F8 /* create-canvas.json */; };
 		21EC4F301D077F8100FA439F /* list-canvases.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8C191C8A41E9000A53F8 /* list-canvases.json */; };
 		21EC4F311D077FAA00FA439F /* CanvasKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 21AD8BCE1C8A380E000A53F8 /* CanvasKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		21F35A741D189490003D2757 /* APIClient+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F35A731D189490003D2757 /* APIClient+Account.swift */; };
-		21F35A751D189490003D2757 /* APIClient+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F35A731D189490003D2757 /* APIClient+Account.swift */; };
-		21F35A761D189490003D2757 /* APIClient+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F35A731D189490003D2757 /* APIClient+Account.swift */; };
-		21F35A771D189490003D2757 /* APIClient+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F35A731D189490003D2757 /* APIClient+Account.swift */; };
 		21FB6AC61BF53C9D003C82BB /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FB6ABB1BF53C9D003C82BB /* CanvasKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -150,7 +134,6 @@
 
 /* Begin PBXFileReference section */
 		211A68B21D33D37F00DF098D /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
-		211A69011D33EBB900DF098D /* JSONAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONAPIClient.swift; sourceTree = "<group>"; };
 		216C4B971BF54AB100260B8E /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		216C4BA01BF54AB100260B8E /* CanvasKitTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CanvasKitTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2175D29A1D171DC3009C6845 /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,8 +144,6 @@
 		2175D2C81D17216B009C6845 /* DVR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DVR.framework; path = Carthage/Build/Mac/DVR.framework; sourceTree = "<group>"; };
 		2175D2C91D17216B009C6845 /* ISO8601.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ISO8601.framework; path = Carthage/Build/Mac/ISO8601.framework; sourceTree = "<group>"; };
 		21AD8B891C8A37D5000A53F8 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		21AD8B8B1C8A37D5000A53F8 /* APIClient+Canvases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Canvases.swift"; sourceTree = "<group>"; };
-		21AD8B8C1C8A37D5000A53F8 /* APIClient+Organizations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Organizations.swift"; sourceTree = "<group>"; };
 		21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationClient.swift; sourceTree = "<group>"; };
 		21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
@@ -184,7 +165,6 @@
 		21AD8C191C8A41E9000A53F8 /* list-canvases.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "list-canvases.json"; sourceTree = "<group>"; };
 		21EC4F041D077F5B00FA439F /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21EC4F0D1D077F5B00FA439F /* CanvasKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		21F35A731D189490003D2757 /* APIClient+Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Account.swift"; sourceTree = "<group>"; };
 		21FB6ABB1BF53C9D003C82BB /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21FB6AC51BF53C9D003C82BB /* CanvasKitTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CanvasKitTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -300,11 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				21AD8B891C8A37D5000A53F8 /* Account.swift */,
-				21AD8B8B1C8A37D5000A53F8 /* APIClient+Canvases.swift */,
-				21AD8B8C1C8A37D5000A53F8 /* APIClient+Organizations.swift */,
-				21F35A731D189490003D2757 /* APIClient+Account.swift */,
 				21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */,
-				211A69011D33EBB900DF098D /* JSONAPIClient.swift */,
 				21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */,
 				21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */,
 				21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */,
@@ -710,14 +686,10 @@
 				21AD8BC91C8A37DE000A53F8 /* NetworkClient.swift in Sources */,
 				21AD8BCA1C8A37DE000A53F8 /* Organization.swift in Sources */,
 				21AD8BC41C8A37DE000A53F8 /* AuthorizationClient.swift in Sources */,
-				21AD8BC21C8A37DE000A53F8 /* APIClient+Organizations.swift in Sources */,
 				21AD8BBF1C8A37DE000A53F8 /* Account.swift in Sources */,
-				211A69031D33EBB900DF098D /* JSONAPIClient.swift in Sources */,
 				21AD8BC81C8A37DE000A53F8 /* JSONSerialization.swift in Sources */,
-				21AD8BC11C8A37DE000A53F8 /* APIClient+Canvases.swift in Sources */,
 				211A68B41D33D37F00DF098D /* Resource.swift in Sources */,
 				21AD8BC31C8A37DE000A53F8 /* APIClient.swift in Sources */,
-				21F35A751D189490003D2757 /* APIClient+Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -736,18 +708,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2175D2A21D171E4C009C6845 /* Account.swift in Sources */,
-				2175D2A31D171E4C009C6845 /* APIClient+Canvases.swift in Sources */,
 				2175D2A91D171E4C009C6845 /* JSONSerialization.swift in Sources */,
 				2175D2A61D171E4C009C6845 /* AuthorizationClient.swift in Sources */,
 				2175D2AA1D171E4C009C6845 /* NetworkClient.swift in Sources */,
-				2175D2A41D171E4C009C6845 /* APIClient+Organizations.swift in Sources */,
-				211A69051D33EBB900DF098D /* JSONAPIClient.swift in Sources */,
 				2175D2A51D171E4C009C6845 /* APIClient.swift in Sources */,
 				2175D2AB1D171E4C009C6845 /* Organization.swift in Sources */,
 				2175D2A71D171E4C009C6845 /* Canvas.swift in Sources */,
 				211A68B61D33D37F00DF098D /* Resource.swift in Sources */,
 				2175D2AC1D171E4C009C6845 /* User.swift in Sources */,
-				21F35A771D189490003D2757 /* APIClient+Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,14 +728,10 @@
 				21EC4F241D077F7900FA439F /* NetworkClient.swift in Sources */,
 				21EC4F251D077F7900FA439F /* Organization.swift in Sources */,
 				21EC4F201D077F7900FA439F /* AuthorizationClient.swift in Sources */,
-				21EC4F1E1D077F7900FA439F /* APIClient+Organizations.swift in Sources */,
 				21EC4F1B1D077F7900FA439F /* Account.swift in Sources */,
-				211A69041D33EBB900DF098D /* JSONAPIClient.swift in Sources */,
 				21EC4F231D077F7900FA439F /* JSONSerialization.swift in Sources */,
-				21EC4F1D1D077F7900FA439F /* APIClient+Canvases.swift in Sources */,
 				211A68B51D33D37F00DF098D /* Resource.swift in Sources */,
 				21EC4F1F1D077F7900FA439F /* APIClient.swift in Sources */,
-				21F35A761D189490003D2757 /* APIClient+Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,14 +754,10 @@
 				21AD8BB01C8A37D6000A53F8 /* NetworkClient.swift in Sources */,
 				21AD8BB11C8A37D6000A53F8 /* Organization.swift in Sources */,
 				21AD8BAA1C8A37D6000A53F8 /* AuthorizationClient.swift in Sources */,
-				21AD8BA81C8A37D6000A53F8 /* APIClient+Organizations.swift in Sources */,
 				21AD8BA51C8A37D6000A53F8 /* Account.swift in Sources */,
-				211A69021D33EBB900DF098D /* JSONAPIClient.swift in Sources */,
 				21AD8BAF1C8A37D6000A53F8 /* JSONSerialization.swift in Sources */,
-				21AD8BA71C8A37D6000A53F8 /* APIClient+Canvases.swift in Sources */,
 				211A68B31D33D37F00DF098D /* Resource.swift in Sources */,
 				21AD8BA91C8A37D6000A53F8 /* APIClient.swift in Sources */,
-				21F35A741D189490003D2757 /* APIClient+Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
