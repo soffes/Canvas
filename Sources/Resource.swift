@@ -21,7 +21,7 @@ protocol Resource {
 
 enum ResourceType: String {
 	case organization = "orgs"
-	case canvas = "canvas"
+	case canvas = "canvases"
 	
 	var resource: Resource.Type {
 		switch self {
