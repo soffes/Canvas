@@ -14,8 +14,7 @@ public final class SearchController: NSObject {
 
 	// MARK: - Properties
 
-	public let account: Account
-	public let organization: Organization
+	public let organizationID: String
 
 	/// Results are delivered to this callback
 	public var callback: ([Canvas] -> Void)?
@@ -33,10 +32,9 @@ public final class SearchController: NSObject {
 
 	// MARK: - Initializers
 
-	public init(account: Account, organization: Organization) {
-		self.account = account
-		self.organization = organization
-		client = APIClient(accessToken: account.accessToken)
+	public init(client: APIClient, organizationID: String) {
+		self.client = client
+		self.organizationID = organizationID
 
 		super.init()
 
@@ -56,14 +54,15 @@ public final class SearchController: NSObject {
 	private func query() {
 		guard nextQuery != nil else { return }
 
-		let organizationID = organization.id
-
 		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) { [weak self] in
 			guard let semaphore = self?.semaphore else { return }
 
 			dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
 
-			guard let query = self?.nextQuery, client = self?.client else {
+			guard let query = self?.nextQuery,
+				client = self?.client,
+				organizationID = self?.organizationID
+			else {
 				dispatch_semaphore_signal(semaphore)
 				return
 			}
