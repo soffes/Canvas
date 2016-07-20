@@ -14,7 +14,6 @@
 		2175D2A51D171E4C009C6845 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */; };
 		2175D2A61D171E4C009C6845 /* AuthorizationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */; };
 		2175D2A71D171E4C009C6845 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */; };
-		2175D2A81D171E4C009C6845 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B911C8A37D5000A53F8 /* Color.swift */; };
 		2175D2A91D171E4C009C6845 /* JSONSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */; };
 		2175D2AA1D171E4C009C6845 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */; };
 		2175D2AB1D171E4C009C6845 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B951C8A37D5000A53F8 /* Organization.swift */; };
@@ -32,7 +31,6 @@
 		21AD8BA91C8A37D6000A53F8 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */; };
 		21AD8BAA1C8A37D6000A53F8 /* AuthorizationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */; };
 		21AD8BAB1C8A37D6000A53F8 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */; };
-		21AD8BAD1C8A37D6000A53F8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B911C8A37D5000A53F8 /* Color.swift */; };
 		21AD8BAF1C8A37D6000A53F8 /* JSONSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */; };
 		21AD8BB01C8A37D6000A53F8 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */; };
 		21AD8BB11C8A37D6000A53F8 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B951C8A37D5000A53F8 /* Organization.swift */; };
@@ -43,7 +41,6 @@
 		21AD8BC31C8A37DE000A53F8 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */; };
 		21AD8BC41C8A37DE000A53F8 /* AuthorizationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */; };
 		21AD8BC51C8A37DE000A53F8 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */; };
-		21AD8BC71C8A37DE000A53F8 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B911C8A37D5000A53F8 /* Color.swift */; };
 		21AD8BC81C8A37DE000A53F8 /* JSONSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */; };
 		21AD8BC91C8A37DE000A53F8 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */; };
 		21AD8BCA1C8A37DE000A53F8 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B951C8A37D5000A53F8 /* Organization.swift */; };
@@ -75,7 +72,6 @@
 		21EC4F1F1D077F7900FA439F /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */; };
 		21EC4F201D077F7900FA439F /* AuthorizationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */; };
 		21EC4F211D077F7900FA439F /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */; };
-		21EC4F221D077F7900FA439F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B911C8A37D5000A53F8 /* Color.swift */; };
 		21EC4F231D077F7900FA439F /* JSONSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */; };
 		21EC4F241D077F7900FA439F /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */; };
 		21EC4F251D077F7900FA439F /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B951C8A37D5000A53F8 /* Organization.swift */; };
@@ -160,7 +156,6 @@
 		21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizationClient.swift; sourceTree = "<group>"; };
 		21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
-		21AD8B911C8A37D5000A53F8 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSerialization.swift; sourceTree = "<group>"; };
 		21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		21AD8B951C8A37D5000A53F8 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
@@ -301,7 +296,6 @@
 				21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */,
 				21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */,
 				21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */,
-				21AD8B911C8A37D5000A53F8 /* Color.swift */,
 				21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */,
 				21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */,
 				21AD8B951C8A37D5000A53F8 /* Organization.swift */,
@@ -708,7 +702,6 @@
 				21AD8BBF1C8A37DE000A53F8 /* Account.swift in Sources */,
 				21AD8BC81C8A37DE000A53F8 /* JSONSerialization.swift in Sources */,
 				21AD8BC11C8A37DE000A53F8 /* APIClient+Canvases.swift in Sources */,
-				21AD8BC71C8A37DE000A53F8 /* Color.swift in Sources */,
 				21AD8BC31C8A37DE000A53F8 /* APIClient.swift in Sources */,
 				21F35A751D189490003D2757 /* APIClient+Account.swift in Sources */,
 			);
@@ -731,7 +724,6 @@
 				2175D2A21D171E4C009C6845 /* Account.swift in Sources */,
 				2175D2A31D171E4C009C6845 /* APIClient+Canvases.swift in Sources */,
 				2175D2A91D171E4C009C6845 /* JSONSerialization.swift in Sources */,
-				2175D2A81D171E4C009C6845 /* Color.swift in Sources */,
 				2175D2A61D171E4C009C6845 /* AuthorizationClient.swift in Sources */,
 				2175D2AA1D171E4C009C6845 /* NetworkClient.swift in Sources */,
 				2175D2A41D171E4C009C6845 /* APIClient+Organizations.swift in Sources */,
@@ -756,7 +748,6 @@
 				21EC4F1B1D077F7900FA439F /* Account.swift in Sources */,
 				21EC4F231D077F7900FA439F /* JSONSerialization.swift in Sources */,
 				21EC4F1D1D077F7900FA439F /* APIClient+Canvases.swift in Sources */,
-				21EC4F221D077F7900FA439F /* Color.swift in Sources */,
 				21EC4F1F1D077F7900FA439F /* APIClient.swift in Sources */,
 				21F35A761D189490003D2757 /* APIClient+Account.swift in Sources */,
 			);
@@ -785,7 +776,6 @@
 				21AD8BA51C8A37D6000A53F8 /* Account.swift in Sources */,
 				21AD8BAF1C8A37D6000A53F8 /* JSONSerialization.swift in Sources */,
 				21AD8BA71C8A37D6000A53F8 /* APIClient+Canvases.swift in Sources */,
-				21AD8BAD1C8A37D6000A53F8 /* Color.swift in Sources */,
 				21AD8BA91C8A37D6000A53F8 /* APIClient.swift in Sources */,
 				21F35A741D189490003D2757 /* APIClient+Account.swift in Sources */,
 			);
