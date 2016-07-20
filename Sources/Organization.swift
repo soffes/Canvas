@@ -81,8 +81,8 @@ public struct Organization {
 }
 
 
-extension Organization: Entity {
-	init(data: EntityData) throws {
+extension Organization: Resource {
+	init(data: ResourceData) throws {
 		id = data.id
 		name = try data.decode(attribute: "name")
 		slug = try data.decode(attribute: "slug")

@@ -33,8 +33,8 @@ public struct Canvas {
 }
 
 
-extension Canvas: Entity {
-	init(data: EntityData) throws {
+extension Canvas: Resource {
+	init(data: ResourceData) throws {
 		id = data.id
 		organization = try data.decode(relationship: "org")
 		isWritable = try data.decode(attribute: "is_writable")

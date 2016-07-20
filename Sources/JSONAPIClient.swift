@@ -12,14 +12,14 @@ public final class JSONAPIClient: APIClient {
 		super.init(accessToken: accessToken, baseURL: baseURL, session: session)
 	}
 	
-	override func request<T: Entity>(method method: Method = .GET, path: String, parameters: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8", completion: (Result<[T]> -> Void)?) {
+	override func request<T: Resource>(method method: Method = .GET, path: String, parameters: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8", completion: (Result<[T]> -> Void)?) {
 		let request = buildRequest(method: method, path: path, parameters: parameters, contentType: contentType)
 		sendRequest(request: request, completion: completion) { data, _, _ in
 			guard let completion = completion else { return }
 			guard let data = data,
 				json = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
 				dictionary = json as? JSONDictionary,
-				values = EntitySerialization.deserialize(dictionary: dictionary) as [T]?
+				values = ResourceSerialization.deserialize(dictionary: dictionary) as [T]?
 			else {
 				dispatch_async(networkCompletionQueue) {
 					completion(.Failure("Invalid response"))
