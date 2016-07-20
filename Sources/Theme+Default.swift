@@ -22,7 +22,7 @@ extension Theme {
 
 	private var listIndentation: CGFloat {
 		let font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-		return ("    " as NSString).sizeWithAttributes([NSFontAttributeName: font]).width
+		return ("      " as NSString).sizeWithAttributes([NSFontAttributeName: font]).width
 	}
 
 	public var baseAttributes: Attributes {
