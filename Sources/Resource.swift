@@ -35,10 +35,10 @@ enum ResourceType: String {
 enum ResourceError: ErrorType {
 	case missingAttribute(String)
 	case missingInclude(ResourceType)
-	case missingReleationship(String)
+	case missingRelationship(String)
 }
 
-struct Releationship {
+struct Relationship {
 	let type: ResourceType
 	let id: String
 	
@@ -57,7 +57,7 @@ struct ResourceData {
 	let type: ResourceType
 	let id: String
 	let attributes: JSONDictionary
-	let relationships: [String: Releationship]?
+	let relationships: [String: Relationship]?
 	let includes: Includes?
 	
 	init?(dictionary: JSONDictionary, includes: Includes? = nil) {
@@ -71,9 +71,9 @@ struct ResourceData {
 		self.attributes = attributes
 		
 		if let rels = dictionary["relationships"] as? [String: JSONDictionary] {
-			var relationships = [String: Releationship]()
+			var relationships = [String: Relationship]()
 			for (key, dictionary) in rels {
-				guard let relationship = Releationship(dictionary: dictionary) else { continue }
+				guard let relationship = Relationship(dictionary: dictionary) else { continue }
 				relationships[key] = relationship
 			}
 			self.relationships = relationships
@@ -111,7 +111,7 @@ struct ResourceData {
 	
 	func decode<T>(relationship key: String) throws -> T {
 		guard let relationship = relationships?[key] else {
-			throw ResourceError.missingReleationship(key)
+			throw ResourceError.missingRelationship(key)
 		}
 		
 		guard let resource = includes?[relationship.type]?[relationship.id] as? T else {
