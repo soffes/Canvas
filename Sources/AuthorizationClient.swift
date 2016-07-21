@@ -39,7 +39,7 @@ public struct AuthorizationClient: NetworkClient {
 		]
 
 		let baseURL = self.baseURL
-		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("v1/oauth/access-tokens"))
+		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("oauth/access-tokens"))
 		request.HTTPMethod = "POST"
 		request.HTTPBody = formEncode(queryItems).dataUsingEncoding(NSUTF8StringEncoding)
 		request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -60,7 +60,7 @@ public struct AuthorizationClient: NetworkClient {
 		]
 		
 		let baseURL = self.baseURL
-		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("v1/account"))
+		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("account"))
 		request.HTTPMethod = "POST"
 		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(params, options: [])
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -74,7 +74,7 @@ public struct AuthorizationClient: NetworkClient {
 		]
 		
 		let baseURL = self.baseURL
-		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("v1/account/actions/verify"))
+		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("account/actions/verify"))
 		request.HTTPMethod = "POST"
 		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(params, options: [])
 		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
