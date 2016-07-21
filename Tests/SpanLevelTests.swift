@@ -97,13 +97,15 @@ final class SpanLevelTests: XCTestCase {
 	}
 
 	func testLinkWithInline() {
-		let markdown = "Hello [**world**](http://example.com)."
-		let paragraph = Parser.parse(markdown).first as! Paragraph
-
-		XCTAssertEqual(3, paragraph.subnodes.count)
-
-		let link = paragraph.subnodes[1] as! Link
+		var markdown = "Hello [**world**](http://example.com)."
+		var paragraph = Parser.parse(markdown).first as! Paragraph
+		var link = paragraph.subnodes[1] as! Link
 		XCTAssert(link.subnodes.first is DoubleEmphasis)
+
+		markdown = "Hello [`world`](http://example.com)."
+		paragraph = Parser.parse(markdown).first as! Paragraph
+		link = paragraph.subnodes[1] as! Link
+		XCTAssert(link.subnodes.first is CodeSpan)
 	}
 
 	func testDoubleEmphasis() {

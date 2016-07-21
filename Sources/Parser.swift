@@ -111,16 +111,27 @@ public struct Parser {
 				continue
 			}
 
+			// Iterate through matches
 			for match in matches {
-				// Skip if there is already a sibling for this range
+				// Look for matches that should be skipped because they're contained in other already parsed siblings
 				var skip = false
 				for sibling in subnodes {
-					if sibling.range.intersection(match.rangeAtIndex(0)) != nil {
+					let matchRange = match.rangeAtIndex(0)
+
+					// Allow links to contain code spans.
+					// This should be made more abstract down the road.
+					if type == Link.self && sibling is CodeSpan && match.rangeAtIndex(2).equals(sibling.range) {
+						break
+					}
+
+					// Skip if there is already a sibling for this range
+					if sibling.range.intersection(matchRange) != nil {
 						skip = true
 						break
 					}
 				}
 
+				// Initialize the node
 				guard !skip, let node = type.init(match: match) else { continue }
 
 				// Recurse
