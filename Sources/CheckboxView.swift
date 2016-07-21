@@ -96,7 +96,7 @@ final class CheckboxView: UIButton, Annotation {
 	private func checkboxRectForBounds(bounds: CGRect) -> CGRect {
 		return CGRect(
 			x: bounds.size.width - size - 4,
-			y: floor((bounds.size.height - size) / 2),
+			y: floor((bounds.size.height - size) / 2) - 1,
 			width: size,
 			height: size
 		)
