@@ -26,7 +26,7 @@ public struct LightTheme: Theme {
 	public let orderedListItemNumberColor = Swatch.darkGray
 	public let codeColor = Swatch.darkGray
 	public let codeBlockBackgroundColor = Swatch.extraLightGray
-	public let codeBlockLineNumberColor = Swatch.lightGray
+	public let codeBlockLineNumberColor = Swatch.gray
 	public let codeBlockLineNumberBackgroundColor = Swatch.lightGray
 	public let blockquoteColor = Swatch.darkGray
 	public let blockquoteBorderColor = Swatch.lightGray
