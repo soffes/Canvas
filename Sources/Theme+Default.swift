@@ -69,7 +69,7 @@ extension Theme {
 		}
 
 		if let code = block as? CodeBlock {
-			let padding: CGFloat = 16
+			let padding: CGFloat = 8
 			let margin: CGFloat = 5
 
 			// Top margin
@@ -84,12 +84,12 @@ extension Theme {
 				spacing.marginBottom += margin
 			}
 
-			spacing.paddingLeft = listIndentation
+			spacing.paddingLeft = padding * 2
 
 			// Indent for line numbers
 			if horizontalSizeClass == .Regular {
 				// TODO: Don't hard code
-				spacing.paddingLeft += 40
+				spacing.paddingLeft = 40
 			}
 
 			return spacing
