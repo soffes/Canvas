@@ -96,6 +96,16 @@ final class SpanLevelTests: XCTestCase {
 		XCTAssertEqual([paragraph].map { $0.dictionary }, parse(markdown))
 	}
 
+	func testLinkWithInline() {
+		let markdown = "Hello [**world**](http://example.com)."
+		let paragraph = Parser.parse(markdown).first as! Paragraph
+
+		XCTAssertEqual(3, paragraph.subnodes.count)
+
+		let link = paragraph.subnodes[1] as! Link
+		XCTAssert(link.subnodes.first is DoubleEmphasis)
+	}
+
 	func testDoubleEmphasis() {
 		let markdown = "Hello **world**."
 
