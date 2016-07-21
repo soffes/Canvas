@@ -113,7 +113,7 @@ final class CodeBlockView: ViewType, Annotation {
 			addSubview(textLabel)
 
 			// TODO: This is terrible
-			let top: CGFloat = codeBlock.position.isTop ? 17 : 1
+			let top: CGFloat = codeBlock.position.isTop ? 10 : 1
 
 			NSLayoutConstraint.activateConstraints([
 				textLabel.trailingAnchor.constraintEqualToAnchor(leadingAnchor, constant: self.dynamicType.lineNumberWidth - 6),

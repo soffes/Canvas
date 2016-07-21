@@ -89,7 +89,7 @@ extension Theme {
 			// Indent for line numbers
 			if horizontalSizeClass == .Regular {
 				// TODO: Don't hard code
-				spacing.paddingLeft = 40
+				spacing.paddingLeft += 40
 			}
 
 			return spacing
