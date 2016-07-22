@@ -13,7 +13,7 @@ public enum Environment: String {
 	case staging
 	case production
 
-	public var baseURL: NSURL {
+	public var apiURL: NSURL {
 		switch self {
 		case .development: return NSURL(string: "http://localhost:5001/")!
 		case .staging: return NSURL(string: "https://canvas-api-staging.herokuapp.com/")!
