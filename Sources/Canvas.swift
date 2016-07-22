@@ -40,8 +40,8 @@ extension Canvas: Resource {
 		isWritable = try data.decode(attribute: "is_writable")
 		isPublicWritable = try data.decode(attribute: "is_public_writable")
 		updatedAt = try data.decode(attribute: "updated_at")
-		title = (try? data.decode(attribute: "title")) ?? ""
-		summary = (try? data.decode(attribute: "summary")) ?? ""
+		title = try data.decode(attribute: "title")
+		summary = try data.decode(attribute: "summary")
 		nativeVersion = try data.decode(attribute: "native_version")
 		archivedAt = data.decode(attribute: "archived_at")
 	}
