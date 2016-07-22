@@ -71,7 +71,7 @@ public class APIClient: NetworkClient {
 	/// - parameter id: The canvas ID.
 	/// - parameter completion: A function to call when the request finishes.
 	public func showCanvas(id id: String, completion: Result<Canvas> -> Void) {
-		request(path: "canvases", parameters: ["include": "org"], completion: completion)
+		request(path: "canvases/\(id)", parameters: ["include": "org"], completion: completion)
 	}
 
 	/// Create a canvas.
@@ -218,13 +218,25 @@ public class APIClient: NetworkClient {
 		let request = buildRequest(method: method, path: path, parameters: parameters, contentType: contentType)
 		sendRequest(request: request, completion: completion) { data, _, _ in
 			guard let completion = completion else { return }
+
+			// TODO: Check status code
+
+			// Deserialize JSON
 			guard let data = data,
 				json = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
-				dictionary = json as? JSONDictionary,
-				values = ResourceSerialization.deserialize(dictionary: dictionary) as T?
+				dictionary = json as? JSONDictionary
 			else {
 				dispatch_async(networkCompletionQueue) {
-					completion(.Failure("Invalid response"))
+					completion(.Failure("Invalid response."))
+				}
+				return
+			}
+
+			// Parse JSON
+			guard let values = ResourceSerialization.deserialize(dictionary: dictionary) as T? else {
+				// TODO: Try to parse errors.
+				dispatch_async(networkCompletionQueue) {
+					completion(.Failure("Invalid response body."))
 				}
 				return
 			}
@@ -294,7 +306,7 @@ public class APIClient: NetworkClient {
 	}
 
 	private func canvasAction(name name: String, id: String, completion: (Result<Canvas> -> Void)?) {
-		let path = "canvases/\(id)/actions/archive"
+		let path = "canvases/\(id)/actions/\(name)"
 		let params = ["include": "org"]
 		request(method: .POST, path: path, parameters: params, completion: completion)
 	}
