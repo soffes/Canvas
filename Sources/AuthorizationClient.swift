@@ -90,6 +90,23 @@ public struct AuthorizationClient: NetworkClient {
 		send(request: request, completion: completion)
 	}
 
+	/// Revoke an access token.
+	///
+	/// - parameter completion: A function to call when the request finishes.
+	public func revoke(accessToken accessToken: String, completion: (Result<Void> -> Void)? = nil) {
+		let params = [
+			"token": accessToken
+		]
+
+		let baseURL = self.baseURL
+		let request = NSMutableURLRequest(URL: baseURL.URLByAppendingPathComponent("oauth/access-tokens/actions/revoke"))
+		request.HTTPMethod = "POST"
+		request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject(params, options: [])
+		request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+		send(request: request, completion: completion)
+	}
+
 
 	// MARK: - Private
 
@@ -119,14 +136,14 @@ public struct AuthorizationClient: NetworkClient {
 	}
 	
 	// TODO: DRY
-	private func send(request request: NSMutableURLRequest, completion: Result<Void> -> Void) {
+	private func send(request request: NSMutableURLRequest, completion: (Result<Void> -> Void)?) {
 		request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
 		
 		if let authorization = authorizationHeader(username: clientID, password: clientSecret) {
 			request.setValue(authorization, forHTTPHeaderField: "Authorization")
 		} else {
 			dispatch_async(networkCompletionQueue) {
-				completion(.Failure("Failed to create request"))
+				completion?(.Failure("Failed to create request"))
 			}
 			return
 		}
@@ -138,14 +155,14 @@ public struct AuthorizationClient: NetworkClient {
 				dictionary = json as? JSONDictionary
 			else {
 				dispatch_async(networkCompletionQueue) {
-					completion(.Failure("Invalid response."))
+					completion?(.Failure("Invalid response."))
 				}
 				return
 			}
 			
 			if let status = (response as? NSHTTPURLResponse)?.statusCode where status == 201 {
 				dispatch_async(networkCompletionQueue) {
-					completion(.Success())
+					completion?(.Success())
 				}
 				return
 			}
@@ -162,13 +179,13 @@ public struct AuthorizationClient: NetworkClient {
 				}
 				
 				dispatch_async(networkCompletionQueue) {
-					completion(.Failure(errorMessages.joinWithSeparator(" ")))
+					completion?(.Failure(errorMessages.joinWithSeparator(" ")))
 				}
 				return
 			}
 			
 			dispatch_async(networkCompletionQueue) {
-				completion(.Failure("Invalid response."))
+				completion?(.Failure("Invalid response."))
 			}
 		}.resume()
 	}
@@ -196,7 +213,16 @@ public struct AuthorizationClient: NetworkClient {
 				}
 				return
 			}
-			
+
+			// Log in
+			if dictionary["access_token"] is String, let account = Account(dictionary: dictionary) {
+				dispatch_async(networkCompletionQueue) {
+					completion(.Success(account))
+				}
+				return
+			}
+
+			// Verify
 			if let account: Account = ResourceSerialization.deserialize(dictionary: dictionary) {
 				dispatch_async(networkCompletionQueue) {
 					completion(.Success(account))

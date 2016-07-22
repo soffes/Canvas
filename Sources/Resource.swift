@@ -37,7 +37,7 @@ enum ResourceType: String {
 enum ResourceError: ErrorType {
 	case invalidAttribute(String)
 	case missingAttribute(String)
-	case missingInclude(ResourceType)
+	case missingInclude(String, ResourceIdentifier)
 	case missingResourceIdentifier(String)
 }
 
@@ -121,7 +121,7 @@ struct ResourceData {
 		}
 		
 		guard let resource = includes?[relationship.type]?[relationship.id] as? T else {
-			throw ResourceError.missingInclude(relationship.type)
+			throw ResourceError.missingInclude(key, relationship)
 		}
 		
 		return resource
@@ -171,9 +171,28 @@ struct ResourceSerialization {
 		let includes = self.includes(dictionary)
 		let meta = dictionary["meta"] as? JSONDictionary
 
-		guard let resourceData = ResourceData(dictionary: data, includes: includes, meta: meta),
-			resource = try? resourceData.type.resource.init(data: resourceData)
-		else { return nil }
+		guard let resourceData = ResourceData(dictionary: data, includes: includes, meta: meta) else { return nil }
+
+		let resource: Resource
+
+		do {
+			resource = try resourceData.type.resource.init(data: resourceData)
+		} catch ResourceError.invalidAttribute(let key) {
+			print("[CanvasKit] Failed to unpack \(resourceData.type): Invalid `\(key)` attribute.")
+			return nil
+		} catch ResourceError.missingAttribute(let key) {
+			print("[CanvasKit] Failed to unpack \(resourceData.type): Missing `\(key)` attribute.")
+			return nil
+		} catch ResourceError.missingInclude(let key, let identifier) {
+			print("[CanvasKit] Failed to unpack \(resourceData.type): Missing relationship `\(key)`. Expected \(identifier).")
+			return nil
+		} catch ResourceError.missingResourceIdentifier(let key) {
+			print("[CanvasKit] Failed to unpack \(resourceData.type): Missing resource identifier for relationship `\(key)`.")
+			return nil
+		} catch {
+			print("[CanvasKit] Failed to unpack \(resourceData.type): Unknown error")
+			return nil
+		}
 
 		return resource as? T
 	}

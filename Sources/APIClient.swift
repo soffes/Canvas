@@ -55,19 +55,6 @@ public class APIClient: NetworkClient {
 	}
 
 
-	// MARK: - Account
-
-	/// Revoke an access token.
-	///
-	/// - parameter completion: A function to call when the request finishes.
-	public func revokeAccessToken(completion: (Result<Void> -> Void)? = nil) {
-		let params = [
-			"token": accessToken
-		]
-		request(method: .POST, path: "access-tokens/actions/revoke", parameters: params, completion: completion)
-	}
-
-
 	// MARK: - Organizations
 
 	/// List organizations.
@@ -197,7 +184,8 @@ public class APIClient: NetworkClient {
 
 	private func request(method method: Method = .GET, path: String, parameters: JSONDictionary? = nil, contentType: String = "application/json; charset=utf-8", completion: (Result<Void> -> Void)?) {
 		let request = buildRequest(method: method, path: path, parameters: parameters, contentType: contentType)
-		sendRequest(request: request, completion: completion) { _, _, _ in
+		sendRequest(request: request, completion: completion) { _, response, _ in
+			print("response: \(response)")
 			guard let completion = completion else { return }
 			dispatch_async(networkCompletionQueue) {
 				completion(.Success(()))
