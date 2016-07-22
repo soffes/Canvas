@@ -96,8 +96,16 @@ public class PresenceController: Accountable {
 			return
 		}
 
-		let url = NSURL(string: "socket/websocket", relativeToURL: serverURL)!
+		guard let url = NSURL(string: "socket/websocket", relativeToURL: serverURL),
+			path = bundle.pathForResource("STAR_usecanvas_com", ofType: "der"),
+			data = NSData(contentsOfFile: path)
+		else {
+			print("[CanvasCore] Presence failed to setup a WebSocket connection.")
+			return
+		}
+
 		let ws = WebSocket(url: url)
+		ws.security = SSLSecurity(certs: [SSLCert(data: data)], usePublicKeys: true)
 		ws.origin = "https://usecanvas.com"
 		ws.delegate = self
 		ws.connect()

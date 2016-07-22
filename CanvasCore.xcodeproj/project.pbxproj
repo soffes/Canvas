@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		21298C291D2593CF00E741EE /* CanvasCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21298C281D2593CF00E741EE /* CanvasCore.swift */; };
 		21298C2A1D2593CF00E741EE /* CanvasCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21298C281D2593CF00E741EE /* CanvasCore.swift */; };
+		215D1ADA1D426AEB0030D804 /* STAR_usecanvas_com.der in Resources */ = {isa = PBXBuildFile; fileRef = 215D1AD91D426AEB0030D804 /* STAR_usecanvas_com.der */; };
+		215D1ADB1D426AEB0030D804 /* STAR_usecanvas_com.der in Resources */ = {isa = PBXBuildFile; fileRef = 215D1AD91D426AEB0030D804 /* STAR_usecanvas_com.der */; };
+		215D1ADD1D426B9C0030D804 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215D1ADC1D426B9C0030D804 /* APIClient.swift */; };
+		215D1ADE1D426B9C0030D804 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215D1ADC1D426B9C0030D804 /* APIClient.swift */; };
+		215D1AE31D426EA30030D804 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215D1AE21D426EA30030D804 /* SessionDelegate.swift */; };
+		215D1AE41D426EA30030D804 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215D1AE21D426EA30030D804 /* SessionDelegate.swift */; };
 		216B1C971D17199B007D022B /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216B1C8C1D17199B007D022B /* CanvasCore.framework */; };
 		216B1CAD1D1719F6007D022B /* CanvasCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 216B1CA81D1719F6007D022B /* CanvasCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		216B1CB11D171A04007D022B /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B1CAC1D1719F6007D022B /* Tests.swift */; };
@@ -718,6 +724,9 @@
 
 /* Begin PBXFileReference section */
 		21298C281D2593CF00E741EE /* CanvasCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasCore.swift; sourceTree = "<group>"; };
+		215D1AD91D426AEB0030D804 /* STAR_usecanvas_com.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = STAR_usecanvas_com.der; sourceTree = "<group>"; };
+		215D1ADC1D426B9C0030D804 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		215D1AE21D426EA30030D804 /* SessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDelegate.swift; sourceTree = "<group>"; };
 		216B1C8C1D17199B007D022B /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		216B1C961D17199B007D022B /* CanvasCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		216B1CA81D1719F6007D022B /* CanvasCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasCore.h; sourceTree = "<group>"; };
@@ -852,6 +861,7 @@
 		216B1CA71D1719F6007D022B /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				215D1AD91D426AEB0030D804 /* STAR_usecanvas_com.der */,
 				216B1CA81D1719F6007D022B /* CanvasCore.h */,
 				216B1CA91D1719F6007D022B /* Info.plist */,
 				216B1CAA1D1719F6007D022B /* Tests-Info.plist */,
@@ -1013,6 +1023,8 @@
 			children = (
 				219D23011D171B4900D32F65 /* Imgix.swift */,
 				219D23041D171B4900D32F65 /* LocalizedString.swift */,
+				215D1ADC1D426B9C0030D804 /* APIClient.swift */,
+				215D1AE21D426EA30030D804 /* SessionDelegate.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1763,6 +1775,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2175D5361D173933009C6845 /* Localizable.strings in Resources */,
+				215D1ADA1D426AEB0030D804 /* STAR_usecanvas_com.der in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1778,6 +1791,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2175D5371D173936009C6845 /* Localizable.strings in Resources */,
+				215D1ADB1D426AEB0030D804 /* STAR_usecanvas_com.der in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1798,6 +1812,7 @@
 				2175D52D1D173880009C6845 /* AvatarsController.swift in Sources */,
 				2175D52F1D173922009C6845 /* LocalizedString.swift in Sources */,
 				21298C291D2593CF00E741EE /* CanvasCore.swift in Sources */,
+				215D1ADD1D426B9C0030D804 /* APIClient.swift in Sources */,
 				2175D5381D173995009C6845 /* Font.swift in Sources */,
 				219D23081D171B4900D32F65 /* Accountable.swift in Sources */,
 				2175D5291D173753009C6845 /* SearchController.swift in Sources */,
@@ -1805,6 +1820,7 @@
 				2175D3491D17236D009C6845 /* Configuration.swift in Sources */,
 				2175D3451D172320009C6845 /* Cursor.swift in Sources */,
 				2175D52B1D1737DD009C6845 /* ImgixController.swift in Sources */,
+				215D1AE31D426EA30030D804 /* SessionDelegate.swift in Sources */,
 				2175D2FD1D172262009C6845 /* AccountController.swift in Sources */,
 				2175D5271D173744009C6845 /* Imgix.swift in Sources */,
 				2175D3431D1722FF009C6845 /* PresenceController.swift in Sources */,
@@ -1828,6 +1844,7 @@
 				2175D52C1D173880009C6845 /* AvatarsController.swift in Sources */,
 				2175D52E1D173922009C6845 /* LocalizedString.swift in Sources */,
 				21298C2A1D2593CF00E741EE /* CanvasCore.swift in Sources */,
+				215D1ADE1D426B9C0030D804 /* APIClient.swift in Sources */,
 				2176785E1D17589300003D89 /* Font.swift in Sources */,
 				2175D3311D1722CA009C6845 /* AccountController.swift in Sources */,
 				2175D5281D173753009C6845 /* SearchController.swift in Sources */,
@@ -1835,6 +1852,7 @@
 				2175D34A1D172370009C6845 /* Configuration.swift in Sources */,
 				2175D3471D17232A009C6845 /* Cursor.swift in Sources */,
 				2175D52A1D1737DC009C6845 /* ImgixController.swift in Sources */,
+				215D1AE41D426EA30030D804 /* SessionDelegate.swift in Sources */,
 				2175D3321D1722CA009C6845 /* Accountable.swift in Sources */,
 				2175D5261D173744009C6845 /* Imgix.swift in Sources */,
 				2175D3421D1722FF009C6845 /* PresenceController.swift in Sources */,
