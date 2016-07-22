@@ -1,0 +1,6 @@
+github "soffes/Cache"
+github "soffes/Crypto"
+github "soffes/SSKeychain"
+github "usecanvas/CanvasKit"
+github "usecanvas/CanvasText"
+github "usecanvas/Starscream"
