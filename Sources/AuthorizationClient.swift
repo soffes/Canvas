@@ -190,14 +190,14 @@ public struct AuthorizationClient: NetworkClient {
 			guard let responseData = responseData,
 				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
 				dictionary = json as? JSONDictionary
-				else {
-					dispatch_async(networkCompletionQueue) {
-						completion(.Failure("Invalid response."))
-					}
-					return
+			else {
+				dispatch_async(networkCompletionQueue) {
+					completion(.Failure("Invalid response."))
+				}
+				return
 			}
 			
-			if let account = Account(dictionary: dictionary) {
+			if let account: Account = ResourceSerialization.deserialize(dictionary: dictionary) {
 				dispatch_async(networkCompletionQueue) {
 					completion(.Success(account))
 				}

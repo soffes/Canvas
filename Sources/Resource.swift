@@ -22,11 +22,13 @@ protocol Resource {
 enum ResourceType: String {
 	case organization = "orgs"
 	case canvas = "canvases"
+	case account = "account"
 	
 	var resource: Resource.Type {
 		switch self {
 		case .organization: return Organization.self
 		case .canvas: return Canvas.self
+		case .account: return Account.self
 		}
 	}
 }
@@ -61,8 +63,9 @@ struct ResourceData {
 	let attributes: JSONDictionary
 	let relationships: [String: ResourceIdentifier]?
 	let includes: Includes?
+	let meta: JSONDictionary?
 	
-	init?(dictionary: JSONDictionary, includes: Includes? = nil) {
+	init?(dictionary: JSONDictionary, includes: Includes?, meta: JSONDictionary?) {
 		guard let id = dictionary["id"] as? String,
 			type = (dictionary["type"] as? String).flatMap(ResourceType.init),
 			attributes = dictionary["attributes"] as? JSONDictionary
@@ -71,6 +74,7 @@ struct ResourceData {
 		self.id = id
 		self.type = type
 		self.attributes = attributes
+		self.meta = meta
 		
 		if let rels = dictionary["relationships"] as? [String: JSONDictionary] {
 			var relationships = [String: ResourceIdentifier]()
@@ -132,7 +136,7 @@ struct ResourceSerialization {
 		
 		for dictionary in array {
 			guard let type = (dictionary["type"] as? String).flatMap(ResourceType.init),
-				data = ResourceData(dictionary: dictionary),
+				data = ResourceData(dictionary: dictionary, includes: nil, meta: nil),
 				resource = try? type.resource.init(data: data)
 			else { continue }
 			
@@ -150,9 +154,10 @@ struct ResourceSerialization {
 		guard let datas = dictionary["data"] as? [JSONDictionary] else { return nil }
 		
 		let includes = self.includes(dictionary)
+		let meta = dictionary["meta"] as? JSONDictionary
 		
 		return datas.flatMap { data in
-			guard let resourceData = ResourceData(dictionary: data, includes: includes),
+			guard let resourceData = ResourceData(dictionary: data, includes: includes, meta: meta),
 				resource = try? resourceData.type.resource.init(data: resourceData)
 			else { return nil }
 			
@@ -164,12 +169,12 @@ struct ResourceSerialization {
 		guard let data = dictionary["data"] as? JSONDictionary else { return nil }
 
 		let includes = self.includes(dictionary)
+		let meta = dictionary["meta"] as? JSONDictionary
 
-		guard let resourceData = ResourceData(dictionary: data, includes: includes),
+		guard let resourceData = ResourceData(dictionary: data, includes: includes, meta: meta),
 			resource = try? resourceData.type.resource.init(data: resourceData)
 		else { return nil }
 
 		return resource as? T
 	}
 }
-

@@ -107,13 +107,13 @@ public class APIClient: NetworkClient {
 		let params = [
 			"data": [
 				"type": "canvases",
-				"attributes": attributes
-			],
-			"relationships": [
-				"org": [
-					"data": [
-						"type": "orgs",
-						"id": organizationID
+				"attributes": attributes,
+				"relationships": [
+					"org": [
+						"data": [
+							"type": "orgs",
+							"id": organizationID
+						]
 					]
 				]
 			],
