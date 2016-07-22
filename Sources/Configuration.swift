@@ -17,7 +17,7 @@ public enum Environment: String {
 		switch self {
 		case .development: return NSURL(string: "http://localhost:5001/")!
 		case .staging: return NSURL(string: "https://canvas-api-staging.herokuapp.com/")!
-		case .production: return NSURL(string: "https://canvas-json-api.herokuapp.com/")!
+		case .production: return NSURL(string: "https://api.usecanvas.com/")!
 		}
 	}
 
