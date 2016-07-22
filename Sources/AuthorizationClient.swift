@@ -52,10 +52,13 @@ public struct AuthorizationClient: NetworkClient {
 	
 	public func createAccount(email email: String, username: String, password: String, completion: Result<Void> -> Void) {
 		let params = [
-			"email": email,
-			"password": password,
-			"user": [
-				"username": username
+			"data": [
+				"type": "account",
+				"attributes": [
+					"email": email,
+					"password": password,
+					"username": username
+				]
 			]
 		]
 		
@@ -70,7 +73,12 @@ public struct AuthorizationClient: NetworkClient {
 	
 	public func verifyAccount(token token: String, completion: Result<Account> -> Void) {
 		let params = [
-			"token": token
+			"data": [
+				"type": "account",
+				"attributes": [
+					"verification_token": token
+				]
+			]
 		]
 		
 		let baseURL = self.baseURL

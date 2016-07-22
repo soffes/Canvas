@@ -13,6 +13,7 @@ public struct Account {
 
 	// MARK: - Properties
 
+	public let id: String
 	public let accessToken: String
 	public let email: String
 	public let verifiedAt: NSDate?
@@ -45,10 +46,25 @@ extension Account: JSONSerializable, JSONDeserializable {
 			userDictionary = accountDictionary["user"] as? JSONDictionary,
 			user = User(dictionary: userDictionary)
 		else { return nil }
-		
+
+		id = user.id
 		self.accessToken = accessToken
 		self.user = user
 		self.email = email
 		verifiedAt = (accountDictionary["verified_at"] as? String).flatMap { NSDate(ISO8601String: $0) }
+	}
+}
+
+
+extension Account: Resource {
+	init(data: ResourceData) throws {
+		id = data.id
+		accessToken = try data.decode(attribute: "access_token")
+		email = try data.decode(attribute: "email")
+		verifiedAt = data.decode(attribute: "verified_at")
+
+		let username: String = try data.decode(attribute: "username")
+		let avatarURL: String = try data.decode(attribute: "avatar_url")
+		user = User(id: id, username: username, avatarURL: NSURL(string: avatarURL))
 	}
 }

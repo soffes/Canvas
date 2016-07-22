@@ -33,6 +33,7 @@ enum ResourceType: String {
 
 
 enum ResourceError: ErrorType {
+	case invalidAttribute(String)
 	case missingAttribute(String)
 	case missingInclude(ResourceType)
 	case missingResourceIdentifier(String)
