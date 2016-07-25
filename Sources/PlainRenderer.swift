@@ -28,7 +28,7 @@ public struct PlainRenderer: Renderer {
 		for block in document.blocks {
 			guard let block = block as? NodeContainer else { continue }
 
-			lines.append(renderSpans(block.subnodes))
+			lines.append(render(spans: block.subnodes))
 		}
 
 		let output = lines.joinWithSeparator("\n")
@@ -39,7 +39,7 @@ public struct PlainRenderer: Renderer {
 
 	// MARK: - Private
 
-	func renderSpans(spans: [SpanNode]) -> String {
+	private func render(spans spans: [SpanNode]) -> String {
 		var output = ""
 
 		for span in spans {
@@ -50,7 +50,7 @@ public struct PlainRenderer: Renderer {
 
 			// Recurse
 			else if let span = span as? NodeContainer {
-				output += renderSpans(span.subnodes)
+				output += render(spans: span.subnodes)
 			}
 		}
 

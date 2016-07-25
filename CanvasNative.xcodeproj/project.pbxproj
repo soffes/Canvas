@@ -127,6 +127,13 @@
 		21673D731CBD949C0017190B /* Document+Change.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21673D711CBD94980017190B /* Document+Change.swift */; };
 		21673D741CBD949C0017190B /* Document+Change.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21673D711CBD94980017190B /* Document+Change.swift */; };
 		21673D751CBD949D0017190B /* Document+Change.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21673D711CBD94980017190B /* Document+Change.swift */; };
+		217309F11D46AA1D001B63D7 /* MarkdownRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217309F01D46AA1D001B63D7 /* MarkdownRenderer.swift */; };
+		217309F21D46AA1D001B63D7 /* MarkdownRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217309F01D46AA1D001B63D7 /* MarkdownRenderer.swift */; };
+		217309F31D46AA1D001B63D7 /* MarkdownRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217309F01D46AA1D001B63D7 /* MarkdownRenderer.swift */; };
+		217309F41D46AA1D001B63D7 /* MarkdownRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217309F01D46AA1D001B63D7 /* MarkdownRenderer.swift */; };
+		217309F61D46AEFB001B63D7 /* MarkdownRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217309F51D46AEFB001B63D7 /* MarkdownRendererTests.swift */; };
+		217309F71D46AEFB001B63D7 /* MarkdownRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217309F51D46AEFB001B63D7 /* MarkdownRendererTests.swift */; };
+		217309F81D46AEFB001B63D7 /* MarkdownRendererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217309F51D46AEFB001B63D7 /* MarkdownRendererTests.swift */; };
 		2175D43D1D1729EC009C6845 /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D43B1D1729E4009C6845 /* Diff.framework */; };
 		2175D43F1D172A03009C6845 /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D43E1D172A03009C6845 /* Diff.framework */; };
 		2175D4411D172A0D009C6845 /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D4401D172A0D009C6845 /* Diff.framework */; };
@@ -333,6 +340,8 @@
 		21632D161C92366600C40D7D /* CanvasNative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasNative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21632D1F1C92366600C40D7D /* CanvasNativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasNativeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21673D711CBD94980017190B /* Document+Change.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Document+Change.swift"; sourceTree = "<group>"; };
+		217309F01D46AA1D001B63D7 /* MarkdownRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownRenderer.swift; sourceTree = "<group>"; };
+		217309F51D46AEFB001B63D7 /* MarkdownRendererTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownRendererTests.swift; sourceTree = "<group>"; };
 		2175D43B1D1729E4009C6845 /* Diff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diff.framework; path = Carthage/Build/Mac/Diff.framework; sourceTree = "<group>"; };
 		2175D43E1D172A03009C6845 /* Diff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diff.framework; path = Carthage/Build/iOS/Diff.framework; sourceTree = "<group>"; };
 		2175D4401D172A0D009C6845 /* Diff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diff.framework; path = Carthage/Build/watchOS/Diff.framework; sourceTree = "<group>"; };
@@ -695,6 +704,7 @@
 			children = (
 				21CB79941D09E41A002F4830 /* Renderer.swift */,
 				21CB79991D09E4FE002F4830 /* PlainRenderer.swift */,
+				217309F01D46AA1D001B63D7 /* MarkdownRenderer.swift */,
 			);
 			name = Renderes;
 			sourceTree = "<group>";
@@ -712,6 +722,7 @@
 			isa = PBXGroup;
 			children = (
 				21CB799F1D09E776002F4830 /* PlainRendererTests.swift */,
+				217309F51D46AEFB001B63D7 /* MarkdownRendererTests.swift */,
 			);
 			name = Renderer;
 			sourceTree = "<group>";
@@ -1033,6 +1044,7 @@
 				21AD8CBC1C8A4628000A53F8 /* OrderedListItem.swift in Sources */,
 				21AD8CB11C8A4628000A53F8 /* DoubleEmphasis.swift in Sources */,
 				21AD8CC41C8A4628000A53F8 /* Text.swift in Sources */,
+				217309F11D46AA1D001B63D7 /* MarkdownRenderer.swift in Sources */,
 				21AD8CA91C8A4628000A53F8 /* Attachable.swift in Sources */,
 				21E8EBCB1D0B8BE4007C60E5 /* NoncontiguousRange.swift in Sources */,
 				21AD8CC31C8A4628000A53F8 /* SpanNodeParseable.swift in Sources */,
@@ -1061,6 +1073,7 @@
 				211B90191C92306B004862FC /* XCTestCase+CanvasNativeTests.swift in Sources */,
 				21BF7D4B1C937F4100CB1A7A /* CodeBlockTests.swift in Sources */,
 				21341C8B1C85089400C9EF39 /* NodeTests.swift in Sources */,
+				217309F61D46AEFB001B63D7 /* MarkdownRendererTests.swift in Sources */,
 				215BABEE1C52B46B00118C8C /* ListableTests.swift in Sources */,
 				214FA0211CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */,
 				212DD5C21CCFFD0800C3845A /* ParserTests.swift in Sources */,
@@ -1109,6 +1122,7 @@
 				21AD8CE01C8A4649000A53F8 /* OrderedListItem.swift in Sources */,
 				21AD8CD51C8A4649000A53F8 /* DoubleEmphasis.swift in Sources */,
 				21AD8CE81C8A4649000A53F8 /* Text.swift in Sources */,
+				217309F21D46AA1D001B63D7 /* MarkdownRenderer.swift in Sources */,
 				21AD8CCD1C8A4649000A53F8 /* Attachable.swift in Sources */,
 				21E8EBCC1D0B8BE4007C60E5 /* NoncontiguousRange.swift in Sources */,
 				21AD8CE71C8A4649000A53F8 /* SpanNodeParseable.swift in Sources */,
@@ -1137,6 +1151,7 @@
 				211B90181C92306B004862FC /* XCTestCase+CanvasNativeTests.swift in Sources */,
 				21BF7D4C1C937F4100CB1A7A /* CodeBlockTests.swift in Sources */,
 				21341C8C1C85089400C9EF39 /* NodeTests.swift in Sources */,
+				217309F71D46AEFB001B63D7 /* MarkdownRendererTests.swift in Sources */,
 				215BABEF1C52B46B00118C8C /* ListableTests.swift in Sources */,
 				214FA0221CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */,
 				212DD5C31CCFFD0800C3845A /* ParserTests.swift in Sources */,
@@ -1185,6 +1200,7 @@
 				21632CFE1C9235F500C40D7D /* SpanNodeContainer.swift in Sources */,
 				21632D041C9235F800C40D7D /* Image.swift in Sources */,
 				21632CFA1C9235F500C40D7D /* NodeContainer.swift in Sources */,
+				217309F41D46AA1D001B63D7 /* MarkdownRenderer.swift in Sources */,
 				21632CFD1C9235F500C40D7D /* SpanNode.swift in Sources */,
 				21E8EBCE1D0B8BE4007C60E5 /* NoncontiguousRange.swift in Sources */,
 				21632D051C9235F800C40D7D /* OrderedListItem.swift in Sources */,
@@ -1233,6 +1249,7 @@
 				21632D391C92367B00C40D7D /* SpanNodeContainer.swift in Sources */,
 				21632D3F1C92367E00C40D7D /* Image.swift in Sources */,
 				21632D351C92367B00C40D7D /* NodeContainer.swift in Sources */,
+				217309F31D46AA1D001B63D7 /* MarkdownRenderer.swift in Sources */,
 				21632D381C92367B00C40D7D /* SpanNode.swift in Sources */,
 				21E8EBCD1D0B8BE4007C60E5 /* NoncontiguousRange.swift in Sources */,
 				21632D401C92367E00C40D7D /* OrderedListItem.swift in Sources */,
@@ -1261,6 +1278,7 @@
 				21632D591C9236A000C40D7D /* XCTestCase+CanvasNativeTests.swift in Sources */,
 				21BF7D4D1C937F4100CB1A7A /* CodeBlockTests.swift in Sources */,
 				21632D501C92369A00C40D7D /* DocumentTests.swift in Sources */,
+				217309F81D46AEFB001B63D7 /* MarkdownRendererTests.swift in Sources */,
 				21632D4F1C92369A00C40D7D /* DocumentControllerReliabilityTests.swift in Sources */,
 				214FA0231CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */,
 				212DD5C41CCFFD0800C3845A /* ParserTests.swift in Sources */,
