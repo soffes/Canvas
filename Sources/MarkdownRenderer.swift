@@ -29,7 +29,7 @@ public struct MarkdownRenderer: Renderer {
 			lines.append(render(block: block))
 		}
 
-		let output = lines.joinWithSeparator("\n")
+		let output = lines.joinWithSeparator("\n").stringByTrimmingCharactersInSet(.newlineCharacterSet())
 		let bounds = NSRange(location: 0, length: (output as NSString).length)
 		return InlineMarker.regularExpression.stringByReplacingMatchesInString(output, options: [], range: bounds, withTemplate: "")
 	}
@@ -143,11 +143,9 @@ public struct MarkdownRenderer: Renderer {
 		guard !indentation.isMinimum else { return "" }
 
 		var output = ""
-
-		for _ in 1..<indentation.rawValue {
+		for _ in 0..<indentation.rawValue {
 			output += "    "
 		}
-
 		return output
 	}
 
