@@ -7,7 +7,7 @@
 //
 
 import CanvasKit
-import SSKeychain
+import SAMKeychain
 
 public class AccountController {
 
@@ -16,9 +16,9 @@ public class AccountController {
 	public var currentAccount: Account? {
 		didSet {
 			if let account = currentAccount, data = try? NSJSONSerialization.dataWithJSONObject(account.dictionary, options: []) {
-				SSKeychain.setPasswordData(data, forService: "Canvas", account: "Account")
+				SAMKeychain.setPasswordData(data, forService: "Canvas", account: "Account")
 			} else {
-				SSKeychain.deletePasswordForService("Canvas", account: "Account")
+				SAMKeychain.deletePasswordForService("Canvas", account: "Account")
 				NSUserDefaults.standardUserDefaults().removeObjectForKey("Organizations")
 				NSUserDefaults.standardUserDefaults().removeObjectForKey("SelectedOrganization")
 			}
@@ -35,13 +35,13 @@ public class AccountController {
 	// MARK: - Initializers
 
 	init() {
-		guard let data = SSKeychain.passwordDataForService("Canvas", account: "Account") else { return }
+		guard let data = SAMKeychain.passwordDataForService("Canvas", account: "Account") else { return }
 
 		guard let json = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
 			dictionary = json as? JSONDictionary,
 			account = Account(dictionary: dictionary)
 		else {
-			SSKeychain.deletePasswordForService("Canvas", account: "Account")
+			SAMKeychain.deletePasswordForService("Canvas", account: "Account")
 			return
 		}
 

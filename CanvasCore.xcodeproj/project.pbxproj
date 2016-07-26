@@ -18,6 +18,10 @@
 		216B1C971D17199B007D022B /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216B1C8C1D17199B007D022B /* CanvasCore.framework */; };
 		216B1CAD1D1719F6007D022B /* CanvasCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 216B1CA81D1719F6007D022B /* CanvasCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		216B1CB11D171A04007D022B /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B1CAC1D1719F6007D022B /* Tests.swift */; };
+		21730A001D46F3C9001B63D7 /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217309FF1D46F3C9001B63D7 /* SAMKeychain.framework */; };
+		21730A021D46F3D5001B63D7 /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21730A011D46F3D5001B63D7 /* SAMKeychain.framework */; };
+		21730A031D46F3E5001B63D7 /* SAMKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217309FF1D46F3C9001B63D7 /* SAMKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		21730A041D46F3EA001B63D7 /* SAMKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21730A011D46F3D5001B63D7 /* SAMKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2175D2FD1D172262009C6845 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175D2FC1D172262009C6845 /* AccountController.swift */; };
 		2175D3241D1722AE009C6845 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2175D31A1D1722AD009C6845 /* CanvasCore.framework */; };
 		2175D3311D1722CA009C6845 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2175D2FC1D172262009C6845 /* AccountController.swift */; };
@@ -56,7 +60,6 @@
 		217C55411D42CFDC0064A2AD /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55361D42CFDC0064A2AD /* Diff.framework */; };
 		217C55421D42CFDC0064A2AD /* ISO8601.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55371D42CFDC0064A2AD /* ISO8601.framework */; };
 		217C55431D42CFDC0064A2AD /* OperationalTransformation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55381D42CFDC0064A2AD /* OperationalTransformation.framework */; };
-		217C55441D42CFDC0064A2AD /* SSKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55391D42CFDC0064A2AD /* SSKeychain.framework */; };
 		217C55451D42CFDC0064A2AD /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C553A1D42CFDC0064A2AD /* Starscream.framework */; };
 		217C55461D42CFDC0064A2AD /* X.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C553B1D42CFDC0064A2AD /* X.framework */; };
 		217C555C1D42CFF10064A2AD /* Cache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55481D42CFEE0064A2AD /* Cache.framework */; };
@@ -66,7 +69,6 @@
 		217C55601D42CFF10064A2AD /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C554C1D42CFEE0064A2AD /* Diff.framework */; };
 		217C55611D42CFF10064A2AD /* ISO8601.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C554D1D42CFEE0064A2AD /* ISO8601.framework */; };
 		217C55621D42CFF10064A2AD /* OperationalTransformation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C554E1D42CFEE0064A2AD /* OperationalTransformation.framework */; };
-		217C55631D42CFF10064A2AD /* SSKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C554F1D42CFEE0064A2AD /* SSKeychain.framework */; };
 		217C55641D42CFF10064A2AD /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55501D42CFEE0064A2AD /* Starscream.framework */; };
 		217C55651D42CFF10064A2AD /* X.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55511D42CFEE0064A2AD /* X.framework */; };
 		217C55791D42D3740064A2AD /* Crypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55781D42D3740064A2AD /* Crypto.framework */; };
@@ -79,7 +81,6 @@
 		217C55821D42D3940064A2AD /* Diff.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55361D42CFDC0064A2AD /* Diff.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		217C55831D42D3940064A2AD /* ISO8601.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55371D42CFDC0064A2AD /* ISO8601.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		217C55841D42D3940064A2AD /* OperationalTransformation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55381D42CFDC0064A2AD /* OperationalTransformation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		217C55851D42D3940064A2AD /* SSKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55391D42CFDC0064A2AD /* SSKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		217C55861D42D3940064A2AD /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217C553A1D42CFDC0064A2AD /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		217C55871D42D3940064A2AD /* X.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217C553B1D42CFDC0064A2AD /* X.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		217C55891D42D3B80064A2AD /* Crypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55881D42D3B80064A2AD /* Crypto.framework */; };
@@ -91,7 +92,6 @@
 		217C55901D42D3C70064A2AD /* Diff.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217C554C1D42CFEE0064A2AD /* Diff.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		217C55911D42D3C70064A2AD /* ISO8601.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217C554D1D42CFEE0064A2AD /* ISO8601.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		217C55921D42D3C70064A2AD /* OperationalTransformation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217C554E1D42CFEE0064A2AD /* OperationalTransformation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		217C55931D42D3C70064A2AD /* SSKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217C554F1D42CFEE0064A2AD /* SSKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		217C55941D42D3C70064A2AD /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55501D42CFEE0064A2AD /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		217C55951D42D3C70064A2AD /* X.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55511D42CFEE0064A2AD /* X.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		219D23081D171B4900D32F65 /* Accountable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D22FD1D171B4900D32F65 /* Accountable.swift */; };
@@ -130,7 +130,7 @@
 				217C55821D42D3940064A2AD /* Diff.framework in Embed Frameworks */,
 				217C55831D42D3940064A2AD /* ISO8601.framework in Embed Frameworks */,
 				217C55841D42D3940064A2AD /* OperationalTransformation.framework in Embed Frameworks */,
-				217C55851D42D3940064A2AD /* SSKeychain.framework in Embed Frameworks */,
+				21730A031D46F3E5001B63D7 /* SAMKeychain.framework in Embed Frameworks */,
 				217C55861D42D3940064A2AD /* Starscream.framework in Embed Frameworks */,
 				217C55871D42D3940064A2AD /* X.framework in Embed Frameworks */,
 			);
@@ -151,7 +151,7 @@
 				217C55901D42D3C70064A2AD /* Diff.framework in Embed Frameworks */,
 				217C55911D42D3C70064A2AD /* ISO8601.framework in Embed Frameworks */,
 				217C55921D42D3C70064A2AD /* OperationalTransformation.framework in Embed Frameworks */,
-				217C55931D42D3C70064A2AD /* SSKeychain.framework in Embed Frameworks */,
+				21730A041D46F3EA001B63D7 /* SAMKeychain.framework in Embed Frameworks */,
 				217C55941D42D3C70064A2AD /* Starscream.framework in Embed Frameworks */,
 				217C55951D42D3C70064A2AD /* X.framework in Embed Frameworks */,
 			);
@@ -171,6 +171,8 @@
 		216B1CA91D1719F6007D022B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		216B1CAA1D1719F6007D022B /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		216B1CAC1D1719F6007D022B /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		217309FF1D46F3C9001B63D7 /* SAMKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SAMKeychain.framework; path = Carthage/Build/iOS/SAMKeychain.framework; sourceTree = "<group>"; };
+		21730A011D46F3D5001B63D7 /* SAMKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SAMKeychain.framework; path = Carthage/Build/Mac/SAMKeychain.framework; sourceTree = "<group>"; };
 		2175D2FC1D172262009C6845 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		2175D31A1D1722AD009C6845 /* CanvasCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2175D3231D1722AE009C6845 /* CanvasCoreTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CanvasCoreTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,7 +187,6 @@
 		217C55361D42CFDC0064A2AD /* Diff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diff.framework; path = Carthage/Build/iOS/Diff.framework; sourceTree = "<group>"; };
 		217C55371D42CFDC0064A2AD /* ISO8601.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ISO8601.framework; path = Carthage/Build/iOS/ISO8601.framework; sourceTree = "<group>"; };
 		217C55381D42CFDC0064A2AD /* OperationalTransformation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OperationalTransformation.framework; path = Carthage/Build/iOS/OperationalTransformation.framework; sourceTree = "<group>"; };
-		217C55391D42CFDC0064A2AD /* SSKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSKeychain.framework; path = Carthage/Build/iOS/SSKeychain.framework; sourceTree = "<group>"; };
 		217C553A1D42CFDC0064A2AD /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		217C553B1D42CFDC0064A2AD /* X.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = X.framework; path = Carthage/Build/iOS/X.framework; sourceTree = "<group>"; };
 		217C55481D42CFEE0064A2AD /* Cache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cache.framework; path = Carthage/Build/Mac/Cache.framework; sourceTree = "<group>"; };
@@ -195,7 +196,6 @@
 		217C554C1D42CFEE0064A2AD /* Diff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diff.framework; path = Carthage/Build/Mac/Diff.framework; sourceTree = "<group>"; };
 		217C554D1D42CFEE0064A2AD /* ISO8601.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ISO8601.framework; path = Carthage/Build/Mac/ISO8601.framework; sourceTree = "<group>"; };
 		217C554E1D42CFEE0064A2AD /* OperationalTransformation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OperationalTransformation.framework; path = Carthage/Build/Mac/OperationalTransformation.framework; sourceTree = "<group>"; };
-		217C554F1D42CFEE0064A2AD /* SSKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SSKeychain.framework; path = Carthage/Build/Mac/SSKeychain.framework; sourceTree = "<group>"; };
 		217C55501D42CFEE0064A2AD /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/Mac/Starscream.framework; sourceTree = "<group>"; };
 		217C55511D42CFEE0064A2AD /* X.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = X.framework; path = Carthage/Build/Mac/X.framework; sourceTree = "<group>"; };
 		217C55781D42D3740064A2AD /* Crypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crypto.framework; path = Carthage/Build/iOS/Crypto.framework; sourceTree = "<group>"; };
@@ -228,7 +228,7 @@
 				217C55421D42CFDC0064A2AD /* ISO8601.framework in Frameworks */,
 				217C55401D42CFDC0064A2AD /* CommonCrypto.framework in Frameworks */,
 				217C55791D42D3740064A2AD /* Crypto.framework in Frameworks */,
-				217C55441D42CFDC0064A2AD /* SSKeychain.framework in Frameworks */,
+				21730A001D46F3C9001B63D7 /* SAMKeychain.framework in Frameworks */,
 				217C553D1D42CFDC0064A2AD /* CanvasKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,10 +247,10 @@
 			files = (
 				217C555F1D42CFF10064A2AD /* CommonCrypto.framework in Frameworks */,
 				217C555C1D42CFF10064A2AD /* Cache.framework in Frameworks */,
-				217C55631D42CFF10064A2AD /* SSKeychain.framework in Frameworks */,
 				217C55891D42D3B80064A2AD /* Crypto.framework in Frameworks */,
 				217C55621D42CFF10064A2AD /* OperationalTransformation.framework in Frameworks */,
 				217C55641D42CFF10064A2AD /* Starscream.framework in Frameworks */,
+				21730A021D46F3D5001B63D7 /* SAMKeychain.framework in Frameworks */,
 				217C55601D42CFF10064A2AD /* Diff.framework in Frameworks */,
 				217C555E1D42CFF10064A2AD /* CanvasNative.framework in Frameworks */,
 				217C55651D42CFF10064A2AD /* X.framework in Frameworks */,
@@ -273,10 +273,10 @@
 		216B1C821D17199B007D022B = {
 			isa = PBXGroup;
 			children = (
-				217C552F1D42CFC30064A2AD /* Frameworks */,
 				216B1CA61D1719F6007D022B /* Sources */,
 				216B1CA71D1719F6007D022B /* Support */,
 				216B1CAB1D1719F6007D022B /* Tests */,
+				217C552F1D42CFC30064A2AD /* Frameworks */,
 				216B1C8D1D17199B007D022B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -347,6 +347,7 @@
 		217C55301D42CFC80064A2AD /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				217309FF1D46F3C9001B63D7 /* SAMKeychain.framework */,
 				217C55781D42D3740064A2AD /* Crypto.framework */,
 				217C55311D42CFDC0064A2AD /* Cache.framework */,
 				217C55321D42CFDC0064A2AD /* CanvasKit.framework */,
@@ -356,7 +357,6 @@
 				217C55361D42CFDC0064A2AD /* Diff.framework */,
 				217C55371D42CFDC0064A2AD /* ISO8601.framework */,
 				217C55381D42CFDC0064A2AD /* OperationalTransformation.framework */,
-				217C55391D42CFDC0064A2AD /* SSKeychain.framework */,
 				217C553A1D42CFDC0064A2AD /* Starscream.framework */,
 				217C553B1D42CFDC0064A2AD /* X.framework */,
 			);
@@ -366,6 +366,7 @@
 		217C55471D42CFDF0064A2AD /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				21730A011D46F3D5001B63D7 /* SAMKeychain.framework */,
 				217C55881D42D3B80064A2AD /* Crypto.framework */,
 				217C55481D42CFEE0064A2AD /* Cache.framework */,
 				217C55491D42CFEE0064A2AD /* CanvasKit.framework */,
@@ -374,7 +375,6 @@
 				217C554C1D42CFEE0064A2AD /* Diff.framework */,
 				217C554D1D42CFEE0064A2AD /* ISO8601.framework */,
 				217C554E1D42CFEE0064A2AD /* OperationalTransformation.framework */,
-				217C554F1D42CFEE0064A2AD /* SSKeychain.framework */,
 				217C55501D42CFEE0064A2AD /* Starscream.framework */,
 				217C55511D42CFEE0064A2AD /* X.framework */,
 			);

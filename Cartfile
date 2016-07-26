@@ -1,6 +1,6 @@
 github "soffes/Cache"
 github "soffes/Crypto"
-github "soffes/SSKeychain"
+github "soffes/SAMKeychain"
 github "usecanvas/CanvasKit"
 github "usecanvas/CanvasText"
 github "usecanvas/Starscream"
