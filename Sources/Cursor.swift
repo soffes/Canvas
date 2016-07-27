@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CanvasNative
 
 struct Cursor {
 
@@ -24,46 +25,48 @@ struct Cursor {
 	/// Index of user's cursor end on `endLine`
 	var end: UInt
 
+	var dictionary: [String: UInt] {
+		return [
+			"startLine": startLine,
+			"start": start,
+			"endLine": endLine,
+			"end": end
+		]
+	}
+
 
 	// MARK: - Initializers
 
-	/// Initialize a cursor with a backing selection and backing string.
-	///
-	/// - parameter selectedRange: A selection in the backing string.
-	/// - parameter string: A backing string.
-	init?(selectedRange: NSRange, string: String) {
-		let text = string as NSString
-		let bounds = NSRange(location: 0, length: text.length)
-
-		// If the selection is longer than the string, it's invaid.
-		let max = NSMaxRange(selectedRange)
-		if max > bounds.length {
-			return nil
-		}
-
+	init?(backingSelection: NSRange, document: Document) {
 		var starts: (UInt, UInt)?
 		var ends: (UInt, UInt)?
-		var index: UInt = 0
 
-		// Interate through lines
-		text.enumerateSubstringsInRange(bounds, options: .ByLines) { _, _, enclosingRange, stop in
+		let max = NSMaxRange(backingSelection)
+
+		let count = document.blocks.count
+		for (i, block) in document.blocks.enumerate() {
+			let index = UInt(i)
+			let isLast = i == count - 1
+			var blockRange = block.range
+
+			if !isLast {
+				blockRange.length += 1
+			}
+
 			// Find start
-			if starts == nil && NSMaxRange(enclosingRange) > selectedRange.location  {
-				starts = (index, UInt(selectedRange.location - enclosingRange.location))
+			if starts == nil && NSMaxRange(blockRange) > backingSelection.location  {
+				starts = (index, UInt(backingSelection.location - blockRange.location))
 			}
 
 			// Find end
-			if ends == nil && NSMaxRange(enclosingRange) >= max {
-				ends = (index, UInt(max - enclosingRange.location))
+			if ends == nil && NSMaxRange(blockRange) >= max {
+				ends = (index, UInt(max - blockRange.location))
 			}
 
 			// Stop if we've found both
 			if starts != nil && ends != nil {
-				stop.memory = true
-				return
+				break
 			}
-
-			index += 1
 		}
 
 		guard let (startLine, start) = starts, (endLine, end) = ends else { return nil }
@@ -81,34 +84,49 @@ struct Cursor {
 		self.end = end
 	}
 
+	init?(dictionary: [String: AnyObject]) {
+		guard let startLine = dictionary["startLine"] as? UInt,
+			start = dictionary["start"] as? UInt,
+			endLine = dictionary["endLine"] as? UInt,
+			end = dictionary["end"] as? UInt
+		else { return nil }
+
+		self.startLine = startLine
+		self.start = start
+		self.endLine = endLine
+		self.end = end
+	}
+
 
 	// MARK: - Converting to NSRange
 
-	func range(with string: String) -> NSRange {
+	func range(with document: Document) -> NSRange {
 		var range = NSRange(location: 0, length: 0)
 
-		let text = string as NSString
-		let bounds = NSRange(location: 0, length: text.length)
-		var index: UInt = 0
+		let count = document.blocks.count
+		for (i, block) in document.blocks.enumerate() {
+			let index = UInt(i)
+			let isLast = i == count - 1
+			var blockRange = block.range
 
-		text.enumerateSubstringsInRange(bounds, options: .ByLines) { _, _, enclosingRange, stop in
+			if !isLast {
+				blockRange.length += 1
+			}
+
 			if index < self.startLine {
-				range.location += enclosingRange.length
+				range.location += blockRange.length
 			} else if self.startLine == index {
 				range.location += Int(self.start)
 			}
 
 			if self.endLine < index {
 				if self.endLine != self.startLine {
-					range.length += enclosingRange.length
+					range.length += blockRange.length
 				}
 			} else if self.endLine == index {
-				range.length = enclosingRange.location + Int(self.end) - range.location
-				stop.memory = true
-				return
+				range.length = blockRange.location + Int(self.end) - range.location
+				break
 			}
-
-			index += 1
 		}
 
 		return range

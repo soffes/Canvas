@@ -7,6 +7,7 @@
 //
 
 import CanvasKit
+import CanvasNative
 import Starscream
 
 #if !os(OSX)
@@ -144,6 +145,23 @@ public class PresenceController: Accountable {
 		])
 
 		connections.removeValueForKey(canvasID)
+	}
+
+	public func updateSelection(selection: NSRange?, document: Document, canvasID: String) {
+		guard let connection = connections[canvasID] else { return }
+
+		var payload = [String: AnyObject]()
+
+		if let selection = selection, cursor = Cursor(backingSelection: selection, document: document) {
+			payload["cursor"] = cursor.dictionary
+		}
+
+		sendMessage([
+			"event": "update_meta",
+			"topic": "presence:canvases:\(connection.canvasID)",
+			"payload": payload,
+			"ref": "3"
+		])
 	}
 
 
@@ -333,6 +351,11 @@ extension PresenceController: WebSocketDelegate {
 			if before != after {
 				updateObservers(canvasID: canvasID)
 			}
+		}
+
+		// Remove update
+		else if event == "remote_update", let client = Client(dictionary: payload) where client.user != account.user {
+			print("client: \(client)")
 		}
 	}
 
