@@ -9,6 +9,9 @@
 import Foundation
 
 struct Cursor {
+
+	// MARK: - Properties
+
 	/// Index of line on which the user's cursor begins
 	var startLine: UInt
 
@@ -20,6 +23,9 @@ struct Cursor {
 
 	/// Index of user's cursor end on `endLine`
 	var end: UInt
+
+
+	// MARK: - Initializers
 
 	/// Initialize a cursor with a backing selection and backing string.
 	///
@@ -66,5 +72,45 @@ struct Cursor {
 		self.start = start
 		self.endLine = endLine
 		self.end = end
+	}
+
+	init(startLine: UInt, start: UInt, endLine: UInt, end: UInt) {
+		self.startLine = startLine
+		self.start = start
+		self.endLine = endLine
+		self.end = end
+	}
+
+
+	// MARK: - Converting to NSRange
+
+	func range(with string: String) -> NSRange {
+		var range = NSRange(location: 0, length: 0)
+
+		let text = string as NSString
+		let bounds = NSRange(location: 0, length: text.length)
+		var index: UInt = 0
+
+		text.enumerateSubstringsInRange(bounds, options: .ByLines) { _, _, enclosingRange, stop in
+			if index < self.startLine {
+				range.location += enclosingRange.length
+			} else if self.startLine == index {
+				range.location += Int(self.start)
+			}
+
+			if self.endLine < index {
+				if self.endLine != self.startLine {
+					range.length += enclosingRange.length
+				}
+			} else if self.endLine == index {
+				range.length = enclosingRange.location + Int(self.end) - range.location
+				stop.memory = true
+				return
+			}
+
+			index += 1
+		}
+
+		return range
 	}
 }

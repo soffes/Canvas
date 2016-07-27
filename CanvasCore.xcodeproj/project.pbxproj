@@ -98,6 +98,8 @@
 		219501271D58B591003F5E94 /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219501261D58B591003F5E94 /* URLHelper.swift */; };
 		219501281D58B591003F5E94 /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219501261D58B591003F5E94 /* URLHelper.swift */; };
 		219D23081D171B4900D32F65 /* Accountable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D22FD1D171B4900D32F65 /* Accountable.swift */; };
+		21E5FC6B1D49431F00A9B281 /* NSRange+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5FC6A1D49431F00A9B281 /* NSRange+Tests.swift */; };
+		21E5FC6C1D49431F00A9B281 /* NSRange+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5FC6A1D49431F00A9B281 /* NSRange+Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -216,6 +218,7 @@
 		219D23051D171B4900D32F65 /* PresenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenceController.swift; sourceTree = "<group>"; };
 		219D23061D171B4900D32F65 /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		219D23071D171B4900D32F65 /* SpaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceView.swift; sourceTree = "<group>"; };
+		21E5FC6A1D49431F00A9B281 /* NSRange+Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+Tests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,6 +332,7 @@
 			children = (
 				216B1CAC1D1719F6007D022B /* URLHelperTests.swift */,
 				216B1CAC1D1719F6007D022B /* CursorTests.swift */,
+				21E5FC6A1D49431F00A9B281 /* NSRange+Tests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -676,6 +680,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				216B1CB11D171A04007D022B /* URLHelperTests.swift in Sources */,
+				21E5FC6B1D49431F00A9B281 /* NSRange+Tests.swift in Sources */,
 				216B1CB11D171A04007D022B /* CursorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -709,6 +714,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21E5FC6C1D49431F00A9B281 /* NSRange+Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -948,6 +954,7 @@
 		2175D32F1D1722AE009C6845 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "CanvasCore-macOSTests/Info.plist";
@@ -956,12 +963,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.usecanvas.CanvasCore-macOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		2175D3301D1722AE009C6845 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "CanvasCore-macOSTests/Info.plist";
