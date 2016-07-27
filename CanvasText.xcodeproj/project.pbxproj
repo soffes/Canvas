@@ -97,6 +97,7 @@
 		21E1D9E21C8DF65900283961 /* AnnotationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E11C8DF65900283961 /* AnnotationsController.swift */; };
 		21E1D9E61C8DF6B800283961 /* Themeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E51C8DF6B800283961 /* Themeable.swift */; };
 		21E1D9E81C8E212300283961 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E1D9E71C8E212300283961 /* Annotation.swift */; };
+		21E5FC691D48169900A9B281 /* HorizontalRuleAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B1E6121CD3FF9300E2902C /* HorizontalRuleAttachment.swift */; };
 		21F7EEEC1CD7F77D004E80E2 /* SelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7EEEB1CD7F77D004E80E2 /* SelectionController.swift */; };
 		21F7EEEF1CD7F833004E80E2 /* SelectionControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7EEED1CD7F82F004E80E2 /* SelectionControllerTests.swift */; };
 		21F7EEF11CD7F8EA004E80E2 /* NSRange+CanvasTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7EEF01CD7F8EA004E80E2 /* NSRange+CanvasTextTests.swift */; };
@@ -670,6 +671,7 @@
 				21DF7A4A1C8FA27D00C17A62 /* CodeBlockView.swift in Sources */,
 				21E1D9E21C8DF65900283961 /* AnnotationsController.swift in Sources */,
 				21DF7A441C8FA11100C17A62 /* CheckboxView.swift in Sources */,
+				21E5FC691D48169900A9B281 /* HorizontalRuleAttachment.swift in Sources */,
 				21AD8C301C8A430B000A53F8 /* Theme.swift in Sources */,
 				2138C2D11C9722DF00D93FF4 /* OrderedListItem+CanvasText.swift in Sources */,
 				21DF7A451C8FA11100C17A62 /* ChecklistItem+CanvasText.swift in Sources */,

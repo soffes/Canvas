@@ -481,16 +481,16 @@ public final class TextController: NSObject {
 		let attachment: NSTextAttachment
 		
 		// Horizontal rule
-//		if block is HorizontalRule {
-//			guard let image = HorizontalRuleAttachment.image(theme: theme) else { return nil }
-//			
-//			attachment = NSTextAttachment()
-//			attachment.image = image
-//			attachment.bounds = CGRect(x: 0, y: 0, width: textContainer.size.width, height: HorizontalRuleAttachment.height)
-//		}
+		if block is HorizontalRule {
+			guard let image = HorizontalRuleAttachment.image(theme: theme) else { return nil }
+			
+			attachment = NSTextAttachment()
+			attachment.image = image
+			attachment.bounds = CGRect(x: 0, y: 0, width: textContainer.size.width, height: HorizontalRuleAttachment.height)
+		}
 
 		// Image
-		if let block = block as? CanvasNative.Image {
+		else if let block = block as? CanvasNative.Image {
 			let url = displayDelegate?.textController(self, URLForImage: block) ?? block.url
 
 			#if os(OSX)
@@ -769,6 +769,12 @@ extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 					let language = (string as NSString).substringFromIndex(3).stringByTrimmingCharactersInSet(.whitespaceCharacterSet())
 					backingRange = block.range
 					replacement = CodeBlock.nativeRepresentation(language: language)
+				}
+
+				// Horizontal rule
+				else if string == "---" {
+					backingRange = block.range
+					replacement = HorizontalRule.nativeRepresentation() + "\n"
 				}
 			}
 
