@@ -18,6 +18,7 @@
 		216B1C971D17199B007D022B /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216B1C8C1D17199B007D022B /* CanvasCore.framework */; };
 		216B1CAD1D1719F6007D022B /* CanvasCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 216B1CA81D1719F6007D022B /* CanvasCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		216B1CB11D171A04007D022B /* URLHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B1CAC1D1719F6007D022B /* URLHelperTests.swift */; };
+		216B1CB11D171A04007D022B /* CursorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B1CAC1D1719F6007D022B /* CursorTests.swift */; };
 		21730A001D46F3C9001B63D7 /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217309FF1D46F3C9001B63D7 /* SAMKeychain.framework */; };
 		21730A021D46F3D5001B63D7 /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21730A011D46F3D5001B63D7 /* SAMKeychain.framework */; };
 		21730A031D46F3E5001B63D7 /* SAMKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217309FF1D46F3C9001B63D7 /* SAMKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -173,6 +174,7 @@
 		216B1CA91D1719F6007D022B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		216B1CAA1D1719F6007D022B /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		216B1CAC1D1719F6007D022B /* URLHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLHelperTests.swift; sourceTree = "<group>"; };
+		216B1CAC1D1719F6007D022B /* CursorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CursorTests.swift; sourceTree = "<group>"; };
 		217309FF1D46F3C9001B63D7 /* SAMKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SAMKeychain.framework; path = Carthage/Build/iOS/SAMKeychain.framework; sourceTree = "<group>"; };
 		21730A011D46F3D5001B63D7 /* SAMKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SAMKeychain.framework; path = Carthage/Build/Mac/SAMKeychain.framework; sourceTree = "<group>"; };
 		2175D2FC1D172262009C6845 /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				216B1CAC1D1719F6007D022B /* URLHelperTests.swift */,
+				216B1CAC1D1719F6007D022B /* CursorTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				216B1C881D17199B007D022B /* Frameworks */,
 				216B1C891D17199B007D022B /* Headers */,
 				216B1C8A1D17199B007D022B /* Resources */,
+				2170E7B41D47E079003E515B /* Copy Products */,
 			);
 			buildRules = (
 			);
@@ -500,6 +504,7 @@
 				2175D3161D1722AD009C6845 /* Frameworks */,
 				2175D3171D1722AD009C6845 /* Headers */,
 				2175D3181D1722AD009C6845 /* Resources */,
+				2170E7B51D47E096003E515B /* Copy Products */,
 			);
 			buildRules = (
 			);
@@ -609,6 +614,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2170E7B41D47E079003E515B /* Copy Products */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Products";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "build_dir=\"$SRCROOT/Carthage/Build\"\nif ! [ -L \"$build_dir\" ]; then exit 0; fi\nrsync --delete -av \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME\"* \"$build_dir/iOS\"";
+		};
+		2170E7B51D47E096003E515B /* Copy Products */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Products";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "build_dir=\"$SRCROOT/Carthage/Build\"\nif ! [ -L \"$build_dir\" ]; then exit 0; fi\nrsync --delete -av \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME\"* \"$build_dir/Mac\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		216B1C871D17199B007D022B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -640,6 +676,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				216B1CB11D171A04007D022B /* URLHelperTests.swift in Sources */,
+				216B1CB11D171A04007D022B /* CursorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,7 +15,7 @@ public struct LightTheme: Theme {
 
 	public let backgroundColor = Swatch.white
 	public let foregroundColor = Swatch.black
-	public var tintColor: X.Color
+	public var tintColor: Color
 
 
 	// MARK: - Block Colors
@@ -53,7 +53,7 @@ public struct LightTheme: Theme {
 
 	// MARK: - Initializers
 
-	public init(tintColor: X.Color) {
+	public init(tintColor: Color) {
 		self.tintColor = tintColor
 	}
 }
