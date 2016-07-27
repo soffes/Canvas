@@ -25,14 +25,17 @@ public struct HorizontalRule: Attachable, Equatable {
 		]
 	}
 
+	public var hiddenRanges: [NSRange] {
+		return [nativePrefixRange]
+	}
+
 
 	// MARK: - Initializers
 
 	public init?(string: String, range: NSRange) {
-		let bounds = NSRange(location: 0, length: (string as NSString).length)
-		guard let match = regularExpression.firstMatchInString(string, options: [], range: bounds)
-		where match.range.length == range.length
-		else { return nil }
+		if string != HorizontalRule.nativeRepresentation() {
+			return nil
+		}
 
 		self.range = range
 		nativePrefixRange = NSRange(location: range.location, length: range.length - 1)
@@ -50,7 +53,7 @@ public struct HorizontalRule: Attachable, Equatable {
 	// MARK: - Native
 
 	public static func nativeRepresentation() -> String {
-		return "---"
+		return "\(leadingNativePrefix)horizontal-rule\(trailingNativePrefix)"
 	}
 }
 
