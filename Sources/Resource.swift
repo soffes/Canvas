@@ -136,8 +136,8 @@ struct ResourceSerialization {
 		
 		for dictionary in array {
 			guard let type = (dictionary["type"] as? String).flatMap(ResourceType.init),
-				data = ResourceData(dictionary: dictionary, includes: nil, meta: nil),
-				resource = try? type.resource.init(data: data)
+				resourceData = ResourceData(dictionary: dictionary, includes: nil, meta: nil),
+				resource = unpack(resourceData: resourceData)
 			else { continue }
 			
 			if includes[type] == nil {
@@ -173,6 +173,10 @@ struct ResourceSerialization {
 
 		guard let resourceData = ResourceData(dictionary: data, includes: includes, meta: meta) else { return nil }
 
+		return unpack(resourceData: resourceData) as? T
+	}
+
+	private static func unpack(resourceData resourceData: ResourceData) -> Resource? {
 		let resource: Resource
 
 		do {
@@ -194,6 +198,6 @@ struct ResourceSerialization {
 			return nil
 		}
 
-		return resource as? T
+		return resource
 	}
 }
