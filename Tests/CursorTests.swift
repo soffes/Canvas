@@ -87,4 +87,19 @@ class CursorTests: XCTestCase {
 		let cursor = Cursor(startLine: 0, start: 0, endLine: 4, end: 7)
 		XCTAssertEqual(NSRange(location: 0, length: 73), cursor.presentationRange(with: document))
 	}
+
+	func testRangeToCursorEnd() {
+		let range = NSRange(location: 73, length: 0)
+		let cursor = Cursor(presentationSelectedRange: range, document: document)!
+
+		XCTAssertEqual(4, cursor.startLine)
+		XCTAssertEqual(7, cursor.start)
+		XCTAssertEqual(4, cursor.endLine)
+		XCTAssertEqual(7, cursor.end)
+	}
+
+	func testCursorToRangeEnd() {
+		let cursor = Cursor(startLine: 4, start: 7, endLine: 4, end: 7)
+		XCTAssertEqual(NSRange(location: 73, length: 0), cursor.presentationRange(with: document))
+	}
 }

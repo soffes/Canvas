@@ -54,7 +54,7 @@ struct Cursor {
 			}
 
 			// Find start
-			if starts == nil && NSMaxRange(blockRange) > selection.location  {
+			if starts == nil && ((!isLast && NSMaxRange(blockRange) > selection.location) || (isLast && NSMaxRange(blockRange) >= selection.location)) {
 				starts = (index, UInt(selection.location - blockRange.location))
 
 				if selection.length == 0 {
