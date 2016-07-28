@@ -37,25 +37,29 @@ struct Cursor {
 
 	// MARK: - Initializers
 
-	init?(backingSelection: NSRange, document: Document) {
+	init?(presentationSelectedRange selection: NSRange, document: Document) {
 		var starts: (UInt, UInt)?
 		var ends: (UInt, UInt)?
 
-		let max = NSMaxRange(backingSelection)
+		let max = NSMaxRange(selection)
 
 		let count = document.blocks.count
 		for (i, block) in document.blocks.enumerate() {
 			let index = UInt(i)
 			let isLast = i == count - 1
-			var blockRange = block.range
+			var blockRange = document.presentationRange(block: block)
 
 			if !isLast {
 				blockRange.length += 1
 			}
 
 			// Find start
-			if starts == nil && NSMaxRange(blockRange) > backingSelection.location  {
-				starts = (index, UInt(backingSelection.location - blockRange.location))
+			if starts == nil && NSMaxRange(blockRange) > selection.location  {
+				starts = (index, UInt(selection.location - blockRange.location))
+
+				if selection.length == 0 {
+					ends = starts
+				}
 			}
 
 			// Find end
@@ -100,14 +104,14 @@ struct Cursor {
 
 	// MARK: - Converting to NSRange
 
-	func range(with document: Document) -> NSRange {
+	func presentationRange(with document: Document) -> NSRange {
 		var range = NSRange(location: 0, length: 0)
 
 		let count = document.blocks.count
 		for (i, block) in document.blocks.enumerate() {
 			let index = UInt(i)
 			let isLast = i == count - 1
-			var blockRange = block.range
+			var blockRange = document.presentationRange(block: block)
 
 			if !isLast {
 				blockRange.length += 1

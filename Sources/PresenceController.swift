@@ -37,6 +37,9 @@ public class PresenceController: Accountable {
 
 			self.id = id
 			self.user = user
+
+			let meta = dictionary["meta"] as? JSONDictionary
+			cursor = (meta?["cursor"] as? JSONDictionary).flatMap(Cursor.init)
 		}
 	}
 
@@ -147,13 +150,14 @@ public class PresenceController: Accountable {
 		connections.removeValueForKey(canvasID)
 	}
 
-	public func updateSelection(selection: NSRange?, document: Document, canvasID: String) {
+	public func update(selection presentationSelectedRange: NSRange?, withDocument document: Document, canvasID: String) {
 		guard let connection = connections[canvasID] else { return }
 
 		var payload = [String: AnyObject]()
 
-		if let selection = selection, cursor = Cursor(backingSelection: selection, document: document) {
+		if let selection = presentationSelectedRange, cursor = Cursor(presentationSelectedRange: selection, document: document) {
 			payload["cursor"] = cursor.dictionary
+			print("local: \(cursor)")
 		}
 
 		sendMessage([
@@ -353,9 +357,9 @@ extension PresenceController: WebSocketDelegate {
 			}
 		}
 
-		// Remove update
+		// Remote update
 		else if event == "remote_update", let client = Client(dictionary: payload) where client.user != account.user {
-			print("client: \(client)")
+			print("cursor: \(client.cursor)")
 		}
 	}
 
