@@ -9,23 +9,23 @@
 import Foundation
 import CanvasNative
 
-struct Cursor {
+public struct Cursor: Equatable {
 
 	// MARK: - Properties
 
 	/// Index of line on which the user's cursor begins
-	var startLine: UInt
+	public var startLine: UInt
 
 	/// Index of user's cursor start on `startLine`
-	var start: UInt
+	public var start: UInt
 
 	/// Index of line on which user's cursor ends
-	var endLine: UInt
+	public var endLine: UInt
 
 	/// Index of user's cursor end on `endLine`
-	var end: UInt
+	public var end: UInt
 
-	var dictionary: [String: UInt] {
+	public var dictionary: [String: UInt] {
 		return [
 			"startLine": startLine,
 			"start": start,
@@ -37,7 +37,7 @@ struct Cursor {
 
 	// MARK: - Initializers
 
-	init?(presentationSelectedRange selection: NSRange, document: Document) {
+	public init?(presentationSelectedRange selection: NSRange, document: Document) {
 		var starts: (UInt, UInt)?
 		var ends: (UInt, UInt)?
 
@@ -81,14 +81,14 @@ struct Cursor {
 		self.end = end
 	}
 
-	init(startLine: UInt, start: UInt, endLine: UInt, end: UInt) {
+	public init(startLine: UInt, start: UInt, endLine: UInt, end: UInt) {
 		self.startLine = startLine
 		self.start = start
 		self.endLine = endLine
 		self.end = end
 	}
 
-	init?(dictionary: [String: AnyObject]) {
+	public init?(dictionary: [String: AnyObject]) {
 		guard let startLine = dictionary["startLine"] as? UInt,
 			start = dictionary["start"] as? UInt,
 			endLine = dictionary["endLine"] as? UInt,
@@ -104,7 +104,7 @@ struct Cursor {
 
 	// MARK: - Converting to NSRange
 
-	func presentationRange(with document: Document) -> NSRange {
+	public func presentationRange(with document: Document) -> NSRange {
 		var range = NSRange(location: 0, length: 0)
 
 		let count = document.blocks.count
@@ -135,4 +135,9 @@ struct Cursor {
 
 		return range
 	}
+}
+
+
+public func ==(lhs: Cursor, rhs: Cursor) -> Bool {
+	return lhs.startLine == rhs.startLine && lhs.start == rhs.start && lhs.endLine == rhs.endLine && lhs.end == rhs.end
 }

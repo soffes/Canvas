@@ -15,8 +15,11 @@ import Starscream
 #endif
 
 public protocol PresenceObserver: NSObjectProtocol {
-	func presenceDidChange(canvasID: String)
+	func presenceController(controller: PresenceController, canvasID: String, userJoined user: User, cursor: Cursor?)
+	func presenceController(controller: PresenceController, canvasID: String, user: User, updatedCursor cursor: Cursor?)
+	func presenceController(controller: PresenceController, canvasID: String, userLeft user: User)
 }
+
 
 // TODO: Update meta
 // TODO: Handle update meta
@@ -183,21 +186,7 @@ public class PresenceController: Accountable {
 	// MARK: - Querying
 
 	public func users(canvasID canvasID: String) -> [User] {
-		guard let connection = connections[canvasID] else { return [] }
-
-		var seen = Set<User>()
-		var users = [User]()
-
-		for client in connection.clients {
-			if seen.contains(client.user) {
-				continue
-			}
-
-			seen.insert(client.user)
-			users.append(client.user)
-		}
-
-		return users
+		return clients(canvasID: canvasID).map { $0.user }
 	}
 
 
@@ -219,6 +208,24 @@ public class PresenceController: Accountable {
 
 		socket?.disconnect()
 		socket = nil
+	}
+
+	private func clients(canvasID canvasID: String) -> [Client] {
+		guard let connection = connections[canvasID] else { return [] }
+
+		var seen = Set<User>()
+		var clients = [Client]()
+
+		for client in connection.clients {
+			if seen.contains(client.user) {
+				continue
+			}
+
+			seen.insert(client.user)
+			clients.append(client)
+		}
+
+		return clients
 	}
 
 	private func sendJoinMessage(connection: Connection) {
@@ -275,11 +282,25 @@ public class PresenceController: Accountable {
 		}
 	}
 
-	private func updateObservers(canvasID canvasID: String) {
+	private func presenceController(controller: PresenceController, canvasID: String, userJoined user: User, cursor: Cursor?) {
 		for observer in observers {
 			guard let observer = observer as? PresenceObserver else { continue }
-			observer.presenceDidChange(canvasID)
+			observer.presenceController(self, canvasID: canvasID, userJoined: user, cursor: cursor)
 		}
+	}
+
+	private func presenceController(controller: PresenceController, canvasID: String, user: User, updatedCursor cursor: Cursor?) {
+		for observer in observers {
+			guard let observer = observer as? PresenceObserver else { continue }
+			observer.presenceController(self, canvasID: canvasID, user: user, updatedCursor: cursor)
+		}
+	}
+
+	private func presenceController(controller: PresenceController, canvasID: String, userLeft user: User) {
+		for observer in observers {
+			guard let observer = observer as? PresenceObserver else { continue }
+			observer.presenceController(self, canvasID: canvasID, userLeft: user )
+		}	
 	}
 }
 
@@ -321,7 +342,10 @@ extension PresenceController: WebSocketDelegate {
 			if !clients.isEmpty {
 				connection.clients = clients
 				connections[canvasID] = connection
-				updateObservers(canvasID: canvasID)
+
+				for client in self.clients(canvasID: canvasID) {
+					presenceController(self, canvasID: canvasID, userJoined: client.user, cursor: client.cursor)
+				}
 			}
 		}
 
@@ -336,7 +360,7 @@ extension PresenceController: WebSocketDelegate {
 
 			let after = Set(clients.map { $0.user })
 			if before != after {
-				updateObservers(canvasID: canvasID)
+				presenceController(self, canvasID: canvasID, userJoined: client.user, cursor: client.cursor)
 			}
 		}
 
@@ -353,13 +377,24 @@ extension PresenceController: WebSocketDelegate {
 
 			let after = Set(clients.map { $0.user })
 			if before != after {
-				updateObservers(canvasID: canvasID)
+				presenceController(self, canvasID: canvasID, userLeft: client.user)
 			}
 		}
 
 		// Remote update
-		else if event == "remote_update", let client = Client(dictionary: payload) where client.user != account.user {
-			print("cursor: \(client.cursor)")
+		else if event == "remote_update", let updatedClient = Client(dictionary: payload) where updatedClient.user != account.user {
+			var clients = connection.clients ?? []
+			if let index = clients.indexOf({ $0.id == updatedClient.id }) {
+				let previousClient = clients[index]
+				clients.removeAtIndex(index)
+				clients.insert(updatedClient, atIndex: index)
+				connection.clients = clients
+				connections[canvasID] = connection
+
+				if previousClient.cursor != updatedClient.cursor {
+					presenceController(self, canvasID: canvasID, user: updatedClient.user, updatedCursor: updatedClient.cursor)
+				}
+			}
 		}
 	}
 
