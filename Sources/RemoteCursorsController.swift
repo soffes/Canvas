@@ -48,6 +48,12 @@ public final class RemoteCursorsController {
 
 			usernameLabel.backgroundColor = color
 			usernameLabel.text = username
+
+			// Disable implict position animations
+			usernameLabel.layer.actions = [
+				"bounds": NSNull(),
+				"position": NSNull()
+			]
 		}
 	}
 
@@ -106,7 +112,7 @@ public final class RemoteCursorsController {
 		// Track this username
 		usernames.insert(key)
 
-		let remoteCursor: RemoteCursor
+		var remoteCursor: RemoteCursor
 
 		if var current = remoteCursors[key] {
 			if current.cursor == cursor {
@@ -120,7 +126,18 @@ public final class RemoteCursorsController {
 		}
 
 		// Layout updated cursor
-		remoteCursors[key] = layoutLayers(remoteCursor: remoteCursor)
+		remoteCursor = layoutLayers(remoteCursor: remoteCursor)
+		remoteCursors[key] = remoteCursor
+
+		// Animate label
+		let animation = CABasicAnimation(keyPath: "opacity")
+		animation.fillMode = kCAFillModeForwards
+		animation.removedOnCompletion = false
+		animation.duration = 0.2
+		animation.beginTime = CACurrentMediaTime() + 1
+		animation.toValue = 0
+		remoteCursor.labelLayer.removeAnimationForKey("opacity")
+		remoteCursor.labelLayer.addAnimation(animation, forKey: "opacity")
 	}
 
 	public func leave(username username: String) {
