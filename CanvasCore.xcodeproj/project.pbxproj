@@ -17,8 +17,6 @@
 		215D1AE41D426EA30030D804 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215D1AE21D426EA30030D804 /* SessionDelegate.swift */; };
 		216B1C971D17199B007D022B /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216B1C8C1D17199B007D022B /* CanvasCore.framework */; };
 		216B1CAD1D1719F6007D022B /* CanvasCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 216B1CA81D1719F6007D022B /* CanvasCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		216B1CB11D171A04007D022B /* URLHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B1CAC1D1719F6007D022B /* URLHelperTests.swift */; };
-		216B1CB11D171A04007D022B /* CursorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216B1CAC1D1719F6007D022B /* CursorTests.swift */; };
 		21730A001D46F3C9001B63D7 /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217309FF1D46F3C9001B63D7 /* SAMKeychain.framework */; };
 		21730A021D46F3D5001B63D7 /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21730A011D46F3D5001B63D7 /* SAMKeychain.framework */; };
 		21730A031D46F3E5001B63D7 /* SAMKeychain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217309FF1D46F3C9001B63D7 /* SAMKeychain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -98,6 +96,8 @@
 		219501271D58B591003F5E94 /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219501261D58B591003F5E94 /* URLHelper.swift */; };
 		219501281D58B591003F5E94 /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219501261D58B591003F5E94 /* URLHelper.swift */; };
 		219D23081D171B4900D32F65 /* Accountable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D22FD1D171B4900D32F65 /* Accountable.swift */; };
+		21C4EF561D58C50F0055EE17 /* URLHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C4EF531D58C4F40055EE17 /* URLHelperTests.swift */; };
+		21C4EF571D58C5100055EE17 /* URLHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C4EF531D58C4F40055EE17 /* URLHelperTests.swift */; };
 		21E5FC6B1D49431F00A9B281 /* NSRange+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5FC6A1D49431F00A9B281 /* NSRange+Tests.swift */; };
 		21E5FC6C1D49431F00A9B281 /* NSRange+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5FC6A1D49431F00A9B281 /* NSRange+Tests.swift */; };
 /* End PBXBuildFile section */
@@ -175,7 +175,6 @@
 		216B1CA81D1719F6007D022B /* CanvasCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasCore.h; sourceTree = "<group>"; };
 		216B1CA91D1719F6007D022B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		216B1CAA1D1719F6007D022B /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
-		216B1CAC1D1719F6007D022B /* URLHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLHelperTests.swift; sourceTree = "<group>"; };
 		216B1CAC1D1719F6007D022B /* CursorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CursorTests.swift; sourceTree = "<group>"; };
 		217309FF1D46F3C9001B63D7 /* SAMKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SAMKeychain.framework; path = Carthage/Build/iOS/SAMKeychain.framework; sourceTree = "<group>"; };
 		21730A011D46F3D5001B63D7 /* SAMKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SAMKeychain.framework; path = Carthage/Build/Mac/SAMKeychain.framework; sourceTree = "<group>"; };
@@ -218,6 +217,7 @@
 		219D23051D171B4900D32F65 /* PresenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenceController.swift; sourceTree = "<group>"; };
 		219D23061D171B4900D32F65 /* SearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		219D23071D171B4900D32F65 /* SpaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceView.swift; sourceTree = "<group>"; };
+		21C4EF531D58C4F40055EE17 /* URLHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLHelperTests.swift; sourceTree = "<group>"; };
 		21E5FC6A1D49431F00A9B281 /* NSRange+Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+Tests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -330,7 +330,7 @@
 		216B1CAB1D1719F6007D022B /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				216B1CAC1D1719F6007D022B /* URLHelperTests.swift */,
+				21C4EF531D58C4F40055EE17 /* URLHelperTests.swift */,
 				216B1CAC1D1719F6007D022B /* CursorTests.swift */,
 				21E5FC6A1D49431F00A9B281 /* NSRange+Tests.swift */,
 			);
@@ -679,9 +679,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				216B1CB11D171A04007D022B /* URLHelperTests.swift in Sources */,
+				21C4EF571D58C5100055EE17 /* URLHelperTests.swift in Sources */,
 				21E5FC6B1D49431F00A9B281 /* NSRange+Tests.swift in Sources */,
-				216B1CB11D171A04007D022B /* CursorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,6 +714,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21E5FC6C1D49431F00A9B281 /* NSRange+Tests.swift in Sources */,
+				21C4EF561D58C50F0055EE17 /* URLHelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
