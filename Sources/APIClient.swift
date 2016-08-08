@@ -199,11 +199,20 @@ public class APIClient: NetworkClient {
 			guard let completion = completion else { return }
 			guard let data = data,
 				json = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
-				dictionary = json as? JSONDictionary,
-				values = ResourceSerialization.deserialize(dictionary: dictionary) as [T]?
+				dictionary = json as? JSONDictionary
 			else {
 				dispatch_async(networkCompletionQueue) {
 					completion(.Failure("Invalid response"))
+				}
+				return
+			}
+
+			guard let values = ResourceSerialization.deserialize(dictionary: dictionary) as [T]? else {
+				let errors = (dictionary["errors"] as? [JSONDictionary])?.flatMap { $0["detail"] as? String }
+				let error = errors?.joinWithSeparator(" ")
+
+				dispatch_async(networkCompletionQueue) {
+					completion(.Failure(error ?? "Invalid response"))
 				}
 				return
 			}
@@ -218,31 +227,28 @@ public class APIClient: NetworkClient {
 		let request = buildRequest(method: method, path: path, parameters: parameters, contentType: contentType)
 		sendRequest(request: request, completion: completion) { data, _, _ in
 			guard let completion = completion else { return }
-
-			// TODO: Check status code
-
-			// Deserialize JSON
 			guard let data = data,
 				json = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
 				dictionary = json as? JSONDictionary
-			else {
-				dispatch_async(networkCompletionQueue) {
-					completion(.Failure("Invalid response."))
-				}
-				return
+				else {
+					dispatch_async(networkCompletionQueue) {
+						completion(.Failure("Invalid response"))
+					}
+					return
 			}
 
-			// Parse JSON
-			guard let values = ResourceSerialization.deserialize(dictionary: dictionary) as T? else {
-				// TODO: Try to parse errors.
+			guard let value = ResourceSerialization.deserialize(dictionary: dictionary) as T? else {
+				let errors = (dictionary["errors"] as? [JSONDictionary])?.flatMap { $0["detail"] as? String }
+				let error = errors?.joinWithSeparator(" ")
+
 				dispatch_async(networkCompletionQueue) {
-					completion(.Failure("Invalid response body."))
+					completion(.Failure(error ?? "Invalid response"))
 				}
 				return
 			}
 
 			dispatch_async(networkCompletionQueue) {
-				completion(.Success(values))
+				completion(.Success(value))
 			}
 		}
 	}

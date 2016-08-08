@@ -59,8 +59,7 @@ extension Account: JSONSerializable, JSONDeserializable {
 extension Account: Resource {
 	init(data: ResourceData) throws {
 		id = data.id
-		accessToken = (try data.decode(attribute: "verification_access_token") as AccessToken).token
-		print("ACCESS TOKEN: \(accessToken)")
+		accessToken = (try data.decode(relationship: "verification_access_token") as AccessToken).token
 		email = try data.decode(attribute: "email")
 		verifiedAt = data.decode(attribute: "verified_at")
 
