@@ -58,12 +58,9 @@ extension Account: JSONSerializable, JSONDeserializable {
 
 extension Account: Resource {
 	init(data: ResourceData) throws {
-		guard let accessToken = (data.meta?["access_token"] as? JSONDictionary)?["access_token"] as? String else {
-			throw ResourceError.missingAttribute("access_token")
-		}
-
 		id = data.id
-		self.accessToken = accessToken
+		accessToken = (try data.decode(attribute: "verification_access_token") as AccessToken).token
+		print("ACCESS TOKEN: \(accessToken)")
 		email = try data.decode(attribute: "email")
 		verifiedAt = data.decode(attribute: "verified_at")
 

@@ -11,6 +11,10 @@
 		211A68B41D33D37F00DF098D /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A68B21D33D37F00DF098D /* Resource.swift */; };
 		211A68B51D33D37F00DF098D /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A68B21D33D37F00DF098D /* Resource.swift */; };
 		211A68B61D33D37F00DF098D /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211A68B21D33D37F00DF098D /* Resource.swift */; };
+		213BA1DD1D59307400A51B07 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213BA1DC1D59307400A51B07 /* AccessToken.swift */; };
+		213BA1DE1D59307400A51B07 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213BA1DC1D59307400A51B07 /* AccessToken.swift */; };
+		213BA1DF1D59307400A51B07 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213BA1DC1D59307400A51B07 /* AccessToken.swift */; };
+		213BA1E01D59307400A51B07 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213BA1DC1D59307400A51B07 /* AccessToken.swift */; };
 		216C4BA11BF54AB100260B8E /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 216C4B971BF54AB100260B8E /* CanvasKit.framework */; };
 		2175D2A21D171E4C009C6845 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B891C8A37D5000A53F8 /* Account.swift */; };
 		2175D2A51D171E4C009C6845 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */; };
@@ -134,6 +138,7 @@
 
 /* Begin PBXFileReference section */
 		211A68B21D33D37F00DF098D /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		213BA1DC1D59307400A51B07 /* AccessToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		216C4B971BF54AB100260B8E /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		216C4BA01BF54AB100260B8E /* CanvasKitTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CanvasKitTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2175D29A1D171DC3009C6845 /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,6 +236,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		213BA1E11D59307B00A51B07 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				21AD8B891C8A37D5000A53F8 /* Account.swift */,
+				21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */,
+				21AD8B951C8A37D5000A53F8 /* Organization.swift */,
+				21AD8B971C8A37D5000A53F8 /* User.swift */,
+				213BA1DC1D59307400A51B07 /* AccessToken.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		213BA1E21D59308400A51B07 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */,
+				21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */,
+				21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		213BA1E31D59308900A51B07 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */,
+				211A68B21D33D37F00DF098D /* Resource.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		216C4BD11BF54B9A00260B8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,15 +315,9 @@
 		21AD8B881C8A37D5000A53F8 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				21AD8B891C8A37D5000A53F8 /* Account.swift */,
-				21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */,
-				21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */,
-				21AD8B8F1C8A37D5000A53F8 /* Canvas.swift */,
-				21AD8B931C8A37D5000A53F8 /* JSONSerialization.swift */,
-				21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */,
-				21AD8B951C8A37D5000A53F8 /* Organization.swift */,
-				21AD8B971C8A37D5000A53F8 /* User.swift */,
-				211A68B21D33D37F00DF098D /* Resource.swift */,
+				213BA1E11D59307B00A51B07 /* Models */,
+				213BA1E21D59308400A51B07 /* Networking */,
+				213BA1E31D59308900A51B07 /* Protocols */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -397,7 +427,7 @@
 				216C4B931BF54AB100260B8E /* Frameworks */,
 				216C4B941BF54AB100260B8E /* Headers */,
 				216C4B951BF54AB100260B8E /* Resources */,
-				21CEC8541C601FEF001AEA10 /* Swift Lint */,
+				21CEC8541C601FEF001AEA10 /* Copy Products */,
 			);
 			buildRules = (
 			);
@@ -489,7 +519,7 @@
 				21FB6AB71BF53C9D003C82BB /* Frameworks */,
 				21FB6AB81BF53C9D003C82BB /* Headers */,
 				21FB6AB91BF53C9D003C82BB /* Resources */,
-				21CEC8531C601FE5001AEA10 /* Swift Lint */,
+				21CEC8531C601FE5001AEA10 /* Copy Products */,
 			);
 			buildRules = (
 			);
@@ -646,33 +676,33 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		21CEC8531C601FE5001AEA10 /* Swift Lint */ = {
+		21CEC8531C601FE5001AEA10 /* Copy Products */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Swift Lint";
+			name = "Copy Products";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "build_dir=\"$SRCROOT/Carthage/Build\"\nif ! [ -L \"$build_dir\" ]; then exit 0; fi\nrsync --delete -av \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME\"* \"$build_dir/iOS\"";
 		};
-		21CEC8541C601FEF001AEA10 /* Swift Lint */ = {
+		21CEC8541C601FEF001AEA10 /* Copy Products */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Swift Lint";
+			name = "Copy Products";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "build_dir=\"$SRCROOT/Carthage/Build\"\nif ! [ -L \"$build_dir\" ]; then exit 0; fi\nrsync --delete -av \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME\"* \"$build_dir/Mac\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -690,6 +720,7 @@
 				21AD8BC81C8A37DE000A53F8 /* JSONSerialization.swift in Sources */,
 				211A68B41D33D37F00DF098D /* Resource.swift in Sources */,
 				21AD8BC31C8A37DE000A53F8 /* APIClient.swift in Sources */,
+				213BA1DE1D59307400A51B07 /* AccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,6 +747,7 @@
 				2175D2A71D171E4C009C6845 /* Canvas.swift in Sources */,
 				211A68B61D33D37F00DF098D /* Resource.swift in Sources */,
 				2175D2AC1D171E4C009C6845 /* User.swift in Sources */,
+				213BA1E01D59307400A51B07 /* AccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,6 +764,7 @@
 				21EC4F231D077F7900FA439F /* JSONSerialization.swift in Sources */,
 				211A68B51D33D37F00DF098D /* Resource.swift in Sources */,
 				21EC4F1F1D077F7900FA439F /* APIClient.swift in Sources */,
+				213BA1DF1D59307400A51B07 /* AccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,6 +791,7 @@
 				21AD8BAF1C8A37D6000A53F8 /* JSONSerialization.swift in Sources */,
 				211A68B31D33D37F00DF098D /* Resource.swift in Sources */,
 				21AD8BA91C8A37D6000A53F8 /* APIClient.swift in Sources */,
+				213BA1DD1D59307400A51B07 /* AccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

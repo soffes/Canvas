@@ -23,12 +23,14 @@ enum ResourceType: String {
 	case organization = "orgs"
 	case canvas = "canvases"
 	case account = "account"
-	
+	case accessToken = "access-tokens"
+
 	var resource: Resource.Type {
 		switch self {
 		case .organization: return Organization.self
 		case .canvas: return Canvas.self
 		case .account: return Account.self
+		case .accessToken: return AccessToken.self
 		}
 	}
 }
