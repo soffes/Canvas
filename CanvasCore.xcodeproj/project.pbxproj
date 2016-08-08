@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		21298C291D2593CF00E741EE /* CanvasCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21298C281D2593CF00E741EE /* CanvasCore.swift */; };
 		21298C2A1D2593CF00E741EE /* CanvasCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21298C281D2593CF00E741EE /* CanvasCore.swift */; };
+		213BA1DB1D58E1C400A51B07 /* RemoteCursorsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213BA1DA1D58E1C400A51B07 /* RemoteCursorsController.swift */; };
 		215D1ADA1D426AEB0030D804 /* STAR_usecanvas_com.der in Resources */ = {isa = PBXBuildFile; fileRef = 215D1AD91D426AEB0030D804 /* STAR_usecanvas_com.der */; };
 		215D1ADB1D426AEB0030D804 /* STAR_usecanvas_com.der in Resources */ = {isa = PBXBuildFile; fileRef = 215D1AD91D426AEB0030D804 /* STAR_usecanvas_com.der */; };
 		215D1ADD1D426B9C0030D804 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215D1ADC1D426B9C0030D804 /* APIClient.swift */; };
@@ -167,6 +168,7 @@
 
 /* Begin PBXFileReference section */
 		21298C281D2593CF00E741EE /* CanvasCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasCore.swift; sourceTree = "<group>"; };
+		213BA1DA1D58E1C400A51B07 /* RemoteCursorsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteCursorsController.swift; sourceTree = "<group>"; };
 		215D1AD91D426AEB0030D804 /* STAR_usecanvas_com.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = STAR_usecanvas_com.der; sourceTree = "<group>"; };
 		215D1ADC1D426B9C0030D804 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		215D1AE21D426EA30030D804 /* SessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDelegate.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				219D23021D171B4900D32F65 /* ImgixController.swift */,
 				219D23051D171B4900D32F65 /* PresenceController.swift */,
 				219D23061D171B4900D32F65 /* SearchController.swift */,
+				213BA1DA1D58E1C400A51B07 /* RemoteCursorsController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 				2175D5291D173753009C6845 /* SearchController.swift in Sources */,
 				2175D4F51D1736FD009C6845 /* SpaceView.swift in Sources */,
 				2175D3491D17236D009C6845 /* Configuration.swift in Sources */,
+				213BA1DB1D58E1C400A51B07 /* RemoteCursorsController.swift in Sources */,
 				2175D3451D172320009C6845 /* Cursor.swift in Sources */,
 				2175D52B1D1737DD009C6845 /* ImgixController.swift in Sources */,
 				215D1AE31D426EA30030D804 /* SessionDelegate.swift in Sources */,
