@@ -79,7 +79,8 @@ public struct MarkdownRenderer: Renderer {
 
 		// Image
 		else if let block = block as? Image {
-			output = "![](\(block.url.absoluteString))"
+			let url = block.url?.absoluteString ?? ""
+			output = "![](\(url))"
 		}
 
 		// Paragraph
