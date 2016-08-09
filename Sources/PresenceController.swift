@@ -80,7 +80,7 @@ public class PresenceController: Accountable {
 	public init(account: Account, serverURL: NSURL) {
 		self.account = account
 		self.serverURL = serverURL
-		
+
 		connect()
 
 		#if !os(OSX)
@@ -160,7 +160,6 @@ public class PresenceController: Accountable {
 
 		if let selection = presentationSelectedRange, cursor = Cursor(presentationSelectedRange: selection, document: document) {
 			payload["cursor"] = cursor.dictionary
-			print("local: \(cursor)")
 		}
 
 		sendMessage([
@@ -300,7 +299,7 @@ public class PresenceController: Accountable {
 		for observer in observers {
 			guard let observer = observer as? PresenceObserver else { continue }
 			observer.presenceController(self, canvasID: canvasID, userLeft: user )
-		}	
+		}
 	}
 }
 
