@@ -17,7 +17,7 @@ public struct Image: Attachable, Equatable {
 	public var nativePrefixRange: NSRange
 
 	public var identifier: String
-	public var url: NSURL
+	public var url: NSURL?
 	public var size: CGSize?
 
 	public var dictionary: [String: AnyObject] {
@@ -25,9 +25,12 @@ public struct Image: Attachable, Equatable {
 			"type": "ordered-list",
 			"range": range.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
-			"identifier": identifier,
-			"url": url.absoluteString
+			"identifier": identifier
 		]
+
+		if let url = url {
+			dictionary["url"] = url.absoluteString
+		}
 
 		if let size = size {
 			dictionary["size"] = size.dictionary
@@ -79,15 +82,19 @@ public struct Image: Attachable, Equatable {
 
 		guard let data = json?.dataUsingEncoding(NSUTF8StringEncoding),
 			raw = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
-			dictionary = raw as? [String: AnyObject],
-			urlString = (dictionary["url"] as? String)?.stringByReplacingOccurrencesOfString(" ", withString: "%20"),
-			url = NSURL(string: urlString)
+			dictionary = raw as? [String: AnyObject]
 		else {
 			return nil
 		}
 
-		self.identifier = (dictionary["ci"] as? String) ?? urlString
-		self.url = url
+		let urlString = (dictionary["url"] as? String)?.stringByReplacingOccurrencesOfString(" ", withString: "%20")
+		let ci = dictionary["ci"] as? String
+
+		// We need some identifier
+		guard let identifier = ci ?? urlString else { return nil }
+
+		self.identifier = identifier
+		self.url = urlString.flatMap { NSURL(string: $0) }
 
 		if let width = dictionary["width"] as? UInt, height = dictionary["height"] as? UInt {
 			size = CGSize(width: Int(width), height: Int(height))

@@ -22,6 +22,17 @@ final class ImageTests: XCTestCase {
 		XCTAssertEqual(NSURL(string: "https://example.com/cover.jpg")!, image.url)
 	}
 
+	func testUploadingImage() {
+		let native = "⧙image-{\"ci\":\"1-a-b\",\"width\":1011,\"height\":679}⧘"
+		let length = (native as NSString).length
+		let image = Image(string: native, range: NSRange(location: 0, length: length))!
+
+		XCTAssertEqual(NSRange(location: 0, length: length - 1), image.nativePrefixRange)
+		XCTAssertEqual(NSRange(location: length - 1, length: 1), image.visibleRange)
+		XCTAssertEqual("1-a-b", image.identifier)
+		XCTAssertEqual(CGSize(width: 1011, height: 679), image.size)
+	}
+
 	func testLinkedImage() {
 		let native = "⧙image⧘https://canvas-files-prod.s3.amazonaws.com/uploads/b631973f-1d6f-4a27-8973-7c3db5c270fc/Screen Shot 2016-02-25 at 9.47.56 AM.png"
 		let length = (native as NSString).length

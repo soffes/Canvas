@@ -781,6 +781,7 @@
 				215BAB291C52B0C400118C8C /* Frameworks */,
 				215BAB2A1C52B0C400118C8C /* Headers */,
 				215BAB2B1C52B0C400118C8C /* Resources */,
+				21B2E49F1D5A828200014886 /* Copy Products */,
 			);
 			buildRules = (
 			);
@@ -1009,6 +1010,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		21B2E49F1D5A828200014886 /* Copy Products */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Products";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "build_dir=\"$SRCROOT/Carthage/Build\"\nif ! [ -L \"$build_dir\" ]; then exit 0; fi\nrsync --delete -av \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME\"* \"$build_dir/iOS\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		215BAB281C52B0C400118C8C /* Sources */ = {
