@@ -19,7 +19,7 @@ final class ImagesController: Themeable {
 	
 	// MARK: - Types
 	
-	typealias Completion = (ID: String, image: Image?) -> Void
+	typealias Completion = (id: String, image: Image?) -> Void
 	
 	
 	// MARK: - Properties
@@ -59,34 +59,37 @@ final class ImagesController: Themeable {
 	
 	// MARK: - Accessing
 	
-	func fetchImage(ID ID: String, URL: NSURL, size: CGSize, scale: CGFloat, completion: Completion) -> Image? {
-		if let image = memoryCache[ID] {
+	func fetchImage(id id: String, url: NSURL?, size: CGSize, scale: CGFloat, completion: Completion) -> Image? {
+		if let image = memoryCache[id] {
 			return image
 		}
 
-		imageCache.get(key: ID) { [weak self] image in
-			if let image = image {
-				dispatch_async(dispatch_get_main_queue()) {
-					completion(ID: ID, image: image)
-				}
-				return
-			}
-
-			self?.coordinate { [weak self] in
-				// Already downloading
-				if var array = self?.downloading[ID] {
-					array.append(completion)
-					self?.downloading[ID] = array
+		// Get cached image or download if there's a URL
+		if let url = url {
+			imageCache.get(key: id) { [weak self] image in
+				if let image = image {
+					dispatch_async(dispatch_get_main_queue()) {
+						completion(id: id, image: image)
+					}
 					return
 				}
 
-				// Start download
-				self?.downloading[ID] = [completion]
+				self?.coordinate { [weak self] in
+					// Already downloading
+					if var array = self?.downloading[id] {
+						array.append(completion)
+						self?.downloading[id] = array
+						return
+					}
 
-				let request = NSURLRequest(URL: URL)
-				self?.session.downloadTaskWithRequest(request) { [weak self] location, _, _ in
-					self?.loadImage(location: location, ID: ID)
-				}.resume()
+					// Start download
+					self?.downloading[id] = [completion]
+
+					let request = NSURLRequest(URL: url)
+					self?.session.downloadTaskWithRequest(request) { [weak self] location, _, _ in
+						self?.loadImage(location: location, id: id)
+					}.resume()
+				}
 			}
 		}
 
@@ -100,24 +103,24 @@ final class ImagesController: Themeable {
 		dispatch_sync(queue, block)
 	}
 	
-	private func loadImage(location location: NSURL?, ID: String) {
+	private func loadImage(location location: NSURL?, id: String) {
 		let data = location.flatMap { NSData(contentsOfURL: $0) }
 		let image = data.flatMap { Image(data: $0) }
 
 		if let image = image {
-			imageCache.set(key: ID, value: image)
+			imageCache.set(key: id, value: image)
 		}
 
 		coordinate { [weak self] in
-			if let image = image, completions = self?.downloading[ID] {
+			if let image = image, completions = self?.downloading[id] {
 				for completion in completions {
 					dispatch_async(dispatch_get_main_queue()) {
-						completion(ID: ID, image: image)
+						completion(id: id, image: image)
 					}
 				}
 			}
 
-			self?.downloading[ID] = nil
+			self?.downloading[id] = nil
 		}
 	}
 	

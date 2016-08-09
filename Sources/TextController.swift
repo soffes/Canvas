@@ -491,7 +491,7 @@ public final class TextController: NSObject {
 
 		// Image
 		if let block = block as? CanvasNative.Image {
-			let URL = displayDelegate?.textController(self, URLForImage: block) ?? block.url
+			let url = displayDelegate?.textController(self, URLForImage: block) ?? block.url
 
 			#if os(OSX)
 				// TODO: Use real scale
@@ -502,8 +502,8 @@ public final class TextController: NSObject {
 
 			var size = attachmentSize(imageSize: block.size)
 			let image = imagesController.fetchImage(
-				ID: block.identifier,
-				URL: URL,
+				id: block.identifier,
+				url: url,
 				size: size,
 				scale: scale,
 				completion: updateImageAttachment
