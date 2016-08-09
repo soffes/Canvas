@@ -8,6 +8,7 @@
 
 import UIKit
 import X
+import CanvasKit
 
 public protocol RemoteCursorsControllerDelegate: class {
 	func remoteCursorsController(controller: RemoteCursorsController, rectsForCursor cursor: Cursor) -> [CGRect]?
@@ -97,8 +98,10 @@ public final class RemoteCursorsController {
 		Color(red: 1, green: 211 / 255, blue: 200 / 255, alpha: 1)
 	]
 
-	// Set of all lowercased usernames that we've seen. We use this to increment the color when a new user joins.
-	private var usernames = Set<String>()
+	// Array of all user IDs that we've seen. We use this to increment the color when a new user joins.
+	private var userIDs = [String]()
+
+	private var anonymousUserCount: UInt = 0
 
 	// Mapping of lowercased usernames to a remote cursor model.
 	private var remoteCursors = [String: RemoteCursor]()
@@ -106,11 +109,17 @@ public final class RemoteCursorsController {
 
 	// MARK: - Updating
 
-	public func change(username username: String, cursor: Cursor) {
-		let key = username.lowercaseString
+	public func change(user user: User, cursor: Cursor) {
+		let key = user.id
 
 		// Track this username
-		usernames.insert(key)
+		let keyIndex: Int
+		if let index = userIDs.indexOf(key) {
+			keyIndex = index
+		} else {
+			keyIndex = userIDs.count
+			userIDs.append(key)
+		}
 
 		var remoteCursor: RemoteCursor
 
@@ -122,7 +131,15 @@ public final class RemoteCursorsController {
 			current.cursor = cursor
 			remoteCursor = current
 		} else {
-			remoteCursor = RemoteCursor(username: username, color: colors[usernames.count % colors.count], cursor: cursor)
+			let username: String
+
+			if let uname = user.username {
+				username = uname
+			} else {
+				anonymousUserCount += 1
+				username = "Anonymous \(anonymousUserCount)"
+			}
+			remoteCursor = RemoteCursor(username: username, color: colors[keyIndex % colors.count], cursor: cursor)
 		}
 
 		// Layout updated cursor
@@ -140,8 +157,8 @@ public final class RemoteCursorsController {
 		remoteCursor.labelLayer.addAnimation(animation, forKey: "opacity")
 	}
 
-	public func leave(username username: String) {
-		guard let remoteCursor = remoteCursors.removeValueForKey(username.lowercaseString) else { return }
+	public func leave(user user: User) {
+		guard let remoteCursor = remoteCursors.removeValueForKey(user.id) else { return }
 		removeLayers(remoteCursor: remoteCursor)
 	}
 
