@@ -11,7 +11,7 @@ import X
 import CanvasKit
 
 public protocol RemoteCursorsControllerDelegate: class {
-	func remoteCursorsController(controller: RemoteCursorsController, rectsForCursor cursor: Cursor) -> [CGRect]?
+	func remoteCursorsController(controller: RemoteCursorsController, rectsForCursor cursor: Cursor) -> [CGRect]
 }
 
 
