@@ -20,6 +20,7 @@ protocol LayoutManagerDelegate: class {
 	// as a result changes the text container's geometry).
 	func layoutManager(layoutManager: NSLayoutManager, textContainerChangedGeometry textContainer: NSTextContainer)
 	func layoutManagerDidUpdateFolding(layoutManager: NSLayoutManager)
+	func layoutManagerDidLayout(layoutManager: NSLayoutManager)
 }
 
 /// Custom layout manager to handle proper line spacing and folding. This must be its own delegate.
@@ -146,12 +147,13 @@ class LayoutManager: NSLayoutManager {
 	// MARK: - Private
 
 	private func updateTextContainerIfNeeded() {
-		guard needsUpdateTextContainer else { return }
-		
-		textContainers.forEach(ensureLayoutForTextContainer)
-		layoutDelegate?.layoutManagerDidUpdateFolding(self)
+		if needsUpdateTextContainer {
+			textContainers.forEach(ensureLayoutForTextContainer)
+			layoutDelegate?.layoutManagerDidUpdateFolding(self)
+			needsUpdateTextContainer = false
+		}
 
-		needsUpdateTextContainer = false
+		layoutDelegate?.layoutManagerDidLayout(self)
 	}
 
 	private func blockNodeAt(glyphIndex glyphIndex: Int) -> BlockNode? {

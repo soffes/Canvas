@@ -33,6 +33,7 @@ public protocol TextControllerDisplayDelegate: class {
 	func textControllerDidProcessRemoteEdit(textController: TextController)
 	func textController(textController: TextController, URLForImage block: CanvasNative.Image) -> NSURL?
 	func textControllerDidUpdateFolding(textController: TextController)
+	func textControllerDidLayoutText(textController: TextController)
 }
 
 public protocol TextControllerAnnotationDelegate: class {
@@ -895,5 +896,9 @@ extension TextController: LayoutManagerDelegate {
 		textStorage.endEditing()
 
 		displayDelegate?.textControllerDidUpdateFolding(self)
+	}
+
+	func layoutManagerDidLayout(layoutManager: NSLayoutManager) {
+		displayDelegate?.textControllerDidLayoutText(self)
 	}
 }
