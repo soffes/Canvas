@@ -1,4 +1,4 @@
 github "usecanvas/OperationalTransformation"
-github "usecanvas/CanvasNative"
+github "usecanvas/CanvasNative" "master"
 github "soffes/Cache"
 github "soffes/X"
