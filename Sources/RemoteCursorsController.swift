@@ -139,7 +139,6 @@ public final class RemoteCursorsController {
 				username = "Anonymous \(anonymousUserCount)"
 			}
 			remoteCursor = RemoteCursor(username: username, color: colors[keyIndex % colors.count], cursor: cursor)
-			print("new: \(username)")
 		}
 
 		// Layout updated cursor
@@ -176,7 +175,6 @@ public final class RemoteCursorsController {
 			layer.hidden = true
 			layer.removeAllAnimations()
 			layer.removeFromSuperlayer()
-			print("REMOVE: \(layer)")
 		}
 	}
 
@@ -192,7 +190,6 @@ public final class RemoteCursorsController {
 
 		// Setup line layers
 		remoteCursor.lineLayers = rects.map { rect in
-			print("rect: \(remoteCursor.username) - \(rect)")
 			let layer = CALayer()
 			layer.backgroundColor = remoteCursor.color.CGColor
 
@@ -208,7 +205,6 @@ public final class RemoteCursorsController {
 		// Add the line layers to the view
 		remoteCursor.lineLayers.forEach { layer in
 			backgroundView.layer.addSublayer(layer)
-			print("ADD: \(layer)")
 		}
 
 		// Add the label layer if needed
