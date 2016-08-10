@@ -68,12 +68,7 @@ public final class RemoteCursorsController {
 
 	public weak var delegate: RemoteCursorsControllerDelegate?
 
-	public var contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) {
-		didSet {
-			updateLayout()
-		}
-	}
-
+	public var contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 	public let backgroundView: UIView = {
 		let view = UIView()
 		view.userInteractionEnabled = false
@@ -103,7 +98,7 @@ public final class RemoteCursorsController {
 
 	private var anonymousUserCount: UInt = 0
 
-	// Mapping of lowercased usernames to a remote cursor model.
+	// Mapping of user IDs to a remote cursor model.
 	private var remoteCursors = [String: RemoteCursor]()
 
 
@@ -112,7 +107,7 @@ public final class RemoteCursorsController {
 	public func change(user user: User, cursor: Cursor) {
 		let key = user.id
 
-		// Track this username
+		// Track this user ID
 		let keyIndex: Int
 		if let index = userIDs.indexOf(key) {
 			keyIndex = index
@@ -123,6 +118,7 @@ public final class RemoteCursorsController {
 
 		var remoteCursor: RemoteCursor
 
+		// Already exists
 		if var current = remoteCursors[key] {
 			if current.cursor == cursor {
 				remoteCursors[key] = layoutLayers(remoteCursor: current)
@@ -130,7 +126,10 @@ public final class RemoteCursorsController {
 			}
 			current.cursor = cursor
 			remoteCursor = current
-		} else {
+		}
+
+		// New user
+		else {
 			let username: String
 
 			if let uname = user.username {
@@ -140,6 +139,7 @@ public final class RemoteCursorsController {
 				username = "Anonymous \(anonymousUserCount)"
 			}
 			remoteCursor = RemoteCursor(username: username, color: colors[keyIndex % colors.count], cursor: cursor)
+			print("new: \(username)")
 		}
 
 		// Layout updated cursor
@@ -172,25 +172,31 @@ public final class RemoteCursorsController {
 	// MARK: - Private
 
 	private func removeLayers(remoteCursor remoteCursor: RemoteCursor) {
-		remoteCursor.layers.forEach({ $0.removeFromSuperlayer() })
+		remoteCursor.layers.forEach { layer in
+			layer.hidden = true
+			layer.removeAllAnimations()
+			layer.removeFromSuperlayer()
+			print("REMOVE: \(layer)")
+		}
 	}
 
 	private func layoutLayers(remoteCursor remoteCursor: RemoteCursor) -> RemoteCursor {
+		removeLayers(remoteCursor: remoteCursor)
+
 		var remoteCursor = remoteCursor
-		remoteCursor.lineLayers.forEach { $0.removeFromSuperlayer() }
 		remoteCursor.lineLayers = []
 
 		guard let rects = delegate?.remoteCursorsController(self, rectsForCursor: remoteCursor.cursor) else {
-			remoteCursor.labelLayer.removeFromSuperlayer()
 			return remoteCursor
 		}
 
 		// Setup line layers
-		remoteCursor.lineLayers = rects.map {
+		remoteCursor.lineLayers = rects.map { rect in
+			print("rect: \(remoteCursor.username) - \(rect)")
 			let layer = CALayer()
 			layer.backgroundColor = remoteCursor.color.CGColor
 
-			var rect = $0
+			var rect = rect
 			rect.origin.x += contentInset.left
 			rect.origin.y += contentInset.top
 			rect.size.width = max(2, rect.size.width)
@@ -200,7 +206,10 @@ public final class RemoteCursorsController {
 		}
 
 		// Add the line layers to the view
-		remoteCursor.lineLayers.forEach(backgroundView.layer.addSublayer)
+		remoteCursor.lineLayers.forEach { layer in
+			backgroundView.layer.addSublayer(layer)
+			print("ADD: \(layer)")
+		}
 
 		// Add the label layer if needed
 		if remoteCursor.labelLayer.superlayer == nil {
