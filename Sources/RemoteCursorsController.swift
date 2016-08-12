@@ -34,14 +34,6 @@ public final class RemoteCursorsController {
 			return label
 		}()
 
-		var labelLayer: CALayer {
-			return usernameLabel.layer
-		}
-
-		var layers: [CALayer] {
-			return lineLayers + [labelLayer]
-		}
-
 		init(username: String, color: UIColor, cursor: Cursor) {
 			self.username = username
 			self.color = color
@@ -50,21 +42,32 @@ public final class RemoteCursorsController {
 			usernameLabel.backgroundColor = color
 			usernameLabel.text = username
 
-			// Disable implict position animations
-			usernameLabel.layer.actions = [
-				"bounds": NSNull(),
-				"position": NSNull()
-			]
+			// Layout username
+			usernameLabel.sizeToFit()
+			var size = usernameLabel.frame.size
+			size.width += 4
+			size.height += 4
+			usernameLabel.frame = CGRect(origin: .zero, size: size)
 		}
 	}
 
 
 	// MARK: - Initializers
 
-	public init() {}
+	public init() {
+		updateEnabled()
+	}
 	
 
 	// MARK: - Properties
+
+	public var enabled = false {
+		didSet {
+			if enabled != oldValue {
+				updateEnabled()
+			}
+		}
+	}
 
 	public weak var delegate: RemoteCursorsControllerDelegate?
 
@@ -144,16 +147,6 @@ public final class RemoteCursorsController {
 		// Layout updated cursor
 		remoteCursor = layoutLayers(remoteCursor: remoteCursor)
 		remoteCursors[key] = remoteCursor
-
-		// Animate label
-		let animation = CABasicAnimation(keyPath: "opacity")
-		animation.fillMode = kCAFillModeForwards
-		animation.removedOnCompletion = false
-		animation.duration = 0.2
-		animation.beginTime = CACurrentMediaTime() + 1
-		animation.toValue = 0
-		remoteCursor.labelLayer.removeAnimationForKey("opacity")
-		remoteCursor.labelLayer.addAnimation(animation, forKey: "opacity")
 	}
 
 	public func leave(user user: User) {
@@ -162,6 +155,10 @@ public final class RemoteCursorsController {
 	}
 
 	public func updateLayout() {
+		if !enabled {
+			return
+		}
+		
 		for (key, remoteCursor) in remoteCursors {
 			remoteCursors[key] = layoutLayers(remoteCursor: remoteCursor)
 		}
@@ -171,11 +168,13 @@ public final class RemoteCursorsController {
 	// MARK: - Private
 
 	private func removeLayers(remoteCursor remoteCursor: RemoteCursor) {
-		remoteCursor.layers.forEach { layer in
+		remoteCursor.lineLayers.forEach { layer in
 			layer.hidden = true
 			layer.removeAllAnimations()
 			layer.removeFromSuperlayer()
 		}
+
+		remoteCursor.usernameLabel.removeFromSuperview()
 	}
 
 	private func layoutLayers(remoteCursor remoteCursor: RemoteCursor) -> RemoteCursor {
@@ -207,27 +206,40 @@ public final class RemoteCursorsController {
 			backgroundView.layer.addSublayer(layer)
 		}
 
-		// Add the label layer if needed
-		if remoteCursor.labelLayer.superlayer == nil {
-			foregroundView.layer.addSublayer(remoteCursor.labelLayer)
-		}
-
 		// Layout the label layer
 		let firstLine = remoteCursor.lineLayers[0]
 
-		remoteCursor.usernameLabel.sizeToFit()
+		var frame = remoteCursor.usernameLabel.frame
+		frame.origin.x = firstLine.frame.minX
+		frame.origin.y = firstLine.frame.minY - frame.height
+		remoteCursor.usernameLabel.frame = frame
 
-		var size = remoteCursor.usernameLabel.frame.size
-		size.width += 4
-		size.height += 4
+		// Add the label layer
+		if remoteCursor.usernameLabel.superview == nil {
+			foregroundView.addSubview(remoteCursor.usernameLabel)
+		}
 
-		remoteCursor.labelLayer.frame = CGRect(
-			x: firstLine.frame.minX,
-			y: firstLine.frame.minY - size.height,
-			width: size.width,
-			height: size.height
-		)
-		
+		// Add label animation
+		animateLabel(remoteCursor: remoteCursor)
+
 		return remoteCursor
+	}
+
+	private func animateLabel(remoteCursor remoteCursor: RemoteCursor) {
+		let animation = CABasicAnimation(keyPath: "opacity")
+		animation.fillMode = kCAFillModeForwards
+		animation.removedOnCompletion = false
+		animation.duration = 0.2
+		animation.beginTime = CACurrentMediaTime() + 1
+		animation.fromValue = 1
+		animation.toValue = 0
+		remoteCursor.usernameLabel.layer.removeAnimationForKey("opacity")
+		remoteCursor.usernameLabel.layer.addAnimation(animation, forKey: "opacity")
+	}
+
+	private func updateEnabled() {
+		backgroundView.hidden = !enabled
+		foregroundView.hidden = !enabled
+		updateLayout()
 	}
 }
