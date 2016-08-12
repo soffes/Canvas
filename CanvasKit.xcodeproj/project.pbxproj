@@ -67,6 +67,10 @@
 		21AD8C181C8A419E000A53F8 /* create-canvas.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8C161C8A419E000A53F8 /* create-canvas.json */; };
 		21AD8C1A1C8A41E9000A53F8 /* list-canvases.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8C191C8A41E9000A53F8 /* list-canvases.json */; };
 		21AD8C1B1C8A41E9000A53F8 /* list-canvases.json in Resources */ = {isa = PBXBuildFile; fileRef = 21AD8C191C8A41E9000A53F8 /* list-canvases.json */; };
+		21AE403C1D5E5DCA0057B4E9 /* OAuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AE403B1D5E5DCA0057B4E9 /* OAuthClient.swift */; };
+		21AE403D1D5E5DCA0057B4E9 /* OAuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AE403B1D5E5DCA0057B4E9 /* OAuthClient.swift */; };
+		21AE403E1D5E5DCA0057B4E9 /* OAuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AE403B1D5E5DCA0057B4E9 /* OAuthClient.swift */; };
+		21AE403F1D5E5DCA0057B4E9 /* OAuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AE403B1D5E5DCA0057B4E9 /* OAuthClient.swift */; };
 		21EC4F0E1D077F5B00FA439F /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21EC4F041D077F5B00FA439F /* CanvasKit.framework */; };
 		21EC4F1B1D077F7900FA439F /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B891C8A37D5000A53F8 /* Account.swift */; };
 		21EC4F1F1D077F7900FA439F /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */; };
@@ -168,6 +172,7 @@
 		21AD8C131C8A4108000A53F8 /* destroy-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "destroy-canvas.json"; sourceTree = "<group>"; };
 		21AD8C161C8A419E000A53F8 /* create-canvas.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "create-canvas.json"; sourceTree = "<group>"; };
 		21AD8C191C8A41E9000A53F8 /* list-canvases.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "list-canvases.json"; sourceTree = "<group>"; };
+		21AE403B1D5E5DCA0057B4E9 /* OAuthClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthClient.swift; sourceTree = "<group>"; };
 		21EC4F041D077F5B00FA439F /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21EC4F0D1D077F5B00FA439F /* CanvasKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		21FB6ABB1BF53C9D003C82BB /* CanvasKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,9 +256,10 @@
 		213BA1E21D59308400A51B07 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */,
-				21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */,
 				21AD8B941C8A37D5000A53F8 /* NetworkClient.swift */,
+				21AD8B8E1C8A37D5000A53F8 /* AuthorizationClient.swift */,
+				21AE403B1D5E5DCA0057B4E9 /* OAuthClient.swift */,
+				21AD8B8D1C8A37D5000A53F8 /* APIClient.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -719,6 +725,7 @@
 				21AD8BBF1C8A37DE000A53F8 /* Account.swift in Sources */,
 				21AD8BC81C8A37DE000A53F8 /* JSONSerialization.swift in Sources */,
 				211A68B41D33D37F00DF098D /* Resource.swift in Sources */,
+				21AE403D1D5E5DCA0057B4E9 /* OAuthClient.swift in Sources */,
 				21AD8BC31C8A37DE000A53F8 /* APIClient.swift in Sources */,
 				213BA1DE1D59307400A51B07 /* AccessToken.swift in Sources */,
 			);
@@ -746,6 +753,7 @@
 				2175D2AB1D171E4C009C6845 /* Organization.swift in Sources */,
 				2175D2A71D171E4C009C6845 /* Canvas.swift in Sources */,
 				211A68B61D33D37F00DF098D /* Resource.swift in Sources */,
+				21AE403F1D5E5DCA0057B4E9 /* OAuthClient.swift in Sources */,
 				2175D2AC1D171E4C009C6845 /* User.swift in Sources */,
 				213BA1E01D59307400A51B07 /* AccessToken.swift in Sources */,
 			);
@@ -763,6 +771,7 @@
 				21EC4F1B1D077F7900FA439F /* Account.swift in Sources */,
 				21EC4F231D077F7900FA439F /* JSONSerialization.swift in Sources */,
 				211A68B51D33D37F00DF098D /* Resource.swift in Sources */,
+				21AE403E1D5E5DCA0057B4E9 /* OAuthClient.swift in Sources */,
 				21EC4F1F1D077F7900FA439F /* APIClient.swift in Sources */,
 				213BA1DF1D59307400A51B07 /* AccessToken.swift in Sources */,
 			);
@@ -790,6 +799,7 @@
 				21AD8BA51C8A37D6000A53F8 /* Account.swift in Sources */,
 				21AD8BAF1C8A37D6000A53F8 /* JSONSerialization.swift in Sources */,
 				211A68B31D33D37F00DF098D /* Resource.swift in Sources */,
+				21AE403C1D5E5DCA0057B4E9 /* OAuthClient.swift in Sources */,
 				21AD8BA91C8A37D6000A53F8 /* APIClient.swift in Sources */,
 				213BA1DD1D59307400A51B07 /* AccessToken.swift in Sources */,
 			);
