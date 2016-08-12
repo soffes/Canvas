@@ -152,6 +152,7 @@ public final class RemoteCursorsController {
 	public func leave(user user: User) {
 		guard let remoteCursor = remoteCursors.removeValueForKey(user.id) else { return }
 		removeLayers(remoteCursor: remoteCursor)
+		remoteCursor.usernameLabel.removeFromSuperview()
 	}
 
 	public func updateLayout() {
@@ -170,11 +171,8 @@ public final class RemoteCursorsController {
 	private func removeLayers(remoteCursor remoteCursor: RemoteCursor) {
 		remoteCursor.lineLayers.forEach { layer in
 			layer.hidden = true
-			layer.removeAllAnimations()
 			layer.removeFromSuperlayer()
 		}
-
-		remoteCursor.usernameLabel.removeFromSuperview()
 	}
 
 	private func layoutLayers(remoteCursor remoteCursor: RemoteCursor) -> RemoteCursor {
@@ -184,6 +182,7 @@ public final class RemoteCursorsController {
 		remoteCursor.lineLayers = []
 
 		guard let rects = delegate?.remoteCursorsController(self, rectsForCursor: remoteCursor.cursor) else {
+			remoteCursor.usernameLabel.removeFromSuperview()
 			return remoteCursor
 		}
 
