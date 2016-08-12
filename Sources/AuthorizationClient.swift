@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// This client is used to create and verify an account.
 public struct AuthorizationClient: NetworkClient {
 
 	// MARK: - Properties
@@ -77,7 +78,7 @@ public struct AuthorizationClient: NetworkClient {
 			]
 		]
 
-		let request = self.request(path: "verify", parameters: params)
+		let request = self.request(path: "account/actions/verify", parameters: params)
 		session.dataTaskWithRequest(request) { responseData, response, error in
 			guard let responseData = responseData,
 				json = try? NSJSONSerialization.JSONObjectWithData(responseData, options: []),
@@ -114,7 +115,7 @@ public struct AuthorizationClient: NetworkClient {
 
 		// Add the client authorization
 		if let authorization = authorizationHeader(username: clientID, password: clientSecret) {
-			request.setValue(authorization, forHTTPHeaderField: "Client-Authorization")
+			request.setValue(authorization, forHTTPHeaderField: "Authorization")
 		}
 
 		return request
