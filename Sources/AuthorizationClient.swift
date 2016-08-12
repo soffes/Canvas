@@ -167,14 +167,18 @@ public struct AuthorizationClient: NetworkClient {
 				return
 			}
 			
-			if let errors = dictionary["errors"] as? JSONDictionary {
+			if let errors = dictionary["errors"] as? [JSONDictionary] {
 				var errorMessages = [String]()
-				
-				for (key, values) in errors {
-					guard let values = values as? [String] else { continue }
-					
-					for value in values {
-						errorMessages.append("\(key.capitalizedString) \(value).")
+
+				for container in errors {
+					guard let meta = container["meta"] as? JSONDictionary else { continue }
+
+					for (key, values) in meta {
+						guard let values = values as? [String] else { continue }
+						
+						for value in values {
+							errorMessages.append("\(key.capitalizedString) \(value).")
+						}
 					}
 				}
 				
