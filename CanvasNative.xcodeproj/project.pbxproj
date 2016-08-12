@@ -27,9 +27,6 @@
 		214FA01D1CC6E48800927A07 /* HorizontalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214FA01B1CC6E48800927A07 /* HorizontalRule.swift */; };
 		214FA01E1CC6E48800927A07 /* HorizontalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214FA01B1CC6E48800927A07 /* HorizontalRule.swift */; };
 		214FA01F1CC6E48800927A07 /* HorizontalRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214FA01B1CC6E48800927A07 /* HorizontalRule.swift */; };
-		214FA0211CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214FA0201CC6E68E00927A07 /* HorizontalRuleTests.swift */; };
-		214FA0221CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214FA0201CC6E68E00927A07 /* HorizontalRuleTests.swift */; };
-		214FA0231CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214FA0201CC6E68E00927A07 /* HorizontalRuleTests.swift */; };
 		215BAB381C52B0C400118C8C /* CanvasNative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215BAB2D1C52B0C400118C8C /* CanvasNative.framework */; };
 		215BAB561C52B18C00118C8C /* CanvasNative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 215BAB4C1C52B18B00118C8C /* CanvasNative.framework */; };
 		215BABE81C52B46B00118C8C /* BlockquoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215BABE31C52B46B00118C8C /* BlockquoteTests.swift */; };
@@ -325,7 +322,6 @@
 		212DD5C11CCFFD0800C3845A /* ParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserTests.swift; sourceTree = "<group>"; };
 		21341C8A1C85089400C9EF39 /* NodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeTests.swift; sourceTree = "<group>"; };
 		214FA01B1CC6E48800927A07 /* HorizontalRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalRule.swift; sourceTree = "<group>"; };
-		214FA0201CC6E68E00927A07 /* HorizontalRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalRuleTests.swift; sourceTree = "<group>"; };
 		215BAB2D1C52B0C400118C8C /* CanvasNative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasNative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		215BAB371C52B0C400118C8C /* CanvasNativeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasNativeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		215BAB4C1C52B18B00118C8C /* CanvasNative.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CanvasNative.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -468,7 +464,6 @@
 				215BABE51C52B46B00118C8C /* ImageTests.swift */,
 				215BABE61C52B46B00118C8C /* ListableTests.swift */,
 				21260D341CCFD28000F7C9D7 /* ChecklistItemTests.swift */,
-				214FA0201CC6E68E00927A07 /* HorizontalRuleTests.swift */,
 			);
 			name = "Block Level";
 			sourceTree = "<group>";
@@ -1093,7 +1088,6 @@
 				21341C8B1C85089400C9EF39 /* NodeTests.swift in Sources */,
 				217309F61D46AEFB001B63D7 /* MarkdownRendererTests.swift in Sources */,
 				215BABEE1C52B46B00118C8C /* ListableTests.swift in Sources */,
-				214FA0211CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */,
 				212DD5C21CCFFD0800C3845A /* ParserTests.swift in Sources */,
 				21260D351CCFD28000F7C9D7 /* ChecklistItemTests.swift in Sources */,
 				21D70D301D188B5700DF4E9B /* DocumentInlineMarkerTests.swift in Sources */,
@@ -1171,7 +1165,6 @@
 				21341C8C1C85089400C9EF39 /* NodeTests.swift in Sources */,
 				217309F71D46AEFB001B63D7 /* MarkdownRendererTests.swift in Sources */,
 				215BABEF1C52B46B00118C8C /* ListableTests.swift in Sources */,
-				214FA0221CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */,
 				212DD5C31CCFFD0800C3845A /* ParserTests.swift in Sources */,
 				21260D361CCFD28000F7C9D7 /* ChecklistItemTests.swift in Sources */,
 				21D70D311D188B5700DF4E9B /* DocumentInlineMarkerTests.swift in Sources */,
@@ -1298,7 +1291,6 @@
 				21632D501C92369A00C40D7D /* DocumentTests.swift in Sources */,
 				217309F81D46AEFB001B63D7 /* MarkdownRendererTests.swift in Sources */,
 				21632D4F1C92369A00C40D7D /* DocumentControllerReliabilityTests.swift in Sources */,
-				214FA0231CC6E68E00927A07 /* HorizontalRuleTests.swift in Sources */,
 				212DD5C41CCFFD0800C3845A /* ParserTests.swift in Sources */,
 				21260D371CCFD28000F7C9D7 /* ChecklistItemTests.swift in Sources */,
 				21D70D321D188B5700DF4E9B /* DocumentInlineMarkerTests.swift in Sources */,
