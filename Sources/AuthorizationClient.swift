@@ -115,7 +115,7 @@ public struct AuthorizationClient: NetworkClient {
 
 		// Add the client authorization
 		if let authorization = authorizationHeader(username: clientID, password: clientSecret) {
-			request.setValue(authorization, forHTTPHeaderField: "Authorization")
+			request.setValue(authorization, forHTTPHeaderField: "Client-Authorization")
 		}
 
 		return request
