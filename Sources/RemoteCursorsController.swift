@@ -186,6 +186,10 @@ public final class RemoteCursorsController {
 			return remoteCursor
 		}
 
+		if rects.isEmpty {
+			return remoteCursor
+		}
+
 		// Setup line layers
 		remoteCursor.lineLayers = rects.map { rect in
 			let layer = CALayer()
