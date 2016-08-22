@@ -38,9 +38,7 @@ final class CheckboxView: UIButton, Annotation {
 	}
 
 	var horizontalSizeClass: UserInterfaceSizeClass = .Unspecified
-	
-	private let size: CGFloat = 20
-	
+
 
 	// MARK: - Initializers
 
@@ -65,11 +63,12 @@ final class CheckboxView: UIButton, Annotation {
 	override func drawRect(rect: CGRect) {
 		guard let checklistItem = block as? ChecklistItem else { return }
 
-		let rect = checkboxRectForBounds(bounds)
+		let lineWidth: CGFloat = 2
+		let rect = checkboxRectForBounds(bounds).insetBy(dx: lineWidth / 2, dy: lineWidth / 2)
 
 		if checklistItem.state == .checked {
 			tintColor.setFill()
-			UIBezierPath(roundedRect: rect, cornerRadius: size / 2).fill()
+			UIBezierPath(roundedRect: rect, cornerRadius: rect.height / 2).fill()
 
 			let bundle = NSBundle(forClass: CheckboxView.self)
 			if let checkmark = UIImage(named: "CheckmarkSmall", inBundle: bundle, compatibleWithTraitCollection: nil) {
@@ -80,8 +79,8 @@ final class CheckboxView: UIButton, Annotation {
 		}
 
 		theme.uncheckedCheckboxColor.setStroke()
-		let path = UIBezierPath(roundedRect: CGRectInset(rect, 1, 1), cornerRadius: size / 2)
-		path.lineWidth = 2
+		let path = UIBezierPath(roundedRect: CGRectInset(rect, 1, 1), cornerRadius: rect.height / 2)
+		path.lineWidth = lineWidth
 		path.stroke()
 	}
 
@@ -94,6 +93,8 @@ final class CheckboxView: UIButton, Annotation {
 	// MARK: - Private
 
 	private func checkboxRectForBounds(bounds: CGRect) -> CGRect {
+		let size = bounds.height
+
 		return CGRect(
 			x: bounds.size.width - size - 4,
 			y: floor((bounds.size.height - size) / 2) - 1,
