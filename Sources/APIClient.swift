@@ -77,14 +77,14 @@ public class APIClient: NetworkClient {
 	/// Create a canvas.
 	///
 	/// - parameter organizationID: The ID of the organization to own the created canvas.
-	/// - parameter content: Optional content for the new canvas.
+	/// - parameter content: Optional content formatted as CanvasNative for the new canvas.
 	/// - parameter isPublicWritable: Boolean indicating if the new canvas should be publicly writable.
 	/// - parameter completion: A function to call when the request finishes.
 	public func createCanvas(organizationID organizationID: String, content: String? = nil, isPublicWritable: Bool? = nil, completion: Result<Canvas> -> Void) {
 		var attributes = JSONDictionary()
 
 		if let content = content {
-			attributes["content"] = content
+			attributes["native_content"] = content
 		}
 
 		if let isPublicWritable = isPublicWritable {
