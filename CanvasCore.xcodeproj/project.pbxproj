@@ -101,12 +101,6 @@
 		21C4EF571D58C5100055EE17 /* URLHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C4EF531D58C4F40055EE17 /* URLHelperTests.swift */; };
 		21E5FC6B1D49431F00A9B281 /* NSRange+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5FC6A1D49431F00A9B281 /* NSRange+Tests.swift */; };
 		21E5FC6C1D49431F00A9B281 /* NSRange+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5FC6A1D49431F00A9B281 /* NSRange+Tests.swift */; };
-		21F6F0411D70BEE9008B63DF /* APIClient+CanvasCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6F03E1D70BEE9008B63DF /* APIClient+CanvasCore.swift */; };
-		21F6F0421D70BEE9008B63DF /* AuthorizationClient+CanvasCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6F03F1D70BEE9008B63DF /* AuthorizationClient+CanvasCore.swift */; };
-		21F6F0431D70BEE9008B63DF /* OAuthClient+CanvasCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6F0401D70BEE9008B63DF /* OAuthClient+CanvasCore.swift */; };
-		21F6F0471D70C592008B63DF /* APIClient+CanvasCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6F03E1D70BEE9008B63DF /* APIClient+CanvasCore.swift */; };
-		21F6F0481D70C592008B63DF /* AuthorizationClient+CanvasCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6F03F1D70BEE9008B63DF /* AuthorizationClient+CanvasCore.swift */; };
-		21F6F0491D70C592008B63DF /* OAuthClient+CanvasCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6F0401D70BEE9008B63DF /* OAuthClient+CanvasCore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -227,9 +221,6 @@
 		219D23071D171B4900D32F65 /* SpaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceView.swift; sourceTree = "<group>"; };
 		21C4EF531D58C4F40055EE17 /* URLHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLHelperTests.swift; sourceTree = "<group>"; };
 		21E5FC6A1D49431F00A9B281 /* NSRange+Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSRange+Tests.swift"; sourceTree = "<group>"; };
-		21F6F03E1D70BEE9008B63DF /* APIClient+CanvasCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+CanvasCore.swift"; sourceTree = "<group>"; };
-		21F6F03F1D70BEE9008B63DF /* AuthorizationClient+CanvasCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AuthorizationClient+CanvasCore.swift"; sourceTree = "<group>"; };
-		21F6F0401D70BEE9008B63DF /* OAuthClient+CanvasCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuthClient+CanvasCore.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,7 +313,6 @@
 				219D23161D171B5F00D32F65 /* Utilities */,
 				219D23131D171B4E00D32F65 /* Views */,
 				219D23171D171B6600D32F65 /* Protocols */,
-				21F6F03D1D70BEDE008B63DF /* Extensions */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -452,16 +442,6 @@
 				219D22FD1D171B4900D32F65 /* Accountable.swift */,
 			);
 			name = Protocols;
-			sourceTree = "<group>";
-		};
-		21F6F03D1D70BEDE008B63DF /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				21F6F03E1D70BEE9008B63DF /* APIClient+CanvasCore.swift */,
-				21F6F03F1D70BEE9008B63DF /* AuthorizationClient+CanvasCore.swift */,
-				21F6F0401D70BEE9008B63DF /* OAuthClient+CanvasCore.swift */,
-			);
-			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -678,19 +658,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2175D52D1D173880009C6845 /* AvatarsController.swift in Sources */,
-				21F6F0431D70BEE9008B63DF /* OAuthClient+CanvasCore.swift in Sources */,
 				2175D52F1D173922009C6845 /* LocalizedString.swift in Sources */,
 				21298C291D2593CF00E741EE /* CanvasCore.swift in Sources */,
 				215D1ADD1D426B9C0030D804 /* APIClient.swift in Sources */,
 				219501271D58B591003F5E94 /* URLHelper.swift in Sources */,
 				2175D5381D173995009C6845 /* Font.swift in Sources */,
-				21F6F0411D70BEE9008B63DF /* APIClient+CanvasCore.swift in Sources */,
 				219D23081D171B4900D32F65 /* Accountable.swift in Sources */,
 				2175D5291D173753009C6845 /* SearchController.swift in Sources */,
 				2175D4F51D1736FD009C6845 /* SpaceView.swift in Sources */,
 				2175D3491D17236D009C6845 /* Configuration.swift in Sources */,
 				213BA1DB1D58E1C400A51B07 /* RemoteCursorsController.swift in Sources */,
-				21F6F0421D70BEE9008B63DF /* AuthorizationClient+CanvasCore.swift in Sources */,
 				2175D3451D172320009C6845 /* Cursor.swift in Sources */,
 				2175D52B1D1737DD009C6845 /* ImgixController.swift in Sources */,
 				215D1AE31D426EA30030D804 /* SessionDelegate.swift in Sources */,
@@ -716,14 +693,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2175D52C1D173880009C6845 /* AvatarsController.swift in Sources */,
-				21F6F0491D70C592008B63DF /* OAuthClient+CanvasCore.swift in Sources */,
 				2175D52E1D173922009C6845 /* LocalizedString.swift in Sources */,
 				21298C2A1D2593CF00E741EE /* CanvasCore.swift in Sources */,
 				215D1ADE1D426B9C0030D804 /* APIClient.swift in Sources */,
 				219501281D58B591003F5E94 /* URLHelper.swift in Sources */,
 				2176785E1D17589300003D89 /* Font.swift in Sources */,
 				2175D3311D1722CA009C6845 /* AccountController.swift in Sources */,
-				21F6F0481D70C592008B63DF /* AuthorizationClient+CanvasCore.swift in Sources */,
 				2175D5281D173753009C6845 /* SearchController.swift in Sources */,
 				2175D4D11D1736FC009C6845 /* SpaceView.swift in Sources */,
 				2175D34A1D172370009C6845 /* Configuration.swift in Sources */,
@@ -732,7 +707,6 @@
 				215D1AE41D426EA30030D804 /* SessionDelegate.swift in Sources */,
 				2175D3321D1722CA009C6845 /* Accountable.swift in Sources */,
 				2175D5261D173744009C6845 /* Imgix.swift in Sources */,
-				21F6F0471D70C592008B63DF /* APIClient+CanvasCore.swift in Sources */,
 				2175D3421D1722FF009C6845 /* PresenceController.swift in Sources */,
 				2175D36F1D1725A0009C6845 /* LightTheme.swift in Sources */,
 				2175D36D1D17255D009C6845 /* Swatch.swift in Sources */,
