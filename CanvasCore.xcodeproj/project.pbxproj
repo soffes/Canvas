@@ -94,6 +94,8 @@
 		217C55921D42D3C70064A2AD /* OperationalTransformation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217C554E1D42CFEE0064A2AD /* OperationalTransformation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		217C55941D42D3C70064A2AD /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55501D42CFEE0064A2AD /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		217C55951D42D3C70064A2AD /* X.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55511D42CFEE0064A2AD /* X.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2189B7601D75C9D400D39165 /* Organization+CanvasCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2189B75F1D75C9D400D39165 /* Organization+CanvasCore.swift */; };
+		2189B7611D75C9D400D39165 /* Organization+CanvasCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2189B75F1D75C9D400D39165 /* Organization+CanvasCore.swift */; };
 		219501271D58B591003F5E94 /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219501261D58B591003F5E94 /* URLHelper.swift */; };
 		219501281D58B591003F5E94 /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219501261D58B591003F5E94 /* URLHelper.swift */; };
 		219D23081D171B4900D32F65 /* Accountable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219D22FD1D171B4900D32F65 /* Accountable.swift */; };
@@ -207,6 +209,7 @@
 		217C55511D42CFEE0064A2AD /* X.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = X.framework; path = Carthage/Build/Mac/X.framework; sourceTree = "<group>"; };
 		217C55781D42D3740064A2AD /* Crypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crypto.framework; path = Carthage/Build/iOS/Crypto.framework; sourceTree = "<group>"; };
 		217C55881D42D3B80064A2AD /* Crypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crypto.framework; path = Carthage/Build/Mac/Crypto.framework; sourceTree = "<group>"; };
+		2189B75F1D75C9D400D39165 /* Organization+CanvasCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Organization+CanvasCore.swift"; sourceTree = "<group>"; };
 		219501261D58B591003F5E94 /* URLHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLHelper.swift; sourceTree = "<group>"; };
 		219D22FD1D171B4900D32F65 /* Accountable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accountable.swift; sourceTree = "<group>"; };
 		219D22FE1D171B4900D32F65 /* AvatarsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarsController.swift; sourceTree = "<group>"; };
@@ -312,6 +315,7 @@
 				219D23151D171B5A00D32F65 /* Styles */,
 				219D23161D171B5F00D32F65 /* Utilities */,
 				219D23131D171B4E00D32F65 /* Views */,
+				2189B7621D75C9EA00D39165 /* Extensions */,
 				219D23171D171B6600D32F65 /* Protocols */,
 			);
 			path = Sources;
@@ -392,6 +396,14 @@
 				217C55511D42CFEE0064A2AD /* X.framework */,
 			);
 			name = macOS;
+			sourceTree = "<group>";
+		};
+		2189B7621D75C9EA00D39165 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2189B75F1D75C9D400D39165 /* Organization+CanvasCore.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		219D23131D171B4E00D32F65 /* Views */ = {
@@ -666,6 +678,7 @@
 				219D23081D171B4900D32F65 /* Accountable.swift in Sources */,
 				2175D5291D173753009C6845 /* SearchController.swift in Sources */,
 				2175D4F51D1736FD009C6845 /* SpaceView.swift in Sources */,
+				2189B7601D75C9D400D39165 /* Organization+CanvasCore.swift in Sources */,
 				2175D3491D17236D009C6845 /* Configuration.swift in Sources */,
 				213BA1DB1D58E1C400A51B07 /* RemoteCursorsController.swift in Sources */,
 				2175D3451D172320009C6845 /* Cursor.swift in Sources */,
@@ -701,6 +714,7 @@
 				2175D3311D1722CA009C6845 /* AccountController.swift in Sources */,
 				2175D5281D173753009C6845 /* SearchController.swift in Sources */,
 				2175D4D11D1736FC009C6845 /* SpaceView.swift in Sources */,
+				2189B7611D75C9D400D39165 /* Organization+CanvasCore.swift in Sources */,
 				2175D34A1D172370009C6845 /* Configuration.swift in Sources */,
 				2175D3471D17232A009C6845 /* Cursor.swift in Sources */,
 				2175D52A1D1737DC009C6845 /* ImgixController.swift in Sources */,
