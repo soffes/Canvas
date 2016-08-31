@@ -776,7 +776,7 @@
 				215BAB291C52B0C400118C8C /* Frameworks */,
 				215BAB2A1C52B0C400118C8C /* Headers */,
 				215BAB2B1C52B0C400118C8C /* Resources */,
-				21B2E49F1D5A828200014886 /* Copy Products */,
+				21B2E49F1D5A828200014886 /* Copy Built Products */,
 			);
 			buildRules = (
 			);
@@ -814,6 +814,7 @@
 				215BAB481C52B18B00118C8C /* Frameworks */,
 				215BAB491C52B18B00118C8C /* Headers */,
 				215BAB4A1C52B18B00118C8C /* Resources */,
+				21E120541D7740130063D780 /* Copy Built Products */,
 			);
 			buildRules = (
 			);
@@ -1007,19 +1008,33 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		21B2E49F1D5A828200014886 /* Copy Products */ = {
+		21B2E49F1D5A828200014886 /* Copy Built Products */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Products";
+			name = "Copy Built Products";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "build_dir=\"$SRCROOT/Carthage/Build\"\nif ! [ -L \"$build_dir\" ]; then exit 0; fi\nrsync --delete -av \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME\"* \"$build_dir/iOS\"";
+		};
+		21E120541D7740130063D780 /* Copy Built Products */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Built Products";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "build_dir=\"$SRCROOT/Carthage/Build\"\nif ! [ -L \"$build_dir\" ]; then exit 0; fi\nrsync --delete -av \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME\"* \"$build_dir/Mac\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
