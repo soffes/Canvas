@@ -1,0 +1,70 @@
+{
+  "interactions" : [
+    {
+      "recorded_at" : 1457129957.017023,
+      "response" : {
+        "body" : {
+          "id" : "6R7PHmlivsqcicoBhJU8Yw",
+          "web_url" : "https:\/\/usecanvas.com\/test\/from-canvaskit\/6R7PHmlivsqcicoBhJU8Yw",
+          "archived_at" : null,
+          "created_at" : "2016-03-04T22:19:16.849Z",
+          "is_writable" : true,
+          "title" : "From CanvasKit",
+          "summary" : "Yay.",
+          "creator" : {
+            "id" : "ea8a6521-dc2b-4638-9c93-89ad79362f73",
+            "avatar_url" : "https:\/\/www.gravatar.com\/avatar\/eb02c1cdbc2e1b474051b5c622e1d539?d=https%3A%2F%2Fd3tp5plu9dfsfn.cloudfront.net%2Favatars%2F6.png",
+            "username" : "soffes"
+          },
+          "updated_at" : "2016-03-04T22:19:16.849Z",
+          "native_version" : "0",
+          "org" : {
+            "slug" : "test",
+            "color" : "ff416c",
+            "members_count" : 6,
+            "id" : "b29c5091-3959-4ca8-a39e-c3159f5f06c5",
+            "created_at" : "2015-11-03T23:10:48.732Z",
+            "updated_at" : "2016-03-03T14:17:59.324Z",
+            "name" : "test"
+          },
+          "is_public_writable" : false
+        },
+        "status" : 201,
+        "url" : "https:\/\/api.usecanvas.com\/v1\/canvases",
+        "headers" : {
+          "Content-Type" : "application\/json; charset=utf-8",
+          "X-Runtime" : "0.133781",
+          "X-Xss-Protection" : "1; mode=block",
+          "Server" : "Cowboy",
+          "Via" : "1.1 vegur",
+          "Transfer-Encoding" : "Identity",
+          "Cache-Control" : "max-age=0, private, must-revalidate",
+          "Date" : "Fri, 04 Mar 2016 22:19:16 GMT",
+          "X-Request-Id" : "c3b90ea3-854f-41e6-952f-34bff6dbcb9e",
+          "Strict-Transport-Security" : "max-age=15552000",
+          "Connection" : "keep-alive",
+          "X-Content-Type-Options" : "nosniff",
+          "Etag" : "W\/\"57726d857c3587e22617b19329bb534f\"",
+          "X-Frame-Options" : "SAMEORIGIN",
+          "Vary" : "Origin"
+        }
+      },
+      "request" : {
+        "method" : "POST",
+        "body" : {
+          "content" : "# From CanvasKit\nYay.",
+          "org" : {
+            "id" : "test"
+          }
+        },
+        "url" : "https:\/\/api.usecanvas.com\/v1\/canvases",
+        "headers" : {
+          "Accept" : "application\/json; charset=utf-8",
+          "Authorization" : "Bearer REDACTED_ACCESS_TOKEN",
+          "Content-Type" : "application\/json; charset=utf-8"
+        }
+      }
+    }
+  ],
+  "name" : "create-canvas"
+}

@@ -1,0 +1,20 @@
+included:
+  - Sources
+  - Tests
+
+disabled_rules:
+  # I really like putting else one a new line in long guard statements.
+  - statement_position
+
+  # Sections are separated by 2 new lines.
+  - operator_whitespace
+
+  # I prefer 2 new lines before a MARK.
+  # TODO: Add a custom rule to enforce this.
+  - trailing_whitespace
+
+  # TODO: Only allow `ID` to be shorter than 3
+  - variable_name
+
+# TODO: Change to 120
+line_length: 256
