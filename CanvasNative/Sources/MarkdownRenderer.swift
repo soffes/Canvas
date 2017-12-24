@@ -29,15 +29,15 @@ public struct MarkdownRenderer: Renderer {
 			lines.append(render(block: block))
 		}
 
-		let output = lines.joinWithSeparator("\n").stringByTrimmingCharactersInSet(.newlineCharacterSet())
+		let output = lines.joined(separator: "\n").trimmingCharacters(in: .newlines)
 		let bounds = NSRange(location: 0, length: (output as NSString).length)
-		return InlineMarker.regularExpression.stringByReplacingMatchesInString(output, options: [], range: bounds, withTemplate: "")
+		return InlineMarker.regularExpression.stringByReplacingMatches(in: output, options: [], range: bounds, withTemplate: "")
 	}
 
 
 	// MARK: - Private
 
-	private func render(block block: BlockNode) -> String {
+	fileprivate func render(block: BlockNode) -> String {
 		var output = ""
 
 		// Blockquote
@@ -122,7 +122,7 @@ public struct MarkdownRenderer: Renderer {
 		return output
 	}
 
-	private func render(spans spans: [SpanNode]) -> String {
+	fileprivate func render(spans: [SpanNode]) -> String {
 		var output = ""
 
 		for span in spans {
@@ -140,7 +140,7 @@ public struct MarkdownRenderer: Renderer {
 		return output
 	}
 
-	private func render(indentation indentation: Indentation) -> String {
+	fileprivate func render(indentation: Indentation) -> String {
 		guard !indentation.isMinimum else { return "" }
 
 		var output = ""
@@ -150,7 +150,7 @@ public struct MarkdownRenderer: Renderer {
 		return output
 	}
 
-	private func render(headingLevel level: Heading.Level) -> String {
+	fileprivate func render(headingLevel level: Heading.Level) -> String {
 		var output = ""
 		for _ in 0..<level.rawValue {
 			output += "#"

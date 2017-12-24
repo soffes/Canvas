@@ -31,7 +31,7 @@ public struct CodeSpan: SpanNode, Foldable {
 		]
 	}
 
-	public var dictionary: [String: AnyObject] {
+	public var dictionary: [String: Any] {
 		return [
 			"type": "code-span",
 			"range": range.dictionary,
@@ -54,7 +54,7 @@ public struct CodeSpan: SpanNode, Foldable {
 
 	// MARK: - Node
 
-	public mutating func offset(delta: Int) {
+	public mutating func offset(_ delta: Int) {
 		leadingDelimiterRange.location += delta
 		textRange.location += delta
 		trailingDelimiterRange.location += delta
@@ -63,15 +63,15 @@ public struct CodeSpan: SpanNode, Foldable {
 
 
 extension CodeSpan: SpanNodeParseable {
-	static let regularExpression: NSRegularExpression! = try? NSRegularExpression(pattern: "(`+)(.+?)(?<!`)(\\1)(?!`)", options: [])
+	static let regularExpression: NSRegularExpression = try! NSRegularExpression(pattern: "(`+)(.+?)(?<!`)(\\1)(?!`)", options: [])
 
 	init?(match: NSTextCheckingResult) {
 		if match.numberOfRanges != 4 {
 			return nil
 		}
 
-		leadingDelimiterRange = match.rangeAtIndex(1)
-		textRange = match.rangeAtIndex(2)
-		trailingDelimiterRange = match.rangeAtIndex(3)
+		leadingDelimiterRange = match.range(at: 1)
+		textRange = match.range(at: 2)
+		trailingDelimiterRange = match.range(at: 3)
 	}
 }

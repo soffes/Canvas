@@ -65,7 +65,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable, InlineMarkerContainer
 	public var subnodes = [SpanNode]()
 	public var inlineMarkerPairs = [InlineMarkerPair]()
 
-	public var dictionary: [String: AnyObject] {
+	public var dictionary: [String: Any] {
 		return [
 			"type": "heading",
 			"range": range.dictionary,
@@ -82,19 +82,19 @@ public struct Heading: BlockNode, NodeContainer, Foldable, InlineMarkerContainer
 	// MARK: - Initializers
 
 	public init?(string: String, range: NSRange) {
-		let scanner = NSScanner(string: string)
+		let scanner = Scanner(string: string)
 		scanner.charactersToBeSkipped = nil
 
 		// Prefix
 		var hashes: NSString? = ""
-		if !scanner.scanCharactersFromSet(NSCharacterSet(charactersInString: "#"), intoString: &hashes) {
+		if !scanner.scanCharacters(from: CharacterSet(charactersIn: "#"), into: &hashes) {
 			return nil
 		}
 
-		guard let count = hashes?.length, level = Level(rawValue: UInt(count)) else { return nil }
+		guard let count = hashes?.length, let level = Level(rawValue: UInt(count)) else { return nil }
 		self.level = level
 
-		if !scanner.scanString(" ", intoString: nil) {
+		if !scanner.scanString(" ", into: nil) {
 			return nil
 		}
 
@@ -113,7 +113,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable, InlineMarkerContainer
 
 	// MARK: - Node
 
-	public mutating func offset(delta: Int) {
+	public mutating func offset(_ delta: Int) {
 		range.location += delta
 		visibleRange.location += delta
 		leadingDelimiterRange.location += delta
@@ -135,7 +135,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable, InlineMarkerContainer
 
 	// MARK: - Native
 
-	public static func nativeRepresentation(level level: Level = .one) -> String {
+	public static func nativeRepresentation(level: Level = .one) -> String {
 		var prefix = ""
 
 		for _ in 0..<level.rawValue {

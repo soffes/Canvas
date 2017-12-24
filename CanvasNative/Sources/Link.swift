@@ -20,7 +20,7 @@ public struct LinkTitle {
 		return leadingDelimiterRange.union(textRange).union(trailingDelimiterRange)
 	}
 
-	public var dictionary: [String: AnyObject] {
+	public var dictionary: [String: Any] {
 		return [
 			"leadingTitleDelimiterRange": leadingDelimiterRange,
 			"titleRange": textRange,
@@ -38,9 +38,9 @@ public struct LinkTitle {
 	}
 
 	init?(match: NSTextCheckingResult) {
-		leadingDelimiterRange = match.rangeAtIndex(6)
-		textRange = match.rangeAtIndex(7)
-		trailingDelimiterRange = match.rangeAtIndex(8)
+		leadingDelimiterRange = match.range(at: 6)
+		textRange = match.range(at: 7)
+		trailingDelimiterRange = match.range(at: 8)
 
 		guard leadingDelimiterRange.location != NSNotFound &&
 			textRange.location != NSNotFound &&
@@ -51,7 +51,7 @@ public struct LinkTitle {
 
 	// MARK: - Mutating
 
-	public mutating func offset(delta: Int) {
+	public mutating func offset(_ delta: Int) {
 		leadingDelimiterRange.location += delta
 		textRange.location += delta
 		trailingDelimiterRange.location += delta
@@ -89,8 +89,8 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 		return [before, after]
 	}
 
-	public var dictionary: [String: AnyObject] {
-		var dictionary: [String: AnyObject] = [
+	public var dictionary: [String: Any] {
+		var dictionary: [String: Any] = [
 			"type": "link",
 			"range": range.dictionary,
 			"visibleRange": visibleRange.dictionary,
@@ -132,7 +132,7 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 
 	// MARK: - Node
 
-	public mutating func offset(delta: Int) {
+	public mutating func offset(_ delta: Int) {
 		range.location += delta
 		leadingTextDelimiterRange.location += delta
 		textRange.location += delta
@@ -153,34 +153,34 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 
 	// MARK: - URL
 
-	public func URL(backingString backingString: String) -> NSURL? {
-		var string = (backingString as NSString).substringWithRange(urlRange)
+	public func URL(backingString: String) -> Foundation.URL? {
+		var string = (backingString as NSString).substring(with: urlRange)
 
-		if !string.containsString("://") {
+		if !string.contains("://") {
 			string = "http://\(string)"
 		}
 
-		return NSURL(string: string)
+		return Foundation.URL(string: string)
 	}
 }
 
 
 extension Link: SpanNodeParseable {
-	static let regularExpression: NSRegularExpression! = try? NSRegularExpression(pattern: "(\\[)((?:(?:\\\\.)|[^\\[\\]])+)(\\])(\\()([^\\(\\)\\s]+(?:\\(\\S*?\\))??[^\\(\\)\\s]*?)(?:\\s+(['‘’\"“”])(.*?)(\\6))?(\\))", options: [])
+	static let regularExpression: NSRegularExpression = try! NSRegularExpression(pattern: "(\\[)((?:(?:\\\\.)|[^\\[\\]])+)(\\])(\\()([^\\(\\)\\s]+(?:\\(\\S*?\\))??[^\\(\\)\\s]*?)(?:\\s+(['‘’\"“”])(.*?)(\\6))?(\\))", options: [])
 
 	public init?(match: NSTextCheckingResult) {
 		if match.numberOfRanges != 10 {
 			return nil
 		}
 
-		range = match.rangeAtIndex(0)
-		leadingTextDelimiterRange = match.rangeAtIndex(1)
-		textRange = match.rangeAtIndex(2)
-		trailingTextDelimiterRange = match.rangeAtIndex(3)
-		leadingUrlDelimiterRange = match.rangeAtIndex(4)
-		urlRange = match.rangeAtIndex(5)
+		range = match.range(at: 0)
+		leadingTextDelimiterRange = match.range(at: 1)
+		textRange = match.range(at: 2)
+		trailingTextDelimiterRange = match.range(at: 3)
+		leadingUrlDelimiterRange = match.range(at: 4)
+		urlRange = match.range(at: 5)
 		title = LinkTitle(match: match)
-		trailingURLDelimiterRange = match.rangeAtIndex(9)
+		trailingURLDelimiterRange = match.range(at: 9)
 	}
 }
 

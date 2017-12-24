@@ -9,7 +9,7 @@
 import CoreGraphics
 
 extension CGSize {
-	var dictionary: [String: AnyObject] {
+	var dictionary: [String: Any] {
 		return [
 			"width": width,
 			"height": height

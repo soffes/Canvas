@@ -47,7 +47,7 @@ public struct ChecklistItem: Listable, Equatable {
 	public var subnodes = [SpanNode]()
 	public var inlineMarkerPairs = [InlineMarkerPair]()
 
-	public var dictionary: [String: AnyObject] {
+	public var dictionary: [String: Any] {
 		return [
 			"type": "checklist-item",
 			"range": range.dictionary,
@@ -67,17 +67,17 @@ public struct ChecklistItem: Listable, Equatable {
 	// MARK: - Initializers
 
 	public init?(string: String, range: NSRange) {
-		let scanner = NSScanner(string: string)
+		let scanner = Scanner(string: string)
 		scanner.charactersToBeSkipped = nil
 
 		// Delimiter
-		if !scanner.scanString("\(leadingNativePrefix)checklist-", intoString: nil) {
+		if !scanner.scanString("\(leadingNativePrefix)checklist-", into: nil) {
 			return nil
 		}
 
 		var indent = -1
 		let indentationLocation = scanner.scanLocation
-		if !scanner.scanInteger(&indent) {
+		if !scanner.scanInt(&indent) {
 			return nil
 		}
 
@@ -89,7 +89,7 @@ public struct ChecklistItem: Listable, Equatable {
 		self.indentationRange = indentationRange
 		self.indentation = indentation
 
-		if !scanner.scanString(trailingNativePrefix, intoString: nil) {
+		if !scanner.scanString(trailingNativePrefix, into: nil) {
 			return nil
 		}
 
@@ -98,24 +98,24 @@ public struct ChecklistItem: Listable, Equatable {
 
 		// Prefix
 		let startPrefix = scanner.scanLocation
-		if !scanner.scanString("- [", intoString: nil) {
+		if !scanner.scanString("- [", into: nil) {
 			return nil
 		}
 
-		let set = NSCharacterSet(charactersInString: "x ")
+		let set = CharacterSet(charactersIn: "x ")
 		var stateString: NSString? = ""
 		let stateRange = NSRange(location: range.location + scanner.scanLocation, length: 1)
-		if !scanner.scanCharactersFromSet(set, intoString: &stateString) {
+		if !scanner.scanCharacters(from: set, into: &stateString) {
 			return nil
 		}
 
-		if let stateString = stateString as? String, state = State(rawValue: stateString) {
+		if let stateString = stateString as String?, let state = State(rawValue: stateString) {
 			self.state = state
 		} else {
 			return nil
 		}
 
-		if !scanner.scanString("] ", intoString: nil) {
+		if !scanner.scanString("] ", into: nil) {
 			return nil
 		}
 
@@ -135,7 +135,7 @@ public struct ChecklistItem: Listable, Equatable {
 
 	// MARK: - Node
 
-	public mutating func offset(delta: Int) {
+	public mutating func offset(_ delta: Int) {
 		range.location += delta
 		nativePrefixRange.location += delta
 		visibleRange.location += delta
@@ -158,7 +158,7 @@ public struct ChecklistItem: Listable, Equatable {
 
 	// MARK: - Native
 
-	public static func nativeRepresentation(indentation indentation: Indentation = .zero, state: State = .unchecked) -> String {
+	public static func nativeRepresentation(indentation: Indentation = .zero, state: State = .unchecked) -> String {
 		return "\(leadingNativePrefix)checklist-\(indentation.string)\(trailingNativePrefix)- [\(state.string)] "
 	}
 }

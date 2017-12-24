@@ -28,6 +28,6 @@ extension InlineMarkerContainer {
 			]
 		}
 
-		return ranges.sort { $0.location < $1.location }
+		return ranges.sorted { $0.location < $1.location }
 	}
 }

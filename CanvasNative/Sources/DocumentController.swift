@@ -14,17 +14,17 @@ import Foundation
 /// reflect the new state.
 public protocol DocumentControllerDelegate: class {
 	// After this message, `document` will be the new value
-	func documentControllerWillUpdateDocument(controller: DocumentController)
+	func documentControllerWillUpdateDocument(_ controller: DocumentController)
 
 	// This will be called before all other messages.
-	func documentController(controller: DocumentController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String)
+	func documentController(_ controller: DocumentController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String)
 
-	func documentController(controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int)
+	func documentController(_ controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int)
 
-	func documentController(controller: DocumentController, didRemoveBlock block: BlockNode, atIndex index: Int)
+	func documentController(_ controller: DocumentController, didRemoveBlock block: BlockNode, atIndex index: Int)
 
 	// Changes to `document` are complete
-	func documentControllerDidUpdateDocument(controller: DocumentController)
+	func documentControllerDidUpdateDocument(_ controller: DocumentController)
 }
 
 
@@ -34,7 +34,7 @@ public final class DocumentController {
 
 	public weak var delegate: DocumentControllerDelegate?
 
-	public private(set) var document = Document()
+	public fileprivate(set) var document = Document()
 
 
 	// MARK: - Initializers
@@ -60,7 +60,7 @@ public final class DocumentController {
 
 	// MARK: - Changing Text
 
-	public func replaceCharactersInRange(range: NSRange, withString string: String) {
+	public func replaceCharactersInRange(_ range: NSRange, withString string: String) {
 		let change = document.replaceCharactersInRange(range, withString: string)
 		processChange(change)
 	}
@@ -68,7 +68,7 @@ public final class DocumentController {
 
 	// MARK: - Private
 
-	private func processChange(change: DocumentChange) {
+	fileprivate func processChange(_ change: DocumentChange) {
 		// Notifiy the delegate we have a change
 		delegate?.documentControllerWillUpdateDocument(self)
 
@@ -83,13 +83,13 @@ public final class DocumentController {
 		// Notify about AST changes
 		if let blockChange = change.blockChange {
 			// Remove
-			for i in blockChange.range.reverse() {
+			for i in blockChange.range.reversed() {
 				delegate?.documentController(self, didRemoveBlock: change.before.blocks[i], atIndex: i)
 			}
 
 			// Insert
-			for (i, block) in blockChange.replacement.enumerate() {
-				delegate?.documentController(self, didInsertBlock: block, atIndex: blockChange.range.startIndex + i)
+			for (i, block) in blockChange.replacement.enumerated() {
+				delegate?.documentController(self, didInsertBlock: block, atIndex: blockChange.range.lowerBound + i)
 			}
 		}
 

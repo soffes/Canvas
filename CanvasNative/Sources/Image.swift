@@ -17,11 +17,11 @@ public struct Image: Attachable, Equatable {
 	public var nativePrefixRange: NSRange
 
 	public var identifier: String
-	public var url: NSURL?
+	public var url: URL?
 	public var size: CGSize?
 
-	public var dictionary: [String: AnyObject] {
-		var dictionary: [String: AnyObject] = [
+	public var dictionary: [String: Any] {
+		var dictionary: [String: Any] = [
 			"type": "ordered-list",
 			"range": range.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
@@ -50,14 +50,14 @@ public struct Image: Attachable, Equatable {
 		self.range = range
 		nativePrefixRange = NSRange(location: range.location, length: range.length - 1)
 		
-		let scanner = NSScanner(string: string)
+		let scanner = Scanner(string: string)
 		scanner.charactersToBeSkipped = nil
 
 		// url image
-		if scanner.scanString("\(leadingNativePrefix)image\(trailingNativePrefix)", intoString: nil) {
-			let urlString = (string as NSString).substringFromIndex(7).stringByReplacingOccurrencesOfString(" ", withString: "%20")
+		if scanner.scanString("\(leadingNativePrefix)image\(trailingNativePrefix)", into: nil) {
+			let urlString = (string as NSString).substring(from: 7).replacingOccurrences(of: " ", with: "%20")
 			
-			if let url = NSURL(string: urlString) {
+			if let url = URL(string: urlString) {
 				self.identifier = urlString
 				self.url = url
 				self.size = nil
@@ -69,34 +69,34 @@ public struct Image: Attachable, Equatable {
 
 		// Uploaded image delimiter
 		scanner.scanLocation = 0
-		if !scanner.scanString("\(leadingNativePrefix)image-", intoString: nil) {
+		if !scanner.scanString("\(leadingNativePrefix)image-", into: nil) {
 			return nil
 		}
 
 		var json: NSString? = ""
-		scanner.scanUpToString(trailingNativePrefix, intoString: &json)
+		scanner.scanUpTo(trailingNativePrefix, into: &json)
 
-		if !scanner.scanString(trailingNativePrefix, intoString: nil) {
+		if !scanner.scanString(trailingNativePrefix, into: nil) {
 			return nil
 		}
 
-		guard let data = json?.dataUsingEncoding(NSUTF8StringEncoding),
-			raw = try? NSJSONSerialization.JSONObjectWithData(data, options: []),
-			dictionary = raw as? [String: AnyObject]
+		guard let data = json?.data(using: String.Encoding.utf8.rawValue),
+			let raw = try? JSONSerialization.jsonObject(with: data, options: []),
+			let dictionary = raw as? [String: Any]
 		else {
 			return nil
 		}
 
-		let urlString = (dictionary["url"] as? String)?.stringByReplacingOccurrencesOfString(" ", withString: "%20")
+		let urlString = (dictionary["url"] as? String)?.replacingOccurrences(of: " ", with: "%20")
 		let ci = dictionary["ci"] as? String
 
 		// We need some identifier
 		guard let identifier = ci ?? urlString else { return nil }
 
 		self.identifier = identifier
-		self.url = urlString.flatMap { NSURL(string: $0) }
+		self.url = urlString.flatMap { URL(string: $0) }
 
-		if let width = dictionary["width"] as? UInt, height = dictionary["height"] as? UInt {
+		if let width = dictionary["width"] as? UInt, let height = dictionary["height"] as? UInt {
 			size = CGSize(width: Int(width), height: Int(height))
 		} else {
 			size = nil
@@ -106,7 +106,7 @@ public struct Image: Attachable, Equatable {
 
 	// MARK: - Node
 
-	public mutating func offset(delta: Int) {
+	public mutating func offset(_ delta: Int) {
 		range.location += delta
 		nativePrefixRange.location += delta
 	}
@@ -114,7 +114,7 @@ public struct Image: Attachable, Equatable {
 
 	// MARK: - Native
 
-	public static func nativeRepresentation(URL URL: NSURL) -> String {
+	public static func nativeRepresentation(URL: Foundation.URL) -> String {
 		return "\(leadingNativePrefix)image\(trailingNativePrefix)\(URL.absoluteString)"
 	}
 }

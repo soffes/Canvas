@@ -10,6 +10,30 @@
 	import AppKit
 #else
 	import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 #endif
 
 /// Model that contains Canvas Native backing string, BlockNodes, and presentation string. Several methods for doing
@@ -43,8 +67,8 @@ public struct Document {
 		return renderer.render()
 	}
 
-	private let hiddenRanges: [NSRange]
-	private let blockRanges: [NSRange]
+	fileprivate let hiddenRanges: [NSRange]
+	fileprivate let blockRanges: [NSRange]
 
 
 	// MARK: - Initializers
@@ -58,7 +82,7 @@ public struct Document {
 
 	// MARK: - Converting Backing Ranges to Presentation Ranges
 
-	public func presentationRange(backingRange backingRange: NSRange) -> NSRange {
+	public func presentationRange(backingRange: NSRange) -> NSRange {
 		var presentationRange = backingRange
 
 		for hiddenRange in hiddenRanges {
@@ -69,7 +93,7 @@ public struct Document {
 
 			if hiddenRange.max <= backingRange.location {
 				presentationRange.location -= hiddenRange.length
-			} else if let intersection = backingRange.intersection(hiddenRange) {
+			} else if let intersection = backingRange.intersectionLength(hiddenRange) {
 				presentationRange.length -= intersection
 			}
 		}
@@ -77,7 +101,7 @@ public struct Document {
 		return presentationRange
 	}
 
-	public func presentationRange(block block: BlockNode) -> NSRange {
+	public func presentationRange(block: BlockNode) -> NSRange {
 		guard let index = indexOf(block: block) else { return block.visibleRange }
 		return presentationRange(blockIndex: index)
 	}
@@ -89,9 +113,9 @@ public struct Document {
 
 	// MARK: - Converting Presentation Ranges to Backing Ranges
 
-	public func backingRange(presentationLocation presentationLocation: UInt) -> NSRange {
+	public func backingRange(presentationLocation: UInt) -> NSRange {
 		var backingRange = preBackingRange(NSRange(location: Int(presentationLocation), length: 0))
-		let inlineMarkerPairs = blocks.flatMap { ($0 as? InlineMarkerContainer)?.inlineMarkerPairs }.reduce([], combine: +)
+		let inlineMarkerPairs = blocks.flatMap { ($0 as? InlineMarkerContainer)?.inlineMarkerPairs }.reduce([], +)
 
 		// Adjust for inline markers
 		for pair in inlineMarkerPairs {
@@ -109,7 +133,7 @@ public struct Document {
 		return backingRange
 	}
 
-	public func backingRanges(presentationRange presentationRange: NSRange) -> [NSRange] {
+	public func backingRanges(presentationRange: NSRange) -> [NSRange] {
 		if presentationRange.length == 0 {
 			return [backingRange(presentationLocation: UInt(presentationRange.location))]
 		}
@@ -117,13 +141,13 @@ public struct Document {
 		let pre = preBackingRange(presentationRange)
 
 		var output = NoncontiguousRange(ranges: [pre])
-		let inlineMarkerPairs = blocks.flatMap { ($0 as? InlineMarkerContainer)?.inlineMarkerPairs }.reduce([], combine: +)
+		let inlineMarkerPairs = blocks.flatMap { ($0 as? InlineMarkerContainer)?.inlineMarkerPairs }.reduce([], +)
 
 		// Adjust for inline markers
 		for pair in inlineMarkerPairs {
 
 			// Delete the entire pair if all of it is in the selection
-			if output.intersection(pair.visibleRange) == pair.visibleRange.length {
+			if output.intersectionLength(pair.visibleRange) == pair.visibleRange.length {
 				output.insert(range: pair.range)
 			} else {
 				// Remove any markers from the range
@@ -135,7 +159,7 @@ public struct Document {
 		return output.ranges
 	}
 
-	private func preBackingRange(presentationRange: NSRange) -> NSRange {
+	fileprivate func preBackingRange(_ presentationRange: NSRange) -> NSRange {
 		var backingRange = presentationRange
 
 		// Account for all hidden ranges
@@ -144,7 +168,7 @@ public struct Document {
 			if hiddenRange.location > backingRange.location {
 
 				// Shadow intersects. Expand length.
-				if backingRange.intersection(hiddenRange) > 0 {
+				if let length = backingRange.intersectionLength(hiddenRange), length > 0 {
 					backingRange.length += hiddenRange.length
 					continue
 				}
@@ -176,14 +200,14 @@ public struct Document {
 
 	// MARK: - Querying Blocks
 
-	public func blockAt(backingLocation backingLocation: Int) -> BlockNode? {
+	public func blockAt(backingLocation: Int) -> BlockNode? {
 		guard backingLocation >= 0  else { return nil }
 		return blockAt(backingLocation: UInt(backingLocation))
 	}
 
-	public func blockAt(backingLocation backingLocation: UInt) -> BlockNode? {
+	public func blockAt(backingLocation: UInt) -> BlockNode? {
 		guard backingLocation >= 0  else { return nil }
-		for (i, block) in blocks.enumerate() {
+		for (i, block) in blocks.enumerated() {
 			if Int(backingLocation) < block.range.location {
 				return blocks[i - 1]
 			}
@@ -194,7 +218,7 @@ public struct Document {
 		return block.range.contains(backingLocation) || block.range.max == Int(backingLocation) ? block : nil
 	}
 
-	public func blockAt(presentationLocation presentationLocation: Int, direction: Direction = .leading) -> BlockNode? {
+	public func blockAt(presentationLocation: Int, direction: Direction = .leading) -> BlockNode? {
 		guard presentationLocation >= 0  else { return nil }
 		return blockAt(presentationLocation: UInt(presentationLocation), direction: direction)
 	}
@@ -204,10 +228,10 @@ public struct Document {
 	/// - parameter presentationLocation: Location in the presentation string
 	/// - parameter direction: Specify which block should be returned if the character is a new line.
 	/// - returns: A block if one is found.
-	public func blockAt(presentationLocation presentationLocation: UInt, direction: Direction = .leading) -> BlockNode? {
+	public func blockAt(presentationLocation: UInt, direction: Direction = .leading) -> BlockNode? {
 		let location = Int(presentationLocation)
 
-		for (i, range) in blockRanges.enumerate() {
+		for (i, range) in blockRanges.enumerated() {
 			// If it's the new line between two blocks, use the second block
 			if direction == .trailing && location + 1 == range.location {
 				return blocks[i]
@@ -224,37 +248,37 @@ public struct Document {
 		return presentationRange.contains(presentationLocation) || presentationRange.max == location ? block : nil
 	}
 
-	public func blocksIn(presentationRange presentationRange: NSRange) -> [BlockNode] {
+	public func blocksIn(presentationRange: NSRange) -> [BlockNode] {
 		return blocks.filter { block in
 			var range = self.presentationRange(block: block)
 			range.length += 1
-			return range.intersection(presentationRange) != nil
+			return range.intersectionLength(presentationRange) != nil
 		}
 	}
 
-	public func blocksIn(backingRange backingRange: NSRange) -> [BlockNode] {
+	public func blocksIn(backingRange: NSRange) -> [BlockNode] {
 		return blocks.filter { block in
 			var range = block.range
 			range.length += 1
-			return range.intersection(backingRange) != nil
+			return range.intersectionLength(backingRange) != nil
 		}
 	}
 
-	public func nodesIn(backingRange backingRange: NSRange) -> [Node] {
+	public func nodesIn(backingRange: NSRange) -> [Node] {
 		return nodesIn(backingRange: backingRange, nodes: blocks.map({ $0 as Node }))
 	}
 
-	public func nodesIn(backingRanges backingRanges: [NSRange]) -> [Node] {
+	public func nodesIn(backingRanges: [NSRange]) -> [Node] {
 		guard let first = backingRanges.first else { return [] }
 		let range = backingRanges.reduce(first) { $0.union($1) }
 		return nodesIn(backingRange: range, nodes: blocks.map({ $0 as Node }))
 	}
 
-	private func nodesIn(backingRange backingRange: NSRange, nodes: [Node]) -> [Node] {
+	fileprivate func nodesIn(backingRange: NSRange, nodes: [Node]) -> [Node] {
 		var results = [Node]()
 
 		for node in nodes {
-			if node.range.intersection(backingRange) != nil {
+			if node.range.intersectionLength(backingRange) != nil {
 				results.append(node)
 
 				if let node = node as? NodeContainer {
@@ -266,19 +290,19 @@ public struct Document {
 		return results
 	}
 
-	public func indexOf(block block: BlockNode) -> Int? {
-		return blocks.indexOf({ NSEqualRanges($0.range, block.range) })
+	public func indexOf(block: BlockNode) -> Int? {
+		return blocks.index(where: { NSEqualRanges($0.range, block.range) })
 	}
 
 
 	// MARK: - Presentation String
 
-	public func presentationString(block block: BlockNode) -> String {
+	public func presentationString(block: BlockNode) -> String {
 		return presentationString(backingRange: block.range)
 	}
 
-	public func presentationString(backingRange backingRange: NSRange) -> String {
-		let text = NSMutableString(string: (backingString as NSString).substringWithRange(backingRange))
+	public func presentationString(backingRange: NSRange) -> String {
+		let text = NSMutableString(string: (backingString as NSString).substring(with: backingRange))
 
 		var offset = backingRange.location
 		for hiddenRange in hiddenRanges {
@@ -298,7 +322,7 @@ public struct Document {
 			range.length = min(text.length - range.location, range.length)
 
 			// Remove hidden range from presentation string
-			text.replaceCharactersInRange(range, withString: "")
+			text.replaceCharacters(in: range, with: "")
 			offset += range.length
 		}
 
@@ -308,7 +332,7 @@ public struct Document {
 
 	// MARK: - Private
 
-	private static func present(backingString backingString: String, blocks: [BlockNode]) -> (String, [NSRange], [NSRange]) {
+	fileprivate static func present(backingString: String, blocks: [BlockNode]) -> (String, [NSRange], [NSRange]) {
 		let text = backingString as NSString
 
 		var presentationString = ""
@@ -316,7 +340,7 @@ public struct Document {
 		var blockRanges = [NSRange]()
 		var location: Int = 0
 
-		for (i, block) in blocks.enumerate() {
+		for (i, block) in blocks.enumerated() {
 			let isLast = i == blocks.count - 1
 			var blockRange = NSRange(location: location, length: 0)
 			hiddenRanges += block.hiddenRanges
@@ -326,18 +350,18 @@ public struct Document {
 				#if os(watchOS)
 					presentationString += "🖼"
 				#else
-					presentationString += String(Character(UnicodeScalar(NSAttachmentCharacter)))
+					presentationString += String(Character(UnicodeScalar(NSAttachmentCharacter)!))
 				#endif
 				
 				location += 1
 			} else {
 				// Get the raw text of the line
-				let line = NSMutableString(string: text.substringWithRange(block.range))
+				let line = NSMutableString(string: text.substring(with: block.range))
 
 				// Remove hidden ranges
 				var offset = block.range.location
 				for range in block.hiddenRanges {
-					line.replaceCharactersInRange(NSRange(location: range.location - offset, length: range.length), withString: "")
+					line.replaceCharacters(in: NSRange(location: range.location - offset, length: range.length), with: "")
 					offset += range.length
 				}
 

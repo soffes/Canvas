@@ -24,7 +24,7 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 	public var subnodes = [SpanNode]()
 	public var inlineMarkerPairs = [InlineMarkerPair]()
 
-	public var dictionary: [String: AnyObject] {
+	public var dictionary: [String: Any] {
 		return [
 			"type": "blockquote",
 			"range": range.dictionary,
@@ -55,7 +55,7 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 
 	// MARK: - Node
 
-	public mutating func offset(delta: Int) {
+	public mutating func offset(_ delta: Int) {
 		range.location += delta
 		nativePrefixRange.location += delta
 		visibleRange.location += delta

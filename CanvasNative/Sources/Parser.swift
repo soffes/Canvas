@@ -38,11 +38,11 @@ public struct Parser {
 
 	// MARK: - Parsing
 
-	public static func parse(string: NSString, range: NSRange? = nil) -> [BlockNode] {
-		return parse(string as String, range: range)
+	public static func parse(_ string: NSString, in range: NSRange? = nil) -> [BlockNode] {
+		return parse(string as String, in: range)
 	}
 
-	public static func parse(string: String, range: NSRange? = nil) -> [BlockNode] {
+	public static func parse(_ string: String, in range: NSRange? = nil) -> [BlockNode] {
 		var nodes = [BlockNode]()
 
 		let text = string as NSString
@@ -56,7 +56,7 @@ public struct Parser {
 
 		// Enumerate the string blocks of the `backingText`.
 		var max = 0
-		text.enumerateSubstringsInRange(parseRange, options: [.ByLines]) { substring, range, enclosingRange, _ in
+		text.enumerateSubstrings(in: parseRange, options: [.byLines]) { substring, range, enclosingRange, _ in
 			// Ensure we have a substring to work with
 			guard let substring = substring else { return }
 
@@ -67,7 +67,7 @@ public struct Parser {
 
 				// Parse inline markers
 				if var container = node as? InlineMarkerContainer {
-					container.inlineMarkerPairs = self.parseInlineMarkers(string: string, container: container)
+					container.inlineMarkerPairs = self.parseInlineMarkers(in: string, container: container)
 					node = container as BlockNode
 				}
 
@@ -93,7 +93,7 @@ public struct Parser {
 			nodes.append(Paragraph(range: NSRange(location: max + 1, length: 0)))
 		}
 
-		nodes = calculatePositions(nodes)
+		nodes = calculatePositions(withBlocks: nodes)
 
 		return nodes
 	}
@@ -101,12 +101,12 @@ public struct Parser {
 
 	// MARK: - Private
 
-	private static func parseInline(string string: String, container: NodeContainer) -> [SpanNode] {
+	private static func parseInline(string: String, container: NodeContainer) -> [SpanNode] {
 		var subnodes = [SpanNode]()
 
 		for type in spanParseOrder {
 			let regularExpression = type.regularExpression
-			let matches = regularExpression.matchesInString(string, options: [], range: container.textRange)
+			let matches = regularExpression.matches(in: string, options: [], range: container.textRange)
 			if matches.isEmpty {
 				continue
 			}
@@ -116,16 +116,16 @@ public struct Parser {
 				// Look for matches that should be skipped because they're contained in other already parsed siblings
 				var skip = false
 				for sibling in subnodes {
-					let matchRange = match.rangeAtIndex(0)
+					let matchRange = match.range(at: 0)
 
 					// Allow links to contain code spans.
 					// This should be made more abstract down the road.
-					if type == Link.self && sibling is CodeSpan && match.rangeAtIndex(2).equals(sibling.range) {
+					if type == Link.self && sibling is CodeSpan && match.range(at: 2).equals(sibling.range) {
 						break
 					}
 
 					// Skip if there is already a sibling for this range
-					if sibling.range.intersection(matchRange) != nil {
+					if sibling.range.intersectionLength(matchRange) != nil {
 						skip = true
 						break
 					}
@@ -149,7 +149,7 @@ public struct Parser {
 
 		var last = container.textRange.location
 
-		for node in subnodes.sort({ $0.range.location < $1.range.location }) {
+		for node in subnodes.sorted(by: { $0.range.location < $1.range.location }) {
 			if node.range.location != last {
 				output.append(Text(range: NSRange(location: last, length: node.range.location - last)))
 			}
@@ -164,8 +164,8 @@ public struct Parser {
 		return output
 	}
 
-	private static func parseInlineMarkers(string string: String, container: InlineMarkerContainer) -> [InlineMarkerPair] {
-		let matches = InlineMarker.regularExpression.matchesInString(string, options: [], range: container.visibleRange)
+	private static func parseInlineMarkers(in string: String, container: InlineMarkerContainer) -> [InlineMarkerPair] {
+		let matches = InlineMarker.regularExpression.matches(in: string, options: [], range: container.visibleRange)
 		if matches.isEmpty {
 			return []
 		}
@@ -174,25 +174,25 @@ public struct Parser {
 
 		let markers: [InlineMarker] = matches.flatMap { result in
 			guard result.numberOfRanges == 5 else { return nil }
-			let id = text.substringWithRange(result.rangeAtIndex(4))
-			let position: InlineMarker.Position = result.rangeAtIndex(2).length == 0 ? .opening : .closing
-			return InlineMarker(range: result.rangeAtIndex(0), position: position, id: id)
+			let id = text.substring(with: result.range(at: 4))
+			let position: InlineMarker.Position = result.range(at: 2).length == 0 ? .opening : .closing
+			return InlineMarker(range: result.range(at: 0), position: position, id: id)
 		}
 
 		return InlineMarkerPair.pairs(markers: markers)
 	}
 
-	private static func isContinuous(lhs: Positionable?, _ rhs: Positionable?) -> Bool {
-		guard let lhs = lhs, rhs = rhs where lhs.dynamicType == rhs.dynamicType else { return false }
+	private static func isContinuous(_ lhs: Positionable?, _ rhs: Positionable?) -> Bool {
+		guard let lhs = lhs, let rhs = rhs, type(of: lhs) == type(of: rhs) else { return false }
 
-		if let lhsCode = lhs as? CodeBlock, rhsCode = rhs as? CodeBlock where lhsCode.language != rhsCode.language {
+		if let lhsCode = lhs as? CodeBlock, let rhsCode = rhs as? CodeBlock, lhsCode.language != rhsCode.language {
 			return false
 		}
 
 		return true
 	}
 
-	private static func calculatePositions(blocks: [BlockNode]) -> [BlockNode] {
+	private static func calculatePositions(withBlocks blocks: [BlockNode]) -> [BlockNode] {
 		var blocks = blocks
 		let count = blocks.count
 
@@ -201,7 +201,7 @@ public struct Parser {
 
 		var codeLineNumber: UInt = 0
 
-		for (i, block) in blocks.enumerate() {
+		for (i, block) in blocks.enumerated() {
 			guard var currentBlock = block as? Positionable else {
 				codeLineNumber = 0
 				orderedIndentations.removeAll()
@@ -210,8 +210,8 @@ public struct Parser {
 
 			// Update ordered list items number
 			if var item = currentBlock as? OrderedListItem {
-				if let last = lastIndentation where last > item.indentation {
-					orderedIndentations.removeValueForKey(last)
+				if let last = lastIndentation, last > item.indentation {
+					orderedIndentations.removeValue(forKey: last)
 				}
 				
 				let value = (orderedIndentations[item.indentation] ?? 0) + 1

@@ -26,7 +26,7 @@ final class SpanLevelTests: XCTestCase {
 			Text(range: NSRange(location: 13, length: 1))
 		])
 
-		XCTAssertEqual([paragraph].map { $0.dictionary }, parse(markdown))
+		XCTAssertEqual([paragraph].map { $0.dictionary as NSDictionary }, parse(markdown))
 	}
 
 	func testCodeSpan2() {
@@ -42,7 +42,7 @@ final class SpanLevelTests: XCTestCase {
 			Text(range: NSRange(location: 15, length: 1))
 		])
 
-		XCTAssertEqual([paragraph].map { $0.dictionary }, parse(markdown))
+		XCTAssertEqual([paragraph].map { $0.dictionary as NSDictionary }, parse(markdown))
 	}
 
 	func testLink() {
@@ -65,7 +65,7 @@ final class SpanLevelTests: XCTestCase {
 			Text(range: NSRange(location: 33, length: 1))
 		])
 
-		XCTAssertEqual([paragraph].map { $0.dictionary }, parse(markdown))
+		XCTAssertEqual([paragraph].map { $0.dictionary as NSDictionary }, parse(markdown))
 	}
 
 	func testLinkWithTitle() {
@@ -93,7 +93,7 @@ final class SpanLevelTests: XCTestCase {
 			Text(range: NSRange(location: 43, length: 1))
 		])
 
-		XCTAssertEqual([paragraph].map { $0.dictionary }, parse(markdown))
+		XCTAssertEqual([paragraph].map { $0.dictionary as NSDictionary }, parse(markdown))
 	}
 
 	func testLinkWithInline() {
@@ -124,7 +124,7 @@ final class SpanLevelTests: XCTestCase {
 			Text(range: NSRange(location: 15, length: 1))
 		])
 
-		XCTAssertEqual([paragraph].map { $0.dictionary }, parse(markdown))
+		XCTAssertEqual([paragraph].map { $0.dictionary as NSDictionary }, parse(markdown))
 	}
 
 	func testEmphasis() {
@@ -143,7 +143,7 @@ final class SpanLevelTests: XCTestCase {
 			Text(range: NSRange(location: 13, length: 1))
 		])
 
-		XCTAssertEqual([paragraph].map { $0.dictionary }, parse(markdown))
+		XCTAssertEqual([paragraph].map { $0.dictionary as NSDictionary }, parse(markdown))
 	}
 	
 	func testEmphasisEdges() {
@@ -180,7 +180,7 @@ final class SpanLevelTests: XCTestCase {
 			Text(range: NSRange(location: 21, length: 1)),
 		])
 
-		XCTAssertEqual([paragraph].map { $0.dictionary }, parse(markdown))
+		XCTAssertEqual([paragraph].map { $0.dictionary as NSDictionary }, parse(markdown))
 	}
 
 	func testMixed2() {
@@ -208,7 +208,7 @@ final class SpanLevelTests: XCTestCase {
 			Text(range: NSRange(location: 21, length: 1)),
 		])
 
-		XCTAssertEqual([paragraph].map { $0.dictionary }, parse(markdown))
+		XCTAssertEqual([paragraph].map { $0.dictionary as NSDictionary }, parse(markdown))
 	}
 
 	func testNested() {
@@ -234,6 +234,6 @@ final class SpanLevelTests: XCTestCase {
 			Text(range: NSRange(location: 17, length: 1))
 		])
 
-		XCTAssertEqual([paragraph].map { $0.dictionary }, parse(markdown))
+		XCTAssertEqual([paragraph].map { $0.dictionary as NSDictionary }, parse(markdown))
 	}
 }

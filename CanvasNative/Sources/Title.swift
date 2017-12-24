@@ -23,7 +23,7 @@ public struct Title: NativePrefixable, NodeContainer, InlineMarkerContainer, Equ
 	public var subnodes = [SpanNode]()
 	public var inlineMarkerPairs = [InlineMarkerPair]()
 
-	public var dictionary: [String: AnyObject] {
+	public var dictionary: [String: Any] {
 		return [
 			"type": "title",
 			"range": range.dictionary,
@@ -52,7 +52,7 @@ public struct Title: NativePrefixable, NodeContainer, InlineMarkerContainer, Equ
 
 	// MARK: - Node
 
-	public mutating func offset(delta: Int) {
+	public mutating func offset(_ delta: Int) {
 		range.location += delta
 		nativePrefixRange.location += delta
 		visibleRange.location += delta
@@ -73,7 +73,7 @@ public struct Title: NativePrefixable, NodeContainer, InlineMarkerContainer, Equ
 
 	// MARK: - Native
 
-	public static func nativeRepresentation(string: String? = nil) -> String {
+	public static func nativeRepresentation(_ string: String? = nil) -> String {
 		return "\(leadingNativePrefix)doc-heading\(trailingNativePrefix)" + (string ?? "")
 	}
 }

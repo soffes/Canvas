@@ -16,19 +16,19 @@ public protocol NativePrefixable: BlockNode {
 }
 
 
-func parseBlockNode(string string: String, range: NSRange, delimiter: String, prefix: String) -> (nativePrefixRange: NSRange, prefixRange: NSRange, visibleRange: NSRange)? {
-	let scanner = NSScanner(string: string)
+func parseBlockNode(string: String, range: NSRange, delimiter: String, prefix: String) -> (nativePrefixRange: NSRange, prefixRange: NSRange, visibleRange: NSRange)? {
+	let scanner = Scanner(string: string)
 	scanner.charactersToBeSkipped = nil
 
 	// Delimiter
-	if !scanner.scanString("\(leadingNativePrefix)\(delimiter)\(trailingNativePrefix)", intoString: nil) {
+	if !scanner.scanString("\(leadingNativePrefix)\(delimiter)\(trailingNativePrefix)", into: nil) {
 		return nil
 	}
 	let nativePrefixRange = NSRange(location: range.location, length: scanner.scanLocation)
 
 	// Prefix
 	let startPrefix = scanner.scanLocation
-	if !scanner.scanString(prefix, intoString: nil) {
+	if !scanner.scanString(prefix, into: nil) {
 		return nil
 	}
 	let prefixRange = NSRange(location: range.location + startPrefix, length: scanner.scanLocation - startPrefix)
@@ -43,12 +43,12 @@ func parseBlockNode(string string: String, range: NSRange, delimiter: String, pr
 }
 
 
-func parseBlockNode(string string: String, range: NSRange, delimiter: String) -> (nativePrefixRange: NSRange, visibleRange: NSRange)? {
-	let scanner = NSScanner(string: string)
+func parseBlockNode(string: String, range: NSRange, delimiter: String) -> (nativePrefixRange: NSRange, visibleRange: NSRange)? {
+	let scanner = Scanner(string: string)
 	scanner.charactersToBeSkipped = nil
 
 	// Delimiter
-	if !scanner.scanString("\(leadingNativePrefix)\(delimiter)\(trailingNativePrefix)", intoString: nil) {
+	if !scanner.scanString("\(leadingNativePrefix)\(delimiter)\(trailingNativePrefix)", into: nil) {
 		return nil
 	}
 	let nativePrefixRange = NSRange(location: range.location, length: scanner.scanLocation)

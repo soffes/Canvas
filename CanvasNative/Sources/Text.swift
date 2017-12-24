@@ -18,7 +18,7 @@ public struct Text: SpanNode {
 		return range
 	}
 
-	public var dictionary: [String: AnyObject] {
+	public var dictionary: [String: Any] {
 		return [
 			"type": "text",
 			"range": range.dictionary,
@@ -36,7 +36,7 @@ public struct Text: SpanNode {
 
 	// MARK: - Node
 
-	public mutating func offset(delta: Int) {
+	public mutating func offset(_ delta: Int) {
 		range.location += delta
 	}
 }

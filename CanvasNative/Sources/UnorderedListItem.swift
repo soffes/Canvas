@@ -26,7 +26,7 @@ public struct UnorderedListItem: Listable, Equatable {
 	public var subnodes = [SpanNode]()
 	public var inlineMarkerPairs = [InlineMarkerPair]()
 
-	public var dictionary: [String: AnyObject] {
+	public var dictionary: [String: Any] {
 		return [
 			"type": "unordered-list",
 			"range": range.dictionary,
@@ -61,7 +61,7 @@ public struct UnorderedListItem: Listable, Equatable {
 
 	// MARK: - Node
 
-	public mutating func offset(delta: Int) {
+	public mutating func offset(_ delta: Int) {
 		range.location += delta
 		nativePrefixRange.location += delta
 		visibleRange.location += delta
@@ -83,7 +83,7 @@ public struct UnorderedListItem: Listable, Equatable {
 
 	// MARK: - Native
 
-	public static func nativeRepresentation(indentation indentation: Indentation = .zero) -> String {
+	public static func nativeRepresentation(indentation: Indentation = .zero) -> String {
 		return "\(leadingNativePrefix)unordered-list-\(indentation.string)\(trailingNativePrefix)- "
 	}
 }

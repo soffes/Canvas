@@ -21,11 +21,11 @@ final class DocumentControllerInsertTests: XCTestCase {
 	func testLoading() {
 		let controller = DocumentController(delegate: delegate)
 
-		let will = expectationWithDescription("controllerWillUpdateNodes")
+		let will = expectation(description: "controllerWillUpdateNodes")
 		delegate.willUpdate = { will.fulfill() }
 
-		let insertTitle = expectationWithDescription("controller:didInsertBlock:atIndex: Title")
-		let insertParagraph = expectationWithDescription("controller:didInsertBlock:atIndex: Paragraph")
+		let insertTitle = expectation(description: "controller:didInsertBlock:atIndex: Title")
+		let insertParagraph = expectation(description: "controller:didInsertBlock:atIndex: Paragraph")
 		delegate.didInsert = { node, index in
 			if node is Title {
 				XCTAssertEqual(0, index)
@@ -40,11 +40,11 @@ final class DocumentControllerInsertTests: XCTestCase {
 
 		delegate.didRemove = { _, _ in XCTFail("Shouldn't remove.") }
 
-		let did = expectationWithDescription("controllerDidUpdateNodes")
+		let did = expectation(description: "controllerDidUpdateNodes")
 		delegate.didUpdate = { did.fulfill() }
 
 		controller.replaceCharactersInRange(NSRange(location: 0, length: 0), withString: "⧙doc-heading⧘Title\nParagraph")
-		waitForExpectationsWithTimeout(0.1, handler: nil)
+		waitForExpectations(timeout: 0.1, handler: nil)
 
 		XCTAssertEqual(delegate.presentationString, controller.document.presentationString)
 		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)

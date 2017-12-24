@@ -12,10 +12,10 @@ struct NoncontiguousRange {
 
 	// MARK: - Private
 
-	private var storage = Set<Int>()
+	fileprivate var storage = Set<Int>()
 
 	var ranges: [NSRange] {
-		return self.dynamicType.ranges(indices: storage)
+		return type(of: self).ranges(indices: storage)
 	}
 
 
@@ -28,32 +28,32 @@ struct NoncontiguousRange {
 
 	// MARK: - Querying
 
-	func intersection(range: NSRange) -> Int? {
+	func intersectionLength(_ range: NSRange) -> Int? {
 		if range.length == 0 {
 			return storage.contains(range.location) ? 0 : nil
 		}
 
-		let indices = self.dynamicType.indices(range: range)
-		return storage.intersect(indices).count
+		let indices = type(of: self).indices(range: range)
+		return storage.intersection(indices).count
 	}
 
 
 	// MARK: - Mutating
 
-	mutating func insert(range range: NSRange) {
-		let indices = self.dynamicType.indices(range: range)
-		storage.unionInPlace(indices)
+	mutating func insert(range: NSRange) {
+		let indices = type(of: self).indices(range: range)
+		storage.formUnion(indices)
 	}
 
-	mutating func remove(range range: NSRange) {
-		let indices = self.dynamicType.indices(range: range)
-		storage.subtractInPlace(indices)
+	mutating func remove(range: NSRange) {
+		let indices = type(of: self).indices(range: range)
+		storage.subtract(indices)
 	}
 
 
 	// MARK: - Private
 
-	private static func indices(range range: NSRange) -> Set<Int> {
+	fileprivate static func indices(range: NSRange) -> Set<Int> {
 		var indicies = Set<Int>()
 
 		for i in range.location..<NSMaxRange(range) {
@@ -63,11 +63,11 @@ struct NoncontiguousRange {
 		return indicies
 	}
 
-	static func ranges(indices indices: Set<Int>) -> [NSRange] {
+	static func ranges(indices: Set<Int>) -> [NSRange] {
 		var ranges = [NSRange]()
 		var range: NSRange?
 
-		let sorted = Array(indices).sort()
+		let sorted = Array(indices).sorted()
 
 		for location in sorted {
 			guard var r = range else {

@@ -19,7 +19,7 @@ final class ImageTests: XCTestCase {
 		XCTAssertEqual(NSRange(location: length - 1, length: 1), image.visibleRange)
 		XCTAssertEqual("1-a-b", image.identifier)
 		XCTAssertEqual(CGSize(width: 1011, height: 679), image.size)
-		XCTAssertEqual(NSURL(string: "https://example.com/cover.jpg")!, image.url)
+		XCTAssertEqual(URL(string: "https://example.com/cover.jpg")!, image.url)
 	}
 
 	func testUploadingImage() {
@@ -40,7 +40,7 @@ final class ImageTests: XCTestCase {
 
 		XCTAssertEqual(NSRange(location: 0, length: length - 1), image.nativePrefixRange)
 		XCTAssertEqual(NSRange(location: length - 1, length: 1), image.visibleRange)
-		XCTAssertEqual(NSURL(string: "https://canvas-files-prod.s3.amazonaws.com/uploads/b631973f-1d6f-4a27-8973-7c3db5c270fc/Screen%20Shot%202016-02-25%20at%209.47.56%20AM.png")!, image.url)
+		XCTAssertEqual(URL(string: "https://canvas-files-prod.s3.amazonaws.com/uploads/b631973f-1d6f-4a27-8973-7c3db5c270fc/Screen%20Shot%202016-02-25%20at%209.47.56%20AM.png")!, image.url)
 	}
 	
 	func testNewLinkedImage() {
@@ -50,6 +50,6 @@ final class ImageTests: XCTestCase {
 		
 		XCTAssertEqual(NSRange(location: 0, length: length - 1), image.nativePrefixRange)
 		XCTAssertEqual(NSRange(location: length - 1, length: 1), image.visibleRange)
-		XCTAssertEqual(NSURL(string: "https://canvas-files-prod.s3.amazonaws.com/uploads/b631973f-1d6f-4a27-8973-7c3db5c270fc/Screen%20Shot%202016-02-25%20at%209.47.56%20AM.png")!, image.url)
+		XCTAssertEqual(URL(string: "https://canvas-files-prod.s3.amazonaws.com/uploads/b631973f-1d6f-4a27-8973-7c3db5c270fc/Screen%20Shot%202016-02-25%20at%209.47.56%20AM.png")!, image.url)
 	}
 }

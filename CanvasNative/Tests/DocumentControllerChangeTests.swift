@@ -21,24 +21,24 @@ final class DocumentControllerChangeTests: XCTestCase {
 	func testChange() {
 		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\nOne\nTwo", delegate: delegate)
 
-		let will = expectationWithDescription("willUpdate")
+		let will = expectation(description: "willUpdate")
 		delegate.willUpdate = { will.fulfill() }
 
-		let insert = expectationWithDescription("didInsert")
+		let insert = expectation(description: "didInsert")
 		delegate.didInsert = { block, index in
 			insert.fulfill()
 		}
 
-		let remove = expectationWithDescription("didRemove")
+		let remove = expectation(description: "didRemove")
 		delegate.didRemove = { block, index in
 			remove.fulfill()
 		}
 
-		let did = expectationWithDescription("didUpdate")
+		let did = expectation(description: "didUpdate")
 		delegate.didUpdate = { did.fulfill() }
 
 		controller.replaceCharactersInRange(NSRange(location: 22, length: 0), withString: "!")
-		waitForExpectationsWithTimeout(0.1, handler: nil)
+		waitForExpectations(timeout: 0.1, handler: nil)
 
 		XCTAssertEqual(delegate.presentationString, controller.document.presentationString)
 		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)
@@ -73,24 +73,24 @@ final class DocumentControllerChangeTests: XCTestCase {
 	func testIndent() {
 		let controller = DocumentController(backingString: "⧙doc-heading⧘Title\n⧙checklist-0⧘- [ ] Hi", delegate: delegate)
 
-		let will = expectationWithDescription("willUpdate")
+		let will = expectation(description: "willUpdate")
 		delegate.willUpdate = { will.fulfill() }
 
-		let insert = expectationWithDescription("didInsert")
+		let insert = expectation(description: "didInsert")
 		delegate.didInsert = { block, index in
 			insert.fulfill()
 		}
 
-		let remove = expectationWithDescription("didRemove")
+		let remove = expectation(description: "didRemove")
 		delegate.didRemove = { block, index in
 			remove.fulfill()
 		}
 
-		let did = expectationWithDescription("didUpdate")
+		let did = expectation(description: "didUpdate")
 		delegate.didUpdate = { did.fulfill() }
 
 		controller.replaceCharactersInRange(NSRange(location: 30, length: 1), withString: "1")
-		waitForExpectationsWithTimeout(0.1, handler: nil)
+		waitForExpectations(timeout: 0.1, handler: nil)
 
 		XCTAssertEqual(delegate.presentationString, controller.document.presentationString)
 		XCTAssertEqual(blockTypes(controller.document.backingString), delegate.blockTypes)

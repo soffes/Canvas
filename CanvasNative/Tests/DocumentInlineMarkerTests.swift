@@ -25,7 +25,7 @@ final class DocumentInlineMarkerTests: XCTestCase {
 				closingMarker: InlineMarker(range: NSRange(location: 76, length: 28), position: .closing, id: "3YA3fBfQystAGJj63asokU")
 			)
 		]
-		XCTAssertEqual(pairs.map { $0.dictionary }, paragraph.inlineMarkerPairs.map { $0.dictionary })
+		XCTAssertEqual(pairs.map { $0.dictionary as NSDictionary }, paragraph.inlineMarkerPairs.map { $0.dictionary as NSDictionary })
 	}
 
 	func testPresentationRangeWithInlineMarkers() {

@@ -25,7 +25,7 @@ public struct Paragraph: BlockNode, NodeContainer, InlineMarkerContainer, Equata
 	public var subnodes = [SpanNode]()
 	public var inlineMarkerPairs = [InlineMarkerPair]()
 
-	public var dictionary: [String: AnyObject] {
+	public var dictionary: [String: Any] {
 		return [
 			"type": "paragraph",
 			"range": range.dictionary,
@@ -50,7 +50,7 @@ public struct Paragraph: BlockNode, NodeContainer, InlineMarkerContainer, Equata
 
 	// MARK: - Node
 
-	public mutating func offset(delta: Int) {
+	public mutating func offset(_ delta: Int) {
 		range.location += delta
 		
 		subnodes = subnodes.map {

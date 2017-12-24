@@ -18,14 +18,14 @@ extension NSRange {
 
 	static let zero = NSRange(location: 0, length: 0)
 
-	var dictionary: [String: AnyObject] {
+	var dictionary: [String: Any] {
 		return [
 			"location": location,
 			"length": length
 		]
 	}
 
-	var range: Range<Int> {
+	var range: CountableRange<Int> {
 		return location..<max
 	}
 
@@ -33,7 +33,7 @@ extension NSRange {
 	// MARK: - Initializers
 
 	init(_ range: Range<Int>) {
-		location = range.startIndex
+		location = range.lowerBound
 		length = range.count
 	}
 
@@ -52,21 +52,21 @@ extension NSRange {
 
 	// MARK: - Working with Locations
 
-	@warn_unused_result
-	func contains(location: UInt) -> Bool {
+	
+	func contains(_ location: UInt) -> Bool {
 		return contains(Int(location))
 	}
 
-	@warn_unused_result
-	func contains(location: Int) -> Bool {
+	
+	func contains(_ location: Int) -> Bool {
 		return NSLocationInRange(location, self)
 	}
 
 
 	// MARK: - Working with other Ranges
 
-	@warn_unused_result
-	func union(range: NSRange) -> NSRange {
+	
+	func union(_ range: NSRange) -> NSRange {
 		return NSUnionRange(self, range)
 	}
 
@@ -74,8 +74,8 @@ extension NSRange {
 	///
 	/// - parameter range: The range to check for intersection with the receiver.
 	/// - return: The length of intersection if they intersect or nil if they don't.
-	@warn_unused_result
-	func intersection(range: NSRange) -> Int? {
+	
+	func intersectionLength(_ range: NSRange) -> Int? {
 		if range.length == 0 {
 			return NSLocationInRange(range.location, self) ? 0 : nil
 		}
@@ -84,8 +84,8 @@ extension NSRange {
 		return length > 0 ? length : nil
 	}
 
-	@warn_unused_result
-	func equals(range: NSRange) -> Bool {
+	
+	func equals(_ range: NSRange) -> Bool {
 		return NSEqualRanges(self, range)
 	}
 }

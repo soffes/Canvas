@@ -20,8 +20,8 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Inli
 
 	public var inlineMarkerPairs = [InlineMarkerPair]()
 
-	public var dictionary: [String: AnyObject] {
-		var dictionary: [String: AnyObject] = [
+	public var dictionary: [String: Any] {
+		var dictionary: [String: Any] = [
 			"type": "code-block",
 			"range": range.dictionary,
 			"nativePrefixRange": nativePrefixRange.dictionary,
@@ -44,19 +44,19 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Inli
 	// MARK: - Initializers
 
 	public init?(string: String, range: NSRange) {
-		let scanner = NSScanner(string: string)
+		let scanner = Scanner(string: string)
 		scanner.charactersToBeSkipped = nil
 
 		// Delimiter
-		if !scanner.scanString("\(leadingNativePrefix)code", intoString: nil) {
+		if !scanner.scanString("\(leadingNativePrefix)code", into: nil) {
 			return nil
 		}
 
 		// Language
 		var language: NSString? = ""
-		if scanner.scanString("-", intoString: nil) {
+		if scanner.scanString("-", into: nil) {
 			let scanLocation = scanner.scanLocation
-			if scanner.scanUpToString(trailingNativePrefix, intoString: &language), let language = language as? String {
+			if scanner.scanUpTo(trailingNativePrefix, into: &language), let language = language as String? {
 				self.language = language
 			} else {
 				self.language = nil
@@ -65,7 +65,7 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Inli
 		}
 
 		// Closing delimiter
-		guard scanner.scanString(trailingNativePrefix, intoString: nil) else {
+		guard scanner.scanString(trailingNativePrefix, into: nil) else {
 			return nil
 		}
 
@@ -83,7 +83,7 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Inli
 
 	// MARK: - Node
 
-	public mutating func offset(delta: Int) {
+	public mutating func offset(_ delta: Int) {
 		range.location += delta
 		nativePrefixRange.location += delta
 		visibleRange.location += delta
@@ -98,7 +98,7 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Inli
 
 	// MARK: - Native
 
-	public static func nativeRepresentation(language language: String? = nil) -> String {
+	public static func nativeRepresentation(language: String? = nil) -> String {
 		let lang = language.flatMap { "-\($0)" } ?? ""
 		return "\(leadingNativePrefix)code\(lang)\(trailingNativePrefix)"
 	}

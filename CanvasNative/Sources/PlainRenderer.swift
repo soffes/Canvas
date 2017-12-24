@@ -31,15 +31,15 @@ public struct PlainRenderer: Renderer {
 			lines.append(render(spans: block.subnodes))
 		}
 
-		let output = lines.joinWithSeparator("\n")
+		let output = lines.joined(separator: "\n")
 		let bounds = NSRange(location: 0, length: (output as NSString).length)
-		return InlineMarker.regularExpression.stringByReplacingMatchesInString(output, options: [], range: bounds, withTemplate: "")
+		return InlineMarker.regularExpression.stringByReplacingMatches(in: output, options: [], range: bounds, withTemplate: "")
 	}
 
 
 	// MARK: - Private
 
-	private func render(spans spans: [SpanNode]) -> String {
+	fileprivate func render(spans: [SpanNode]) -> String {
 		var output = ""
 
 		for span in spans {

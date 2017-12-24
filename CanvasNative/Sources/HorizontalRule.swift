@@ -17,7 +17,7 @@ public struct HorizontalRule: Attachable, Equatable {
 	public var range: NSRange
 	public var nativePrefixRange: NSRange
 
-	public var dictionary: [String: AnyObject] {
+	public var dictionary: [String: Any] {
 		return [
 			"type": "horizontal-rule",
 			"range": range.dictionary,
@@ -44,7 +44,7 @@ public struct HorizontalRule: Attachable, Equatable {
 
 	// MARK: - Node
 
-	public mutating func offset(delta: Int) {
+	public mutating func offset(_ delta: Int) {
 		range.location += delta
 		nativePrefixRange.location += delta
 	}

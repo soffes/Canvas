@@ -21,7 +21,7 @@ public struct InlineMarkerPair: Node {
 		return NSRange(location: location, length: closingMarker.range.location - location)
 	}
 
-	public var dictionary: [String: AnyObject] {
+	public var dictionary: [String: Any] {
 		return [
 			"type": "inline-marker-pair",
 			"openingMarker": openingMarker.dictionary,
@@ -43,7 +43,7 @@ public struct InlineMarkerPair: Node {
 
 	// MARK: - Processing
 
-	static func pairs(markers markers: [InlineMarker]) -> [InlineMarkerPair] {
+	static func pairs(markers: [InlineMarker]) -> [InlineMarkerPair] {
 		var pairs = [InlineMarkerPair]()
 		var openingMarkers = [String: InlineMarker]()
 
@@ -58,13 +58,13 @@ public struct InlineMarkerPair: Node {
 			}
 		}
 
-		return pairs.sort { $0.openingMarker.range.location < $1.openingMarker.range.location }
+		return pairs.sorted { $0.openingMarker.range.location < $1.openingMarker.range.location }
 	}
 
 
 	// MARK: - Node
 
-	public mutating func offset(delta: Int) {
+	public mutating func offset(_ delta: Int) {
 		openingMarker.offset(delta)
 		closingMarker.offset(delta)
 	}

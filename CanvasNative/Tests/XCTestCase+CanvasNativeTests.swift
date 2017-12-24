@@ -10,11 +10,11 @@ import XCTest
 import CanvasNative
 
 extension XCTest {
-	func parse(string: String) -> [[String: AnyObject]] {
-		return Parser.parse(string).map { $0.dictionary }
+	func parse(_ string: String) -> [NSDictionary] {
+		return Parser.parse(string).map { $0.dictionary as NSDictionary }
 	}
 
-	func blockTypes(string: String) -> [String] {
-		return Parser.parse(string).map { String($0.dynamicType) }
+	func blockTypes(_ string: String) -> [String] {
+		return Parser.parse(string).map { String(describing: $0) }
 	}
 }

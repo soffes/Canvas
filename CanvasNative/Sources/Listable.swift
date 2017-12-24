@@ -45,19 +45,19 @@ public enum Indentation: UInt {
 
 extension Indentation: Comparable {}
 
-@warn_unused_result public func <(lhs: Indentation, rhs: Indentation) -> Bool {
+public func <(lhs: Indentation, rhs: Indentation) -> Bool {
 	return lhs.rawValue < rhs.rawValue
 }
 
-@warn_unused_result public func <=(lhs: Indentation, rhs: Indentation) -> Bool {
+public func <=(lhs: Indentation, rhs: Indentation) -> Bool {
 	return lhs.rawValue <= rhs.rawValue
 }
 
-@warn_unused_result public func >=(lhs: Indentation, rhs: Indentation) -> Bool {
+public func >=(lhs: Indentation, rhs: Indentation) -> Bool {
 	return lhs.rawValue >= rhs.rawValue
 }
 
-@warn_unused_result public func >(lhs: Indentation, rhs: Indentation) -> Bool {
+public func >(lhs: Indentation, rhs: Indentation) -> Bool {
 	return lhs.rawValue > rhs.rawValue
 }
 
@@ -68,22 +68,22 @@ public protocol Listable: ReturnCompletable, NativePrefixable, Positionable, Nod
 }
 
 
-func parseListable(string string: String, range: NSRange, delimiter: String, prefix: String) -> (nativePrefixRange: NSRange, indentationRange: NSRange, indentation: Indentation, prefixRange: NSRange, visibleRange: NSRange)? {
-	let scanner = NSScanner(string: string)
+func parseListable(string: String, range: NSRange, delimiter: String, prefix: String) -> (nativePrefixRange: NSRange, indentationRange: NSRange, indentation: Indentation, prefixRange: NSRange, visibleRange: NSRange)? {
+	let scanner = Scanner(string: string)
 	scanner.charactersToBeSkipped = nil
 
 	// Delimiter
-	if !scanner.scanString(leadingNativePrefix, intoString: nil) {
+	if !scanner.scanString(leadingNativePrefix, into: nil) {
 		return nil
 	}
 
-	if !scanner.scanString("\(delimiter)-", intoString: nil) {
+	if !scanner.scanString("\(delimiter)-", into: nil) {
 		return nil
 	}
 
 	let indentationRange = NSRange(location:  range.location + scanner.scanLocation, length: 1)
 	var indent = -1
-	if !scanner.scanInteger(&indent) {
+	if !scanner.scanInt(&indent) {
 		return nil
 	}
 
@@ -91,7 +91,7 @@ func parseListable(string string: String, range: NSRange, delimiter: String, pre
 		return nil
 	}
 
-	if !scanner.scanString(trailingNativePrefix, intoString: nil) {
+	if !scanner.scanString(trailingNativePrefix, into: nil) {
 		return nil
 	}
 
@@ -99,7 +99,7 @@ func parseListable(string string: String, range: NSRange, delimiter: String, pre
 
 	// Prefix
 	let startPrefix = scanner.scanLocation
-	if !scanner.scanString(prefix, intoString: nil) {
+	if !scanner.scanString(prefix, into: nil) {
 		return nil
 	}
 

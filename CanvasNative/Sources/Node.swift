@@ -16,10 +16,10 @@ public protocol Node {
 	var visibleRange: NSRange { get }
 
 	/// Dictionary representation
-	var dictionary: [String: AnyObject] { get }
+	var dictionary: [String: Any] { get }
 
 	/// Adjust all range locations by a delta.
 	///
 	/// - parameter delta: Amount to offset range locations
-	mutating func offset(delta: Int)
+	mutating func offset(_ delta: Int)
 }
