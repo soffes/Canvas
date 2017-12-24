@@ -1,0 +1,24 @@
+fileGroups:
+  - CanvasNative
+targets:
+  CanvasNative:
+    type: library.static
+    platform: iOS
+    sources:
+      - CanvasNative/Sources
+    scheme:
+      testTargets:
+        - CanvasNativeTests
+    dependencies:
+      - carthage: Diff
+  CanvasNativeTests:
+    type: bundle.unit-test
+    platform: iOS
+    settings:
+      INFOPLIST_FILE: CanvasNative/Support/Tests-Info.plist
+      TEST_HOST: $(BUILT_PRODUCTS_DIR)/Canvas.app/Canvas
+    sources:
+      - CanvasNative/Tests
+    dependencies:
+      - target: CanvasNative
+      - carthage: Diff

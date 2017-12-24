@@ -1,0 +1,6 @@
+github "agilebits/onepassword-app-extension"
+github "soffes/Cache"
+github "soffes/Diff"
+github "soffes/GradientView"
+github "soffes/X"
+github "venmo/Static"

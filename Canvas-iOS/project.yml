@@ -1,0 +1,19 @@
+fileGroups:
+  - Canvas-iOS
+targets:
+  Canvas-iOS:
+      type: application
+      platform: iOS
+      sources:
+        - Canvas-iOS/Sources/TempAppDelegate.swift
+        - Canvas-iOS/Support/Assets.xcassets
+        - Canvas-iOS/Support/Base.lproj
+        - Canvas-iOS/Support/Settings.bundle
+      settings:
+        PRODUCT_NAME: Canvas
+        PRODUCT_BUNDLE_IDENTIFIER: com.usecanvas.canvas
+        INFOPLIST_FILE: $(SRCROOT)/Canvas-iOS/Support/Info.plist
+        CODE_SIGN_STYLE: Manual
+      dependencies:
+        - target: CanvasNative
+        - carthage: Diff

@@ -6,6 +6,8 @@
 //  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
 //
 
+import Foundation
+
 public protocol Attachable: NativePrefixable {}
 
 extension Attachable {

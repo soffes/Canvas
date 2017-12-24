@@ -1,0 +1,10 @@
+name: Canvas
+options:
+  bundleIdPrefix: com.usecanvas
+  usesTabs: true
+  indentWidth: 4
+  tabWidth: 4
+  xcodeVersion: 9.2
+include:
+  - Canvas-iOS/project.yml
+  - CanvasNative/project.yml
