@@ -1,0 +1,1575 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		210259791D3A83DE00A74753 /* UIActivity+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210259781D3A83DE00A74753 /* UIActivity+Canvas.swift */; };
+		2102597A1D3A83DE00A74753 /* UIActivity+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210259781D3A83DE00A74753 /* UIActivity+Canvas.swift */; };
+		2107D3021CC58F7B001963B7 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2CA1CC58F7A001963B7 /* AlertController.swift */; };
+		2107D3031CC58F7B001963B7 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2CB1CC58F7A001963B7 /* Analytics.swift */; };
+		2107D3041CC58F7B001963B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2CC1CC58F7A001963B7 /* AppDelegate.swift */; };
+		2107D3051CC58F7B001963B7 /* PillButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2CD1CC58F7A001963B7 /* PillButton.swift */; };
+		2107D3061CC58F7B001963B7 /* Canvas+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2CE1CC58F7A001963B7 /* Canvas+Canvas.swift */; };
+		2107D3071CC58F7B001963B7 /* CanvasCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2CF1CC58F7A001963B7 /* CanvasCell.swift */; };
+		2107D3081CC58F7B001963B7 /* CanvasesResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2D01CC58F7A001963B7 /* CanvasesResultsViewController.swift */; };
+		2107D3091CC58F7B001963B7 /* CanvasesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2D11CC58F7A001963B7 /* CanvasesViewController.swift */; };
+		2107D30A1CC58F7B001963B7 /* CanvasIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2D21CC58F7A001963B7 /* CanvasIconView.swift */; };
+		2107D30B1CC58F7B001963B7 /* CGRect+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2D31CC58F7A001963B7 /* CGRect+Canvas.swift */; };
+		2107D30C1CC58F7B001963B7 /* ChromeActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2D41CC58F7A001963B7 /* ChromeActivity.swift */; };
+		2107D30D1CC58F7B001963B7 /* Color+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2D51CC58F7A001963B7 /* Color+Canvas.swift */; };
+		2107D30F1CC58F7B001963B7 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2D71CC58F7A001963B7 /* Configuration.swift */; };
+		2107D3101CC58F7B001963B7 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2D81CC58F7A001963B7 /* EditorViewController.swift */; };
+		2107D3131CC58F7B001963B7 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2DB1CC58F7A001963B7 /* TextField.swift */; };
+		2107D3151CC58F7B001963B7 /* ModelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2DD1CC58F7A001963B7 /* ModelsViewController.swift */; };
+		2107D3161CC58F7B001963B7 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2DE1CC58F7A001963B7 /* NavigationBar.swift */; };
+		2107D3171CC58F7B001963B7 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2DF1CC58F7A001963B7 /* NavigationController.swift */; };
+		2107D3191CC58F7B001963B7 /* NSDate+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2E11CC58F7A001963B7 /* NSDate+Canvas.swift */; };
+		2107D31A1CC58F7B001963B7 /* Organization+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2E21CC58F7B001963B7 /* Organization+Canvas.swift */; };
+		2107D31B1CC58F7B001963B7 /* OrganizationAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2E31CC58F7B001963B7 /* OrganizationAvatarView.swift */; };
+		2107D31C1CC58F7B001963B7 /* OrganizationCanvasesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2E41CC58F7B001963B7 /* OrganizationCanvasesViewController.swift */; };
+		2107D31E1CC58F7B001963B7 /* OrganizationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2E61CC58F7B001963B7 /* OrganizationsViewController.swift */; };
+		2107D31F1CC58F7B001963B7 /* OrganizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2E71CC58F7B001963B7 /* OrganizationCell.swift */; };
+		2107D3201CC58F7B001963B7 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2E81CC58F7B001963B7 /* RootViewController.swift */; };
+		2107D3211CC58F7B001963B7 /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2E91CC58F7B001963B7 /* SafariActivity.swift */; };
+		2107D3221CC58F7B001963B7 /* SearchBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2EA1CC58F7B001963B7 /* SearchBarContainer.swift */; };
+		2107D3241CC58F7B001963B7 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2EC1CC58F7B001963B7 /* TableViewController.swift */; };
+		2107D3251CC58F7B001963B7 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2ED1CC58F7B001963B7 /* TextView.swift */; };
+		2107D3261CC58F7B001963B7 /* TickingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2EE1CC58F7B001963B7 /* TickingLabel.swift */; };
+		2107D3271CC58F7B001963B7 /* TintableEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2EF1CC58F7B001963B7 /* TintableEnvironment.swift */; };
+		2107D3281CC58F7B001963B7 /* TintableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2F01CC58F7B001963B7 /* TintableView.swift */; };
+		2107D3291CC58F7B001963B7 /* UIEdgeInsets+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2F11CC58F7B001963B7 /* UIEdgeInsets+Canvas.swift */; };
+		2107D32A1CC58F7B001963B7 /* UIFont+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2F21CC58F7B001963B7 /* UIFont+Canvas.swift */; };
+		2107D32B1CC58F7B001963B7 /* WebActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2F31CC58F7B001963B7 /* WebActivity.swift */; };
+		2107D32C1CC58F7B001963B7 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2F41CC58F7B001963B7 /* WebViewController.swift */; };
+		2107D32D1CC58F7B001963B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2107D2F61CC58F7B001963B7 /* Assets.xcassets */; };
+		2107D32E1CC58F7B001963B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2107D2F71CC58F7B001963B7 /* LaunchScreen.storyboard */; };
+		2107D32F1CC58F7B001963B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2107D2F91CC58F7B001963B7 /* Main.storyboard */; };
+		2107D3341CC58F7B001963B7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2107D3001CC58F7B001963B7 /* Settings.bundle */; };
+		210B1C971D0B14A600B08A81 /* SharedWebCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B1C961D0B14A600B08A81 /* SharedWebCredentials.swift */; };
+		210B1C981D0B14A600B08A81 /* SharedWebCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210B1C961D0B14A600B08A81 /* SharedWebCredentials.swift */; };
+		2112CBC01D24DB8800B214F7 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2112CBBF1D24DB8800B214F7 /* TitleView.swift */; };
+		2112CBC11D24DB8800B214F7 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2112CBBF1D24DB8800B214F7 /* TitleView.swift */; };
+		2117A02F1D06338C00E60821 /* GroupedSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117A02E1D06338C00E60821 /* GroupedSectionHeaderView.swift */; };
+		2117A0301D06338C00E60821 /* GroupedSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117A02E1D06338C00E60821 /* GroupedSectionHeaderView.swift */; };
+		2117A07B1D0641CE00E60821 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117A07A1D0641CE00E60821 /* TableView.swift */; };
+		2117A07C1D0641CE00E60821 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117A07A1D0641CE00E60821 /* TableView.swift */; };
+		2117A0961D0642A400E60821 /* UIColor+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117A0951D0642A400E60821 /* UIColor+Canvas.swift */; };
+		2117A0971D0642A400E60821 /* UIColor+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117A0951D0642A400E60821 /* UIColor+Canvas.swift */; };
+		211F9A3E1D3F42FE00E0A519 /* AuthorizationClient+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211F9A3D1D3F42FE00E0A519 /* AuthorizationClient+Canvas.swift */; };
+		211F9A3F1D3F42FE00E0A519 /* AuthorizationClient+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211F9A3D1D3F42FE00E0A519 /* AuthorizationClient+Canvas.swift */; };
+		212299B81CE3E79C00033D94 /* UIViewController+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212299B71CE3E79C00033D94 /* UIViewController+Canvas.swift */; };
+		212299CF1CE3E7F200033D94 /* UIViewController+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212299B71CE3E79C00033D94 /* UIViewController+Canvas.swift */; };
+		2122BFF01CFE4FF900A038DE /* LoadCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122BFEF1CFE4FF900A038DE /* LoadCanvasViewController.swift */; };
+		2122BFF11CFE4FF900A038DE /* LoadCanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122BFEF1CFE4FF900A038DE /* LoadCanvasViewController.swift */; };
+		2122BFF31CFE645100A038DE /* EditorViewController+Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122BFF21CFE645100A038DE /* EditorViewController+Connection.swift */; };
+		2122BFF41CFE645100A038DE /* EditorViewController+Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122BFF21CFE645100A038DE /* EditorViewController+Connection.swift */; };
+		212392931CEBAE0300F8D26B /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212392921CEBAE0300F8D26B /* SplitViewController.swift */; };
+		212392941CEBAE0300F8D26B /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212392921CEBAE0300F8D26B /* SplitViewController.swift */; };
+		21298C6F1D26C95700E741EE /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21298C6E1D26C95700E741EE /* BannerView.swift */; };
+		21298C701D26C95700E741EE /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21298C6E1D26C95700E741EE /* BannerView.swift */; };
+		21298CD11D26F11100E741EE /* ValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21298CD01D26F11100E741EE /* ValueCell.swift */; };
+		21298CD21D26F11100E741EE /* ValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21298CD01D26F11100E741EE /* ValueCell.swift */; };
+		212D8EC61CE62AE00039A3EE /* IndicatorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D8EC51CE62AE00039A3EE /* IndicatorButton.swift */; };
+		212D8EC71CE62AE00039A3EE /* IndicatorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212D8EC51CE62AE00039A3EE /* IndicatorButton.swift */; };
+		2147A2E31CDA586E008A2709 /* CanvasTextView+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2147A2E21CDA586E008A2709 /* CanvasTextView+Gestures.swift */; };
+		2147A2FA1CDA5908008A2709 /* CanvasTextView+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2147A2E21CDA586E008A2709 /* CanvasTextView+Gestures.swift */; };
+		2147A2FC1CDA7B2E008A2709 /* DragContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2147A2FB1CDA7B2E008A2709 /* DragContext.swift */; };
+		2147A2FD1CDA7B35008A2709 /* DragContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2147A2FB1CDA7B2E008A2709 /* DragContext.swift */; };
+		214F9FF71CC6DE4600927A07 /* CanvasTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214F9FF61CC6DE4600927A07 /* CanvasTextView.swift */; };
+		21501D5B1CCAA2B900B02FC5 /* PillButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2CD1CC58F7A001963B7 /* PillButton.swift */; };
+		21501D5C1CCAA2B900B02FC5 /* OrganizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2E71CC58F7B001963B7 /* OrganizationCell.swift */; };
+		21501D5D1CCAA2B900B02FC5 /* Canvas+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2CE1CC58F7A001963B7 /* Canvas+Canvas.swift */; };
+		21501D5E1CCAA2B900B02FC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2CC1CC58F7A001963B7 /* AppDelegate.swift */; };
+		21501D5F1CCAA2B900B02FC5 /* CanvasesResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2D01CC58F7A001963B7 /* CanvasesResultsViewController.swift */; };
+		21501D601CCAA2B900B02FC5 /* UIEdgeInsets+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2F11CC58F7B001963B7 /* UIEdgeInsets+Canvas.swift */; };
+		21501D611CCAA2B900B02FC5 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2ED1CC58F7B001963B7 /* TextView.swift */; };
+		21501D621CCAA2B900B02FC5 /* Color+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2D51CC58F7A001963B7 /* Color+Canvas.swift */; };
+		21501D631CCAA2B900B02FC5 /* OrganizationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2E61CC58F7B001963B7 /* OrganizationsViewController.swift */; };
+		21501D641CCAA2B900B02FC5 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2EC1CC58F7B001963B7 /* TableViewController.swift */; };
+		21501D651CCAA2B900B02FC5 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2DE1CC58F7A001963B7 /* NavigationBar.swift */; };
+		21501D661CCAA2B900B02FC5 /* CanvasTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214F9FF61CC6DE4600927A07 /* CanvasTextView.swift */; };
+		21501D671CCAA2B900B02FC5 /* CanvasesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2D11CC58F7A001963B7 /* CanvasesViewController.swift */; };
+		21501D681CCAA2B900B02FC5 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2D71CC58F7A001963B7 /* Configuration.swift */; };
+		21501D691CCAA2B900B02FC5 /* NSDate+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2E11CC58F7A001963B7 /* NSDate+Canvas.swift */; };
+		21501D6A1CCAA2B900B02FC5 /* CGRect+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2D31CC58F7A001963B7 /* CGRect+Canvas.swift */; };
+		21501D6B1CCAA2B900B02FC5 /* Organization+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2E21CC58F7B001963B7 /* Organization+Canvas.swift */; };
+		21501D6C1CCAA2B900B02FC5 /* OrganizationCanvasesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2E41CC58F7B001963B7 /* OrganizationCanvasesViewController.swift */; };
+		21501D6F1CCAA2B900B02FC5 /* TickingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2EE1CC58F7B001963B7 /* TickingLabel.swift */; };
+		21501D701CCAA2B900B02FC5 /* CanvasIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2D21CC58F7A001963B7 /* CanvasIconView.swift */; };
+		21501D711CCAA2B900B02FC5 /* CanvasCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2CF1CC58F7A001963B7 /* CanvasCell.swift */; };
+		21501D721CCAA2B900B02FC5 /* TintableEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2EF1CC58F7B001963B7 /* TintableEnvironment.swift */; };
+		21501D731CCAA2B900B02FC5 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2F41CC58F7B001963B7 /* WebViewController.swift */; };
+		21501D751CCAA2B900B02FC5 /* WebActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2F31CC58F7B001963B7 /* WebActivity.swift */; };
+		21501D761CCAA2B900B02FC5 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2D81CC58F7A001963B7 /* EditorViewController.swift */; };
+		21501D771CCAA2B900B02FC5 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2DF1CC58F7A001963B7 /* NavigationController.swift */; };
+		21501D781CCAA2B900B02FC5 /* ModelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2DD1CC58F7A001963B7 /* ModelsViewController.swift */; };
+		21501D791CCAA2B900B02FC5 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2E81CC58F7B001963B7 /* RootViewController.swift */; };
+		21501D7A1CCAA2B900B02FC5 /* TintableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2F01CC58F7B001963B7 /* TintableView.swift */; };
+		21501D7C1CCAA2B900B02FC5 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2CA1CC58F7A001963B7 /* AlertController.swift */; };
+		21501D7D1CCAA2B900B02FC5 /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2E91CC58F7B001963B7 /* SafariActivity.swift */; };
+		21501D7F1CCAA2B900B02FC5 /* ChromeActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2D41CC58F7A001963B7 /* ChromeActivity.swift */; };
+		21501D801CCAA2B900B02FC5 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2CB1CC58F7A001963B7 /* Analytics.swift */; };
+		21501D811CCAA2B900B02FC5 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2DB1CC58F7A001963B7 /* TextField.swift */; };
+		21501D831CCAA2B900B02FC5 /* SearchBarContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2EA1CC58F7B001963B7 /* SearchBarContainer.swift */; };
+		21501D851CCAA2B900B02FC5 /* UIFont+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2F21CC58F7B001963B7 /* UIFont+Canvas.swift */; };
+		21501D861CCAA2B900B02FC5 /* OrganizationAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2107D2E31CC58F7B001963B7 /* OrganizationAvatarView.swift */; };
+		21501D941CCAA2B900B02FC5 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2107D3001CC58F7B001963B7 /* Settings.bundle */; };
+		21501D961CCAA2B900B02FC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2107D2F91CC58F7B001963B7 /* Main.storyboard */; };
+		21501D971CCAA2B900B02FC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2107D2F61CC58F7B001963B7 /* Assets.xcassets */; };
+		21501D981CCAA2B900B02FC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2107D2F71CC58F7B001963B7 /* LaunchScreen.storyboard */; };
+		215486001D3D4007000D7E77 /* NSProcessInfo+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215485FF1D3D4007000D7E77 /* NSProcessInfo+Canvas.swift */; };
+		215486011D3D4007000D7E77 /* NSProcessInfo+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215485FF1D3D4007000D7E77 /* NSProcessInfo+Canvas.swift */; };
+		215CD8621CE293FF0093C545 /* PlaceholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215CD8611CE293FF0093C545 /* PlaceholderViewController.swift */; };
+		215CD8631CE293FF0093C545 /* PlaceholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215CD8611CE293FF0093C545 /* PlaceholderViewController.swift */; };
+		215CD89C1CE2A26F0093C545 /* EditorViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B28BF51CDC6049009B9D8F /* EditorViewController+Actions.swift */; };
+		215CD89D1CE2A26F0093C545 /* EditorViewController+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B28BF51CDC6049009B9D8F /* EditorViewController+Actions.swift */; };
+		215CDF511D5A23C200A45635 /* PresenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215CDF501D5A23C200A45635 /* PresenceViewController.swift */; };
+		215CDF521D5A23C200A45635 /* PresenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215CDF501D5A23C200A45635 /* PresenceViewController.swift */; };
+		215CDF541D5A2DA100A45635 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215CDF531D5A2DA100A45635 /* UserCell.swift */; };
+		215CDF551D5A2DA100A45635 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215CDF531D5A2DA100A45635 /* UserCell.swift */; };
+		215CDF571D5A796900A45635 /* CopyLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215CDF561D5A796900A45635 /* CopyLinkView.swift */; };
+		215CDF581D5A796900A45635 /* CopyLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215CDF561D5A796900A45635 /* CopyLinkView.swift */; };
+		215CDF5A1D5A79DB00A45635 /* GrayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215CDF591D5A79DB00A45635 /* GrayButton.swift */; };
+		215CDF5B1D5A79DB00A45635 /* GrayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215CDF591D5A79DB00A45635 /* GrayButton.swift */; };
+		215D1AE01D426CE20030D804 /* APIClient+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215D1ADF1D426CE20030D804 /* APIClient+Canvas.swift */; };
+		215D1AE11D426CE20030D804 /* APIClient+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215D1ADF1D426CE20030D804 /* APIClient+Canvas.swift */; };
+		217309FD1D46E7E5001B63D7 /* Interpolate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217309FC1D46E7E5001B63D7 /* Interpolate.swift */; };
+		217309FE1D46E7E5001B63D7 /* Interpolate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217309FC1D46E7E5001B63D7 /* Interpolate.swift */; };
+		21730A061D46F603001B63D7 /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21730A051D46F603001B63D7 /* SAMKeychain.framework */; };
+		21730A071D46F609001B63D7 /* SAMKeychain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21730A051D46F603001B63D7 /* SAMKeychain.framework */; };
+		2178CBB91CEA891100E9A4B2 /* SessionFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178CBB81CEA891100E9A4B2 /* SessionFormViewController.swift */; };
+		2178CBBA1CEA891100E9A4B2 /* SessionFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2178CBB81CEA891100E9A4B2 /* SessionFormViewController.swift */; };
+		217C55C21D42D4F70064A2AD /* Cache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55AD1D42D4F70064A2AD /* Cache.framework */; };
+		217C55C31D42D4F70064A2AD /* Cache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55AD1D42D4F70064A2AD /* Cache.framework */; };
+		217C55C41D42D4F70064A2AD /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55AE1D42D4F70064A2AD /* CanvasCore.framework */; };
+		217C55C51D42D4F70064A2AD /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55AE1D42D4F70064A2AD /* CanvasCore.framework */; };
+		217C55C61D42D4F70064A2AD /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55AF1D42D4F70064A2AD /* CanvasKit.framework */; };
+		217C55C71D42D4F70064A2AD /* CanvasKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55AF1D42D4F70064A2AD /* CanvasKit.framework */; };
+		217C55C81D42D4F70064A2AD /* CanvasNative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B01D42D4F70064A2AD /* CanvasNative.framework */; };
+		217C55C91D42D4F70064A2AD /* CanvasNative.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B01D42D4F70064A2AD /* CanvasNative.framework */; };
+		217C55CA1D42D4F70064A2AD /* CanvasText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B11D42D4F70064A2AD /* CanvasText.framework */; };
+		217C55CB1D42D4F70064A2AD /* CanvasText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B11D42D4F70064A2AD /* CanvasText.framework */; };
+		217C55CC1D42D4F70064A2AD /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B21D42D4F70064A2AD /* CommonCrypto.framework */; };
+		217C55CD1D42D4F70064A2AD /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B21D42D4F70064A2AD /* CommonCrypto.framework */; };
+		217C55CE1D42D4F70064A2AD /* Crypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B31D42D4F70064A2AD /* Crypto.framework */; };
+		217C55CF1D42D4F70064A2AD /* Crypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B31D42D4F70064A2AD /* Crypto.framework */; };
+		217C55D01D42D4F70064A2AD /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B41D42D4F70064A2AD /* Diff.framework */; };
+		217C55D11D42D4F70064A2AD /* Diff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B41D42D4F70064A2AD /* Diff.framework */; };
+		217C55D21D42D4F70064A2AD /* GradientView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B51D42D4F70064A2AD /* GradientView.framework */; };
+		217C55D31D42D4F70064A2AD /* GradientView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B51D42D4F70064A2AD /* GradientView.framework */; };
+		217C55D41D42D4F70064A2AD /* Intercom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B61D42D4F70064A2AD /* Intercom.framework */; };
+		217C55D51D42D4F70064A2AD /* Intercom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B61D42D4F70064A2AD /* Intercom.framework */; };
+		217C55D61D42D4F70064A2AD /* ISO8601.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B71D42D4F70064A2AD /* ISO8601.framework */; };
+		217C55D71D42D4F70064A2AD /* ISO8601.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B71D42D4F70064A2AD /* ISO8601.framework */; };
+		217C55D81D42D4F70064A2AD /* KSCrash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B81D42D4F70064A2AD /* KSCrash.framework */; };
+		217C55D91D42D4F70064A2AD /* KSCrash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B81D42D4F70064A2AD /* KSCrash.framework */; };
+		217C55DA1D42D4F70064A2AD /* Mixpanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B91D42D4F70064A2AD /* Mixpanel.framework */; };
+		217C55DB1D42D4F70064A2AD /* Mixpanel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55B91D42D4F70064A2AD /* Mixpanel.framework */; };
+		217C55DC1D42D4F70064A2AD /* OnePasswordExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55BA1D42D4F70064A2AD /* OnePasswordExtension.framework */; };
+		217C55DD1D42D4F70064A2AD /* OnePasswordExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55BA1D42D4F70064A2AD /* OnePasswordExtension.framework */; };
+		217C55DE1D42D4F70064A2AD /* OperationalTransformation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55BB1D42D4F70064A2AD /* OperationalTransformation.framework */; };
+		217C55DF1D42D4F70064A2AD /* OperationalTransformation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55BB1D42D4F70064A2AD /* OperationalTransformation.framework */; };
+		217C55E01D42D4F70064A2AD /* PullToRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55BC1D42D4F70064A2AD /* PullToRefresh.framework */; };
+		217C55E11D42D4F70064A2AD /* PullToRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55BC1D42D4F70064A2AD /* PullToRefresh.framework */; };
+		217C55E21D42D4F70064A2AD /* SentrySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55BD1D42D4F70064A2AD /* SentrySwift.framework */; };
+		217C55E31D42D4F70064A2AD /* SentrySwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55BD1D42D4F70064A2AD /* SentrySwift.framework */; };
+		217C55E61D42D4F70064A2AD /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55BF1D42D4F70064A2AD /* Starscream.framework */; };
+		217C55E71D42D4F70064A2AD /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55BF1D42D4F70064A2AD /* Starscream.framework */; };
+		217C55E81D42D4F70064A2AD /* Static.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55C01D42D4F70064A2AD /* Static.framework */; };
+		217C55E91D42D4F70064A2AD /* Static.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55C01D42D4F70064A2AD /* Static.framework */; };
+		217C55EA1D42D4F70064A2AD /* X.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55C11D42D4F70064A2AD /* X.framework */; };
+		217C55EB1D42D4F70064A2AD /* X.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C55C11D42D4F70064A2AD /* X.framework */; };
+		21880C051D1ED73000C144DB /* StackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21880C041D1ED73000C144DB /* StackViewController.swift */; };
+		21880C061D1ED73000C144DB /* StackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21880C041D1ED73000C144DB /* StackViewController.swift */; };
+		218B6BAA1D08D23400A170E5 /* UISplitViewController+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218B6BA91D08D23400A170E5 /* UISplitViewController+Canvas.swift */; };
+		218B6BAB1D08D23400A170E5 /* UISplitViewController+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218B6BA91D08D23400A170E5 /* UISplitViewController+Canvas.swift */; };
+		219F67EC1D3D3C9A00FB17E2 /* Snapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F67EB1D3D3C9A00FB17E2 /* Snapshots.swift */; };
+		219F67F11D3D3D4200FB17E2 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219F67F01D3D3D4200FB17E2 /* SnapshotHelper.swift */; };
+		21A6CB0C1D39724F0004F739 /* CopyLinkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A6CB0B1D39724F0004F739 /* CopyLinkActivity.swift */; };
+		21A6CB0D1D39724F0004F739 /* CopyLinkActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A6CB0B1D39724F0004F739 /* CopyLinkActivity.swift */; };
+		21A6CB541D3974670004F739 /* CopyRepresentationActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A6CB531D3974670004F739 /* CopyRepresentationActivity.swift */; };
+		21A6CB551D3974670004F739 /* CopyRepresentationActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A6CB531D3974670004F739 /* CopyRepresentationActivity.swift */; };
+		21A77E121D0803C600340243 /* AvatarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A77E111D0803C600340243 /* AvatarsView.swift */; };
+		21A77E131D0803C600340243 /* AvatarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A77E111D0803C600340243 /* AvatarsView.swift */; };
+		21A77E151D08053A00340243 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A77E141D08053A00340243 /* AvatarView.swift */; };
+		21A77E161D08053A00340243 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A77E141D08053A00340243 /* AvatarView.swift */; };
+		21AE40411D5E5F290057B4E9 /* OAuthClient+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AE40401D5E5F290057B4E9 /* OAuthClient+Canvas.swift */; };
+		21AE40421D5E5F290057B4E9 /* OAuthClient+Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21AE40401D5E5F290057B4E9 /* OAuthClient+Canvas.swift */; };
+		21BD17691D1EEBFD00C11CB9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BD17681D1EEBFD00C11CB9 /* SignUpViewController.swift */; };
+		21BD176A1D1EEBFD00C11CB9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BD17681D1EEBFD00C11CB9 /* SignUpViewController.swift */; };
+		21BF50D51D232B19001801A5 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		21BF50D61D232B19001801A5 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		21BF511D1D233357001801A5 /* SleepPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF511C1D233357001801A5 /* SleepPickerViewController.swift */; };
+		21BF511E1D233357001801A5 /* SleepPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF511C1D233357001801A5 /* SleepPickerViewController.swift */; };
+		21BF51201D233514001801A5 /* SleepPrevention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF511F1D233514001801A5 /* SleepPrevention.swift */; };
+		21BF51211D233514001801A5 /* SleepPrevention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BF511F1D233514001801A5 /* SleepPrevention.swift */; };
+		21C58DB61D022BD8005AEFE1 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C58DB51D022BD8005AEFE1 /* LineView.swift */; };
+		21C58DB71D022BD8005AEFE1 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C58DB51D022BD8005AEFE1 /* LineView.swift */; };
+		21C58DD51D023947005AEFE1 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C58DD41D023947005AEFE1 /* SectionHeaderView.swift */; };
+		21C58DD61D023947005AEFE1 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C58DD41D023947005AEFE1 /* SectionHeaderView.swift */; };
+		21C650041D2C7FB100EA3127 /* BillboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C650031D2C7FB100EA3127 /* BillboardView.swift */; };
+		21C650051D2C7FB100EA3127 /* BillboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C650031D2C7FB100EA3127 /* BillboardView.swift */; };
+		21D3265F1D258F8F00EB7D74 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3265E1D258F8F00EB7D74 /* LogInViewController.swift */; };
+		21D326601D258F8F00EB7D74 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3265E1D258F8F00EB7D74 /* LogInViewController.swift */; };
+		21D326621D258FA800EB7D74 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D326611D258FA800EB7D74 /* SettingsViewController.swift */; };
+		21D326631D258FA800EB7D74 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D326611D258FA800EB7D74 /* SettingsViewController.swift */; };
+		21D5C95A1D4081A300155B93 /* DragBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5C9591D4081A300155B93 /* DragBackgroundView.swift */; };
+		21D5C95B1D4081A300155B93 /* DragBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5C9591D4081A300155B93 /* DragBackgroundView.swift */; };
+		21D5C95D1D40833700155B93 /* DragProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5C95C1D40833700155B93 /* DragProgressView.swift */; };
+		21D5C95E1D40833700155B93 /* DragProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D5C95C1D40833700155B93 /* DragProgressView.swift */; };
+		21D6BC271D3DB4AC002B92C8 /* DestructiveValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D6BC261D3DB4AC002B92C8 /* DestructiveValueCell.swift */; };
+		21D6BC281D3DB4AC002B92C8 /* DestructiveValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D6BC261D3DB4AC002B92C8 /* DestructiveValueCell.swift */; };
+		21D91E7A1D36A39700BADD0B /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D91E791D36A39700BADD0B /* VerifyViewController.swift */; };
+		21D91E7B1D36A39700BADD0B /* VerifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D91E791D36A39700BADD0B /* VerifyViewController.swift */; };
+		21D91E7D1D36A7DA00BADD0B /* PrefaceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D91E7C1D36A7DA00BADD0B /* PrefaceButton.swift */; };
+		21D91E7E1D36A7DA00BADD0B /* PrefaceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D91E7C1D36A7DA00BADD0B /* PrefaceButton.swift */; };
+		21D91E801D36AA0600BADD0B /* FooterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D91E7F1D36AA0600BADD0B /* FooterButton.swift */; };
+		21D91E811D36AA0600BADD0B /* FooterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D91E7F1D36AA0600BADD0B /* FooterButton.swift */; };
+		21F0C1331D3DB997001D77E7 /* CanvasActivitySource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F0C1321D3DB997001D77E7 /* CanvasActivitySource.swift */; };
+		21F0C1341D3DB997001D77E7 /* CanvasActivitySource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F0C1321D3DB997001D77E7 /* CanvasActivitySource.swift */; };
+		21F2D75D1D3DEBB100ADA4D5 /* RefreshContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2D75C1D3DEBB100ADA4D5 /* RefreshContentView.swift */; };
+		21F2D75E1D3DEBB100ADA4D5 /* RefreshContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F2D75C1D3DEBB100ADA4D5 /* RefreshContentView.swift */; };
+		21F95DC21D2EC8D2006B4100 /* OnboardingBillboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F95DC11D2EC8D2006B4100 /* OnboardingBillboardViewController.swift */; };
+		21F95DC31D2EC8D2006B4100 /* OnboardingBillboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F95DC11D2EC8D2006B4100 /* OnboardingBillboardViewController.swift */; };
+		21F95DC51D2EC902006B4100 /* OnboardingWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F95DC41D2EC902006B4100 /* OnboardingWelcomeViewController.swift */; };
+		21F95DC61D2EC902006B4100 /* OnboardingWelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F95DC41D2EC902006B4100 /* OnboardingWelcomeViewController.swift */; };
+		21F95DC81D2ECB75006B4100 /* OnboardingGesturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F95DC71D2ECB75006B4100 /* OnboardingGesturesViewController.swift */; };
+		21F95DC91D2ECB75006B4100 /* OnboardingGesturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F95DC71D2ECB75006B4100 /* OnboardingGesturesViewController.swift */; };
+		21F95DCB1D2ECB9F006B4100 /* OnboardingOrigamiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F95DCA1D2ECB9F006B4100 /* OnboardingOrigamiViewController.swift */; };
+		21F95DCC1D2ECB9F006B4100 /* OnboardingOrigamiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F95DCA1D2ECB9F006B4100 /* OnboardingOrigamiViewController.swift */; };
+		21F95DCE1D2ECBBE006B4100 /* OnboardingSharingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F95DCD1D2ECBBE006B4100 /* OnboardingSharingViewController.swift */; };
+		21F95DCF1D2ECBBE006B4100 /* OnboardingSharingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F95DCD1D2ECBBE006B4100 /* OnboardingSharingViewController.swift */; };
+		21F95DD11D2ECBFC006B4100 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F95DD01D2ECBFC006B4100 /* OnboardingViewController.swift */; };
+		21F95DD21D2ECBFC006B4100 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F95DD01D2ECBFC006B4100 /* OnboardingViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		219F67A01D3D3C7C00FB17E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21F10F421BF138750035057D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 21F10F491BF138750035057D;
+			remoteInfo = Canvas;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		21501D991CCAA2B900B02FC5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		210259781D3A83DE00A74753 /* UIActivity+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIActivity+Canvas.swift"; sourceTree = "<group>"; };
+		2107D2CA1CC58F7A001963B7 /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		2107D2CB1CC58F7A001963B7 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
+		2107D2CC1CC58F7A001963B7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2107D2CD1CC58F7A001963B7 /* PillButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PillButton.swift; sourceTree = "<group>"; };
+		2107D2CE1CC58F7A001963B7 /* Canvas+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Canvas+Canvas.swift"; sourceTree = "<group>"; };
+		2107D2CF1CC58F7A001963B7 /* CanvasCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasCell.swift; sourceTree = "<group>"; };
+		2107D2D01CC58F7A001963B7 /* CanvasesResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasesResultsViewController.swift; sourceTree = "<group>"; };
+		2107D2D11CC58F7A001963B7 /* CanvasesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasesViewController.swift; sourceTree = "<group>"; };
+		2107D2D21CC58F7A001963B7 /* CanvasIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasIconView.swift; sourceTree = "<group>"; };
+		2107D2D31CC58F7A001963B7 /* CGRect+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Canvas.swift"; sourceTree = "<group>"; };
+		2107D2D41CC58F7A001963B7 /* ChromeActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChromeActivity.swift; sourceTree = "<group>"; };
+		2107D2D51CC58F7A001963B7 /* Color+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Canvas.swift"; sourceTree = "<group>"; };
+		2107D2D71CC58F7A001963B7 /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		2107D2D81CC58F7A001963B7 /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
+		2107D2DB1CC58F7A001963B7 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		2107D2DD1CC58F7A001963B7 /* ModelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelsViewController.swift; sourceTree = "<group>"; };
+		2107D2DE1CC58F7A001963B7 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		2107D2DF1CC58F7A001963B7 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		2107D2E11CC58F7A001963B7 /* NSDate+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Canvas.swift"; sourceTree = "<group>"; };
+		2107D2E21CC58F7B001963B7 /* Organization+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Organization+Canvas.swift"; sourceTree = "<group>"; };
+		2107D2E31CC58F7B001963B7 /* OrganizationAvatarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationAvatarView.swift; sourceTree = "<group>"; };
+		2107D2E41CC58F7B001963B7 /* OrganizationCanvasesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationCanvasesViewController.swift; sourceTree = "<group>"; };
+		2107D2E61CC58F7B001963B7 /* OrganizationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationsViewController.swift; sourceTree = "<group>"; };
+		2107D2E71CC58F7B001963B7 /* OrganizationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationCell.swift; sourceTree = "<group>"; };
+		2107D2E81CC58F7B001963B7 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		2107D2E91CC58F7B001963B7 /* SafariActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
+		2107D2EA1CC58F7B001963B7 /* SearchBarContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarContainer.swift; sourceTree = "<group>"; };
+		2107D2EC1CC58F7B001963B7 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		2107D2ED1CC58F7B001963B7 /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		2107D2EE1CC58F7B001963B7 /* TickingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickingLabel.swift; sourceTree = "<group>"; };
+		2107D2EF1CC58F7B001963B7 /* TintableEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TintableEnvironment.swift; sourceTree = "<group>"; };
+		2107D2F01CC58F7B001963B7 /* TintableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TintableView.swift; sourceTree = "<group>"; };
+		2107D2F11CC58F7B001963B7 /* UIEdgeInsets+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Canvas.swift"; sourceTree = "<group>"; };
+		2107D2F21CC58F7B001963B7 /* UIFont+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Canvas.swift"; sourceTree = "<group>"; };
+		2107D2F31CC58F7B001963B7 /* WebActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebActivity.swift; sourceTree = "<group>"; };
+		2107D2F41CC58F7B001963B7 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		2107D2F61CC58F7B001963B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2107D2F81CC58F7B001963B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2107D2FA1CC58F7B001963B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2107D2FB1CC58F7B001963B7 /* Canvas Dev.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Canvas Dev.entitlements"; sourceTree = "<group>"; };
+		2107D2FC1CC58F7B001963B7 /* Canvas.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Canvas.entitlements; sourceTree = "<group>"; };
+		2107D2FF1CC58F7B001963B7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2107D3001CC58F7B001963B7 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		210B1C961D0B14A600B08A81 /* SharedWebCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedWebCredentials.swift; sourceTree = "<group>"; };
+		2112CBBF1D24DB8800B214F7 /* TitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		2117A02E1D06338C00E60821 /* GroupedSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupedSectionHeaderView.swift; sourceTree = "<group>"; };
+		2117A07A1D0641CE00E60821 /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		2117A0951D0642A400E60821 /* UIColor+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Canvas.swift"; sourceTree = "<group>"; };
+		211F9A3D1D3F42FE00E0A519 /* AuthorizationClient+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AuthorizationClient+Canvas.swift"; sourceTree = "<group>"; };
+		212299B71CE3E79C00033D94 /* UIViewController+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Canvas.swift"; sourceTree = "<group>"; };
+		2122BFEF1CFE4FF900A038DE /* LoadCanvasViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadCanvasViewController.swift; sourceTree = "<group>"; };
+		2122BFF21CFE645100A038DE /* EditorViewController+Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewController+Connection.swift"; sourceTree = "<group>"; };
+		212392921CEBAE0300F8D26B /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		21298C6E1D26C95700E741EE /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		21298CD01D26F11100E741EE /* ValueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueCell.swift; sourceTree = "<group>"; };
+		212D8EC51CE62AE00039A3EE /* IndicatorButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndicatorButton.swift; sourceTree = "<group>"; };
+		2147A2E21CDA586E008A2709 /* CanvasTextView+Gestures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CanvasTextView+Gestures.swift"; sourceTree = "<group>"; };
+		2147A2FB1CDA7B2E008A2709 /* DragContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragContext.swift; sourceTree = "<group>"; };
+		214F9FF61CC6DE4600927A07 /* CanvasTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasTextView.swift; sourceTree = "<group>"; };
+		21501DAA1CCAA2B900B02FC5 /* Canvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Canvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		215485FF1D3D4007000D7E77 /* NSProcessInfo+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSProcessInfo+Canvas.swift"; sourceTree = "<group>"; };
+		215CD8611CE293FF0093C545 /* PlaceholderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderViewController.swift; sourceTree = "<group>"; };
+		215CDF501D5A23C200A45635 /* PresenceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenceViewController.swift; sourceTree = "<group>"; };
+		215CDF531D5A2DA100A45635 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		215CDF561D5A796900A45635 /* CopyLinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyLinkView.swift; sourceTree = "<group>"; };
+		215CDF591D5A79DB00A45635 /* GrayButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrayButton.swift; sourceTree = "<group>"; };
+		215D1ADF1D426CE20030D804 /* APIClient+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Canvas.swift"; sourceTree = "<group>"; };
+		217309FC1D46E7E5001B63D7 /* Interpolate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interpolate.swift; sourceTree = "<group>"; };
+		21730A051D46F603001B63D7 /* SAMKeychain.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SAMKeychain.framework; path = Carthage/Build/iOS/SAMKeychain.framework; sourceTree = "<group>"; };
+		2178CBB81CEA891100E9A4B2 /* SessionFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionFormViewController.swift; sourceTree = "<group>"; };
+		217C55AD1D42D4F70064A2AD /* Cache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cache.framework; path = Carthage/Build/iOS/Cache.framework; sourceTree = "<group>"; };
+		217C55AE1D42D4F70064A2AD /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CanvasCore.framework; path = Carthage/Build/iOS/CanvasCore.framework; sourceTree = "<group>"; };
+		217C55AF1D42D4F70064A2AD /* CanvasKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CanvasKit.framework; path = Carthage/Build/iOS/CanvasKit.framework; sourceTree = "<group>"; };
+		217C55B01D42D4F70064A2AD /* CanvasNative.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CanvasNative.framework; path = Carthage/Build/iOS/CanvasNative.framework; sourceTree = "<group>"; };
+		217C55B11D42D4F70064A2AD /* CanvasText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CanvasText.framework; path = Carthage/Build/iOS/CanvasText.framework; sourceTree = "<group>"; };
+		217C55B21D42D4F70064A2AD /* CommonCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CommonCrypto.framework; path = Carthage/Build/iOS/CommonCrypto.framework; sourceTree = "<group>"; };
+		217C55B31D42D4F70064A2AD /* Crypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crypto.framework; path = Carthage/Build/iOS/Crypto.framework; sourceTree = "<group>"; };
+		217C55B41D42D4F70064A2AD /* Diff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Diff.framework; path = Carthage/Build/iOS/Diff.framework; sourceTree = "<group>"; };
+		217C55B51D42D4F70064A2AD /* GradientView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GradientView.framework; path = Carthage/Build/iOS/GradientView.framework; sourceTree = "<group>"; };
+		217C55B61D42D4F70064A2AD /* Intercom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intercom.framework; path = Carthage/Build/iOS/Intercom.framework; sourceTree = "<group>"; };
+		217C55B71D42D4F70064A2AD /* ISO8601.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ISO8601.framework; path = Carthage/Build/iOS/ISO8601.framework; sourceTree = "<group>"; };
+		217C55B81D42D4F70064A2AD /* KSCrash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KSCrash.framework; path = Carthage/Build/iOS/KSCrash.framework; sourceTree = "<group>"; };
+		217C55B91D42D4F70064A2AD /* Mixpanel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mixpanel.framework; path = Carthage/Build/iOS/Mixpanel.framework; sourceTree = "<group>"; };
+		217C55BA1D42D4F70064A2AD /* OnePasswordExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OnePasswordExtension.framework; path = Carthage/Build/iOS/OnePasswordExtension.framework; sourceTree = "<group>"; };
+		217C55BB1D42D4F70064A2AD /* OperationalTransformation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OperationalTransformation.framework; path = Carthage/Build/iOS/OperationalTransformation.framework; sourceTree = "<group>"; };
+		217C55BC1D42D4F70064A2AD /* PullToRefresh.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PullToRefresh.framework; path = Carthage/Build/iOS/PullToRefresh.framework; sourceTree = "<group>"; };
+		217C55BD1D42D4F70064A2AD /* SentrySwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SentrySwift.framework; path = Carthage/Build/iOS/SentrySwift.framework; sourceTree = "<group>"; };
+		217C55BF1D42D4F70064A2AD /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
+		217C55C01D42D4F70064A2AD /* Static.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Static.framework; path = Carthage/Build/iOS/Static.framework; sourceTree = "<group>"; };
+		217C55C11D42D4F70064A2AD /* X.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = X.framework; path = Carthage/Build/iOS/X.framework; sourceTree = "<group>"; };
+		21880C041D1ED73000C144DB /* StackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackViewController.swift; sourceTree = "<group>"; };
+		218B6BA91D08D23400A170E5 /* UISplitViewController+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISplitViewController+Canvas.swift"; sourceTree = "<group>"; };
+		219F679B1D3D3C7C00FB17E2 /* CanvasUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CanvasUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		219F67EB1D3D3C9A00FB17E2 /* Snapshots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snapshots.swift; sourceTree = "<group>"; };
+		219F67ED1D3D3CA400FB17E2 /* UITests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UITests-Info.plist"; sourceTree = "<group>"; };
+		219F67F01D3D3D4200FB17E2 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		21A6CB0B1D39724F0004F739 /* CopyLinkActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyLinkActivity.swift; sourceTree = "<group>"; };
+		21A6CB531D3974670004F739 /* CopyRepresentationActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyRepresentationActivity.swift; sourceTree = "<group>"; };
+		21A77E111D0803C600340243 /* AvatarsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarsView.swift; sourceTree = "<group>"; };
+		21A77E141D08053A00340243 /* AvatarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		21AE40401D5E5F290057B4E9 /* OAuthClient+Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuthClient+Canvas.swift"; sourceTree = "<group>"; };
+		21B28BF51CDC6049009B9D8F /* EditorViewController+Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorViewController+Actions.swift"; sourceTree = "<group>"; };
+		21BD17681D1EEBFD00C11CB9 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		21BF511C1D233357001801A5 /* SleepPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepPickerViewController.swift; sourceTree = "<group>"; };
+		21BF511F1D233514001801A5 /* SleepPrevention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepPrevention.swift; sourceTree = "<group>"; };
+		21C58DB51D022BD8005AEFE1 /* LineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
+		21C58DD41D023947005AEFE1 /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		21C650031D2C7FB100EA3127 /* BillboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BillboardView.swift; sourceTree = "<group>"; };
+		21D3265E1D258F8F00EB7D74 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		21D326611D258FA800EB7D74 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		21D5C9591D4081A300155B93 /* DragBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragBackgroundView.swift; sourceTree = "<group>"; };
+		21D5C95C1D40833700155B93 /* DragProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragProgressView.swift; sourceTree = "<group>"; };
+		21D6BC261D3DB4AC002B92C8 /* DestructiveValueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestructiveValueCell.swift; sourceTree = "<group>"; };
+		21D91E791D36A39700BADD0B /* VerifyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyViewController.swift; sourceTree = "<group>"; };
+		21D91E7C1D36A7DA00BADD0B /* PrefaceButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrefaceButton.swift; sourceTree = "<group>"; };
+		21D91E7F1D36AA0600BADD0B /* FooterButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterButton.swift; sourceTree = "<group>"; };
+		21F0C1321D3DB997001D77E7 /* CanvasActivitySource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasActivitySource.swift; sourceTree = "<group>"; };
+		21F10F4A1BF138750035057D /* Canvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Canvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		21F2D75C1D3DEBB100ADA4D5 /* RefreshContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshContentView.swift; sourceTree = "<group>"; };
+		21F95DC11D2EC8D2006B4100 /* OnboardingBillboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingBillboardViewController.swift; sourceTree = "<group>"; };
+		21F95DC41D2EC902006B4100 /* OnboardingWelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingWelcomeViewController.swift; sourceTree = "<group>"; };
+		21F95DC71D2ECB75006B4100 /* OnboardingGesturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingGesturesViewController.swift; sourceTree = "<group>"; };
+		21F95DCA1D2ECB9F006B4100 /* OnboardingOrigamiViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingOrigamiViewController.swift; sourceTree = "<group>"; };
+		21F95DCD1D2ECBBE006B4100 /* OnboardingSharingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingSharingViewController.swift; sourceTree = "<group>"; };
+		21F95DD01D2ECBFC006B4100 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		21501D871CCAA2B900B02FC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				217C55D91D42D4F70064A2AD /* KSCrash.framework in Frameworks */,
+				21730A071D46F609001B63D7 /* SAMKeychain.framework in Frameworks */,
+				217C55CF1D42D4F70064A2AD /* Crypto.framework in Frameworks */,
+				217C55E11D42D4F70064A2AD /* PullToRefresh.framework in Frameworks */,
+				217C55E71D42D4F70064A2AD /* Starscream.framework in Frameworks */,
+				217C55D71D42D4F70064A2AD /* ISO8601.framework in Frameworks */,
+				217C55E31D42D4F70064A2AD /* SentrySwift.framework in Frameworks */,
+				217C55C71D42D4F70064A2AD /* CanvasKit.framework in Frameworks */,
+				217C55DD1D42D4F70064A2AD /* OnePasswordExtension.framework in Frameworks */,
+				217C55C91D42D4F70064A2AD /* CanvasNative.framework in Frameworks */,
+				217C55EB1D42D4F70064A2AD /* X.framework in Frameworks */,
+				217C55D11D42D4F70064A2AD /* Diff.framework in Frameworks */,
+				217C55C31D42D4F70064A2AD /* Cache.framework in Frameworks */,
+				217C55C51D42D4F70064A2AD /* CanvasCore.framework in Frameworks */,
+				217C55E91D42D4F70064A2AD /* Static.framework in Frameworks */,
+				217C55D31D42D4F70064A2AD /* GradientView.framework in Frameworks */,
+				217C55D51D42D4F70064A2AD /* Intercom.framework in Frameworks */,
+				217C55CD1D42D4F70064A2AD /* CommonCrypto.framework in Frameworks */,
+				217C55DF1D42D4F70064A2AD /* OperationalTransformation.framework in Frameworks */,
+				217C55DB1D42D4F70064A2AD /* Mixpanel.framework in Frameworks */,
+				217C55CB1D42D4F70064A2AD /* CanvasText.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		219F67981D3D3C7C00FB17E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21F10F471BF138750035057D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				217C55D81D42D4F70064A2AD /* KSCrash.framework in Frameworks */,
+				21730A061D46F603001B63D7 /* SAMKeychain.framework in Frameworks */,
+				217C55CE1D42D4F70064A2AD /* Crypto.framework in Frameworks */,
+				217C55E01D42D4F70064A2AD /* PullToRefresh.framework in Frameworks */,
+				217C55E61D42D4F70064A2AD /* Starscream.framework in Frameworks */,
+				217C55D61D42D4F70064A2AD /* ISO8601.framework in Frameworks */,
+				217C55E21D42D4F70064A2AD /* SentrySwift.framework in Frameworks */,
+				217C55C61D42D4F70064A2AD /* CanvasKit.framework in Frameworks */,
+				217C55DC1D42D4F70064A2AD /* OnePasswordExtension.framework in Frameworks */,
+				217C55C81D42D4F70064A2AD /* CanvasNative.framework in Frameworks */,
+				217C55EA1D42D4F70064A2AD /* X.framework in Frameworks */,
+				217C55D01D42D4F70064A2AD /* Diff.framework in Frameworks */,
+				217C55C21D42D4F70064A2AD /* Cache.framework in Frameworks */,
+				217C55C41D42D4F70064A2AD /* CanvasCore.framework in Frameworks */,
+				217C55E81D42D4F70064A2AD /* Static.framework in Frameworks */,
+				217C55D21D42D4F70064A2AD /* GradientView.framework in Frameworks */,
+				217C55D41D42D4F70064A2AD /* Intercom.framework in Frameworks */,
+				217C55CC1D42D4F70064A2AD /* CommonCrypto.framework in Frameworks */,
+				217C55DE1D42D4F70064A2AD /* OperationalTransformation.framework in Frameworks */,
+				217C55DA1D42D4F70064A2AD /* Mixpanel.framework in Frameworks */,
+				217C55CA1D42D4F70064A2AD /* CanvasText.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2107D2C81CC58F7A001963B7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				2107D3361CC5917D001963B7 /* Application */,
+				2107D3391CC591AF001963B7 /* View Controllers */,
+				2107D33A1CC591C8001963B7 /* Views */,
+				2107D33C1CC591DB001963B7 /* Models */,
+				2107D3371CC5918C001963B7 /* Utilities */,
+				2107D33B1CC591CD001963B7 /* Share Activities */,
+				2107D3351CC590BE001963B7 /* Extensions */,
+				2107D3381CC5919B001963B7 /* Protocols */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		2107D2F51CC58F7B001963B7 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				2107D2F61CC58F7B001963B7 /* Assets.xcassets */,
+				2107D2F71CC58F7B001963B7 /* LaunchScreen.storyboard */,
+				2107D2F91CC58F7B001963B7 /* Main.storyboard */,
+				2107D2FB1CC58F7B001963B7 /* Canvas Dev.entitlements */,
+				2107D2FC1CC58F7B001963B7 /* Canvas.entitlements */,
+				2107D2FF1CC58F7B001963B7 /* Info.plist */,
+				219F67ED1D3D3CA400FB17E2 /* UITests-Info.plist */,
+				2107D3001CC58F7B001963B7 /* Settings.bundle */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		2107D3351CC590BE001963B7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2107D2CE1CC58F7A001963B7 /* Canvas+Canvas.swift */,
+				2107D2D31CC58F7A001963B7 /* CGRect+Canvas.swift */,
+				2107D2D51CC58F7A001963B7 /* Color+Canvas.swift */,
+				2107D2E11CC58F7A001963B7 /* NSDate+Canvas.swift */,
+				2107D2E21CC58F7B001963B7 /* Organization+Canvas.swift */,
+				2107D2F11CC58F7B001963B7 /* UIEdgeInsets+Canvas.swift */,
+				2107D2F21CC58F7B001963B7 /* UIFont+Canvas.swift */,
+				212299B71CE3E79C00033D94 /* UIViewController+Canvas.swift */,
+				210259781D3A83DE00A74753 /* UIActivity+Canvas.swift */,
+				2117A0951D0642A400E60821 /* UIColor+Canvas.swift */,
+				218B6BA91D08D23400A170E5 /* UISplitViewController+Canvas.swift */,
+				215485FF1D3D4007000D7E77 /* NSProcessInfo+Canvas.swift */,
+				215D1ADF1D426CE20030D804 /* APIClient+Canvas.swift */,
+				211F9A3D1D3F42FE00E0A519 /* AuthorizationClient+Canvas.swift */,
+				21AE40401D5E5F290057B4E9 /* OAuthClient+Canvas.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		2107D3361CC5917D001963B7 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				2107D2CC1CC58F7A001963B7 /* AppDelegate.swift */,
+				2107D2D71CC58F7A001963B7 /* Configuration.swift */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		2107D3371CC5918C001963B7 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				2107D2CB1CC58F7A001963B7 /* Analytics.swift */,
+				210B1C961D0B14A600B08A81 /* SharedWebCredentials.swift */,
+				217309FC1D46E7E5001B63D7 /* Interpolate.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		2107D3381CC5919B001963B7 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				2107D2EF1CC58F7B001963B7 /* TintableEnvironment.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		2107D3391CC591AF001963B7 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				213608631CF533AB00641941 /* Containers */,
+				21F95DC01D2EC8CA006B4100 /* Onboarding */,
+				21D91E331D36A38A00BADD0B /* Sessions */,
+				2178CBCC1CEA92EF00E9A4B2 /* Utility */,
+				2178CBE31CEA92F900E9A4B2 /* Canvases */,
+				2178CBE41CEA930000E9A4B2 /* Editor */,
+				2178CBE51CEA930400E9A4B2 /* Organizations */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		2107D33A1CC591C8001963B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				21D5C9111D4080A200155B93 /* Text View */,
+				2117A0B41D0643A500E60821 /* Table View */,
+				218995461D1F20C700FCF199 /* Cells */,
+				2189958C1D1F20CE00FCF199 /* Buttons */,
+				2189958D1D1F20D900FCF199 /* Avatars */,
+				2107D2D21CC58F7A001963B7 /* CanvasIconView.swift */,
+				2107D2DB1CC58F7A001963B7 /* TextField.swift */,
+				2107D2DE1CC58F7A001963B7 /* NavigationBar.swift */,
+				2107D2EA1CC58F7B001963B7 /* SearchBarContainer.swift */,
+				2107D2EE1CC58F7B001963B7 /* TickingLabel.swift */,
+				2107D2F01CC58F7B001963B7 /* TintableView.swift */,
+				21C58DB51D022BD8005AEFE1 /* LineView.swift */,
+				2112CBBF1D24DB8800B214F7 /* TitleView.swift */,
+				21298C6E1D26C95700E741EE /* BannerView.swift */,
+				21C650031D2C7FB100EA3127 /* BillboardView.swift */,
+				215CDF561D5A796900A45635 /* CopyLinkView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		2107D33B1CC591CD001963B7 /* Share Activities */ = {
+			isa = PBXGroup;
+			children = (
+				2107D2F31CC58F7B001963B7 /* WebActivity.swift */,
+				2107D2E91CC58F7B001963B7 /* SafariActivity.swift */,
+				2107D2D41CC58F7A001963B7 /* ChromeActivity.swift */,
+				21A6CB0B1D39724F0004F739 /* CopyLinkActivity.swift */,
+				21A6CB531D3974670004F739 /* CopyRepresentationActivity.swift */,
+				21F0C1321D3DB997001D77E7 /* CanvasActivitySource.swift */,
+			);
+			name = "Share Activities";
+			sourceTree = "<group>";
+		};
+		2107D33C1CC591DB001963B7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2147A2FB1CDA7B2E008A2709 /* DragContext.swift */,
+				21BF511F1D233514001801A5 /* SleepPrevention.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		2117A0B41D0643A500E60821 /* Table View */ = {
+			isa = PBXGroup;
+			children = (
+				21C58DD41D023947005AEFE1 /* SectionHeaderView.swift */,
+				2117A02E1D06338C00E60821 /* GroupedSectionHeaderView.swift */,
+				2117A07A1D0641CE00E60821 /* TableView.swift */,
+				21F2D75C1D3DEBB100ADA4D5 /* RefreshContentView.swift */,
+			);
+			name = "Table View";
+			sourceTree = "<group>";
+		};
+		213608631CF533AB00641941 /* Containers */ = {
+			isa = PBXGroup;
+			children = (
+				2107D2E81CC58F7B001963B7 /* RootViewController.swift */,
+				2107D2DF1CC58F7A001963B7 /* NavigationController.swift */,
+				212392921CEBAE0300F8D26B /* SplitViewController.swift */,
+				21880C041D1ED73000C144DB /* StackViewController.swift */,
+			);
+			name = Containers;
+			sourceTree = "<group>";
+		};
+		2178CBCC1CEA92EF00E9A4B2 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				2107D2CA1CC58F7A001963B7 /* AlertController.swift */,
+				2107D2DD1CC58F7A001963B7 /* ModelsViewController.swift */,
+				2107D2EC1CC58F7B001963B7 /* TableViewController.swift */,
+				2107D2F41CC58F7B001963B7 /* WebViewController.swift */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		2178CBE31CEA92F900E9A4B2 /* Canvases */ = {
+			isa = PBXGroup;
+			children = (
+				2107D2D11CC58F7A001963B7 /* CanvasesViewController.swift */,
+				2107D2E41CC58F7B001963B7 /* OrganizationCanvasesViewController.swift */,
+				2107D2D01CC58F7A001963B7 /* CanvasesResultsViewController.swift */,
+				215CD8611CE293FF0093C545 /* PlaceholderViewController.swift */,
+			);
+			name = Canvases;
+			sourceTree = "<group>";
+		};
+		2178CBE41CEA930000E9A4B2 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				2107D2D81CC58F7A001963B7 /* EditorViewController.swift */,
+				2122BFF21CFE645100A038DE /* EditorViewController+Connection.swift */,
+				21B28BF51CDC6049009B9D8F /* EditorViewController+Actions.swift */,
+				2122BFEF1CFE4FF900A038DE /* LoadCanvasViewController.swift */,
+				215CDF501D5A23C200A45635 /* PresenceViewController.swift */,
+			);
+			name = Editor;
+			sourceTree = "<group>";
+		};
+		2178CBE51CEA930400E9A4B2 /* Organizations */ = {
+			isa = PBXGroup;
+			children = (
+				2107D2E61CC58F7B001963B7 /* OrganizationsViewController.swift */,
+				21D326611D258FA800EB7D74 /* SettingsViewController.swift */,
+				21BF511C1D233357001801A5 /* SleepPickerViewController.swift */,
+			);
+			name = Organizations;
+			sourceTree = "<group>";
+		};
+		218995461D1F20C700FCF199 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2107D2CF1CC58F7A001963B7 /* CanvasCell.swift */,
+				2107D2E71CC58F7B001963B7 /* OrganizationCell.swift */,
+				21298CD01D26F11100E741EE /* ValueCell.swift */,
+				21D6BC261D3DB4AC002B92C8 /* DestructiveValueCell.swift */,
+				215CDF531D5A2DA100A45635 /* UserCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		2189958C1D1F20CE00FCF199 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				2107D2CD1CC58F7A001963B7 /* PillButton.swift */,
+				21D91E7C1D36A7DA00BADD0B /* PrefaceButton.swift */,
+				212D8EC51CE62AE00039A3EE /* IndicatorButton.swift */,
+				21D91E7F1D36AA0600BADD0B /* FooterButton.swift */,
+				215CDF591D5A79DB00A45635 /* GrayButton.swift */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		2189958D1D1F20D900FCF199 /* Avatars */ = {
+			isa = PBXGroup;
+			children = (
+				2107D2E31CC58F7B001963B7 /* OrganizationAvatarView.swift */,
+				21A77E111D0803C600340243 /* AvatarsView.swift */,
+				21A77E141D08053A00340243 /* AvatarView.swift */,
+			);
+			name = Avatars;
+			sourceTree = "<group>";
+		};
+		219F67EA1D3D3C9A00FB17E2 /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				219F67EB1D3D3C9A00FB17E2 /* Snapshots.swift */,
+				219F67F01D3D3D4200FB17E2 /* SnapshotHelper.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
+		21D5C9111D4080A200155B93 /* Text View */ = {
+			isa = PBXGroup;
+			children = (
+				2107D2ED1CC58F7B001963B7 /* TextView.swift */,
+				214F9FF61CC6DE4600927A07 /* CanvasTextView.swift */,
+				2147A2E21CDA586E008A2709 /* CanvasTextView+Gestures.swift */,
+				21D5C9591D4081A300155B93 /* DragBackgroundView.swift */,
+				21D5C95C1D40833700155B93 /* DragProgressView.swift */,
+			);
+			name = "Text View";
+			sourceTree = "<group>";
+		};
+		21D91E331D36A38A00BADD0B /* Sessions */ = {
+			isa = PBXGroup;
+			children = (
+				2178CBB81CEA891100E9A4B2 /* SessionFormViewController.swift */,
+				21D3265E1D258F8F00EB7D74 /* LogInViewController.swift */,
+				21BD17681D1EEBFD00C11CB9 /* SignUpViewController.swift */,
+				21D91E791D36A39700BADD0B /* VerifyViewController.swift */,
+			);
+			name = Sessions;
+			sourceTree = "<group>";
+		};
+		21F10F411BF138750035057D = {
+			isa = PBXGroup;
+			children = (
+				2107D2C81CC58F7A001963B7 /* Sources */,
+				2107D2F51CC58F7B001963B7 /* Support */,
+				219F67EA1D3D3C9A00FB17E2 /* UITests */,
+				21F7EF271CD91D58004E80E2 /* Frameworks */,
+				21F10F4B1BF138750035057D /* Products */,
+			);
+			sourceTree = "<group>";
+			usesTabs = 1;
+		};
+		21F10F4B1BF138750035057D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21F10F4A1BF138750035057D /* Canvas.app */,
+				21501DAA1CCAA2B900B02FC5 /* Canvas.app */,
+				219F679B1D3D3C7C00FB17E2 /* CanvasUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		21F7EF271CD91D58004E80E2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21730A051D46F603001B63D7 /* SAMKeychain.framework */,
+				217C55AD1D42D4F70064A2AD /* Cache.framework */,
+				217C55AE1D42D4F70064A2AD /* CanvasCore.framework */,
+				217C55AF1D42D4F70064A2AD /* CanvasKit.framework */,
+				217C55B01D42D4F70064A2AD /* CanvasNative.framework */,
+				217C55B11D42D4F70064A2AD /* CanvasText.framework */,
+				217C55B21D42D4F70064A2AD /* CommonCrypto.framework */,
+				217C55B31D42D4F70064A2AD /* Crypto.framework */,
+				217C55B41D42D4F70064A2AD /* Diff.framework */,
+				217C55B51D42D4F70064A2AD /* GradientView.framework */,
+				217C55B61D42D4F70064A2AD /* Intercom.framework */,
+				217C55B71D42D4F70064A2AD /* ISO8601.framework */,
+				217C55B81D42D4F70064A2AD /* KSCrash.framework */,
+				217C55B91D42D4F70064A2AD /* Mixpanel.framework */,
+				217C55BA1D42D4F70064A2AD /* OnePasswordExtension.framework */,
+				217C55BB1D42D4F70064A2AD /* OperationalTransformation.framework */,
+				217C55BC1D42D4F70064A2AD /* PullToRefresh.framework */,
+				217C55BD1D42D4F70064A2AD /* SentrySwift.framework */,
+				217C55BF1D42D4F70064A2AD /* Starscream.framework */,
+				217C55C01D42D4F70064A2AD /* Static.framework */,
+				217C55C11D42D4F70064A2AD /* X.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		21F95DC01D2EC8CA006B4100 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				21F95DD01D2ECBFC006B4100 /* OnboardingViewController.swift */,
+				21F95DC11D2EC8D2006B4100 /* OnboardingBillboardViewController.swift */,
+				21F95DC41D2EC902006B4100 /* OnboardingWelcomeViewController.swift */,
+				21F95DC71D2ECB75006B4100 /* OnboardingGesturesViewController.swift */,
+				21F95DCA1D2ECB9F006B4100 /* OnboardingOrigamiViewController.swift */,
+				21F95DCD1D2ECBBE006B4100 /* OnboardingSharingViewController.swift */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		21501D431CCAA2B900B02FC5 /* Canvas Dev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21501DA71CCAA2B900B02FC5 /* Build configuration list for PBXNativeTarget "Canvas Dev" */;
+			buildPhases = (
+				21501D5A1CCAA2B900B02FC5 /* Sources */,
+				21501D871CCAA2B900B02FC5 /* Frameworks */,
+				21501D931CCAA2B900B02FC5 /* Resources */,
+				21501D991CCAA2B900B02FC5 /* Embed Frameworks */,
+				21F7EF311CD91DDB004E80E2 /* Embed Carthage Frameworks */,
+				212EE7C71D41F152008AF81F /* Strip Intercom */,
+				21501DA51CCAA2B900B02FC5 /* Set Version */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Canvas Dev";
+			productName = Canvas;
+			productReference = 21501DAA1CCAA2B900B02FC5 /* Canvas.app */;
+			productType = "com.apple.product-type.application";
+		};
+		219F679A1D3D3C7C00FB17E2 /* CanvasUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 219F67E91D3D3C7C00FB17E2 /* Build configuration list for PBXNativeTarget "CanvasUITests" */;
+			buildPhases = (
+				219F67971D3D3C7C00FB17E2 /* Sources */,
+				219F67981D3D3C7C00FB17E2 /* Frameworks */,
+				219F67991D3D3C7C00FB17E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				219F67A11D3D3C7C00FB17E2 /* PBXTargetDependency */,
+			);
+			name = CanvasUITests;
+			productName = CanvasUITests;
+			productReference = 219F679B1D3D3C7C00FB17E2 /* CanvasUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		21F10F491BF138750035057D /* Canvas */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21F10F5C1BF138750035057D /* Build configuration list for PBXNativeTarget "Canvas" */;
+			buildPhases = (
+				21F10F461BF138750035057D /* Sources */,
+				21F10F471BF138750035057D /* Frameworks */,
+				21F10F481BF138750035057D /* Resources */,
+				21F7EF321CD91E74004E80E2 /* Embed Carthage Frameworks */,
+				21A8FA601BFD3D160097FCC6 /* Set Version */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Canvas;
+			productName = Canvas;
+			productReference = 21F10F4A1BF138750035057D /* Canvas.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		21F10F421BF138750035057D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Canvas Labs, Inc.";
+				TargetAttributes = {
+					21501D431CCAA2B900B02FC5 = {
+						DevelopmentTeam = 676PZY29MZ;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 0;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+						};
+					};
+					219F679A1D3D3C7C00FB17E2 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 21F10F491BF138750035057D;
+					};
+					21F10F491BF138750035057D = {
+						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 676PZY29MZ;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 21F10F451BF138750035057D /* Build configuration list for PBXProject "Canvas" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				de,
+				es,
+				fr,
+				hr,
+				hu,
+				it,
+				ja,
+				nl,
+				"pt-PT",
+				pt,
+				ru,
+				"zh-Hans",
+			);
+			mainGroup = 21F10F411BF138750035057D;
+			productRefGroup = 21F10F4B1BF138750035057D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				21F10F491BF138750035057D /* Canvas */,
+				21501D431CCAA2B900B02FC5 /* Canvas Dev */,
+				219F679A1D3D3C7C00FB17E2 /* CanvasUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		21501D931CCAA2B900B02FC5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21501D941CCAA2B900B02FC5 /* Settings.bundle in Resources */,
+				21501D961CCAA2B900B02FC5 /* Main.storyboard in Resources */,
+				21501D971CCAA2B900B02FC5 /* Assets.xcassets in Resources */,
+				21501D981CCAA2B900B02FC5 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		219F67991D3D3C7C00FB17E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21F10F481BF138750035057D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2107D3341CC58F7B001963B7 /* Settings.bundle in Resources */,
+				2107D32F1CC58F7B001963B7 /* Main.storyboard in Resources */,
+				2107D32D1CC58F7B001963B7 /* Assets.xcassets in Resources */,
+				2107D32E1CC58F7B001963B7 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		212EE7C71D41F152008AF81F /* Strip Intercom */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Strip Intercom";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Intercom.framework/strip-frameworks.sh\"";
+		};
+		21501DA51CCAA2B900B02FC5 /* Set Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set Version";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/bin/env ruby";
+			shellScript = "git = `sh /etc/profile; which git`.chomp\napp_build = `#{git} rev-list HEAD --count`.chomp.to_i\n`/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion #{app_build}\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"`\nputs \"Updated #{ENV['TARGET_BUILD_DIR']}/#{ENV['INFOPLIST_PATH']}\"";
+		};
+		21A8FA601BFD3D160097FCC6 /* Set Version */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set Version";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/bin/env ruby";
+			shellScript = "git = `sh /etc/profile; which git`.chomp\napp_build = `#{git} rev-list HEAD --count`.chomp.to_i\n`/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion #{app_build}\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"`\nputs \"Updated #{ENV['TARGET_BUILD_DIR']}/#{ENV['INFOPLIST_PATH']}\"";
+		};
+		21F7EF311CD91DDB004E80E2 /* Embed Carthage Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SAMKeychain.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Cache.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CanvasCore.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CanvasKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CanvasNative.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CanvasText.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CommonCrypto.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Crypto.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Diff.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/GradientView.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Intercom.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ISO8601.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/KSCrash.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Mixpanel.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/OnePasswordExtension.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/OperationalTransformation.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PullToRefresh.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SentrySwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Static.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/X.framework",
+			);
+			name = "Embed Carthage Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		21F7EF321CD91E74004E80E2 /* Embed Carthage Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Cache.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CanvasCore.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CanvasKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CanvasNative.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CanvasText.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/CommonCrypto.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Crypto.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Diff.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/GradientView.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ISO8601.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/KSCrash.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Mixpanel.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/OnePasswordExtension.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/OperationalTransformation.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PullToRefresh.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SentrySwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SAMKeychain.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Static.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/X.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Intercom.framework",
+			);
+			name = "Embed Carthage Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		21501D5A1CCAA2B900B02FC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2178CBBA1CEA891100E9A4B2 /* SessionFormViewController.swift in Sources */,
+				21501D5B1CCAA2B900B02FC5 /* PillButton.swift in Sources */,
+				21501D5C1CCAA2B900B02FC5 /* OrganizationCell.swift in Sources */,
+				21298C701D26C95700E741EE /* BannerView.swift in Sources */,
+				2117A0971D0642A400E60821 /* UIColor+Canvas.swift in Sources */,
+				2122BFF41CFE645100A038DE /* EditorViewController+Connection.swift in Sources */,
+				21501D5D1CCAA2B900B02FC5 /* Canvas+Canvas.swift in Sources */,
+				21BD176A1D1EEBFD00C11CB9 /* SignUpViewController.swift in Sources */,
+				21D91E7E1D36A7DA00BADD0B /* PrefaceButton.swift in Sources */,
+				21C650051D2C7FB100EA3127 /* BillboardView.swift in Sources */,
+				21501D5E1CCAA2B900B02FC5 /* AppDelegate.swift in Sources */,
+				21501D5F1CCAA2B900B02FC5 /* CanvasesResultsViewController.swift in Sources */,
+				21BF511E1D233357001801A5 /* SleepPickerViewController.swift in Sources */,
+				212D8EC71CE62AE00039A3EE /* IndicatorButton.swift in Sources */,
+				21D5C95B1D4081A300155B93 /* DragBackgroundView.swift in Sources */,
+				21A6CB551D3974670004F739 /* CopyRepresentationActivity.swift in Sources */,
+				21F95DC91D2ECB75006B4100 /* OnboardingGesturesViewController.swift in Sources */,
+				218B6BAB1D08D23400A170E5 /* UISplitViewController+Canvas.swift in Sources */,
+				21501D601CCAA2B900B02FC5 /* UIEdgeInsets+Canvas.swift in Sources */,
+				21F0C1341D3DB997001D77E7 /* CanvasActivitySource.swift in Sources */,
+				21501D611CCAA2B900B02FC5 /* TextView.swift in Sources */,
+				21501D621CCAA2B900B02FC5 /* Color+Canvas.swift in Sources */,
+				2102597A1D3A83DE00A74753 /* UIActivity+Canvas.swift in Sources */,
+				21D91E7B1D36A39700BADD0B /* VerifyViewController.swift in Sources */,
+				21501D631CCAA2B900B02FC5 /* OrganizationsViewController.swift in Sources */,
+				21D91E811D36AA0600BADD0B /* FooterButton.swift in Sources */,
+				21501D641CCAA2B900B02FC5 /* TableViewController.swift in Sources */,
+				21501D651CCAA2B900B02FC5 /* NavigationBar.swift in Sources */,
+				21F2D75E1D3DEBB100ADA4D5 /* RefreshContentView.swift in Sources */,
+				2147A2FD1CDA7B35008A2709 /* DragContext.swift in Sources */,
+				21F95DCF1D2ECBBE006B4100 /* OnboardingSharingViewController.swift in Sources */,
+				21298CD21D26F11100E741EE /* ValueCell.swift in Sources */,
+				21501D661CCAA2B900B02FC5 /* CanvasTextView.swift in Sources */,
+				215CDF521D5A23C200A45635 /* PresenceViewController.swift in Sources */,
+				21501D671CCAA2B900B02FC5 /* CanvasesViewController.swift in Sources */,
+				21501D681CCAA2B900B02FC5 /* Configuration.swift in Sources */,
+				217309FE1D46E7E5001B63D7 /* Interpolate.swift in Sources */,
+				21F95DC61D2EC902006B4100 /* OnboardingWelcomeViewController.swift in Sources */,
+				2122BFF11CFE4FF900A038DE /* LoadCanvasViewController.swift in Sources */,
+				21D6BC281D3DB4AC002B92C8 /* DestructiveValueCell.swift in Sources */,
+				21501D691CCAA2B900B02FC5 /* NSDate+Canvas.swift in Sources */,
+				21BF50D61D232B19001801A5 /* (null) in Sources */,
+				210B1C981D0B14A600B08A81 /* SharedWebCredentials.swift in Sources */,
+				21A6CB0D1D39724F0004F739 /* CopyLinkActivity.swift in Sources */,
+				21F95DCC1D2ECB9F006B4100 /* OnboardingOrigamiViewController.swift in Sources */,
+				21501D6A1CCAA2B900B02FC5 /* CGRect+Canvas.swift in Sources */,
+				21501D6B1CCAA2B900B02FC5 /* Organization+Canvas.swift in Sources */,
+				21501D6C1CCAA2B900B02FC5 /* OrganizationCanvasesViewController.swift in Sources */,
+				2117A07C1D0641CE00E60821 /* TableView.swift in Sources */,
+				21D5C95E1D40833700155B93 /* DragProgressView.swift in Sources */,
+				21F95DD21D2ECBFC006B4100 /* OnboardingViewController.swift in Sources */,
+				21501D6F1CCAA2B900B02FC5 /* TickingLabel.swift in Sources */,
+				21501D701CCAA2B900B02FC5 /* CanvasIconView.swift in Sources */,
+				21501D711CCAA2B900B02FC5 /* CanvasCell.swift in Sources */,
+				21C58DB71D022BD8005AEFE1 /* LineView.swift in Sources */,
+				21D326631D258FA800EB7D74 /* SettingsViewController.swift in Sources */,
+				21BF51211D233514001801A5 /* SleepPrevention.swift in Sources */,
+				21501D721CCAA2B900B02FC5 /* TintableEnvironment.swift in Sources */,
+				21501D731CCAA2B900B02FC5 /* WebViewController.swift in Sources */,
+				215CD8631CE293FF0093C545 /* PlaceholderViewController.swift in Sources */,
+				21501D751CCAA2B900B02FC5 /* WebActivity.swift in Sources */,
+				2117A0301D06338C00E60821 /* GroupedSectionHeaderView.swift in Sources */,
+				215CDF5B1D5A79DB00A45635 /* GrayButton.swift in Sources */,
+				21501D761CCAA2B900B02FC5 /* EditorViewController.swift in Sources */,
+				21501D771CCAA2B900B02FC5 /* NavigationController.swift in Sources */,
+				212392941CEBAE0300F8D26B /* SplitViewController.swift in Sources */,
+				21501D781CCAA2B900B02FC5 /* ModelsViewController.swift in Sources */,
+				21501D791CCAA2B900B02FC5 /* RootViewController.swift in Sources */,
+				21501D7A1CCAA2B900B02FC5 /* TintableView.swift in Sources */,
+				215CDF551D5A2DA100A45635 /* UserCell.swift in Sources */,
+				215CD89C1CE2A26F0093C545 /* EditorViewController+Actions.swift in Sources */,
+				21A77E161D08053A00340243 /* AvatarView.swift in Sources */,
+				21501D7C1CCAA2B900B02FC5 /* AlertController.swift in Sources */,
+				215D1AE11D426CE20030D804 /* APIClient+Canvas.swift in Sources */,
+				2147A2FA1CDA5908008A2709 /* CanvasTextView+Gestures.swift in Sources */,
+				21501D7D1CCAA2B900B02FC5 /* SafariActivity.swift in Sources */,
+				212299CF1CE3E7F200033D94 /* UIViewController+Canvas.swift in Sources */,
+				21501D7F1CCAA2B900B02FC5 /* ChromeActivity.swift in Sources */,
+				21C58DD61D023947005AEFE1 /* SectionHeaderView.swift in Sources */,
+				21AE40421D5E5F290057B4E9 /* OAuthClient+Canvas.swift in Sources */,
+				21501D801CCAA2B900B02FC5 /* Analytics.swift in Sources */,
+				21501D811CCAA2B900B02FC5 /* TextField.swift in Sources */,
+				21D326601D258F8F00EB7D74 /* LogInViewController.swift in Sources */,
+				215486011D3D4007000D7E77 /* NSProcessInfo+Canvas.swift in Sources */,
+				211F9A3F1D3F42FE00E0A519 /* AuthorizationClient+Canvas.swift in Sources */,
+				21501D831CCAA2B900B02FC5 /* SearchBarContainer.swift in Sources */,
+				215CDF581D5A796900A45635 /* CopyLinkView.swift in Sources */,
+				2112CBC11D24DB8800B214F7 /* TitleView.swift in Sources */,
+				21501D851CCAA2B900B02FC5 /* UIFont+Canvas.swift in Sources */,
+				21880C061D1ED73000C144DB /* StackViewController.swift in Sources */,
+				21F95DC31D2EC8D2006B4100 /* OnboardingBillboardViewController.swift in Sources */,
+				21501D861CCAA2B900B02FC5 /* OrganizationAvatarView.swift in Sources */,
+				21A77E131D0803C600340243 /* AvatarsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		219F67971D3D3C7C00FB17E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				219F67EC1D3D3C9A00FB17E2 /* Snapshots.swift in Sources */,
+				219F67F11D3D3D4200FB17E2 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21F10F461BF138750035057D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2178CBB91CEA891100E9A4B2 /* SessionFormViewController.swift in Sources */,
+				2107D3051CC58F7B001963B7 /* PillButton.swift in Sources */,
+				2107D31F1CC58F7B001963B7 /* OrganizationCell.swift in Sources */,
+				21298C6F1D26C95700E741EE /* BannerView.swift in Sources */,
+				2117A0961D0642A400E60821 /* UIColor+Canvas.swift in Sources */,
+				2122BFF31CFE645100A038DE /* EditorViewController+Connection.swift in Sources */,
+				2107D3061CC58F7B001963B7 /* Canvas+Canvas.swift in Sources */,
+				21BD17691D1EEBFD00C11CB9 /* SignUpViewController.swift in Sources */,
+				21D91E7D1D36A7DA00BADD0B /* PrefaceButton.swift in Sources */,
+				21C650041D2C7FB100EA3127 /* BillboardView.swift in Sources */,
+				2107D3041CC58F7B001963B7 /* AppDelegate.swift in Sources */,
+				2107D3081CC58F7B001963B7 /* CanvasesResultsViewController.swift in Sources */,
+				21BF511D1D233357001801A5 /* SleepPickerViewController.swift in Sources */,
+				212D8EC61CE62AE00039A3EE /* IndicatorButton.swift in Sources */,
+				21D5C95A1D4081A300155B93 /* DragBackgroundView.swift in Sources */,
+				21A6CB541D3974670004F739 /* CopyRepresentationActivity.swift in Sources */,
+				21F95DC81D2ECB75006B4100 /* OnboardingGesturesViewController.swift in Sources */,
+				218B6BAA1D08D23400A170E5 /* UISplitViewController+Canvas.swift in Sources */,
+				2107D3291CC58F7B001963B7 /* UIEdgeInsets+Canvas.swift in Sources */,
+				21F0C1331D3DB997001D77E7 /* CanvasActivitySource.swift in Sources */,
+				2107D3251CC58F7B001963B7 /* TextView.swift in Sources */,
+				2107D30D1CC58F7B001963B7 /* Color+Canvas.swift in Sources */,
+				210259791D3A83DE00A74753 /* UIActivity+Canvas.swift in Sources */,
+				21D91E7A1D36A39700BADD0B /* VerifyViewController.swift in Sources */,
+				2107D31E1CC58F7B001963B7 /* OrganizationsViewController.swift in Sources */,
+				21D91E801D36AA0600BADD0B /* FooterButton.swift in Sources */,
+				2107D3241CC58F7B001963B7 /* TableViewController.swift in Sources */,
+				2107D3161CC58F7B001963B7 /* NavigationBar.swift in Sources */,
+				21F2D75D1D3DEBB100ADA4D5 /* RefreshContentView.swift in Sources */,
+				2147A2FC1CDA7B2E008A2709 /* DragContext.swift in Sources */,
+				21F95DCE1D2ECBBE006B4100 /* OnboardingSharingViewController.swift in Sources */,
+				21298CD11D26F11100E741EE /* ValueCell.swift in Sources */,
+				214F9FF71CC6DE4600927A07 /* CanvasTextView.swift in Sources */,
+				215CDF511D5A23C200A45635 /* PresenceViewController.swift in Sources */,
+				2107D3091CC58F7B001963B7 /* CanvasesViewController.swift in Sources */,
+				2107D30F1CC58F7B001963B7 /* Configuration.swift in Sources */,
+				217309FD1D46E7E5001B63D7 /* Interpolate.swift in Sources */,
+				21F95DC51D2EC902006B4100 /* OnboardingWelcomeViewController.swift in Sources */,
+				2122BFF01CFE4FF900A038DE /* LoadCanvasViewController.swift in Sources */,
+				21D6BC271D3DB4AC002B92C8 /* DestructiveValueCell.swift in Sources */,
+				2107D3191CC58F7B001963B7 /* NSDate+Canvas.swift in Sources */,
+				21BF50D51D232B19001801A5 /* (null) in Sources */,
+				210B1C971D0B14A600B08A81 /* SharedWebCredentials.swift in Sources */,
+				21A6CB0C1D39724F0004F739 /* CopyLinkActivity.swift in Sources */,
+				21F95DCB1D2ECB9F006B4100 /* OnboardingOrigamiViewController.swift in Sources */,
+				2107D30B1CC58F7B001963B7 /* CGRect+Canvas.swift in Sources */,
+				2107D31A1CC58F7B001963B7 /* Organization+Canvas.swift in Sources */,
+				2107D31C1CC58F7B001963B7 /* OrganizationCanvasesViewController.swift in Sources */,
+				2117A07B1D0641CE00E60821 /* TableView.swift in Sources */,
+				21D5C95D1D40833700155B93 /* DragProgressView.swift in Sources */,
+				21F95DD11D2ECBFC006B4100 /* OnboardingViewController.swift in Sources */,
+				2107D3261CC58F7B001963B7 /* TickingLabel.swift in Sources */,
+				2107D30A1CC58F7B001963B7 /* CanvasIconView.swift in Sources */,
+				2107D3071CC58F7B001963B7 /* CanvasCell.swift in Sources */,
+				21C58DB61D022BD8005AEFE1 /* LineView.swift in Sources */,
+				21D326621D258FA800EB7D74 /* SettingsViewController.swift in Sources */,
+				21BF51201D233514001801A5 /* SleepPrevention.swift in Sources */,
+				2107D3271CC58F7B001963B7 /* TintableEnvironment.swift in Sources */,
+				2107D32C1CC58F7B001963B7 /* WebViewController.swift in Sources */,
+				215CD8621CE293FF0093C545 /* PlaceholderViewController.swift in Sources */,
+				2107D32B1CC58F7B001963B7 /* WebActivity.swift in Sources */,
+				2117A02F1D06338C00E60821 /* GroupedSectionHeaderView.swift in Sources */,
+				215CDF5A1D5A79DB00A45635 /* GrayButton.swift in Sources */,
+				2107D3101CC58F7B001963B7 /* EditorViewController.swift in Sources */,
+				2107D3171CC58F7B001963B7 /* NavigationController.swift in Sources */,
+				212392931CEBAE0300F8D26B /* SplitViewController.swift in Sources */,
+				2107D3151CC58F7B001963B7 /* ModelsViewController.swift in Sources */,
+				2107D3201CC58F7B001963B7 /* RootViewController.swift in Sources */,
+				2107D3281CC58F7B001963B7 /* TintableView.swift in Sources */,
+				215CDF541D5A2DA100A45635 /* UserCell.swift in Sources */,
+				215CD89D1CE2A26F0093C545 /* EditorViewController+Actions.swift in Sources */,
+				21A77E151D08053A00340243 /* AvatarView.swift in Sources */,
+				2107D3021CC58F7B001963B7 /* AlertController.swift in Sources */,
+				215D1AE01D426CE20030D804 /* APIClient+Canvas.swift in Sources */,
+				2147A2E31CDA586E008A2709 /* CanvasTextView+Gestures.swift in Sources */,
+				2107D3211CC58F7B001963B7 /* SafariActivity.swift in Sources */,
+				212299B81CE3E79C00033D94 /* UIViewController+Canvas.swift in Sources */,
+				2107D30C1CC58F7B001963B7 /* ChromeActivity.swift in Sources */,
+				21C58DD51D023947005AEFE1 /* SectionHeaderView.swift in Sources */,
+				21AE40411D5E5F290057B4E9 /* OAuthClient+Canvas.swift in Sources */,
+				2107D3031CC58F7B001963B7 /* Analytics.swift in Sources */,
+				2107D3131CC58F7B001963B7 /* TextField.swift in Sources */,
+				21D3265F1D258F8F00EB7D74 /* LogInViewController.swift in Sources */,
+				215486001D3D4007000D7E77 /* NSProcessInfo+Canvas.swift in Sources */,
+				211F9A3E1D3F42FE00E0A519 /* AuthorizationClient+Canvas.swift in Sources */,
+				2107D3221CC58F7B001963B7 /* SearchBarContainer.swift in Sources */,
+				215CDF571D5A796900A45635 /* CopyLinkView.swift in Sources */,
+				2112CBC01D24DB8800B214F7 /* TitleView.swift in Sources */,
+				2107D32A1CC58F7B001963B7 /* UIFont+Canvas.swift in Sources */,
+				21880C051D1ED73000C144DB /* StackViewController.swift in Sources */,
+				21F95DC21D2EC8D2006B4100 /* OnboardingBillboardViewController.swift in Sources */,
+				2107D31B1CC58F7B001963B7 /* OrganizationAvatarView.swift in Sources */,
+				21A77E121D0803C600340243 /* AvatarsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		219F67A11D3D3C7C00FB17E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 21F10F491BF138750035057D /* Canvas */;
+			targetProxy = 219F67A01D3D3C7C00FB17E2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2107D2F71CC58F7B001963B7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2107D2F81CC58F7B001963B7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		2107D2F91CC58F7B001963B7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2107D2FA1CC58F7B001963B7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		21501DA81CCAA2B900B02FC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Dev";
+				BUNDLE_DISPLAY_NAME = "Canvas ß";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Support/Canvas Dev.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DINTERNAL -DDEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvas.dev;
+				PRODUCT_NAME = Canvas;
+				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		21501DA91CCAA2B900B02FC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Dev";
+				BUNDLE_DISPLAY_NAME = "Canvas ß";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Support/Canvas Dev.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DINTERNAL";
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvas.dev;
+				PRODUCT_NAME = Canvas;
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+		219F67A21D3D3C7C00FB17E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "Support/UITests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvas.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Canvas;
+			};
+			name = Debug;
+		};
+		219F67A31D3D3C7C00FB17E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "Support/UITests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvas.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Canvas;
+			};
+			name = Release;
+		};
+		21F10F5A1BF138750035057D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		21F10F5B1BF138750035057D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		21F10F5D1BF138750035057D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUNDLE_DISPLAY_NAME = Canvas;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Support/Canvas.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DDEBUG -DBETA";
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvas;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		21F10F5E1BF138750035057D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUNDLE_DISPLAY_NAME = Canvas;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Support/Canvas.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DBETA";
+				PRODUCT_BUNDLE_IDENTIFIER = com.usecanvas.canvas;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		21501DA71CCAA2B900B02FC5 /* Build configuration list for PBXNativeTarget "Canvas Dev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21501DA81CCAA2B900B02FC5 /* Debug */,
+				21501DA91CCAA2B900B02FC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		219F67E91D3D3C7C00FB17E2 /* Build configuration list for PBXNativeTarget "CanvasUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				219F67A21D3D3C7C00FB17E2 /* Debug */,
+				219F67A31D3D3C7C00FB17E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21F10F451BF138750035057D /* Build configuration list for PBXProject "Canvas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21F10F5A1BF138750035057D /* Debug */,
+				21F10F5B1BF138750035057D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21F10F5C1BF138750035057D /* Build configuration list for PBXNativeTarget "Canvas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21F10F5D1BF138750035057D /* Debug */,
+				21F10F5E1BF138750035057D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 21F10F421BF138750035057D /* Project object */;
+}
