@@ -7,3 +7,4 @@ Carthage
 *.zip
 *.ipa
 .build
+*.xcodeproj

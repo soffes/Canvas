@@ -39,13 +39,13 @@ extension Theme {
 		return attributes
 	}
 
-	public func foldingAttributes(parentAttributes: Attributes) -> Attributes {
+	public func foldingAttributes(withParentAttributes parentAttributes: Attributes) -> Attributes {
 		var attributes = parentAttributes
 		attributes[.foregroundColor] = foldedColor
 		return attributes
 	}
 
-	public func blockSpacing(block: BlockNode, horizontalSizeClass: UserInterfaceSizeClass) -> BlockSpacing {
+	public func blockSpacing(for block: BlockNode, horizontalSizeClass: UserInterfaceSizeClass) -> BlockSpacing {
 		var spacing = BlockSpacing(marginBottom: round(fontSize * 1.5))
 
 		// No margin if it's not at the bottom of a positionable list
@@ -116,7 +116,7 @@ extension Theme {
 		return spacing
 	}
 
-	public func attributes(block: BlockNode) -> Attributes {
+	public func attributes(for block: BlockNode) -> Attributes {
 		if block is Title {
 			return titleAttributes
 		}
@@ -163,7 +163,7 @@ extension Theme {
 		return attributes
 	}
 
-	public func attributes(span: SpanNode, parentAttributes: Attributes) -> Attributes? {
+	public func attributes(for span: SpanNode, parentAttributes: Attributes) -> Attributes? {
 		guard let currentFont = parentAttributes[.font] as? X.Font else { return nil }
 		var traits = currentFont.symbolicTraits
 		var attributes = parentAttributes

@@ -123,11 +123,6 @@ public final class TextController: NSObject {
 		return documentController.document
 	}
 
-	let serverURL: NSURL
-	let accessToken: String
-	let organizationID: String
-	let canvasID: String
-
 	private var needsTitle = false
 	private var needsUnfoldUpdate = false
 	private var styles = [Style]()
@@ -136,11 +131,7 @@ public final class TextController: NSObject {
 
 	// MARK: - Initializers
 
-	public init(serverURL: NSURL, accessToken: String, organizationID: String, canvasID: String, theme: Theme) {
-		self.serverURL = serverURL
-		self.accessToken = accessToken
-		self.organizationID = organizationID
-		self.canvasID = canvasID
+	public init(theme: Theme) {
 		self.theme = theme
 		imagesController = ImagesController(theme: theme)
 
@@ -182,7 +173,7 @@ public final class TextController: NSObject {
 		var styles = [Style]()
 		for block in currentDocument.blocks {
 			guard let container = block as? NodeContainer else { continue }
-			let attributes = theme.attributes(block: block)
+			let attributes = theme.attributes(for: block)
 			styles += self.styles(for: container.subnodes, parentAttributes: attributes, onlyTintable: true).0
 		}
 
@@ -256,7 +247,7 @@ public final class TextController: NSObject {
 		#else
 			let horizontalSizeClass = traitCollection.horizontalSizeClass
 		#endif
-		return theme.blockSpacing(block: block, horizontalSizeClass: horizontalSizeClass)
+		return theme.blockSpacing(for: block, horizontalSizeClass: horizontalSizeClass)
 	}
 
 	private func invalidate(presentationRange range: NSRange) {
@@ -349,14 +340,14 @@ public final class TextController: NSObject {
 			return ([], [])
 		}
 
-		let attributes = theme.attributes(block: block)
+		let attributes = theme.attributes(for: block)
 
 		var styles = [Style(range: range, attributes: attributes)]
 		var foldableRanges = [NSRange]()
 
 		// Foldable attributes
 		if let foldable = block as? Foldable {
-			let foldableAttributes = theme.foldingAttributes(parentAttributes: attributes)
+			let foldableAttributes = theme.foldingAttributes(withParentAttributes: attributes)
 
 			for backingRange in foldable.foldableRanges {
 				let style = Style(
@@ -384,7 +375,7 @@ public final class TextController: NSObject {
 		var foldableRanges = [NSRange]()
 
 		for span in spans {
-			guard let attributes = theme.attributes(span: span, parentAttributes: parentAttributes) else { continue }
+			guard let attributes = theme.attributes(for: span, parentAttributes: parentAttributes) else { continue }
 
 			if (onlyTintable && span is Link) || !onlyTintable {
 				let style = Style(
@@ -393,7 +384,7 @@ public final class TextController: NSObject {
 				)
 				styles.append(style)
 
-				let foldableAttributes = theme.foldingAttributes(parentAttributes: attributes)
+				let foldableAttributes = theme.foldingAttributes(withParentAttributes: attributes)
 
 				// Foldable attributes
 				if let foldable = span as? Foldable {
