@@ -16,6 +16,12 @@ targets:
         CODE_SIGN_STYLE: Manual
       dependencies:
         - target: CanvasNative
+        - target: CanvasText
+        - target: CanvasTextResources
+          embed: True
+        - target: CanvasCore
+        - target: CanvasCoreResources
+          embed: True
         - carthage: Cache
         - carthage: Diff
         - carthage: X

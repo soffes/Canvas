@@ -20,7 +20,7 @@ public final class SpaceView: View {
 
 	// MARK: - Properties
 
-	private let contentSize: CGSize
+	fileprivate let contentSize: CGSize
 
 
 	// MARK: - Initializers
@@ -58,11 +58,11 @@ public final class SpaceView: View {
 			return contentSize
 		}
 	#else
-		public override func intrinsicContentSize() -> CGSize {
+		public override var intrinsicContentSize: CGSize {
 			return contentSize
 		}
 	
-		public override class func layerClass() -> AnyClass {
+		public override class var layerClass: AnyClass {
 			return CATransformLayer.self
 		}
 	#endif
@@ -80,10 +80,10 @@ public final class SpaceView: View {
 	}
 #elseif os(iOS) || os(tvOS)
 	extension UIStackView {
-		public func addSpace(length: CGFloat) {
+		public func addSpace(_ length: CGFloat) {
 			switch axis {
-			case .Horizontal: addArrangedSubview(SpaceView(width: length))
-			case .Vertical: addArrangedSubview(SpaceView(height: length))
+			case .horizontal: addArrangedSubview(SpaceView(width: length))
+			case .vertical: addArrangedSubview(SpaceView(height: length))
 			}
 		}
 	}

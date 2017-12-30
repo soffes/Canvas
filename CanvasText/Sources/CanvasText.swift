@@ -1,9 +1,8 @@
 //
-//  CanvasCore.swift
-//  CanvasCore
+//  File.swift
+//  CanvasText
 //
-//  Created by Sam Soffes on 6/30/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
+//  Created by Sam Soffes on 12/30/17.
 //
 
 import Foundation

@@ -1,0 +1,16 @@
+fileGroups:
+  - CanvasCore
+targets:
+  CanvasCore:
+    type: library.static
+    platform: iOS
+    sources:
+      - CanvasCore/Sources
+    dependencies:
+      - target: CanvasNative
+      - target: CanvasText
+  CanvasCoreResources:
+    type: bundle
+    platform: iOS
+    sources:
+      - CanvasCore/Support/en.lproj

@@ -25,3 +25,8 @@ targets:
       - CanvasText/Tests
     dependencies:
       - target: CanvasText
+  CanvasTextResources:
+    type: bundle
+    platform: iOS
+    sources:
+      - CanvasText/Support/Assets.xcassets

@@ -1,6 +1,3 @@
-github "agilebits/onepassword-app-extension" "framework/1.8.5"
 github "soffes/Cache" "v0.3.0"
-github "soffes/Diff" "v0.2.2"
-github "soffes/GradientView" "v2.2.0"
+github "soffes/Diff" "v0.2.3"
 github "soffes/X" "v0.4.0"
-github "venmo/Static" "v2.2.0"

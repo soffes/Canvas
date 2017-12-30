@@ -70,8 +70,7 @@ final class CheckboxView: UIButton, Annotation {
 			tintColor.setFill()
 			UIBezierPath(roundedRect: rect, cornerRadius: rect.height / 2).fill()
 
-			let bundle = Bundle(for: CheckboxView.self)
-			if let checkmark = UIImage(named: "CheckmarkSmall", in: bundle, compatibleWith: nil) {
+			if let checkmark = UIImage(named: "CheckmarkSmall", in: resourceBundle, compatibleWith: nil) {
 				theme.backgroundColor.setFill()
 				checkmark.draw(at: CGPoint(x: rect.origin.x + (rect.width - checkmark.size.width) / 2, y: rect.origin.y + (rect.height - checkmark.size.height) / 2))
 			}
