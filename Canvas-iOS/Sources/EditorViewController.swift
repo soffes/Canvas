@@ -154,7 +154,7 @@ final class EditorViewController: UIViewController, Accountable {
 		}
 
 		let checkTitle: String
-		if let block = textController.focusedBlock as? ChecklistItem where block.state == .checked {
+		if let block = textController.focusedBlock as? ChecklistItem, block.state == .checked {
 			checkTitle = LocalizedString.MarkAsUncheckedCommand.string
 		} else {
 			checkTitle = LocalizedString.MarkAsCheckedCommand.string
@@ -422,7 +422,7 @@ extension EditorViewController: UITextViewDelegate {
 		scrollOffset = nil
 
 		let selection: NSRange? = !textView.isFirstResponder() && textView.selectedRange.length == 0 ? nil : textView.selectedRange
-		textController.setPresentationSelectedRange(selection)
+		textController.set(presentationSelectedRange: selection)
 		updateTitleTypingAttributes()
 		updateAutoCompletion()
 		
@@ -443,7 +443,7 @@ extension EditorViewController: UITextViewDelegate {
 			return
 		}
 		
-		textController.setPresentationSelectedRange(nil)
+		textController.set(presentationSelectedRange: nil)
 	}
 	
 	func textViewDidChange(textView: UITextView) {
@@ -463,7 +463,7 @@ extension EditorViewController: UITextViewDelegate {
 extension EditorViewController: TextControllerDisplayDelegate {
 	func textController(textController: TextController, didUpdateSelectedRange selectedRange: NSRange) {
 		// Defer to after editing completes or UITextView will misplace already queued edits
-		dispatch_async(dispatch_get_main_queue()) { [weak self] in
+		DispatchQueue.main.async { [weak self] in
 			guard let textView = self?.textView else { return }
 
 			if !NSEqualRanges(textView.selectedRange, selectedRange) {
@@ -507,7 +507,7 @@ extension EditorViewController: TextControllerDisplayDelegate {
 			return
 		}
 
-		dispatch_async(dispatch_get_main_queue()) { [weak self] in
+		DispatchQueue.main.async { [weak self] in
 			self?.remoteCursorsController.enabled = true
 		}
 	}

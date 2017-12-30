@@ -32,9 +32,9 @@ final class BlockquoteBorderView: ViewType, Annotation {
 		}
 	}
 
-	let placement = AnnotationPlacement.ExpandedLeadingGutter
+	let placement = AnnotationPlacement.expandedLeadingGutter
 
-	var horizontalSizeClass: UserInterfaceSizeClass = .Unspecified
+	var horizontalSizeClass: UserInterfaceSizeClass = .unspecified
 
 
 	// MARK: - Initializers
@@ -47,8 +47,8 @@ final class BlockquoteBorderView: ViewType, Annotation {
 		super.init(frame: .zero)
 
 		#if !os(OSX)
-			userInteractionEnabled = false
-			contentMode = .Redraw
+			isUserInteractionEnabled = false
+			contentMode = .redraw
 			backgroundColor = theme.backgroundColor
 		#endif
 	}
@@ -60,7 +60,7 @@ final class BlockquoteBorderView: ViewType, Annotation {
 
 	// MARK: - UIView
 
-	override func drawRect(rect: CGRect) {
+	override func draw(_ rect: CGRect) {
 		#if os(OSX)
 			guard let context = NSGraphicsContext.currentContext()?.CGContext else { return }
 
@@ -72,14 +72,14 @@ final class BlockquoteBorderView: ViewType, Annotation {
 
 		theme.blockquoteBorderColor.setFill()
 
-		let rect = borderRectForBounds(bounds)
-		CGContextFillRect(context, rect)
+		let rect = borderRect(for: bounds)
+		context.fill(rect)
 	}
 
 
 	// MARK: - Private
 
-	private func borderRectForBounds(bounds: CGRect) -> CGRect {
+	private func borderRect(for bounds: CGRect) -> CGRect {
 		return CGRect(
 			x: 1,
 			y: 0,

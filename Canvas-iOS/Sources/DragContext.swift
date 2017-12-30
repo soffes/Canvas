@@ -170,7 +170,7 @@ struct DragContext {
 			return UIImage(named: "Heading3")
 		}
 
-		if let block = block as? Heading where block.level != .one {
+		if let block = block as? Heading, block.level != .one {
 			switch block.level.predecessor {
 			case .two: return UIImage(named: "Heading2")
 			case .three: return UIImage(named: "Heading3")

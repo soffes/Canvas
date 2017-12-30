@@ -1,0 +1,27 @@
+fileGroups:
+  - CanvasText
+targets:
+  CanvasText:
+    type: library.static
+    platform: iOS
+    settings:
+      SWIFT_OBJC_BRIDGING_HEADER: CanvasText/Support/Bridging.h
+    sources:
+      - CanvasText/Sources
+    scheme:
+      testTargets:
+        - CanvasTextTests
+    dependencies:
+      - target: CanvasNative
+      - carthage: Cache
+      - carthage: X
+  CanvasTextTests:
+    type: bundle.unit-test
+    platform: iOS
+    settings:
+      INFOPLIST_FILE: CanvasText/Support/Tests-Info.plist
+      TEST_HOST: $(BUILT_PRODUCTS_DIR)/Canvas.app/Canvas
+    sources:
+      - CanvasText/Tests
+    dependencies:
+      - target: CanvasText

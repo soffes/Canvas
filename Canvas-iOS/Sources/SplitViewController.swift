@@ -39,7 +39,7 @@ final class SplitViewController: UISplitViewController {
 		super.viewDidLayoutSubviews()
 
 		// Work around wrong automatic primary column calculatations by UISplitViewController
-		guard let window = view.window where lastSize != window.bounds.size else { return }
+		guard let window = view.window, lastSize != window.bounds.size else { return }
 
 		lastSize = window.bounds.size
 
@@ -108,7 +108,7 @@ extension SplitViewController: UISplitViewControllerDelegate {
 
 		let detailViewController: UIViewController
 
-		if let last = viewControllers.last where last is EditorViewController || last is PlaceholderViewController {
+		if let last = viewControllers.last, last is EditorViewController || last is PlaceholderViewController {
 			detailViewController = viewControllers.popLast() ?? PlaceholderViewController()
 		} else {
 			detailViewController = PlaceholderViewController()

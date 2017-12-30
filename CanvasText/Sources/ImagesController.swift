@@ -19,17 +19,17 @@ final class ImagesController: Themeable {
 	
 	// MARK: - Types
 	
-	typealias Completion = (id: String, image: Image?) -> Void
+	typealias Completion = (_ id: String, _ image: Image?) -> Void
 	
 	
 	// MARK: - Properties
 
 	var theme: Theme
-	let session: NSURLSession
+	let session: URLSession
 	
 	private var downloading = [String: [Completion]]()
 	
-	private let queue = dispatch_queue_create("com.usecanvas.canvastext.imagescontroller", DISPATCH_QUEUE_SERIAL)
+	private let queue = DispatchQueue(label: "com.usecanvas.canvastext.imagescontroller", qos: .background, attributes: [])
 	
 	private let memoryCache = MemoryCache<Image>()
 	private let imageCache: MultiCache<Image>
@@ -38,15 +38,15 @@ final class ImagesController: Themeable {
 	
 	// MARK: - Initializers
 	
-	init(theme: Theme, session: NSURLSession = NSURLSession.sharedSession()) {
+	init(theme: Theme, session: URLSession = .shared) {
 		self.theme = theme
 		self.session = session
 
 		var caches = [AnyCache(memoryCache)]
 
 		// Setup disk cache
-		if let cachesDirectory = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true).first {
-			let directory = (cachesDirectory as NSString).stringByAppendingPathComponent("CanvasImages") as String
+		if let cachesDirectory = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first {
+			let directory = (cachesDirectory as NSString).appendingPathComponent("CanvasImages") as String
 
 			if let diskCache = DiskCache<Image>(directory: directory) {
 				caches.append(AnyCache(diskCache))
@@ -59,7 +59,7 @@ final class ImagesController: Themeable {
 	
 	// MARK: - Accessing
 	
-	func fetchImage(id id: String, url: NSURL?, size: CGSize, scale: CGFloat, completion: Completion) -> Image? {
+	func fetchImage(withID id: String, url: URL?, size: CGSize, scale: CGFloat, completion: @escaping Completion) -> Image? {
 		if let image = memoryCache[id] {
 			return image
 		}
@@ -68,8 +68,8 @@ final class ImagesController: Themeable {
 		if let url = url {
 			imageCache.get(key: id) { [weak self] image in
 				if let image = image {
-					dispatch_async(dispatch_get_main_queue()) {
-						completion(id: id, image: image)
+					DispatchQueue.main.async {
+						completion(id, image)
 					}
 					return
 				}
@@ -85,8 +85,8 @@ final class ImagesController: Themeable {
 					// Start download
 					self?.downloading[id] = [completion]
 
-					let request = NSURLRequest(URL: url)
-					self?.session.downloadTaskWithRequest(request) { [weak self] location, _, _ in
+					let request = URLRequest(url: url)
+					self?.session.downloadTask(with: request) { [weak self] location, _, _ in
 						self?.loadImage(location: location, id: id)
 					}.resume()
 				}
@@ -99,12 +99,12 @@ final class ImagesController: Themeable {
 	
 	// MARK: - Private
 	
-	private func coordinate(block: dispatch_block_t) {
-		dispatch_sync(queue, block)
+	private func coordinate(_ block: () -> Void) {
+		queue.sync(execute: block)
 	}
 	
-	private func loadImage(location location: NSURL?, id: String) {
-		let data = location.flatMap { NSData(contentsOfURL: $0) }
+	private func loadImage(location: URL?, id: String) {
+		let data = location.flatMap { try? Data(contentsOf: $0) }
 		let image = data.flatMap { Image(data: $0) }
 
 		if let image = image {
@@ -112,10 +112,10 @@ final class ImagesController: Themeable {
 		}
 
 		coordinate { [weak self] in
-			if let image = image, completions = self?.downloading[id] {
+			if let image = image, let completions = self?.downloading[id] {
 				for completion in completions {
-					dispatch_async(dispatch_get_main_queue()) {
-						completion(id: id, image: image)
+					DispatchQueue.main.async {
+						completion(id, image)
 					}
 				}
 			}
@@ -124,8 +124,9 @@ final class ImagesController: Themeable {
 		}
 	}
 	
-	private func placeholderImage(size size: CGSize, scale: CGFloat) -> Image? {
+	private func placeholderImage(size: CGSize, scale: CGFloat) -> Image? {
 		#if os(OSX)
+			// TODO: Implement
 			return nil
 		#else
 			let key = "\(size.width)x\(size.height)-\(scale)-\(theme.imagePlaceholderColor)-\(theme.imagePlaceholderBackgroundColor)"
@@ -133,12 +134,12 @@ final class ImagesController: Themeable {
 				return image
 			}
 
-			let bundle = NSBundle(forClass: ImagesController.self)
-			guard let icon = Image(named: "PhotoLandscape", inBundle: bundle) else { return nil }
+			let bundle = Bundle(for: ImagesController.self)
+			guard let icon = Image(named: "PhotoLandscape", in: bundle) else { return nil }
 			
 			let rect = CGRect(origin: .zero, size: size)
 			
-			UIGraphicsBeginImageContextWithOptions(size, true, scale ?? 0)
+			UIGraphicsBeginImageContextWithOptions(size, true, scale)
 			
 			// Background
 			theme.imagePlaceholderBackgroundColor.setFill()
@@ -152,7 +153,7 @@ final class ImagesController: Themeable {
 				width: icon.size.width,
 				height: icon.size.height
 			)
-			icon.drawInRect(iconFrame)
+			icon.draw(in: iconFrame)
 			
 			let image = UIGraphicsGetImageFromCurrentImageContext()
 			placeholderCache[key] = image

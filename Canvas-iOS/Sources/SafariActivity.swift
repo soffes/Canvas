@@ -26,7 +26,7 @@ final class SafariActivity: WebActivity {
 
 	override func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool {
 		for activityItem in activityItems {
-			if let URL = activityItem as? NSURL where UIApplication.sharedApplication().canOpenURL(URL) {
+			if let URL = activityItem as? NSURL, UIApplication.sharedApplication().canOpenURL(URL) {
 				return true
 			}
 		}

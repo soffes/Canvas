@@ -23,36 +23,26 @@ extension NSRange {
 		return NSMaxRange(self)
 	}
 
-	@warn_unused_result
-	func equals(range: NSRange) -> Bool {
+	
+	func equals(_ range: NSRange) -> Bool {
 		return NSEqualRanges(self, range)
 	}
 
-	@warn_unused_result
-	func intersection(range: NSRange) -> Int? {
-		if range.length == 0 {
-			return NSLocationInRange(range.location, self) ? 0 : nil
-		}
-
-		let length = NSIntersectionRange(self, range).length
-		return length > 0 ? length : nil
-	}
-
-	@warn_unused_result
-	func contains(location: Int) -> Bool {
+	
+	func contains(_ location: Int) -> Bool {
 		return NSLocationInRange(location, self)
 	}
 
-	@warn_unused_result
-	func union(range: NSRange) -> NSRange {
+	
+	func union(_ range: NSRange) -> NSRange {
 		return NSUnionRange(self, range)
 	}
 
-	static func ranges(indices indices: Set<Int>) -> [NSRange] {
+	static func ranges(indices: Set<Int>) -> [NSRange] {
 		var ranges = [NSRange]()
 		var range: NSRange?
 
-		let sorted = Array(indices).sort()
+		let sorted = Array(indices).sorted()
 
 		for location in sorted {
 			guard var r = range else {

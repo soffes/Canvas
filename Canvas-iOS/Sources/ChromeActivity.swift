@@ -26,7 +26,7 @@ final class ChromeActivity: WebActivity {
 
 	override func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool {
 		for activityItem in activityItems {
-			if let activityURL = activityItem as? NSURL, chromeScheme = chromeSchemeForURL(activityURL), chromeURL = NSURL(string: "\(chromeScheme)://") where UIApplication.sharedApplication().canOpenURL(chromeURL) {
+			if let activityURL = activityItem as? NSURL, chromeScheme = chromeSchemeForURL(activityURL), chromeURL = NSURL(string: "\(chromeScheme)://"), UIApplication.sharedApplication().canOpenURL(chromeURL) {
 				return true
 			}
 		}

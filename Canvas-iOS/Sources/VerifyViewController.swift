@@ -122,7 +122,7 @@ final class VerifyViewController: UIViewController {
 
 		let client = AuthorizationClient()
 		client.verifyAccount(token: token) { result in
-			dispatch_async(dispatch_get_main_queue()) { [weak self] in
+			DispatchQueue.main.async { [weak self] in
 				UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 
 				switch result {

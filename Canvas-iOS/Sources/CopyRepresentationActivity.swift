@@ -82,7 +82,7 @@ final class CopyRepresentationActivity: UIActivity {
 	override func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool {
 		guard let url = activityItems.first as? NSURL else { return false }
 
-		if url.host == "usecanvas.com", let components = url.pathComponents where components.count == 4 && (components[3] as NSString).length == 22 {
+		if url.host == "usecanvas.com", let components = url.pathComponents, components.count == 4 && (components[3] as NSString).length == 22 {
 			canvasID = components[3]
 			return true
 		}
@@ -103,7 +103,7 @@ final class CopyRepresentationActivity: UIActivity {
 			guard let representation = self?.representation else{ return }
 			let string = data.flatMap { String(data: $0, encoding: NSUTF8StringEncoding) }
 
-			dispatch_async(dispatch_get_main_queue()) {
+			DispatchQueue.main.async {
 				if let string = string {
 					UIPasteboard.generalPasteboard().string = string
 					self?.showBanner(text: representation.successMessage)

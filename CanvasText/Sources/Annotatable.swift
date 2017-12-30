@@ -9,5 +9,5 @@
 import CanvasNative
 
 public protocol Annotatable: BlockNode {
-	func annotation(theme theme: Theme) -> Annotation?
+	func annotation(theme: Theme) -> Annotation?
 }

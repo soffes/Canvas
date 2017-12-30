@@ -16,4 +16,6 @@ targets:
         CODE_SIGN_STYLE: Manual
       dependencies:
         - target: CanvasNative
+        - carthage: Cache
         - carthage: Diff
+        - carthage: X

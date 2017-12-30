@@ -9,7 +9,7 @@
 import CanvasNative
 
 extension TextController {
-	public func increaseBlockLevel(block block: BlockNode) {
+	public func increaseBlockLevel(block: BlockNode) {
 		// Convert paragraph to unordered list
 		if block is Paragraph {
 			let string = ChecklistItem.nativeRepresentation()
@@ -55,7 +55,7 @@ extension TextController {
 		}
 	}
 
-	public func decreaseBlockLevel(block block: BlockNode) {
+	public func decreaseBlockLevel(block: BlockNode) {
 		// Lists
 		if let block = block as? Listable {
 			// Convert checklist to paragraph
@@ -88,7 +88,7 @@ extension TextController {
 		}
 
 		// Increase Heading level
-		if let block = block as? Heading where block.level != .one {
+		if let block = block as? Heading, block.level != .one {
 			let string = Heading.nativeRepresentation(level: block.level.predecessor)
 			edit(backingRange: block.leadingDelimiterRange, replacement: string)
 			return

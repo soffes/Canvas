@@ -21,4 +21,3 @@ targets:
       - CanvasNative/Tests
     dependencies:
       - target: CanvasNative
-      - carthage: Diff

@@ -64,13 +64,13 @@ final class SignUpViewController: SessionFormViewController {
 		client.createAccount(email: email, username: username, password: password) { [weak self] in
 			switch $0 {
 			case .Success(_):
-				dispatch_async(dispatch_get_main_queue()) {
+				DispatchQueue.main.async {
 					UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 					self?.showVerify()
 //					Analytics.track(.LoggedIn)
 				}
 			case .Failure(let errorMessage):
-				dispatch_async(dispatch_get_main_queue()) { [weak self] in
+				DispatchQueue.main.async { [weak self] in
 					self?.loading = false
 //					self?.passwordTextField.becomeFirstResponder()
 //					

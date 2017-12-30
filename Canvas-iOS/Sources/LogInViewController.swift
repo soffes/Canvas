@@ -64,7 +64,7 @@ final class LogInViewController: SessionFormViewController {
 		SharedWebCredentials.get { [weak self] credential, _ in
 			guard let credential = credential else { return }
 
-			dispatch_async(dispatch_get_main_queue()) {
+			DispatchQueue.main.async {
 				self?.login(credential: credential)
 			}
 		}
@@ -87,8 +87,8 @@ final class LogInViewController: SessionFormViewController {
 		client.createAccessToken(username: username, password: password) { [weak self] in
 			switch $0 {
 			case .Success(let account):
-				dispatch_async(dispatch_get_main_queue()) {
-					if let this = self where this.webCredential == nil {
+				DispatchQueue.main.async {
+					if let this = self, this.webCredential == nil {
 						SharedWebCredentials.add(domain: "usecanvas.com", account: username, password: password)
 					}
 
@@ -97,7 +97,7 @@ final class LogInViewController: SessionFormViewController {
 					Analytics.track(.LoggedIn)
 				}
 			case .Failure(let errorMessage):
-				dispatch_async(dispatch_get_main_queue()) { [weak self] in
+				DispatchQueue.main.async { [weak self] in
 					self?.loading = false
 					self?.passwordTextField.becomeFirstResponder()
 					self?.webCredential = nil

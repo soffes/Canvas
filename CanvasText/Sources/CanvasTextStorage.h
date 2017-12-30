@@ -6,7 +6,7 @@
 //  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
 //
 
-#import <CanvasText/BaseTextStorage.h>
+#import "BaseTextStorage.h"
 
 @protocol CanvasTextStorageDelegate;
 

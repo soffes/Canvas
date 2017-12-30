@@ -10,9 +10,9 @@
 	import AppKit
 
 	public enum UserInterfaceSizeClass: Int {
-		case Unspecified
-		case Compact
-		case Regular
+		case unspecified
+		case compact
+		case regular
 	}
 #else
 	import UIKit

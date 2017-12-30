@@ -114,7 +114,7 @@ final class OrganizationsViewController: ModelsViewController, Accountable {
 		loading = true
 
 		APIClient(account: account).listOrganizations { [weak self] result in
-			dispatch_async(dispatch_get_main_queue()) {
+			DispatchQueue.main.async {
 				switch result {
 				case .Success(let organizations):
 					self?.loading = false

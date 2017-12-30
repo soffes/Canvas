@@ -70,7 +70,7 @@ class StackViewController: UIViewController {
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
 		
-		dispatch_async(dispatch_get_main_queue()) { [weak self] in
+		DispatchQueue.main.async { [weak self] in
 			self?.visible = true
 		}
 	}

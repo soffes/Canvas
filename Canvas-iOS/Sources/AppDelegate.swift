@@ -119,7 +119,7 @@ extension AppDelegate: UIApplicationDelegate {
 		UIImageView.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = Swatch.darkGray
 
 		// Defaults
-		dispatch_async(dispatch_get_main_queue()) {
+		DispatchQueue.main.async {
 			NSUserDefaults.standardUserDefaults().registerDefaults([
 				SleepPrevention.defaultsKey: SleepPrevention.whilePluggedIn.rawValue
 			])
@@ -171,7 +171,7 @@ extension AppDelegate: UIApplicationDelegate {
 		}
 		
 		// Verify account
-		if let components = url.pathComponents where components.count == 2 && components[1] == "verify" {
+		if let components = url.pathComponents, components.count == 2 && components[1] == "verify" {
 			return verifyAccount(url: url)
 		}
 		

@@ -14,11 +14,6 @@ import CanvasText
 import CanvasKit
 
 extension EditorViewController: TextControllerConnectionDelegate {
-	func textController(textController: TextController, willConnectWithWebView webView: WKWebView) {
-		webView.frame = CGRect(x: 0, y: 0, width: 1, height: 1)
-		view.addSubview(webView)
-	}
-
 	func textControllerDidConnect(textController: TextController) {
 		presenceController.connect()
 		

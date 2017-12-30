@@ -16,13 +16,13 @@ import CanvasNative
 import X
 
 public enum AnnotationPlacement {
-	case FirstLeadingGutter
-	case ExpandedLeadingGutter
-	case ExpandedBackground
+	case firstLeadingGutter
+	case expandedLeadingGutter
+	case expandedBackground
 
 	public var isExpanded: Bool {
 		switch self {
-		case .ExpandedLeadingGutter, .ExpandedBackground: return true
+		case .expandedLeadingGutter, .expandedBackground: return true
 		default: return false
 		}
 	}
@@ -46,6 +46,6 @@ extension Annotation where Self: ViewType {
 	}
 
 	public var placement: AnnotationPlacement {
-		return .FirstLeadingGutter
+		return .firstLeadingGutter
 	}
 }

@@ -8,3 +8,4 @@ options:
 include:
   - Canvas-iOS/project.yml
   - CanvasNative/project.yml
+  - CanvasText/project.yml

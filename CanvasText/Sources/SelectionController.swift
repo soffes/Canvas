@@ -7,7 +7,7 @@
 //
 
 struct SelectionController {
-	static func adjust(selection selection: NSRange, replacementRange: NSRange, replacementLength: Int) -> NSRange {
+	static func adjust(selection: NSRange, replacementRange: NSRange, replacementLength: Int) -> NSRange {
 		// No change
 		if replacementRange.length == 0 && replacementLength == 0 {
 			return selection

@@ -13,32 +13,30 @@
 #endif
 
 import WebKit
-import OperationalTransformation
 import CanvasNative
 import X
 
 typealias Style = (range: NSRange, attributes: Attributes)
 
 public protocol TextControllerConnectionDelegate: class {
-	func textController(textController: TextController, willConnectWithWebView webView: WKWebView)
-	func textControllerDidConnect(textController: TextController)
-	func textController(textController: TextController, didReceiveWebErrorMessage errorMessage: String?, lineNumber: UInt?, columnNumber: UInt?)
-	func textController(textController: TextController, didDisconnectWithErrorMessage errorMessage: String?)
+	func textControllerDidConnect(_ textController: TextController)
+	func textController(_ textController: TextController, didReceiveWebErrorMessage errorMessage: String?, lineNumber: UInt?, columnNumber: UInt?)
+	func textController(_ textController: TextController, didDisconnectWithErrorMessage errorMessage: String?)
 }
 
 public protocol TextControllerDisplayDelegate: class {
-	func textController(textController: TextController, didUpdateSelectedRange selectedRange: NSRange)
-	func textController(textController: TextController, didUpdateTitle title: String?)
-	func textControllerWillProcessRemoteEdit(textController: TextController)
-	func textControllerDidProcessRemoteEdit(textController: TextController)
-	func textController(textController: TextController, URLForImage block: CanvasNative.Image) -> NSURL?
-	func textControllerDidUpdateFolding(textController: TextController)
-	func textControllerDidLayoutText(textController: TextController)
+	func textController(_ textController: TextController, didUpdateSelectedRange selectedRange: NSRange)
+	func textController(_ textController: TextController, didUpdateTitle title: String?)
+	func textControllerWillProcessRemoteEdit(_ textController: TextController)
+	func textControllerDidProcessRemoteEdit(_ textController: TextController)
+	func textController(_ textController: TextController, urlForImage block: CanvasNative.Image) -> URL?
+	func textControllerDidUpdateFolding(_ textController: TextController)
+	func textControllerDidLayoutText(_ textController: TextController)
 }
 
 public protocol TextControllerAnnotationDelegate: class {
-	func textController(textController: TextController, willAddAnnotation annotation: Annotation)
-	func textController(textController: TextController, willRemoveAnnotation annotation: Annotation)
+	func textController(_ textController: TextController, willAddAnnotation annotation: Annotation)
+	func textController(_ textController: TextController, willRemoveAnnotation annotation: Annotation)
 }
 
 
@@ -108,14 +106,13 @@ public final class TextController: NSObject {
 	}
 
 	#if !os(OSX)
-		public var traitCollection = UITraitCollection(horizontalSizeClass: .Unspecified) {
+		public var traitCollection = UITraitCollection(horizontalSizeClass: .unspecified) {
 			didSet {
-				traitCollectionDidChange(oldValue)
+				traitCollectionDidChange(previousTraitCollection: oldValue)
 			}
 		}
 	#endif
 
-	private var transportController: TransportController?
 	private let annotationsController: AnnotationsController
 	
 	private let imagesController: ImagesController
@@ -166,25 +163,6 @@ public final class TextController: NSObject {
 		documentController.delegate = self
 	}
 
-
-	// MARK: - OT
-
-	public func connect() {
-		if connectionDelegate == nil {
-			print("[TextController] WARNING: connectionDelegate is nil. If you don't add the web view from textController:willConnectWithWebView: to a view, Operation Transport won't work as expected.")
-		}
-
-		let transportController = TransportController(serverURL: serverURL, accessToken: accessToken, organizationID: organizationID, canvasID: canvasID)
-		transportController.delegate = self
-		transportController.connect()
-		self.transportController = transportController
-	}
-
-	public func disconnect(withReason reason: String?) {
-		transportController?.disconnect(withReason: reason)
-		transportController = nil
-	}
-	
 	
 	// MARK: - Traits
 
@@ -205,7 +183,7 @@ public final class TextController: NSObject {
 		for block in currentDocument.blocks {
 			guard let container = block as? NodeContainer else { continue }
 			let attributes = theme.attributes(block: block)
-			styles += stylesForSpans(container.subnodes, parentAttributes: attributes, onlyTintable: true).0
+			styles += self.styles(for: container.subnodes, parentAttributes: attributes, onlyTintable: true).0
 		}
 
 		if !styles.isEmpty {
@@ -218,16 +196,16 @@ public final class TextController: NSObject {
 	// MARK: - Selection
 
 	// Update from Text View
-	public func setPresentationSelectedRange(range: NSRange?) {
-		setPresentationSelectedRange(range, updateTextView: false)
+	public func set(presentationSelectedRange range: NSRange?) {
+		set(presentationSelectedRange: range, updateTextView: false)
 	}
 
 	// Update from Text Controller
-	func setPresentationSelectedRange(range: NSRange?, updateTextView: Bool) {
+	func set(presentationSelectedRange range: NSRange?, updateTextView: Bool) {
 		presentationSelectedRange = range
 
 		needsUnfoldUpdate = true
-		dispatch_async(dispatch_get_main_queue()) { [weak self] in
+		DispatchQueue.main.async { [weak self] in
 			self?.updateUnfoldIfNeeded()
 			self?.annotationsController.layoutAnnotations()
 		}
@@ -261,7 +239,7 @@ public final class TextController: NSObject {
 		styles.removeAll()
 		
 		for block in currentDocument.blocks {
-			let (blockStyles, _) = stylesForBlock(block)
+			let (blockStyles, _) = self.styles(for: block)
 			styles += blockStyles
 		}
 		
@@ -272,7 +250,7 @@ public final class TextController: NSObject {
 
 	// MARK: - Layout
 
-	func blockSpacing(block block: BlockNode) -> BlockSpacing {
+	func blockSpacing(for block: BlockNode) -> BlockSpacing {
 		#if os(OSX)
 			let horizontalSizeClass = UserInterfaceSizeClass.Unspecified
 		#else
@@ -281,7 +259,7 @@ public final class TextController: NSObject {
 		return theme.blockSpacing(block: block, horizontalSizeClass: horizontalSizeClass)
 	}
 
-	private func invalidatePresentationRange(range: NSRange) {
+	private func invalidate(presentationRange range: NSRange) {
 		invalidPresentationRange = invalidPresentationRange.flatMap { $0.union(range) } ?? range
 	}
 	
@@ -293,8 +271,8 @@ public final class TextController: NSObject {
 			range.length = min(textStorage.length - range.location, range.length)
 		}
 		
-		layoutManager.ensureGlyphsForCharacterRange(range)
-		layoutManager.invalidateLayoutForCharacterRange(range, actualCharacterRange: nil)
+		layoutManager.ensureGlyphs(forCharacterRange: range)
+		layoutManager.invalidateLayout(forCharacterRange: range, actualCharacterRange: nil)
 		
 		applyStyles()
 		refreshAnnotations()
@@ -307,8 +285,8 @@ public final class TextController: NSObject {
 		
 		for block in currentDocument.blocks {
 			guard let block = block as? Attachable,
-				style = attachmentStyle(block: block)
-				else { continue }
+				let style = attachmentStyle(for: block)
+			else { continue }
 			
 			styles.append(style)
 		}
@@ -323,7 +301,7 @@ public final class TextController: NSObject {
 	private func updateUnfoldIfNeeded() {
 		guard needsUnfoldUpdate else { return }
 
-		_layoutManager.unfoldedRange = presentationSelectedRange.flatMap { unfoldableRange(presentationSelectedRange: $0) }
+		_layoutManager.unfoldedRange = presentationSelectedRange.flatMap { unfoldableRange(forPresentationSelectedRange: $0) }
 
 		needsUnfoldUpdate = false
 	}
@@ -332,7 +310,7 @@ public final class TextController: NSObject {
 	///
 	/// - parameter displaySelection: Range of the selected text in the display text
 	/// - returns: Optional presentation range of the expanded selection
-	private func unfoldableRange(presentationSelectedRange presentationSelectedRange: NSRange) -> NSRange? {
+	private func unfoldableRange(forPresentationSelectedRange presentationSelectedRange: NSRange) -> NSRange? {
 		let selectedRange: NSRange = {
 			var range = presentationSelectedRange
 			range.location = max(0, range.location - 1)
@@ -355,7 +333,7 @@ public final class TextController: NSObject {
 	}
 	
 	// Returns an array of styles and an array of foldable ranges
-	private func stylesForBlock(block: BlockNode) -> ([Style], [NSRange]) {
+	private func styles(for block: BlockNode) -> ([Style], [NSRange]) {
 		var range = currentDocument.presentationRange(block: block)
 
 		if range.location == 0 {
@@ -392,7 +370,7 @@ public final class TextController: NSObject {
 
 		// Contained nodes
 		if let container = block as? NodeContainer {
-			let (innerStyles, innerFoldableRanges) = stylesForSpans(container.subnodes, parentAttributes: attributes)
+			let (innerStyles, innerFoldableRanges) = self.styles(for: container.subnodes, parentAttributes: attributes)
 			styles += innerStyles
 			foldableRanges += innerFoldableRanges
 		}
@@ -401,7 +379,7 @@ public final class TextController: NSObject {
 	}
 
 	// Returns an array of styles and an array of foldable ranges
-	private func stylesForSpans(spans: [SpanNode], parentAttributes: Attributes, onlyTintable: Bool = false) -> ([Style], [NSRange]) {
+	private func styles(for spans: [SpanNode], parentAttributes: Attributes, onlyTintable: Bool = false) -> ([Style], [NSRange]) {
 		var styles = [Style]()
 		var foldableRanges = [NSRange]()
 
@@ -421,7 +399,7 @@ public final class TextController: NSObject {
 				if let foldable = span as? Foldable {
 					// Forward the background color
 					var attrs = foldableAttributes
-					attrs[NSBackgroundColorAttributeName] = attributes[NSBackgroundColorAttributeName]
+					attrs[.backgroundColor] = attributes[.backgroundColor]
 
 					for backingRange in foldable.foldableRanges {
 						let style = Style(
@@ -437,7 +415,7 @@ public final class TextController: NSObject {
 				// attributes or at least have a style controller for all of this logic.
 				if let link = span as? Link {
 					var attrs = foldableAttributes
-					attrs[NSForegroundColorAttributeName] = theme.linkURLColor
+					attrs[.foregroundColor] = theme.linkURLColor
 
 					styles.append(Style(range: currentDocument.presentationRange(backingRange: link.urlRange), attributes: attrs))
 
@@ -448,7 +426,7 @@ public final class TextController: NSObject {
 			}
 
 			if let container = span as? NodeContainer {
-				let (innerStyles, innerFoldableRanges) = stylesForSpans(container.subnodes, parentAttributes: attributes)
+				let (innerStyles, innerFoldableRanges) = self.styles(for: container.subnodes, parentAttributes: attributes)
 				styles += innerStyles
 				foldableRanges += innerFoldableRanges
 			}
@@ -457,28 +435,24 @@ public final class TextController: NSObject {
 		return (styles, foldableRanges)
 	}
 
-	private func submitOperations(backingRange backingRange: NSRange, string: String) {
-		guard let transportController = transportController else {
-			print("[TextController] WARNING: Tried to submit an operation without a connection.")
-			return
-		}
-
-		// Insert
-		if backingRange.length == 0 {
-			transportController.submit(operation: .insert(location: UInt(backingRange.location), string: string))
-			return
-		}
-
-		// Remove
-		transportController.submit(operation: .remove(location: UInt(backingRange.location), length: UInt(backingRange.length)))
-
-		// Insert after removing
-		if backingRange.length > 0 {
-			transportController.submit(operation: .insert(location: UInt(backingRange.location), string: string))
-		}
+	// TODO: Do we need this still?
+	private func submitOperations(backingRange: NSRange, string: String) {
+//		// Insert
+//		if backingRange.length == 0 {
+//			transportController.submit(operation: .insert(location: UInt(backingRange.location), string: string))
+//			return
+//		}
+//
+//		// Remove
+//		transportController.submit(operation: .remove(location: UInt(backingRange.location), length: UInt(backingRange.length)))
+//
+//		// Insert after removing
+//		if backingRange.length > 0 {
+//			transportController.submit(operation: .insert(location: UInt(backingRange.location), string: string))
+//		}
 	}
 	
-	private func attachmentStyle(block block: Attachable) -> Style? {
+	private func attachmentStyle(for block: Attachable) -> Style? {
 		let attachment: NSTextAttachment
 		
 		// Horizontal rule
@@ -492,7 +466,7 @@ public final class TextController: NSObject {
 
 		// Image
 		else if let block = block as? CanvasNative.Image {
-			let url = displayDelegate?.textController(self, URLForImage: block) ?? block.url
+			let url = displayDelegate?.textController(self, urlForImage: block) ?? block.url
 
 			#if os(OSX)
 				// TODO: Use real scale
@@ -501,9 +475,9 @@ public final class TextController: NSObject {
 				let scale = traitCollection.displayScale
 			#endif
 
-			var size = attachmentSize(imageSize: block.size)
+			var size = attachmentSize(forImageSize: block.size)
 			let image = imagesController.fetchImage(
-				id: block.identifier,
+				withID: block.identifier,
 				url: url,
 				size: size,
 				scale: scale,
@@ -511,7 +485,7 @@ public final class TextController: NSObject {
 			)
 
 			if let image = image {
-				size = attachmentSize(imageSize: image.size)
+				size = attachmentSize(forImageSize: image.size)
 			}
 			
 			attachment = NSTextAttachment()
@@ -527,11 +501,11 @@ public final class TextController: NSObject {
 		
 		let range = currentDocument.presentationRange(block: block)
 		return Style(range: range, attributes: [
-			NSAttachmentAttributeName: attachment
+			.attachment: attachment
 		])
 	}
 	
-	private func attachmentSize(imageSize input: CGSize?) -> CGSize {
+	private func attachmentSize(forImageSize input: CGSize?) -> CGSize {
 		let imageSize = input ?? CGSize(width: floor(textContainer.size.width), height: 300)
 		let width = min(floor(textContainer.size.width), imageSize.width)
 		var size = imageSize
@@ -542,9 +516,9 @@ public final class TextController: NSObject {
 		return size
 	}
 	
-	private func blockForImageID(ID: String) -> CanvasNative.Image? {
+	private func block(forImageID id: String) -> CanvasNative.Image? {
 		for block in currentDocument.blocks {
-			if let image = block as? CanvasNative.Image where image.identifier == ID {
+			if let image = block as? CanvasNative.Image, image.identifier == id {
 				return image
 			}
 		}
@@ -552,16 +526,16 @@ public final class TextController: NSObject {
 		return nil
 	}
 	
-	private func updateImageAttachment(ID ID: String, image: X.Image?) {
-		guard let image = image, block = blockForImageID(ID) else { return }
+	private func updateImageAttachment(withID id: String, image: X.Image?) {
+		guard let image = image, let block = block(forImageID: id) else { return }
 		
 		let attachment = NSTextAttachment()
 		attachment.image = image
-		attachment.bounds = CGRect(origin: .zero, size: attachmentSize(imageSize: image.size))
+		attachment.bounds = CGRect(origin: .zero, size: attachmentSize(forImageSize: image.size))
 		
 		let range = currentDocument.presentationRange(block: block)
 		let style = Style(range: range, attributes: [
-			NSAttachmentAttributeName: attachment
+			.attachment: attachment
 		])
 		
 		styles.append(style)
@@ -571,74 +545,21 @@ public final class TextController: NSObject {
 }
 
 
-extension TextController: TransportControllerDelegate {
-	public func transportController(controller: TransportController, willConnectWithWebView webView: WKWebView) {
-		connectionDelegate?.textController(self, willConnectWithWebView: webView)
-	}
-
-	public func transportController(controller: TransportController, didReceiveSnapshot text: String) {
-		let bounds = NSRange(location: 0, length: (currentDocument.backingString as NSString).length)
-
-		// Ensure we have a valid document
-		var string = text
-		if string.isEmpty {
-			string = Title.nativeRepresentation()
-			submitOperations(backingRange: bounds, string: string)
-		}
-
-		setNeedsTitleUpdate()
-		displayDelegate?.textControllerWillProcessRemoteEdit(self)
-		documentController.replaceCharactersInRange(bounds, withString: string)
-		connectionDelegate?.textControllerDidConnect(self)
-		displayDelegate?.textControllerDidProcessRemoteEdit(self)
-		
-		applyStyles()
-		annotationsController.layoutAnnotations()
-	}
-
-	public func transportController(controller: TransportController, didReceiveOperation operation: Operation) {
-		displayDelegate?.textControllerWillProcessRemoteEdit(self)
-
-		switch operation {
-		case .insert(let location, let string):
-			let range = NSRange(location: Int(location), length: 0)
-			documentController.replaceCharactersInRange(range, withString: string)
-
-		case .remove(let location, let length):
-			let range = NSRange(location: Int(location), length: Int(length))
-			documentController.replaceCharactersInRange(range, withString: "")
-		}
-
-		displayDelegate?.textControllerDidProcessRemoteEdit(self)
-	}
-
-	public func transportController(controller: TransportController, didReceiveWebErrorMessage errorMessage: String?, lineNumber: UInt?, columnNumber: UInt?) {
-		print("[TextController] TransportController error \(errorMessage)")
-		connectionDelegate?.textController(self, didReceiveWebErrorMessage: errorMessage, lineNumber: lineNumber, columnNumber: columnNumber)
-	}
-
-	public func transportController(controller: TransportController, didDisconnectWithErrorMessage errorMessage: String?) {
-		print("[TextController] TransportController disconnect \(errorMessage)")
-		connectionDelegate?.textController(self, didDisconnectWithErrorMessage: errorMessage)
-	}
-}
-
-
 extension TextController: DocumentControllerDelegate {
-	public func documentControllerWillUpdateDocument(controller: DocumentController) {
+	public func documentControllerWillUpdateDocument(_ controller: DocumentController) {
 		textStorage.beginEditing()
 	}
 
-	public func documentController(controller: DocumentController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
+	public func documentController(_ controller: DocumentController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
 		_layoutManager.removeFoldableRanges()
 		_layoutManager.invalidFoldingRange = range
-		_textStorage.actuallyReplaceCharactersInRange(range, withString: string)
+		_textStorage.actuallyReplaceCharacters(in: range, with: string)
 		
 		// Calculate the line range
 		let text = textStorage.string as NSString
 		var lineRange = range
 		lineRange.length = (string as NSString).length
-		lineRange = text.lineRangeForRange(lineRange)
+		lineRange = text.lineRange(for: lineRange)
 		
 		// Include the line before
 		if lineRange.location > 0 {
@@ -646,23 +567,23 @@ extension TextController: DocumentControllerDelegate {
 			lineRange.length += 1
 		}
 		
-		invalidatePresentationRange(lineRange)
+		invalidate(presentationRange: lineRange)
 
 		var foldableRanges = [NSRange]()
-		controller.document.blocks.forEach { foldableRanges += stylesForBlock($0).1 }
+		controller.document.blocks.forEach { foldableRanges += self.styles(for: $0).1 }
 		_layoutManager.addFoldableRanges(foldableRanges)
 
 		guard let selection = presentationSelectedRange else { return }
 
 		let length = (string as NSString).length
 		let adjusted = SelectionController.adjust(selection: selection, replacementRange: range, replacementLength: length)
-		setPresentationSelectedRange(adjusted, updateTextView: !adjusted.equals(selection))
+		set(presentationSelectedRange: adjusted, updateTextView: !adjusted.equals(selection))
 	}
 
-	public func documentController(controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int) {
-		annotationsController.insert(block: block, index: index)
+	public func documentController(_ controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int) {
+		annotationsController.insert(block, index: index)
 
-		let (blockStyles, _) = stylesForBlock(block)
+		let (blockStyles, _) = styles(for: block)
 		styles += blockStyles
 
 		var range = controller.document.presentationRange(block: block)
@@ -675,9 +596,9 @@ extension TextController: DocumentControllerDelegate {
 			range.length += 1
 		}
 
-		invalidatePresentationRange(range)
+		invalidate(presentationRange: range)
 		
-		if let block = block as? Attachable, style = attachmentStyle(block: block) {
+		if let block = block as? Attachable, let style = attachmentStyle(for: block) {
 			styles.append(style)
 		}
 
@@ -686,19 +607,19 @@ extension TextController: DocumentControllerDelegate {
 		}
 	}
 
-	public func documentController(controller: DocumentController, didRemoveBlock block: BlockNode, atIndex index: Int) {
-		annotationsController.remove(block: block, index: index)
+	public func documentController(_ controller: DocumentController, didRemoveBlock block: BlockNode, atIndex index: Int) {
+		annotationsController.remove(block, index: index)
 
 		if index == 0 {
 			setNeedsTitleUpdate()
 		}
 	}
 
-	public func documentControllerDidUpdateDocument(controller: DocumentController) {
+	public func documentControllerDidUpdateDocument(_ controller: DocumentController) {
 		textStorage.endEditing()
 		updateTitleIfNeeded(controller)
 		
-		dispatch_async(dispatch_get_main_queue()) { [weak self] in
+		DispatchQueue.main.async { [weak self] in
 			self?.invalidateLayoutIfNeeded()
 		}
 	}
@@ -707,9 +628,9 @@ extension TextController: DocumentControllerDelegate {
 		let blocks = currentDocument.blocks
 
 		// Refresh models
-		for (i, block) in blocks.enumerate() {
+		for (i, block) in blocks.enumerated() {
 			guard let block = block as? Annotatable else { continue }
-			annotationsController.update(block: block, index: i)
+			annotationsController.update(block, at: i)
 		}
 
 		// Layout
@@ -720,7 +641,7 @@ extension TextController: DocumentControllerDelegate {
 		needsTitle = true
 	}
 
-	private func updateTitleIfNeeded(controller: DocumentController) {
+	private func updateTitleIfNeeded(_ controller: DocumentController) {
 		if !needsTitle {
 			return
 		}
@@ -732,18 +653,18 @@ extension TextController: DocumentControllerDelegate {
 
 
 extension TextController: AnnotationsControllerDelegate {
-	func annotationsController(annotationsController: AnnotationsController, willAddAnnotation annotation: Annotation) {
+	func annotationsController(_ controller: AnnotationsController, willAddAnnotation annotation: Annotation) {
 		annotationDelegate?.textController(self, willAddAnnotation: annotation)
 	}
 
-	func annotationsController(annotationsController: AnnotationsController, willRemoveAnnotation annotation: Annotation) {
+	func annotationsController(_ controller: AnnotationsController, willRemoveAnnotation annotation: Annotation) {
 		annotationDelegate?.textController(self, willRemoveAnnotation: annotation)
 	}
 }
 
 
 extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
-	public func canvasTextStorage(textStorage: CanvasTextStorage, willReplaceCharactersInRange range: NSRange, withString string: String) {
+	public func canvasTextStorage(_ textStorage: CanvasTextStorage, willReplaceCharactersIn range: NSRange, with string: String) {
 		let document = currentDocument
 		var presentationRange = range
 
@@ -760,14 +681,14 @@ extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 				let string = document.presentationString(block: block)
 
 				// Image
-				if let url = NSURL(string: string) where url.isImageURL {
+				if let url = URL(string: string), url.isImageURL {
 					backingRange = block.range
 					replacement = Image.nativeRepresentation(URL: url) + "\n"
 				}
 
 				// Code block
 				else if string.hasPrefix("```") {
-					let language = (string as NSString).substringFromIndex(3).stringByTrimmingCharactersInSet(.whitespaceCharacterSet())
+					let language = (string as NSString).substring(from: 3).trimmingCharacters(in: .whitespaces)
 					backingRange = block.range
 					replacement = CodeBlock.nativeRepresentation(language: language)
 				}
@@ -787,15 +708,15 @@ extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 					replacement = ""
 
 					// Keep selection in place
-					setPresentationSelectedRange(presentationSelectedRange, updateTextView: true)
+					set(presentationSelectedRange: presentationSelectedRange, updateTextView: true)
 				} else {
 					// Complete the node
 					if let block = block as? NativePrefixable {
-						replacement += (document.backingString as NSString).substringWithRange(block.nativePrefixRange)
+						replacement += (document.backingString as NSString).substring(with: block.nativePrefixRange)
 
 						// Make checkboxes unchecked by default
-						if let checklist = block as? ChecklistItem where checklist.state == .checked {
-							replacement = replacement.stringByReplacingOccurrencesOfString("- [x] ", withString: "- [ ] ")
+						if let checklist = block as? ChecklistItem, checklist.state == .checked {
+							replacement = replacement.replacingOccurrences(of: "- [x] ", with: "- [ ] ")
 						}
 					}
 				}
@@ -830,7 +751,7 @@ extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 		// Remove other backing ranges
 		if backingRanges.count > 1 {
 			var ranges = backingRanges
-			ranges.removeAtIndex(0)
+			ranges.remove(at: 0)
 
 			var offset = replacement.isEmpty ? backingRange.length : 0
 
@@ -852,23 +773,23 @@ extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 		processMarkdownShortcuts(presentationRange)
 
 		// Handle selection when there is a user-driven replacement. This could definitely be cleaner.
-		dispatch_async(dispatch_get_main_queue()) { [weak self] in
-			if var selection = self?.presentationSelectedRange where selection.length > 0 {
+		DispatchQueue.main.async { [weak self] in
+			if var selection = self?.presentationSelectedRange, selection.length > 0 {
 				selection.location += (string as NSString).length
 				selection.length = 0
-				self?.setPresentationSelectedRange(selection, updateTextView: true)
+				self?.set(presentationSelectedRange: selection, updateTextView: true)
 			}
 		}
 	}
 	
-	public func textStorage(textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorageEditActions, range editedRange: NSRange, changeInLength delta: Int) {
+	public func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorageEditActions, range editedRange: NSRange, changeInLength delta: Int) {
 		if _textStorage.isEditing {
 			return
 		}
 
 		updateUnfoldIfNeeded()
 
-		dispatch_async(dispatch_get_main_queue()) { [weak self] in
+		DispatchQueue.main.async { [weak self] in
 			self?.invalidateLayoutIfNeeded()
 		}
 	}
@@ -877,7 +798,7 @@ extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 	// things like markdown shortcuts and return completion don't run on this change. Ideally, this will only be used
 	// by the text storage delegate or changes made to non-visible portions of the backing string (like block or
 	// indentation changes).
-	func edit(backingRange backingRange: NSRange, replacement: String) {
+	func edit(backingRange: NSRange, replacement: String) {
 		documentController.replaceCharactersInRange(backingRange, withString: replacement)
 		submitOperations(backingRange: backingRange, string: replacement)
 	}
@@ -885,20 +806,20 @@ extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 
 
 extension TextController: LayoutManagerDelegate {
-	func layoutManager(layoutManager: NSLayoutManager, textContainerChangedGeometry textContainer: NSTextContainer) {
+	func layoutManager(_ layoutManager: NSLayoutManager, textContainerChangedGeometry textContainer: NSTextContainer) {
 		layoutAttachments()
 	}
 
-	func layoutManagerDidUpdateFolding(layoutManager: NSLayoutManager) {
+	func layoutManagerDidUpdateFolding(_ layoutManager: NSLayoutManager) {
 		// Trigger the text view to update its selection. Two Apple engineers recommended this.
 		textStorage.beginEditing()
-		textStorage.edited(.EditedCharacters, range: NSRange(location: 0, length: 0), changeInLength: 0)
+		textStorage.edited(.editedCharacters, range: NSRange(location: 0, length: 0), changeInLength: 0)
 		textStorage.endEditing()
 
 		displayDelegate?.textControllerDidUpdateFolding(self)
 	}
 
-	func layoutManagerDidLayout(layoutManager: NSLayoutManager) {
+	func layoutManagerDidLayout(_ layoutManager: NSLayoutManager) {
 		displayDelegate?.textControllerDidLayoutText(self)
 	}
 }

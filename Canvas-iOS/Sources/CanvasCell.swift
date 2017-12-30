@@ -172,7 +172,7 @@ extension CanvasCell: CellType {
 	func configure(row row: Row) {
 		titleLabel.text = row.text
 
-		if let summary = row.detailText where !summary.isEmpty {
+		if let summary = row.detailText, !summary.isEmpty {
 			summaryLabel.text = summary
 		} else {
 			summaryLabel.text = "No Content" // TODO: Localize

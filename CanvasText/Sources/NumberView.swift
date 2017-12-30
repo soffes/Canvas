@@ -24,7 +24,7 @@ final class NumberView: ViewType, Annotation {
 		}
 	}
 
-	var horizontalSizeClass: UserInterfaceSizeClass = .Unspecified
+	var horizontalSizeClass: UserInterfaceSizeClass = .unspecified
 
 
 	// MARK: - Initializers
@@ -36,8 +36,8 @@ final class NumberView: ViewType, Annotation {
 
 		super.init(frame: .zero)
 
-		userInteractionEnabled = false
-		contentMode = .Redraw
+		isUserInteractionEnabled = false
+		contentMode = .redraw
 		backgroundColor = theme.backgroundColor
 	}
 
@@ -48,16 +48,16 @@ final class NumberView: ViewType, Annotation {
 
 	// MARK: - UIView
 
-	override func drawRect(rect: CGRect) {
+	override func draw(_ rect: CGRect) {
 		guard let block = block as? OrderedListItem else { return }
 
-		let string: NSString = "\(block.number)."
-		let attributes = [
-			NSForegroundColorAttributeName: theme.orderedListItemNumberColor,
-			NSFontAttributeName: TextStyle.body.font().fontWithMonospacedNumbers
+		let string = "\(block.number)." as NSString
+		let attributes: Attributes = [
+			.foregroundColor: theme.orderedListItemNumberColor,
+			.font: TextStyle.body.font().fontWithMonospacedNumbers
 		]
 
-		let size = string.sizeWithAttributes(attributes)
+		let size = string.size(withAttributes: attributes)
 
 		// TODO: It would be better if we could calculate this from the font
 		let rect = CGRect(
@@ -67,6 +67,6 @@ final class NumberView: ViewType, Annotation {
 			height: size.height
 		).integral
 
-		string.drawInRect(rect, withAttributes: attributes)
+		string.draw(in: rect, withAttributes: attributes)
 	}
 }

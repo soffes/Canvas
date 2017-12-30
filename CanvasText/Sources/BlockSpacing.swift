@@ -38,7 +38,7 @@ public struct BlockSpacing {
 
 	// MARK: - Utilities
 
-	public func applyHorizontalPadding(rect: CGRect) -> CGRect {
+	public func applyHorizontalPadding(_ rect: CGRect) -> CGRect {
 		var output = rect
 
 		// Padding left

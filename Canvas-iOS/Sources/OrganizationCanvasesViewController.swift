@@ -139,7 +139,7 @@ final class OrganizationCanvasesViewController: CanvasesViewController {
 		super.viewWillAppear(animated)
 
 		// Deselect search results *sigh*
-		if let text = searchViewController.searchBar.text where !text.isEmpty {
+		if let text = searchViewController.searchBar.text, !text.isEmpty {
 			if let viewController = searchViewController.searchResultsController as? CanvasesViewController, indexPath = viewController.tableView.indexPathForSelectedRow {
 				viewController.tableView.deselectRowAtIndexPath(indexPath, animated: animated)
 			}
@@ -149,7 +149,7 @@ final class OrganizationCanvasesViewController: CanvasesViewController {
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
 
-		dispatch_async(dispatch_get_main_queue()) { [weak self] in
+		DispatchQueue.main.async { [weak self] in
 			if let ready = self?.ready {
 				ready()
 				self?.ready = nil
@@ -170,13 +170,13 @@ final class OrganizationCanvasesViewController: CanvasesViewController {
 		APIClient(account: account).listCanvases(organizationID: organization.id) { [weak self] result in
 			switch result {
 			case .Success(let canvases):
-				dispatch_async(dispatch_get_main_queue()) {
+				DispatchQueue.main.async {
 					self?.loading = false
 					self?.updateCanvases(canvases)
 				}
 			case .Failure(let message):
 				print("Failed to get canvases: \(message)")
-				dispatch_async(dispatch_get_main_queue()) {
+				DispatchQueue.main.async {
 					self?.loading = false
 				}
 			}
@@ -211,7 +211,7 @@ final class OrganizationCanvasesViewController: CanvasesViewController {
 		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 		
 		APIClient(account: account).createCanvas(organizationID: organization.id) { [weak self] result in
-			dispatch_async(dispatch_get_main_queue()) {
+			DispatchQueue.main.async {
 				UIApplication.sharedApplication().networkActivityIndicatorVisible = false
 				self?.creating = false
 
@@ -234,7 +234,7 @@ final class OrganizationCanvasesViewController: CanvasesViewController {
 		removeCanvas(canvas)
 
 		APIClient(account: account).archiveCanvas(id: canvas.id) { result in
-			dispatch_async(dispatch_get_main_queue()) { [weak self] in
+			DispatchQueue.main.async { [weak self] in
 				self?.refresh()
 
 				switch result {
@@ -262,7 +262,7 @@ final class OrganizationCanvasesViewController: CanvasesViewController {
 	private func removeCanvas(canvas: Canvas) {
 		for (s, var section) in dataSource.sections.enumerate() {
 			for (r, row) in section.rows.enumerate() {
-				if let rowCanvas = row.context?["canvas"] as? Canvas where rowCanvas == canvas {
+				if let rowCanvas = row.context?["canvas"] as? Canvas, rowCanvas == canvas {
 					section.rows.removeAtIndex(r)
 
 					if section.rows.isEmpty {

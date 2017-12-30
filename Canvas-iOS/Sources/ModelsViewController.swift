@@ -62,7 +62,7 @@ class ModelsViewController: TableViewController {
 	override var keyCommands: [UIKeyCommand] {
 		var commands = super.keyCommands ?? []
 
-		if let navigationController = navigationController where navigationController.viewControllers.count > 1 {
+		if let navigationController = navigationController, navigationController.viewControllers.count > 1 {
 			let previousTitle = (navigationController.viewControllers[navigationController.viewControllers.count - 2]).title
 			let backTitle = previousTitle.flatMap { "Back to \($0)" } ?? "Back"
 

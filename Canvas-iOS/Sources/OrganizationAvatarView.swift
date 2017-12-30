@@ -40,7 +40,7 @@ final class OrganizationAvatarView: UIView {
 	// MARK: - UIView
 	
 	override func tintColorDidChange() {
-		if let organization = organization where organization.isPersonalNotes {
+		if let organization = organization, organization.isPersonalNotes {
 			return
 		}
 		

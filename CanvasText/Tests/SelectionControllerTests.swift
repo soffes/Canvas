@@ -13,7 +13,7 @@ class SelectionControllerTests: XCTestCase {
 
 	// MARK: - Properties
 
-	private let startingSelection = NSRange(location: 10, length: 9)
+	fileprivate let startingSelection = NSRange(location: 10, length: 9)
 
 
 	// MARK: - Insert Tests
@@ -165,7 +165,7 @@ class SelectionControllerTests: XCTestCase {
 	func testInvalid() {
 		let output = SelectionController.adjust(
 			selection: startingSelection,
-			replacementRange: .zero,
+			replacementRange: NSRange(location: 0, length: 0),
 			replacementLength: 0
 		)
 		XCTAssertEqual(startingSelection, output)

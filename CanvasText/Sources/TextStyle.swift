@@ -22,53 +22,53 @@ public enum TextStyle {
 	
 	public var textStyle: String {
 		switch self {
-		case .title1: return UIFontTextStyleTitle1
-		case .title2: return UIFontTextStyleTitle2
-		case .title3: return UIFontTextStyleTitle3
-		case .headline: return UIFontTextStyleHeadline
-		case .subheadline: return UIFontTextStyleSubheadline
-		case .body: return UIFontTextStyleBody
-		case .footnote: return UIFontTextStyleFootnote
-		case .caption1: return UIFontTextStyleCaption1
-		case .caption2: return UIFontTextStyleCaption2
-		case .callout: return UIFontTextStyleCallout
+		case .title1: return UIFontTextStyle.title1.rawValue
+		case .title2: return UIFontTextStyle.title2.rawValue
+		case .title3: return UIFontTextStyle.title3.rawValue
+		case .headline: return UIFontTextStyle.headline.rawValue
+		case .subheadline: return UIFontTextStyle.subheadline.rawValue
+		case .body: return UIFontTextStyle.body.rawValue
+		case .footnote: return UIFontTextStyle.footnote.rawValue
+		case .caption1: return UIFontTextStyle.caption1.rawValue
+		case .caption2: return UIFontTextStyle.caption2.rawValue
+		case .callout: return UIFontTextStyle.callout.rawValue
 		}
 	}
 	
-	public func font(traits traits: UIFontDescriptorSymbolicTraits = [], weight: FontWeight? = nil) -> UIFont {
-		var systemFont = UIFont.preferredFontForTextStyle(textStyle)
+	public func font(traits: UIFontDescriptorSymbolicTraits = [], weight: FontWeight? = nil) -> UIFont {
+		var systemFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle(rawValue: textStyle))
 
 		// Apply minimum weight
 		if let weight = weight {
-			let currentWeight = (systemFont.fontDescriptor().objectForKey(UIFontDescriptorFaceAttribute) as? String).flatMap(FontWeight.init)
+			let currentWeight = (systemFont.fontDescriptor.object(forKey: .face) as? String).flatMap(FontWeight.init)
 			if weight.fontWeight > currentWeight?.fontWeight ?? 0 {
-				systemFont = UIFont.systemFontOfSize(systemFont.pointSize, weight: weight.fontWeight)
+				systemFont = UIFont.systemFont(ofSize: systemFont.pointSize, weight: UIFont.Weight(rawValue: weight.fontWeight))
 			}
 		}
 		
 		return applySymbolicTraits(traits, toFont: systemFont, sanitize: false)
 	}
 	
-	public func monoSpaceFont(traits traits: UIFontDescriptorSymbolicTraits = []) -> UIFont {
-		let systemFont = UIFont.preferredFontForTextStyle(textStyle)
+	public func monoSpaceFont(traits: UIFontDescriptorSymbolicTraits = []) -> UIFont {
+		let systemFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle(rawValue: textStyle))
 		let monoSpaceFont = UIFont(name: "Menlo", size: systemFont.pointSize * 0.9)!
 		return applySymbolicTraits(traits, toFont: monoSpaceFont)
 	}
 }
 
 
-func applySymbolicTraits(traits: UIFontDescriptorSymbolicTraits, toFont font: UIFont, sanitize: Bool = true) -> UIFont {
+func applySymbolicTraits(_ traits: UIFontDescriptorSymbolicTraits, toFont font: UIFont, sanitize: Bool = true) -> UIFont {
 	var traits = traits
 	
 	if sanitize && !traits.isEmpty {
 		var t = UIFontDescriptorSymbolicTraits()
 		
-		if traits.contains(.TraitBold) {
-			t.insert(.TraitBold)
+		if traits.contains(.traitBold) {
+			t.insert(.traitBold)
 		}
 		
-		if traits.contains(.TraitItalic) {
-			t.insert(.TraitItalic)
+		if traits.contains(.traitItalic) {
+			t.insert(.traitItalic)
 		}
 		
 		traits = t
@@ -78,6 +78,6 @@ func applySymbolicTraits(traits: UIFontDescriptorSymbolicTraits, toFont font: UI
 		return font
 	}
 	
-	let fontDescriptor = font.fontDescriptor().fontDescriptorWithSymbolicTraits(traits)
-	return UIFont(descriptor: fontDescriptor, size: font.pointSize)
+	let fontDescriptor = font.fontDescriptor.withSymbolicTraits(traits)
+	return UIFont(descriptor: fontDescriptor!, size: font.pointSize)
 }

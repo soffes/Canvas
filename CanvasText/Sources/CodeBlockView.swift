@@ -31,14 +31,14 @@ final class CodeBlockView: ViewType, Annotation {
 		}
 	}
 
-	var horizontalSizeClass: UserInterfaceSizeClass = .Unspecified
+	var horizontalSizeClass: UserInterfaceSizeClass = .unspecified
 
-	let placement = AnnotationPlacement.ExpandedBackground
+	let placement = AnnotationPlacement.expandedBackground
 
 	private let textLabel: UILabel = {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
-		label.textAlignment = .Right
+		label.textAlignment = .right
 		return label
 	}()
 
@@ -52,8 +52,8 @@ final class CodeBlockView: ViewType, Annotation {
 
 		super.init(frame: .zero)
 
-		userInteractionEnabled = false
-		contentMode = .Redraw
+		isUserInteractionEnabled = false
+		contentMode = .redraw
 		backgroundColor = theme.backgroundColor
 
 		textLabel.font = TextStyle.body.monoSpaceFont()
@@ -68,43 +68,43 @@ final class CodeBlockView: ViewType, Annotation {
 
 	// MARK: - UIView
 
-	override func drawRect(rect: CGRect) {
-		guard let codeBlock = block as? CodeBlock, context = UIGraphicsGetCurrentContext() else { return }
+	override func draw(_ rect: CGRect) {
+		guard let codeBlock = block as? CodeBlock, let context = UIGraphicsGetCurrentContext() else { return }
 
 		let path: CGPath?
 
 		switch codeBlock.position {
 		case .single:
-			path = UIBezierPath(roundedRect: bounds, cornerRadius: 4).CGPath
+			path = UIBezierPath(roundedRect: bounds, cornerRadius: 4).cgPath
 		case .top:
-			path = UIBezierPath(roundedRect: bounds, byRoundingCorners: [.TopLeft, .TopRight], cornerRadii: CGSize(width: 4, height: 4)).CGPath
-		case .bottom(_):
-			path = UIBezierPath(roundedRect: bounds, byRoundingCorners: [.BottomLeft, .BottomRight], cornerRadii: CGSize(width: 4, height: 4)).CGPath
+			path = UIBezierPath(roundedRect: bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 4, height: 4)).cgPath
+		case .bottom:
+			path = UIBezierPath(roundedRect: bounds, byRoundingCorners: [.bottomLeft, .bottomRight], cornerRadii: CGSize(width: 4, height: 4)).cgPath
 		default:
 			path = nil
 		}
 
 		if let path = path {
-			CGContextAddPath(context, path)
-			CGContextClip(context)
+			context.addPath(path)
+			context.clip()
 		}
 
-		CGContextSetFillColorWithColor(context, theme.codeBlockBackgroundColor.CGColor)
-		CGContextFillRect(context, bounds)
+		context.setFillColor(theme.codeBlockBackgroundColor.cgColor)
+		context.fill(bounds)
 
 		// Line numbers background
-		if traitCollection.horizontalSizeClass == .Regular {
-			CGContextSetFillColorWithColor(context, theme.codeBlockLineNumberBackgroundColor.CGColor)
-			CGContextFillRect(context, CGRect(x: 0, y: 0, width: self.dynamicType.lineNumberWidth, height: bounds.height))
+		if traitCollection.horizontalSizeClass == .regular {
+			context.setFillColor(theme.codeBlockLineNumberBackgroundColor.cgColor)
+			context.fill(CGRect(x: 0, y: 0, width: type(of: self).lineNumberWidth, height: bounds.height))
 		}
 	}
 
-	override func traitCollectionDidChange(previousTraitOrganization: UITraitCollection?) {
+	override func traitCollectionDidChange(_ previousTraitOrganization: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitOrganization)
 
 		guard let codeBlock = block as? CodeBlock else { return }
 
-		if traitCollection.horizontalSizeClass != .Regular {
+		if traitCollection.horizontalSizeClass != .regular {
 			textLabel.removeFromSuperview()
 			return
 		}
@@ -115,9 +115,9 @@ final class CodeBlockView: ViewType, Annotation {
 			// TODO: This is terrible
 			let top: CGFloat = codeBlock.position.isTop ? 10 : 1
 
-			NSLayoutConstraint.activateConstraints([
-				textLabel.trailingAnchor.constraintEqualToAnchor(leadingAnchor, constant: self.dynamicType.lineNumberWidth - 6),
-				textLabel.topAnchor.constraintEqualToAnchor(topAnchor, constant: top)
+			NSLayoutConstraint.activate([
+				textLabel.trailingAnchor.constraint(equalTo: leadingAnchor, constant: type(of: self).lineNumberWidth - 6),
+				textLabel.topAnchor.constraint(equalTo: topAnchor, constant: top)
 			])
 		}
 

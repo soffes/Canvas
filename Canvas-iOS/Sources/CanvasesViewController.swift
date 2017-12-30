@@ -47,7 +47,7 @@ class CanvasesViewController: ModelsViewController, Accountable {
 	func openCanvas(canvas: Canvas) {
 		guard !opening else { return }
 
-		if let editor = currentEditor() where editor.canvas == canvas {
+		if let editor = currentEditor(), editor.canvas == canvas {
 			return
 		}
 
@@ -82,7 +82,7 @@ class CanvasesViewController: ModelsViewController, Accountable {
 		let viewController = EditorViewController(account: account, canvas: canvas)
 		showDetailViewController(NavigationController(rootViewController: viewController), sender: self)
 
-		dispatch_async(dispatch_get_main_queue()) { [weak self] in
+		DispatchQueue.main.async { [weak self] in
 			self?.opening = false
 		}
 	}
@@ -91,7 +91,7 @@ class CanvasesViewController: ModelsViewController, Accountable {
 	// MARK: - Utilities
 
 	func currentEditor() -> EditorViewController? {
-		guard let splitViewController = splitViewController where splitViewController.viewControllers.count == 2 else { return nil }
+		guard let splitViewController = splitViewController, splitViewController.viewControllers.count == 2 else { return nil }
 		return (splitViewController.viewControllers.last as? UINavigationController)?.topViewController as? EditorViewController
 	}
 

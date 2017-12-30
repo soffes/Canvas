@@ -24,7 +24,7 @@ extension UIViewController {
 	}
 
 	func dismissDetailViewController(sender: AnyObject?) {
-		if let splitViewController = splitViewController where !splitViewController.collapsed {
+		if let splitViewController = splitViewController, !splitViewController.collapsed {
 			splitViewController.dismissDetailViewController(sender)
 			return
 		}

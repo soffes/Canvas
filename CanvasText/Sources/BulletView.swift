@@ -21,7 +21,7 @@ final class BulletView: ViewType, Annotation {
 
 	var block: Annotatable {
 		didSet {
-			guard let old = oldValue as? UnorderedListItem, new = block as? UnorderedListItem else { return }
+			guard let old = oldValue as? UnorderedListItem, let new = block as? UnorderedListItem else { return }
 
 			if old.indentation.isFilled != new.indentation.isFilled {
 				#if os(OSX)
@@ -44,7 +44,7 @@ final class BulletView: ViewType, Annotation {
 		}
 	}
 
-	var horizontalSizeClass: UserInterfaceSizeClass = .Unspecified
+	var horizontalSizeClass: UserInterfaceSizeClass = .unspecified
 
 
 	// MARK: - Initializers
@@ -57,8 +57,8 @@ final class BulletView: ViewType, Annotation {
 		super.init(frame: .zero)
 
 		#if !os(OSX)
-			userInteractionEnabled = false
-			contentMode = .Redraw
+			isUserInteractionEnabled = false
+			contentMode = .redraw
 			backgroundColor = theme.backgroundColor
 		#endif
 	}
@@ -70,7 +70,7 @@ final class BulletView: ViewType, Annotation {
 
 	// MARK: - UIView
 
-	override func drawRect(rect: CGRect) {
+	override func draw(_ rect: CGRect) {
 		guard let unorderedListItem = block as? UnorderedListItem else { return }
 
 		#if os(OSX)
@@ -84,20 +84,20 @@ final class BulletView: ViewType, Annotation {
 
 		theme.bulletColor.set()
 
-		let rect = bulletRectForBounds(bounds)
+		let rect = bulletRect(for: bounds)
 
 		if unorderedListItem.indentation.isFilled {
-			CGContextFillEllipseInRect(context, rect)
+			context.fillEllipse(in: rect)
 		} else {
-			CGContextSetLineWidth(context, 2)
-			CGContextStrokeEllipseInRect(context, CGRectInset(rect, 1, 1))
+			context.setLineWidth(2)
+			context.strokeEllipse(in: rect.insetBy(dx: 1, dy: 1))
 		}
 	}
 
 
 	// MARK: - Private
 
-	private func bulletRectForBounds(bounds: CGRect) -> CGRect {
+	private func bulletRect(for bounds: CGRect) -> CGRect {
 		let dimension: CGFloat = 8
 
 		return CGRect(
