@@ -10,7 +10,7 @@ import UIKit
 import Static
 import CanvasCore
 
-final class ValueCell: UITableViewCell, CellType {
+final class ValueCell: UITableViewCell, Cell {
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: .Value1, reuseIdentifier: reuseIdentifier)
 		textLabel?.textColor = Swatch.black
@@ -21,7 +21,7 @@ final class ValueCell: UITableViewCell, CellType {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	func configure(row row: Row) {
+	func configure(row: Row) {
 		textLabel?.text = row.text
 		detailTextLabel?.text = row.detailText
 		imageView?.image = row.image

@@ -83,16 +83,16 @@ class OnboardingBillboardViewController: StackViewController {
 		spacer.translatesAutoresizingMaskIntoConstraints = false
 		stackView.addArrangedSubview(spacer)
 		
-		textIllustrationSpacing = spacer.heightAnchor.constraintEqualToConstant(0)
+		textIllustrationSpacing = spacer.heightAnchor.constraint(equalToConstant: 0)
 		textIllustrationSpacing.active = true
 		
 		stackView.addArrangedSubview(illustrationView)
 		
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateFonts), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateFonts), name: UIContentSizeCategoryDidChangeNotification, object: nil)
 		updateFonts()
 	}
 	
-	override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitCollection)
 
 		let spacing: CGFloat

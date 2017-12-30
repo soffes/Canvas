@@ -15,7 +15,7 @@ targets:
     type: bundle.unit-test
     platform: iOS
     settings:
-      INFOPLIST_FILE: CanvasNative/Support/Tests-Info.plist
+      INFOPLIST_FILE: Support/Tests-Info.plist
       TEST_HOST: $(BUILT_PRODUCTS_DIR)/Canvas.app/Canvas
     sources:
       - CanvasNative/Tests

@@ -12,7 +12,7 @@ class TintableView: UIView {
 
 	// MARK: - Properties
 
-	var highlighted = false {
+	var isHighlighted = false {
 		didSet {
 			updateTintColor()
 		}
@@ -30,7 +30,7 @@ class TintableView: UIView {
 		}
 	}
 
-	private var settingTintColor = false
+	private var isSettingTintColor = false
 
 
 	// MARK: - UIView
@@ -38,8 +38,8 @@ class TintableView: UIView {
 	override func tintColorDidChange() {
 		super.tintColorDidChange()
 
-		if settingTintColor {
-			settingTintColor = false
+		if isSettingTintColor {
+			isSettingTintColor = false
 			return
 		}
 
@@ -50,7 +50,7 @@ class TintableView: UIView {
 	// MARK: - Tinting
 
 	func updateTintColor() {
-		settingTintColor = true
-		tintColor = highlighted ? highlightedTintColor : normalTintColor
+		isSettingTintColor = true
+		tintColor = isHighlighted ? highlightedTintColor : normalTintColor
 	}
 }

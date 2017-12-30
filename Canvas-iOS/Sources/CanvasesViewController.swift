@@ -9,20 +9,13 @@
 import UIKit
 import Static
 import CanvasCore
-import CanvasKit
 import CanvasNative
 
-class CanvasesViewController: ModelsViewController, Accountable {
-
-	// MARK: - Properties
-
-	var account: Account
-
+class CanvasesViewController: ModelsViewController {
 
 	// MARK: - Initializers
 
-	init(account: Account, style: UITableViewStyle = .Plain) {
-		self.account = account
+	override init(style: UITableViewStyle = .plain) {
 		super.init(style: style)
 	}
 
@@ -38,53 +31,19 @@ class CanvasesViewController: ModelsViewController, Accountable {
 
 		tableView.rowHeight = 72
 
-		navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+		navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 	}
 
 
 	// MARK: - ModelsViewController
 
-	func openCanvas(canvas: Canvas) {
-		guard !opening else { return }
-
+	func open(_ canvas: Canvas) {
 		if let editor = currentEditor(), editor.canvas == canvas {
 			return
 		}
 
-		opening = true
-
-		if !CanvasNative.supports(nativeVersion: canvas.nativeVersion) {
-			if let indexPath = tableView.indexPathForSelectedRow {
-				tableView.deselectRowAtIndexPath(indexPath, animated: true)
-			}
-
-			let alert = UIAlertController(title: LocalizedString.UnsupportedTitle.string, message: LocalizedString.UnsupportedMessage.string, preferredStyle: .Alert)
-
-			#if !APP_STORE
-			alert.addAction(UIAlertAction(title: LocalizedString.CheckForUpdatesButton.string, style: .Default, handler: { _ in
-				UIApplication.sharedApplication().openURL(config.updatesURL)
-			}))
-			#endif
-
-			alert.addAction(UIAlertAction(title: LocalizedString.OpenInSafariButton.string, style: .Default, handler: { _ in
-				guard let url = canvas.url else { return }
-				UIApplication.sharedApplication().openURL(url)
-			}))
-			alert.addAction(UIAlertAction(title: LocalizedString.Cancel.string, style: .Cancel, handler: nil))
-
-			opening = false
-			presentViewController(alert, animated: true, completion: nil)
-
-			return
-		}
-
-		Analytics.track(.OpenedCanvas)
-		let viewController = EditorViewController(account: account, canvas: canvas)
+		let viewController = EditorViewController(canvas: canvas)
 		showDetailViewController(NavigationController(rootViewController: viewController), sender: self)
-
-		DispatchQueue.main.async { [weak self] in
-			self?.opening = false
-		}
 	}
 
 
@@ -97,7 +56,7 @@ class CanvasesViewController: ModelsViewController, Accountable {
 
 	func rowForCanvas(canvas: Canvas) -> Row {
 		var row = canvas.row
-		row.selection = { [weak self] in self?.openCanvas(canvas) }
+		row.selection = { [weak self] in self?.open(canvas) }
 		return row
 	}
 }

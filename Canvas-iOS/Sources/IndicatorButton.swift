@@ -29,7 +29,7 @@ final class IndicatorButton: PillButton {
 	let activityIndicator: UIActivityIndicatorView = {
 		let indicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
 		indicator.translatesAutoresizingMaskIntoConstraints = false
-		indicator.userInteractionEnabled = false
+		indicator.isUserInteractionEnabled = false
 		indicator.hidesWhenStopped = true
 		indicator.color = Swatch.darkGray
 		return indicator
@@ -43,9 +43,9 @@ final class IndicatorButton: PillButton {
 
 		addSubview(activityIndicator)
 
-		NSLayoutConstraint.activateConstraints([
-			activityIndicator.centerXAnchor.constraintEqualToAnchor(centerXAnchor),
-			activityIndicator.centerYAnchor.constraintEqualToAnchor(centerYAnchor)
+		NSLayoutConstraint.activate([
+			activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+			activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor)
 		])
 	}
 	

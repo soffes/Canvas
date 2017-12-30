@@ -26,12 +26,12 @@ class FooterButton: PrefaceButton {
 		
 		addSubview(lineView)
 		
-		NSLayoutConstraint.activateConstraints([
-			lineView.leadingAnchor.constraintEqualToAnchor(leadingAnchor),
-			lineView.trailingAnchor.constraintEqualToAnchor(trailingAnchor),
-			lineView.topAnchor.constraintEqualToAnchor(topAnchor),
+		NSLayoutConstraint.activate([
+			lineView.leadingAnchor.constraint(equalTo: leadingAnchor),
+			lineView.trailingAnchor.constraint(equalTo: trailingAnchor),
+			lineView.topAnchor.constraint(equalTo: topAnchor),
 			
-			heightAnchor.constraintEqualToConstant(48)
+			heightAnchor.constraint(equalToConstant: 48)
 		])
 	}
 	

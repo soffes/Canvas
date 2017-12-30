@@ -19,38 +19,38 @@ class TextView: UITextView {
 	// MARK: - UIView
 
 	// Allow subviews to receive user input
-	override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
+	override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
 		for view in managedSubviews {
-			if view.superview == self && view.userInteractionEnabled && view.frame.contains(point) {
+			if view.superview == self && view.isUserInteractionEnabled && view.frame.contains(point) {
 				return view
 			}
 		}
 
-		return super.hitTest(point, withEvent: event)
+		return super.hitTest(point, with: event)
 	}
 	
 
 	// MARK: - UITextInput
 
 	// Only display the caret in the used rect (if available).
-	override func caretRectForPosition(position: UITextPosition) -> CGRect {
-		var rect = super.caretRectForPosition(position)
+	override func caretRect(for position: UITextPosition) -> CGRect {
+		var rect = super.caretRect(for: position)
 		
 		if let layoutManager = textContainer.layoutManager {
-			layoutManager.ensureLayoutForTextContainer(textContainer)
+			layoutManager.ensureLayout(for: textContainer)
 			
-			let characterIndex = offsetFromPosition(beginningOfDocument, toPosition: position)
+			let characterIndex = offset(from: beginningOfDocument, to: position)
 			if characterIndex == textStorage.length {
 				return rect
 			}
 			
-			let glyphIndex = layoutManager.glyphIndexForCharacterAtIndex(characterIndex)
+			let glyphIndex = layoutManager.glyphIndexForCharacter(at: characterIndex)
 			
 			if UInt(glyphIndex) == UInt.max - 1 {
 				return rect
 			}
 			
-			let usedRect = layoutManager.lineFragmentUsedRectForGlyphAtIndex(glyphIndex, effectiveRange: nil)
+			let usedRect = layoutManager.lineFragmentUsedRect(forGlyphAt: glyphIndex, effectiveRange: nil)
 
 			if usedRect.height > 0 {
 				rect.origin.y = usedRect.minY + textContainerInset.top
@@ -62,24 +62,24 @@ class TextView: UITextView {
 	}
 
 	// Omit empty width rect when drawing selection rects.
-	override func selectionRectsForRange(range: UITextRange) -> [AnyObject] {
-		let selectionRects = super.selectionRectsForRange(range)
+	override func selectionRects(for range: UITextRange) -> [Any] {
+		let selectionRects = super.selectionRects(for: range)
 		return selectionRects.filter({ selection in
 			guard let selection = selection as? UITextSelectionRect else { return false }
 			return selection.rect.size.width > 0
 		})
 	}
 
-	func rectsForRange(range: NSRange) -> [CGRect] {
+	func rects(for range: NSRange) -> [CGRect] {
 		// Become first responder if we aren't already. The text view has to be first responder for any of the position
 		// or text range APIs to work. Annoying :(
-		let wasFirstResponder = isFirstResponder()
+		let wasFirstResponder = isFirstResponder
 		if !wasFirstResponder {
 			becomeFirstResponder()
 		}
 
 		// Get starting position
-		guard let start = positionFromPosition(beginningOfDocument, offset: range.location) else {
+		guard let start = position(from: beginningOfDocument, offset: range.location) else {
 			if !wasFirstResponder {
 				resignFirstResponder()
 			}
@@ -91,14 +91,14 @@ class TextView: UITextView {
 			if !wasFirstResponder {
 				resignFirstResponder()
 			}
-			return [caretRectForPosition(start)]
+			return [caretRect(for: start)]
 		}
 
 		// Selection
-		guard let end = positionFromPosition(start, offset: range.length),
-			textRange = textRangeFromPosition(start, toPosition: end),
-			selectionRects = (super.selectionRectsForRange(textRange) as? [UITextSelectionRect])?.map({ $0.rect }),
-			firstRect = selectionRects.first
+		guard let end = position(from: start, offset: range.length),
+			let textRange = textRange(from: start, to: end),
+			let selectionRects = (super.selectionRects(for: textRange) as? [UITextSelectionRect])?.map({ $0.rect }),
+			let firstRect = selectionRects.first
 		else {
 			// Use extra line if there aren't any rects
 			var rect = layoutManager.extraLineFragmentUsedRect

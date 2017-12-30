@@ -18,11 +18,11 @@ extension CanvasTextView {
 
 	@objc private func pan(sender: UIPanGestureRecognizer) {
 		switch sender.state {
-		case .Possible: return
-		case .Began: dragBegan()
-		case .Changed: dragChanged()
-		case .Ended: dragEnded(true)
-		case .Cancelled, .Failed: dragEnded(false)
+		case .possible: return
+		case .began: dragBegan()
+		case .changed: dragChanged()
+		case .ended: dragEnded(applyAction: true)
+		case .cancelled, .failed: dragEnded(applyAction: false)
 		}
 	}
 
@@ -42,7 +42,7 @@ extension CanvasTextView {
 	private func dragChanged() {
 		guard var context = dragContext else { return }
 
-		var translation = dragGestureRecognizer.translationInView(self).x
+		var translation = dragGestureRecognizer.translation(in: self).x
 
 		// Prevent dragging h1s left
 		if let heading = context.block as? Heading, heading.level == .two {
@@ -71,17 +71,17 @@ extension CanvasTextView {
 	private func dragEnded(applyAction: Bool) {
 		guard let context = dragContext else { return }
 
-		UIView.animateWithDuration(0.2, delay: 0, options: [], animations: {
+		UIView.animate(withDuration: 0.2, delay: 0, options: [], animations: {
 			context.translate(x: 0)
 		}, completion: { [weak self] _ in
-			if applyAction, let action = self?.dragContext?.dragAction, textController = self?.textController {
+			if applyAction, let action = self?.dragContext?.dragAction, let textController = self?.textController {
 				switch action {
 				case .Increase: textController.increaseBlockLevel(block: context.block)
 				case .Decrease: textController.decreaseBlockLevel(block: context.block)
 				}
 			}
 
-			UIView.animateWithDuration(0.15, animations: {
+			UIView.animate(withDuration: 0.15, animations: {
 				context.contentView.alpha = 0
 			}, completion: { _ in
 				context.tearDown()
@@ -90,7 +90,7 @@ extension CanvasTextView {
 		})
 	}
 
-	private func blockAt(point point: CGPoint) -> BlockNode? {
+	private func blockAt(point: CGPoint) -> BlockNode? {
 		guard let document = textController?.currentDocument else { return nil }
 
 		// Adjust point into layout manager's coordinates
@@ -100,7 +100,7 @@ extension CanvasTextView {
 		point.y -= contentInset.top
 		point.y -= textContainerInset.top
 
-		let location = layoutManager.characterIndexForPoint(point, inTextContainer: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+		let location = layoutManager.characterIndex(for: point, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
 
 		// Special case the last block
 		if location > (document.presentationString as NSString).length - 2 {
@@ -113,7 +113,7 @@ extension CanvasTextView {
 
 
 extension CanvasTextView: UIGestureRecognizerDelegate {
-	override func gestureRecognizerShouldBegin(sender: UIGestureRecognizer) -> Bool {
+	override func gestureRecognizerShouldBegin(_ sender: UIGestureRecognizer) -> Bool {
 		// Make sure we don't mess with internal UITextView gesture recognizers.
 		guard sender == dragGestureRecognizer, let textController = textController else { return super.gestureRecognizerShouldBegin(sender) }
 
@@ -124,13 +124,13 @@ extension CanvasTextView: UIGestureRecognizerDelegate {
 		}
 
 		// Ensure it's a horizontal drag
-		let velocity = dragGestureRecognizer.velocityInView(self)
+		let velocity = dragGestureRecognizer.velocity(in: self)
 		if abs(velocity.y) > abs(velocity.x) {
 			return false
 		}
 
 		// Get the block
-		let point = dragGestureRecognizer.locationInView(self)
+		let point = dragGestureRecognizer.location(in: self)
 		guard let block = blockAt(point: point) else { return false }
 
 		// Disable dragging if unsupported
@@ -145,13 +145,13 @@ extension CanvasTextView: UIGestureRecognizerDelegate {
 
 		// Get the block rect
 		let characterRange = textController.currentDocument.presentationRange(block: block)
-		let glyphRange = layoutManager.glyphRangeForCharacterRange(characterRange, actualCharacterRange: nil)
-		var rect = layoutManager.boundingRectForGlyphRange(glyphRange, inTextContainer: textContainer)
+		let glyphRange = layoutManager.glyphRange(forCharacterRange: characterRange, actualCharacterRange: nil)
+		var rect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
 		rect.origin.x += textContainerInset.left
 		rect.origin.y += textContainerInset.top
 
 		// Snapshot
-		let snapshotView = snapshotViewAfterScreenUpdates(false)
+		let snapshotView = self.snapshotView(afterScreenUpdates: false)!
 
 		// Setup context
 		let context = DragContext(

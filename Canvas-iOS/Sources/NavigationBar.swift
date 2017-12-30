@@ -51,10 +51,10 @@ final class NavigationBar: UINavigationBar {
 
 		addSubview(borderView)
 
-		NSLayoutConstraint.activateConstraints([
-			borderView.topAnchor.constraintEqualToAnchor(bottomAnchor),
-			borderView.leadingAnchor.constraintEqualToAnchor(leadingAnchor),
-			borderView.trailingAnchor.constraintEqualToAnchor(trailingAnchor)
+		NSLayoutConstraint.activate([
+			borderView.topAnchor.constraint(equalTo: bottomAnchor),
+			borderView.leadingAnchor.constraint(equalTo: leadingAnchor),
+			borderView.trailingAnchor.constraint(equalTo: trailingAnchor)
 		])
 	}
 

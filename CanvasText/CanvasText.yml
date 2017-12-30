@@ -19,7 +19,7 @@ targets:
     type: bundle.unit-test
     platform: iOS
     settings:
-      INFOPLIST_FILE: CanvasText/Support/Tests-Info.plist
+      INFOPLIST_FILE: Support/Tests-Info.plist
       TEST_HOST: $(BUILT_PRODUCTS_DIR)/Canvas.app/Canvas
     sources:
       - CanvasText/Tests
@@ -28,5 +28,8 @@ targets:
   CanvasTextResources:
     type: bundle
     platform: iOS
-    sources:
-      - CanvasText/Support/Assets.xcassets
+    settings:
+      CODE_SIGN_STYLE: Manual
+      INFOPLIST_FILE: $(SRCROOT)/Support/ResourceBundle-Info.plist
+    # sources:
+    #   - CanvasText/Resources

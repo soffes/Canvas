@@ -11,14 +11,6 @@ import CanvasCore
 
 final class OnboardingViewController: UIViewController {
 
-	// MARK: - Types
-
-	enum Screen {
-		case logIn
-		case signUp
-	}
-
-	
 	// MARK: - Properties
 	
 	let scrollView: UIScrollView = {
@@ -26,7 +18,7 @@ final class OnboardingViewController: UIViewController {
 		view.translatesAutoresizingMaskIntoConstraints = false
 		view.showsVerticalScrollIndicator = false
 		view.showsHorizontalScrollIndicator = false
-		view.pagingEnabled = true
+		view.isPagingEnabled = true
 		return view
 	}()
 	
@@ -37,8 +29,8 @@ final class OnboardingViewController: UIViewController {
 	private let stickyContainer: UIStackView = {
 		let view = UIStackView()
 		view.translatesAutoresizingMaskIntoConstraints = false
-		view.axis = .Vertical
-		view.userInteractionEnabled = true
+		view.axis = .vertical
+		view.isUserInteractionEnabled = true
 		return view
 	}()
 	
@@ -61,13 +53,11 @@ final class OnboardingViewController: UIViewController {
 			currentViewController?.viewDidAppear(false)
 		}
 	}
-	
-	private let signUpViewController = SignUpViewController()
-	private let logInViewController = LogInViewController()
+
 	
 	private let backSwipe: UIScreenEdgePanGestureRecognizer = {
 		let recognizer = UIScreenEdgePanGestureRecognizer()
-		recognizer.edges = .Left
+		recognizer.edges = .left
 		return recognizer
 	}()
 	private var startingOffset: CGFloat = 0
@@ -81,8 +71,6 @@ final class OnboardingViewController: UIViewController {
 			OnboardingGesturesViewController(),
 			OnboardingOrigamiViewController(),
 			OnboardingSharingViewController(),
-			signUpViewController,
-			logInViewController
 		]
 		
 		super.init(nibName: nil, bundle: nil)
@@ -106,17 +94,14 @@ final class OnboardingViewController: UIViewController {
 		
 		scrollView.delegate = self
 		view.addSubview(scrollView)
-		
-		logInViewController.footerButton.addTarget(self, action: #selector(signUp), forControlEvents: .TouchUpInside)
-		signUpViewController.footerButton.addTarget(self, action: #selector(logIn), forControlEvents: .TouchUpInside)
-		
-		pageControl.addTarget(self, action: #selector(pageControlDidChange), forControlEvents: .ValueChanged)
+
+		pageControl.addTarget(self, action: #selector(pageControlDidChange), for: .valueChanged)
 		stickyContainer.addArrangedSubview(pageControl)
 		
 		let footer = PrefaceButton()
 		footer.translatesAutoresizingMaskIntoConstraints = false
-		footer.setTitle("Get Started with Canvas", forState: .Normal) // TODO: Localize
-		footer.addTarget(self, action: #selector(signUp), forControlEvents: .TouchUpInside)
+		footer.setTitle("Start using Canvas", for: .normal) // TODO: Localize
+		footer.addTarget(self, action: #selector(signUp), for: .primaryActionTriggered)
 		stickyContainer.addArrangedSubview(footer)
 		
 		let line = LineView()
@@ -125,23 +110,23 @@ final class OnboardingViewController: UIViewController {
 		
 		view.addSubview(stickyContainer)
 		
-		stickyLeadingConstraint = stickyContainer.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor)
+		stickyLeadingConstraint = stickyContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor)
 		
-		NSLayoutConstraint.activateConstraints([
-			scrollView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor),
-			scrollView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor),
-			scrollView.topAnchor.constraintEqualToAnchor(view.topAnchor),
-			scrollView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor),
+		NSLayoutConstraint.activate([
+			scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+			scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+			scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 			
 			stickyLeadingConstraint,
-			stickyContainer.widthAnchor.constraintEqualToAnchor(view.widthAnchor),
-			stickyContainer.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor),
+			stickyContainer.widthAnchor.constraint(equalTo: view.widthAnchor),
+			stickyContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 			
-			line.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor),
-			line.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor),
-			line.topAnchor.constraintEqualToAnchor(footer.topAnchor),
+			line.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			line.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+			line.topAnchor.constraint(equalTo: footer.topAnchor),
 			
-			footer.heightAnchor.constraintEqualToConstant(48)
+			footer.heightAnchor.constraint(equalToConstant: 48)
 		])
 		
 		backSwipe.addTarget(self, action: #selector(didBackSwipe))
@@ -160,7 +145,7 @@ final class OnboardingViewController: UIViewController {
 		scrollView.contentSize = CGSize(width: size.width * CGFloat(viewControllers.count), height: size.height)
 	}
 
-	override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 		super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
 
 		let page = currentPageIndex()
@@ -170,38 +155,21 @@ final class OnboardingViewController: UIViewController {
 		}, completion: nil)
 	}
 
-
-	// MARK: - Choosing a Screen
-
-	func scrollTo(screen screen: Screen, animated: Bool = true, completion: (Void -> ())? = nil) {
-		let i: Int?
-
-		switch screen {
-		case .logIn: i = viewControllers.indexOf(logInViewController)
-		case .signUp: i = viewControllers.indexOf(signUpViewController)
-		}
-
-		guard let index = i else { return }
-
-		view.layoutIfNeeded()
-		scrollTo(page: index, animated: animated, completion: completion)
-	}
-
 	
 	// MARK: - Private
 	
-	private func scrollTo(page page: Int, animated: Bool = true, width: CGFloat? = nil, completion: (Void -> ())? = nil) {
+	private func scrollTo(page: Int, animated: Bool = true, width: CGFloat? = nil, completion: (() -> ())? = nil) {
 		let width = width ?? scrollView.frame.width
 		let rect = CGRect(x: width * CGFloat(page), y: 0, width: width, height: 1)
 
-		UIView.animateWithDuration(animated ? 0.3 : 0, animations: { [weak self] in
+		UIView.animate(withDuration: animated ? 0.3 : 0, animations: { [weak self] in
 			guard let scrollView = self?.scrollView else { return }
 			scrollView.scrollRectToVisible(rect, animated: false)
 			self?.stickyContainer.layoutIfNeeded()
 		}, completion: { [weak self] _ in
 			guard let scrollView = self?.scrollView else { return }
-			self?.scrollViewDidScroll(scrollView)
-			self?.scrollViewDidEndDecelerating(scrollView)
+			self?.scrollViewDidScroll(scrollView: scrollView)
+			self?.scrollViewDidEndDecelerating(scrollView: scrollView)
 			completion?()
 		})
 	}
@@ -211,22 +179,18 @@ final class OnboardingViewController: UIViewController {
 	}
 	
 	@objc private func signUp() {
-		scrollTo(page: pageControl.numberOfPages)
+		// TODO: Implement :)
 	}
-	
-	@objc private func logIn() {
-		scrollTo(page: pageControl.numberOfPages + 1)
-	}
-	
+
 	@objc private func didBackSwipe(gestureRecognizer: UIScreenEdgePanGestureRecognizer) {
 		if scrollView.scrollEnabled {
 			return
 		}
 		
 		switch gestureRecognizer.state {
-		case .Began: startingOffset = scrollView.contentOffset.x
-		case .Changed: scrollView.contentOffset.x = startingOffset - gestureRecognizer.translationInView(view).x
-		case .Ended: snapToPage()
+		case .began: startingOffset = scrollView.contentOffset.x
+		case .changed: scrollView.contentOffset.x = startingOffset - gestureRecognizer.translationInView(view).x
+		case .ended: snapToPage()
 		default: break
 		}
 	}
@@ -258,6 +222,6 @@ extension OnboardingViewController: UIScrollViewDelegate {
 		pageControl.currentPage = min(pageControl.numberOfPages - 1, page)
 		currentViewController = viewControllers[page]
 		
-		scrollView.scrollEnabled = page < pageControl.numberOfPages
+		scrollView.isScrollEnabled = page < pageControl.numberOfPages
 	}
 }

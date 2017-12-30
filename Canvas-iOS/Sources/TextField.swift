@@ -16,10 +16,10 @@ final class TextField: UITextField {
 
 	override var placeholder: String? {
 		didSet {
-			guard let placeholder = placeholder, font = font else { return }
+			guard let placeholder = placeholder, let font = font else { return }
 			attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
-				NSFontAttributeName: font,
-				NSForegroundColorAttributeName: Swatch.darkGray
+				.font: font,
+				.foregroundColor: Swatch.darkGray
 			])
 		}
 	}
@@ -36,7 +36,7 @@ final class TextField: UITextField {
 
 		layer.cornerRadius = 4
 		
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateFont), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateFont), name: UIContentSizeCategoryDidChangeNotification, object: nil)
 		updateFont()
 	}
 
@@ -47,8 +47,8 @@ final class TextField: UITextField {
 	
 	// MARK: - UIView
 	
-	override func intrinsicContentSize() -> CGSize {
-		var size = super.intrinsicContentSize()
+	override var intrinsicContentSize: CGSize {
+		var size = super.intrinsicContentSize
 		size.height = 48
 		return size
 	}

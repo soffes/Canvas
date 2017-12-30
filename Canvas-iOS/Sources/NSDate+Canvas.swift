@@ -8,9 +8,9 @@
 
 import Foundation
 
-extension NSDate {
+extension Date {
 	var briefTimeAgoInWords: String {
-		let components = NSCalendar.currentCalendar().components([.Second, .Minute, .Hour, .Day, .Year], fromDate: self, toDate: NSDate(), options: [])
+		let components = Calendar.current.components([.second, .minute, .hour, .day, .year], fromDate: self, toDate: NSDate(), options: [])
 
 		if components.year > 0 {
 			return "\(components.year)y"

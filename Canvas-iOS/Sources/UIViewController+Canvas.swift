@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIViewController {
-	func present(actionSheet actionSheet: UIViewController, sender: AnyObject?, animated: Bool = true, completion: (() -> Void)? = nil) {
+	func present(actionSheet actionSheet: UIViewController, sender: Any?, animated: Bool = true, completion: (() -> Void)? = nil) {
 		if let popover = actionSheet.popoverPresentationController {
 			if let button = sender as? UIBarButtonItem {
 				popover.barButtonItem = button
@@ -23,7 +23,7 @@ extension UIViewController {
 		presentViewController(actionSheet, animated: animated, completion: completion)
 	}
 
-	func dismissDetailViewController(sender: AnyObject?) {
+	func dismissDetailViewController(sender: Any?) {
 		if let splitViewController = splitViewController, !splitViewController.collapsed {
 			splitViewController.dismissDetailViewController(sender)
 			return
@@ -43,7 +43,7 @@ extension UIViewController {
 
 
 extension UINavigationController {
-	override func dismissDetailViewController(sender: AnyObject?) {
+	override func dismissDetailViewController(sender: Any?) {
 		// Hack to fix nested navigation controllers that split view makes. Ugh.
 		if viewControllers.count == 1 {
 			navigationController?.popViewControllerAnimated(true)
@@ -55,7 +55,7 @@ extension UINavigationController {
 
 
 extension UISplitViewController {
-	override func dismissDetailViewController(sender: AnyObject?) {
+	override func dismissDetailViewController(sender: Any?) {
 		showDetailViewController(NavigationController(rootViewController: PlaceholderViewController()), sender: sender)
 	}
 }

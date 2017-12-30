@@ -12,21 +12,21 @@ final class ChromeActivity: WebActivity {
 
 	// MARK: - UIActivity
 
-	override func activityType() -> String? {
-		return "open-in-chrome"
+	override var activityType: UIActivityType? {
+		return UIActivityType(rawValue: "open-in-chrome")
 	}
 
-	override func activityTitle() -> String? {
-		return "Open in Chrome"
+	override var activityTitle: String? {
+		return "Open in Chrome" // TODO: Localize
 	}
 
-	override func activityImage() -> UIImage? {
+	override var activityImage: UIImage? {
 		return UIImage(named: "Chrome")
 	}
 
-	override func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool {
+	override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
 		for activityItem in activityItems {
-			if let activityURL = activityItem as? NSURL, chromeScheme = chromeSchemeForURL(activityURL), chromeURL = NSURL(string: "\(chromeScheme)://"), UIApplication.sharedApplication().canOpenURL(chromeURL) {
+			if let activityURL = activityItem as? URL, let chromeScheme = chromeScheme(for: activityURL), let chromeURL = URL(string: "\(chromeScheme)://"), UIApplication.shared.canOpenURL(chromeURL) {
 				return true
 			}
 		}
@@ -34,35 +34,40 @@ final class ChromeActivity: WebActivity {
 		return false
 	}
 
-	override func performActivity() {
-		guard let URL = self.URL else {
+	override func perform() {
+		guard let url = self.url else {
 			activityDidFinish(false)
 			return
 		}
 
 
-		guard let components = NSURLComponents(URL: URL, resolvingAgainstBaseURL: true),
-			chromeScheme = chromeSchemeForURL(URL)
-			else {
-				activityDidFinish(false)
-				return
+		guard var components = URLComponents(url: url, resolvingAgainstBaseURL: true),
+			let chromeScheme = chromeScheme(for: url)
+		else {
+			activityDidFinish(false)
+			return
 		}
 
 		components.scheme = chromeScheme
 
-		let completed = components.URL.flatMap { UIApplication.sharedApplication().openURL($0) } ?? false
-		activityDidFinish(completed)
+		guard let chromeURL = components.url else {
+			activityDidFinish(false)
+			return
+		}
+
+		UIApplication.shared.open(chromeURL)
+		activityDidFinish(true)
 	}
 
 
 	// MARK: - Private
 
-	private func chromeSchemeForURL(URL: NSURL) -> String? {
-		if URL.scheme == "http" {
+	private func chromeScheme(for url: URL) -> String? {
+		if url.scheme == "http" {
 			return "googlechrome"
 		}
 
-		if URL.scheme == "https" {
+		if url.scheme == "https" {
 			return "googlechromes"
 		}
 		

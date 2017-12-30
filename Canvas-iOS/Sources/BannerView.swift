@@ -39,7 +39,7 @@ final class BannerView: UIView {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
 		label.numberOfLines = 0
-		label.textAlignment = .Center
+		label.textAlignment = .center
 		return label
 	}()
 
@@ -54,16 +54,16 @@ final class BannerView: UIView {
 		textLabel.textColor = style.foregroundColor
 		addSubview(textLabel)
 
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateFont), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateFont), name: .UIContentSizeCategoryDidChange, object: nil)
 		updateFont()
 
-		NSLayoutConstraint.activateConstraints([
-			textLabel.centerXAnchor.constraintEqualToAnchor(centerXAnchor),
-			textLabel.centerYAnchor.constraintEqualToAnchor(centerYAnchor),
-			textLabel.leadingAnchor.constraintGreaterThanOrEqualToAnchor(leadingAnchor, constant: 16),
-			textLabel.trailingAnchor.constraintLessThanOrEqualToAnchor(trailingAnchor, constant: -16),
-			textLabel.topAnchor.constraintGreaterThanOrEqualToAnchor(topAnchor, constant: 12),
-			textLabel.bottomAnchor.constraintGreaterThanOrEqualToAnchor(bottomAnchor, constant: -12),
+		NSLayoutConstraint.activate([
+			textLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+			textLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+			textLabel.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 16),
+			textLabel.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -16),
+			textLabel.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: 12),
+			textLabel.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: -12),
 		])
 	}
 	

@@ -9,9 +9,9 @@
 import UIKit
 
 extension UIActivity {
-	func showBanner(text text: String, style: BannerView.Style = .success) {
+	func showBanner(text: String, style: BannerView.Style = .success) {
 		guard let rootViewController = UIApplication.sharedApplication().delegate?.window??.rootViewController as? RootViewController,
-			splitViewController = rootViewController.viewController as? SplitViewController,
+			let splitViewController = rootViewController.viewController as? SplitViewController,
 			var viewController = splitViewController.viewControllers.last
 		else { return }
 

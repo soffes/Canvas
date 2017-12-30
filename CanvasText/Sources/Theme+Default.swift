@@ -177,7 +177,7 @@ extension Theme {
 		}
 
 		else if span is Strikethrough {
-			attributes[.strikethroughStyle] = NSUnderlineStyle.styleThick.rawValue as AnyObject
+			attributes[.strikethroughStyle] = NSUnderlineStyle.styleThick.rawValue as Any
 			attributes[.strikethroughColor] = strikethroughColor
 			attributes[.foregroundColor] = strikethroughColor
 		}

@@ -26,7 +26,7 @@ final class BillboardView: UIStackView {
 		let label = UILabel()
 		label.textColor = Swatch.darkGray
 		label.numberOfLines = 0
-		label.textAlignment = .Center
+		label.textAlignment = .center
 		return label
 	}()
 	
@@ -40,10 +40,10 @@ final class BillboardView: UIStackView {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		
-		axis = .Vertical
-		alignment = .Center
+		axis = .vertical
+		alignment = .center
 		layoutMargins = UIEdgeInsets(top: 16, left: 32, bottom: 16, right: 32)
-		layoutMarginsRelativeArrangement = true
+		isLayoutMarginsRelativeArrangement = true
 		
 		addArrangedSubview(illustrationView)
 		addSpace(32)
@@ -51,11 +51,11 @@ final class BillboardView: UIStackView {
 		addSpace(8)
 		addArrangedSubview(subtitleLabel)
 		
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateFonts), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateFonts), name: .UIContentSizeCategoryDidChange, object: nil)
 		updateFonts()
 	}
 	
-	required init?(coder aDecoder: NSCoder) {
+	required init(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	

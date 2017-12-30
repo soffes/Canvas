@@ -9,7 +9,6 @@
 import UIKit
 import Static
 import CanvasCore
-import CanvasKit
 import CanvasText
 
 final class CanvasCell: UITableViewCell {
@@ -30,7 +29,7 @@ final class CanvasCell: UITableViewCell {
 		label.backgroundColor = Swatch.white
 		label.textColor = Swatch.black
 		label.highlightedTextColor = Swatch.white
-		label.setContentCompressionResistancePriority(UILayoutPriorityDefaultLow, forAxis: .Horizontal)
+		label.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
 		return label
 	}()
 
@@ -49,7 +48,7 @@ final class CanvasCell: UITableViewCell {
 		label.backgroundColor = Swatch.white
 		label.textColor = Swatch.darkGray
 		label.highlightedTextColor = Swatch.white
-		label.textAlignment = .Right
+		label.textAlignment = .right
 		return label
 	}()
 
@@ -84,7 +83,7 @@ final class CanvasCell: UITableViewCell {
 	// MARK: - Initializers
 
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-		super.init(style: .Subtitle, reuseIdentifier: reuseIdentifier)
+		super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
 
 		let view = UIView()
 		view.backgroundColor = tintColor
@@ -99,26 +98,26 @@ final class CanvasCell: UITableViewCell {
 
 		let verticalSpacing: CGFloat = 2
 
-		NSLayoutConstraint.activateConstraints([
-			NSLayoutConstraint(item: iconView, attribute: .Leading, relatedBy: .Equal, toItem: contentView, attribute: .LeadingMargin, multiplier: 1, constant: 0),
-			iconView.widthAnchor.constraintEqualToConstant(28),
-			iconView.heightAnchor.constraintEqualToConstant(28),
-			iconView.centerYAnchor.constraintEqualToAnchor(contentView.centerYAnchor),
+		NSLayoutConstraint.activate([
+			iconView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+			iconView.widthAnchor.constraint(equalToConstant: 28),
+			iconView.heightAnchor.constraint(equalToConstant: 28),
+			iconView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
 
-			titleLabel.bottomAnchor.constraintEqualToAnchor(contentView.centerYAnchor, constant: -verticalSpacing),
-			titleLabel.leadingAnchor.constraintEqualToAnchor(iconView.trailingAnchor, constant: 8),
-			titleLabel.trailingAnchor.constraintLessThanOrEqualToAnchor(timeLabel.leadingAnchor),
+			titleLabel.bottomAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -verticalSpacing),
+			titleLabel.leadingAnchor.constraint(equalTo: iconView.trailingAnchor, constant: 8),
+			titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: timeLabel.leadingAnchor),
 
-			summaryLabel.topAnchor.constraintEqualToAnchor(contentView.centerYAnchor, constant: verticalSpacing),
-			summaryLabel.leadingAnchor.constraintEqualToAnchor(titleLabel.leadingAnchor),
-			summaryLabel.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor, constant: -8),
+			summaryLabel.topAnchor.constraint(equalTo: contentView.centerYAnchor, constant: verticalSpacing),
+			summaryLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+			summaryLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
 
-			NSLayoutConstraint(item: timeLabel, attribute: .Baseline, relatedBy: .Equal, toItem: titleLabel, attribute: .Baseline, multiplier: 1, constant: 0),
-			timeLabel.trailingAnchor.constraintEqualToAnchor(summaryLabel.trailingAnchor),
-			timeLabel.widthAnchor.constraintLessThanOrEqualToConstant(100)
+			timeLabel.firstBaselineAnchor.constraint(equalTo: titleLabel.firstBaselineAnchor),
+			timeLabel.trailingAnchor.constraint(equalTo: summaryLabel.trailingAnchor),
+			timeLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 100)
 		])
 		
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateFonts), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateFonts), name: .UIContentSizeCategoryDidChange, object: nil)
 		updateFonts()
 	}
 
@@ -137,12 +136,12 @@ final class CanvasCell: UITableViewCell {
 
 	// MARK: - UITableViewCell
 
-	override func setHighlighted(highlighted: Bool, animated: Bool) {
+	override func setHighlighted(_ highlighted: Bool, animated: Bool) {
 		super.setHighlighted(highlighted, animated: animated)
 		updateHighlighted()
 	}
 
-	override func setSelected(selected: Bool, animated: Bool) {
+	override func setSelected(_ selected: Bool, animated: Bool) {
 		super.setSelected(selected, animated: animated)
 		updateHighlighted()
 	}
@@ -151,9 +150,9 @@ final class CanvasCell: UITableViewCell {
 	// MARK: - Private
 
 	private func updateHighlighted() {
-		iconView.highlighted = highlighted || selected
+		iconView.isHighlighted = isHighlighted || isSelected
 
-		if highlighted || selected {
+		if iconView.isHighlighted {
 			disclosureIndicatorView.tintColor = Swatch.white
 		} else {
 			disclosureIndicatorView.tintColor = canvas?.archivedAt == nil ? Swatch.cellDisclosureIndicator : Swatch.lightGray
@@ -168,8 +167,8 @@ final class CanvasCell: UITableViewCell {
 }
 
 
-extension CanvasCell: CellType {
-	func configure(row row: Row) {
+extension CanvasCell: Cell {
+	func configure(row: Row) {
 		titleLabel.text = row.text
 
 		if let summary = row.detailText, !summary.isEmpty {

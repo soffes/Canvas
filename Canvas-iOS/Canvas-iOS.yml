@@ -5,10 +5,8 @@ targets:
       type: application
       platform: iOS
       sources:
-        - Canvas-iOS/Sources/TempAppDelegate.swift
-        - Canvas-iOS/Support/Assets.xcassets
-        - Canvas-iOS/Support/Base.lproj
-        - Canvas-iOS/Support/Settings.bundle
+        - Canvas-iOS/Sources
+        - Canvas-iOS/Resources
       settings:
         PRODUCT_NAME: Canvas
         PRODUCT_BUNDLE_IDENTIFIER: com.usecanvas.canvas
@@ -24,4 +22,6 @@ targets:
           embed: True
         - carthage: Cache
         - carthage: Diff
+        - carthage: GradientView
+        - carthage: Static
         - carthage: X

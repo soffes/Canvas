@@ -17,7 +17,7 @@ final class DragProgressView: UIView {
 		let view = UIImageView()
 		view.translatesAutoresizingMaskIntoConstraints = false
 		view.tintColor = Swatch.gray
-		view.contentMode = .Center
+		view.contentMode = .center
 		return view
 	}()
 
@@ -27,28 +27,28 @@ final class DragProgressView: UIView {
 	init(icon: UIImage?, isLeading: Bool) {
 		super.init(frame: .zero)
 		backgroundColor = Swatch.extraLightGray
-		userInteractionEnabled = false
+		isUserInteractionEnabled = false
 
 		imageView.image = icon
 		addSubview(imageView)
 
-		imageView.centerYAnchor.constraintEqualToAnchor(centerYAnchor).active = true
+		imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 
 		if isLeading {
-			let x = imageView.trailingAnchor.constraintEqualToAnchor(trailingAnchor, constant: -8)
-			x.priority = UILayoutPriorityDefaultLow
+			let x = imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+			x.priority = .defaultLow
 
-			NSLayoutConstraint.activateConstraints([
+			NSLayoutConstraint.activate([
 				x,
-				imageView.trailingAnchor.constraintLessThanOrEqualToAnchor(leadingAnchor, constant: DragContext.threshold)
+				imageView.trailingAnchor.constraint(lessThanOrEqualTo: leadingAnchor, constant: DragContext.threshold)
 			])
 		} else {
-			let x = imageView.leadingAnchor.constraintEqualToAnchor(leadingAnchor, constant: 8)
-			x.priority = UILayoutPriorityDefaultLow
+			let x = imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8)
+			x.priority = .defaultLow
 
-			NSLayoutConstraint.activateConstraints([
+			NSLayoutConstraint.activate([
 				x,
-				imageView.leadingAnchor.constraintGreaterThanOrEqualToAnchor(trailingAnchor, constant: -DragContext.threshold)
+				imageView.leadingAnchor.constraint(greaterThanOrEqualTo: trailingAnchor, constant: -DragContext.threshold)
 			])
 		}
 	}
@@ -60,7 +60,7 @@ final class DragProgressView: UIView {
 
 	// MARK: - Translation
 
-	func translate(x x: CGFloat) {
+	func translate(x: CGFloat) {
 		let progress = min(abs(x) / DragContext.threshold, 1)
 		imageView.tintColor = Swatch.extraLightGray.interpolateTo(color: Swatch.darkGray, progress: progress)
 	}

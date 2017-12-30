@@ -24,23 +24,23 @@ final class NavigationController: UINavigationController {
 
 		viewControllers = [rootViewController]
 
-		updateTintColor(view.tintColor)
+		updateTintColor(with: view.tintColor)
 
 		delegate = self
 	}
 
-	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nil, bundle: nil)
 	}
 	
-	required init?(coder aDecoder: NSCoder) {
+	required init(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 
 
 	// MARK: - Private
 
-	private func updateTintColor(viewController: UIViewController) {
+	private func updateTintColor(with viewController: UIViewController) {
 		var target = viewController
 
 		// Handle nested navigation controllers for when the split view is collapsed
@@ -49,10 +49,10 @@ final class NavigationController: UINavigationController {
 		}
 
 		let tintColor = (target as? TintableEnvironment)?.preferredTintColor
-		updateTintColor(tintColor)
+		updateTintColor(with: tintColor)
 	}
 
-	private func updateTintColor(tintColor: UIColor?) {
+	private func updateTintColor(with tintColor: UIColor?) {
 		let itemsColor = tintColor ?? defaultTintColor
 		view.tintColor = itemsColor
 		navigationBar.tintColor = itemsColor
@@ -64,8 +64,7 @@ extension NavigationController: UINavigationControllerDelegate {
 	func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
 		// Call didShow if the animation is canceled
 		transitionCoordinator()?.notifyWhenInteractionEndsUsingBlock { [weak self] context in
-			guard context.isCancelled() else { return }
-			guard let delegate = self, from = context.viewControllerForKey(UITransitionContextFromViewControllerKey) else { return }
+			guard context.isCancelled(), let delegate = self, let from = context.viewControllerForKey(UITransitionContextFromViewControllerKey) else { return }
 			delegate.navigationController(navigationController, willShowViewController: from, animated: animated)
 
 			let animationCompletion = context.transitionDuration() * NSTimeInterval(context.percentComplete())

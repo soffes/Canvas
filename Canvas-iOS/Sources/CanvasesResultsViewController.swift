@@ -8,7 +8,6 @@
 
 import UIKit
 import CanvasCore
-import CanvasKit
 
 final class CanvasesResultsViewController: CanvasesViewController {
 
@@ -17,18 +16,16 @@ final class CanvasesResultsViewController: CanvasesViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		canRefresh = false
-
 		let line = LineView()
 		line.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(line)
 
-		NSLayoutConstraint.activateConstraints([
+		NSLayoutConstraint.activate([
 			// Add search bar height :(
-			line.topAnchor.constraintEqualToAnchor(topLayoutGuide.bottomAnchor, constant: 44),
+			line.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 44),
 			
-			line.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor),
-			line.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor)
+			line.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			line.trailingAnchor.constraint(equalTo: view.trailingAnchor)
 		])
 	}
 }

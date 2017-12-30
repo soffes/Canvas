@@ -108,7 +108,7 @@ public final class TextController: NSObject {
 	#if !os(OSX)
 		public var traitCollection = UITraitCollection(horizontalSizeClass: .unspecified) {
 			didSet {
-				traitCollectionDidChange(previousTraitCollection: oldValue)
+				traitCollectionDidChange(oldValue)
 			}
 		}
 	#endif
@@ -158,13 +158,13 @@ public final class TextController: NSObject {
 	// MARK: - Traits
 
 	#if !os(OSX)
-		public func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+		public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 			layoutAttachments()
 			annotationsController.horizontalSizeClass = traitCollection.horizontalSizeClass
 		}
 	#endif
 
-	public func setTintColor(tintColor: Color) {
+	public func set(tintColor: Color) {
 		guard tintColor != theme.tintColor else { return }
 
 		theme.tintColor = tintColor

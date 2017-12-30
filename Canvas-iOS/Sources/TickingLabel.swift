@@ -12,15 +12,15 @@ final class TickingLabel: UILabel {
 
 	// MARK: - Properties
 
-	var date: NSDate? {
+	var date: Date? {
 		didSet {
 			tick()
 		}
 	}
 
-	private static var timer: NSTimer?
-	private static let tickNotificationName = "TickingLabel.tickNotification"
-	private static var setupToken: dispatch_once_t = 0
+	private static var timer: Timer?
+	private static let tickNotification = Notification.Name(rawValue: "TickingLabel.tickNotification")
+	private static var isTimerSetup = false
 
 
 	// MARK: - Initializers
@@ -28,11 +28,9 @@ final class TickingLabel: UILabel {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(tick), name: self.dynamicType.tickNotificationName, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(tick), name: type(of: self).tickNotification, object: nil)
 
-		dispatch_once(&self.dynamicType.setupToken) {
-			self.dynamicType.setupTimer()
-		}
+		type(of: self).setupTimer()
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -43,13 +41,19 @@ final class TickingLabel: UILabel {
 	// MARK: - Private
 
 	private class func setupTimer() {
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(applicationWillResignActive), name: UIApplicationWillResignActiveNotification, object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplicationDidBecomeActiveNotification, object: nil)
+		if isTimerSetup {
+			return
+		}
+
+		NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: .UIApplicationWillResignActive, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: .UIApplicationDidBecomeActive, object: nil)
 		applicationDidBecomeActive()
+
+		isTimerSetup = true
 	}
 
 	@objc private class func fire() {
-		NSNotificationCenter.defaultCenter().postNotificationName(tickNotificationName, object: nil)
+		NotificationCenter.default.post(name: tickNotification, object: nil)
 	}
 
 	@objc private class func applicationWillResignActive() {
@@ -58,11 +62,11 @@ final class TickingLabel: UILabel {
 	}
 
 	@objc private class func applicationDidBecomeActive() {
-		let timer = NSTimer(timeInterval: 1, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
+		let timer = Timer(timeInterval: 1, target: self, selector: #selector(fire), userInfo: nil, repeats: true)
 		timer.tolerance = 0.5
 		self.timer = timer
 
-		NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+		RunLoop.main.addTimer(timer, forMode: .commonModes)
 	}
 
 	@objc private func tick() {

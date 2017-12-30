@@ -29,7 +29,7 @@ class StackViewController: UIViewController {
 		
 		didSet {
 			guard let new = centerYConstraint else { return }
-			NSLayoutConstraint.activateConstraints([new])
+			NSLayoutConstraint.activate([new])
 		}
 	}
 	
@@ -50,24 +50,24 @@ class StackViewController: UIViewController {
 		view.backgroundColor = Swatch.white
 		view.addSubview(stackView)
 		
-		let width = stackView.widthAnchor.constraintEqualToAnchor(view.widthAnchor, multiplier: 0.8)
+		let width = stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
 		width.priority = UILayoutPriorityDefaultHigh
 		
-		let top = stackView.topAnchor.constraintGreaterThanOrEqualToAnchor(view.topAnchor, constant: 64)
+		let top = stackView.topAnchor.constraint(greaterThanOrEqualTo: view.topAnchor, constant: 64)
 		top.priority = UILayoutPriorityDefaultLow
 		
-		NSLayoutConstraint.activateConstraints([
-			stackView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor),
+		NSLayoutConstraint.activate([
+			stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 			top,
 			width,
-			stackView.widthAnchor.constraintLessThanOrEqualToConstant(400)
+			stackView.widthAnchor.constraint(lessThanOrEqualToConstant: 400)
 		])
 		
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIKeyboardWillChangeFrameNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: .UIKeyboardWillChangeFrame, object: nil)
 		keyboardFrameDidChange()
 	}
 	
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
 		DispatchQueue.main.async { [weak self] in
@@ -75,7 +75,7 @@ class StackViewController: UIViewController {
 		}
 	}
 	
-	override func viewDidDisappear(animated: Bool) {
+	override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 		visible = false
 	}
@@ -84,11 +84,11 @@ class StackViewController: UIViewController {
 	// MARK: - Private
 	
 	@objc private func keyboardWillChangeFrame(notification: NSNotification) {
-		guard let dictionary = notification.userInfo as? [String: AnyObject],
-			duration = dictionary[UIKeyboardAnimationDurationUserInfoKey] as? NSTimeInterval,
-			curve = (dictionary[UIKeyboardAnimationCurveUserInfoKey] as? Int).flatMap(UIViewAnimationCurve.init),
-			rect = (dictionary[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue()
-			else { return }
+		guard let dictionary = notification.userInfo as? [String: Any],
+			let duration = dictionary[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval,
+			let curve = (dictionary[UIKeyboardAnimationCurveUserInfoKey] as? Int).flatMap(UIViewAnimationCurve.init),
+			let rect = (dictionary[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+		else { return }
 		
 		let frame = view.convertRect(rect, fromView: nil)
 		
@@ -110,7 +110,7 @@ class StackViewController: UIViewController {
 	
 	private func keyboardFrameDidChange() {
 		guard let keyboardFrame = keyboardFrame else {
-			centerYConstraint = stackView.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor)
+			centerYConstraint = stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
 			return
 		}
 		
@@ -119,7 +119,7 @@ class StackViewController: UIViewController {
 		rect.origin.y += UIApplication.sharedApplication().statusBarFrame.size.height
 		rect.size.height -= UIApplication.sharedApplication().statusBarFrame.size.height
 		
-		let contstraint = stackView.centerYAnchor.constraintEqualToAnchor(view.topAnchor, constant: rect.midY)
+		let contstraint = stackView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: rect.midY)
 		contstraint.priority = UILayoutPriorityDefaultHigh
 		
 		centerYConstraint = contstraint

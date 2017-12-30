@@ -51,18 +51,18 @@ class TableViewController: UIViewController {
 
 		view.addSubview(tableView)
 
-		NSLayoutConstraint.activateConstraints([
-			tableView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor),
-			tableView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor),
-			tableView.topAnchor.constraintEqualToAnchor(view.topAnchor),
-			tableView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor),
+		NSLayoutConstraint.activate([
+			tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+			tableView.topAnchor.constraint(equalTo: view.topAnchor),
+			tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 		])
 
 		dataSource.automaticallyDeselectRows = false
 		dataSource.tableView = tableView
 	}
 
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 
 		tableView.indexPathsForSelectedRows?.forEach { indexPath in

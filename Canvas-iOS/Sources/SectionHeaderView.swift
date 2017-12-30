@@ -36,14 +36,14 @@ class SectionHeaderView: UIView {
 
 		addSubview(textLabel)
 
-		NSLayoutConstraint.activateConstraints([
-			textLabel.leadingAnchor.constraintEqualToAnchor(leadingAnchor, constant: 16),
-			textLabel.trailingAnchor.constraintLessThanOrEqualToAnchor(trailingAnchor, constant: -16),
-			textLabel.topAnchor.constraintEqualToAnchor(topAnchor, constant: 4),
-			textLabel.bottomAnchor.constraintEqualToAnchor(bottomAnchor, constant: -4)
+		NSLayoutConstraint.activate([
+			textLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+			textLabel.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -16),
+			textLabel.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+			textLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4)
 		])
 		
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateFont), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateFont), name: UIContentSizeCategoryDidChangeNotification, object: nil)
 		updateFont()
 	}
 	

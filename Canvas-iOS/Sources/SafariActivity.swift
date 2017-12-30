@@ -24,7 +24,7 @@ final class SafariActivity: WebActivity {
 		return UIImage(named: "Safari")
 	}
 
-	override func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool {
+	override func canPerformWithActivityItems(activityItems: [Any]) -> Bool {
 		for activityItem in activityItems {
 			if let URL = activityItem as? NSURL, UIApplication.sharedApplication().canOpenURL(URL) {
 				return true

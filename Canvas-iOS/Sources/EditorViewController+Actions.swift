@@ -14,16 +14,16 @@ extension EditorViewController {
 		navigationController?.dismissViewControllerAnimated(true, completion: nil)
 	}
 
-	func close(sender: UIAlertAction? = nil) {
-		NSNotificationCenter.defaultCenter().postNotificationName(EditorViewController.willCloseNotificationName, object: nil)
+	@objc func close(_ sender: UIAlertAction? = nil) {
+		NotificationCenter.default.postNotificationName(EditorViewController.willCloseNotificationName, object: nil)
 		dismissDetailViewController(self)
 	}
 	
-	func dismissKeyboard(sender: AnyObject?) {
+	@objc func dismissKeyboard() {
 		textView.resignFirstResponder()
 	}
 
-	func more(sender: AnyObject?) {
+	@objc func more() {
 		// If you can't edit the document, all you can do is share.
 		if !canvas.isWritable {
 			share(sender)
@@ -64,72 +64,12 @@ extension EditorViewController {
 		present(actionSheet: actionSheet, sender: sender)
 	}
 
-	func showArchive(sender: AnyObject?) {
-		let actionSheet = UIAlertController(title: nil, message: LocalizedString.ArchiveCanvasMessage.string, preferredStyle: .ActionSheet)
-		actionSheet.addAction(UIAlertAction(title: LocalizedString.DeleteButton.string, style: .Destructive, handler: destroy))
-		actionSheet.addAction(UIAlertAction(title: LocalizedString.ArchiveButton.string, style: .Default, handler: archive))
-		actionSheet.addAction(UIAlertAction(title: LocalizedString.Cancel.string, style: .Cancel, handler: nil))
-		present(actionSheet: actionSheet, sender: sender)
-	}
-
-	func archive(sender: AnyObject?) {
-		APIClient(account: account).archiveCanvas(id: canvas.id)
-		close()
-	}
-
-	func unarchive(sender: AnyObject?) {
-		APIClient(account: account).unarchiveCanvas(id: canvas.id) { [weak self] result in
-			DispatchQueue.main.async {
-				switch result {
-				case .Success(_): self?.showBanner(text: "Unarchived canvas", style: .success) // TODO: Localize
-				case .Failure(_): self?.showBanner(text: "Failed to unarchive canvas", style: .failure) // TODO: Localize
-				}
-			}
-		}
-	}
-
-	func destroy(sender: AnyObject?) {
+	@objc func destroy(sender: Any?) {
 		APIClient(account: account).destroyCanvas(id: canvas.id)
 		close()
 	}
 
-	func enablePublicEdits(sender: AnyObject?) {
-		APIClient(account: account).changePublicEdits(id: canvas.id, enabled: true) { [weak self] result in
-			DispatchQueue.main.async {
-				switch result {
-				case .Success(let canvas):
-					self?.canvas = canvas
-					self?.showBanner(text: "Enabled public edits", style: .success) // TODO: Localize
-				case .Failure(_):
-					self?.showBanner(text: "Failed to enable public edits", style: .failure) // TODO: Localize
-				}
-			}
-		}
-	}
-
-	func disablePublicEdits(sender: AnyObject?) {
-		APIClient(account: account).changePublicEdits(id: canvas.id, enabled: false) { [weak self] result in
-			DispatchQueue.main.async {
-				switch result {
-				case .Success(let canvas):
-					self?.canvas = canvas
-					self?.showBanner(text: "Disabled public edits", style: .success) // TODO: Localize
-				case .Failure(_):
-					self?.showBanner(text: "Failed to disable public edits", style: .failure) // TODO: Localize
-				}
-			}
-		}
-	}
-
-	func showParticipants(sender: AnyObject?) {
-		showingParticipants = true
-		let viewController = PresenceViewController(canvas: canvas, presenceController: presenceController)
-		let navigationController = NavigationController(rootViewController: viewController)
-		navigationController.modalPresentationStyle = .FormSheet
-		presentViewController(navigationController, animated: true, completion: nil)
-	}
-	
-	func share(sender: AnyObject?) {
+	@objc func share(sender: Any?) {
 		dismissKeyboard(sender)
 		
 		guard let item = CanvasActivitySource(canvas: canvas) else { return }
@@ -158,51 +98,51 @@ extension EditorViewController {
 		present(actionSheet: actionSheet, sender: sender)
 	}
 	
-	func check() {
+	@objc func check() {
 		textController.toggleChecked()
 	}
 	
-	func indent() {
+	@objc func indent() {
 		textController.indent()
 	}
 	
-	func outdent() {
+	@objc func outdent() {
 		textController.outdent()
 	}
 	
-	func bold() {
+	@objc func bold() {
 		textController.bold()
 	}
 	
-	func italic() {
+	@objc func italic() {
 		textController.italic()
 	}
 	
-	func inlineCode() {
+	@objc func inlineCode() {
 		textController.inlineCode()
 	}
 	
-	func insertLineAfter() {
+	@objc func insertLineAfter() {
 		textController.insertLineAfter()
 	}
 	
-	func insertLineBefore() {
+	@objc func insertLineBefore() {
 		textController.insertLineBefore()
 	}
 	
-	func deleteLine() {
+	@objc func deleteLine() {
 		textController.deleteLine()
 	}
 
-	func swapLineUp() {
+	@objc func swapLineUp() {
 		textController.swapLineUp()
 	}
 
-	func swapLineDown() {
+	@objc func swapLineDown() {
 		textController.swapLineDown()
 	}
 	
-	func reload(sender: UIAlertAction? = nil) {
+	@objc func reload(sender: UIAlertAction? = nil) {
 		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 		title = LocalizedString.Connecting.string
 		textController.connect()

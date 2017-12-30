@@ -14,12 +14,12 @@ final class AlertController: UIAlertController {
 	// MARK: - Properties
 
 	/// Used when return is pressed while the controller is showing
-	var primaryAction: (Void -> Void)?
+	var primaryAction: (() -> Void)?
 
 
 	// MARK: - UIResponder
 
-	override func canBecomeFirstResponder() -> Bool {
+	override var canBecomeFirstResponder: Bool {
 		return true
 	}
 
@@ -33,21 +33,21 @@ final class AlertController: UIAlertController {
 
 	// MARK: - UIViewController
 
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 
-		adjustSubviews([view])
+		adjust([view])
 	}
 
 
 	// MARK: - Actions
 
-	func cancel(sender: AnyObject?) {
-		dismissViewControllerAnimated(true, completion: nil)
+	@objc func cancel() {
+		dismiss(animated: true, completion: nil)
 	}
 
-	func selectFirstAction(sender: AnyObject?) {
-		dismissViewControllerAnimated(true) {
+	@objc func selectFirstAction() {
+		dismiss(animated: true) {
 			self.primaryAction?()
 		}
 	}
@@ -55,39 +55,39 @@ final class AlertController: UIAlertController {
 
 	// MARK: - Private
 
-	private func adjustSubviews(subviews: [UIView]) {
+	private func adjust(_ subviews: [UIView]) {
 		for subview in subviews {
 			if let label = subview as? UILabel {
-				adjustLabel(label)
+				adjust(label)
 			} else if subview.bounds.height > 0 && subview.bounds.height <= 1 {
 				subview.backgroundColor = Swatch.border
 			}
 
-			adjustSubviews(subview.subviews)
+			adjust(subview.subviews)
 		}
 	}
 
-	private func adjustLabel(label: UILabel) {
+	private func adjust(_ label: UILabel) {
 		for action in actions {
 			if label.text == title {
 				label.attributedText = NSAttributedString(string: label.text ?? "", attributes: [
-					NSFontAttributeName: label.font,
-					NSForegroundColorAttributeName: Swatch.darkGray
+					.font: label.font,
+					.foregroundColor: Swatch.darkGray
 				])
 				return
 			}
 
 			if label.text == action.title {
 				switch action.style {
-				case .Default, .Cancel:
+				case .default, .cancel:
 					label.attributedText = NSAttributedString(string: label.text ?? "", attributes: [
-						NSFontAttributeName: label.font,
-						NSForegroundColorAttributeName: Swatch.brand
+						.font: label.font,
+						.foregroundColor: Swatch.brand
 					])
-				case .Destructive:
+				case .destructive:
 					label.attributedText = NSAttributedString(string: label.text ?? "", attributes: [
-						NSFontAttributeName: label.font,
-						NSForegroundColorAttributeName: Swatch.destructive
+						.font: label.font,
+						.foregroundColor: Swatch.destructive
 					])
 				}
 			}

@@ -14,8 +14,8 @@ final class DragBackgroundView: UIView {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 
-		backgroundColor = .whiteColor()
-		userInteractionEnabled = false
+		backgroundColor = .white
+		isUserInteractionEnabled = false
 
 		let topBorder = LineView()
 		topBorder.translatesAutoresizingMaskIntoConstraints = false
@@ -25,14 +25,14 @@ final class DragBackgroundView: UIView {
 		bottomBorder.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(bottomBorder)
 
-		NSLayoutConstraint.activateConstraints([
-			topBorder.leadingAnchor.constraintEqualToAnchor(leadingAnchor),
-			topBorder.trailingAnchor.constraintEqualToAnchor(trailingAnchor),
-			topBorder.bottomAnchor.constraintEqualToAnchor(topAnchor),
+		NSLayoutConstraint.activate([
+			topBorder.leadingAnchor.constraint(equalTo: leadingAnchor),
+			topBorder.trailingAnchor.constraint(equalTo: trailingAnchor),
+			topBorder.bottomAnchor.constraint(equalTo: topAnchor),
 
-			bottomBorder.leadingAnchor.constraintEqualToAnchor(leadingAnchor),
-			bottomBorder.trailingAnchor.constraintEqualToAnchor(trailingAnchor),
-			bottomBorder.topAnchor.constraintEqualToAnchor(bottomAnchor)
+			bottomBorder.leadingAnchor.constraint(equalTo: leadingAnchor),
+			bottomBorder.trailingAnchor.constraint(equalTo: trailingAnchor),
+			bottomBorder.topAnchor.constraint(equalTo: bottomAnchor)
 		])
 	}
 	

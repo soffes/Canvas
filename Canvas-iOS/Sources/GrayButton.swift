@@ -25,7 +25,7 @@ final class GrayButton: UIButton {
 		setTitleColor(Swatch.black, forState: .Highlighted)
 		setTitleColor(Swatch.extraLightGray, forState: .Disabled)
 
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateFont), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateFont), name: UIContentSizeCategoryDidChangeNotification, object: nil)
 		updateFont()
 	}
 
@@ -36,8 +36,8 @@ final class GrayButton: UIButton {
 
 	// MARK: - UIView
 
-	override func intrinsicContentSize() -> CGSize {
-		var size = super.intrinsicContentSize()
+	override var intrinsicContentSize: CGSize {
+		var size = super.intrinsicContentSize
 		size.height = 32
 		size.width += 32 * 2
 		return size

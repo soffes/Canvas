@@ -17,16 +17,16 @@ class PillButton: UIButton {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		
-		backgroundColor = .clearColor()
+		backgroundColor = .clear
 
 		layer.cornerRadius = 24
 		layer.borderWidth = 2
 
-		setTitleColor(Swatch.brand, forState: .Normal)
-		setTitleColor(Swatch.lightBlue, forState: .Highlighted)
-		setTitleColor(Swatch.darkGray, forState: .Disabled)
+		setTitleColor(Swatch.brand, for: .normal)
+		setTitleColor(Swatch.lightBlue, for: .highlighted)
+		setTitleColor(Swatch.darkGray, for: .disabled)
 
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateFont), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateFont), name: .UIContentSizeCategoryDidChange, object: nil)
 		updateFont()
 		updateBorderColor()
 	}
@@ -38,8 +38,8 @@ class PillButton: UIButton {
 	
 	// MARK: - UIView
 	
-	override func intrinsicContentSize() -> CGSize {
-		var size = super.intrinsicContentSize()
+	override var intrinsicContentSize: CGSize {
+		var size = super.intrinsicContentSize
 		size.height = 48
 		size.width += 32 * 2
 		return size
@@ -48,19 +48,19 @@ class PillButton: UIButton {
 
 	// MARK: - UIControl
 
-	override var enabled: Bool {
+	override var isEnabled: Bool {
 		didSet {
 			updateBorderColor()
 		}
 	}
 
-	override var highlighted: Bool {
+	override var isHighlighted: Bool {
 		didSet {
 			updateBorderColor()
 		}
 	}
 
-	override var selected: Bool {
+	override var isSelected: Bool {
 		didSet {
 			updateBorderColor()
 		}
@@ -70,7 +70,7 @@ class PillButton: UIButton {
 	// MARK: - Private
 
 	private func updateBorderColor() {
-		layer.borderColor = titleColorForState(state)?.CGColor
+		layer.borderColor = titleColor(for: state)?.cgColor
 	}
 	
 	@objc func updateFont() {

@@ -12,5 +12,8 @@ targets:
   CanvasCoreResources:
     type: bundle
     platform: iOS
+    settings:
+      CODE_SIGN_STYLE: Manual
+      INFOPLIST_FILE: $(SRCROOT)/Support/ResourceBundle-Info.plist
     sources:
-      - CanvasCore/Support/en.lproj
+      - CanvasCore/Resources

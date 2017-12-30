@@ -17,9 +17,9 @@ final class SplitViewController: UISplitViewController {
 
 	// MARK: - Initializers
 
-	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nil, bundle: nil)
-		preferredDisplayMode = .AllVisible
+		preferredDisplayMode = .allVisible
 		delegate = self
 	}
 	
@@ -56,10 +56,10 @@ final class SplitViewController: UISplitViewController {
 		maximumPrimaryColumnWidth = width
 	}
 
-	override func showViewController(viewController: UIViewController, sender: AnyObject?) {
+	override func show(_ viewController: UIViewController, sender: Any?) {
 		// Prevent weird animation *sigh*
 		UIView.performWithoutAnimation {
-			super.showViewController(viewController, sender: sender)
+			super.show(viewController, sender: sender)
 			self.view.layoutIfNeeded()
 			viewController.view.layoutIfNeeded()
 		}
@@ -69,9 +69,9 @@ final class SplitViewController: UISplitViewController {
 	// MARK: - Private
 
 	@objc private func toggleSidebar() {
-		let mode: UISplitViewControllerDisplayMode = displayMode == .AllVisible ? .PrimaryHidden : .AllVisible
+		let mode: UISplitViewControllerDisplayMode = displayMode == .allVisible ? .primaryHidden : .allVisible
 
-		UIView.animateWithDuration(0.2) {
+		UIView.animate(withDuration: 0.2) {
 			self.preferredDisplayMode = mode
 		}
 	}
@@ -123,7 +123,7 @@ extension SplitViewController: UISplitViewControllerDelegate {
 		return NavigationController(rootViewController: detailViewController)
 	}
 
-	func splitViewController(splitViewController: UISplitViewController, showDetailViewController viewController: UIViewController, sender: AnyObject?) -> Bool {
+	func splitViewController(splitViewController: UISplitViewController, showDetailViewController viewController: UIViewController, sender: Any?) -> Bool {
 		var detail = viewController
 		if let top = (detail as? UINavigationController)?.topViewController {
 			detail = top
@@ -134,7 +134,7 @@ extension SplitViewController: UISplitViewControllerDelegate {
 			detail.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "SidebarLeft"), style: .Plain, target: self, action: #selector(toggleSidebar))
 		}
 
-		UIView.animateWithDuration(0.2) {
+		UIView.animate(withDuration: 0.2) {
 			splitViewController.preferredDisplayMode = isPlaceholder ? .AllVisible : .Automatic
 		}
 

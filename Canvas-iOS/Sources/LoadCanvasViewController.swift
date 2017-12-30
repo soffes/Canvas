@@ -8,18 +8,16 @@
 
 import UIKit
 import CanvasCore
-import CanvasKit
 
-final class LoadCanvasViewController: UIViewController, Accountable {
+final class LoadCanvasViewController: UIViewController {
 
 	// MARK: - Properties
 
-	var account: Account
 	let canvasID: String
 
 	private var fetching = false
 	private let activityIndicator: UIActivityIndicatorView = {
-		let view = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+		let view = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 		view.translatesAutoresizingMaskIntoConstraints = false
 		view.startAnimating()
 		return view
@@ -28,8 +26,7 @@ final class LoadCanvasViewController: UIViewController, Accountable {
 
 	// MARK: - Initializers
 
-	init(account: Account, canvasID: String) {
-		self.account = account
+	init(canvasID: String) {
 		self.canvasID = canvasID
 
 		super.init(nibName: nil, bundle: nil)
@@ -50,13 +47,13 @@ final class LoadCanvasViewController: UIViewController, Accountable {
 
 		navigationItem.hidesBackButton = true
 
-		NSLayoutConstraint.activateConstraints([
-			activityIndicator.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor),
-			activityIndicator.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor),
+		NSLayoutConstraint.activate([
+			activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 		])
 	}
 
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		fetch()
 	}
@@ -71,20 +68,13 @@ final class LoadCanvasViewController: UIViewController, Accountable {
 
 		fetching = true
 
-		APIClient(account: account).showCanvas(id: canvasID) { result in
-			DispatchQueue.main.async { [weak self] in
-				switch result {
-				case .Success(let canvas): self?.showEditor(canvas: canvas)
-				case .Failure(let message): self?.showError(message: message)
-				}
-			}
-		}
+		// TODO: Load it some how?
 	}
 
-	private func showEditor(canvas canvas: Canvas) {
+	private func showEditor(with canvas: Canvas) {
 		guard let navigationController = navigationController else { return }
 
-		let viewController = EditorViewController(account: account, canvas: canvas)
+		let viewController = EditorViewController(canvas: canvas)
 		viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: LocalizedString.CloseCommand.string, style: .Plain, target: viewController, action: #selector(EditorViewController.closeNavigationControllerModal))
 
 		var viewControllers = navigationController.viewControllers
@@ -92,27 +82,27 @@ final class LoadCanvasViewController: UIViewController, Accountable {
 		navigationController.setViewControllers(viewControllers, animated: false)
 	}
 
-	private func showError(message message: String) {
+	private func showError() {
 		activityIndicator.stopAnimating()
 		
 		let billboard = BillboardView()
 		billboard.translatesAutoresizingMaskIntoConstraints = false
 		billboard.illustrationView.image = UIImage(named: "Not Found")
-		billboard.titleLabel.text = LocalizedString.NotFoundHeading.string
-		billboard.subtitleLabel.text = LocalizedString.NotFoundMessage.string
+		billboard.titleLabel.text = LocalizedString.notFoundHeading.string
+		billboard.subtitleLabel.text = LocalizedString.notFoundMessage.string
 		view.addSubview(billboard)
 		
-		NSLayoutConstraint.activateConstraints([
-			billboard.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor),
-			billboard.widthAnchor.constraintLessThanOrEqualToAnchor(view.widthAnchor),
-			billboard.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor),
+		NSLayoutConstraint.activate([
+			billboard.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			billboard.widthAnchor.constraint(lessThanOrEqualTo: view.widthAnchor),
+			billboard.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 		])
 		
-		title = LocalizedString.NotFoundTitle.string
-		navigationItem.leftBarButtonItem = UIBarButtonItem(title: LocalizedString.CloseCommand.string, style: .Plain, target: self, action: #selector(close))
+		title = LocalizedString.notFoundTitle.string
+		navigationItem.leftBarButtonItem = UIBarButtonItem(title: LocalizedString.closeCommand.string, style: .plain, target: self, action: #selector(close))
 	}
 	
 	@objc private func close() {
-		dismissViewControllerAnimated(true, completion: nil)
+		dismissViewController(animated: true, completion: nil)
 	}
 }

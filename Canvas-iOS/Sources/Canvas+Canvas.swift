@@ -8,18 +8,17 @@
 
 import UIKit
 import CanvasCore
-import CanvasKit
 import Static
 
 extension Canvas {
 	enum Kind {
-		case Document
-		case Blank
+		case document
+		case blank
 
 		var icon: UIImage! {
 			switch self {
-			case .Document: return UIImage(named: "Document")
-			case .Blank: return UIImage(named: "Document-Blank")
+			case .document: return UIImage(named: "Document")
+			case .blank: return UIImage(named: "Document-Blank")
 			}
 		}
 	}
@@ -34,10 +33,10 @@ extension Canvas {
 	}
 
 	var kind: Kind {
-		return isEmpty ? .Blank : .Document
+		return isEmpty ? .blank : .document
 	}
 
 	var displayTitle: String {
-		return title.isEmpty ? LocalizedString.Untitled.string : title
+		return title.isEmpty ? LocalizedString.untitled.string : title
 	}
 }

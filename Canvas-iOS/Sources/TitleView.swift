@@ -15,7 +15,7 @@ final class TitleView: UIView {
 	
 	var showsLock = false {
 		didSet {
-			lockView.hidden = !showsLock
+			lockView.isHidden = !showsLock
 			setNeedsLayout()
 		}
 	}
@@ -48,7 +48,7 @@ final class TitleView: UIView {
 	init() {
 		super.init(frame: .zero)
 		
-		autoresizingMask = [.FlexibleWidth]
+		autoresizingMask = [.flexibleWidth]
 		
 		lockView.sizeToFit()
 		
@@ -63,7 +63,7 @@ final class TitleView: UIView {
 	
 	// MARK: - UIView
 	
-	override class func layerClass() -> AnyClass {
+	override class var layerClass: AnyClass {
 		return CATransformLayer.self
 	}
 	

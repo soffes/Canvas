@@ -61,45 +61,45 @@ struct DragContext {
 		contentView.addSubview(trailingProgressView)
 
 		let snapshotSize = snapshotView.bounds.size
-		snapshotView.userInteractionEnabled = false
+		snapshotView.isUserInteractionEnabled = false
 		snapshotView.translatesAutoresizingMaskIntoConstraints = false
 		contentView.addSubview(snapshotView)
 
-		snapshotLeadingConstraint = snapshotView.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor)
+		snapshotLeadingConstraint = snapshotView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor)
 
-		NSLayoutConstraint.activateConstraints([
-			backgroundView.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor),
-			backgroundView.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor),
-			backgroundView.topAnchor.constraintEqualToAnchor(contentView.topAnchor, constant: -4),
-			backgroundView.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor, constant: 4),
+		NSLayoutConstraint.activate([
+			backgroundView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+			backgroundView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+			backgroundView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: -4),
+			backgroundView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 4),
 
-			leadingProgressView.leadingAnchor.constraintLessThanOrEqualToAnchor(contentView.leadingAnchor),
-			leadingProgressView.trailingAnchor.constraintEqualToAnchor(snapshotView.leadingAnchor),
-			leadingProgressView.topAnchor.constraintEqualToAnchor(backgroundView.topAnchor),
-			leadingProgressView.bottomAnchor.constraintEqualToAnchor(backgroundView.bottomAnchor),
+			leadingProgressView.leadingAnchor.constraint(lessThanOrEqualTo: contentView.leadingAnchor),
+			leadingProgressView.trailingAnchor.constraint(equalTo: snapshotView.leadingAnchor),
+			leadingProgressView.topAnchor.constraint(equalTo: backgroundView.topAnchor),
+			leadingProgressView.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
 
-			trailingProgressView.leadingAnchor.constraintEqualToAnchor(snapshotView.trailingAnchor),
-			trailingProgressView.trailingAnchor.constraintGreaterThanOrEqualToAnchor(contentView.trailingAnchor),
-			trailingProgressView.topAnchor.constraintEqualToAnchor(backgroundView.topAnchor),
-			trailingProgressView.bottomAnchor.constraintEqualToAnchor(backgroundView.bottomAnchor),
+			trailingProgressView.leadingAnchor.constraint(equalTo: snapshotView.trailingAnchor),
+			trailingProgressView.trailingAnchor.constraint(greaterThanOrEqualTo: contentView.trailingAnchor),
+			trailingProgressView.topAnchor.constraint(equalTo: backgroundView.topAnchor),
+			trailingProgressView.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor),
 
 			snapshotLeadingConstraint,
-			snapshotView.topAnchor.constraintEqualToAnchor(contentView.topAnchor, constant: -rect.minY + yContentOffset),
-			snapshotView.widthAnchor.constraintEqualToConstant(snapshotSize.width),
-			snapshotView.heightAnchor.constraintEqualToConstant(snapshotSize.height)
+			snapshotView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: -rect.minY + yContentOffset),
+			snapshotView.widthAnchor.constraint(equalToConstant: snapshotSize.width),
+			snapshotView.heightAnchor.constraint(equalToConstant: snapshotSize.height)
 		])
 
 		// Setup snapshot mask
 		let mask = CAShapeLayer()
 		mask.frame = snapshotView.layer.bounds
-		mask.path = UIBezierPath(rect: rectForContentViewMask()).CGPath
+		mask.path = UIBezierPath(rect: rectForContentViewMask()).cgPath
 		snapshotView.layer.mask = mask
 	}
 
 
 	// MARK: - Manipulation
 
-	func translate(x x: CGFloat) {
+	func translate(x: CGFloat) {
 		snapshotLeadingConstraint.constant = x
 		leadingProgressView.translate(x: x)
 		trailingProgressView.translate(x: x)

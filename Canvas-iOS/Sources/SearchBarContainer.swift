@@ -80,7 +80,7 @@ final class SearchBarContainer: UIView {
 		bottomBorderView.frame = CGRect(x: 0, y: bounds.height - borderHeight, width: bounds.width, height: borderHeight)
 	}
 
-	override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitCollection)
 		setNeedsLayout()
 	}

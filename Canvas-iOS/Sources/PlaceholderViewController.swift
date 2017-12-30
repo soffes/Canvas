@@ -32,16 +32,16 @@ final class PlaceholderViewController: UIViewController {
 
 		view.addSubview(textLabel)
 
-		NSLayoutConstraint.activateConstraints([
-			textLabel.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor),
-			textLabel.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor),
+		NSLayoutConstraint.activate([
+			textLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			textLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 		])
 		
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateFont), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateFont), name: UIContentSizeCategoryDidChangeNotification, object: nil)
 		updateFont()
 	}
 
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		UIDevice.currentDevice().batteryMonitoringEnabled = false
 	}

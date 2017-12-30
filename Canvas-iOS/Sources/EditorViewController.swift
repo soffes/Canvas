@@ -6,25 +6,20 @@
 //
 
 import UIKit
-import WebKit
 import CanvasCore
-import CanvasKit
 import CanvasText
 import CanvasNative
-import SentrySwift
 
-final class EditorViewController: UIViewController, Accountable {
+final class EditorViewController: UIViewController {
 	
 	// MARK: - Properties
 
 	static let willCloseNotificationName = "EditorViewController.willCloseNotificationName"
 
-	var account: Account
 	var canvas: Canvas
 
 	let textController: TextController
 	let textView: CanvasTextView
-	let presenceController: PresenceController
 
 	private var lastSize: CGSize?
 	var usingKeyboard = false
@@ -34,31 +29,22 @@ final class EditorViewController: UIViewController, Accountable {
 	
 	private let titleView: TitleView = {
 		let view = TitleView()
-		view.hidden = true
+		view.isHidden = true
 		return view
 	}()
 
-	let remoteCursorsController: RemoteCursorsController = {
-		let controller = RemoteCursorsController()
-		controller.backgroundView.translatesAutoresizingMaskIntoConstraints = false
-		controller.foregroundView.translatesAutoresizingMaskIntoConstraints = false
-		return controller
-	}()
-
-	var remoteCursorsTopConstraint: NSLayoutConstraint!
-	
 	private var autocompleteEnabled = false {
 		didSet {
 			if oldValue == autocompleteEnabled {
 				return
 			}
 
-			textView.autocapitalizationType = autocompleteEnabled ? .Sentences : .None
-			textView.autocorrectionType = autocompleteEnabled ? .Default : .No
-			textView.spellCheckingType = autocompleteEnabled ? .Default : .No
+			textView.autocapitalizationType = autocompleteEnabled ? .sentences : .none
+			textView.autocorrectionType = autocompleteEnabled ? .default : .no
+			textView.spellCheckingType = autocompleteEnabled ? .default : .no
 
 			// Make the change actually take effect.
-			if textView.isFirstResponder() {
+			if textView.isFirstResponder{
 				ignoreLocalSelectionChange = true
 				textView.resignFirstResponder()
 				textView.becomeFirstResponder()
@@ -67,106 +53,86 @@ final class EditorViewController: UIViewController, Accountable {
 		}
 	}
 
-	var showingParticipants = false
-
 
 	// MARK: - Initializers
 
-	init(account: Account, canvas: Canvas) {
-		self.account = account
+	init(canvas: Canvas) {
 		self.canvas = canvas
 
-		textController = TextController(
-			serverURL: config.environment.realtimeURL,
-			accessToken: account.accessToken,
-			organizationID: canvas.organization.id,
-			canvasID: canvas.id,
-			theme: LightTheme(tintColor: canvas.organization.color?.uiColor ?? Swatch.brand)
-		)
+		textController = TextController(theme: LightTheme(tintColor: Swatch.brand))
 
 		let textView = CanvasTextView(frame: .zero, textContainer: textController.textContainer)
 		textView.translatesAutoresizingMaskIntoConstraints = false
 		self.textView = textView
 
-		presenceController = PresenceController(account: account, serverURL: config.environment.presenceURL)
-		
 		super.init(nibName: nil, bundle: nil)
 
-		presenceController.add(observer: self)
-
-		titleView.showsLock = !canvas.isWritable
-		
 		textController.connectionDelegate = self
 		textController.displayDelegate = self
 		textController.annotationDelegate = textView
 		textView.textController = textController
 		textView.delegate = self
 		textView.formattingDelegate = self
-		textView.editable = false
+		textView.isEditable = false
 
 		navigationItem.titleView = titleView
-		navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "More"), style: .Plain, target: self, action: #selector(more))
+		navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "More"), style: .plain, target: self, action: #selector(more))
 
-		UIDevice.currentDevice().batteryMonitoringEnabled = true
+		UIDevice.current.isBatteryMonitoringEnabled = true
 		
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIKeyboardWillChangeFrameNotification, object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updatePreventSleep), name: NSUserDefaultsDidChangeNotification, object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updatePreventSleep), name: UIApplicationDidBecomeActiveNotification, object: nil)
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updatePreventSleep), name: UIDeviceBatteryStateDidChangeNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: .UIKeyboardWillChangeFrame, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updatePreventSleep), name: .NSUserDefaultsDidChange, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updatePreventSleep), name: .UIApplicationDidBecomeActive, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updatePreventSleep), name: .UIDeviceBatteryStateDidChange, object: nil)
 	}
 
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	deinit {
-		textController.disconnect(withReason: nil)
-		presenceController.disconnect()
-	}
-
 
 	// MARK: - UIResponder
 
-	override func canBecomeFirstResponder() -> Bool {
+	override var canBecomeFirstResponder: Bool {
 		return true
 	}
 
 	override var keyCommands: [UIKeyCommand] {
 		var commands: [UIKeyCommand] = [
 			UIKeyCommand(input: UIKeyInputEscape, modifierFlags: [], action: #selector(dismissKeyboard)),
-			UIKeyCommand(input: "w", modifierFlags: [.Command], action: #selector(close), discoverabilityTitle: LocalizedString.CloseCommand.string),
+			UIKeyCommand(input: "w", modifierFlags: [.command], action: #selector(close), discoverabilityTitle: LocalizedString.closeCommand.string),
 
-//			UIKeyCommand(input: "b", modifierFlags: [.Command], action: #selector(bold), discoverabilityTitle: LocalizedString.BoldCommand.string),
-//			UIKeyCommand(input: "i", modifierFlags: [.Command], action: #selector(italic), discoverabilityTitle: LocalizedString.ItalicCommand.string),
-//			UIKeyCommand(input: "d", modifierFlags: [.Command], action: #selector(inlineCode), discoverabilityTitle: LocalizedString.InlineCodeCommand.string),
+//			UIKeyCommand(input: "b", modifierFlags: [.command], action: #selector(bold), discoverabilityTitle: LocalizedString.boldCommand.string),
+//			UIKeyCommand(input: "i", modifierFlags: [.command], action: #selector(italic), discoverabilityTitle: LocalizedString.italicCommand.string),
+//			UIKeyCommand(input: "d", modifierFlags: [.command], action: #selector(inlineCode), discoverabilityTitle: LocalizedString.inlineCodeCommand.string),
 		]
 
 		if textController.focusedBlock is Listable {
 			commands += [
-				UIKeyCommand(input: "]", modifierFlags: [.Command], action: #selector(indent), discoverabilityTitle: LocalizedString.IndentCommand.string),
+				UIKeyCommand(input: "]", modifierFlags: [.command], action: #selector(indent), discoverabilityTitle: LocalizedString.indentCommand.string),
 				UIKeyCommand(input: "\t", modifierFlags: [], action: #selector(indent)),
-				UIKeyCommand(input: "[", modifierFlags: [.Command], action: #selector(outdent), discoverabilityTitle: LocalizedString.OutdentCommand.string),
-				UIKeyCommand(input: "\t", modifierFlags: [.Shift], action: #selector(outdent)),
+				UIKeyCommand(input: "[", modifierFlags: [.command], action: #selector(outdent), discoverabilityTitle: LocalizedString.outdentCommand.string),
+				UIKeyCommand(input: "\t", modifierFlags: [.shift], action: #selector(outdent)),
 
-				UIKeyCommand(input: UIKeyInputUpArrow, modifierFlags: [.Command, .Control], action: #selector(swapLineUp), discoverabilityTitle: LocalizedString.SwapLineUpCommand.string),
-				UIKeyCommand(input: UIKeyInputDownArrow, modifierFlags: [.Command, .Control], action: #selector(swapLineDown), discoverabilityTitle: LocalizedString.SwapLineDownCommand.string)
+				UIKeyCommand(input: UIKeyInputUpArrow, modifierFlags: [.command, .control], action: #selector(swapLineUp), discoverabilityTitle: LocalizedString.swapLineUpCommand.string),
+				UIKeyCommand(input: UIKeyInputDownArrow, modifierFlags: [.command, .control], action: #selector(swapLineDown), discoverabilityTitle: LocalizedString.swapLineDownCommand.string)
 			]
 		}
 
 		let checkTitle: String
 		if let block = textController.focusedBlock as? ChecklistItem, block.state == .checked {
-			checkTitle = LocalizedString.MarkAsUncheckedCommand.string
+			checkTitle = LocalizedString.markAsUncheckedCommand.string
 		} else {
-			checkTitle = LocalizedString.MarkAsCheckedCommand.string
+			checkTitle = LocalizedString.markAsCheckedCommand.string
 		}
 
 		let check = UIKeyCommand(input: "u", modifierFlags: [.Command, .Shift], action: #selector(self.check), discoverabilityTitle: checkTitle)
 		commands.append(check)
 
 		commands += [
-			UIKeyCommand(input: "k", modifierFlags: [.Control, .Shift], action: #selector(deleteLine), discoverabilityTitle: LocalizedString.DeleteLineCommand.string),
-			UIKeyCommand(input: "\r", modifierFlags: [.Command, .Shift], action: #selector(insertLineBefore), discoverabilityTitle: LocalizedString.InsertLineBeforeCommand.string),
-			UIKeyCommand(input: "\r", modifierFlags: [.Command], action: #selector(insertLineAfter), discoverabilityTitle: LocalizedString.InsertLineAfterCommand.string)
+			UIKeyCommand(input: "k", modifierFlags: [.Control, .Shift], action: #selector(deleteLine), discoverabilityTitle: LocalizedString.deleteLineCommand.string),
+			UIKeyCommand(input: "\r", modifierFlags: [.Command, .Shift], action: #selector(insertLineBefore), discoverabilityTitle: LocalizedString.insertLineBeforeCommand.string),
+			UIKeyCommand(input: "\r", modifierFlags: [.Command], action: #selector(insertLineAfter), discoverabilityTitle: LocalizedString.insertLineAfterCommand.string)
 		]
 		
 		return commands
@@ -184,39 +150,22 @@ final class EditorViewController: UIViewController, Accountable {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-		title = LocalizedString.Connecting.string
+		title = LocalizedString.connecting.string
 		view.backgroundColor = Swatch.white
-
-		remoteCursorsController.delegate = self
-		view.addSubview(remoteCursorsController.backgroundView)
 
 		textView.delegate = self
 		view.addSubview(textView)
-		view.addSubview(remoteCursorsController.foregroundView)
 
 		textController.connect()
 
-		remoteCursorsTopConstraint = remoteCursorsController.backgroundView.topAnchor.constraintEqualToAnchor(textView.topAnchor)
-
-		NSLayoutConstraint.activateConstraints([
-			textView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor),
-			textView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor),
-			textView.topAnchor.constraintEqualToAnchor(view.topAnchor),
-			textView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor),
-
-			remoteCursorsController.backgroundView.leadingAnchor.constraintEqualToAnchor(textView.leadingAnchor),
-			remoteCursorsController.backgroundView.trailingAnchor.constraintEqualToAnchor(textView.trailingAnchor),
-			remoteCursorsTopConstraint,
-			remoteCursorsController.backgroundView.bottomAnchor.constraintEqualToAnchor(textView.bottomAnchor),
-
-			remoteCursorsController.foregroundView.leadingAnchor.constraintEqualToAnchor(remoteCursorsController.backgroundView.leadingAnchor),
-			remoteCursorsController.foregroundView.trailingAnchor.constraintEqualToAnchor(remoteCursorsController.backgroundView.trailingAnchor),
-			remoteCursorsController.foregroundView.topAnchor.constraintEqualToAnchor(remoteCursorsController.backgroundView.topAnchor),
-			remoteCursorsController.foregroundView.bottomAnchor.constraintEqualToAnchor(remoteCursorsController.backgroundView.bottomAnchor)
+		NSLayoutConstraint.activate([
+			textView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			textView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+			textView.topAnchor.constraint(equalTo: view.topAnchor),
+			textView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 		])
 
-		if traitCollection.forceTouchCapability == .Available {
+		if traitCollection.forceTouchCapability == .available {
 			registerForPreviewingWithDelegate(self, sourceView: textView)
 		}
 	}
@@ -249,40 +198,31 @@ final class EditorViewController: UIViewController, Accountable {
 		textController.textContainerInset = textView.textContainerInset
 
 		// Update insertion point
-		if textView.isFirstResponder() {
+		if textView.isFirstResponder {
 			ignoreLocalSelectionChange = true
 			textView.resignFirstResponder()
 			textView.becomeFirstResponder()
 			ignoreLocalSelectionChange = false
 		}
-
-		remoteCursorsController.updateLayout()
 	}
 
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		updatePreventSleep()
-		presenceController.join(canvasID: canvas.id)
 	}
 	
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		titleView.hidden = false
+		titleView.isHidden = false
 	}
 
-	override func viewWillDisappear(animated: Bool) {
+	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		UIApplication.sharedApplication().idleTimerDisabled = false
 		textView.resignFirstResponder()
-
-		if !showingParticipants {
-			presenceController.leave(canvasID: canvas.id)
-		}
-
-		showingParticipants = false
 	}
 	
-	override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitCollection)
 		textController.traitCollection = traitCollection
 	}
@@ -292,7 +232,7 @@ final class EditorViewController: UIViewController, Accountable {
 
 	@objc private func keyboardWillChangeFrame(notification: NSNotification?) {
 		guard let notification = notification,
-			value = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue
+			let value = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue
 		else { return }
 
 		let frame = textView.frame.intersect(view.convertRect(value.CGRectValue(), fromView: nil))
@@ -329,7 +269,7 @@ final class EditorViewController: UIViewController, Accountable {
 
 	func updateTitlePlaceholder() {
 		let title = textController.currentDocument.blocks.first as? Title
-		textView.placeholderLabel.hidden = title.flatMap { $0.visibleRange.length > 0 } ?? false
+		textView.placeholderLabel.isHidden = title.flatMap { $0.visibleRange.length > 0 } ?? false
 	}
 
 	private func updateTitleTypingAttributes() {
@@ -372,9 +312,9 @@ extension EditorViewController: UIViewControllerPreviewingDelegate {
 		let nodes = document.nodesIn(backingRange: document.backingRanges(presentationRange: range)[0])
 
 		guard let index = nodes.indexOf({ $0 is Link }),
-			link = nodes[index] as? Link,
-			URL = link.URL(backingString: document.backingString)
-		where URL.scheme == "http" || URL.scheme == "https"
+			let link = nodes[index] as? Link,
+			let url = link.URL(backingString: document.backingString),
+			url.scheme == "http" || url.scheme == "https"
 		else { return nil }
 
 		previewingContext.sourceRect = textView.firstRectForRange(textRange)
@@ -461,7 +401,7 @@ extension EditorViewController: UITextViewDelegate {
 
 
 extension EditorViewController: TextControllerDisplayDelegate {
-	func textController(textController: TextController, didUpdateSelectedRange selectedRange: NSRange) {
+	func textController(_ textController: TextController, didUpdateSelectedRange selectedRange: NSRange) {
 		// Defer to after editing completes or UITextView will misplace already queued edits
 		DispatchQueue.main.async { [weak self] in
 			guard let textView = self?.textView else { return }
@@ -481,45 +421,36 @@ extension EditorViewController: TextControllerDisplayDelegate {
 		}
 	}
 
-	func textController(textController: TextController, didUpdateTitle title: String?) {
-		UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-		self.title = title ?? LocalizedString.Untitled.string
+	func textController(_ textController: TextController, didUpdateTitle title: String?) {
+		self.title = title ?? LocalizedString.untitled.string
 		updateTitlePlaceholder()
 	}
 
-	func textControllerWillProcessRemoteEdit(textController: TextController) {
-		guard !textView.dragging, let position = textView.positionFromPosition(textView.beginningOfDocument, offset: textView.selectedRange.location) else { return }
+	func textControllerWillProcessRemoteEdit(_ textController: TextController) {
+		guard !textView.isDragging, let position = textView.positionFromPosition(textView.beginningOfDocument, offset: textView.selectedRange.location) else { return }
 		scrollOffset = textView.caretRectForPosition(position).minY
 	}
 
-	func textControllerDidProcessRemoteEdit(textController: TextController) {
+	func textControllerDidProcessRemoteEdit(_ textController: TextController) {
 		updateAutoCompletion()
 	}
 	
-	func textController(textController: TextController, URLForImage block: Image) -> NSURL? {
-		return block.url.flatMap { imgix($0) }
+	func textController(_ textController: TextController, urlForImage block: Image) -> URL? {
+		return block.url
 	}
 	
-	func textControllerDidUpdateFolding(textController: TextController) {}
+	func textControllerDidUpdateFolding(_ textController: TextController) {}
 
-	func textControllerDidLayoutText(textController: TextController) {
-		if remoteCursorsController.enabled {
-			return
-		}
-
-		DispatchQueue.main.async { [weak self] in
-			self?.remoteCursorsController.enabled = true
-		}
-	}
+	func textControllerDidLayoutText(_ textController: TextController) {}
 }
 
 
 extension EditorViewController: CanvasTextViewFormattingDelegate {
-	func textViewDidToggleBoldface(textView: CanvasTextView, sender: AnyObject?) {
+	func textViewDidToggleBoldface(_ textView: CanvasTextView, sender: Any?) {
 		bold()
 	}
 
-	func textViewDidToggleItalics(textView: CanvasTextView, sender: AnyObject?) {
+	func textViewDidToggleItalics(_ textView: CanvasTextView, sender: Any?) {
 		italic()
 	}
 }

@@ -12,8 +12,8 @@ import CanvasNative
 import CanvasText
 
 protocol CanvasTextViewFormattingDelegate: class {
-	func textViewDidToggleBoldface(textView: CanvasTextView, sender: AnyObject?)
-	func textViewDidToggleItalics(textView: CanvasTextView, sender: AnyObject?)
+	func textViewDidToggleBoldface(_ textView: CanvasTextView, sender: Any?)
+	func textViewDidToggleItalics(_ textView: CanvasTextView, sender: Any?)
 }
 
 final class CanvasTextView: TextView {
@@ -25,10 +25,10 @@ final class CanvasTextView: TextView {
 			guard let theme = textController?.theme else { return }
 
 			var attributes = theme.titleAttributes
-			attributes[NSForegroundColorAttributeName] = theme.titlePlaceholderColor
+			attributes[.foregroundColor] = theme.titlePlaceholderColor
 
 			placeholderLabel.attributedText = NSAttributedString(
-				string: LocalizedString.CanvasTitlePlaceholder.string,
+				string: LocalizedString.canvasTitlePlaceholder.string,
 				attributes: attributes
 			)
 		}
@@ -42,8 +42,8 @@ final class CanvasTextView: TextView {
 
 	let placeholderLabel: UILabel = {
 		let label = UILabel()
-		label.userInteractionEnabled = false
-		label.hidden = true
+		label.isUserInteractionEnabled = false
+		label.isHidden = true
 		return label
 	}()
 
@@ -57,8 +57,8 @@ final class CanvasTextView: TextView {
 
 //		allowsEditingTextAttributes = true
 		alwaysBounceVertical = true
-		keyboardDismissMode = .Interactive
-		backgroundColor = .clearColor()
+		keyboardDismissMode = .interactive
+		backgroundColor = .clear
 
 		registerGestureRecognizers()
 
@@ -73,15 +73,15 @@ final class CanvasTextView: TextView {
 
 	// MARK: - UIResponder
 	
-	override func toggleBoldface(sender: AnyObject?) {
+	override func toggleBoldface(_ sender: Any?) {
 		formattingDelegate?.textViewDidToggleBoldface(self, sender: sender)
 	}
 
-	override func toggleItalics(sender: AnyObject?) {
+	override func toggleItalics(_ sender: Any?) {
 		formattingDelegate?.textViewDidToggleItalics(self, sender: sender)
 	}
 
-	override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
+	override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
 		// Disable underline
 		if action == #selector(toggleUnderline) {
 			return false
@@ -101,7 +101,7 @@ final class CanvasTextView: TextView {
 	override func tintColorDidChange() {
 		super.tintColorDidChange()
 		
-		textController?.setTintColor(tintColor)
+		textController?.set(tintColor: tintColor)
 	}
 
 
@@ -119,13 +119,13 @@ final class CanvasTextView: TextView {
 
 
 extension CanvasTextView: TextControllerAnnotationDelegate {
-	func textController(textController: TextController, willAddAnnotation annotation: Annotation) {
-		annotation.view.backgroundColor = .clearColor()
+	func textController(_ textController: TextController, willAddAnnotation annotation: Annotation) {
+		annotation.view.backgroundColor = .clear
 		managedSubviews.insert(annotation.view)
-		insertSubview(annotation.view, atIndex: 0)
+		insertSubview(annotation.view, at: 0)
 	}
 
-	func textController(textController: TextController, willRemoveAnnotation annotation: Annotation) {
+	func textController(_ textController: TextController, willRemoveAnnotation annotation: Annotation) {
 		managedSubviews.remove(annotation.view)
 	}
 }
