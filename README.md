@@ -1,6 +1,6 @@
 # Canvas
 
-Hacking on the remains of [Canvas](https://github.com/usecanvas). Nothing to see yet.
+Hacking on the remains of [Canvas](https://github.com/usecanvas). Here’s a [video demo](https://www.youtube.com/watch?v=3RHQd4b1iPA) of what it was. Nothing to see yet though. I’m currently removing all of the stuff that depends on the server and updating to Swift 4.
 
 ## Goals
 
