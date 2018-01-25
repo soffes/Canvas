@@ -23,7 +23,7 @@ extension UIViewController {
 		presentViewController(actionSheet, animated: animated, completion: completion)
 	}
 
-	func dismissDetailViewController(sender: Any?) {
+	func dismissDetailViewController(_ sender: Any?) {
 		if let splitViewController = splitViewController, !splitViewController.collapsed {
 			splitViewController.dismissDetailViewController(sender)
 			return

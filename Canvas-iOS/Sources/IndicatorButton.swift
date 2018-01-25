@@ -16,7 +16,7 @@ final class IndicatorButton: PillButton {
 	var loading = false {
 		didSet {
 			titleLabel?.alpha = loading ? 0 : 1
-			enabled = !loading
+			isEnabled = !loading
 
 			if loading {
 				activityIndicator.startAnimating()
@@ -27,7 +27,7 @@ final class IndicatorButton: PillButton {
 	}
 
 	let activityIndicator: UIActivityIndicatorView = {
-		let indicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+		let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 		indicator.translatesAutoresizingMaskIntoConstraints = false
 		indicator.isUserInteractionEnabled = false
 		indicator.hidesWhenStopped = true

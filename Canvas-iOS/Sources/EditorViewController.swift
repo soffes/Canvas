@@ -14,7 +14,7 @@ final class EditorViewController: UIViewController {
 	
 	// MARK: - Properties
 
-	static let willCloseNotificationName = "EditorViewController.willCloseNotificationName"
+	static let willCloseNotificationName = Notification.Name(rawValue: "EditorViewController.willCloseNotificationName")
 
 	var canvas: Canvas
 
@@ -67,7 +67,6 @@ final class EditorViewController: UIViewController {
 
 		super.init(nibName: nil, bundle: nil)
 
-		textController.connectionDelegate = self
 		textController.displayDelegate = self
 		textController.annotationDelegate = textView
 		textView.textController = textController
@@ -76,12 +75,11 @@ final class EditorViewController: UIViewController {
 		textView.isEditable = false
 
 		navigationItem.titleView = titleView
-		navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "More"), style: .plain, target: self, action: #selector(more))
 
 		UIDevice.current.isBatteryMonitoringEnabled = true
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: .UIKeyboardWillChangeFrame, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(updatePreventSleep), name: .NSUserDefaultsDidChange, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updatePreventSleep), name: UserDefaults.didChangeNotification, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(updatePreventSleep), name: .UIApplicationDidBecomeActive, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(updatePreventSleep), name: .UIDeviceBatteryStateDidChange, object: nil)
 	}
@@ -126,13 +124,13 @@ final class EditorViewController: UIViewController {
 			checkTitle = LocalizedString.markAsCheckedCommand.string
 		}
 
-		let check = UIKeyCommand(input: "u", modifierFlags: [.Command, .Shift], action: #selector(self.check), discoverabilityTitle: checkTitle)
+		let check = UIKeyCommand(input: "u", modifierFlags: [.command, .shift], action: #selector(self.check), discoverabilityTitle: checkTitle)
 		commands.append(check)
 
 		commands += [
-			UIKeyCommand(input: "k", modifierFlags: [.Control, .Shift], action: #selector(deleteLine), discoverabilityTitle: LocalizedString.deleteLineCommand.string),
-			UIKeyCommand(input: "\r", modifierFlags: [.Command, .Shift], action: #selector(insertLineBefore), discoverabilityTitle: LocalizedString.insertLineBeforeCommand.string),
-			UIKeyCommand(input: "\r", modifierFlags: [.Command], action: #selector(insertLineAfter), discoverabilityTitle: LocalizedString.insertLineAfterCommand.string)
+			UIKeyCommand(input: "k", modifierFlags: [.control, .shift], action: #selector(deleteLine), discoverabilityTitle: LocalizedString.deleteLineCommand.string),
+			UIKeyCommand(input: "\r", modifierFlags: [.command, .shift], action: #selector(insertLineBefore), discoverabilityTitle: LocalizedString.insertLineBeforeCommand.string),
+			UIKeyCommand(input: "\r", modifierFlags: [.command], action: #selector(insertLineAfter), discoverabilityTitle: LocalizedString.insertLineAfterCommand.string)
 		]
 		
 		return commands
@@ -156,8 +154,6 @@ final class EditorViewController: UIViewController {
 		textView.delegate = self
 		view.addSubview(textView)
 
-		textController.connect()
-
 		NSLayoutConstraint.activate([
 			textView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			textView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -166,7 +162,7 @@ final class EditorViewController: UIViewController {
 		])
 
 		if traitCollection.forceTouchCapability == .available {
-			registerForPreviewingWithDelegate(self, sourceView: textView)
+			registerForPreviewing(with: self, sourceView: textView)
 		}
 	}
 
@@ -218,7 +214,7 @@ final class EditorViewController: UIViewController {
 
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
-		UIApplication.sharedApplication().idleTimerDisabled = false
+		UIApplication.shared.isIdleTimerDisabled = false
 		textView.resignFirstResponder()
 	}
 	
@@ -235,7 +231,7 @@ final class EditorViewController: UIViewController {
 			let value = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue
 		else { return }
 
-		let frame = textView.frame.intersect(view.convertRect(value.CGRectValue(), fromView: nil))
+		let frame = textView.frame.intersection(view.convert(value.cgRectValue, from: nil))
 		var insets = textView.contentInset
 		insets.bottom = frame.height
 
@@ -244,27 +240,17 @@ final class EditorViewController: UIViewController {
 	}
 
 	@objc private func updatePreventSleep() {
-		let application = UIApplication.sharedApplication()
+		let application = UIApplication.shared
 
 		switch SleepPrevention.currentPreference {
 		case .never:
-			application.idleTimerDisabled = false
+			application.isIdleTimerDisabled = false
 		case .whilePluggedIn:
-			let state = UIDevice.currentDevice().batteryState
-			application.idleTimerDisabled = state == .Charging || state == .Full
+			let state = UIDevice.current.batteryState
+			application.isIdleTimerDisabled = state == .charging || state == .full
 		case .always:
-			application.idleTimerDisabled = true
+			application.isIdleTimerDisabled = true
 		}
-	}
-	
-	private func imgix(url: NSURL) -> NSURL? {
-		let parameters = [
-			NSURLQueryItem(name: "fit", value: "max"),
-			NSURLQueryItem(name: "dpr", value: "\(Int(traitCollection.displayScale))"),
-			NSURLQueryItem(name: "w", value: "\(Int(textView.textContainer.size.width))")
-		]
-
-		return ImgixController.sign(url: url, parameters: parameters, configuration: config)
 	}
 
 	func updateTitlePlaceholder() {
@@ -274,36 +260,34 @@ final class EditorViewController: UIViewController {
 
 	private func updateTitleTypingAttributes() {
 		if textView.selectedRange.location == 0 {
-			textView.typingAttributes = textController.theme.titleAttributes
+			var attributes = [String: Any]()
+			for (key, value) in textController.theme.titleAttributes {
+				attributes[key.rawValue] = value
+			}
+			textView.typingAttributes = attributes
 		}
 	}
 
 	private func updateAutoCompletion() {
 		autocompleteEnabled = !textController.isCodeFocused
 	}
-
-	private func updatePresenceCursor() {
-		let document = textController.currentDocument
-		let selection = textController.presentationSelectedRange
-		presenceController.update(selection: selection, withDocument: document, canvasID: canvas.id)
-	}
 }
 
 
 extension EditorViewController: TintableEnvironment {
 	var preferredTintColor: UIColor {
-		return canvas.organization.color?.uiColor ?? Swatch.brand
+		return Swatch.brand
 	}
 }
 
 
 extension EditorViewController: UIViewControllerPreviewingDelegate {
-	func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-		guard let textRange = textView.characterRangeAtPoint(location) else { return nil }
+	func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+		guard let textRange = textView.characterRange(at: location) else { return nil }
 
 		let range = NSRange(
-			location: textView.offsetFromPosition(textView.beginningOfDocument, toPosition: textRange.start),
-			length: textView.offsetFromPosition(textRange.start, toPosition: textRange.end)
+			location: textView.offset(from: textView.beginningOfDocument, to: textRange.start),
+			length: textView.offset(from: textRange.start, to: textRange.end)
 		)
 
 		let document = textController.currentDocument
@@ -311,74 +295,48 @@ extension EditorViewController: UIViewControllerPreviewingDelegate {
 		// TODO: Update for inline-markers
 		let nodes = document.nodesIn(backingRange: document.backingRanges(presentationRange: range)[0])
 
-		guard let index = nodes.indexOf({ $0 is Link }),
+		guard let index = nodes.index(where: { $0 is Link }),
 			let link = nodes[index] as? Link,
 			let url = link.URL(backingString: document.backingString),
 			url.scheme == "http" || url.scheme == "https"
 		else { return nil }
 
-		previewingContext.sourceRect = textView.firstRectForRange(textRange)
+		previewingContext.sourceRect = textView.firstRect(for: textRange)
 
-		return WebViewController(URL: URL)
+		return WebViewController(url: url)
 	}
 
-	func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
-		presentViewController(viewControllerToCommit, animated: false, completion: nil)
+	func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+		present(viewControllerToCommit, animated: false, completion: nil)
 	}
 }
 
 
 extension EditorViewController: UITextViewDelegate {
-	// TODO: Remove this. This is a temporary solution to avoid new lines in comments.
-	func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-		if !text.containsString("\n") {
-			return true
-		}
-
-		var presentationRange = range
-
-		if !text.isEmpty {
-			presentationRange.length = (text as NSString).length
-		}
-
-		let backingRanges = textController.currentDocument.backingRanges(presentationRange: presentationRange)
-		let markerRanges = textController.currentDocument.blocks
-			.flatMap { ($0 as? InlineMarkerContainer)?.inlineMarkerPairs }
-			.flatten()
-			.map { $0.range }
-
-		for backingRange in backingRanges {
-			for markerRange in markerRanges {
-				if NSIntersectionRange(backingRange, markerRange).length > 0 || NSMaxRange(markerRange) == backingRange.location {
-					return false
-				}
-			}
-		}
-
-		return true
-	}
-
-	func textViewDidChangeSelection(textView: UITextView) {
+	func textViewDidChangeSelection(_ textView: UITextView) {
 		scrollOffset = nil
 
-		let selection: NSRange? = !textView.isFirstResponder() && textView.selectedRange.length == 0 ? nil : textView.selectedRange
+		let selection: NSRange? = !textView.isFirstResponder && textView.selectedRange.length == 0 ? nil : textView.selectedRange
 		textController.set(presentationSelectedRange: selection)
 		updateTitleTypingAttributes()
 		updateAutoCompletion()
 		
 		if NSEqualRanges(textView.selectedRange, NSRange(location: 0, length: 0)) {
-			textView.typingAttributes = textController.theme.titleAttributes
-		}
+			var attributes = [String: Any]()
+			for (key, value) in textController.theme.titleAttributes {
+				attributes[key.rawValue] = value
+			}
 
-		updatePresenceCursor()
+			textView.typingAttributes = attributes
+		}
 	}
 
-	func textViewDidBeginEditing(textView: UITextView) {
+	func textViewDidBeginEditing(_ textView: UITextView) {
 		usingKeyboard = true
 		updateTitleTypingAttributes()
 	}
 	
-	func textViewDidEndEditing(textView: UITextView) {
+	func textViewDidEndEditing(_ textView: UITextView) {
 		if ignoreLocalSelectionChange {
 			return
 		}
@@ -386,16 +344,12 @@ extension EditorViewController: UITextViewDelegate {
 		textController.set(presentationSelectedRange: nil)
 	}
 	
-	func textViewDidChange(textView: UITextView) {
+	func textViewDidChange(_ textView: UITextView) {
 		textController.applyStyles()
 	}
 
-	func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+	func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
 		scrollOffset = nil
-	}
-
-	func scrollViewDidScroll(scrollView: UIScrollView) {
-		remoteCursorsTopConstraint.constant = -scrollView.contentOffset.y
 	}
 }
 
@@ -408,11 +362,10 @@ extension EditorViewController: TextControllerDisplayDelegate {
 
 			if !NSEqualRanges(textView.selectedRange, selectedRange) {
 				textView.selectedRange = selectedRange
-				self?.updatePresenceCursor()
 			}
 
-			if let previousPositionY = self?.scrollOffset, let position = textView.positionFromPosition(textView.beginningOfDocument, offset: textView.selectedRange.location) {
-				let currentPositionY = textView.caretRectForPosition(position).minY
+			if let previousPositionY = self?.scrollOffset, let position = textView.position(from: textView.beginningOfDocument, offset: textView.selectedRange.location) {
+				let currentPositionY = textView.caretRect(for: position).minY
 				textView.contentOffset = CGPoint(x: 0, y: textView.contentOffset.y + currentPositionY - previousPositionY)
 				self?.scrollOffset = nil
 			}
@@ -427,8 +380,8 @@ extension EditorViewController: TextControllerDisplayDelegate {
 	}
 
 	func textControllerWillProcessRemoteEdit(_ textController: TextController) {
-		guard !textView.isDragging, let position = textView.positionFromPosition(textView.beginningOfDocument, offset: textView.selectedRange.location) else { return }
-		scrollOffset = textView.caretRectForPosition(position).minY
+		guard !textView.isDragging, let position = textView.position(from: textView.beginningOfDocument, offset: textView.selectedRange.location) else { return }
+		scrollOffset = textView.caretRect(for: position).minY
 	}
 
 	func textControllerDidProcessRemoteEdit(_ textController: TextController) {

@@ -22,7 +22,7 @@ final class RootViewController: UIViewController {
 				splitViewController.preferredDisplayMode = .primaryHidden
 			}
 
-			viewController.presentedViewController?.dismissViewControllerAnimated(false, completion: nil)
+			viewController.presentedViewController?.dismiss(animated: false)
 
 			viewController.viewWillDisappear(false)
 			viewController.view.removeFromSuperview()
@@ -62,7 +62,7 @@ final class RootViewController: UIViewController {
 	}
 
 	override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-		return traitCollection.userInterfaceIdiom == .Pad ? .All : .Portrait
+		return traitCollection.userInterfaceIdiom == .pad ? .all : .portrait
 	}
 
 
@@ -71,11 +71,11 @@ final class RootViewController: UIViewController {
 	func _showBanner(text: String, style: BannerView.Style = .success, inViewController viewController: UIViewController) {
 		var top = viewController
 
-		while let parent = top.parentViewController {
+		while let parent = top.parent {
 			top = parent
 		}
 
-		let container = top.view
+		let container = top.view!
 
 		let banner = BannerView(style: style)
 		banner.translatesAutoresizingMaskIntoConstraints = false
@@ -94,10 +94,10 @@ final class RootViewController: UIViewController {
 		let widthAnchor = navigationController?.view.widthAnchor ?? view.widthAnchor
 
 		let outYConstraint = banner.bottomAnchor.constraint(equalTo: topAnchor)
-		outYConstraint.priority = UILayoutPriorityDefaultHigh
+		outYConstraint.priority = .defaultHigh
 
 		let inYConstraint = banner.topAnchor.constraint(equalTo: topAnchor)
-		inYConstraint.priority = UILayoutPriorityDefaultLow
+		inYConstraint.priority = .defaultLow
 
 		NSLayoutConstraint.activate([
 			outYConstraint,
@@ -112,13 +112,13 @@ final class RootViewController: UIViewController {
 		])
 		banner.layoutIfNeeded()
 
-		UIView.animate(withDuration: 0.3, delay: 0, options: .CurveEaseInOut, animations: {
-			outYConstraint.active = false
+		UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+			outYConstraint.isActive = false
 			banner.layoutIfNeeded()
 		}, completion: nil)
 
-		UIView.animate(withDuration: 0.3, delay: 2.3, options: [.BeginFromCurrentState, .CurveEaseInOut], animations: {
-			outYConstraint.active = true
+		UIView.animate(withDuration: 0.3, delay: 2.3, options: [.beginFromCurrentState, .curveEaseInOut], animations: {
+			outYConstraint.isActive = true
 			banner.layoutIfNeeded()
 		}, completion: { _ in
 			mask.removeFromSuperview()

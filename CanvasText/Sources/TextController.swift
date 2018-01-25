@@ -18,12 +18,6 @@ import X
 
 typealias Style = (range: NSRange, attributes: Attributes)
 
-public protocol TextControllerConnectionDelegate: class {
-	func textControllerDidConnect(_ textController: TextController)
-	func textController(_ textController: TextController, didReceiveWebErrorMessage errorMessage: String?, lineNumber: UInt?, columnNumber: UInt?)
-	func textController(_ textController: TextController, didDisconnectWithErrorMessage errorMessage: String?)
-}
-
 public protocol TextControllerDisplayDelegate: class {
 	func textController(_ textController: TextController, didUpdateSelectedRange selectedRange: NSRange)
 	func textController(_ textController: TextController, didUpdateTitle title: String?)
@@ -44,7 +38,6 @@ public final class TextController: NSObject {
 
 	// MARK: - Properties
 
-	public weak var connectionDelegate: TextControllerConnectionDelegate?
 	public weak var displayDelegate: TextControllerDisplayDelegate?
 	public weak var annotationDelegate: TextControllerAnnotationDelegate?
 

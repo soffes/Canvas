@@ -122,7 +122,7 @@ public protocol Theme {
 
 	/// Attributes for a block
 	///
-	/// NSFontAttributeName must be present.
+	/// .font must be present.
 	///
 	/// - parameter block: Block node to style
 	/// - returns: Attributes for given block
@@ -130,7 +130,7 @@ public protocol Theme {
 
 	/// Attributes for a span
 	///
-	/// NSFontAttributeName must be present.
+	/// .font must be present.
 	///
 	/// - parameter block: Span node to style
 	/// - parameter parentAttributes: Attributes of the parent node
@@ -139,7 +139,7 @@ public protocol Theme {
 
 	/// Attributes for a folded range.
 	///
-	/// NSFontAttributeName must be present.
+	/// .font must be present.
 	///
 	/// - parameter parentAttributes: Attributes of the parent node
 	/// - returns: Attributes for given block

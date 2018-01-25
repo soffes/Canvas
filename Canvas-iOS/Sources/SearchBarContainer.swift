@@ -29,20 +29,20 @@ final class SearchBarContainer: UIView {
 		autoresizingMask = [.FlexibleWidth]
 
 		searchBar.barTintColor = Swatch.white
-		searchBar.layer.borderColor = Swatch.white.CGColor
+		searchBar.layer.borderColor = Swatch.white.cgColor
 		searchBar.layer.borderWidth = 1
 		searchBar.backgroundColor = Swatch.white
-		searchBar.translucent = false
-		searchBar.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-		searchBar.setImage(UIImage(named: "SearchSmall"), forSearchBarIcon: .Search, state: .Normal)
+		searchBar.isTranslucent = false
+		searchBar.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		searchBar.setImage(UIImage(named: "SearchSmall"), for: .search, state: .normal)
 		addSubview(searchBar)
 
 		if let string = searchBar.placeholder {
 			let placeholder = NSAttributedString(string: string, attributes: [
-				NSForegroundColorAttributeName: Swatch.darkGray,
-				NSFontAttributeName: Font.sansSerif(size: .small)
+				.foregroundColor: Swatch.darkGray,
+				.font: Font.sansSerif(size: .small)
 			])
-			UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).attributedPlaceholder = placeholder
+			UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).attributedPlaceholder = placeholder
 		}
 
 		topBorderView.backgroundColor = Swatch.border
@@ -59,17 +59,17 @@ final class SearchBarContainer: UIView {
 
 	// MARK: - UIView
 
-	override func addSubview(view: UIView) {
+	override func addSubview(_ view: UIView) {
 		super.addSubview(view)
 
 		// UISearchController removes this view and then adds it back. Move it to the back when it's added so it stays
 		// below the borders.
 		if view == searchBar {
-			sendSubviewToBack(view)
+			sendSubview(toBack: view)
 		}
 	}
 
-	override func sizeThatFits(size: CGSize) -> CGSize {
+	override func sizeThatFits(_ size: CGSize) -> CGSize {
 		return CGSize(width: size.width, height: 44)
 	}
 

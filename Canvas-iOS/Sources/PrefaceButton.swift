@@ -17,7 +17,7 @@ class PrefaceButton: PillButton {
 		super.init(frame: frame)
 		
 		titleLabel?.numberOfLines = 0
-		titleLabel?.textAlignment = .Center
+		titleLabel?.textAlignment = .center
 		layer.borderWidth = 0
 	}
 	
@@ -28,9 +28,9 @@ class PrefaceButton: PillButton {
 	
 	// MARK: - Preface
 	
-	func set(preface preface: String, title: String) {
+	func set(preface: String, title: String) {
 		// Use non-breaking spaces for the title
-		let title = title.stringByReplacingOccurrencesOfString(" ", withString: "\u{00A0}")
+		let title = title.replacingOccurrences(of: " ", with: "\u{00A0}")
 		
 		// TODO: Localize
 		let string = "\(preface) \(title)"
@@ -40,35 +40,35 @@ class PrefaceButton: PillButton {
 		)
 		
 		let normalText = NSMutableAttributedString(string: string, attributes: [
-			NSFontAttributeName: Font.sansSerif(size: .body),
-			NSForegroundColorAttributeName: Swatch.darkGray
+			.font: Font.sansSerif(size: .body),
+			.foregroundColor: Swatch.darkGray
 		])
 		
 		normalText.setAttributes([
-			NSFontAttributeName: Font.sansSerif(size: .body, weight: .medium),
-			NSForegroundColorAttributeName: Swatch.brand
+			.font: Font.sansSerif(size: .body, weight: .medium),
+			.foregroundColor: Swatch.brand
 		], range: emphasizedRange)
 		
-		setAttributedTitle(normalText, forState: .Normal)
+		setAttributedTitle(normalText, for: .normal)
 		
 		let highlightedText = NSMutableAttributedString(string: string, attributes: [
-			NSFontAttributeName: Font.sansSerif(size: .body),
+			.font: Font.sansSerif(size: .body),
 			
 			// TODO: Use a named color for this
-			NSForegroundColorAttributeName: Swatch.darkGray.colorWithAlphaComponent(0.6)
+			.foregroundColor: Swatch.darkGray.withAlphaComponent(0.6)
 		])
 		
 		highlightedText.setAttributes([
-			NSFontAttributeName: Font.sansSerif(size: .body, weight: .medium),
-			NSForegroundColorAttributeName: Swatch.lightBlue
+			.font: Font.sansSerif(size: .body, weight: .medium),
+			.foregroundColor: Swatch.lightBlue
 		], range: emphasizedRange)
 		
-		setAttributedTitle(highlightedText, forState: .Highlighted)
+		setAttributedTitle(highlightedText, forState: .highlighted)
 		
 		let disabledText = NSAttributedString(string: string, attributes: [
-			NSFontAttributeName: Font.sansSerif(size: .body),
-			NSForegroundColorAttributeName: Swatch.darkGray
+			.font: Font.sansSerif(size: .body),
+			.foregroundColor: Swatch.darkGray
 		])
-		setAttributedTitle(disabledText, forState: .Disabled)
+		setAttributedTitle(disabledText, forState: .disabled)
 	}
 }

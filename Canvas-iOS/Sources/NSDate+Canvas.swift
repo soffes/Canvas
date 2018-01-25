@@ -10,24 +10,28 @@ import Foundation
 
 extension Date {
 	var briefTimeAgoInWords: String {
-		let components = Calendar.current.components([.second, .minute, .hour, .day, .year], fromDate: self, toDate: NSDate(), options: [])
+		let components = Calendar.current.dateComponents([.second, .minute, .hour, .day, .year], from: self, to: Date())
 
-		if components.year > 0 {
-			return "\(components.year)y"
+		if let years = components.year, years > 0 {
+			return "\(years)y"
 		}
 
-		if components.day > 0 {
-			return "\(components.day)d"
+		if let days = components.day, days > 0 {
+			return "\(days)d"
 		}
 
-		if components.hour > 0 {
-			return "\(components.hour)h"
+		if let hours = components.hour, hours > 0 {
+			return "\(hours)h"
 		}
 
-		if components.minute > 0 {
-			return "\(components.minute)m"
+		if let minutes = components.minute, minutes > 0 {
+			return "\(minutes)m"
 		}
 
-		return "\(components.second)s"
+		if let seconds = components.second, seconds > 0 {
+			return "\(seconds)s"
+		}
+
+		return "now"
 	}
 }

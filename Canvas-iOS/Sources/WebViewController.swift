@@ -13,31 +13,31 @@ final class WebViewController: SFSafariViewController {
 
 	// MARK: - Properties
 
-	let originalURL: NSURL
+	let originalURL: URL
 
 
 	// MARK: - Initializers
 
-	convenience init(URL: NSURL) {
-		self.init(URL: URL, entersReaderIfAvailable: false)
+	convenience init(url: URL) {
+		self.init(url: url, entersReaderIfAvailable: false)
 	}
 
-	override init(URL: NSURL, entersReaderIfAvailable: Bool) {
-		originalURL = URL
-		super.init(URL: URL, entersReaderIfAvailable: entersReaderIfAvailable)
+	override init(url : URL, entersReaderIfAvailable: Bool) {
+		originalURL = url
+		super.init(url: url, entersReaderIfAvailable: entersReaderIfAvailable)
 	}
 
 
 	// MARK: - UIViewController
 
-	override func previewActionItems() -> [UIPreviewActionItem] {
-		let copyAction = UIPreviewAction(title: "Copy URL", style: .Default) { [weak self] _, _ in
-			UIPasteboard.generalPasteboard().URL = self?.originalURL
+	override var previewActionItems: [UIPreviewActionItem] {
+		let copyAction = UIPreviewAction(title: "Copy URL", style: .default) { [weak self] _, _ in
+			UIPasteboard.general.url = self?.originalURL
 		}
 
-		let safariAction = UIPreviewAction(title: "Open in Safari", style: .Default) { [weak self] _, _ in
-			guard let URL = self?.originalURL else { return }
-			UIApplication.sharedApplication().openURL(URL)
+		let safariAction = UIPreviewAction(title: "Open in Safari", style: .default) { [weak self] _, _ in
+			guard let url = self?.originalURL else { return }
+			UIApplication.shared.open(url)
 		}
 
 		return [copyAction, safariAction]

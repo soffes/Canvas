@@ -28,7 +28,7 @@ class ModelsViewController: TableViewController {
 
 			commands += [
 				UIKeyCommand(input: UIKeyInputLeftArrow, modifierFlags: [], action: #selector(goBack), discoverabilityTitle: backTitle),
-				UIKeyCommand(input: "w", modifierFlags: [.Command], action: #selector(goBack))
+				UIKeyCommand(input: "w", modifierFlags: [.command], action: #selector(goBack))
 			]
 		}
 
@@ -39,6 +39,6 @@ class ModelsViewController: TableViewController {
 	// MARK: - Actions
 
 	@objc private func goBack() {
-		navigationController?.popViewControllerAnimated(true)
+		navigationController?.popViewController(animated: true)
 	}
 }

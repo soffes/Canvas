@@ -21,11 +21,11 @@ final class GrayButton: UIButton {
 
 		layer.cornerRadius = 4
 
-		setTitleColor(Swatch.darkGray, forState: .Normal)
-		setTitleColor(Swatch.black, forState: .Highlighted)
-		setTitleColor(Swatch.extraLightGray, forState: .Disabled)
+		setTitleColor(Swatch.darkGray, for: .normal)
+		setTitleColor(Swatch.black, for: .highlighted)
+		setTitleColor(Swatch.extraLightGray, for: .disabled)
 
-		NotificationCenter.default.addObserver(self, selector: #selector(updateFont), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateFont), name: .UIContentSizeCategoryDidChange, object: nil)
 		updateFont()
 	}
 
@@ -46,21 +46,21 @@ final class GrayButton: UIButton {
 
 	// MARK: - UIControl
 
-	override var enabled: Bool {
+	override var isEnabled: Bool {
 		didSet {
-			backgroundColor = enabled ? Swatch.lightGray.colorWithAlphaComponent(0.5) : Swatch.lightGray
+			backgroundColor = isEnabled ? Swatch.lightGray.withAlphaComponent(0.5) : Swatch.lightGray
 		}
 	}
 
-	override var highlighted: Bool {
+	override var isHighlighted: Bool {
 		didSet {
-			backgroundColor = highlighted ? Swatch.lightGray.colorWithAlphaComponent(0.8) : Swatch.lightGray
+			backgroundColor = isHighlighted ? Swatch.lightGray.withAlphaComponent(0.8) : Swatch.lightGray
 		}
 	}
 
-	override var selected: Bool {
+	override var isSelected: Bool {
 		didSet {
-			backgroundColor = selected ? Swatch.lightGray.colorWithAlphaComponent(0.8) : Swatch.lightGray
+			backgroundColor = isSelected ? Swatch.lightGray.withAlphaComponent(0.8) : Swatch.lightGray
 		}
 	}
 
