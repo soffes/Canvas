@@ -21,9 +21,12 @@ class CanvasesViewController: ModelsViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		tableView.rowHeight = 72
+		title = "Canvas"
 
 		navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+		navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Compose"), style: .plain, target: self, action: #selector(create))
+
+		tableView.rowHeight = 72
 	}
 
 
@@ -36,6 +39,13 @@ class CanvasesViewController: ModelsViewController {
 
 		let viewController = EditorViewController(canvas: canvas)
 		showDetailViewController(NavigationController(rootViewController: viewController), sender: self)
+	}
+
+
+	// MARK: - Actions
+
+	@objc private func create(_ sender: Any?) {
+		// TODO
 	}
 
 

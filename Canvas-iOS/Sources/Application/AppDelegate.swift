@@ -54,7 +54,10 @@ extension AppDelegate: UIApplicationDelegate {
 			UIApplicationShortcutItem(type: "shortcut-new", localizedTitle: LocalizedString.newCanvasCommand.string, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "New Canvas Shortcut"), userInfo: nil)
 		]
 
-		window?.rootViewController = rootViewController
+		let window = UIWindow()
+		window.rootViewController = rootViewController
+		window.makeKeyAndVisible()
+		self.window = window
 
 		return true
 	}
