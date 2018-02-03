@@ -150,7 +150,6 @@ class LayoutManager: NSLayoutManager {
 	}
 }
 
-
 extension LayoutManager: NSLayoutManagerDelegate {
 	// Mark folded characters as control characters so we can give them a zero width in
 	// `layoutManager:shouldUseAction:forControlCharacterAtIndex:`.

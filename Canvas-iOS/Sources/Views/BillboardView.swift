@@ -1,6 +1,6 @@
-import UIKit
 import CanvasCore
 import CanvasText
+import UIKit
 
 final class BillboardView: UIStackView {
 

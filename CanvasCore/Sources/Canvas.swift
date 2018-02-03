@@ -27,7 +27,6 @@ public struct Canvas {
 	}
 }
 
-
 extension Canvas: Hashable {
 	public var hashValue: Int {
 		return id.hashValue

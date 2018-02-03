@@ -70,7 +70,6 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 	}
 }
 
-
 public func ==(lhs: Blockquote, rhs: Blockquote) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
 		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&

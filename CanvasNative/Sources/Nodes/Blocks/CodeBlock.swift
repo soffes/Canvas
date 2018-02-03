@@ -93,7 +93,6 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Inli
 	}
 }
 
-
 public func ==(lhs: CodeBlock, rhs: CodeBlock) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
 		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&

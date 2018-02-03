@@ -1,6 +1,6 @@
-import UIKit
-import Static
 import CanvasCore
+import Static
+import UIKit
 
 class TableViewController: UIViewController {
 
@@ -45,7 +45,7 @@ class TableViewController: UIViewController {
 			tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 			tableView.topAnchor.constraint(equalTo: view.topAnchor),
-			tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+			tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
 		])
 
 		dataSource.automaticallyDeselectRows = false

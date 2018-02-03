@@ -1,5 +1,5 @@
-import UIKit
 import CanvasNative
+import UIKit
 
 extension CanvasTextView {
 	func registerGestureRecognizers() {
@@ -102,7 +102,6 @@ extension CanvasTextView {
 		return document.blockAt(presentationLocation: location, direction: .leading)
 	}
 }
-
 
 extension CanvasTextView: UIGestureRecognizerDelegate {
 	override func gestureRecognizerShouldBegin(_ sender: UIGestureRecognizer) -> Bool {

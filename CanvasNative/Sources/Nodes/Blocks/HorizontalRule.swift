@@ -13,7 +13,7 @@ public struct HorizontalRule: Attachable, Equatable {
 		return [
 			"type": "horizontal-rule",
 			"range": range.dictionary,
-			"nativePrefixRange": nativePrefixRange.dictionary,
+			"nativePrefixRange": nativePrefixRange.dictionary
 		]
 	}
 
@@ -45,7 +45,6 @@ public struct HorizontalRule: Attachable, Equatable {
 		return "\(leadingNativePrefix)horizontal-rule\(trailingNativePrefix)"
 	}
 }
-
 
 public func == (lhs: HorizontalRule, rhs: HorizontalRule) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&

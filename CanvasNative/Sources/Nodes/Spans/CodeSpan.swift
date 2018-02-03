@@ -30,7 +30,7 @@ public struct CodeSpan: SpanNode, Foldable {
 			"visibleRange": visibleRange.dictionary,
 			"leadingDelimiterRange": leadingDelimiterRange.dictionary,
 			"textRange": textRange.dictionary,
-			"trailingDelimiterRange": trailingDelimiterRange.dictionary,
+			"trailingDelimiterRange": trailingDelimiterRange.dictionary
 		]
 	}
 
@@ -50,7 +50,6 @@ public struct CodeSpan: SpanNode, Foldable {
 		trailingDelimiterRange.location += delta
 	}
 }
-
 
 extension CodeSpan: SpanNodeParseable {
 	static let regularExpression: NSRegularExpression = try! NSRegularExpression(pattern: "(`+)(.+?)(?<!`)(\\1)(?!`)", options: [])

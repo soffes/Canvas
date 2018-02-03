@@ -31,7 +31,6 @@ public protocol Annotation: class {
 	init?(block: Annotatable, theme: Theme)
 }
 
-
 extension Annotation where Self: ViewType {
 	public var view: ViewType {
 		return self

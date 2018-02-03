@@ -1,7 +1,7 @@
-import UIKit
-import Static
 import CanvasCore
 import CanvasNative
+import Static
+import UIKit
 
 class CanvasesViewController: ModelsViewController {
 

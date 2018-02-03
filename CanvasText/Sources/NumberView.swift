@@ -1,5 +1,5 @@
-import UIKit
 import CanvasNative
+import UIKit
 import X
 
 final class NumberView: ViewType, Annotation {

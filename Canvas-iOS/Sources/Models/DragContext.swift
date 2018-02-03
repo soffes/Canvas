@@ -1,5 +1,5 @@
-import UIKit
 import CanvasNative
+import UIKit
 
 enum DragAction: String {
 	case Increase
@@ -15,7 +15,7 @@ struct DragContext {
 	let block: BlockNode
 	let rect: CGRect
 	let yContentOffset: CGFloat
-	var dragAction: DragAction? = nil
+	var dragAction: DragAction?
 
 	let contentView = UIView()
 

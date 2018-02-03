@@ -61,7 +61,6 @@ public struct Strikethrough: SpanNode, Foldable, NodeContainer {
 	}
 }
 
-
 extension Strikethrough: SpanNodeParseable {
 	static let regularExpression: NSRegularExpression = try! NSRegularExpression(pattern: "(?:\\s|^|[^\\w])(~~)(?=\\S)(.+?[*_]*)(?<=\\S)(\\1)", options: [])
 
@@ -75,6 +74,5 @@ extension Strikethrough: SpanNodeParseable {
 		trailingDelimiterRange = match.range(at: 3)
 	}
 }
-
 
 extension Strikethrough: SpanNodeContainer {}

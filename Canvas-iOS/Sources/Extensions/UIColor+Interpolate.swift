@@ -4,7 +4,6 @@ func interpolate(start: CGFloat, end: CGFloat, progress: CGFloat) -> CGFloat {
 	return (end - start) * progress + start
 }
 
-
 extension UIColor {
 	func interpolateTo(color end: UIColor, progress: CGFloat) -> UIColor {
 		var r1: CGFloat = 0

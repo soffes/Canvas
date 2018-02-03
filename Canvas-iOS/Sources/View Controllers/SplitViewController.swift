@@ -1,5 +1,5 @@
-import UIKit
 import CanvasCore
+import UIKit
 
 final class SplitViewController: UISplitViewController {
 
@@ -65,7 +65,6 @@ final class SplitViewController: UISplitViewController {
 		}
 	}
 }
-
 
 extension SplitViewController: UISplitViewControllerDelegate {
 	func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {

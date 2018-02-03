@@ -1,5 +1,5 @@
-import Foundation
 import CanvasNative
+import Foundation
 
 private typealias Match = (replacement: String, location: Int)
 
@@ -90,7 +90,6 @@ extension TextController {
 		if let native = scanOrderedList(scanner) {
 			return (native, scanner.scanLocation)
 		}
-
 
 		return nil
 	}

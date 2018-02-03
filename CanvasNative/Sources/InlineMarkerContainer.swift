@@ -4,7 +4,6 @@ public protocol InlineMarkerContainer: BlockNode {
 	var inlineMarkerPairs: [InlineMarkerPair] { get set }
 }
 
-
 extension InlineMarkerContainer {
 	public var hiddenRanges: [NSRange] {
 		var ranges = [NSRange]()

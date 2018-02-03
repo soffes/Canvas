@@ -1,6 +1,6 @@
-import UIKit
-import Static
 import CanvasCore
+import Static
+import UIKit
 
 final class ValueCell: UITableViewCell, Cell {
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {

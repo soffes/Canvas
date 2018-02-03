@@ -19,7 +19,6 @@ public protocol DocumentControllerDelegate: class {
 	func documentControllerDidUpdateDocument(_ controller: DocumentController)
 }
 
-
 public final class DocumentController {
 
     // MARK: - Properties

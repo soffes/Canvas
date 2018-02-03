@@ -4,8 +4,8 @@
 	import UIKit
 #endif
 
-import WebKit
 import CanvasNative
+import WebKit
 import X
 
 typealias Style = (range: NSRange, attributes: Attributes)
@@ -24,7 +24,6 @@ public protocol TextControllerAnnotationDelegate: class {
 	func textController(_ textController: TextController, willAddAnnotation annotation: Annotation)
 	func textController(_ textController: TextController, willRemoveAnnotation annotation: Annotation)
 }
-
 
 public final class TextController: NSObject {
 
@@ -514,7 +513,6 @@ public final class TextController: NSObject {
 	}
 }
 
-
 extension TextController: DocumentControllerDelegate {
 	public func documentControllerWillUpdateDocument(_ controller: DocumentController) {
 		textStorage.beginEditing()
@@ -621,7 +619,6 @@ extension TextController: DocumentControllerDelegate {
 	}
 }
 
-
 extension TextController: AnnotationsControllerDelegate {
 	func annotationsController(_ controller: AnnotationsController, willAddAnnotation annotation: Annotation) {
 		annotationDelegate?.textController(self, willAddAnnotation: annotation)
@@ -631,7 +628,6 @@ extension TextController: AnnotationsControllerDelegate {
 		annotationDelegate?.textController(self, willRemoveAnnotation: annotation)
 	}
 }
-
 
 extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 	public func canvasTextStorage(_ textStorage: CanvasTextStorage, willReplaceCharactersIn range: NSRange, with string: String) {
@@ -773,7 +769,6 @@ extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 		submitOperations(backingRange: backingRange, string: replacement)
 	}
 }
-
 
 extension TextController: LayoutManagerDelegate {
 	func layoutManager(_ layoutManager: NSLayoutManager, textContainerChangedGeometry textContainer: NSTextContainer) {

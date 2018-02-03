@@ -1,5 +1,5 @@
-import UIKit
 import CanvasText
+import UIKit
 
 class TextView: UITextView {
 

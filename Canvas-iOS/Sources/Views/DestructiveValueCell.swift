@@ -1,6 +1,6 @@
-import UIKit
-import Static
 import CanvasCore
+import Static
+import UIKit
 
 final class DestructiveButtonCell: UITableViewCell, Cell {
 	override func tintColorDidChange() {

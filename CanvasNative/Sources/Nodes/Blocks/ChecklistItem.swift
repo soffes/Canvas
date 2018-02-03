@@ -85,7 +85,6 @@ public struct ChecklistItem: Listable, Equatable {
 
 		let nativePrefixRange = NSRange(location: range.location, length: scanner.scanLocation)
 
-
 		// Prefix
 		let startPrefix = scanner.scanLocation
 		if !scanner.scanString("- [", into: nil) {
@@ -150,7 +149,6 @@ public struct ChecklistItem: Listable, Equatable {
 		return "\(leadingNativePrefix)checklist-\(indentation.string)\(trailingNativePrefix)- [\(state.string)] "
 	}
 }
-
 
 public func ==(lhs: ChecklistItem, rhs: ChecklistItem) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&

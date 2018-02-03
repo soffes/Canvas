@@ -37,7 +37,6 @@ public enum Position: String, CustomStringConvertible {
 	}
 }
 
-
 public protocol Positionable: BlockNode {
 	var position: Position { get set }
 }

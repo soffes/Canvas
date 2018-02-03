@@ -1,6 +1,6 @@
-import UIKit
 import CanvasCore
 import Static
+import UIKit
 
 extension Canvas {
 	enum Kind {

@@ -1,5 +1,5 @@
-import UIKit
 import CanvasCore
+import UIKit
 
 // TODO: Get colors from theme
 final class DragBackgroundView: UIView {

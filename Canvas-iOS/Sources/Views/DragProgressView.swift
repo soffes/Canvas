@@ -1,5 +1,5 @@
-import UIKit
 import CanvasCore
+import UIKit
 
 final class DragProgressView: UIView {
 

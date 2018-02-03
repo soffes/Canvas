@@ -48,7 +48,6 @@ public enum TextStyle {
 	}
 }
 
-
 func applySymbolicTraits(_ traits: UIFontDescriptorSymbolicTraits, toFont font: UIFont, sanitize: Bool = true) -> UIFont {
 	var traits = traits
 

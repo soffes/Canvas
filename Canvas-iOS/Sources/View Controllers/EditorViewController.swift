@@ -1,7 +1,7 @@
-import UIKit
 import CanvasCore
-import CanvasText
 import CanvasNative
+import CanvasText
+import UIKit
 
 final class EditorViewController: UIViewController {
 
@@ -33,7 +33,7 @@ final class EditorViewController: UIViewController {
 			textView.spellCheckingType = autocompleteEnabled ? .default : .no
 
 			// Make the change actually take effect.
-			if textView.isFirstResponder{
+			if textView.isFirstResponder {
 				ignoreLocalSelectionChange = true
 				textView.resignFirstResponder()
 				textView.becomeFirstResponder()
@@ -82,7 +82,7 @@ final class EditorViewController: UIViewController {
 	override var keyCommands: [UIKeyCommand] {
 		var commands: [UIKeyCommand] = [
 			UIKeyCommand(input: UIKeyInputEscape, modifierFlags: [], action: #selector(dismissKeyboard)),
-			UIKeyCommand(input: "w", modifierFlags: [.command], action: #selector(close), discoverabilityTitle: LocalizedString.closeCommand.string),
+			UIKeyCommand(input: "w", modifierFlags: [.command], action: #selector(close), discoverabilityTitle: LocalizedString.closeCommand.string)
 
 //			UIKeyCommand(input: "b", modifierFlags: [.command], action: #selector(bold), discoverabilityTitle: LocalizedString.boldCommand.string),
 //			UIKeyCommand(input: "i", modifierFlags: [.command], action: #selector(italic), discoverabilityTitle: LocalizedString.italicCommand.string),
@@ -265,13 +265,11 @@ final class EditorViewController: UIViewController {
 	}
 }
 
-
 extension EditorViewController: TintableEnvironment {
 	var preferredTintColor: UIColor {
 		return Swatch.brand
 	}
 }
-
 
 extension EditorViewController: UIViewControllerPreviewingDelegate {
 	func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
@@ -302,7 +300,6 @@ extension EditorViewController: UIViewControllerPreviewingDelegate {
 		present(viewControllerToCommit, animated: false, completion: nil)
 	}
 }
-
 
 extension EditorViewController: UITextViewDelegate {
 	func textViewDidChangeSelection(_ textView: UITextView) {
@@ -345,7 +342,6 @@ extension EditorViewController: UITextViewDelegate {
 	}
 }
 
-
 extension EditorViewController: TextControllerDisplayDelegate {
 	func textController(_ textController: TextController, didUpdateSelectedRange selectedRange: NSRange) {
 		// Defer to after editing completes or UITextView will misplace already queued edits
@@ -387,7 +383,6 @@ extension EditorViewController: TextControllerDisplayDelegate {
 
 	func textControllerDidLayoutText(_ textController: TextController) {}
 }
-
 
 extension EditorViewController: CanvasTextViewFormattingDelegate {
 	func textViewDidToggleBoldface(_ textView: CanvasTextView, sender: Any?) {

@@ -1,5 +1,5 @@
-import UIKit
 import CanvasCore
+import UIKit
 
 final class NavigationController: UINavigationController {
 
@@ -48,7 +48,6 @@ final class NavigationController: UINavigationController {
 		navigationBar.tintColor = itemsColor
 	}
 }
-
 
 extension NavigationController: UINavigationControllerDelegate {
 	func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {

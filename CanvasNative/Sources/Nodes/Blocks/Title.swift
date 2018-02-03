@@ -67,7 +67,6 @@ public struct Title: NativePrefixable, NodeContainer, InlineMarkerContainer, Equ
 	}
 }
 
-
 public func ==(lhs: Title, rhs: Title) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
 		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&

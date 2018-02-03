@@ -1,5 +1,5 @@
-import UIKit
 import SafariServices
+import UIKit
 
 final class WebViewController: SFSafariViewController {
 
@@ -12,7 +12,6 @@ final class WebViewController: SFSafariViewController {
 	convenience init(url: URL) {
 		self.init(url: url, configuration: Configuration())
 	}
-
 
 	override init(url: URL, configuration: SFSafariViewController.Configuration) {
 		originalURL = url

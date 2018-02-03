@@ -32,7 +32,6 @@ final class ChromeActivity: WebActivity {
 			return
 		}
 
-
 		guard var components = URLComponents(url: url, resolvingAgainstBaseURL: true),
 			let chromeScheme = chromeScheme(for: url)
 		else {

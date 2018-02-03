@@ -58,7 +58,6 @@ public final class SpaceView: View {
 	#endif
 }
 
-
 #if os(OSX)
 	extension NSStackView {
 		public func addSpace(length: CGFloat) {

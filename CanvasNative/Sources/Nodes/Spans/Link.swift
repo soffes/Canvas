@@ -48,7 +48,6 @@ public struct LinkTitle {
 	}
 }
 
-
 public struct Link: SpanNode, Foldable, NodeContainer {
 
     // MARK: - Properties
@@ -151,7 +150,6 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 	}
 }
 
-
 extension Link: SpanNodeParseable {
 	static let regularExpression: NSRegularExpression = try! NSRegularExpression(pattern: "(\\[)((?:(?:\\\\.)|[^\\[\\]])+)(\\])(\\()([^\\(\\)\\s]+(?:\\(\\S*?\\))??[^\\(\\)\\s]*?)(?:\\s+(['‘’\"“”])(.*?)(\\6))?(\\))", options: [])
 
@@ -170,6 +168,5 @@ extension Link: SpanNodeParseable {
 		trailingURLDelimiterRange = match.range(at: 9)
 	}
 }
-
 
 extension Link: SpanNodeContainer {}

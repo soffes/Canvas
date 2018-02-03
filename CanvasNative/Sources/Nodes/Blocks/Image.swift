@@ -1,5 +1,5 @@
-import Foundation
 import CoreGraphics
+import Foundation
 
 public struct Image: Attachable, Equatable {
 
@@ -108,13 +108,11 @@ public struct Image: Attachable, Equatable {
 	}
 }
 
-
 extension Image: Hashable {
 	public var hashValue: Int {
 		return identifier.hashValue
 	}
 }
-
 
 public func == (lhs: Image, rhs: Image) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&

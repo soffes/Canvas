@@ -37,11 +37,9 @@ extension NSRange {
 
 	// MARK: - Working with Locations
 
-
 	func contains(_ location: UInt) -> Bool {
 		return contains(Int(location))
 	}
-
 
 	func contains(_ location: Int) -> Bool {
 		return NSLocationInRange(location, self)
@@ -65,7 +63,6 @@ extension NSRange {
 		let length = NSIntersectionRange(self, range).length
 		return length > 0 ? length : nil
 	}
-
 
 	func equals(_ range: NSRange) -> Bool {
 		return NSEqualRanges(self, range)

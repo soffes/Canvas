@@ -33,7 +33,6 @@ extension UIViewController {
 	}
 }
 
-
 extension UINavigationController {
 	override func dismissDetailViewController(_ sender: Any?) {
 		// Hack to fix nested navigation controllers that split view makes. Ugh.
@@ -44,7 +43,6 @@ extension UINavigationController {
 		popViewController(animated: true)
 	}
 }
-
 
 extension UISplitViewController {
 	override func dismissDetailViewController(_ sender: Any?) {

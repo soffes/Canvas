@@ -7,7 +7,6 @@ public protocol NativePrefixable: BlockNode {
 	var nativePrefixRange: NSRange { get }
 }
 
-
 func parseBlockNode(string: String, range: NSRange, delimiter: String, prefix: String) -> (nativePrefixRange: NSRange, prefixRange: NSRange, visibleRange: NSRange)? {
 	let scanner = Scanner(string: string)
 	scanner.charactersToBeSkipped = nil
@@ -33,7 +32,6 @@ func parseBlockNode(string: String, range: NSRange, delimiter: String, prefix: S
 
 	return (nativePrefixRange, prefixRange, visibleRange)
 }
-
 
 func parseBlockNode(string: String, range: NSRange, delimiter: String) -> (nativePrefixRange: NSRange, visibleRange: NSRange)? {
 	let scanner = Scanner(string: string)
