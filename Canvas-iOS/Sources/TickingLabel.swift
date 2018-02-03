@@ -1,11 +1,3 @@
-//
-//  TickingLabel.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 1/28/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 
 final class TickingLabel: UILabel {

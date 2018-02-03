@@ -1,11 +1,3 @@
-//
-//  EditorViewController+Actions.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 5/5/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import CanvasCore
 
@@ -18,43 +10,43 @@ extension EditorViewController {
 		NotificationCenter.default.post(name: EditorViewController.willCloseNotificationName, object: nil)
 		dismissDetailViewController(self)
 	}
-	
+
 	@objc func dismissKeyboard() {
 		textView.resignFirstResponder()
 	}
-	
+
 	@objc func check() {
 		textController.toggleChecked()
 	}
-	
+
 	@objc func indent() {
 		textController.indent()
 	}
-	
+
 	@objc func outdent() {
 		textController.outdent()
 	}
-	
+
 	@objc func bold() {
 		textController.bold()
 	}
-	
+
 	@objc func italic() {
 		textController.italic()
 	}
-	
+
 	@objc func inlineCode() {
 		textController.inlineCode()
 	}
-	
+
 	@objc func insertLineAfter() {
 		textController.insertLineAfter()
 	}
-	
+
 	@objc func insertLineBefore() {
 		textController.insertLineBefore()
 	}
-	
+
 	@objc func deleteLine() {
 		textController.deleteLine()
 	}

@@ -1,11 +1,3 @@
-//
-//  SectionHeaderView.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 6/3/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import CanvasCore
 import CanvasText
@@ -42,11 +34,11 @@ class SectionHeaderView: UIView {
 			textLabel.topAnchor.constraint(equalTo: topAnchor, constant: 4),
 			textLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4)
 		])
-		
+
 		NotificationCenter.default.addObserver(self, selector: #selector(updateFont), name: UIContentSizeCategoryDidChangeNotification, object: nil)
 		updateFont()
 	}
-	
+
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
@@ -58,10 +50,10 @@ class SectionHeaderView: UIView {
 		super.tintColorDidChange()
 		backgroundColor = tintAdjustmentMode == .Dimmed ? Swatch.extraLightGray.desaturated : Swatch.extraLightGray
 	}
-	
-	
+
+
 	// MARK: - Fonts
-	
+
 	func updateFont() {
 		textLabel.font = TextStyle.callout.font(weight: .medium)
 	}

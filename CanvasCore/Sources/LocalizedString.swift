@@ -1,15 +1,7 @@
-//
-//  Globals.swift
-//  CanvasCore
-//
-//  Created by Sam Soffes on 12/17/15.
-//  Copyright © 2015–2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import Foundation
 
 public enum LocalizedString {
-	
+
 	// Login
 	case loginPlaceholder
 	case passwordPlaceholder

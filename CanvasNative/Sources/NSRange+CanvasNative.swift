@@ -1,11 +1,3 @@
-//
-//  NSRange+CanvasNative.swift
-//  CanvasNative
-//
-//  Created by Sam Soffes on 11/10/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
-//
-
 import Foundation
 
 extension NSRange {
@@ -29,7 +21,7 @@ extension NSRange {
 		return location..<max
 	}
 
-	
+
 	// MARK: - Initializers
 
 	init(_ range: Range<Int>) {
@@ -40,11 +32,11 @@ extension NSRange {
 	init(location: UInt, length: UInt) {
 		self.init(location: Int(location), length: Int(length))
 	}
-	
+
 	init(location: UInt, length: Int) {
 		self.init(location: Int(location), length: length)
 	}
-	
+
 	init(location: Int, length: UInt) {
 		self.init(location: location, length: Int(length))
 	}
@@ -52,12 +44,12 @@ extension NSRange {
 
 	// MARK: - Working with Locations
 
-	
+
 	func contains(_ location: UInt) -> Bool {
 		return contains(Int(location))
 	}
 
-	
+
 	func contains(_ location: Int) -> Bool {
 		return NSLocationInRange(location, self)
 	}
@@ -65,7 +57,7 @@ extension NSRange {
 
 	// MARK: - Working with other Ranges
 
-	
+
 	func union(_ range: NSRange) -> NSRange {
 		return NSUnionRange(self, range)
 	}
@@ -83,7 +75,7 @@ extension NSRange {
 		return length > 0 ? length : nil
 	}
 
-	
+
 	func equals(_ range: NSRange) -> Bool {
 		return NSEqualRanges(self, range)
 	}

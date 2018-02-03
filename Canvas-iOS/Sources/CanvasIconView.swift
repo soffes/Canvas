@@ -1,11 +1,3 @@
-//
-//  CanvasIconView.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 1/14/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import CanvasCore
 
@@ -43,7 +35,7 @@ final class CanvasIconView: TintableView {
 			iconView.bottomAnchor.constraint(equalTo: bottomAnchor)
 		])
 	}
-	
+
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}

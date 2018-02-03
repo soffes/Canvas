@@ -1,11 +1,3 @@
-//
-//  NSDate+Canvas.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 12/2/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
-//
-
 import Foundation
 
 extension Date {

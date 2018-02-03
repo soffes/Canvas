@@ -1,11 +1,3 @@
-//
-//  TextContainer.swift
-//  CanvasText
-//
-//  Created by Sam Soffes on 2/2/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 #if os(OSX)
 	import AppKit
 #else

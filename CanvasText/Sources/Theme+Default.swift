@@ -1,11 +1,3 @@
-//
-//  Theme+Default.swift
-//  CanvasText
-//
-//  Created by Sam Soffes on 6/7/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 #if os(OSX)
 	import AppKit
 #else
@@ -200,7 +192,7 @@ extension Theme {
 		if attributes.isEmpty {
 			return nil
 		}
-		
+
 		return attributes
 	}
 }

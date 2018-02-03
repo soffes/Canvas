@@ -1,11 +1,3 @@
-//
-//  Font.swift
-//  CanvasCore
-//
-//  Created by Sam Soffes on 11/27/15.
-//  Copyright © 2015–2016 Canvas Labs, Inc. All rights reserved.
-//
-
 #if os(OSX)
 	import AppKit
 #else

@@ -1,11 +1,3 @@
-//
-//  NSRange+CanvasText.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 11/10/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
-//
-
 import Foundation
 
 extension NSRange {
@@ -23,17 +15,17 @@ extension NSRange {
 		return NSMaxRange(self)
 	}
 
-	
+
 	func equals(_ range: NSRange) -> Bool {
 		return NSEqualRanges(self, range)
 	}
 
-	
+
 	func contains(_ location: Int) -> Bool {
 		return NSLocationInRange(location, self)
 	}
 
-	
+
 	func union(_ range: NSRange) -> NSRange {
 		return NSUnionRange(self, range)
 	}

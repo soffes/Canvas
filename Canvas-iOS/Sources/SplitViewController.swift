@@ -1,11 +1,3 @@
-//
-//  SplitViewController.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 5/17/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import CanvasCore
 
@@ -22,7 +14,7 @@ final class SplitViewController: UISplitViewController {
 		preferredDisplayMode = .allVisible
 		delegate = self
 	}
-	
+
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
@@ -153,7 +145,7 @@ extension SplitViewController: UISplitViewControllerDelegate {
 		if let secondaryNavigationController = viewController as? UINavigationController {
 			return secondaryNavigationController.topViewController is PlaceholderViewController
 		}
-		
+
 		return false
 	}
 }

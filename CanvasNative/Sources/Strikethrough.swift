@@ -1,11 +1,3 @@
-//
-//  Strikethrough.swift
-//  CanvasNative
-//
-//  Created by Sam Soffes on 5/31/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import Foundation
 
 public struct Strikethrough: SpanNode, Foldable, NodeContainer {

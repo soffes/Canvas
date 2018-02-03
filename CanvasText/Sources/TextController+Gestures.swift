@@ -1,11 +1,3 @@
-//
-//  TextController+Gestures.swift
-//  CanvasText
-//
-//  Created by Sam Soffes on 5/3/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import CanvasNative
 
 extension TextController {

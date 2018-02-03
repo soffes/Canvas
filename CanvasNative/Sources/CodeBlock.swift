@@ -1,11 +1,3 @@
-//
-//  CodeBlock.swift
-//  CanvasNative
-//
-//  Created by Sam Soffes on 11/19/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
-//
-
 import Foundation
 
 public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, InlineMarkerContainer, Equatable {
@@ -39,7 +31,7 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Inli
 	}
 
 	public var lineNumber: UInt = 0
-	
+
 
 	// MARK: - Initializers
 

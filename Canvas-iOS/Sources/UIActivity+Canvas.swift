@@ -1,11 +1,3 @@
-//
-//  UIActivity+Canvas.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 7/16/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 
 extension UIActivity {

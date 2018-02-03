@@ -1,11 +1,3 @@
-//
-//  InlineMarker.swift
-//  CanvasNative
-//
-//  Created by Sam Soffes on 6/1/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import Foundation
 
 public struct InlineMarker: Node {
@@ -23,7 +15,7 @@ public struct InlineMarker: Node {
 	static let regularExpression: NSRegularExpression! = try? NSRegularExpression(pattern: "(☊(Ω)?([a-z]{2})\\|([a-zA-Z0-9]{22})☋)", options: [])
 
 	public var range: NSRange
-	
+
 	public var visibleRange: NSRange {
 		return NSRange(location: range.location, length: 0)
 	}

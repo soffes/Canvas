@@ -1,11 +1,3 @@
-//
-//  PlaceholderViewController.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 5/10/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import CanvasCore
 import CanvasText
@@ -36,7 +28,7 @@ final class PlaceholderViewController: UIViewController {
 			textLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 			textLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 		])
-		
+
 		NotificationCenter.default.addObserver(self, selector: #selector(updateFont), name: .UIContentSizeCategoryDidChange, object: nil)
 		updateFont()
 	}
@@ -45,10 +37,10 @@ final class PlaceholderViewController: UIViewController {
 		super.viewDidAppear(animated)
 		UIDevice.current.isBatteryMonitoringEnabled = false
 	}
-	
-	
+
+
 	// MARK: - Private
-	
+
 	@objc private func updateFont() {
 		textLabel.font = TextStyle.body.font()
 	}

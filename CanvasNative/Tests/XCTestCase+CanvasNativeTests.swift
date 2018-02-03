@@ -1,11 +1,3 @@
-//
-//  XCTestCase+CanvasNativeTests.swift
-//  CanvasNative
-//
-//  Created by Sam Soffes on 3/10/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import XCTest
 import CanvasNative
 

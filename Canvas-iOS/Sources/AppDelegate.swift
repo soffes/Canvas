@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 11/9/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import CanvasCore
 
@@ -18,7 +10,7 @@ import CanvasCore
 
 
 	// MARK: - Private
-	
+
 //	private func open(canvasURL: NSURL) -> Bool {
 //		// For now require an account
 //		guard let splitViewController = (window?.rootViewController as? RootViewController)?.viewController as? SplitViewController else { return false }
@@ -63,7 +55,7 @@ extension AppDelegate: UIApplicationDelegate {
 		]
 
 		window?.rootViewController = rootViewController
-		
+
 		return true
 	}
 

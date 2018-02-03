@@ -1,11 +1,3 @@
-//
-//  CanvasCell.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 11/18/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import Static
 import CanvasCore
@@ -78,7 +70,7 @@ final class CanvasCell: UITableViewCell {
 	}
 
 	private var noContent = false
-	
+
 
 	// MARK: - Initializers
 
@@ -116,7 +108,7 @@ final class CanvasCell: UITableViewCell {
 			timeLabel.trailingAnchor.constraint(equalTo: summaryLabel.trailingAnchor),
 			timeLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 100)
 		])
-		
+
 		NotificationCenter.default.addObserver(self, selector: #selector(updateFonts), name: .UIContentSizeCategoryDidChange, object: nil)
 		updateFonts()
 	}
@@ -132,7 +124,7 @@ final class CanvasCell: UITableViewCell {
 		super.tintColorDidChange()
 		selectedBackgroundView?.backgroundColor = tintColor
 	}
-	
+
 
 	// MARK: - UITableViewCell
 
@@ -158,7 +150,7 @@ final class CanvasCell: UITableViewCell {
 			disclosureIndicatorView.tintColor = canvas?.archivedAt == nil ? Swatch.cellDisclosureIndicator : Swatch.lightGray
 		}
 	}
-	
+
 	@objc private func updateFonts() {
 		titleLabel.font = TextStyle.body.font(weight: .medium)
 		timeLabel.font = TextStyle.footnote.font().fontWithMonospaceNumbers
@@ -176,7 +168,7 @@ extension CanvasCell: Cell {
 		} else {
 			summaryLabel.text = "No Content" // TODO: Localize
 		}
-		
+
 		canvas = row.context?["canvas"] as? Canvas
 	}
 }

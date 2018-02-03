@@ -1,11 +1,3 @@
-//
-//  NumberView.swift
-//  CanvasText
-//
-//  Created by Sam Soffes on 3/14/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import CanvasNative
 import X

@@ -1,11 +1,3 @@
-//
-//  CanvasesViewController.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 12/8/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import Static
 import CanvasCore

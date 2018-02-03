@@ -1,11 +1,3 @@
-//
-//  TextController+MarkdownShortcuts.swift
-//  CanvasText
-//
-//  Created by Sam Soffes on 4/15/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import Foundation
 import CanvasNative
 

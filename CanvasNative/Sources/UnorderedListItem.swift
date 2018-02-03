@@ -1,11 +1,3 @@
-//
-//  UnorderedListItem.swift
-//  CanvasNative
-//
-//  Created by Sam Soffes on 11/19/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
-//
-
 import Foundation
 
 public struct UnorderedListItem: Listable, Equatable {
@@ -66,7 +58,7 @@ public struct UnorderedListItem: Listable, Equatable {
 		nativePrefixRange.location += delta
 		visibleRange.location += delta
 		indentationRange.location += delta
-		
+
 		subnodes = subnodes.map {
 			var node = $0
 			node.offset(delta)

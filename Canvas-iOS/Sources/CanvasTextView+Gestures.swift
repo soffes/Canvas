@@ -1,11 +1,3 @@
-//
-//  CanvasTextView+Gestures.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 5/4/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import CanvasNative
 
@@ -160,9 +152,9 @@ extension CanvasTextView: UIGestureRecognizerDelegate {
 			rect: rect.integral,
 			yContentOffset: contentOffset.y
 		)
-		
+
 		dragContext = context
-		
+
 		return true
 	}
 }

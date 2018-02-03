@@ -1,11 +1,3 @@
-//
-//  IndicatorButton.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 5/13/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import CanvasCore
 
@@ -48,7 +40,7 @@ final class IndicatorButton: PillButton {
 			activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor)
 		])
 	}
-	
+
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}

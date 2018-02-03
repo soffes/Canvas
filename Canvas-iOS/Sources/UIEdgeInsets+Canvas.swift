@@ -1,11 +1,3 @@
-//
-//  UIEdgeInsets+Canvas.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 11/26/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 
 extension UIEdgeInsets {

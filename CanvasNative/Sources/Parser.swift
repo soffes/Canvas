@@ -1,11 +1,3 @@
-//
-//  Parser.swift
-//  CanvasNative
-//
-//  Created by Sam Soffes on 1/7/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import Foundation
 
 /// Given a string, parse into BlockNodes.
@@ -213,7 +205,7 @@ public struct Parser {
 				if let last = lastIndentation, last > item.indentation {
 					orderedIndentations.removeValue(forKey: last)
 				}
-				
+
 				let value = (orderedIndentations[item.indentation] ?? 0) + 1
 				orderedIndentations[item.indentation] = value
 				item.number = value

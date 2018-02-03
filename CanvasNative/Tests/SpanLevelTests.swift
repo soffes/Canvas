@@ -1,11 +1,3 @@
-//
-//  SpanLevelTests.swift
-//  CanvasNative
-//
-//  Created by Sam Soffes on 1/6/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import XCTest
 import CanvasNative
 
@@ -145,11 +137,11 @@ final class SpanLevelTests: XCTestCase {
 
 		XCTAssertEqual([paragraph].map { $0.dictionary as NSDictionary }, parse(markdown))
 	}
-	
+
 	func testEmphasisEdges() {
 		var paragraph = Parser.parse("Hello (_world_).").first as! Paragraph
 		XCTAssert(paragraph.subnodes[1] is Emphasis)
-		
+
 		paragraph = Parser.parse("Hello this_not_italic.").first as! Paragraph
 		XCTAssertEqual(1, paragraph.subnodes.count)
 		XCTAssert(paragraph.subnodes[0] is Text)

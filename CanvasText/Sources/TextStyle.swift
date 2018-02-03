@@ -1,11 +1,3 @@
-//
-//  TextStyle.swift
-//  CanvasText
-//
-//  Created by Sam Soffes on 6/30/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 
 public enum TextStyle {
@@ -19,7 +11,7 @@ public enum TextStyle {
 	case caption1
 	case caption2
 	case callout
-	
+
 	public var textStyle: String {
 		switch self {
 		case .title1: return UIFontTextStyle.title1.rawValue
@@ -34,7 +26,7 @@ public enum TextStyle {
 		case .callout: return UIFontTextStyle.callout.rawValue
 		}
 	}
-	
+
 	public func font(traits: UIFontDescriptorSymbolicTraits = [], weight: FontWeight? = nil) -> UIFont {
 		var systemFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle(rawValue: textStyle))
 
@@ -45,10 +37,10 @@ public enum TextStyle {
 				systemFont = UIFont.systemFont(ofSize: systemFont.pointSize, weight: UIFont.Weight(rawValue: weight.fontWeight))
 			}
 		}
-		
+
 		return applySymbolicTraits(traits, toFont: systemFont, sanitize: false)
 	}
-	
+
 	public func monoSpaceFont(traits: UIFontDescriptorSymbolicTraits = []) -> UIFont {
 		let systemFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle(rawValue: textStyle))
 		let monoSpaceFont = UIFont(name: "Menlo", size: systemFont.pointSize * 0.9)!
@@ -59,25 +51,25 @@ public enum TextStyle {
 
 func applySymbolicTraits(_ traits: UIFontDescriptorSymbolicTraits, toFont font: UIFont, sanitize: Bool = true) -> UIFont {
 	var traits = traits
-	
+
 	if sanitize && !traits.isEmpty {
 		var t = UIFontDescriptorSymbolicTraits()
-		
+
 		if traits.contains(.traitBold) {
 			t.insert(.traitBold)
 		}
-		
+
 		if traits.contains(.traitItalic) {
 			t.insert(.traitItalic)
 		}
-		
+
 		traits = t
 	}
-	
+
 	if traits.isEmpty {
 		return font
 	}
-	
+
 	let fontDescriptor = font.fontDescriptor.withSymbolicTraits(traits)
 	return UIFont(descriptor: fontDescriptor!, size: font.pointSize)
 }

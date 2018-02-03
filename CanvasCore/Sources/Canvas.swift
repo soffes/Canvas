@@ -1,11 +1,3 @@
-//
-//  Canvas.swift
-//  CanvasKit
-//
-//  Created by Sam Soffes on 11/3/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
-//
-
 import Foundation
 
 public struct Canvas {

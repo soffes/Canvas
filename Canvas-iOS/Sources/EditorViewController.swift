@@ -1,17 +1,10 @@
-//  EditorViewController.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 11/9/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import CanvasCore
 import CanvasText
 import CanvasNative
 
 final class EditorViewController: UIViewController {
-	
+
 	// MARK: - Properties
 
 	static let willCloseNotificationName = Notification.Name(rawValue: "EditorViewController.willCloseNotificationName")
@@ -26,7 +19,7 @@ final class EditorViewController: UIViewController {
 
 	private var scrollOffset: CGFloat?
 	private var ignoreLocalSelectionChange = false
-	
+
 	private let titleView: TitleView = {
 		let view = TitleView()
 		view.isHidden = true
@@ -77,7 +70,7 @@ final class EditorViewController: UIViewController {
 		navigationItem.titleView = titleView
 
 		UIDevice.current.isBatteryMonitoringEnabled = true
-		
+
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: .UIKeyboardWillChangeFrame, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(updatePreventSleep), name: UserDefaults.didChangeNotification, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(updatePreventSleep), name: .UIApplicationDidBecomeActive, object: nil)
@@ -132,19 +125,19 @@ final class EditorViewController: UIViewController {
 			UIKeyCommand(input: "\r", modifierFlags: [.command, .shift], action: #selector(insertLineBefore), discoverabilityTitle: LocalizedString.insertLineBeforeCommand.string),
 			UIKeyCommand(input: "\r", modifierFlags: [.command], action: #selector(insertLineAfter), discoverabilityTitle: LocalizedString.insertLineAfterCommand.string)
 		]
-		
+
 		return commands
 	}
 
-	
+
 	// MARK: - UIViewController
-	
+
 	override var title: String? {
 		didSet {
 			titleView.title = title ?? ""
 		}
 	}
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -168,17 +161,17 @@ final class EditorViewController: UIViewController {
 
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
-	
+
 		// Prevent extra work if things didn't change. This method gets called more often than you'd expect.
 		if view.bounds.size == lastSize { return }
 		lastSize = view.bounds.size
-		
+
 		// Align title view
 		if let navigationBar = navigationController?.navigationBar {
 			var titleFrame = CGRect(
 				x: 0,
 				y: 0,
-				
+
 				// 200 seems to be when nav bar stops messing with alignment. ugh
 				width: navigationBar.bounds.width - 200,
 				height: navigationBar.bounds.height
@@ -206,7 +199,7 @@ final class EditorViewController: UIViewController {
 		super.viewWillAppear(animated)
 		updatePreventSleep()
 	}
-	
+
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		titleView.isHidden = false
@@ -217,12 +210,12 @@ final class EditorViewController: UIViewController {
 		UIApplication.shared.isIdleTimerDisabled = false
 		textView.resignFirstResponder()
 	}
-	
+
 	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitCollection)
 		textController.traitCollection = traitCollection
 	}
-	
+
 
 	// MARK: - Private
 
@@ -291,7 +284,7 @@ extension EditorViewController: UIViewControllerPreviewingDelegate {
 		)
 
 		let document = textController.currentDocument
-		
+
 		// TODO: Update for inline-markers
 		let nodes = document.nodesIn(backingRange: document.backingRanges(presentationRange: range)[0])
 
@@ -320,7 +313,7 @@ extension EditorViewController: UITextViewDelegate {
 		textController.set(presentationSelectedRange: selection)
 		updateTitleTypingAttributes()
 		updateAutoCompletion()
-		
+
 		if NSEqualRanges(textView.selectedRange, NSRange(location: 0, length: 0)) {
 			var attributes = [String: Any]()
 			for (key, value) in textController.theme.titleAttributes {
@@ -335,15 +328,15 @@ extension EditorViewController: UITextViewDelegate {
 		usingKeyboard = true
 		updateTitleTypingAttributes()
 	}
-	
+
 	func textViewDidEndEditing(_ textView: UITextView) {
 		if ignoreLocalSelectionChange {
 			return
 		}
-		
+
 		textController.set(presentationSelectedRange: nil)
 	}
-	
+
 	func textViewDidChange(_ textView: UITextView) {
 		textController.applyStyles()
 	}
@@ -387,11 +380,11 @@ extension EditorViewController: TextControllerDisplayDelegate {
 	func textControllerDidProcessRemoteEdit(_ textController: TextController) {
 		updateAutoCompletion()
 	}
-	
+
 	func textController(_ textController: TextController, urlForImage block: Image) -> URL? {
 		return block.url
 	}
-	
+
 	func textControllerDidUpdateFolding(_ textController: TextController) {}
 
 	func textControllerDidLayoutText(_ textController: TextController) {}

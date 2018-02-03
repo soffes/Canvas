@@ -1,11 +1,3 @@
-//
-//  CanvasTextView.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 4/19/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import CanvasCore
 import CanvasNative
@@ -65,14 +57,14 @@ final class CanvasTextView: TextView {
 		managedSubviews.insert(placeholderLabel)
 		addSubview(placeholderLabel)
 	}
-	
+
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 
 
 	// MARK: - UIResponder
-	
+
 	override func toggleBoldface(_ sender: Any?) {
 		formattingDelegate?.textViewDidToggleBoldface(self, sender: sender)
 	}
@@ -100,7 +92,7 @@ final class CanvasTextView: TextView {
 
 	override func tintColorDidChange() {
 		super.tintColorDidChange()
-		
+
 		textController?.set(tintColor: tintColor)
 	}
 

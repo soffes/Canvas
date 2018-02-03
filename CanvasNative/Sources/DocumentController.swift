@@ -1,11 +1,3 @@
-//
-//  DocumentController.swift
-//  CanvasNative
-//
-//  Created by Sam Soffes on 2/18/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import Foundation
 
 /// DocumentController delegate for notifications about changes to the owned document.  You can not rely upon these

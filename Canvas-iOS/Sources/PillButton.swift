@@ -1,11 +1,3 @@
-//
-//  PillButton.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 11/25/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import CanvasCore
 import CanvasText
@@ -13,10 +5,10 @@ import CanvasText
 class PillButton: UIButton {
 
 	// MARK: - Initializers
-	
+
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		
+
 		backgroundColor = .clear
 
 		layer.cornerRadius = 24
@@ -34,10 +26,10 @@ class PillButton: UIButton {
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
-	
+
+
 	// MARK: - UIView
-	
+
 	override var intrinsicContentSize: CGSize {
 		var size = super.intrinsicContentSize
 		size.height = 48
@@ -72,7 +64,7 @@ class PillButton: UIButton {
 	private func updateBorderColor() {
 		layer.borderColor = titleColor(for: state)?.cgColor
 	}
-	
+
 	@objc func updateFont() {
 		titleLabel?.font = TextStyle.body.font(weight: .medium)
 	}

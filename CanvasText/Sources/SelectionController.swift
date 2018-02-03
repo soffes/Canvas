@@ -1,11 +1,3 @@
-//
-//  SelectionController.swift
-//  CanvasText
-//
-//  Created by Sam Soffes on 5/2/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 struct SelectionController {
 	static func adjust(selection: NSRange, replacementRange: NSRange, replacementLength: Int) -> NSRange {
 		// No change

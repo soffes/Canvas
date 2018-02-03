@@ -1,11 +1,3 @@
-//
-//  SleepPrevention.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 6/28/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import Foundation
 
 enum SleepPrevention: String, CustomStringConvertible {

@@ -1,11 +1,3 @@
-//
-//  SearchBarContainer.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 2/9/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import CanvasCore
 
@@ -51,7 +43,7 @@ final class SearchBarContainer: UIView {
 		bottomBorderView.backgroundColor = Swatch.border
 		addSubview(bottomBorderView)
 	}
-	
+
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}

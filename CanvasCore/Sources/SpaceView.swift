@@ -1,11 +1,3 @@
-//
-//  SpaceView.swift
-//  CanvasCore
-//
-//  Created by Sam Soffes on 5/16/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import X
 
 #if os(OSX)
@@ -61,7 +53,7 @@ public final class SpaceView: View {
 		public override var intrinsicContentSize: CGSize {
 			return contentSize
 		}
-	
+
 		public override class var layerClass: AnyClass {
 			return CATransformLayer.self
 		}

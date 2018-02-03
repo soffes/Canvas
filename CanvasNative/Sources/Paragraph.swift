@@ -1,11 +1,3 @@
-//
-//  Paragraph.swift
-//  CanvasNative
-//
-//  Created by Sam Soffes on 11/19/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
-//
-
 import Foundation
 
 public struct Paragraph: BlockNode, NodeContainer, InlineMarkerContainer, Equatable {
@@ -52,7 +44,7 @@ public struct Paragraph: BlockNode, NodeContainer, InlineMarkerContainer, Equata
 
 	public mutating func offset(_ delta: Int) {
 		range.location += delta
-		
+
 		subnodes = subnodes.map {
 			var node = $0
 			node.offset(delta)

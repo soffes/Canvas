@@ -1,11 +1,3 @@
-//
-//  UIColor+Canvas.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 6/6/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 
 extension UIColor {
@@ -15,7 +7,7 @@ extension UIColor {
 		var alpha: CGFloat = 0
 
 		getHue(&hue, saturation: nil, brightness: &brightness, alpha: &alpha)
-		
+
 		return type(of: self).init(hue: hue, saturation: 0, brightness: brightness, alpha: alpha)
 	}
 }

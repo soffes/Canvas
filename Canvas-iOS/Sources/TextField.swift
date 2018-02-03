@@ -1,11 +1,3 @@
-//
-//  TextField.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 11/26/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import CanvasCore
 import CanvasText
@@ -28,14 +20,14 @@ final class TextField: UITextField {
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		
+
 		backgroundColor = Swatch.extraLightGray
 
 		textColor = Swatch.black
 		tintColor = Swatch.brand
 
 		layer.cornerRadius = 4
-		
+
 		NotificationCenter.default.addObserver(self, selector: #selector(updateFont), name: UIContentSizeCategoryDidChangeNotification, object: nil)
 		updateFont()
 	}
@@ -43,10 +35,10 @@ final class TextField: UITextField {
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
-	
+
+
 	// MARK: - UIView
-	
+
 	override var intrinsicContentSize: CGSize {
 		var size = super.intrinsicContentSize
 		size.height = 48
@@ -79,10 +71,10 @@ final class TextField: UITextField {
 		rect.origin.x -= 6
 		return rect
 	}
-	
-	
+
+
 	// MARK: - Private
-	
+
 	@objc private func updateFont() {
 		font = TextStyle.body.font()
 	}

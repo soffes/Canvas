@@ -1,11 +1,3 @@
-//
-//  Document.swift
-//  CanvasNative
-//
-//  Created by Sam Soffes on 4/11/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 #if os(OSX)
 	import AppKit
 #else
@@ -344,7 +336,7 @@ public struct Document {
 			let isLast = i == blocks.count - 1
 			var blockRange = NSRange(location: location, length: 0)
 			hiddenRanges += block.hiddenRanges
-			
+
 			if block is Attachable {
 				// Special case for attachments
 				#if os(watchOS)
@@ -352,7 +344,7 @@ public struct Document {
 				#else
 					presentationString += String(Character(UnicodeScalar(NSAttachmentCharacter)!))
 				#endif
-				
+
 				location += 1
 			} else {
 				// Get the raw text of the line

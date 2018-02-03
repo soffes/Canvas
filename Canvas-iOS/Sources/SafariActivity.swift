@@ -1,11 +1,3 @@
-//
-//  SafariActivity.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 11/18/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 
 final class SafariActivity: WebActivity {

@@ -1,11 +1,3 @@
-//
-//  GrayButton.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 8/9/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import CanvasCore
 import CanvasText

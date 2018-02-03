@@ -1,11 +1,3 @@
-//
-//  HorizontalRule.swift
-//  CanvasNative
-//
-//  Created by Sam Soffes on 4/19/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import Foundation
 
 private let regularExpression = try! NSRegularExpression(pattern: "^(?:\\s{0,2}(?:(\\s?\\*\\s*?){3,})|(?:(\\s?-\\s*?){3,})|(?:(\\s?_\\s*?){3,})[ \\t]*)$", options: [])

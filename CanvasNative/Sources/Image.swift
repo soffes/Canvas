@@ -1,11 +1,3 @@
-//
-//  Image.swift
-//  CanvasNative
-//
-//  Created by Sam Soffes on 11/25/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
-//
-
 import Foundation
 import CoreGraphics
 
@@ -49,14 +41,14 @@ public struct Image: Attachable, Equatable {
 	public init?(string: String, range: NSRange) {
 		self.range = range
 		nativePrefixRange = NSRange(location: range.location, length: range.length - 1)
-		
+
 		let scanner = Scanner(string: string)
 		scanner.charactersToBeSkipped = nil
 
 		// url image
 		if scanner.scanString("\(leadingNativePrefix)image\(trailingNativePrefix)", into: nil) {
 			let urlString = (string as NSString).substring(from: 7).replacingOccurrences(of: " ", with: "%20")
-			
+
 			if let url = URL(string: urlString) {
 				self.identifier = urlString
 				self.url = url

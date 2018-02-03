@@ -1,11 +1,3 @@
-//
-//  DragContext.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 5/4/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import CanvasNative
 
@@ -35,10 +27,10 @@ struct DragContext {
 
 	let leadingProgressView: DragProgressView
 	let trailingProgressView: DragProgressView
-	
+
 	private let snapshotView: UIView
 	private let snapshotLeadingConstraint: NSLayoutConstraint
-	
+
 
 	// MARK: - Initializers
 
@@ -134,7 +126,7 @@ struct DragContext {
 			if block.indentation.isMaximum {
 				return nil
 			}
-			
+
 			return UIImage(named: "Indent")!
 		}
 

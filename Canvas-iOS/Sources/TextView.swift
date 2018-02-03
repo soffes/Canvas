@@ -1,11 +1,3 @@
-//
-//  TextView.swift
-//  Canvas
-//
-//  Created by Sam Soffes on 3/8/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 import CanvasText
 
@@ -28,28 +20,28 @@ class TextView: UITextView {
 
 		return super.hitTest(point, with: event)
 	}
-	
+
 
 	// MARK: - UITextInput
 
 	// Only display the caret in the used rect (if available).
 	override func caretRect(for position: UITextPosition) -> CGRect {
 		var rect = super.caretRect(for: position)
-		
+
 		if let layoutManager = textContainer.layoutManager {
 			layoutManager.ensureLayout(for: textContainer)
-			
+
 			let characterIndex = offset(from: beginningOfDocument, to: position)
 			if characterIndex == textStorage.length {
 				return rect
 			}
-			
+
 			let glyphIndex = layoutManager.glyphIndexForCharacter(at: characterIndex)
-			
+
 			if UInt(glyphIndex) == UInt.max - 1 {
 				return rect
 			}
-			
+
 			let usedRect = layoutManager.lineFragmentUsedRect(forGlyphAt: glyphIndex, effectiveRange: nil)
 
 			if usedRect.height > 0 {
@@ -57,7 +49,7 @@ class TextView: UITextView {
 				rect.size.height = usedRect.height
 			}
 		}
-		
+
 		return rect
 	}
 

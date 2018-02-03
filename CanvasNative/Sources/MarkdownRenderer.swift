@@ -1,11 +1,3 @@
-//
-//  MarkdownRenderer.swift
-//  CanvasNative
-//
-//  Created by Sam Soffes on 7/25/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import Foundation
 
 public struct MarkdownRenderer: Renderer {
@@ -138,7 +130,7 @@ public struct MarkdownRenderer: Renderer {
 				output += render(spans: span.subnodes)
 			}
 		}
-		
+
 		return output
 	}
 

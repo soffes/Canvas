@@ -1,11 +1,3 @@
-//
-//  LightTheme.swift
-//  CanvasCore
-//
-//  Created by Sam Soffes on 11/23/15.
-//  Copyright © 2015–2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import CanvasText
 import X
 
@@ -19,7 +11,7 @@ public struct LightTheme: Theme {
 
 
 	// MARK: - Block Colors
-	
+
 	public let titlePlaceholderColor = Swatch.lightGray
 	public let bulletColor = Swatch.darkGray
 	public let uncheckedCheckboxColor = Swatch.darkGray

@@ -1,11 +1,3 @@
-//
-//  LayoutManager.swift
-//  CanvasText
-//
-//  Created by Sam Soffes on 1/22/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 #if os(OSX)
 	import AppKit
 #else
@@ -72,7 +64,7 @@ class LayoutManager: NSLayoutManager {
 
 	/// Set of indices that should be folded. Calculated from `foldableRanges`.
 	private var foldedIndices = Set<Int>()
-	
+
 	// TODO: Get this from the theme and vary based on the block's font
 	private let lineSpacing: CGFloat = 3
 
@@ -84,12 +76,12 @@ class LayoutManager: NSLayoutManager {
 		allowsNonContiguousLayout = true
 		delegate = self
 	}
-	
+
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
-	
+
+
 	// MARK: - NSLayoutManager
 
 	override func textContainerChangedGeometry(_ container: NSTextContainer) {

@@ -1,11 +1,3 @@
-//
-//  BulletView.swift
-//  CanvasText
-//
-//  Created by Sam Soffes on 11/17/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
-//
-
 #if os(OSX)
 	import AppKit
 #else

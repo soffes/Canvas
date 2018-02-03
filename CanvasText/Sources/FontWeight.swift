@@ -1,11 +1,3 @@
-//
-//  File.swift
-//  CanvasText
-//
-//  Created by Sam Soffes on 7/1/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import UIKit
 
 // TODO: Replace with UIFont.Weight?

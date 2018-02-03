@@ -1,11 +1,3 @@
-//
-//  ImagesController.swift
-//  CanvasText
-//
-//  Created by Sam Soffes on 11/25/15.
-//  Copyright © 2015 Canvas Labs, Inc. All rights reserved.
-//
-
 #if os(OSX)
 	import AppKit
 #else
@@ -16,28 +8,28 @@ import Cache
 import X
 
 final class ImagesController: Themeable {
-	
+
 	// MARK: - Types
-	
+
 	typealias Completion = (_ id: String, _ image: Image?) -> Void
-	
-	
+
+
 	// MARK: - Properties
 
 	var theme: Theme
 	let session: URLSession
-	
+
 	private var downloading = [String: [Completion]]()
-	
+
 	private let queue = DispatchQueue(label: "com.usecanvas.canvastext.imagescontroller", qos: .background, attributes: [])
-	
+
 	private let memoryCache = MemoryCache<Image>()
 	private let imageCache: MultiCache<Image>
 	private let placeholderCache = MemoryCache<Image>()
-	
-	
+
+
 	// MARK: - Initializers
-	
+
 	init(theme: Theme, session: URLSession = .shared) {
 		self.theme = theme
 		self.session = session
@@ -55,10 +47,10 @@ final class ImagesController: Themeable {
 
 		imageCache = MultiCache(caches: caches)
 	}
-	
-	
+
+
 	// MARK: - Accessing
-	
+
 	func fetchImage(withID id: String, url: URL?, size: CGSize, scale: CGFloat, completion: @escaping Completion) -> Image? {
 		if let image = memoryCache[id] {
 			return image
@@ -95,14 +87,14 @@ final class ImagesController: Themeable {
 
 		return placeholderImage(size: size, scale: scale)
 	}
-	
-	
+
+
 	// MARK: - Private
-	
+
 	private func coordinate(_ block: () -> Void) {
 		queue.sync(execute: block)
 	}
-	
+
 	private func loadImage(location: URL?, id: String) {
 		let data = location.flatMap { try? Data(contentsOf: $0) }
 		let image = data.flatMap { Image(data: $0) }
@@ -123,7 +115,7 @@ final class ImagesController: Themeable {
 			self?.downloading[id] = nil
 		}
 	}
-	
+
 	private func placeholderImage(size: CGSize, scale: CGFloat) -> Image? {
 		#if os(OSX)
 			// TODO: Implement
@@ -135,15 +127,15 @@ final class ImagesController: Themeable {
 			}
 
 			guard let icon = Image(named: "PhotoLandscape", in: resourceBundle) else { return nil }
-			
+
 			let rect = CGRect(origin: .zero, size: size)
-			
+
 			UIGraphicsBeginImageContextWithOptions(size, true, scale)
-			
+
 			// Background
 			theme.imagePlaceholderBackgroundColor.setFill()
 			UIBezierPath(rect: rect).fill()
-			
+
 			// Icon
 			theme.imagePlaceholderColor.setFill()
 			let iconFrame = CGRect(
@@ -153,12 +145,12 @@ final class ImagesController: Themeable {
 				height: icon.size.height
 			)
 			icon.draw(in: iconFrame)
-			
+
 			let image = UIGraphicsGetImageFromCurrentImageContext()
 			placeholderCache[key] = image
-			
+
 			UIGraphicsEndImageContext()
-			
+
 			return image
 		#endif
 	}

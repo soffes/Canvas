@@ -1,11 +1,3 @@
-//
-//  TextController.swift
-//  CanvasText
-//
-//  Created by Sam Soffes on 3/2/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 #if os(OSX)
 	import AppKit
 #else
@@ -107,7 +99,7 @@ public final class TextController: NSObject {
 	#endif
 
 	private let annotationsController: AnnotationsController
-	
+
 	private let imagesController: ImagesController
 
 	private let documentController = DocumentController()
@@ -129,9 +121,9 @@ public final class TextController: NSObject {
 		imagesController = ImagesController(theme: theme)
 
 		annotationsController = AnnotationsController(theme: theme)
-		
+
 		super.init()
-		
+
 		annotationsController.textController = self
 		annotationsController.delegate = self
 
@@ -147,7 +139,7 @@ public final class TextController: NSObject {
 		documentController.delegate = self
 	}
 
-	
+
 	// MARK: - Traits
 
 	#if !os(OSX)
@@ -198,35 +190,35 @@ public final class TextController: NSObject {
 			displayDelegate?.textController(self, didUpdateSelectedRange: range)
 		}
 	}
-	
-	
+
+
 	// MARK: - Styles
-	
+
 	/// This should not be called while the text view is editing. Ideally, this will be called in the text view's did
 	/// change delegate method.
 	public func applyStyles() {
 		guard !styles.isEmpty else { return }
-		
+
 		for style in styles {
 			if style.range.max > textStorage.length || style.range.length < 0 {
 				print("WARNING: Invalid style: \(style.range)")
 				continue
 			}
-			
+
 			textStorage.setAttributes(style.attributes, range: style.range)
 		}
-		
+
 		styles.removeAll()
 	}
-	
+
 	public func invalidateFonts() {
 		styles.removeAll()
-		
+
 		for block in currentDocument.blocks {
 			let (blockStyles, _) = self.styles(for: block)
 			styles += blockStyles
 		}
-		
+
 		applyStyles()
 		annotationsController.layoutAnnotations()
 	}
@@ -246,35 +238,35 @@ public final class TextController: NSObject {
 	private func invalidate(presentationRange range: NSRange) {
 		invalidPresentationRange = invalidPresentationRange.flatMap { $0.union(range) } ?? range
 	}
-	
+
 	private func invalidateLayoutIfNeeded() {
 		guard var range = invalidPresentationRange else { return }
-		
+
 		if range.max > textStorage.length {
 			print("WARNING: Invalid range is too long. Adjusting.")
 			range.length = min(textStorage.length - range.location, range.length)
 		}
-		
+
 		layoutManager.ensureGlyphs(forCharacterRange: range)
 		layoutManager.invalidateLayout(forCharacterRange: range, actualCharacterRange: nil)
-		
+
 		applyStyles()
 		refreshAnnotations()
-		
+
 		self.invalidPresentationRange = nil
 	}
 
 	private func layoutAttachments() {
 		var styles = [Style]()
-		
+
 		for block in currentDocument.blocks {
 			guard let block = block as? Attachable,
 				let style = attachmentStyle(for: block)
 			else { continue }
-			
+
 			styles.append(style)
 		}
-		
+
 		self.styles += styles
 		applyStyles()
 	}
@@ -315,7 +307,7 @@ public final class TextController: NSObject {
 
 		return range
 	}
-	
+
 	// Returns an array of styles and an array of foldable ranges
 	private func styles(for block: BlockNode) -> ([Style], [NSRange]) {
 		var range = currentDocument.presentationRange(block: block)
@@ -435,14 +427,14 @@ public final class TextController: NSObject {
 //			transportController.submit(operation: .insert(location: UInt(backingRange.location), string: string))
 //		}
 	}
-	
+
 	private func attachmentStyle(for block: Attachable) -> Style? {
 		let attachment: NSTextAttachment
-		
+
 		// Horizontal rule
 		if block is HorizontalRule {
 			guard let image = HorizontalRuleAttachment.image(theme: theme) else { return nil }
-			
+
 			attachment = NSTextAttachment()
 			attachment.image = image
 			attachment.bounds = CGRect(x: 0, y: 0, width: textContainer.size.width, height: HorizontalRuleAttachment.height)
@@ -471,57 +463,57 @@ public final class TextController: NSObject {
 			if let image = image {
 				size = attachmentSize(forImageSize: image.size)
 			}
-			
+
 			attachment = NSTextAttachment()
 			attachment.image = image
 			attachment.bounds = CGRect(origin: .zero, size: size)
 		}
-		
+
 		// Missing attachment
 		else {
 			print("[TextController] WARNING: Missing attachment for block \(block)")
 			return nil
 		}
-		
+
 		let range = currentDocument.presentationRange(block: block)
 		return Style(range: range, attributes: [
 			.attachment: attachment
 		])
 	}
-	
+
 	private func attachmentSize(forImageSize input: CGSize?) -> CGSize {
 		let imageSize = input ?? CGSize(width: floor(textContainer.size.width), height: 300)
 		let width = min(floor(textContainer.size.width), imageSize.width)
 		var size = imageSize
-		
+
 		size.height = floor(width * size.height / size.width)
 		size.width = width
-		
+
 		return size
 	}
-	
+
 	private func block(forImageID id: String) -> CanvasNative.Image? {
 		for block in currentDocument.blocks {
 			if let image = block as? CanvasNative.Image, image.identifier == id {
 				return image
 			}
 		}
-		
+
 		return nil
 	}
-	
+
 	private func updateImageAttachment(withID id: String, image: X.Image?) {
 		guard let image = image, let block = block(forImageID: id) else { return }
-		
+
 		let attachment = NSTextAttachment()
 		attachment.image = image
 		attachment.bounds = CGRect(origin: .zero, size: attachmentSize(forImageSize: image.size))
-		
+
 		let range = currentDocument.presentationRange(block: block)
 		let style = Style(range: range, attributes: [
 			.attachment: attachment
 		])
-		
+
 		styles.append(style)
 		applyStyles()
 		annotationsController.layoutAnnotations()
@@ -538,19 +530,19 @@ extension TextController: DocumentControllerDelegate {
 		_layoutManager.removeFoldableRanges()
 		_layoutManager.invalidFoldingRange = range
 		_textStorage.actuallyReplaceCharacters(in: range, with: string)
-		
+
 		// Calculate the line range
 		let text = textStorage.string as NSString
 		var lineRange = range
 		lineRange.length = (string as NSString).length
 		lineRange = text.lineRange(for: lineRange)
-		
+
 		// Include the line before
 		if lineRange.location > 0 {
 			lineRange.location -= 1
 			lineRange.length += 1
 		}
-		
+
 		invalidate(presentationRange: lineRange)
 
 		var foldableRanges = [NSRange]()
@@ -581,7 +573,7 @@ extension TextController: DocumentControllerDelegate {
 		}
 
 		invalidate(presentationRange: range)
-		
+
 		if let block = block as? Attachable, let style = attachmentStyle(for: block) {
 			styles.append(style)
 		}
@@ -602,7 +594,7 @@ extension TextController: DocumentControllerDelegate {
 	public func documentControllerDidUpdateDocument(_ controller: DocumentController) {
 		textStorage.endEditing()
 		updateTitleIfNeeded(controller)
-		
+
 		DispatchQueue.main.async { [weak self] in
 			self?.invalidateLayoutIfNeeded()
 		}
@@ -720,7 +712,7 @@ extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 				// Add a new line after edits immediately before an Attachable {
 				else if range.location == presentationRange.location {
 					presentationRange.location -= 1
-					
+
 					// FIXME: Update to support inline markers
 					backingRange = document.backingRanges(presentationRange: presentationRange)[0]
 					replacement = "\n" + replacement
@@ -765,7 +757,7 @@ extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 			}
 		}
 	}
-	
+
 	public func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorageEditActions, range editedRange: NSRange, changeInLength delta: Int) {
 		if _textStorage.isEditing {
 			return

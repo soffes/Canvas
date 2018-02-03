@@ -1,11 +1,3 @@
-//
-//  InlineMarkerPair.swift
-//  CanvasNative
-//
-//  Created by Sam Soffes on 6/3/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import Foundation
 
 public struct InlineMarkerPair: Node {

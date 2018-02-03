@@ -1,11 +1,3 @@
-//
-//  TextController+Actions.swift
-//  CanvasText
-//
-//  Created by Sam Soffes on 4/19/16.
-//  Copyright © 2016 Canvas Labs, Inc. All rights reserved.
-//
-
 import CanvasNative
 
 extension TextController {
@@ -76,10 +68,10 @@ extension TextController {
 	public func inlineCode() {
 		print("[CanvasText] TODO: Inline code")
 	}
-	
+
 	public func insertLineAfter() {
 		guard let selection = presentationSelectedRange else { return }
-		
+
 		let text = currentDocument.presentationString as NSString
 		let lineRange = text.lineRange(for: selection)
 		var range = NSRange(location: lineRange.max, length: 0)
@@ -93,18 +85,18 @@ extension TextController {
 		range.location += 1
 		set(presentationSelectedRange: range, updateTextView: true)
 	}
-	
+
 	public func insertLineBefore() {
 		guard let selection = presentationSelectedRange else { return }
-		
+
 		let text = currentDocument.presentationString as NSString
 		let lineRange = text.lineRange(for: selection)
-		
+
 		// Don't insert lines above the title
 		if lineRange.location == 0 {
 			return
 		}
-		
+
 		var range = NSRange(location: lineRange.location - 1, length: 0)
 
 		textStorage.replaceCharacters(in: range, with: "\n")
@@ -112,7 +104,7 @@ extension TextController {
 		range.location += 1
 		set(presentationSelectedRange: range, updateTextView: true)
 	}
-	
+
 	public func deleteLine() {
 		guard let blocks = focusedBlocks else { return }
 
