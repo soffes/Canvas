@@ -49,6 +49,15 @@ final class RootViewController: UIViewController {
 
 	// MARK: - UIViewController
 
+	override func viewDidLoad() {
+		super.viewDidLoad()
+
+		viewController = SplitViewController(
+			masterViewController: NavigationController(rootViewController: CanvasesViewController()),
+			detailViewController: NavigationController(rootViewController: PlaceholderViewController())
+		)
+	}
+
 	override var childViewControllerForStatusBarStyle: UIViewController? {
 		return viewController
 	}
