@@ -164,7 +164,7 @@ public struct Parser {
 
 		let text = (string as NSString)
 
-		let markers: [InlineMarker] = matches.flatMap { result in
+		let markers: [InlineMarker] = matches.compactMap { result in
 			guard result.numberOfRanges == 5 else { return nil }
 			let id = text.substring(with: result.range(at: 4))
 			let position: InlineMarker.Position = result.range(at: 2).length == 0 ? .opening : .closing

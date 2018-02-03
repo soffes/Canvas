@@ -2,7 +2,7 @@ import CanvasNative
 
 extension TextController {
 	public func toggleChecked() {
-		guard let blocks = focusedBlocks?.flatMap({ $0 as? ChecklistItem }) else { return }
+		guard let blocks = focusedBlocks?.compactMap({ $0 as? ChecklistItem }) else { return }
 
 		let states = Set<ChecklistItem.State>(blocks.map({ $0.state }))
 		let newState: ChecklistItem.State
@@ -30,7 +30,7 @@ extension TextController {
 	}
 
 	public func indent() {
-		guard let blocks = focusedBlocks?.flatMap({ $0 as? Listable }) else { return }
+		guard let blocks = focusedBlocks?.compactMap({ $0 as? Listable }) else { return }
 
 		for block in blocks {
 			if block.indentation.isMaximum {
@@ -44,7 +44,7 @@ extension TextController {
 	}
 
 	public func outdent() {
-		guard let blocks = focusedBlocks?.flatMap({ $0 as? Listable }) else { return }
+		guard let blocks = focusedBlocks?.compactMap({ $0 as? Listable }) else { return }
 
 		for block in blocks {
 			if block.indentation.isMinimum {

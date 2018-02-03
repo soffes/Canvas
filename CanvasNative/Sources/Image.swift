@@ -86,7 +86,7 @@ public struct Image: Attachable, Equatable {
 		guard let identifier = ci ?? urlString else { return nil }
 
 		self.identifier = identifier
-		self.url = urlString.flatMap { URL(string: $0) }
+		self.url = urlString.compactMap { URL(string: $0) }
 
 		if let width = dictionary["width"] as? UInt, let height = dictionary["height"] as? UInt {
 			size = CGSize(width: Int(width), height: Int(height))

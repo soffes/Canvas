@@ -107,7 +107,7 @@ public struct Document {
 
 	public func backingRange(presentationLocation: UInt) -> NSRange {
 		var backingRange = preBackingRange(NSRange(location: Int(presentationLocation), length: 0))
-		let inlineMarkerPairs = blocks.flatMap { ($0 as? InlineMarkerContainer)?.inlineMarkerPairs }.reduce([], +)
+		let inlineMarkerPairs = blocks.compactMap { ($0 as? InlineMarkerContainer)?.inlineMarkerPairs }.reduce([], +)
 
 		// Adjust for inline markers
 		for pair in inlineMarkerPairs {
@@ -133,7 +133,7 @@ public struct Document {
 		let pre = preBackingRange(presentationRange)
 
 		var output = NoncontiguousRange(ranges: [pre])
-		let inlineMarkerPairs = blocks.flatMap { ($0 as? InlineMarkerContainer)?.inlineMarkerPairs }.reduce([], +)
+		let inlineMarkerPairs = blocks.compactMap { ($0 as? InlineMarkerContainer)?.inlineMarkerPairs }.reduce([], +)
 
 		// Adjust for inline markers
 		for pair in inlineMarkerPairs {

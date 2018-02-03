@@ -248,7 +248,7 @@ final class EditorViewController: UIViewController {
 
 	func updateTitlePlaceholder() {
 		let title = textController.currentDocument.blocks.first as? Title
-		textView.placeholderLabel.isHidden = title.flatMap { $0.visibleRange.length > 0 } ?? false
+		textView.placeholderLabel.isHidden = title.compactMap { $0.visibleRange.length > 0 } ?? false
 	}
 
 	private func updateTitleTypingAttributes() {

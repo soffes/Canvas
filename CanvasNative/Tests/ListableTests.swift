@@ -18,7 +18,7 @@ final class ListableTests: XCTestCase {
 
 	func testMixedPositions() {
 		let blocks = Parser.parse("⧙doc-heading⧘Positions\n⧙ordered-list-0⧘1. One\n⧙ordered-list-0⧘1. Two\n⧙checklist-0⧘- [ ] Hi\n⧙unordered-list-0⧘- Okay")
-		let actual = blocks.flatMap { ($0 as? Positionable)?.position }
+		let actual = blocks.compactMap { ($0 as? Positionable)?.position }
 
 		let expected: [Position] = [
 			.top,
@@ -33,7 +33,7 @@ final class ListableTests: XCTestCase {
 
 	func testIndentationPosition() {
 		let blocks = Parser.parse("⧙doc-heading⧘Positions\n⧙ordered-list-0⧘1. One\n⧙ordered-list-1⧘1. A\n⧙ordered-list-0⧘1. Two\n⧙ordered-list-1⧘1. Red\n⧙ordered-list-1⧘1. Green\n⧙ordered-list-1⧘1. Blue")
-		let actual = blocks.flatMap { ($0 as? OrderedListItem)?.number }
+		let actual = blocks.compactMap { ($0 as? OrderedListItem)?.number }
 
 		let expected: [UInt] = [
 			1,
