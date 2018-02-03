@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+PROJECT = 'Canvas.xcodeproj'
 XCODE_VERSION = '9Q98q'
 XCODE_SHORT_VERSION = '9.3 beta 1'
 XCODEGEN_VERSION = '1.5.0'
@@ -8,17 +9,27 @@ CARTHAGE_PLATFORM = 'iOS'
 
 desc 'Generate the Xcode project'
 task project: :'check:xcodegen' do
+  quit_xcode
   sh 'xcodegen'
+
+  xcode = File.expand_path(File.join(`xcode-select -p`.chomp, '../..'))
 end
 
 desc 'Bootstrap Carthage dependencies and generate the project'
 task bootstrap: %i[check:xcode check:carthage project] do
   sh %(carthage bootstrap --platform #{CARTHAGE_PLATFORM})
+  open_project
 end
 
 desc 'Update Carthage dependencies'
 task update: :'check:carthage' do
   sh %(carthage update --platform #{CARTHAGE_PLATFORM})
+end
+
+desc 'Clean everything'
+task :clean do
+  quit_xcode
+  sh %(rm -rf #{PROJECT} Carthage)
 end
 
 desc 'Check build tools'
@@ -52,4 +63,14 @@ namespace :check do
       fail %(xcodegen #{XCODEGEN_VERSION} isnt’t installed. You can install with `brew install xcodegen`. You may need to update Homebrew with `brew update` first.)
     end
   end
+end
+
+private
+
+def quit_xcode
+  sh %(osascript -e 'tell application "Xcode" to quit')
+end
+
+def open_project
+  sh %(open -a #{xcode} #{PROJECT})
 end

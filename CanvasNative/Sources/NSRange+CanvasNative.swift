@@ -24,11 +24,6 @@ extension NSRange {
 
 	// MARK: - Initializers
 
-	init(_ range: Range<Int>) {
-		location = range.lowerBound
-		length = range.count
-	}
-
 	init(location: UInt, length: UInt) {
 		self.init(location: Int(location), length: Int(length))
 	}

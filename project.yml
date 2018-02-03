@@ -4,7 +4,17 @@ options:
   usesTabs: true
   indentWidth: 4
   tabWidth: 4
-  xcodeVersion: 9.2
+  xcodeVersion: 9.3
+  deploymentTarget:
+    iOS: 11.0
+settings:
+  base:
+    CLANG_ENABLE_OBJC_WEAK: YES
+    CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS: YES
+    CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF: YES
+    SWIFT_INSTALL_OBJC_HEADER: NO
+  configs:
+      SWIFT_COMPILATION_MODE: wholemodule
 include:
   - Canvas-iOS/Canvas-iOS.yml
   - CanvasCore/CanvasCore.yml
