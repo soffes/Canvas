@@ -2,7 +2,7 @@ import UIKit
 
 extension UIActivity {
 	func showBanner(text: String, style: BannerView.Style = .success) {
-		guard let rootViewController = UIApplication.sharedApplication().delegate?.window??.rootViewController as? RootViewController,
+		guard let rootViewController = UIApplication.shared.delegate?.window??.rootViewController as? RootViewController,
 			let splitViewController = rootViewController.viewController as? SplitViewController,
 			var viewController = splitViewController.viewControllers.last
 		else { return }

@@ -66,7 +66,7 @@ public final class SpaceView: View {
 		public func addSpace(length: CGFloat) {
 			switch orientation {
 			case .Horizontal: addArrangedSubview(SpaceView(width: length))
-			case .Vertical: addArrangedSubview(SpaceView(height: length))
+			case .vertical: addArrangedSubview(SpaceView(height: length))
 			}
 		}
 	}

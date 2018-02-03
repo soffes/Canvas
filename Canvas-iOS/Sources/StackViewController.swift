@@ -8,15 +8,15 @@ class StackViewController: UIViewController {
 	let stackView: UIStackView = {
 		let view = UIStackView()
 		view.translatesAutoresizingMaskIntoConstraints = false
-		view.axis = .Vertical
-		view.alignment = .Fill
+		view.axis = .vertical
+		view.alignment = .fill
 		return view
 	}()
 
 	private var centerYConstraint: NSLayoutConstraint? {
 		willSet {
 			guard let old = centerYConstraint else { return }
-			NSLayoutConstraint.deactivateConstraints([old])
+			NSLayoutConstraint.deactivate([old])
 		}
 
 		didSet {
@@ -43,10 +43,10 @@ class StackViewController: UIViewController {
 		view.addSubview(stackView)
 
 		let width = stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
-		width.priority = UILayoutPriorityDefaultHigh
+		width.priority = .defaultHigh
 
 		let top = stackView.topAnchor.constraint(greaterThanOrEqualTo: view.topAnchor, constant: 64)
-		top.priority = UILayoutPriorityDefaultLow
+		top.priority = .defaultLow
 
 		NSLayoutConstraint.activate([
 			stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -82,7 +82,7 @@ class StackViewController: UIViewController {
 			let rect = (dictionary[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
 		else { return }
 
-		let frame = view.convertRect(rect, fromView: nil)
+		let frame = view.convert(rect, from: nil)
 
 		let change = { [weak self] in
 			self?.keyboardFrame = frame
@@ -107,12 +107,12 @@ class StackViewController: UIViewController {
 		}
 
 		var rect = view.bounds
-		rect.size.height -= rect.intersect(keyboardFrame).height
-		rect.origin.y += UIApplication.sharedApplication().statusBarFrame.size.height
-		rect.size.height -= UIApplication.sharedApplication().statusBarFrame.size.height
+		rect.size.height -= rect.intersection(keyboardFrame).height
+		rect.origin.y += UIApplication.shared.statusBarFrame.size.height
+		rect.size.height -= UIApplication.shared.statusBarFrame.size.height
 
 		let contstraint = stackView.centerYAnchor.constraint(equalTo: view.topAnchor, constant: rect.midY)
-		contstraint.priority = UILayoutPriorityDefaultHigh
+		contstraint.priority = .defaultHigh
 
 		centerYConstraint = contstraint
 	}

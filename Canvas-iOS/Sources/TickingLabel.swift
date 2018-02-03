@@ -58,7 +58,7 @@ final class TickingLabel: UILabel {
 		timer.tolerance = 0.5
 		self.timer = timer
 
-		RunLoop.main.addTimer(timer, forMode: .commonModes)
+		RunLoop.main.add(timer, forMode: .commonModes)
 	}
 
 	@objc private func tick() {

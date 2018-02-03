@@ -109,7 +109,7 @@ extension SplitViewController: UISplitViewControllerDelegate {
 		primaryViewController.setViewControllers(viewControllers, animated: false)
 
 		if !(detailViewController is PlaceholderViewController) {
-			detailViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "SidebarLeft"), style: .Plain, target: self, action: #selector(toggleSidebar))
+			detailViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "SidebarLeft"), style: .plain, target: self, action: #selector(toggleSidebar))
 		}
 
 		return NavigationController(rootViewController: detailViewController)
@@ -122,12 +122,12 @@ extension SplitViewController: UISplitViewControllerDelegate {
 		}
 
 		let isPlaceholder = detail is PlaceholderViewController
-		if !isPlaceholder && !collapsed {
-			detail.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "SidebarLeft"), style: .Plain, target: self, action: #selector(toggleSidebar))
+		if !isPlaceholder && !isCollapsed {
+			detail.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "SidebarLeft"), style: .plain, target: self, action: #selector(toggleSidebar))
 		}
 
 		UIView.animate(withDuration: 0.2) {
-			splitViewController.preferredDisplayMode = isPlaceholder ? .AllVisible : .Automatic
+			splitViewController.preferredDisplayMode = isPlaceholder ? .allVisible : .automatic
 		}
 
 		return false
@@ -135,8 +135,8 @@ extension SplitViewController: UISplitViewControllerDelegate {
 
 	func targetDisplayModeForActionInSplitViewController(splitViewController: UISplitViewController) -> UISplitViewControllerDisplayMode {
 		switch splitViewController.displayMode {
-		case .PrimaryOverlay, .PrimaryHidden: return .AllVisible
-		default: return .PrimaryHidden
+		case .primaryOverlay, .primaryHidden: return .allVisible
+		default: return .primaryHidden
 		}
 	}
 

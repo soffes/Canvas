@@ -4,7 +4,7 @@ import CanvasCore
 
 final class ValueCell: UITableViewCell, Cell {
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-		super.init(style: .Value1, reuseIdentifier: reuseIdentifier)
+		super.init(style: .value1, reuseIdentifier: reuseIdentifier)
 		textLabel?.textColor = Swatch.black
 		detailTextLabel?.textColor = Swatch.darkGray
 	}
@@ -19,7 +19,7 @@ final class ValueCell: UITableViewCell, Cell {
 		imageView?.image = row.image
 
 		switch row.accessory {
-		case .DisclosureIndicator:
+		case .disclosureIndicator:
 			let view = UIImageView(image: UIImage(named: "ChevronRightSmall"))
 			view.tintColor = Swatch.lightGray
 			accessoryView = view

@@ -58,7 +58,7 @@ class TableViewController: UIViewController {
 		super.viewWillAppear(animated)
 
 		tableView.indexPathsForSelectedRows?.forEach { indexPath in
-			tableView.deselectRowAtIndexPath(indexPath, animated: false)
+			tableView.deselectRow(at: indexPath, animated: false)
 		}
 	}
 }

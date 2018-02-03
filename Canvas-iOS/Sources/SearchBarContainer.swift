@@ -18,7 +18,7 @@ final class SearchBarContainer: UIView {
 
 		super.init(frame: searchBar.bounds)
 
-		autoresizingMask = [.FlexibleWidth]
+		autoresizingMask = [.flexibleWidth]
 
 		searchBar.barTintColor = Swatch.white
 		searchBar.layer.borderColor = Swatch.white.cgColor

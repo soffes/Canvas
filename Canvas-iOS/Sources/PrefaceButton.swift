@@ -55,12 +55,12 @@ class PrefaceButton: PillButton {
 			.foregroundColor: Swatch.lightBlue
 		], range: emphasizedRange)
 
-		setAttributedTitle(highlightedText, forState: .highlighted)
+		setAttributedTitle(highlightedText, for: .highlighted)
 
 		let disabledText = NSAttributedString(string: string, attributes: [
 			.font: Font.sansSerif(size: .body),
 			.foregroundColor: Swatch.darkGray
 		])
-		setAttributedTitle(disabledText, forState: .disabled)
+		setAttributedTitle(disabledText, for: .disabled)
 	}
 }

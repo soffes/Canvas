@@ -37,7 +37,7 @@ public struct Font {
 		}
 	}
 
-	public static func sansSerif(weight: Weight = .regular, style: Style = .regular, size: Size = .body) -> X.Font! {
+	public static func sansSerif(size: Size = .body, weight: Weight = .regular, style: Style = .regular) -> X.Font! {
 		// TODO: Italic isn't supported on macOS yet
 		#if !os(OSX)
 			if style == .italic {

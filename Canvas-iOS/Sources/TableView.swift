@@ -5,10 +5,10 @@ final class TableView: UITableView {
 	override func tintColorDidChange() {
 		super.tintColorDidChange()
 
-		if style != .Grouped {
+		if style != .grouped {
 			return
 		}
 
-		backgroundColor = tintAdjustmentMode == .Dimmed ? Swatch.groupedTableBackground.desaturated : Swatch.groupedTableBackground
+		backgroundColor = tintAdjustmentMode == .dimmed ? Swatch.groupedTableBackground.desaturated : Swatch.groupedTableBackground
 	}
 }

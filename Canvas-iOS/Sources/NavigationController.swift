@@ -53,22 +53,25 @@ final class NavigationController: UINavigationController {
 
 
 extension NavigationController: UINavigationControllerDelegate {
-	func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+	func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
 		// Call didShow if the animation is canceled
-		transitionCoordinator?.notifyWhenInteractionEnds { [weak self] context in
-			guard context.isCancelled(), let delegate = self, let from = context.viewControllerForKey(UITransitionContextFromViewControllerKey) else { return }
-			delegate.navigationController(navigationController, willShowViewController: from, animated: animated)
+		transitionCoordinator?.notifyWhenInteractionChanges { [weak self] context in
+			guard context.isCancelled, let delegate = self, let from = context.viewController(forKey: .from) else {
+				return
+			}
 
-			let animationCompletion = context.transitionDuration() * TimeInterval(context.percentComplete())
-			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(animationCompletion) * Int64(NSEC_PER_SEC)), dispatch_get_main_queue()) {
-				delegate.navigationController(navigationController, didShowViewController: from, animated: animated)
+			delegate.navigationController(navigationController, willShow: viewController, animated: animated)
+
+			let animationCompletion = context.transitionDuration * TimeInterval(context.percentComplete)
+			DispatchQueue.main.asyncAfter(deadline: .now() + animationCompletion) { [weak delegate] in
+				delegate?.navigationController(navigationController, didShow: from, animated: animated)
 			}
 		}
 
 		updateTintColor(with: viewController)
 	}
 
-	func navigationController(navigationController: UINavigationController, didShowViewController viewController: UIViewController, animated: Bool) {
+	func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
 		updateTintColor(with: viewController)
 	}
 }

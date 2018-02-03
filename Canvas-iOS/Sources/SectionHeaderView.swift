@@ -24,7 +24,7 @@ class SectionHeaderView: UIView {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 
-		autoresizingMask = [.FlexibleWidth]
+		autoresizingMask = [.flexibleWidth]
 
 		addSubview(textLabel)
 
@@ -35,7 +35,7 @@ class SectionHeaderView: UIView {
 			textLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -4)
 		])
 
-		NotificationCenter.default.addObserver(self, selector: #selector(updateFont), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateFont), name: .UIContentSizeCategoryDidChange, object: nil)
 		updateFont()
 	}
 
@@ -48,13 +48,13 @@ class SectionHeaderView: UIView {
 
 	override func tintColorDidChange() {
 		super.tintColorDidChange()
-		backgroundColor = tintAdjustmentMode == .Dimmed ? Swatch.extraLightGray.desaturated : Swatch.extraLightGray
+		backgroundColor = tintAdjustmentMode == .dimmed ? Swatch.extraLightGray.desaturated : Swatch.extraLightGray
 	}
 
 
 	// MARK: - Fonts
 
-	func updateFont() {
+	@objc func updateFont() {
 		textLabel.font = TextStyle.callout.font(weight: .medium)
 	}
 }
