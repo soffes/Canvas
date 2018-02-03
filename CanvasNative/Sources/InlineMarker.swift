@@ -2,15 +2,14 @@ import Foundation
 
 public struct InlineMarker: Node {
 
-	// MARK: - Types
+    // MARK: - Types
 
 	public enum Position: Int {
 		case opening
 		case closing
 	}
 
-
-	// MARK: - Properties
+    // MARK: - Properties
 
 	static let regularExpression: NSRegularExpression! = try? NSRegularExpression(pattern: "(☊(Ω)?([a-z]{2})\\|([a-zA-Z0-9]{22})☋)", options: [])
 
@@ -32,8 +31,7 @@ public struct InlineMarker: Node {
 	public var position: Position
 	public var id: String
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init(range: NSRange, position: Position, id: String) {
 		self.range = range
@@ -41,8 +39,7 @@ public struct InlineMarker: Node {
 		self.id = id
 	}
 
-
-	// MARK: - Node
+    // MARK: - Node
 
 	public mutating func offset(_ delta: Int) {
 		range.location += delta

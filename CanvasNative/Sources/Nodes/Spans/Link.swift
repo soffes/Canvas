@@ -2,7 +2,7 @@ import Foundation
 
 public struct LinkTitle {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public var leadingDelimiterRange: NSRange
 	public var textRange: NSRange
@@ -20,8 +20,7 @@ public struct LinkTitle {
 		]
 	}
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init(leadingDelimiterRange: NSRange, textRange: NSRange, trailingDelimiterRange: NSRange) {
 		self.leadingDelimiterRange = leadingDelimiterRange
@@ -40,8 +39,7 @@ public struct LinkTitle {
 		else { return nil }
 	}
 
-
-	// MARK: - Mutating
+    // MARK: - Mutating
 
 	public mutating func offset(_ delta: Int) {
 		leadingDelimiterRange.location += delta
@@ -53,7 +51,7 @@ public struct LinkTitle {
 
 public struct Link: SpanNode, Foldable, NodeContainer {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public var range: NSRange
 	public var leadingTextDelimiterRange: NSRange
@@ -106,8 +104,7 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 
 	public var subnodes = [SpanNode]()
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init(range: NSRange, leadingTextDelimiterRange: NSRange, textRange: NSRange, trailingTextDelimiterRange: NSRange, leadingUrlDelimiterRange: NSRange, urlRange: NSRange, title: LinkTitle? = nil, trailingURLDelimiterRange: NSRange, subnodes: [SpanNode]) {
 		self.range = range
@@ -121,8 +118,7 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 		self.subnodes = subnodes
 	}
 
-
-	// MARK: - Node
+    // MARK: - Node
 
 	public mutating func offset(_ delta: Int) {
 		range.location += delta
@@ -142,8 +138,7 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 		}
 	}
 
-
-	// MARK: - URL
+    // MARK: - URL
 
 	public func URL(backingString: String) -> Foundation.URL? {
 		var string = (backingString as NSString).substring(with: urlRange)

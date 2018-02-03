@@ -2,7 +2,7 @@ import Foundation
 
 public struct Canvas {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public let id: String
 	public let title: String?

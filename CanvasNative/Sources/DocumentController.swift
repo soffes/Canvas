@@ -22,14 +22,13 @@ public protocol DocumentControllerDelegate: class {
 
 public final class DocumentController {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public weak var delegate: DocumentControllerDelegate?
 
 	public fileprivate(set) var document = Document()
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init(backingString: String, delegate: DocumentControllerDelegate? = nil) {
 		self.document = Document(backingString: backingString)
@@ -49,16 +48,14 @@ public final class DocumentController {
 		}
 	}
 
-
-	// MARK: - Changing Text
+    // MARK: - Changing Text
 
 	public func replaceCharactersInRange(_ range: NSRange, withString string: String) {
 		let change = document.replaceCharactersInRange(range, withString: string)
 		processChange(change)
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	fileprivate func processChange(_ change: DocumentChange) {
 		// Notifiy the delegate we have a change

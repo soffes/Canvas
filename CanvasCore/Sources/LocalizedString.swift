@@ -73,8 +73,7 @@ public enum LocalizedString {
 	case untitled
 	case error
 
-
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public var string: String {
 		switch self {
@@ -146,8 +145,7 @@ public enum LocalizedString {
 		}
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	fileprivate func string(_ key: String) -> String {
 		return NSLocalizedString(key, tableName: nil, bundle: resourceBundle, value: "", comment: "")

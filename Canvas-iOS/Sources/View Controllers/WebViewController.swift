@@ -3,12 +3,11 @@ import SafariServices
 
 final class WebViewController: SFSafariViewController {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	let originalURL: URL
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	convenience init(url: URL) {
 		self.init(url: url, configuration: Configuration())
@@ -20,8 +19,7 @@ final class WebViewController: SFSafariViewController {
 		super.init(url: url, configuration: configuration)
 	}
 
-
-	// MARK: - UIViewController
+    // MARK: - UIViewController
 
 	override var previewActionItems: [UIPreviewActionItem] {
 		let copyAction = UIPreviewAction(title: "Copy URL", style: .default) { [weak self] _, _ in

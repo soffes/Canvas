@@ -2,7 +2,7 @@ import Foundation
 
 public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, NodeContainer, InlineMarkerContainer, Equatable {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public var range: NSRange
 	public var nativePrefixRange: NSRange
@@ -28,8 +28,7 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 		]
 	}
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init?(string: String, range: NSRange) {
 		guard let (nativePrefixRange, prefixRange, visibleRange) = parseBlockNode(
@@ -44,8 +43,7 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 		self.visibleRange = visibleRange
 	}
 
-
-	// MARK: - Node
+    // MARK: - Node
 
 	public mutating func offset(_ delta: Int) {
 		range.location += delta
@@ -65,8 +63,7 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 		}
 	}
 
-
-	// MARK: - Native
+    // MARK: - Native
 
 	public static func nativeRepresentation() -> String {
 		return "\(leadingNativePrefix)blockquote\(trailingNativePrefix)> "

@@ -4,7 +4,7 @@ import X
 
 final class NumberView: ViewType, Annotation {
 
-	// MARK: - Private
+    // MARK: - Private
 
 	var block: Annotatable
 
@@ -18,8 +18,7 @@ final class NumberView: ViewType, Annotation {
 
 	var horizontalSizeClass: UserInterfaceSizeClass = .unspecified
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	init?(block: Annotatable, theme: Theme) {
 		guard let orderedListItem = block as? OrderedListItem else { return nil }
@@ -37,8 +36,7 @@ final class NumberView: ViewType, Annotation {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	override func draw(_ rect: CGRect) {
 		guard let block = block as? OrderedListItem else { return }

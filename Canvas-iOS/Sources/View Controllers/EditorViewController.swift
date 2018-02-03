@@ -5,7 +5,7 @@ import CanvasNative
 
 final class EditorViewController: UIViewController {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	static let willCloseNotificationName = Notification.Name(rawValue: "EditorViewController.willCloseNotificationName")
 
@@ -42,8 +42,7 @@ final class EditorViewController: UIViewController {
 		}
 	}
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	init(canvas: Canvas) {
 		self.canvas = canvas
@@ -74,8 +73,7 @@ final class EditorViewController: UIViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIResponder
+    // MARK: - UIResponder
 
 	override var canBecomeFirstResponder: Bool {
 		return true
@@ -122,8 +120,7 @@ final class EditorViewController: UIViewController {
 		return commands
 	}
 
-
-	// MARK: - UIViewController
+    // MARK: - UIViewController
 
 	override var title: String? {
 		didSet {
@@ -206,8 +203,7 @@ final class EditorViewController: UIViewController {
 		textController.traitCollection = traitCollection
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	@objc private func keyboardWillChangeFrame(notification: NSNotification?) {
 		guard let notification = notification,

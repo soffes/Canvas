@@ -2,7 +2,7 @@ import UIKit
 
 class TintableView: UIView {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	var isHighlighted = false {
 		didSet {
@@ -24,8 +24,7 @@ class TintableView: UIView {
 
 	private var isSettingTintColor = false
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	override func tintColorDidChange() {
 		super.tintColorDidChange()
@@ -38,8 +37,7 @@ class TintableView: UIView {
 		normalTintColor = tintColor
 	}
 
-
-	// MARK: - Tinting
+    // MARK: - Tinting
 
 	func updateTintColor() {
 		isSettingTintColor = true

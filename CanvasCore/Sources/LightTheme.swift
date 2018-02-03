@@ -3,14 +3,13 @@ import X
 
 public struct LightTheme: Theme {
 
-	// MARK: - Primary Colors
+    // MARK: - Primary Colors
 
 	public let backgroundColor = Swatch.white
 	public let foregroundColor = Swatch.black
 	public var tintColor: Color
 
-
-	// MARK: - Block Colors
+    // MARK: - Block Colors
 
 	public let titlePlaceholderColor = Swatch.lightGray
 	public let bulletColor = Swatch.darkGray
@@ -32,8 +31,7 @@ public struct LightTheme: Theme {
 	public let imagePlaceholderColor = Swatch.darkGray
 	public let imagePlaceholderBackgroundColor = Swatch.extraLightGray
 
-
-	// MARK: - Span Colors
+    // MARK: - Span Colors
 
 	public let foldedColor = Swatch.darkGray
 	public let strikethroughColor = Swatch.darkGray
@@ -42,8 +40,7 @@ public struct LightTheme: Theme {
 	public let codeSpanBackgroundColor = Swatch.extraLightGray
 	public let commentBackgroundColor = Swatch.comment
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init(tintColor: Color) {
 		self.tintColor = tintColor

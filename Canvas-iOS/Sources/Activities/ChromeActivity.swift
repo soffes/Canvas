@@ -2,7 +2,7 @@ import UIKit
 
 final class ChromeActivity: WebActivity {
 
-	// MARK: - UIActivity
+    // MARK: - UIActivity
 
 	override var activityType: UIActivityType? {
 		return UIActivityType(rawValue: "open-in-chrome")
@@ -51,8 +51,7 @@ final class ChromeActivity: WebActivity {
 		activityDidFinish(true)
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	private func chromeScheme(for url: URL) -> String? {
 		if url.scheme == "http" {

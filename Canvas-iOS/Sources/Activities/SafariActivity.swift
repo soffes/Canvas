@@ -2,7 +2,7 @@ import UIKit
 
 final class SafariActivity: WebActivity {
 
-	// MARK: - UIActivity
+    // MARK: - UIActivity
 
 	override var activityType: UIActivityType? {
 		return UIActivityType(rawValue: "open-in-safari")

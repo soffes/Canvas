@@ -2,7 +2,7 @@ import Foundation
 
 public struct ChecklistItem: Listable, Equatable {
 
-	// MARK: - Types
+    // MARK: - Types
 
 	public enum State: String {
 		case unchecked = " "
@@ -20,8 +20,7 @@ public struct ChecklistItem: Listable, Equatable {
 		}
 	}
 
-
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public var range: NSRange
 	public var nativePrefixRange: NSRange
@@ -55,8 +54,7 @@ public struct ChecklistItem: Listable, Equatable {
 		]
 	}
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init?(string: String, range: NSRange) {
 		let scanner = Scanner(string: string)
@@ -124,8 +122,7 @@ public struct ChecklistItem: Listable, Equatable {
 		self.range = range
 	}
 
-
-	// MARK: - Node
+    // MARK: - Node
 
 	public mutating func offset(_ delta: Int) {
 		range.location += delta
@@ -147,8 +144,7 @@ public struct ChecklistItem: Listable, Equatable {
 		}
 	}
 
-
-	// MARK: - Native
+    // MARK: - Native
 
 	public static func nativeRepresentation(indentation: Indentation = .zero, state: State = .unchecked) -> String {
 		return "\(leadingNativePrefix)checklist-\(indentation.string)\(trailingNativePrefix)- [\(state.string)] "

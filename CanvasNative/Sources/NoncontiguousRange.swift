@@ -2,7 +2,7 @@ import Foundation
 
 struct NoncontiguousRange {
 
-	// MARK: - Private
+    // MARK: - Private
 
 	fileprivate var storage = Set<Int>()
 
@@ -10,15 +10,13 @@ struct NoncontiguousRange {
 		return type(of: self).ranges(indices: storage)
 	}
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	init(ranges: [NSRange]) {
 		storage = ranges.map { NoncontiguousRange.indices(range: $0) }.reduce(Set<Int>()) { $0.union($1) }
 	}
 
-
-	// MARK: - Querying
+    // MARK: - Querying
 
 	func intersectionLength(_ range: NSRange) -> Int? {
 		if range.length == 0 {
@@ -29,8 +27,7 @@ struct NoncontiguousRange {
 		return storage.intersection(indices).count
 	}
 
-
-	// MARK: - Mutating
+    // MARK: - Mutating
 
 	mutating func insert(range: NSRange) {
 		let indices = type(of: self).indices(range: range)
@@ -42,8 +39,7 @@ struct NoncontiguousRange {
 		storage.subtract(indices)
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	fileprivate static func indices(range: NSRange) -> Set<Int> {
 		var indicies = Set<Int>()

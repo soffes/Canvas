@@ -3,7 +3,7 @@ import CanvasCore
 
 final class NavigationBar: UINavigationBar {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	var titleColor: UIColor? {
 		didSet {
@@ -27,8 +27,7 @@ final class NavigationBar: UINavigationBar {
 		return view
 	}()
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -59,8 +58,7 @@ final class NavigationBar: UINavigationBar {
 		updateTitleColor()
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	private func updateTitleColor() {
 		titleTextAttributes = [

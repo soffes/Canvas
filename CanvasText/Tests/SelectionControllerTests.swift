@@ -3,12 +3,11 @@ import XCTest
 
 class SelectionControllerTests: XCTestCase {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	fileprivate let startingSelection = NSRange(location: 10, length: 9)
 
-
-	// MARK: - Insert Tests
+    // MARK: - Insert Tests
 
 	func testInsertBefore() {
 		let output = SelectionController.adjust(
@@ -64,8 +63,7 @@ class SelectionControllerTests: XCTestCase {
 		XCTAssertEqual(startingSelection, output)
 	}
 
-
-	// MARK: - Remove Tests
+    // MARK: - Remove Tests
 
 	func testRemoveBefore() {
 		let output = SelectionController.adjust(
@@ -121,8 +119,7 @@ class SelectionControllerTests: XCTestCase {
 		XCTAssertEqual(startingSelection, output)
 	}
 
-
-	// MARK: - Replacement Tests
+    // MARK: - Replacement Tests
 
 	func testReplaceBefore() {
 		let output = SelectionController.adjust(
@@ -151,8 +148,7 @@ class SelectionControllerTests: XCTestCase {
 		XCTAssertEqual(NSRange(location: 7, length: 0), output)
 	}
 
-
-	// MARK: - Invalid Input Tests
+    // MARK: - Invalid Input Tests
 
 	func testInvalid() {
 		let output = SelectionController.adjust(

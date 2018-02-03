@@ -28,7 +28,7 @@ public protocol TextControllerAnnotationDelegate: class {
 
 public final class TextController: NSObject {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public weak var displayDelegate: TextControllerDisplayDelegate?
 	public weak var annotationDelegate: TextControllerAnnotationDelegate?
@@ -113,8 +113,7 @@ public final class TextController: NSObject {
 	private var styles = [Style]()
 	private var invalidPresentationRange: NSRange?
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init(theme: Theme) {
 		self.theme = theme
@@ -139,8 +138,7 @@ public final class TextController: NSObject {
 		documentController.delegate = self
 	}
 
-
-	// MARK: - Traits
+    // MARK: - Traits
 
 	#if !os(OSX)
 		public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -168,8 +166,7 @@ public final class TextController: NSObject {
 		}
 	}
 
-
-	// MARK: - Selection
+    // MARK: - Selection
 
 	// Update from Text View
 	public func set(presentationSelectedRange range: NSRange?) {
@@ -191,8 +188,7 @@ public final class TextController: NSObject {
 		}
 	}
 
-
-	// MARK: - Styles
+    // MARK: - Styles
 
 	/// This should not be called while the text view is editing. Ideally, this will be called in the text view's did
 	/// change delegate method.
@@ -223,8 +219,7 @@ public final class TextController: NSObject {
 		annotationsController.layoutAnnotations()
 	}
 
-
-	// MARK: - Layout
+    // MARK: - Layout
 
 	func blockSpacing(for block: BlockNode) -> BlockSpacing {
 		#if os(OSX)
@@ -271,8 +266,7 @@ public final class TextController: NSObject {
 		applyStyles()
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	private func updateUnfoldIfNeeded() {
 		guard needsUnfoldUpdate else { return }

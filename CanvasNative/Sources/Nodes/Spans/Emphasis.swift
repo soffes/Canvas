@@ -2,7 +2,7 @@ import Foundation
 
 public struct Emphasis: SpanNode, Foldable, NodeContainer {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public var leadingDelimiterRange: NSRange
 	public var textRange: NSRange
@@ -37,8 +37,7 @@ public struct Emphasis: SpanNode, Foldable, NodeContainer {
 
 	public var subnodes = [SpanNode]()
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init(leadingDelimiterRange: NSRange, textRange: NSRange, trailingDelimiterRange: NSRange, subnodes: [SpanNode] = []) {
 		self.leadingDelimiterRange = leadingDelimiterRange
@@ -47,8 +46,7 @@ public struct Emphasis: SpanNode, Foldable, NodeContainer {
 		self.subnodes = subnodes
 	}
 
-
-	// MARK: - Node
+    // MARK: - Node
 
 	public mutating func offset(_ delta: Int) {
 		leadingDelimiterRange.location += delta

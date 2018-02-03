@@ -9,7 +9,7 @@ import X
 
 final class BlockquoteBorderView: ViewType, Annotation {
 
-	// MARK: - Private
+    // MARK: - Private
 
 	var block: Annotatable
 
@@ -28,8 +28,7 @@ final class BlockquoteBorderView: ViewType, Annotation {
 
 	var horizontalSizeClass: UserInterfaceSizeClass = .unspecified
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	init?(block: Annotatable, theme: Theme) {
 		guard let blockquote = block as? Blockquote else { return nil }
@@ -49,8 +48,7 @@ final class BlockquoteBorderView: ViewType, Annotation {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	override func draw(_ rect: CGRect) {
 		#if os(OSX)
@@ -68,8 +66,7 @@ final class BlockquoteBorderView: ViewType, Annotation {
 		context.fill(rect)
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	private func borderRect(for bounds: CGRect) -> CGRect {
 		return CGRect(

@@ -4,7 +4,7 @@ import CanvasText
 
 final class GroupedSectionHeaderView: SectionHeaderView {
 
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -17,16 +17,14 @@ final class GroupedSectionHeaderView: SectionHeaderView {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	override func tintColorDidChange() {
 		super.tintColorDidChange()
 		textLabel.textColor = tintColor
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	override func updateFont() {
 		super.updateFont()

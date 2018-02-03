@@ -2,7 +2,7 @@ import Foundation
 
 public struct Paragraph: BlockNode, NodeContainer, InlineMarkerContainer, Equatable {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public var range: NSRange
 
@@ -27,8 +27,7 @@ public struct Paragraph: BlockNode, NodeContainer, InlineMarkerContainer, Equata
 		]
 	}
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init?(string: String, range: NSRange) {
 		self.range = range
@@ -39,8 +38,7 @@ public struct Paragraph: BlockNode, NodeContainer, InlineMarkerContainer, Equata
 		self.subnodes = subnodes ?? []
 	}
 
-
-	// MARK: - Node
+    // MARK: - Node
 
 	public mutating func offset(_ delta: Int) {
 		range.location += delta

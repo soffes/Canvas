@@ -2,7 +2,7 @@ import UIKit
 
 final class TickingLabel: UILabel {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	var date: Date? {
 		didSet {
@@ -14,8 +14,7 @@ final class TickingLabel: UILabel {
 	private static let tickNotification = Notification.Name(rawValue: "TickingLabel.tickNotification")
 	private static var isTimerSetup = false
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -29,8 +28,7 @@ final class TickingLabel: UILabel {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	private class func setupTimer() {
 		if isTimerSetup {

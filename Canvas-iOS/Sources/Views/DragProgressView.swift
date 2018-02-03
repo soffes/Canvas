@@ -3,7 +3,7 @@ import CanvasCore
 
 final class DragProgressView: UIView {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	private let imageView: UIImageView = {
 		let view = UIImageView()
@@ -13,8 +13,7 @@ final class DragProgressView: UIView {
 		return view
 	}()
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	init(icon: UIImage?, isLeading: Bool) {
 		super.init(frame: .zero)
@@ -49,8 +48,7 @@ final class DragProgressView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - Translation
+    // MARK: - Translation
 
 	func translate(x: CGFloat) {
 		let progress = min(abs(x) / DragContext.threshold, 1)

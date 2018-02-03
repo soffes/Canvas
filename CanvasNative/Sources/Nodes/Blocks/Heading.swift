@@ -2,7 +2,7 @@ import Foundation
 
 public struct Heading: BlockNode, NodeContainer, Foldable, InlineMarkerContainer, Equatable {
 
-	// MARK: - Types
+    // MARK: - Types
 
 	public enum Level: UInt {
 		case one = 1
@@ -41,8 +41,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable, InlineMarkerContainer
 		}
 	}
 
-
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public var range: NSRange
 	public var visibleRange: NSRange
@@ -70,8 +69,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable, InlineMarkerContainer
 		]
 	}
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init?(string: String, range: NSRange) {
 		let scanner = Scanner(string: string)
@@ -102,8 +100,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable, InlineMarkerContainer
 		visibleRange = range
 	}
 
-
-	// MARK: - Node
+    // MARK: - Node
 
 	public mutating func offset(_ delta: Int) {
 		range.location += delta
@@ -124,8 +121,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable, InlineMarkerContainer
 		}
 	}
 
-
-	// MARK: - Native
+    // MARK: - Native
 
 	public static func nativeRepresentation(level: Level = .one) -> String {
 		var prefix = ""

@@ -3,7 +3,7 @@ import CanvasCore
 
 class StackViewController: UIViewController {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	let stackView: UIStackView = {
 		let view = UIStackView()
@@ -33,8 +33,7 @@ class StackViewController: UIViewController {
 
 	private var visible = false
 
-
-	// MARK: - UIViewController
+    // MARK: - UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -72,8 +71,7 @@ class StackViewController: UIViewController {
 		visible = false
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	@objc private func keyboardWillChangeFrame(notification: NSNotification) {
 		guard let dictionary = notification.userInfo as? [String: Any],

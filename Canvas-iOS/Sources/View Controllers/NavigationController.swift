@@ -3,13 +3,12 @@ import CanvasCore
 
 final class NavigationController: UINavigationController {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	private let defaultTintColor = Swatch.brand
 	private let defaultTitleColor = Swatch.black
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	override init(rootViewController: UIViewController) {
 		super.init(navigationBarClass: NavigationBar.self, toolbarClass: nil)
@@ -29,8 +28,7 @@ final class NavigationController: UINavigationController {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	private func updateTintColor(with viewController: UIViewController) {
 		var target = viewController

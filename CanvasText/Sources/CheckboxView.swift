@@ -9,7 +9,7 @@ import X
 
 final class CheckboxView: UIButton, Annotation {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	var block: Annotatable {
 		didSet {
@@ -31,8 +31,7 @@ final class CheckboxView: UIButton, Annotation {
 
 	var horizontalSizeClass: UserInterfaceSizeClass = .unspecified
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	init?(block: Annotatable, theme: Theme) {
 		guard let checklistItem = block as? ChecklistItem else { return nil }
@@ -49,8 +48,7 @@ final class CheckboxView: UIButton, Annotation {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	override func draw(_ rect: CGRect) {
 		guard let checklistItem = block as? ChecklistItem else { return }
@@ -80,8 +78,7 @@ final class CheckboxView: UIButton, Annotation {
 		setNeedsDisplay()
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	private func checkboxRect(for bounds: CGRect) -> CGRect {
 		let size = bounds.height

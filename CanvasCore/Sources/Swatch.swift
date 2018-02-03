@@ -2,7 +2,7 @@ import X
 
 public struct Swatch {
 
-	// MARK: - Base
+    // MARK: - Base
 
 	public static let black = Color(red: 0.161, green: 0.180, blue: 0.192, alpha: 1)
 	public static let white = Color.white
@@ -17,20 +17,17 @@ public struct Swatch {
 	fileprivate static let pink = Color(red: 1, green: 0.216, blue: 0.502, alpha: 1)
 	fileprivate static let yellow = Color(red: 1, green: 0.942, blue: 0.716, alpha: 1)
 
-
-	// MARK: - Shared
+    // MARK: - Shared
 
 	public static let brand = blue
 	public static let destructive = pink
 	public static let comment = yellow
 
-
-	// MARK: - Bars
+    // MARK: - Bars
 
 	public static let border = gray
 
-
-	// MARK: - Tables
+    // MARK: - Tables
 
 	public static let groupedTableBackground = extraLightGray
 

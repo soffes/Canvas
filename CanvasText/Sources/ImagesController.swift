@@ -9,12 +9,11 @@ import X
 
 final class ImagesController: Themeable {
 
-	// MARK: - Types
+    // MARK: - Types
 
 	typealias Completion = (_ id: String, _ image: Image?) -> Void
 
-
-	// MARK: - Properties
+    // MARK: - Properties
 
 	var theme: Theme
 	let session: URLSession
@@ -27,8 +26,7 @@ final class ImagesController: Themeable {
 	private let imageCache: MultiCache<Image>
 	private let placeholderCache = MemoryCache<Image>()
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	init(theme: Theme, session: URLSession = .shared) {
 		self.theme = theme
@@ -48,8 +46,7 @@ final class ImagesController: Themeable {
 		imageCache = MultiCache(caches: caches)
 	}
 
-
-	// MARK: - Accessing
+    // MARK: - Accessing
 
 	func fetchImage(withID id: String, url: URL?, size: CGSize, scale: CGFloat, completion: @escaping Completion) -> Image? {
 		if let image = memoryCache[id] {
@@ -88,8 +85,7 @@ final class ImagesController: Themeable {
 		return placeholderImage(size: size, scale: scale)
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	private func coordinate(_ block: () -> Void) {
 		queue.sync(execute: block)

@@ -5,7 +5,7 @@ typealias Message = (BlockNode, Int)
 
 final class TestDocumentControllerDelegate: DocumentControllerDelegate {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	var blocks = [BlockNode]()
 	var storage: NSMutableString = ""
@@ -29,8 +29,7 @@ final class TestDocumentControllerDelegate: DocumentControllerDelegate {
 		return blocks.map { $0.dictionary }
 	}
 
-
-	// MARK: - ControllerDelegate
+    // MARK: - ControllerDelegate
 
 	func documentControllerWillUpdateDocument(_ controller: DocumentController) {
 		willUpdate?()

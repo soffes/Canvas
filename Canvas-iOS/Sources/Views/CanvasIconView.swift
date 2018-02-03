@@ -3,7 +3,7 @@ import CanvasCore
 
 final class CanvasIconView: TintableView {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	var canvas: Canvas? {
 		didSet {
@@ -20,8 +20,7 @@ final class CanvasIconView: TintableView {
 		return view
 	}()
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -40,8 +39,7 @@ final class CanvasIconView: TintableView {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	override var intrinsicContentSize: CGSize {
 		return CGSize(width: 32, height: 32)

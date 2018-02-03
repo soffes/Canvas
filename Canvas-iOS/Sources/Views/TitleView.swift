@@ -3,7 +3,7 @@ import CanvasCore
 
 final class TitleView: UIView {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	var showsLock = false {
 		didSet {
@@ -34,8 +34,7 @@ final class TitleView: UIView {
 
 	private let spacing: CGFloat = 4
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	init() {
 		super.init(frame: .zero)
@@ -52,8 +51,7 @@ final class TitleView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	override class var layerClass: AnyClass {
 		return CATransformLayer.self

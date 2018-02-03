@@ -3,12 +3,11 @@ import CanvasText
 
 class TextView: UITextView {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	var managedSubviews = Set<UIView>()
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	// Allow subviews to receive user input
 	override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
@@ -21,8 +20,7 @@ class TextView: UITextView {
 		return super.hitTest(point, with: event)
 	}
 
-
-	// MARK: - UITextInput
+    // MARK: - UITextInput
 
 	// Only display the caret in the used rect (if available).
 	override func caretRect(for position: UITextPosition) -> CGRect {

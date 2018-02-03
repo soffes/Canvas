@@ -3,11 +3,10 @@ import CanvasCore
 
 final class SplitViewController: UISplitViewController {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	private var lastSize: CGSize?
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nil, bundle: nil)
@@ -19,8 +18,7 @@ final class SplitViewController: UISplitViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIViewController
+    // MARK: - UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -57,8 +55,7 @@ final class SplitViewController: UISplitViewController {
 		}
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	@objc private func toggleSidebar() {
 		let mode: UISplitViewControllerDisplayMode = displayMode == .allVisible ? .primaryHidden : .allVisible

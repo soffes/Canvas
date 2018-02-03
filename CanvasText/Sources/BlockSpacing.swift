@@ -2,7 +2,7 @@ import CoreGraphics
 
 public struct BlockSpacing {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public var paddingTop: CGFloat
 	public var paddingRight: CGFloat
@@ -14,8 +14,7 @@ public struct BlockSpacing {
 
 	public static let zero = BlockSpacing()
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init(paddingTop: CGFloat = 0, paddingRight: CGFloat = 0, paddingBottom: CGFloat = 0, paddingLeft: CGFloat = 0, marginTop: CGFloat = 0, marginBottom: CGFloat = 0) {
 		self.paddingTop = paddingTop
@@ -27,8 +26,7 @@ public struct BlockSpacing {
 		self.marginBottom = marginBottom
 	}
 
-
-	// MARK: - Utilities
+    // MARK: - Utilities
 
 	public func applyHorizontalPadding(_ rect: CGRect) -> CGRect {
 		var output = rect

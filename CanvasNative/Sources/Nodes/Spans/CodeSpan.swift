@@ -2,7 +2,7 @@ import Foundation
 
 public struct CodeSpan: SpanNode, Foldable {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public var leadingDelimiterRange: NSRange
 	public var textRange: NSRange
@@ -34,8 +34,7 @@ public struct CodeSpan: SpanNode, Foldable {
 		]
 	}
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init(leadingDelimiterRange: NSRange, textRange: NSRange, trailingDelimiterRange: NSRange, subnodes: [SpanNode] = []) {
 		self.leadingDelimiterRange = leadingDelimiterRange
@@ -43,8 +42,7 @@ public struct CodeSpan: SpanNode, Foldable {
 		self.trailingDelimiterRange = trailingDelimiterRange
 	}
 
-
-	// MARK: - Node
+    // MARK: - Node
 
 	public mutating func offset(_ delta: Int) {
 		leadingDelimiterRange.location += delta

@@ -10,12 +10,11 @@ import X
 /// Similar to UIStackView, setting a background color is not supported.
 public final class SpaceView: View {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	fileprivate let contentSize: CGSize
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init(size: CGSize) {
 		contentSize = size
@@ -42,8 +41,7 @@ public final class SpaceView: View {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	#if os(OSX)
 		public override var intrinsicContentSize: NSSize {

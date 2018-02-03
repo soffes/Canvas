@@ -3,15 +3,14 @@ import CanvasCore
 
 final class SearchBarContainer: UIView {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	let searchBar: UISearchBar
 
 	private let topBorderView = UIView()
 	private let bottomBorderView = UIView()
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	init(searchBar: UISearchBar) {
 		self.searchBar = searchBar
@@ -48,8 +47,7 @@ final class SearchBarContainer: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	override func addSubview(_ view: UIView) {
 		super.addSubview(view)

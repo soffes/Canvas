@@ -4,7 +4,7 @@ import CanvasText
 
 final class PlaceholderViewController: UIViewController {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	private let textLabel: UILabel = {
 		let label = UILabel()
@@ -14,8 +14,7 @@ final class PlaceholderViewController: UIViewController {
 		return label
 	}()
 
-
-	// MARK: - UIViewController
+    // MARK: - UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -38,8 +37,7 @@ final class PlaceholderViewController: UIViewController {
 		UIDevice.current.isBatteryMonitoringEnabled = false
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	@objc private func updateFont() {
 		textLabel.font = TextStyle.body.font()

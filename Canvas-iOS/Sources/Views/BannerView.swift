@@ -4,7 +4,7 @@ import CanvasText
 
 final class BannerView: UIView {
 
-	// MARK: - Types
+    // MARK: - Types
 
 	enum Style {
 		case success
@@ -24,8 +24,7 @@ final class BannerView: UIView {
 		}
 	}
 
-
-	// MARK: - Properties
+    // MARK: - Properties
 
 	let textLabel: UILabel = {
 		let label = UILabel()
@@ -35,8 +34,7 @@ final class BannerView: UIView {
 		return label
 	}()
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	init(style: Style) {
 		super.init(frame: .zero)
@@ -63,8 +61,7 @@ final class BannerView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	@objc private func updateFont() {
 		textLabel.font = TextStyle.callout.font(weight: .medium)

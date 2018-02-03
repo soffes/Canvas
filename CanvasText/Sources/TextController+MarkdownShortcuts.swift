@@ -50,8 +50,7 @@ extension TextController {
 		}
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	fileprivate func prefixForUnorderedList(_ string: String, unorderedListItem: UnorderedListItem? = nil) -> Match? {
 		let scanner = Scanner(string: string)

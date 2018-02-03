@@ -32,14 +32,13 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 /// calculations on the strings or nodes are provided.
 public struct Document {
 
-	// MARK: - Types
+    // MARK: - Types
 
 	public enum Direction: String {
 		case leading, trailing
 	}
 
-
-	// MARK: - Properties
+    // MARK: - Properties
 
 	/// Backing Canvas Native string
 	public let backingString: String
@@ -62,8 +61,7 @@ public struct Document {
 	fileprivate let hiddenRanges: [NSRange]
 	fileprivate let blockRanges: [NSRange]
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init(backingString: String = Title.nativeRepresentation(), blocks: [BlockNode]? = nil) {
 		self.backingString = backingString
@@ -71,8 +69,7 @@ public struct Document {
 		(presentationString, hiddenRanges, blockRanges) = Document.present(backingString: backingString, blocks: self.blocks)
 	}
 
-
-	// MARK: - Converting Backing Ranges to Presentation Ranges
+    // MARK: - Converting Backing Ranges to Presentation Ranges
 
 	public func presentationRange(backingRange: NSRange) -> NSRange {
 		var presentationRange = backingRange
@@ -102,8 +99,7 @@ public struct Document {
 		return blockRanges[index]
 	}
 
-
-	// MARK: - Converting Presentation Ranges to Backing Ranges
+    // MARK: - Converting Presentation Ranges to Backing Ranges
 
 	public func backingRange(presentationLocation: UInt) -> NSRange {
 		var backingRange = preBackingRange(NSRange(location: Int(presentationLocation), length: 0))
@@ -189,8 +185,7 @@ public struct Document {
 		return backingRange
 	}
 
-
-	// MARK: - Querying Blocks
+    // MARK: - Querying Blocks
 
 	public func blockAt(backingLocation: Int) -> BlockNode? {
 		guard backingLocation >= 0  else { return nil }
@@ -286,8 +281,7 @@ public struct Document {
 		return blocks.index(where: { NSEqualRanges($0.range, block.range) })
 	}
 
-
-	// MARK: - Presentation String
+    // MARK: - Presentation String
 
 	public func presentationString(block: BlockNode) -> String {
 		return presentationString(backingRange: block.range)
@@ -321,8 +315,7 @@ public struct Document {
 		return text as String
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	fileprivate static func present(backingString: String, blocks: [BlockNode]) -> (String, [NSRange], [NSRange]) {
 		let text = backingString as NSString

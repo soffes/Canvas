@@ -3,7 +3,7 @@ import CanvasCore
 
 final class RootViewController: UIViewController {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	var viewController: UIViewController? {
 		willSet {
@@ -46,8 +46,7 @@ final class RootViewController: UIViewController {
 		}
 	}
 
-
-	// MARK: - UIViewController
+    // MARK: - UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -66,8 +65,7 @@ final class RootViewController: UIViewController {
 		return traitCollection.userInterfaceIdiom == .pad ? .all : .portrait
 	}
 
-
-	// MARK: - Internal
+    // MARK: - Internal
 
 	func _showBanner(text: String, style: BannerView.Style = .success, inViewController viewController: UIViewController) {
 		var top = viewController

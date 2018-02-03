@@ -3,13 +3,12 @@ import CanvasCore
 
 @UIApplicationMain final class AppDelegate: UIResponder {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	var window: UIWindow?
 	let rootViewController = RootViewController()
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 //	private func open(canvasURL: NSURL) -> Bool {
 //		// For now require an account

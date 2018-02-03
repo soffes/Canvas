@@ -3,7 +3,7 @@ import CanvasCore
 
 class PrefaceButton: PillButton {
 
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -17,8 +17,7 @@ class PrefaceButton: PillButton {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - Preface
+    // MARK: - Preface
 
 	func set(preface: String, title: String) {
 		// Use non-breaking spaces for the title

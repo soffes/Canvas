@@ -3,7 +3,7 @@ import CanvasCore
 
 final class LineView: UIView {
 
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -14,8 +14,7 @@ final class LineView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	override func sizeThatFits(_ size: CGSize) -> CGSize {
 		return CGSize(width: size.width, height: intrinsicContentSize.height)

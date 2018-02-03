@@ -4,7 +4,7 @@ import CanvasCore
 
 class TableViewController: UIViewController {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	let tableView: UITableView
 
@@ -18,8 +18,7 @@ class TableViewController: UIViewController {
 			dataSource.tableView = tableView
 		}
 	}
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	init(style: UITableViewStyle) {
 		tableView = TableView(frame: .zero, style: style)
@@ -35,8 +34,7 @@ class TableViewController: UIViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIViewController
+    // MARK: - UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()

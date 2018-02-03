@@ -3,7 +3,7 @@ import CoreGraphics
 
 public struct Image: Attachable, Equatable {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public var range: NSRange
 	public var nativePrefixRange: NSRange
@@ -35,8 +35,7 @@ public struct Image: Attachable, Equatable {
 		return [nativePrefixRange]
 	}
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init?(string: String, range: NSRange) {
 		self.range = range
@@ -95,16 +94,14 @@ public struct Image: Attachable, Equatable {
 		}
 	}
 
-
-	// MARK: - Node
+    // MARK: - Node
 
 	public mutating func offset(_ delta: Int) {
 		range.location += delta
 		nativePrefixRange.location += delta
 	}
 
-
-	// MARK: - Native
+    // MARK: - Native
 
 	public static func nativeRepresentation(URL: Foundation.URL) -> String {
 		return "\(leadingNativePrefix)image\(trailingNativePrefix)\(URL.absoluteString)"

@@ -3,12 +3,11 @@ import CanvasNative
 
 final class DocumentControllerInsertTests: XCTestCase {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	let delegate = TestDocumentControllerDelegate()
 
-
-	// MARK: - Tests
+    // MARK: - Tests
 
 	func testLoading() {
 		let controller = DocumentController(delegate: delegate)

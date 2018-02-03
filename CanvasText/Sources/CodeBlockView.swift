@@ -9,7 +9,7 @@ import X
 
 final class CodeBlockView: ViewType, Annotation {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	static let lineNumberWidth: CGFloat = 40
 
@@ -34,8 +34,7 @@ final class CodeBlockView: ViewType, Annotation {
 		return label
 	}()
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	init?(block: Annotatable, theme: Theme) {
 		guard let codeBlock = block as? CodeBlock else { return nil }
@@ -57,8 +56,7 @@ final class CodeBlockView: ViewType, Annotation {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	override func draw(_ rect: CGRect) {
 		guard let codeBlock = block as? CodeBlock, let context = UIGraphicsGetCurrentContext() else { return }

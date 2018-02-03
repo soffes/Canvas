@@ -3,7 +3,7 @@ import CanvasCore
 
 final class IndicatorButton: PillButton {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	var loading = false {
 		didSet {
@@ -27,8 +27,7 @@ final class IndicatorButton: PillButton {
 		return indicator
 	}()
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)

@@ -2,7 +2,7 @@ import UIKit
 
 class FooterButton: PrefaceButton {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	let lineView: LineView = {
 		let view = LineView()
@@ -10,8 +10,7 @@ class FooterButton: PrefaceButton {
 		return view
 	}()
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)

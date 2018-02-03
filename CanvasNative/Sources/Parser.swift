@@ -3,7 +3,7 @@ import Foundation
 /// Given a string, parse into BlockNodes.
 public struct Parser {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	private static let blockParseOrder: [BlockNode.Type] = [
 		Blockquote.self,
@@ -27,8 +27,7 @@ public struct Parser {
 		Strikethrough.self
 	]
 
-
-	// MARK: - Parsing
+    // MARK: - Parsing
 
 	public static func parse(_ string: NSString, in range: NSRange? = nil) -> [BlockNode] {
 		return parse(string as String, in: range)
@@ -90,8 +89,7 @@ public struct Parser {
 		return nodes
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	private static func parseInline(string: String, container: NodeContainer) -> [SpanNode] {
 		var subnodes = [SpanNode]()

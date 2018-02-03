@@ -4,7 +4,7 @@ import CanvasText
 
 final class BillboardView: UIStackView {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	let illustrationView = UIImageView()
 
@@ -22,8 +22,7 @@ final class BillboardView: UIStackView {
 		return label
 	}()
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	convenience init() {
 		self.init(frame: .zero)
@@ -51,8 +50,7 @@ final class BillboardView: UIStackView {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	@objc private func updateFonts() {
 		titleLabel.font = TextStyle.title1.font()

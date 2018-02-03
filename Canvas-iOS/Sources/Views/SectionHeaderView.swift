@@ -4,7 +4,7 @@ import CanvasText
 
 class SectionHeaderView: UIView {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	let textLabel: UILabel = {
 		let label = UILabel()
@@ -13,8 +13,7 @@ class SectionHeaderView: UIView {
 		return label
 	}()
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	convenience init(title: String) {
 		self.init(frame: CGRect(x: 0, y: 0, width: 320, height: 30))
@@ -43,16 +42,14 @@ class SectionHeaderView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	override func tintColorDidChange() {
 		super.tintColorDidChange()
 		backgroundColor = tintAdjustmentMode == .dimmed ? Swatch.extraLightGray.desaturated : Swatch.extraLightGray
 	}
 
-
-	// MARK: - Fonts
+    // MARK: - Fonts
 
 	@objc func updateFont() {
 		textLabel.font = TextStyle.callout.font(weight: .medium)

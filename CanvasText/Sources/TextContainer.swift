@@ -8,12 +8,11 @@ import CanvasNative
 
 class TextContainer: NSTextContainer {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	weak var textController: TextController?
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	override init(size: CGSize) {
 		super.init(size: size)
@@ -24,8 +23,7 @@ class TextContainer: NSTextContainer {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - NSTextContainer
+    // MARK: - NSTextContainer
 
 	override func lineFragmentRect(forProposedRect proposedRect: CGRect, at index: Int, writingDirection: NSWritingDirection, remaining remainingRect: UnsafeMutablePointer<CGRect>?) -> CGRect {
 		var rect = proposedRect

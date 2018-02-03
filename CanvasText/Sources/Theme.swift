@@ -11,7 +11,7 @@ public typealias Attributes = [NSAttributedStringKey : Any]
 
 public protocol Theme {
 
-	// MARK: - Primary Colors
+    // MARK: - Primary Colors
 
 	/// Editor background color
 	var backgroundColor: Color { get }
@@ -22,8 +22,7 @@ public protocol Theme {
 	/// Tint color
 	var tintColor: Color { get set }
 
-
-	// MARK: - Block Colors
+    // MARK: - Block Colors
 
 	/// Title placeholder color
 	var titlePlaceholderColor: Color { get }
@@ -82,8 +81,7 @@ public protocol Theme {
 	/// Image placeholder background color
 	var imagePlaceholderBackgroundColor: Color { get }
 
-
-	// MARK: - Span Colors
+    // MARK: - Span Colors
 
 	/// Color of folded markdown characters
 	var foldedColor: Color { get }
@@ -103,8 +101,7 @@ public protocol Theme {
 	/// Comment background color
 	var commentBackgroundColor: Color { get }
 
-
-	// MARK: - Attributes
+    // MARK: - Attributes
 
 	/// Base attributes
 	var baseAttributes: Attributes { get }

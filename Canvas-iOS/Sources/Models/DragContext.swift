@@ -8,7 +8,7 @@ enum DragAction: String {
 
 struct DragContext {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	static let threshold: CGFloat = 60
 
@@ -31,8 +31,7 @@ struct DragContext {
 	private let snapshotView: UIView
 	private let snapshotLeadingConstraint: NSLayoutConstraint
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	init(block: BlockNode, snapshotView: UIView, rect: CGRect, yContentOffset: CGFloat) {
 		self.block = block
@@ -88,8 +87,7 @@ struct DragContext {
 		snapshotView.layer.mask = mask
 	}
 
-
-	// MARK: - Manipulation
+    // MARK: - Manipulation
 
 	func translate(x: CGFloat) {
 		snapshotLeadingConstraint.constant = x
@@ -102,8 +100,7 @@ struct DragContext {
 		contentView.removeFromSuperview()
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	private func rectForContentViewMask() -> CGRect {
 		var rect = self.rect

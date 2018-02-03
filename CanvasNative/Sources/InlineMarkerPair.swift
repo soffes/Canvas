@@ -2,7 +2,7 @@ import Foundation
 
 public struct InlineMarkerPair: Node {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public var range: NSRange {
 		return openingMarker.range.union(closingMarker.range)
@@ -24,16 +24,14 @@ public struct InlineMarkerPair: Node {
 	public var openingMarker: InlineMarker
 	public var closingMarker: InlineMarker
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init(openingMarker: InlineMarker, closingMarker: InlineMarker) {
 		self.openingMarker = openingMarker
 		self.closingMarker = closingMarker
 	}
 
-
-	// MARK: - Processing
+    // MARK: - Processing
 
 	static func pairs(markers: [InlineMarker]) -> [InlineMarkerPair] {
 		var pairs = [InlineMarkerPair]()
@@ -53,8 +51,7 @@ public struct InlineMarkerPair: Node {
 		return pairs.sorted { $0.openingMarker.range.location < $1.openingMarker.range.location }
 	}
 
-
-	// MARK: - Node
+    // MARK: - Node
 
 	public mutating func offset(_ delta: Int) {
 		openingMarker.offset(delta)

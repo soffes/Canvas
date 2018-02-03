@@ -24,7 +24,7 @@ protocol LayoutManagerDelegate: class {
 /// All ranges are presentation ranges.
 class LayoutManager: NSLayoutManager {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	weak var textController: TextController?
 	weak var layoutDelegate: LayoutManagerDelegate?
@@ -68,8 +68,7 @@ class LayoutManager: NSLayoutManager {
 	// TODO: Get this from the theme and vary based on the block's font
 	private let lineSpacing: CGFloat = 3
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	override init() {
 		super.init()
@@ -81,8 +80,7 @@ class LayoutManager: NSLayoutManager {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - NSLayoutManager
+    // MARK: - NSLayoutManager
 
 	override func textContainerChangedGeometry(_ container: NSTextContainer) {
 		super.textContainerChangedGeometry(container)
@@ -100,8 +98,7 @@ class LayoutManager: NSLayoutManager {
 		invalidateFoldingIfNeeded()
 	}
 
-
-	// MARK: - Folding
+    // MARK: - Folding
 
 	func addFoldableRanges(_ ranges: [NSRange]) {
 		foldableRanges = (foldableRanges + ranges).sorted { $0.location < $1.location }
@@ -135,8 +132,7 @@ class LayoutManager: NSLayoutManager {
 		return invalidateFoldableRanges(in: invalidRange)
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	private func updateTextContainerIfNeeded() {
 		if needsUpdateTextContainer {

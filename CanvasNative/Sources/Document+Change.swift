@@ -7,7 +7,7 @@ typealias StringChange = (range: NSRange, replacement: NSString)
 
 struct DocumentChange {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	let before: Document
 	let after: Document
@@ -16,8 +16,7 @@ struct DocumentChange {
 	let backingStringChange: StringChange
 	let presentationStringChange: StringChange?
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	init(before: Document, after: Document, blockChange: BlockChange?, backingStringChange: StringChange, presentationStringChange: StringChange?) {
 		self.before = before

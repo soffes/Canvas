@@ -5,7 +5,7 @@ import CanvasText
 
 final class CanvasCell: UITableViewCell {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	let iconView: CanvasIconView = {
 		let view = CanvasIconView()
@@ -71,8 +71,7 @@ final class CanvasCell: UITableViewCell {
 
 	private var noContent = false
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
@@ -117,16 +116,14 @@ final class CanvasCell: UITableViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	override func tintColorDidChange() {
 		super.tintColorDidChange()
 		selectedBackgroundView?.backgroundColor = tintColor
 	}
 
-
-	// MARK: - UITableViewCell
+    // MARK: - UITableViewCell
 
 	override func setHighlighted(_ highlighted: Bool, animated: Bool) {
 		super.setHighlighted(highlighted, animated: animated)
@@ -138,8 +135,7 @@ final class CanvasCell: UITableViewCell {
 		updateHighlighted()
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	private func updateHighlighted() {
 		iconView.isHighlighted = isHighlighted || isSelected

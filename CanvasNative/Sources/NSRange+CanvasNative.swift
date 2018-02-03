@@ -21,7 +21,6 @@ extension NSRange {
 		return location..<max
 	}
 
-
 	// MARK: - Initializers
 
 	init(location: UInt, length: UInt) {
@@ -36,7 +35,6 @@ extension NSRange {
 		self.init(location: location, length: Int(length))
 	}
 
-
 	// MARK: - Working with Locations
 
 
@@ -49,9 +47,7 @@ extension NSRange {
 		return NSLocationInRange(location, self)
 	}
 
-
 	// MARK: - Working with other Ranges
-
 
 	func union(_ range: NSRange) -> NSRange {
 		return NSUnionRange(self, range)

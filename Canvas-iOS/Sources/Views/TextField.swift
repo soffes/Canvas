@@ -4,7 +4,7 @@ import CanvasText
 
 final class TextField: UITextField {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	override var placeholder: String? {
 		didSet {
@@ -15,8 +15,7 @@ final class TextField: UITextField {
 			])
 		}
 	}
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -36,8 +35,7 @@ final class TextField: UITextField {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	override var intrinsicContentSize: CGSize {
 		var size = super.intrinsicContentSize
@@ -45,8 +43,7 @@ final class TextField: UITextField {
 		return size
 	}
 
-
-	// MARK: - UITextField
+    // MARK: - UITextField
 
 	override func textRect(forBounds bounds: CGRect) -> CGRect {
 		var rect = bounds
@@ -72,8 +69,7 @@ final class TextField: UITextField {
 		return rect
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	@objc private func updateFont() {
 		font = TextStyle.body.font()

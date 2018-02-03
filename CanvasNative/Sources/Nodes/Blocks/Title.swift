@@ -2,7 +2,7 @@ import Foundation
 
 public struct Title: NativePrefixable, NodeContainer, InlineMarkerContainer, Equatable {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public var range: NSRange
 	public var nativePrefixRange: NSRange
@@ -26,8 +26,7 @@ public struct Title: NativePrefixable, NodeContainer, InlineMarkerContainer, Equ
 		]
 	}
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init?(string: String, range: NSRange) {
 		guard let (nativePrefixRange, visibleRange) = parseBlockNode(
@@ -41,8 +40,7 @@ public struct Title: NativePrefixable, NodeContainer, InlineMarkerContainer, Equ
 		self.visibleRange = visibleRange
 	}
 
-
-	// MARK: - Node
+    // MARK: - Node
 
 	public mutating func offset(_ delta: Int) {
 		range.location += delta
@@ -62,8 +60,7 @@ public struct Title: NativePrefixable, NodeContainer, InlineMarkerContainer, Equ
 		}
 	}
 
-
-	// MARK: - Native
+    // MARK: - Native
 
 	public static func nativeRepresentation(_ string: String? = nil) -> String {
 		return "\(leadingNativePrefix)doc-heading\(trailingNativePrefix)" + (string ?? "")

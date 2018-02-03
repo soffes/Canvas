@@ -2,7 +2,7 @@ import Foundation
 
 public struct OrderedListItem: Listable, Equatable {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public var range: NSRange
 	public var nativePrefixRange: NSRange
@@ -35,8 +35,7 @@ public struct OrderedListItem: Listable, Equatable {
 
 	public var number: UInt = 1
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init?(string: String, range: NSRange) {
 		guard let (nativePrefixRange, indentationRange, indentation, prefixRange, visibleRange) = parseListable(
@@ -53,8 +52,7 @@ public struct OrderedListItem: Listable, Equatable {
 		self.indentation = indentation
 	}
 
-
-	// MARK: - Node
+    // MARK: - Node
 
 	public mutating func offset(_ delta: Int) {
 		range.location += delta
@@ -75,8 +73,7 @@ public struct OrderedListItem: Listable, Equatable {
 		}
 	}
 
-
-	// MARK: - Native
+    // MARK: - Native
 
 	public static func nativeRepresentation(indentation: Indentation = .zero) -> String {
 		return "\(leadingNativePrefix)ordered-list-\(indentation.string)\(trailingNativePrefix)1. "

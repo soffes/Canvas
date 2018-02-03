@@ -4,7 +4,7 @@ import CanvasText
 
 final class GrayButton: UIButton {
 
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -25,8 +25,7 @@ final class GrayButton: UIButton {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	override var intrinsicContentSize: CGSize {
 		var size = super.intrinsicContentSize
@@ -35,8 +34,7 @@ final class GrayButton: UIButton {
 		return size
 	}
 
-
-	// MARK: - UIControl
+    // MARK: - UIControl
 
 	override var isEnabled: Bool {
 		didSet {
@@ -56,8 +54,7 @@ final class GrayButton: UIButton {
 		}
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	@objc func updateFont() {
 		titleLabel?.font = TextStyle.body.font(weight: .medium)

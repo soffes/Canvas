@@ -14,7 +14,7 @@ protocol AnnotationsControllerDelegate: class {
 
 final class AnnotationsController {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	var enabled = true
 
@@ -45,15 +45,13 @@ final class AnnotationsController {
 
 	private var annotations = [Annotation?]()
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	init(theme: Theme) {
 		self.theme = theme
 	}
 
-
-	// MARK: - Manipulating
+    // MARK: - Manipulating
 
 	func insert(_ block: BlockNode, index: Int) {
 		guard enabled, let block = block as? Annotatable, let annotation = annotation(for: block) else {
@@ -89,8 +87,7 @@ final class AnnotationsController {
 		annotation.block = block
 	}
 
-
-	// MARK: - Layout
+    // MARK: - Layout
 
 	func layoutAnnotations() {
 		for annotation in annotations {
@@ -154,8 +151,7 @@ final class AnnotationsController {
 		return rect.integral
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	private func firstRect(forPresentationRange presentationRange: NSRange) -> CGRect? {
 		guard let textController = textController else { return nil }

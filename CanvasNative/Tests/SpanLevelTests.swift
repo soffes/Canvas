@@ -3,7 +3,7 @@ import CanvasNative
 
 final class SpanLevelTests: XCTestCase {
 
-	// MARK: - Tests
+    // MARK: - Tests
 
 	func testCodeSpan1() {
 		let markdown = "Hello `world`."

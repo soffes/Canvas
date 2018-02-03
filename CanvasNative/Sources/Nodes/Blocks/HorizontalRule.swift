@@ -4,7 +4,7 @@ private let regularExpression = try! NSRegularExpression(pattern: "^(?:\\s{0,2}(
 
 public struct HorizontalRule: Attachable, Equatable {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public var range: NSRange
 	public var nativePrefixRange: NSRange
@@ -21,8 +21,7 @@ public struct HorizontalRule: Attachable, Equatable {
 		return [nativePrefixRange]
 	}
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init?(string: String, range: NSRange) {
 		if string != HorizontalRule.nativeRepresentation() {
@@ -33,16 +32,14 @@ public struct HorizontalRule: Attachable, Equatable {
 		nativePrefixRange = NSRange(location: range.location, length: range.length - 1)
 	}
 
-
-	// MARK: - Node
+    // MARK: - Node
 
 	public mutating func offset(_ delta: Int) {
 		range.location += delta
 		nativePrefixRange.location += delta
 	}
 
-
-	// MARK: - Native
+    // MARK: - Native
 
 	public static func nativeRepresentation() -> String {
 		return "\(leadingNativePrefix)horizontal-rule\(trailingNativePrefix)"

@@ -7,7 +7,6 @@ class WebActivity: UIActivity {
 	var url: URL?
 	var schemePrefix: String?
 
-
 	// MARK: - UIActivity
 
 	override func prepare(withActivityItems activityItems: [Any]) {

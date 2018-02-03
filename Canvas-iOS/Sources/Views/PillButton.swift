@@ -4,7 +4,7 @@ import CanvasText
 
 class PillButton: UIButton {
 
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -27,8 +27,7 @@ class PillButton: UIButton {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	override var intrinsicContentSize: CGSize {
 		var size = super.intrinsicContentSize
@@ -37,8 +36,7 @@ class PillButton: UIButton {
 		return size
 	}
 
-
-	// MARK: - UIControl
+    // MARK: - UIControl
 
 	override var isEnabled: Bool {
 		didSet {
@@ -58,8 +56,7 @@ class PillButton: UIButton {
 		}
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	private func updateBorderColor() {
 		layer.borderColor = titleColor(for: state)?.cgColor

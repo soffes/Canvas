@@ -10,7 +10,7 @@ protocol CanvasTextViewFormattingDelegate: class {
 
 final class CanvasTextView: TextView {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	weak var textController: TextController? {
 		didSet {
@@ -39,8 +39,7 @@ final class CanvasTextView: TextView {
 		return label
 	}()
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	override init(frame: CGRect, textContainer: NSTextContainer?) {
 		dragGestureRecognizer = UIPanGestureRecognizer()
@@ -62,8 +61,7 @@ final class CanvasTextView: TextView {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIResponder
+    // MARK: - UIResponder
 
 	override func toggleBoldface(_ sender: Any?) {
 		formattingDelegate?.textViewDidToggleBoldface(self, sender: sender)
@@ -82,8 +80,7 @@ final class CanvasTextView: TextView {
 		return super.canPerformAction(action, withSender: sender)
 	}
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	override func layoutSubviews() {
 		super.layoutSubviews()
@@ -96,8 +93,7 @@ final class CanvasTextView: TextView {
 		textController?.set(tintColor: tintColor)
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	private func layoutPlaceholder() {
 		placeholderLabel.sizeToFit()

@@ -3,13 +3,12 @@ import CanvasCore
 
 final class AlertController: UIAlertController {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	/// Used when return is pressed while the controller is showing
 	var primaryAction: (() -> Void)?
 
-
-	// MARK: - UIResponder
+    // MARK: - UIResponder
 
 	override var canBecomeFirstResponder: Bool {
 		return true
@@ -22,8 +21,7 @@ final class AlertController: UIAlertController {
 		]
 	}
 
-
-	// MARK: - UIViewController
+    // MARK: - UIViewController
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -31,8 +29,7 @@ final class AlertController: UIAlertController {
 		adjust([view])
 	}
 
-
-	// MARK: - Actions
+    // MARK: - Actions
 
 	@objc func cancel() {
 		dismiss(animated: true, completion: nil)
@@ -44,8 +41,7 @@ final class AlertController: UIAlertController {
 		}
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	private func adjust(_ subviews: [UIView]) {
 		for subview in subviews {

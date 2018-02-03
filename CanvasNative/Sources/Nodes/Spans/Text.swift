@@ -2,7 +2,7 @@ import Foundation
 
 public struct Text: SpanNode {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public var range: NSRange
 
@@ -18,15 +18,13 @@ public struct Text: SpanNode {
 		]
 	}
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init(range: NSRange) {
 		self.range = range
 	}
 
-
-	// MARK: - Node
+    // MARK: - Node
 
 	public mutating func offset(_ delta: Int) {
 		range.location += delta

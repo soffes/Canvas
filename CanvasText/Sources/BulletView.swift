@@ -9,7 +9,7 @@ import X
 
 final class BulletView: ViewType, Annotation {
 
-	// MARK: - Private
+    // MARK: - Private
 
 	var block: Annotatable {
 		didSet {
@@ -38,8 +38,7 @@ final class BulletView: ViewType, Annotation {
 
 	var horizontalSizeClass: UserInterfaceSizeClass = .unspecified
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	init?(block: Annotatable, theme: Theme) {
 		guard let unorderedListItem = block as? UnorderedListItem else { return nil }
@@ -59,8 +58,7 @@ final class BulletView: ViewType, Annotation {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-
-	// MARK: - UIView
+    // MARK: - UIView
 
 	override func draw(_ rect: CGRect) {
 		guard let unorderedListItem = block as? UnorderedListItem else { return }
@@ -86,8 +84,7 @@ final class BulletView: ViewType, Annotation {
 		}
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	private func bulletRect(for bounds: CGRect) -> CGRect {
 		let dimension: CGFloat = 8

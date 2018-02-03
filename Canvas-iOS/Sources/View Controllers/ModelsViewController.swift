@@ -5,7 +5,7 @@ import Static
 // TODO: Localize this class
 class ModelsViewController: TableViewController {
 
-	// MARK: - UIResponder
+    // MARK: - UIResponder
 
 	override var canBecomeFirstResponder: Bool {
 		return true
@@ -27,8 +27,7 @@ class ModelsViewController: TableViewController {
 		return commands
 	}
 
-
-	// MARK: - Actions
+    // MARK: - Actions
 
 	@objc private func goBack() {
 		navigationController?.popViewController(animated: true)

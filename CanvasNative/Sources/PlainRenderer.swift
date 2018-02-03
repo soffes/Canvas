@@ -2,19 +2,17 @@ import Foundation
 
 public struct PlainRenderer: Renderer {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public let document: Document
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init(document: Document) {
 		self.document = document
 	}
 
-
-	// MARK: - Renderer
+    // MARK: - Renderer
 
 	public func render() -> String {
 		var lines = [String]()
@@ -30,8 +28,7 @@ public struct PlainRenderer: Renderer {
 		return InlineMarker.regularExpression.stringByReplacingMatches(in: output, options: [], range: bounds, withTemplate: "")
 	}
 
-
-	// MARK: - Private
+    // MARK: - Private
 
 	fileprivate func render(spans: [SpanNode]) -> String {
 		var output = ""

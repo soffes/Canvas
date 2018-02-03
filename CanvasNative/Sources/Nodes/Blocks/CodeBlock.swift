@@ -2,7 +2,7 @@ import Foundation
 
 public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, InlineMarkerContainer, Equatable {
 
-	// MARK: - Properties
+    // MARK: - Properties
 
 	public var range: NSRange
 	public var nativePrefixRange: NSRange
@@ -32,8 +32,7 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Inli
 
 	public var lineNumber: UInt = 0
 
-
-	// MARK: - Initializers
+    // MARK: - Initializers
 
 	public init?(string: String, range: NSRange) {
 		let scanner = Scanner(string: string)
@@ -72,8 +71,7 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Inli
 		self.range = range
 	}
 
-
-	// MARK: - Node
+    // MARK: - Node
 
 	public mutating func offset(_ delta: Int) {
 		range.location += delta
@@ -87,8 +85,7 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Inli
 		}
 	}
 
-
-	// MARK: - Native
+    // MARK: - Native
 
 	public static func nativeRepresentation(language: String? = nil) -> String {
 		let lang = language.flatMap { "-\($0)" } ?? ""
