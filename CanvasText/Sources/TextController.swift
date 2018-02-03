@@ -57,13 +57,13 @@ public final class TextController: NSObject {
 	public var focusedBlock: BlockNode? {
 		let selection = presentationSelectedRange
 		let document = currentDocument
-		return selection.compactMap { document.blockAt(presentationLocation: $0.location) }
+		return selection.flatMap { document.blockAt(presentationLocation: $0.location) }
 	}
 
 	public var focusedBlocks: [BlockNode]? {
 		let selection = presentationSelectedRange
 		let document = currentDocument
-		return selection.compactMap { document.blocksIn(presentationRange: $0) }
+		return selection.flatMap { document.blocksIn(presentationRange: $0) }
 	}
 
 	public var isCodeFocused: Bool {
@@ -236,7 +236,7 @@ public final class TextController: NSObject {
 	}
 
 	private func invalidate(presentationRange range: NSRange) {
-		invalidPresentationRange = invalidPresentationRange.compactMap { $0.union(range) } ?? range
+		invalidPresentationRange = invalidPresentationRange.flatMap { $0.union(range) } ?? range
 	}
 
 	private func invalidateLayoutIfNeeded() {
@@ -277,7 +277,7 @@ public final class TextController: NSObject {
 	private func updateUnfoldIfNeeded() {
 		guard needsUnfoldUpdate else { return }
 
-		_layoutManager.unfoldedRange = presentationSelectedRange.compactMap { unfoldableRange(forPresentationSelectedRange: $0) }
+		_layoutManager.unfoldedRange = presentationSelectedRange.flatMap { unfoldableRange(forPresentationSelectedRange: $0) }
 
 		needsUnfoldUpdate = false
 	}

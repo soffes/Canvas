@@ -91,7 +91,7 @@ public struct CodeBlock: ReturnCompletable, NativePrefixable, Positionable, Inli
 	// MARK: - Native
 
 	public static func nativeRepresentation(language: String? = nil) -> String {
-		let lang = language.compactMap { "-\($0)" } ?? ""
+		let lang = language.flatMap { "-\($0)" } ?? ""
 		return "\(leadingNativePrefix)code\(lang)\(trailingNativePrefix)"
 	}
 }

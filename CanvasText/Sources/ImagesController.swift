@@ -96,8 +96,8 @@ final class ImagesController: Themeable {
 	}
 
 	private func loadImage(location: URL?, id: String) {
-		let data = location.compactMap { try? Data(contentsOf: $0) }
-		let image = data.compactMap { Image(data: $0) }
+		let data = location.flatMap { try? Data(contentsOf: $0) }
+		let image = data.flatMap { Image(data: $0) }
 
 		if let image = image {
 			imageCache.set(key: id, value: image)

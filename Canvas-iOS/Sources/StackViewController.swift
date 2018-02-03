@@ -78,7 +78,7 @@ class StackViewController: UIViewController {
 	@objc private func keyboardWillChangeFrame(notification: NSNotification) {
 		guard let dictionary = notification.userInfo as? [String: Any],
 			let duration = dictionary[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval,
-			let curve = (dictionary[UIKeyboardAnimationCurveUserInfoKey] as? Int).compactMap(UIViewAnimationCurve.init),
+			let curve = (dictionary[UIKeyboardAnimationCurveUserInfoKey] as? Int).flatMap(UIViewAnimationCurve.init),
 			let rect = (dictionary[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
 		else { return }
 

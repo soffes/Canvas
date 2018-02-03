@@ -32,7 +32,7 @@ public enum TextStyle {
 
 		// Apply minimum weight
 		if let weight = weight {
-			let currentWeight = (systemFont.fontDescriptor.object(forKey: .face) as? String).compactMap(FontWeight.init)
+			let currentWeight = (systemFont.fontDescriptor.object(forKey: .face) as? String).flatMap(FontWeight.init)
 			if weight.fontWeight > currentWeight?.fontWeight ?? 0 {
 				systemFont = UIFont.systemFont(ofSize: systemFont.pointSize, weight: UIFont.Weight(rawValue: weight.fontWeight))
 			}

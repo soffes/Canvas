@@ -31,8 +31,8 @@ class LayoutManager: NSLayoutManager {
 
 	var unfoldedRange: NSRange? {
 		didSet {
-			let wasFolding = oldValue.compactMap { foldedIndices.subtracting($0.indices) } ?? foldedIndices
-			let nowFolding = unfoldedRange.compactMap { foldedIndices.subtracting($0.indices) } ?? foldedIndices
+			let wasFolding = oldValue.flatMap { foldedIndices.subtracting($0.indices) } ?? foldedIndices
+			let nowFolding = unfoldedRange.flatMap { foldedIndices.subtracting($0.indices) } ?? foldedIndices
 			let updated = nowFolding.symmetricDifference(wasFolding)
 
 			if updated.isEmpty {

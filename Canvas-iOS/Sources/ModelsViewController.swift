@@ -16,7 +16,7 @@ class ModelsViewController: TableViewController {
 
 		if let navigationController = navigationController, navigationController.viewControllers.count > 1 {
 			let previousTitle = (navigationController.viewControllers[navigationController.viewControllers.count - 2]).title
-			let backTitle = previousTitle.compactMap { "Back to \($0)" } ?? "Back"
+			let backTitle = previousTitle.flatMap { "Back to \($0)" } ?? "Back"
 
 			commands += [
 				UIKeyCommand(input: UIKeyInputLeftArrow, modifierFlags: [], action: #selector(goBack), discoverabilityTitle: backTitle),

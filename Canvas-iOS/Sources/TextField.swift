@@ -28,7 +28,7 @@ final class TextField: UITextField {
 
 		layer.cornerRadius = 4
 
-		NotificationCenter.default.addObserver(self, selector: #selector(updateFont), name: UIContentSizeCategoryDidChangeNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateFont), name: .UIContentSizeCategoryDidChange, object: nil)
 		updateFont()
 	}
 
@@ -48,26 +48,26 @@ final class TextField: UITextField {
 
 	// MARK: - UITextField
 
-	override func textRectForBounds(bounds: CGRect) -> CGRect {
+	override func textRect(forBounds bounds: CGRect) -> CGRect {
 		var rect = bounds
 
 		if rightView != nil {
-			rect.size.width -= rect.intersect(rightViewRectForBounds(bounds)).width
+			rect.size.width -= rect.intersection(rightViewRect(forBounds: bounds)).width
 		}
 
-		return CGRectInset(rect, 12, 12)
+		return rect.insetBy(dx: 12, dy: 12)
 	}
 
-	override func placeholderRectForBounds(bounds: CGRect) -> CGRect {
-		return textRectForBounds(bounds)
+	override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+		return textRect(forBounds: bounds)
 	}
 
-	override func editingRectForBounds(bounds: CGRect) -> CGRect {
-		return textRectForBounds(bounds)
+	override func editingRect(forBounds bounds: CGRect) -> CGRect {
+		return textRect(forBounds: bounds)
 	}
 
-	override func rightViewRectForBounds(bounds: CGRect) -> CGRect {
-		var rect = super.rightViewRectForBounds(bounds)
+	override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+		var rect = super.rightViewRect(forBounds: bounds)
 		rect.origin.x -= 6
 		return rect
 	}
