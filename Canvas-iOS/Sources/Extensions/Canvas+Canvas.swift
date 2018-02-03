@@ -29,6 +29,10 @@ extension Canvas {
 	}
 
 	var displayTitle: String {
-		return title.isEmpty ? LocalizedString.untitled.string : title
+		guard let title = title, !title.isEmpty else {
+			return LocalizedString.untitled.string
+		}
+
+		return title
 	}
 }

@@ -45,7 +45,7 @@ class CanvasesViewController: ModelsViewController {
 	// MARK: - Actions
 
 	@objc private func create(_ sender: Any?) {
-		// TODO
+		open(Canvas())
 	}
 
 
@@ -56,7 +56,7 @@ class CanvasesViewController: ModelsViewController {
 		return (splitViewController.viewControllers.last as? UINavigationController)?.topViewController as? EditorViewController
 	}
 
-	func rowForCanvas(canvas: Canvas) -> Row {
+	func row(for canvas: Canvas) -> Row {
 		var row = canvas.row
 		row.selection = { [weak self] in self?.open(canvas) }
 		return row
