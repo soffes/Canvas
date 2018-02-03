@@ -15,7 +15,10 @@ There’s a lot of other things I’d like to do outside of the iOS & macOS apps
 
 ## Building
 
-1. Ensure you have Xcode 9.2 (9C40b)
-2. [Install Carthage](https://github.com/Carthage/Carthage#installing-carthage) and run `carthage bootstrap --platform iOS`
-3. [Install XcodeGen](https://github.com/yonaskolb/XcodeGen#installing) and run `xcodegen`
-4. Open the project, select the `Canvas-iOS` target, and click ▶️
+You’ll need Xcode, [XcodeGen](https://github.com/yonaskolb/XcodeGen), and [Carthage](https://github.com/Carthage/Carthage) to build Canvas. Simply run the following command for instructions:
+
+    $ rake bootstrap
+
+After this completes, simple open Canvas.xcodeproj and click ▶️
+
+Enjoy.
