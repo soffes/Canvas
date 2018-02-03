@@ -57,10 +57,10 @@ namespace :check do
     end
   end
 
-  desc 'Check xcodegen version'
+  desc 'Check XcodeGen version'
   task :xcodegen do
     unless (version = `xcodegen -v`.chomp) == XCODEGEN_VERSION
-      fail %(xcodegen #{XCODEGEN_VERSION} isnt’t installed. You can install with `brew install xcodegen`. You may need to update Homebrew with `brew update` first.)
+      fail %(XcodeGen #{XCODEGEN_VERSION} isnt’t installed. You can install with `brew install xcodegen`. You may need to update Homebrew with `brew update` first.)
     end
   end
 end
