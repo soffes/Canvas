@@ -140,7 +140,7 @@ extension SplitViewController: UISplitViewControllerDelegate {
 		}
 	}
 
-	private func isEmpty(secondaryViewController secondaryViewController: UIViewController? = nil) -> Bool {
+	private func isEmpty(secondaryViewController: UIViewController? = nil) -> Bool {
 		let viewController = secondaryViewController ?? detailViewController
 		if let secondaryNavigationController = viewController as? UINavigationController {
 			return secondaryNavigationController.topViewController is PlaceholderViewController

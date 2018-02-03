@@ -2,11 +2,6 @@ import UIKit
 
 extension UIEdgeInsets {
 	init(_ value: CGFloat) {
-		top = value
-		left = value
-		right = value
-		bottom = value
+		self.init(top: value, left: value, bottom: value, right: value)
 	}
-
-	static let zero = UIEdgeInsets(0)
 }

@@ -14,7 +14,7 @@ final class CanvasesResultsViewController: CanvasesViewController {
 
 		NSLayoutConstraint.activate([
 			// Add search bar height :(
-			line.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 44),
+			line.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 44),
 
 			line.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			line.trailingAnchor.constraint(equalTo: view.trailingAnchor)

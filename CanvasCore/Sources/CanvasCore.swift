@@ -1,6 +1,6 @@
 import Foundation
 
 let resourceBundle: Bundle = {
-	let path = (Bundle.main.resourcePath! as NSString).appendingPathComponent("CanvasTextResources")
-	return Bundle(path: path)!
+	let url = Bundle.main.resourceURL!.appendingPathComponent("CanvasCoreResources.bundle")
+	return Bundle(url: url)!
 }()

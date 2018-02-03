@@ -113,7 +113,7 @@ struct DragContext {
 		return rect
 	}
 
-	private static func leadingIcon(block block: BlockNode) -> UIImage? {
+	private static func leadingIcon(block: BlockNode) -> UIImage? {
 		if block is Paragraph {
 			return UIImage(named: "CheckList")
 		}
@@ -145,7 +145,7 @@ struct DragContext {
 		return nil
 	}
 
-	private static func trailingIcon(block block: BlockNode) -> UIImage? {
+	private static func trailingIcon(block: BlockNode) -> UIImage? {
 		if let block = block as? Listable {
 			if block is ChecklistItem {
 				return UIImage(named: "Paragraph")

@@ -11,12 +11,13 @@ final class WebViewController: SFSafariViewController {
 	// MARK: - Initializers
 
 	convenience init(url: URL) {
-		self.init(url: url, entersReaderIfAvailable: false)
+		self.init(url: url, configuration: Configuration())
 	}
 
-	override init(url : URL, entersReaderIfAvailable: Bool) {
+
+	override init(url: URL, configuration: SFSafariViewController.Configuration) {
 		originalURL = url
-		super.init(url: url, entersReaderIfAvailable: entersReaderIfAvailable)
+		super.init(url: url, configuration: configuration)
 	}
 
 

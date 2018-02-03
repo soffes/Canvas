@@ -1,6 +1,6 @@
 import UIKit
 
-func interpolate(start start: CGFloat, end: CGFloat, progress: CGFloat) -> CGFloat {
+func interpolate(start: CGFloat, end: CGFloat, progress: CGFloat) -> CGFloat {
 	return (end - start) * progress + start
 }
 
