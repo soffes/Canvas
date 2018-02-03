@@ -14,7 +14,9 @@ final class CanvasTextView: TextView {
 
 	weak var textController: TextController? {
 		didSet {
-			guard let theme = textController?.theme else { return }
+			guard let theme = textController?.theme else {
+            return
+        }
 
 			var attributes = theme.titleAttributes
 			attributes[.foregroundColor] = theme.titlePlaceholderColor

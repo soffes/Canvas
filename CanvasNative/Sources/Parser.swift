@@ -3,7 +3,7 @@ import Foundation
 /// Given a string, parse into BlockNodes.
 public struct Parser {
 
-    // MARK: - Properties
+	// MARK: - Properties
 
 	private static let blockParseOrder: [BlockNode.Type] = [
 		Blockquote.self,
@@ -27,7 +27,7 @@ public struct Parser {
 		Strikethrough.self
 	]
 
-    // MARK: - Parsing
+	// MARK: - Parsing
 
 	public static func parse(_ string: NSString, in range: NSRange? = nil) -> [BlockNode] {
 		return parse(string as String, in: range)
@@ -49,7 +49,9 @@ public struct Parser {
 		var max = 0
 		text.enumerateSubstrings(in: parseRange, options: [.byLines]) { substring, range, enclosingRange, _ in
 			// Ensure we have a substring to work with
-			guard let substring = substring else { return }
+			guard let substring = substring else {
+	    	return
+    	}
 
 			max = range.max
 
@@ -89,7 +91,7 @@ public struct Parser {
 		return nodes
 	}
 
-    // MARK: - Private
+	// MARK: - Private
 
 	private static func parseInline(string: String, container: NodeContainer) -> [SpanNode] {
 		var subnodes = [SpanNode]()
@@ -163,7 +165,9 @@ public struct Parser {
 		let text = (string as NSString)
 
 		let markers: [InlineMarker] = matches.compactMap { result in
-			guard result.numberOfRanges == 5 else { return nil }
+			guard result.numberOfRanges == 5 else {
+	    	return nil
+    	}
 			let id = text.substring(with: result.range(at: 4))
 			let position: InlineMarker.Position = result.range(at: 2).length == 0 ? .opening : .closing
 			return InlineMarker(range: result.range(at: 0), position: position, id: id)
@@ -173,7 +177,9 @@ public struct Parser {
 	}
 
 	private static func isContinuous(_ lhs: Positionable?, _ rhs: Positionable?) -> Bool {
-		guard let lhs = lhs, let rhs = rhs, type(of: lhs) == type(of: rhs) else { return false }
+		guard let lhs = lhs, let rhs = rhs, type(of: lhs) == type(of: rhs) else {
+			return false
+		}
 
 		if let lhsCode = lhs as? CodeBlock, let rhsCode = rhs as? CodeBlock, lhsCode.language != rhsCode.language {
 			return false

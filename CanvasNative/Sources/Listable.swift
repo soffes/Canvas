@@ -71,7 +71,7 @@ func parseListable(string: String, range: NSRange, delimiter: String, prefix: St
 		return nil
 	}
 
-	let indentationRange = NSRange(location:  range.location + scanner.scanLocation, length: 1)
+	let indentationRange = NSRange(location: range.location + scanner.scanLocation, length: 1)
 	var indent = -1
 	if !scanner.scanInt(&indent) {
 		return nil

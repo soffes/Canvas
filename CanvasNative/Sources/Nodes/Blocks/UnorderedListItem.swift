@@ -40,7 +40,9 @@ public struct UnorderedListItem: Listable, Equatable {
 			range: range,
 			delimiter: "unordered-list",
 			prefix: "- "
-		) else { return nil }
+		) else {
+            return nil
+        }
 
 		self.range = range
 		self.nativePrefixRange = nativePrefixRange.union(prefixRange)

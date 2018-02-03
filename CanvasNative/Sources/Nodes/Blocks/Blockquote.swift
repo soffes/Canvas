@@ -36,7 +36,9 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 			range: range,
 			delimiter: "blockquote",
 			prefix: "> "
-		) else { return nil }
+		) else {
+            return nil
+        }
 
 		self.range = range
 		self.nativePrefixRange = nativePrefixRange.union(prefixRange)

@@ -8,7 +8,9 @@ final class TextField: UITextField {
 
 	override var placeholder: String? {
 		didSet {
-			guard let placeholder = placeholder, let font = font else { return }
+			guard let placeholder = placeholder, let font = font else {
+            return
+        }
 			attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
 				.font: font,
 				.foregroundColor: Swatch.darkGray

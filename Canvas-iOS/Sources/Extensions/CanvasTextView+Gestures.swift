@@ -19,7 +19,9 @@ extension CanvasTextView {
 	}
 
 	private func dragBegan() {
-		guard let context = dragContext else { return }
+		guard let context = dragContext else {
+	    	return
+    	}
 
 		let contentView = context.contentView
 		contentView.frame = CGRect(
@@ -32,7 +34,9 @@ extension CanvasTextView {
 	}
 
 	private func dragChanged() {
-		guard var context = dragContext else { return }
+		guard var context = dragContext else {
+	    	return
+    	}
 
 		var translation = dragGestureRecognizer.translation(in: self).x
 
@@ -61,7 +65,9 @@ extension CanvasTextView {
 	}
 
 	private func dragEnded(applyAction: Bool) {
-		guard let context = dragContext else { return }
+		guard let context = dragContext else {
+	    	return
+    	}
 
 		UIView.animate(withDuration: 0.2, delay: 0, options: [], animations: {
 			context.translate(x: 0)
@@ -83,7 +89,9 @@ extension CanvasTextView {
 	}
 
 	private func blockAt(point: CGPoint) -> BlockNode? {
-		guard let document = textController?.currentDocument else { return nil }
+		guard let document = textController?.currentDocument else {
+			return nil
+		}
 
 		// Adjust point into layout manager's coordinates
 		var point = point
@@ -106,7 +114,9 @@ extension CanvasTextView {
 extension CanvasTextView: UIGestureRecognizerDelegate {
 	override func gestureRecognizerShouldBegin(_ sender: UIGestureRecognizer) -> Bool {
 		// Make sure we don't mess with internal UITextView gesture recognizers.
-		guard sender == dragGestureRecognizer, let textController = textController else { return super.gestureRecognizerShouldBegin(sender) }
+		guard sender == dragGestureRecognizer, let textController = textController else {
+			return super.gestureRecognizerShouldBegin(sender)
+		}
 
 		// If there are multiple characters selected, disable the drag since the text view uses that event to adjust the
 		// selection.
@@ -122,7 +132,9 @@ extension CanvasTextView: UIGestureRecognizerDelegate {
 
 		// Get the block
 		let point = dragGestureRecognizer.location(in: self)
-		guard let block = blockAt(point: point) else { return false }
+		guard let block = blockAt(point: point) else {
+			return false
+		}
 
 		// Disable dragging if unsupported
 		if !(block is Paragraph) && !(block is Heading) && !(block is Listable) {

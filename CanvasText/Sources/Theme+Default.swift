@@ -14,7 +14,7 @@ extension Theme {
 
 	fileprivate var listIndentation: CGFloat {
 		let font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
-		return ("      " as NSString).size(withAttributes: [.font: font]).width
+		return ("     " as NSString).size(withAttributes: [.font: font]).width
 	}
 
 	public var baseAttributes: Attributes {
@@ -152,7 +152,9 @@ extension Theme {
 	}
 
 	public func attributes(for span: SpanNode, parentAttributes: Attributes) -> Attributes? {
-		guard let currentFont = parentAttributes[.font] as? X.Font else { return nil }
+		guard let currentFont = parentAttributes[.font] as? X.Font else {
+            return nil
+        }
 		var traits = currentFont.symbolicTraits
 		var attributes = parentAttributes
 

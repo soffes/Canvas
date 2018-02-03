@@ -2,7 +2,9 @@ import CanvasNative
 
 extension TextController {
 	public func toggleChecked() {
-		guard let blocks = focusedBlocks?.compactMap({ $0 as? ChecklistItem }) else { return }
+		guard let blocks = focusedBlocks?.compactMap({ $0 as? ChecklistItem }) else {
+            return
+        }
 
 		let states = Set<ChecklistItem.State>(blocks.map({ $0.state }))
 		let newState: ChecklistItem.State
@@ -30,7 +32,9 @@ extension TextController {
 	}
 
 	public func indent() {
-		guard let blocks = focusedBlocks?.compactMap({ $0 as? Listable }) else { return }
+		guard let blocks = focusedBlocks?.compactMap({ $0 as? Listable }) else {
+            return
+        }
 
 		for block in blocks {
 			if block.indentation.isMaximum {
@@ -44,7 +48,9 @@ extension TextController {
 	}
 
 	public func outdent() {
-		guard let blocks = focusedBlocks?.compactMap({ $0 as? Listable }) else { return }
+		guard let blocks = focusedBlocks?.compactMap({ $0 as? Listable }) else {
+            return
+        }
 
 		for block in blocks {
 			if block.indentation.isMinimum {
@@ -70,7 +76,9 @@ extension TextController {
 	}
 
 	public func insertLineAfter() {
-		guard let selection = presentationSelectedRange else { return }
+		guard let selection = presentationSelectedRange else {
+            return
+        }
 
 		let text = currentDocument.presentationString as NSString
 		let lineRange = text.lineRange(for: selection)
@@ -87,7 +95,9 @@ extension TextController {
 	}
 
 	public func insertLineBefore() {
-		guard let selection = presentationSelectedRange else { return }
+		guard let selection = presentationSelectedRange else {
+            return
+        }
 
 		let text = currentDocument.presentationString as NSString
 		let lineRange = text.lineRange(for: selection)
@@ -106,7 +116,9 @@ extension TextController {
 	}
 
 	public func deleteLine() {
-		guard let blocks = focusedBlocks else { return }
+		guard let blocks = focusedBlocks else {
+            return
+        }
 
 		let length = (currentDocument.backingString as NSString).length
 		var range = NSRange(location: -1, length: 0)
@@ -136,12 +148,16 @@ extension TextController {
 	}
 
 	public func swapLineUp() {
-		guard var selection = presentationSelectedRange, let block = focusedBlock, !(block is Title) else { return }
+		guard var selection = presentationSelectedRange, let block = focusedBlock, !(block is Title) else {
+            return
+        }
 
 		let document = currentDocument
 
 		// Prevent swapping up to the title
-		guard let index = document.indexOf(block: block), index > 1 else { return }
+		guard let index = document.indexOf(block: block), index > 1 else {
+            return
+        }
 
 		let before = document.blocks[index - 1]
 		let range = before.range.union(block.range)
@@ -155,12 +171,16 @@ extension TextController {
 	}
 
 	public func swapLineDown() {
-		guard var selection = presentationSelectedRange, let block = focusedBlock, !(block is Title) else { return }
+		guard var selection = presentationSelectedRange, let block = focusedBlock, !(block is Title) else {
+            return
+        }
 
 		let document = currentDocument
 
 		// Prevent swapping down the last line
-		guard let index = document.indexOf(block: block), index < document.blocks.count - 1 else { return }
+		guard let index = document.indexOf(block: block), index < document.blocks.count - 1 else {
+            return
+        }
 
 		let after = document.blocks[index + 1]
 		let range = after.range.union(block.range)

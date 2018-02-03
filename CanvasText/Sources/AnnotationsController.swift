@@ -14,7 +14,7 @@ protocol AnnotationsControllerDelegate: class {
 
 final class AnnotationsController {
 
-    // MARK: - Properties
+	// MARK: - Properties
 
 	var enabled = true
 
@@ -45,13 +45,13 @@ final class AnnotationsController {
 
 	private var annotations = [Annotation?]()
 
-    // MARK: - Initializers
+	// MARK: - Initializers
 
 	init(theme: Theme) {
 		self.theme = theme
 	}
 
-    // MARK: - Manipulating
+	// MARK: - Manipulating
 
 	func insert(_ block: BlockNode, index: Int) {
 		guard enabled, let block = block as? Annotatable, let annotation = annotation(for: block) else {
@@ -72,7 +72,9 @@ final class AnnotationsController {
 	}
 
 	func remove(_ block: BlockNode, index: Int) {
-		guard enabled && index < annotations.count else { return }
+		guard enabled && index < annotations.count else {
+	    	return
+    	}
 
 		if let annotation = annotations[index] {
 			delegate?.annotationsController(self, willRemoveAnnotation: annotation)
@@ -83,11 +85,13 @@ final class AnnotationsController {
 	}
 
 	func update(_ block: BlockNode, at index: Int) {
-		guard enabled && index < annotations.count, let block = block as? Annotatable, let annotation = annotations[index] else { return }
+		guard enabled && index < annotations.count, let block = block as? Annotatable, let annotation = annotations[index] else {
+	    	return
+    	}
 		annotation.block = block
 	}
 
-    // MARK: - Layout
+	// MARK: - Layout
 
 	func layoutAnnotations() {
 		for annotation in annotations {
@@ -97,7 +101,9 @@ final class AnnotationsController {
 	}
 
 	func rect(for annotation: Annotation) -> CGRect {
-		guard let textController = textController else { return .zero }
+		guard let textController = textController else {
+			return .zero
+		}
 
 		let document = textController.currentDocument
 		var presentationRange = document.presentationRange(block: annotation.block)
@@ -111,17 +117,28 @@ final class AnnotationsController {
 
 		switch annotation.placement {
 		case .firstLeadingGutter:
-			guard let firstRect = firstRect(forPresentationRange: presentationRange) else { return .zero }
+			guard let firstRect = firstRect(forPresentationRange: presentationRange) else {
+				return .zero
+			}
+
 			rect = firstRect
 			rect.size.width = rect.origin.x + 8
 			rect.origin.x = -8
+
 		case .expandedLeadingGutter:
-			guard let rects = rects(forPresentationRange: presentationRange), let firstRect = rects.first else { return .zero }
+			guard let rects = rects(forPresentationRange: presentationRange), let firstRect = rects.first else {
+				return .zero
+			}
+
 			rect = rects.reduce(firstRect) { $0.union($1) }
 			rect.size.width = rect.origin.x
 			rect.origin.x = 0
+
 		case .expandedBackground:
-			guard let rects = rects(forPresentationRange: presentationRange), let firstRect = rects.first else { return .zero }
+			guard let rects = rects(forPresentationRange: presentationRange), let firstRect = rects.first else {
+				return .zero
+			}
+			
 			rect = rects.reduce(firstRect) { $0.union($1) }
 			rect.origin.x = 0
 			rect.size.width = textController.textContainer.size.width
@@ -151,10 +168,12 @@ final class AnnotationsController {
 		return rect.integral
 	}
 
-    // MARK: - Private
+	// MARK: - Private
 
 	private func firstRect(forPresentationRange presentationRange: NSRange) -> CGRect? {
-		guard let textController = textController else { return nil }
+		guard let textController = textController else {
+	    	return nil
+    	}
 
 		let layoutManager = textController.layoutManager
 
@@ -171,7 +190,9 @@ final class AnnotationsController {
 	}
 
 	private func rects(forPresentationRange presentationRange: NSRange) -> [CGRect]? {
-		guard let textController = textController else { return nil }
+		guard let textController = textController else {
+	    	return nil
+    	}
 
 		let layoutManager = textController.layoutManager
 
@@ -198,8 +219,10 @@ final class AnnotationsController {
 	#if !os(OSX)
 		@objc private func tap(_ sender: TapGestureRecognizer?) {
 			guard let annotation = sender?.view as? CheckboxView,
-				let block = annotation.block as? ChecklistItem
-			else { return }
+				let block = annotation.block as? ChecklistItem else
+			{
+				return
+			}
 
 			let range = block.stateRange
 			let replacement = block.state.opposite.string

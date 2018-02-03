@@ -3,11 +3,11 @@ import UIKit
 
 class TextView: UITextView {
 
-    // MARK: - Properties
+	// MARK: - Properties
 
 	var managedSubviews = Set<UIView>()
 
-    // MARK: - UIView
+	// MARK: - UIView
 
 	// Allow subviews to receive user input
 	override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
@@ -20,7 +20,7 @@ class TextView: UITextView {
 		return super.hitTest(point, with: event)
 	}
 
-    // MARK: - UITextInput
+	// MARK: - UITextInput
 
 	// Only display the caret in the used rect (if available).
 	override func caretRect(for position: UITextPosition) -> CGRect {
@@ -55,7 +55,10 @@ class TextView: UITextView {
 	override func selectionRects(for range: UITextRange) -> [Any] {
 		let selectionRects = super.selectionRects(for: range)
 		return selectionRects.filter({ selection in
-			guard let selection = selection as? UITextSelectionRect else { return false }
+			guard let selection = selection as? UITextSelectionRect else {
+				return false
+			}
+
 			return selection.rect.size.width > 0
 		})
 	}

@@ -24,7 +24,7 @@ protocol LayoutManagerDelegate: class {
 /// All ranges are presentation ranges.
 class LayoutManager: NSLayoutManager {
 
-    // MARK: - Properties
+	// MARK: - Properties
 
 	weak var textController: TextController?
 	weak var layoutDelegate: LayoutManagerDelegate?
@@ -68,7 +68,7 @@ class LayoutManager: NSLayoutManager {
 	// TODO: Get this from the theme and vary based on the block's font
 	private let lineSpacing: CGFloat = 3
 
-    // MARK: - Initializers
+	// MARK: - Initializers
 
 	override init() {
 		super.init()
@@ -80,7 +80,7 @@ class LayoutManager: NSLayoutManager {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-    // MARK: - NSLayoutManager
+	// MARK: - NSLayoutManager
 
 	override func textContainerChangedGeometry(_ container: NSTextContainer) {
 		super.textContainerChangedGeometry(container)
@@ -98,7 +98,7 @@ class LayoutManager: NSLayoutManager {
 		invalidateFoldingIfNeeded()
 	}
 
-    // MARK: - Folding
+	// MARK: - Folding
 
 	func addFoldableRanges(_ ranges: [NSRange]) {
 		foldableRanges = (foldableRanges + ranges).sorted { $0.location < $1.location }
@@ -126,13 +126,15 @@ class LayoutManager: NSLayoutManager {
 	}
 
 	@discardableResult func invalidateFoldingIfNeeded() -> Bool {
-		guard let invalidRange = invalidFoldingRange else { return false }
+		guard let invalidRange = invalidFoldingRange else {
+			return false
+		}
 
 		invalidFoldingRange = nil
 		return invalidateFoldableRanges(in: invalidRange)
 	}
 
-    // MARK: - Private
+	// MARK: - Private
 
 	private func updateTextContainerIfNeeded() {
 		if needsUpdateTextContainer {
@@ -200,7 +202,9 @@ extension LayoutManager: NSLayoutManagerDelegate {
 
 	// Adjust the top margin of lines based on their block type
 	func layoutManager(_ layoutManager: NSLayoutManager, paragraphSpacingBeforeGlyphAt glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
-		guard let textController = textController, let block = blockNodeAt(glyphIndex: glyphIndex) else { return 0 }
+		guard let textController = textController, let block = blockNodeAt(glyphIndex: glyphIndex) else {
+			return 0
+		}
 
 		// Apply the top margin if it's not the second node
 		let blocks = textController.currentDocument.blocks
@@ -214,7 +218,10 @@ extension LayoutManager: NSLayoutManagerDelegate {
 
 	// Adjust bottom margin of lines based on their block type
 	func layoutManager(_ layoutManager: NSLayoutManager, paragraphSpacingAfterGlyphAt glyphIndex: Int, withProposedLineFragmentRect rect: CGRect) -> CGFloat {
-		guard let textController = textController, let block = blockNodeAt(glyphIndex: glyphIndex) else { return 0 }
+		guard let textController = textController, let block = blockNodeAt(glyphIndex: glyphIndex) else {
+			return 0
+		}
+
 		let spacing = textController.blockSpacing(for: block)
 		return spacing.marginBottom + spacing.paddingBottom
 	}

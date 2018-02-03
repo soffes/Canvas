@@ -2,17 +2,17 @@ import Foundation
 
 public struct MarkdownRenderer: Renderer {
 
-    // MARK: - Properties
+	// MARK: - Properties
 
 	public let document: Document
 
-    // MARK: - Initializers
+	// MARK: - Initializers
 
 	public init(document: Document) {
 		self.document = document
 	}
 
-    // MARK: - Renderer
+	// MARK: - Renderer
 
 	public func render() -> String {
 		var lines = [String]()
@@ -26,7 +26,7 @@ public struct MarkdownRenderer: Renderer {
 		return InlineMarker.regularExpression.stringByReplacingMatches(in: output, options: [], range: bounds, withTemplate: "")
 	}
 
-    // MARK: - Private
+	// MARK: - Private
 
 	fileprivate func render(block: BlockNode) -> String {
 		var output = ""
@@ -132,7 +132,9 @@ public struct MarkdownRenderer: Renderer {
 	}
 
 	fileprivate func render(indentation: Indentation) -> String {
-		guard !indentation.isMinimum else { return "" }
+		guard !indentation.isMinimum else {
+			return ""
+		}
 
 		var output = ""
 		for _ in 0..<indentation.rawValue {

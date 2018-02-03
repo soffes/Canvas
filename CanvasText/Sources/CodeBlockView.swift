@@ -37,7 +37,9 @@ final class CodeBlockView: ViewType, Annotation {
     // MARK: - Initializers
 
 	init?(block: Annotatable, theme: Theme) {
-		guard let codeBlock = block as? CodeBlock else { return nil }
+		guard let codeBlock = block as? CodeBlock else {
+            return nil
+        }
 		self.block = codeBlock
 		self.theme = theme
 
@@ -59,7 +61,9 @@ final class CodeBlockView: ViewType, Annotation {
     // MARK: - UIView
 
 	override func draw(_ rect: CGRect) {
-		guard let codeBlock = block as? CodeBlock, let context = UIGraphicsGetCurrentContext() else { return }
+		guard let codeBlock = block as? CodeBlock, let context = UIGraphicsGetCurrentContext() else {
+            return
+        }
 
 		let path: CGPath?
 
@@ -92,7 +96,9 @@ final class CodeBlockView: ViewType, Annotation {
 	override func traitCollectionDidChange(_ previousTraitOrganization: UITraitCollection?) {
 		super.traitCollectionDidChange(previousTraitOrganization)
 
-		guard let codeBlock = block as? CodeBlock else { return }
+		guard let codeBlock = block as? CodeBlock else {
+            return
+        }
 
 		if traitCollection.horizontalSizeClass != .regular {
 			textLabel.removeFromSuperview()

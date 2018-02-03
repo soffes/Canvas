@@ -5,7 +5,7 @@ import UIKit
 
 class CanvasesViewController: ModelsViewController {
 
-    // MARK: - Initializers
+	// MARK: - Initializers
 
 	override init(style: UITableViewStyle = .plain) {
 		super.init(style: style)
@@ -15,7 +15,7 @@ class CanvasesViewController: ModelsViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-    // MARK: - UIViewController
+	// MARK: - UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -28,7 +28,7 @@ class CanvasesViewController: ModelsViewController {
 		tableView.rowHeight = 72
 	}
 
-    // MARK: - ModelsViewController
+	// MARK: - ModelsViewController
 
 	func open(_ canvas: Canvas) {
 		if let editor = currentEditor(), editor.canvas == canvas {
@@ -39,16 +39,19 @@ class CanvasesViewController: ModelsViewController {
 		showDetailViewController(NavigationController(rootViewController: viewController), sender: self)
 	}
 
-    // MARK: - Actions
+	// MARK: - Actions
 
 	@objc private func create(_ sender: Any?) {
 		open(Canvas())
 	}
 
-    // MARK: - Utilities
+	// MARK: - Utilities
 
 	func currentEditor() -> EditorViewController? {
-		guard let splitViewController = splitViewController, splitViewController.viewControllers.count == 2 else { return nil }
+		guard let splitViewController = splitViewController, splitViewController.viewControllers.count == 2 else {
+			return nil
+		}
+
 		return (splitViewController.viewControllers.last as? UINavigationController)?.topViewController as? EditorViewController
 	}
 

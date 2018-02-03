@@ -3,11 +3,13 @@ import UIKit
 
 final class RootViewController: UIViewController {
 
-    // MARK: - Properties
+	// MARK: - Properties
 
 	var viewController: UIViewController? {
 		willSet {
-			guard let viewController = viewController else { return }
+			guard let viewController = viewController else {
+			return
+		}
 
 			// Collapse the primary view controller if it's displaying
 			if let splitViewController = viewController as? UISplitViewController {
@@ -23,7 +25,10 @@ final class RootViewController: UIViewController {
 		}
 
 		didSet {
-			guard let viewController = viewController else { return }
+			guard let viewController = viewController else {
+				return
+			}
+
 			addChildViewController(viewController)
 
 			viewController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +51,7 @@ final class RootViewController: UIViewController {
 		}
 	}
 
-    // MARK: - UIViewController
+	// MARK: - UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -65,7 +70,7 @@ final class RootViewController: UIViewController {
 		return traitCollection.userInterfaceIdiom == .pad ? .all : .portrait
 	}
 
-    // MARK: - Internal
+	// MARK: - Internal
 
 	func _showBanner(text: String, style: BannerView.Style = .success, inViewController viewController: UIViewController) {
 		var top = viewController

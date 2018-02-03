@@ -33,7 +33,9 @@ public struct Title: NativePrefixable, NodeContainer, InlineMarkerContainer, Equ
 			string: string,
 			range: range,
 			delimiter: "doc-heading"
-		) else { return nil }
+		) else {
+            return nil
+        }
 
 		self.range = range
 		self.nativePrefixRange = nativePrefixRange

@@ -3,7 +3,7 @@ import UIKit
 
 class StackViewController: UIViewController {
 
-    // MARK: - Properties
+	// MARK: - Properties
 
 	let stackView: UIStackView = {
 		let view = UIStackView()
@@ -15,12 +15,16 @@ class StackViewController: UIViewController {
 
 	private var centerYConstraint: NSLayoutConstraint? {
 		willSet {
-			guard let old = centerYConstraint else { return }
+			guard let old = centerYConstraint else {
+	    	return
+    	}
 			NSLayoutConstraint.deactivate([old])
 		}
 
 		didSet {
-			guard let new = centerYConstraint else { return }
+			guard let new = centerYConstraint else {
+	    	return
+    	}
 			NSLayoutConstraint.activate([new])
 		}
 	}
@@ -33,7 +37,7 @@ class StackViewController: UIViewController {
 
 	private var visible = false
 
-    // MARK: - UIViewController
+	// MARK: - UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -71,14 +75,16 @@ class StackViewController: UIViewController {
 		visible = false
 	}
 
-    // MARK: - Private
+	// MARK: - Private
 
 	@objc private func keyboardWillChangeFrame(notification: NSNotification) {
 		guard let dictionary = notification.userInfo as? [String: Any],
 			let duration = dictionary[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval,
 			let curve = (dictionary[UIKeyboardAnimationCurveUserInfoKey] as? Int).flatMap(UIViewAnimationCurve.init),
-			let rect = (dictionary[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-		else { return }
+			let rect = (dictionary[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else
+		{
+	    	return
+    	}
 
 		let frame = view.convert(rect, from: nil)
 

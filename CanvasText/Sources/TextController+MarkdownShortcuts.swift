@@ -18,8 +18,10 @@ extension TextController {
 		text.enumerateSubstrings(in: searchRange, options: .byLines) { [weak self] string, range, _, _ in
 			guard let string = string,
 				let document = self?.currentDocument,
-				let node = document.blockAt(presentationLocation: range.location), (string as NSString).length > 0
-			else { return }
+				let node = document.blockAt(presentationLocation: range.location), (string as NSString).length > 0 else
+			{
+				return
+			}
 
 			// FIXME: Update to support inline markers
 			let backingRange = document.backingRanges(presentationRange: range)[0]
@@ -41,7 +43,9 @@ extension TextController {
 			self?.edit(backingRange: replacementRange, replacement: replacement)
 
 			// Reset selection
-			guard var selection = self?.presentationSelectedRange else { return }
+			guard var selection = self?.presentationSelectedRange else {
+	    	return
+    	}
 			selection.length = 0
 
 			DispatchQueue.main.async {
@@ -50,7 +54,7 @@ extension TextController {
 		}
 	}
 
-    // MARK: - Private
+	// MARK: - Private
 
 	fileprivate func prefixForUnorderedList(_ string: String, unorderedListItem: UnorderedListItem? = nil) -> Match? {
 		let scanner = Scanner(string: string)
@@ -95,7 +99,9 @@ extension TextController {
 	}
 
 	fileprivate func scanBlockquote(_ scanner: Scanner) -> String? {
-		guard scanner.scanString("> ", into: nil) else { return nil }
+		guard scanner.scanString("> ", into: nil) else {
+	    	return nil
+    	}
 		return Blockquote.nativeRepresentation()
 	}
 
@@ -107,14 +113,18 @@ extension TextController {
 		} else {
 			indentation = scanIndentation(scanner)
 
-			guard scanner.scanString("-", into: nil) || scanner.scanString("*", into: nil) else { return nil }
+			guard scanner.scanString("-", into: nil) || scanner.scanString("*", into: nil) else {
+	    	return nil
+    	}
 
 			// Optional space
 			scanner.scanString(" ", into: nil)
 		}
 
 		// Leading delimiter
-		guard scanner.scanString("[", into: nil) else { return nil }
+		guard scanner.scanString("[", into: nil) else {
+	    	return nil
+    	}
 
 		// State
 		let state: ChecklistItem.State
@@ -129,7 +139,9 @@ extension TextController {
 		}
 
 		// Trailing delimiter with required trailing space
-		guard scanner.scanString("] ", into: nil) else { return nil }
+		guard scanner.scanString("] ", into: nil) else {
+	    	return nil
+    	}
 
 		return ChecklistItem.nativeRepresentation(indentation: indentation, state: state)
 	}
@@ -146,7 +158,9 @@ extension TextController {
 
 	fileprivate func scanOrderedList(_ scanner: Scanner) -> String? {
 		let indentation = scanIndentation(scanner)
-		guard scanner.scanInt32(nil) && scanner.scanString(". ", into: nil) else { return nil }
+		guard scanner.scanInt32(nil) && scanner.scanString(". ", into: nil) else {
+	    	return nil
+    	}
 
 		return OrderedListItem.nativeRepresentation(indentation: indentation)
 	}

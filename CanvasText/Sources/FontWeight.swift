@@ -53,7 +53,9 @@ public enum FontWeight: CustomStringConvertible {
 	]
 
 	init?(face: String) {
-		guard let weight = FontWeight.faces[face] else { return nil }
+		guard let weight = FontWeight.faces[face] else {
+            return nil
+        }
 		self = weight
 	}
 }

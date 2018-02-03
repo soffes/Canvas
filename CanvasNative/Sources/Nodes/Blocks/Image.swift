@@ -82,7 +82,9 @@ public struct Image: Attachable, Equatable {
 		let ci = dictionary["ci"] as? String
 
 		// We need some identifier
-		guard let identifier = ci ?? urlString else { return nil }
+		guard let identifier = ci ?? urlString else {
+            return nil
+        }
 
 		self.identifier = identifier
 		self.url = urlString.flatMap { URL(string: $0) }

@@ -31,7 +31,9 @@ final class BlockquoteBorderView: ViewType, Annotation {
     // MARK: - Initializers
 
 	init?(block: Annotatable, theme: Theme) {
-		guard let blockquote = block as? Blockquote else { return nil }
+		guard let blockquote = block as? Blockquote else {
+            return nil
+        }
 		self.block = blockquote
 		self.theme = theme
 
@@ -52,12 +54,16 @@ final class BlockquoteBorderView: ViewType, Annotation {
 
 	override func draw(_ rect: CGRect) {
 		#if os(OSX)
-			guard let context = NSGraphicsContext.currentContext()?.CGContext else { return }
+			guard let context = NSGraphicsContext.currentContext()?.CGContext else {
+            return
+        }
 
 			theme.backgroundColor.setFill()
 			CGContextFillRect(context, bounds)
 		#else
-			guard let context = UIGraphicsGetCurrentContext() else { return }
+			guard let context = UIGraphicsGetCurrentContext() else {
+            return
+        }
 		#endif
 
 		theme.blockquoteBorderColor.setFill()

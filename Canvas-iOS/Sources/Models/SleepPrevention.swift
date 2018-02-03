@@ -18,7 +18,10 @@ enum SleepPrevention: String, CustomStringConvertible {
 	static let defaultsKey = "PreventSleep"
 
 	static var currentPreference: SleepPrevention {
-		guard let string = UserDefaults.standard.string(forKey: defaultsKey) else { return .whilePluggedIn }
+		guard let string = UserDefaults.standard.string(forKey: defaultsKey) else {
+			return .whilePluggedIn
+		}
+
 		return SleepPrevention(rawValue: string) ?? .whilePluggedIn
 	}
 

@@ -5,7 +5,7 @@ import UIKit
 
 final class EditorViewController: UIViewController {
 
-    // MARK: - Properties
+	// MARK: - Properties
 
 	static let willCloseNotificationName = Notification.Name(rawValue: "EditorViewController.willCloseNotificationName")
 
@@ -42,7 +42,7 @@ final class EditorViewController: UIViewController {
 		}
 	}
 
-    // MARK: - Initializers
+	// MARK: - Initializers
 
 	init(canvas: Canvas) {
 		self.canvas = canvas
@@ -73,7 +73,7 @@ final class EditorViewController: UIViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-    // MARK: - UIResponder
+	// MARK: - UIResponder
 
 	override var canBecomeFirstResponder: Bool {
 		return true
@@ -120,7 +120,7 @@ final class EditorViewController: UIViewController {
 		return commands
 	}
 
-    // MARK: - UIViewController
+	// MARK: - UIViewController
 
 	override var title: String? {
 		didSet {
@@ -154,7 +154,10 @@ final class EditorViewController: UIViewController {
 		super.viewDidLayoutSubviews()
 
 		// Prevent extra work if things didn't change. This method gets called more often than you'd expect.
-		if view.bounds.size == lastSize { return }
+		if view.bounds.size == lastSize {
+			return
+		}
+
 		lastSize = view.bounds.size
 
 		// Align title view
@@ -211,12 +214,14 @@ final class EditorViewController: UIViewController {
 		textController.traitCollection = traitCollection
 	}
 
-    // MARK: - Private
+	// MARK: - Private
 
 	@objc private func keyboardWillChangeFrame(notification: NSNotification?) {
 		guard let notification = notification,
-			let value = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue
-		else { return }
+			let value = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue else
+		{
+	    	return
+    	}
 
 		let frame = textView.frame.intersection(view.convert(value.cgRectValue, from: nil))
 		var insets = textView.contentInset
@@ -273,7 +278,9 @@ extension EditorViewController: TintableEnvironment {
 
 extension EditorViewController: UIViewControllerPreviewingDelegate {
 	func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-		guard let textRange = textView.characterRange(at: location) else { return nil }
+		guard let textRange = textView.characterRange(at: location) else {
+	    	return nil
+    	}
 
 		let range = NSRange(
 			location: textView.offset(from: textView.beginningOfDocument, to: textRange.start),
@@ -288,8 +295,10 @@ extension EditorViewController: UIViewControllerPreviewingDelegate {
 		guard let index = nodes.index(where: { $0 is Link }),
 			let link = nodes[index] as? Link,
 			let url = link.URL(backingString: document.backingString),
-			url.scheme == "http" || url.scheme == "https"
-		else { return nil }
+			url.scheme == "http" || url.scheme == "https" else
+		{
+	    	return nil
+    	}
 
 		previewingContext.sourceRect = textView.firstRect(for: textRange)
 
@@ -346,7 +355,9 @@ extension EditorViewController: TextControllerDisplayDelegate {
 	func textController(_ textController: TextController, didUpdateSelectedRange selectedRange: NSRange) {
 		// Defer to after editing completes or UITextView will misplace already queued edits
 		DispatchQueue.main.async { [weak self] in
-			guard let textView = self?.textView else { return }
+			guard let textView = self?.textView else {
+	    	return
+    	}
 
 			if !NSEqualRanges(textView.selectedRange, selectedRange) {
 				textView.selectedRange = selectedRange
@@ -367,7 +378,9 @@ extension EditorViewController: TextControllerDisplayDelegate {
 	}
 
 	func textControllerWillProcessRemoteEdit(_ textController: TextController) {
-		guard !textView.isDragging, let position = textView.position(from: textView.beginningOfDocument, offset: textView.selectedRange.location) else { return }
+		guard !textView.isDragging, let position = textView.position(from: textView.beginningOfDocument, offset: textView.selectedRange.location) else {
+	    	return
+    	}
 		scrollOffset = textView.caretRect(for: position).minY
 	}
 

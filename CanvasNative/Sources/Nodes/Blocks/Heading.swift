@@ -81,7 +81,9 @@ public struct Heading: BlockNode, NodeContainer, Foldable, InlineMarkerContainer
 			return nil
 		}
 
-		guard let count = hashes?.length, let level = Level(rawValue: UInt(count)) else { return nil }
+		guard let count = hashes?.length, let level = Level(rawValue: UInt(count)) else {
+            return nil
+        }
 		self.level = level
 
 		if !scanner.scanString(" ", into: nil) {

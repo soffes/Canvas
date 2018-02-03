@@ -43,7 +43,9 @@ public struct OrderedListItem: Listable, Equatable {
 			range: range,
 			delimiter: "ordered-list",
 			prefix: "1. "
-		)else { return nil }
+		)else {
+            return nil
+        }
 
 		self.range = range
 		self.nativePrefixRange = nativePrefixRange.union(prefixRange)
