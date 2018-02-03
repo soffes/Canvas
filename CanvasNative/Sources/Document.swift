@@ -65,7 +65,7 @@ public struct Document {
 
 	// MARK: - Initializers
 
-	public init(backingString: String = "", blocks: [BlockNode]? = nil) {
+	public init(backingString: String = Title.nativeRepresentation(), blocks: [BlockNode]? = nil) {
 		self.backingString = backingString
 		self.blocks = blocks ?? Parser.parse(backingString)
 		(presentationString, hiddenRanges, blockRanges) = Document.present(backingString: backingString, blocks: self.blocks)

@@ -20,11 +20,7 @@ final class EditorViewController: UIViewController {
 	private var scrollOffset: CGFloat?
 	private var ignoreLocalSelectionChange = false
 
-	private let titleView: TitleView = {
-		let view = TitleView()
-		view.isHidden = true
-		return view
-	}()
+	private let titleView = TitleView()
 
 	private var autocompleteEnabled = false {
 		didSet {
@@ -65,11 +61,8 @@ final class EditorViewController: UIViewController {
 		textView.textController = textController
 		textView.delegate = self
 		textView.formattingDelegate = self
-		textView.isEditable = false
 
 		navigationItem.titleView = titleView
-
-		UIDevice.current.isBatteryMonitoringEnabled = true
 
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: .UIKeyboardWillChangeFrame, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(updatePreventSleep), name: UserDefaults.didChangeNotification, object: nil)
@@ -141,7 +134,8 @@ final class EditorViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		title = LocalizedString.connecting.string
+		update(title: nil)
+
 		view.backgroundColor = Swatch.white
 
 		textView.delegate = self
@@ -197,12 +191,8 @@ final class EditorViewController: UIViewController {
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+		UIDevice.current.isBatteryMonitoringEnabled = true
 		updatePreventSleep()
-	}
-
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		titleView.isHidden = false
 	}
 
 	override func viewWillDisappear(_ animated: Bool) {
@@ -263,6 +253,11 @@ final class EditorViewController: UIViewController {
 
 	private func updateAutoCompletion() {
 		autocompleteEnabled = !textController.isCodeFocused
+	}
+
+	private func update(title newTitle: String?) {
+		title = newTitle ?? LocalizedString.untitled.string
+		updateTitlePlaceholder()
 	}
 }
 
@@ -368,8 +363,7 @@ extension EditorViewController: TextControllerDisplayDelegate {
 	}
 
 	func textController(_ textController: TextController, didUpdateTitle title: String?) {
-		self.title = title ?? LocalizedString.untitled.string
-		updateTitlePlaceholder()
+		update(title: title)
 	}
 
 	func textControllerWillProcessRemoteEdit(_ textController: TextController) {
