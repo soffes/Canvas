@@ -4,7 +4,7 @@ struct NoncontiguousRange {
 
     // MARK: - Private
 
-	fileprivate var storage = Set<Int>()
+	private var storage = Set<Int>()
 
 	var ranges: [NSRange] {
 		return type(of: self).ranges(indices: storage)
@@ -41,7 +41,7 @@ struct NoncontiguousRange {
 
     // MARK: - Private
 
-	fileprivate static func indices(range: NSRange) -> Set<Int> {
+	private static func indices(range: NSRange) -> Set<Int> {
 		var indicies = Set<Int>()
 
 		for i in range.location..<NSMaxRange(range) {

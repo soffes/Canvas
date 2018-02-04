@@ -14,8 +14,10 @@ public enum AnnotationPlacement {
 
 	public var isExpanded: Bool {
 		switch self {
-		case .expandedLeadingGutter, .expandedBackground: return true
-		default: return false
+		case .expandedLeadingGutter, .expandedBackground:
+			return true
+		default:
+			return false
 		}
 	}
 }

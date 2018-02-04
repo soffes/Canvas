@@ -47,7 +47,7 @@ public struct Parser {
 
 		// Enumerate the string blocks of the `backingText`.
 		var max = 0
-		text.enumerateSubstrings(in: parseRange, options: [.byLines]) { substring, range, enclosingRange, _ in
+		text.enumerateSubstrings(in: parseRange, options: [.byLines]) { substring, range, _, _ in
 			// Ensure we have a substring to work with
 			guard let substring = substring else {
 	    	return

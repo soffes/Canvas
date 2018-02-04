@@ -138,7 +138,7 @@ final class AnnotationsController {
 			guard let rects = rects(forPresentationRange: presentationRange), let firstRect = rects.first else {
 				return .zero
 			}
-			
+
 			rect = rects.reduce(firstRect) { $0.union($1) }
 			rect.origin.x = 0
 			rect.size.width = textController.textContainer.size.width
@@ -200,7 +200,7 @@ final class AnnotationsController {
 		layoutManager.ensureLayout(forGlyphRange: glyphRange)
 
 		var rects = [CGRect]()
-		layoutManager.enumerateLineFragments(forGlyphRange: glyphRange) { availableRect, usedRect, _, _, _ in
+		layoutManager.enumerateLineFragments(forGlyphRange: glyphRange) { _, usedRect, _, _, _ in
 			rects.append(usedRect)
 		}
 

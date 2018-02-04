@@ -54,13 +54,13 @@ class TextView: UITextView {
 	// Omit empty width rect when drawing selection rects.
 	override func selectionRects(for range: UITextRange) -> [Any] {
 		let selectionRects = super.selectionRects(for: range)
-		return selectionRects.filter({ selection in
+		return selectionRects.filter { selection in
 			guard let selection = selection as? UITextSelectionRect else {
 				return false
 			}
 
 			return selection.rect.size.width > 0
-		})
+		}
 	}
 
 	func rects(for range: NSRange) -> [CGRect] {

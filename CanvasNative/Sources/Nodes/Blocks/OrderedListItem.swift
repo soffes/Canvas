@@ -82,7 +82,7 @@ public struct OrderedListItem: Listable, Equatable {
 	}
 }
 
-public func ==(lhs: OrderedListItem, rhs: OrderedListItem) -> Bool {
+public func == (lhs: OrderedListItem, rhs: OrderedListItem) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
 		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
 		NSEqualRanges(lhs.visibleRange, rhs.visibleRange) &&

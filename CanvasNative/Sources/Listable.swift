@@ -37,19 +37,19 @@ public enum Indentation: UInt {
 
 extension Indentation: Comparable {}
 
-public func <(lhs: Indentation, rhs: Indentation) -> Bool {
+public func < (lhs: Indentation, rhs: Indentation) -> Bool {
 	return lhs.rawValue < rhs.rawValue
 }
 
-public func <=(lhs: Indentation, rhs: Indentation) -> Bool {
+public func <= (lhs: Indentation, rhs: Indentation) -> Bool {
 	return lhs.rawValue <= rhs.rawValue
 }
 
-public func >=(lhs: Indentation, rhs: Indentation) -> Bool {
+public func >= (lhs: Indentation, rhs: Indentation) -> Bool {
 	return lhs.rawValue >= rhs.rawValue
 }
 
-public func >(lhs: Indentation, rhs: Indentation) -> Bool {
+public func > (lhs: Indentation, rhs: Indentation) -> Bool {
 	return lhs.rawValue > rhs.rawValue
 }
 

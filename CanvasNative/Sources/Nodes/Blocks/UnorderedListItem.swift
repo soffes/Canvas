@@ -79,7 +79,7 @@ public struct UnorderedListItem: Listable, Equatable {
 	}
 }
 
-public func ==(lhs: UnorderedListItem, rhs: UnorderedListItem) -> Bool {
+public func == (lhs: UnorderedListItem, rhs: UnorderedListItem) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
 		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
 		NSEqualRanges(lhs.visibleRange, rhs.visibleRange) &&

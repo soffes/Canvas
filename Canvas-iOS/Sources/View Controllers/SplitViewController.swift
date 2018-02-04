@@ -135,8 +135,10 @@ extension SplitViewController: UISplitViewControllerDelegate {
 
 	func targetDisplayModeForActionInSplitViewController(splitViewController: UISplitViewController) -> UISplitViewControllerDisplayMode {
 		switch splitViewController.displayMode {
-		case .primaryOverlay, .primaryHidden: return .allVisible
-		default: return .primaryHidden
+		case .primaryOverlay, .primaryHidden:
+			return .allVisible
+		default:
+			return .primaryHidden
 		}
 	}
 

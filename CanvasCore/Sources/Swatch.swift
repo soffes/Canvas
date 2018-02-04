@@ -11,11 +11,11 @@ public struct Swatch {
 	public static let lightGray = Color(red: 0.906, green: 0.918, blue: 0.925, alpha: 1)
 	public static let extraLightGray = Color(red: 0.961, green: 0.969, blue: 0.976, alpha: 1)
 
-	fileprivate static let blue = Color(red: 0.255, green: 0.306, blue: 0.976, alpha: 1)
+	private static let blue = Color(red: 0.255, green: 0.306, blue: 0.976, alpha: 1)
 	public static let lightBlue = Color(red: 0.188, green: 0.643, blue: 1, alpha: 1)
 	public static let green = Color(red: 0.157, green: 0.859, blue: 0.404, alpha: 1)
-	fileprivate static let pink = Color(red: 1, green: 0.216, blue: 0.502, alpha: 1)
-	fileprivate static let yellow = Color(red: 1, green: 0.942, blue: 0.716, alpha: 1)
+	private static let pink = Color(red: 1, green: 0.216, blue: 0.502, alpha: 1)
+	private static let yellow = Color(red: 1, green: 0.942, blue: 0.716, alpha: 1)
 
 	// MARK: - Shared
 

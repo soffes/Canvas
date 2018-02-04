@@ -25,7 +25,7 @@ public final class DocumentController {
 
 	public weak var delegate: DocumentControllerDelegate?
 
-	public fileprivate(set) var document = Document()
+	public private(set) var document = Document()
 
     // MARK: - Initializers
 
@@ -56,7 +56,7 @@ public final class DocumentController {
 
     // MARK: - Private
 
-	fileprivate func processChange(_ change: DocumentChange) {
+	private func processChange(_ change: DocumentChange) {
 		// Notifiy the delegate we have a change
 		delegate?.documentControllerWillUpdateDocument(self)
 

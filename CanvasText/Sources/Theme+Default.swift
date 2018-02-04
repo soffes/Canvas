@@ -12,7 +12,7 @@ extension Theme {
 		return UIFont.preferredFont(forTextStyle: UIFontTextStyle.body).pointSize
 	}
 
-	fileprivate var listIndentation: CGFloat {
+	private var listIndentation: CGFloat {
 		let font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
 		return ("     " as NSString).size(withAttributes: [.font: font]).width
 	}

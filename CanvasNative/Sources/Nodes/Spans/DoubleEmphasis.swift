@@ -62,7 +62,7 @@ public struct DoubleEmphasis: SpanNode, Foldable, NodeContainer {
 }
 
 extension DoubleEmphasis: SpanNodeParseable {
-	static let regularExpression: NSRegularExpression = try! NSRegularExpression(pattern: "(?:\\s|^|[^\\w])(\\*\\*|__)(?=\\S)(.+?[*_]*)(?<=\\S)(\\1)", options: [])
+	static let regularExpression = (try? NSRegularExpression(pattern: "(?:\\s|^|[^\\w])(\\*\\*|__)(?=\\S)(.+?[*_]*)(?<=\\S)(\\1)", options: []))!
 
 	init?(match: NSTextCheckingResult) {
 		if match.numberOfRanges != 4 {

@@ -8,9 +8,12 @@ enum SleepPrevention: String, CustomStringConvertible {
 	// TODO: Localize
 	var description: String {
 		switch self {
-		case .never: return "System Default"
-		case .whilePluggedIn: return "While Plugged In"
-		case .always: return "Never Sleep"
+		case .never:
+			return "System Default"
+		case .whilePluggedIn:
+			return "While Plugged In"
+		case .always:
+			return "Never Sleep"
 		}
 	}
 

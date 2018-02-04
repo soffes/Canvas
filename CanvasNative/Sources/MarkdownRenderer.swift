@@ -28,7 +28,7 @@ public struct MarkdownRenderer: Renderer {
 
 	// MARK: - Private
 
-	fileprivate func render(block: BlockNode) -> String {
+	private func render(block: BlockNode) -> String {
 		var output = ""
 
 		// Blockquote
@@ -113,7 +113,7 @@ public struct MarkdownRenderer: Renderer {
 		return output
 	}
 
-	fileprivate func render(spans: [SpanNode]) -> String {
+	private func render(spans: [SpanNode]) -> String {
 		var output = ""
 
 		for span in spans {
@@ -131,7 +131,7 @@ public struct MarkdownRenderer: Renderer {
 		return output
 	}
 
-	fileprivate func render(indentation: Indentation) -> String {
+	private func render(indentation: Indentation) -> String {
 		guard !indentation.isMinimum else {
 			return ""
 		}
@@ -143,7 +143,7 @@ public struct MarkdownRenderer: Renderer {
 		return output
 	}
 
-	fileprivate func render(headingLevel level: Heading.Level) -> String {
+	private func render(headingLevel level: Heading.Level) -> String {
 		var output = ""
 		for _ in 0..<level.rawValue {
 			output += "#"

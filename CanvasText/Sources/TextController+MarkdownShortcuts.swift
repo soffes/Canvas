@@ -56,7 +56,7 @@ extension TextController {
 
 	// MARK: - Private
 
-	fileprivate func prefixForUnorderedList(_ string: String, unorderedListItem: UnorderedListItem? = nil) -> Match? {
+	private func prefixForUnorderedList(_ string: String, unorderedListItem: UnorderedListItem? = nil) -> Match? {
 		let scanner = Scanner(string: string)
 		scanner.charactersToBeSkipped = nil
 
@@ -68,7 +68,7 @@ extension TextController {
 		return nil
 	}
 
-	fileprivate func prefixForParagraph(_ string: String) -> Match? {
+	private func prefixForParagraph(_ string: String) -> Match? {
 		let scanner = Scanner(string: string)
 		scanner.charactersToBeSkipped = nil
 
@@ -98,14 +98,14 @@ extension TextController {
 		return nil
 	}
 
-	fileprivate func scanBlockquote(_ scanner: Scanner) -> String? {
+	private func scanBlockquote(_ scanner: Scanner) -> String? {
 		guard scanner.scanString("> ", into: nil) else {
 	    	return nil
     	}
 		return Blockquote.nativeRepresentation()
 	}
 
-	fileprivate func scanChecklist(_ scanner: Scanner, unorderedListItem: UnorderedListItem? = nil) -> String? {
+	private func scanChecklist(_ scanner: Scanner, unorderedListItem: UnorderedListItem? = nil) -> String? {
 		let indentation: Indentation
 
 		if let unorderedListItem = unorderedListItem {
@@ -146,7 +146,7 @@ extension TextController {
 		return ChecklistItem.nativeRepresentation(indentation: indentation, state: state)
 	}
 
-	fileprivate func scanUnorderedList(_ scanner: Scanner) -> String? {
+	private func scanUnorderedList(_ scanner: Scanner) -> String? {
 		let indentation = scanIndentation(scanner)
 		let set = CharacterSet(charactersIn: "-*")
 		guard scanner.scanCharacters(from: set, into: nil) && scanner.scanString(" ", into: nil) else {
@@ -156,7 +156,7 @@ extension TextController {
 		return UnorderedListItem.nativeRepresentation(indentation: indentation)
 	}
 
-	fileprivate func scanOrderedList(_ scanner: Scanner) -> String? {
+	private func scanOrderedList(_ scanner: Scanner) -> String? {
 		let indentation = scanIndentation(scanner)
 		guard scanner.scanInt32(nil) && scanner.scanString(". ", into: nil) else {
 	    	return nil
@@ -165,7 +165,7 @@ extension TextController {
 		return OrderedListItem.nativeRepresentation(indentation: indentation)
 	}
 
-	fileprivate func scanIndentation(_ scanner: Scanner) -> Indentation {
+	private func scanIndentation(_ scanner: Scanner) -> Indentation {
 		var level: UInt = 0
 		while scanner.scanString("    ", into: nil) || scanner.scanString("\t", into: nil) {
 			level += 1

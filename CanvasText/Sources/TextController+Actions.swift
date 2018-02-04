@@ -6,7 +6,7 @@ extension TextController {
             return
         }
 
-		let states = Set<ChecklistItem.State>(blocks.map({ $0.state }))
+		let states = Set<ChecklistItem.State>(blocks.map { $0.state })
 		let newState: ChecklistItem.State
 
 		// Has checked items

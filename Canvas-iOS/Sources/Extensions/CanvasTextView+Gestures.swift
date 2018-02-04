@@ -10,11 +10,16 @@ extension CanvasTextView {
 
 	@objc private func pan(sender: UIPanGestureRecognizer) {
 		switch sender.state {
-		case .possible: return
-		case .began: dragBegan()
-		case .changed: dragChanged()
-		case .ended: dragEnded(applyAction: true)
-		case .cancelled, .failed: dragEnded(applyAction: false)
+		case .possible:
+			return
+		case .began:
+			dragBegan()
+		case .changed:
+			dragChanged()
+		case .ended:
+			dragEnded(applyAction: true)
+		case .cancelled, .failed:
+			dragEnded(applyAction: false)
 		}
 	}
 

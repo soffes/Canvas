@@ -133,9 +133,12 @@ struct DragContext {
 			}
 
 			switch block.level.successor {
-			case .two: return UIImage(named: "Heading2")
-			case .three: return UIImage(named: "Heading3")
-			default: return nil
+			case .two:
+				return UIImage(named: "Heading2")
+			case .three:
+				return UIImage(named: "Heading3")
+			default:
+				return nil
 			}
 		}
 
@@ -161,9 +164,12 @@ struct DragContext {
 
 		if let block = block as? Heading, block.level != .one {
 			switch block.level.predecessor {
-			case .two: return UIImage(named: "Heading2")
-			case .three: return UIImage(named: "Heading3")
-			default: return nil
+			case .two:
+				return UIImage(named: "Heading2")
+			case .three:
+				return UIImage(named: "Heading3")
+			default:
+				return nil
 			}
 		}
 

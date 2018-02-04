@@ -30,7 +30,7 @@ public struct PlainRenderer: Renderer {
 
     // MARK: - Private
 
-	fileprivate func render(spans: [SpanNode]) -> String {
+	private func render(spans: [SpanNode]) -> String {
 		var output = ""
 
 		for span in spans {

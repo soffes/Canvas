@@ -14,8 +14,10 @@ public struct ChecklistItem: Listable, Equatable {
 
 		public var opposite: State {
 			switch self {
-			case .unchecked: return .checked
-			case .checked: return .unchecked
+			case .unchecked:
+				return .checked
+			case .checked:
+				return .unchecked
 			}
 		}
 	}
@@ -150,7 +152,7 @@ public struct ChecklistItem: Listable, Equatable {
 	}
 }
 
-public func ==(lhs: ChecklistItem, rhs: ChecklistItem) -> Bool {
+public func == (lhs: ChecklistItem, rhs: ChecklistItem) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
 		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
 		NSEqualRanges(lhs.visibleRange, rhs.visibleRange) &&

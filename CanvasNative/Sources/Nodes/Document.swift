@@ -73,8 +73,8 @@ public struct Document {
 		return false
 	}
 
-	fileprivate let hiddenRanges: [NSRange]
-	fileprivate let blockRanges: [NSRange]
+	private let hiddenRanges: [NSRange]
+	private let blockRanges: [NSRange]
 
 	// MARK: - Initializers
 
@@ -165,7 +165,7 @@ public struct Document {
 		return output.ranges
 	}
 
-	fileprivate func preBackingRange(_ presentationRange: NSRange) -> NSRange {
+	private func preBackingRange(_ presentationRange: NSRange) -> NSRange {
 		var backingRange = presentationRange
 
 		// Account for all hidden ranges
@@ -280,19 +280,19 @@ public struct Document {
 	}
 
 	public func nodesIn(backingRange: NSRange) -> [Node] {
-		return nodesIn(backingRange: backingRange, nodes: blocks.map({ $0 as Node }))
+		return nodesIn(backingRange: backingRange, nodes: blocks.map { $0 as Node })
 	}
 
 	public func nodesIn(backingRanges: [NSRange]) -> [Node] {
 		guard let first = backingRanges.first else {
 			return []
 		}
-		
+
 		let range = backingRanges.reduce(first) { $0.union($1) }
-		return nodesIn(backingRange: range, nodes: blocks.map({ $0 as Node }))
+		return nodesIn(backingRange: range, nodes: blocks.map { $0 as Node })
 	}
 
-	fileprivate func nodesIn(backingRange: NSRange, nodes: [Node]) -> [Node] {
+	private func nodesIn(backingRange: NSRange, nodes: [Node]) -> [Node] {
 		var results = [Node]()
 
 		for node in nodes {
@@ -309,7 +309,7 @@ public struct Document {
 	}
 
 	public func indexOf(block: BlockNode) -> Int? {
-		return blocks.index(where: { NSEqualRanges($0.range, block.range) })
+		return blocks.index { NSEqualRanges($0.range, block.range) }
 	}
 
 	// MARK: - Presentation String
@@ -348,7 +348,7 @@ public struct Document {
 
 	// MARK: - Private
 
-	fileprivate static func present(backingString: String, blocks: [BlockNode]) -> (String, [NSRange], [NSRange]) {
+	private static func present(backingString: String, blocks: [BlockNode]) -> (String, [NSRange], [NSRange]) {
 		let text = backingString as NSString
 
 		var presentationString = ""

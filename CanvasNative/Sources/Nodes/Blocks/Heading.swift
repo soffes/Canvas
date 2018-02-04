@@ -138,7 +138,7 @@ public struct Heading: BlockNode, NodeContainer, Foldable, InlineMarkerContainer
 	}
 }
 
-public func ==(lhs: Heading, rhs: Heading) -> Bool {
+public func == (lhs: Heading, rhs: Heading) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
 		NSEqualRanges(lhs.visibleRange, rhs.visibleRange) &&
 		NSEqualRanges(lhs.leadingDelimiterRange, rhs.leadingDelimiterRange) &&
