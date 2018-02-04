@@ -102,7 +102,7 @@ public final class TextController: NSObject {
 
 	private let imagesController: ImagesController
 
-	private let documentController = DocumentController()
+	private let documentController: DocumentController
 
 	public var currentDocument: Document {
 		return documentController.document
@@ -118,7 +118,7 @@ public final class TextController: NSObject {
 	public init(theme: Theme) {
 		self.theme = theme
 		imagesController = ImagesController(theme: theme)
-
+		documentController = DocumentController(backingString: Title.nativeRepresentation())
 		annotationsController = AnnotationsController(theme: theme)
 
 		super.init()

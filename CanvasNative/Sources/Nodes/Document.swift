@@ -58,12 +58,25 @@ public struct Document {
 		return renderer.render()
 	}
 
+	/// Does the receiver have content
+	public var isEmpty: Bool {
+		if blocks.isEmpty {
+			return true
+		}
+
+		if blocks.count == 1, let title = blocks[0] as? Title {
+			return title.textRange.length == 0
+		}
+
+		return false
+	}
+
 	fileprivate let hiddenRanges: [NSRange]
 	fileprivate let blockRanges: [NSRange]
 
     // MARK: - Initializers
 
-	public init(backingString: String = Title.nativeRepresentation(), blocks: [BlockNode]? = nil) {
+	public init(backingString: String = "", blocks: [BlockNode]? = nil) {
 		self.backingString = backingString
 		self.blocks = blocks ?? Parser.parse(backingString)
 		(presentationString, hiddenRanges, blockRanges) = Document.present(backingString: backingString, blocks: self.blocks)

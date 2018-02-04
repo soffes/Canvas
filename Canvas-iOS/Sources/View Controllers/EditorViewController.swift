@@ -192,6 +192,14 @@ final class EditorViewController: UIViewController {
 		updatePreventSleep()
 	}
 
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+
+		if textController.currentDocument.isEmpty {
+			textView.becomeFirstResponder()
+		}
+	}
+
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		UIApplication.shared.isIdleTimerDisabled = false
