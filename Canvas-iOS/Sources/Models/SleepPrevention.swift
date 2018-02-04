@@ -1,10 +1,11 @@
 import Foundation
 
 enum SleepPrevention: String, CustomStringConvertible {
-	case never
-	case whilePluggedIn
-	case always
+	case never = "Never"
+	case whilePluggedIn = "WhilePluggedIn"
+	case always = "Always"
 
+	// TODO: Localize
 	var description: String {
 		switch self {
 		case .never: return "System Default"

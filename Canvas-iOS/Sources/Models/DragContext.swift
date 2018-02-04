@@ -2,8 +2,8 @@ import CanvasNative
 import UIKit
 
 enum DragAction: String {
-	case Increase
-	case Decrease
+	case increase
+	case decrease
 }
 
 struct DragContext {

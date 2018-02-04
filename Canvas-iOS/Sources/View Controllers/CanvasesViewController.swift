@@ -23,7 +23,7 @@ class CanvasesViewController: ModelsViewController {
 		title = "Canvas"
 
 		navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-		navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Compose"), style: .plain, target: self, action: #selector(create))
+		navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Compose"), style: .plain, target: self, action: #selector(create))
 
 		tableView.rowHeight = 72
 	}

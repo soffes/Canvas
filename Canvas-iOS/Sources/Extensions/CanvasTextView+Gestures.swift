@@ -54,9 +54,9 @@ extension CanvasTextView {
 
 		// Calculate block level
 		if translation >= dragThreshold {
-			context.dragAction = .Increase
+			context.dragAction = .increase
 		} else if translation <= -dragThreshold {
-			context.dragAction = .Decrease
+			context.dragAction = .decrease
 		} else {
 			context.dragAction = nil
 		}
@@ -74,8 +74,10 @@ extension CanvasTextView {
 		}, completion: { [weak self] _ in
 			if applyAction, let action = self?.dragContext?.dragAction, let textController = self?.textController {
 				switch action {
-				case .Increase: textController.increaseBlockLevel(block: context.block)
-				case .Decrease: textController.decreaseBlockLevel(block: context.block)
+				case .increase:
+					textController.increaseBlockLevel(block: context.block)
+				case .decrease:
+					textController.decreaseBlockLevel(block: context.block)
 				}
 			}
 
