@@ -4,8 +4,8 @@
 	import UIKit
 #endif
 
-import WebKit
 import CanvasNative
+import WebKit
 import X
 
 typealias Style = (range: NSRange, attributes: Attributes)
@@ -25,10 +25,9 @@ public protocol TextControllerAnnotationDelegate: class {
 	func textController(_ textController: TextController, willRemoveAnnotation annotation: Annotation)
 }
 
-
 public final class TextController: NSObject {
 
-    // MARK: - Properties
+	// MARK: - Properties
 
 	public weak var displayDelegate: TextControllerDisplayDelegate?
 	public weak var annotationDelegate: TextControllerAnnotationDelegate?
@@ -67,7 +66,9 @@ public final class TextController: NSObject {
 	}
 
 	public var isCodeFocused: Bool {
-		guard let block = focusedBlock else { return false }
+		guard let block = focusedBlock else {
+			return false
+		}
 
 		if block is CodeBlock {
 			return true
@@ -113,7 +114,7 @@ public final class TextController: NSObject {
 	private var styles = [Style]()
 	private var invalidPresentationRange: NSRange?
 
-    // MARK: - Initializers
+	// MARK: - Initializers
 
 	public init(theme: Theme) {
 		self.theme = theme
@@ -138,7 +139,7 @@ public final class TextController: NSObject {
 		documentController.delegate = self
 	}
 
-    // MARK: - Traits
+	// MARK: - Traits
 
 	#if !os(OSX)
 		public func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -148,7 +149,9 @@ public final class TextController: NSObject {
 	#endif
 
 	public func set(tintColor: Color) {
-		guard tintColor != theme.tintColor else { return }
+		guard tintColor != theme.tintColor else {
+	    	return
+    	}
 
 		theme.tintColor = tintColor
 
@@ -166,7 +169,7 @@ public final class TextController: NSObject {
 		}
 	}
 
-    // MARK: - Selection
+	// MARK: - Selection
 
 	// Update from Text View
 	public func set(presentationSelectedRange range: NSRange?) {
@@ -188,12 +191,14 @@ public final class TextController: NSObject {
 		}
 	}
 
-    // MARK: - Styles
+	// MARK: - Styles
 
 	/// This should not be called while the text view is editing. Ideally, this will be called in the text view's did
 	/// change delegate method.
 	public func applyStyles() {
-		guard !styles.isEmpty else { return }
+		guard !styles.isEmpty else {
+	    	return
+    	}
 
 		for style in styles {
 			if style.range.max > textStorage.length || style.range.length < 0 {
@@ -219,7 +224,7 @@ public final class TextController: NSObject {
 		annotationsController.layoutAnnotations()
 	}
 
-    // MARK: - Layout
+	// MARK: - Layout
 
 	func blockSpacing(for block: BlockNode) -> BlockSpacing {
 		#if os(OSX)
@@ -235,7 +240,9 @@ public final class TextController: NSObject {
 	}
 
 	private func invalidateLayoutIfNeeded() {
-		guard var range = invalidPresentationRange else { return }
+		guard var range = invalidPresentationRange else {
+	    	return
+    	}
 
 		if range.max > textStorage.length {
 			print("WARNING: Invalid range is too long. Adjusting.")
@@ -266,10 +273,12 @@ public final class TextController: NSObject {
 		applyStyles()
 	}
 
-    // MARK: - Private
+	// MARK: - Private
 
 	private func updateUnfoldIfNeeded() {
-		guard needsUnfoldUpdate else { return }
+		guard needsUnfoldUpdate else {
+	    	return
+    	}
 
 		_layoutManager.unfoldedRange = presentationSelectedRange.flatMap { unfoldableRange(forPresentationSelectedRange: $0) }
 
@@ -293,7 +302,9 @@ public final class TextController: NSObject {
 		let foldableNodes = currentDocument.nodesIn(backingRange: selectedRange).filter { $0 is Foldable }
 		var foldableRanges = ArraySlice<NSRange>(foldableNodes.map { currentDocument.presentationRange(backingRange: $0.range) })
 
-		guard var range = foldableRanges.popFirst() else { return nil }
+		guard var range = foldableRanges.popFirst() else {
+	    	return nil
+    	}
 
 		for r in foldableRanges {
 			range = range.union(r)
@@ -427,7 +438,9 @@ public final class TextController: NSObject {
 
 		// Horizontal rule
 		if block is HorizontalRule {
-			guard let image = HorizontalRuleAttachment.image(theme: theme) else { return nil }
+			guard let image = HorizontalRuleAttachment.image(theme: theme) else {
+	    	return nil
+    	}
 
 			attachment = NSTextAttachment()
 			attachment.image = image
@@ -497,7 +510,9 @@ public final class TextController: NSObject {
 	}
 
 	private func updateImageAttachment(withID id: String, image: X.Image?) {
-		guard let image = image, let block = block(forImageID: id) else { return }
+		guard let image = image, let block = block(forImageID: id) else {
+	    	return
+    	}
 
 		let attachment = NSTextAttachment()
 		attachment.image = image
@@ -513,7 +528,6 @@ public final class TextController: NSObject {
 		annotationsController.layoutAnnotations()
 	}
 }
-
 
 extension TextController: DocumentControllerDelegate {
 	public func documentControllerWillUpdateDocument(_ controller: DocumentController) {
@@ -543,7 +557,9 @@ extension TextController: DocumentControllerDelegate {
 		controller.document.blocks.forEach { foldableRanges += self.styles(for: $0).1 }
 		_layoutManager.addFoldableRanges(foldableRanges)
 
-		guard let selection = presentationSelectedRange else { return }
+		guard let selection = presentationSelectedRange else {
+	    	return
+    	}
 
 		let length = (string as NSString).length
 		let adjusted = SelectionController.adjust(selection: selection, replacementRange: range, replacementLength: length)
@@ -621,7 +637,6 @@ extension TextController: DocumentControllerDelegate {
 	}
 }
 
-
 extension TextController: AnnotationsControllerDelegate {
 	func annotationsController(_ controller: AnnotationsController, willAddAnnotation annotation: Annotation) {
 		annotationDelegate?.textController(self, willAddAnnotation: annotation)
@@ -631,7 +646,6 @@ extension TextController: AnnotationsControllerDelegate {
 		annotationDelegate?.textController(self, willRemoveAnnotation: annotation)
 	}
 }
-
 
 extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 	public func canvasTextStorage(_ textStorage: CanvasTextStorage, willReplaceCharactersIn range: NSRange, with string: String) {
@@ -773,7 +787,6 @@ extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 		submitOperations(backingRange: backingRange, string: replacement)
 	}
 }
-
 
 extension TextController: LayoutManagerDelegate {
 	func layoutManager(_ layoutManager: NSLayoutManager, textContainerChangedGeometry textContainer: NSTextContainer) {

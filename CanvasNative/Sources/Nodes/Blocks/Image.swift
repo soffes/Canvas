@@ -1,5 +1,5 @@
-import Foundation
 import CoreGraphics
+import Foundation
 
 public struct Image: Attachable, Equatable {
 
@@ -82,7 +82,9 @@ public struct Image: Attachable, Equatable {
 		let ci = dictionary["ci"] as? String
 
 		// We need some identifier
-		guard let identifier = ci ?? urlString else { return nil }
+		guard let identifier = ci ?? urlString else {
+            return nil
+        }
 
 		self.identifier = identifier
 		self.url = urlString.flatMap { URL(string: $0) }
@@ -108,13 +110,11 @@ public struct Image: Attachable, Equatable {
 	}
 }
 
-
 extension Image: Hashable {
 	public var hashValue: Int {
 		return identifier.hashValue
 	}
 }
-
 
 public func == (lhs: Image, rhs: Image) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&

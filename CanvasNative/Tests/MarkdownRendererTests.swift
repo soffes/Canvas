@@ -11,6 +11,6 @@ final class MarkdownRendererTests: XCTestCase {
 	func testOrderedLists() {
 		let document = Document(backingString: "⧙doc-heading⧘Ordered\n⧙ordered-list-0⧘1. One\n⧙ordered-list-1⧘1. Two\n⧙ordered-list-0⧘1. Three")
 		let renderer = MarkdownRenderer(document: document)
-		XCTAssertEqual("# Ordered\n\n1. One\n    1. Two\n2. Three", renderer.render())
+		XCTAssertEqual("# Ordered\n\n1. One\n   1. Two\n2. Three", renderer.render())
 	}
 }

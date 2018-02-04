@@ -1,6 +1,6 @@
 import Foundation
 
-private let regularExpression = try! NSRegularExpression(pattern: "^(?:\\s{0,2}(?:(\\s?\\*\\s*?){3,})|(?:(\\s?-\\s*?){3,})|(?:(\\s?_\\s*?){3,})[ \\t]*)$", options: [])
+private let regularExpression = (try? NSRegularExpression(pattern: "^(?:\\s{0,2}(?:(\\s?\\*\\s*?){3,})|(?:(\\s?-\\s*?){3,})|(?:(\\s?_\\s*?){3,})[ \\t]*)$", options: []))!
 
 public struct HorizontalRule: Attachable, Equatable {
 
@@ -13,7 +13,7 @@ public struct HorizontalRule: Attachable, Equatable {
 		return [
 			"type": "horizontal-rule",
 			"range": range.dictionary,
-			"nativePrefixRange": nativePrefixRange.dictionary,
+			"nativePrefixRange": nativePrefixRange.dictionary
 		]
 	}
 
@@ -45,7 +45,6 @@ public struct HorizontalRule: Attachable, Equatable {
 		return "\(leadingNativePrefix)horizontal-rule\(trailingNativePrefix)"
 	}
 }
-
 
 public func == (lhs: HorizontalRule, rhs: HorizontalRule) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&

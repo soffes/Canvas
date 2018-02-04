@@ -33,7 +33,9 @@ public struct Title: NativePrefixable, NodeContainer, InlineMarkerContainer, Equ
 			string: string,
 			range: range,
 			delimiter: "doc-heading"
-		) else { return nil }
+		) else {
+            return nil
+        }
 
 		self.range = range
 		self.nativePrefixRange = nativePrefixRange
@@ -67,8 +69,7 @@ public struct Title: NativePrefixable, NodeContainer, InlineMarkerContainer, Equ
 	}
 }
 
-
-public func ==(lhs: Title, rhs: Title) -> Bool {
+public func == (lhs: Title, rhs: Title) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
 		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
 		NSEqualRanges(lhs.visibleRange, rhs.visibleRange)

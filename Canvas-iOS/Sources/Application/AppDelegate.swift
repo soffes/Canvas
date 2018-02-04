@@ -1,5 +1,5 @@
-import UIKit
 import CanvasCore
+import UIKit
 
 @UIApplicationMain final class AppDelegate: UIResponder {
 
@@ -30,9 +30,8 @@ import CanvasCore
 //	}
 }
 
-
 extension AppDelegate: UIApplicationDelegate {
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
 		// Appearance
 		UIImageView.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = Swatch.darkGray
 

@@ -1,9 +1,9 @@
-import UIKit
 import CanvasNative
+import UIKit
 
 enum DragAction: String {
-	case Increase
-	case Decrease
+	case increase
+	case decrease
 }
 
 struct DragContext {
@@ -15,7 +15,7 @@ struct DragContext {
 	let block: BlockNode
 	let rect: CGRect
 	let yContentOffset: CGFloat
-	var dragAction: DragAction? = nil
+	var dragAction: DragAction?
 
 	let contentView = UIView()
 
@@ -133,9 +133,12 @@ struct DragContext {
 			}
 
 			switch block.level.successor {
-			case .two: return UIImage(named: "Heading2")
-			case .three: return UIImage(named: "Heading3")
-			default: return nil
+			case .two:
+				return UIImage(named: "Heading2")
+			case .three:
+				return UIImage(named: "Heading3")
+			default:
+				return nil
 			}
 		}
 
@@ -161,9 +164,12 @@ struct DragContext {
 
 		if let block = block as? Heading, block.level != .one {
 			switch block.level.predecessor {
-			case .two: return UIImage(named: "Heading2")
-			case .three: return UIImage(named: "Heading3")
-			default: return nil
+			case .two:
+				return UIImage(named: "Heading2")
+			case .three:
+				return UIImage(named: "Heading3")
+			default:
+				return nil
 			}
 		}
 

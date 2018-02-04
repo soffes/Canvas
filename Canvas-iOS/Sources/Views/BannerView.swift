@@ -1,6 +1,6 @@
-import UIKit
 import CanvasCore
 import CanvasText
+import UIKit
 
 final class BannerView: UIView {
 
@@ -17,9 +17,12 @@ final class BannerView: UIView {
 
 		var backgroundColor: UIColor {
 			switch self {
-			case .success: return Swatch.green
-			case .info: return Swatch.darkGray
-			case .failure: return Swatch.destructive
+			case .success:
+				return Swatch.green
+			case .info:
+				return Swatch.darkGray
+			case .failure:
+				return Swatch.destructive
 			}
 		}
 	}
@@ -53,7 +56,7 @@ final class BannerView: UIView {
 			textLabel.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: 16),
 			textLabel.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -16),
 			textLabel.topAnchor.constraint(greaterThanOrEqualTo: topAnchor, constant: 12),
-			textLabel.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: -12),
+			textLabel.bottomAnchor.constraint(greaterThanOrEqualTo: bottomAnchor, constant: -12)
 		])
 	}
 

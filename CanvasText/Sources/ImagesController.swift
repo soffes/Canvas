@@ -122,7 +122,9 @@ final class ImagesController: Themeable {
 				return image
 			}
 
-			guard let icon = Image(named: "PhotoLandscape", in: resourceBundle) else { return nil }
+			guard let icon = Image(named: "PhotoLandscape", in: resourceBundle) else {
+            return nil
+        }
 
 			let rect = CGRect(origin: .zero, size: size)
 

@@ -22,7 +22,9 @@ struct HorizontalRuleAttachment {
 		context.fill(CGRect(x: 0, y: ((height - 1) / 2) - 2, width: width, height: 1))
 
 		// Create image
-		guard let cgImage = context.makeImage() else { return nil }
+		guard let cgImage = context.makeImage() else {
+            return nil
+        }
 		let image = UIImage(cgImage: cgImage)
 
 		// Return image

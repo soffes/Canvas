@@ -15,16 +15,13 @@ extension NSRange {
 		return NSMaxRange(self)
 	}
 
-
 	func equals(_ range: NSRange) -> Bool {
 		return NSEqualRanges(self, range)
 	}
 
-
 	func contains(_ location: Int) -> Bool {
 		return NSLocationInRange(location, self)
 	}
-
 
 	func union(_ range: NSRange) -> NSRange {
 		return NSUnionRange(self, range)

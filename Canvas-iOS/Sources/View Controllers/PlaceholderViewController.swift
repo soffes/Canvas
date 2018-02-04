@@ -1,6 +1,6 @@
-import UIKit
 import CanvasCore
 import CanvasText
+import UIKit
 
 final class PlaceholderViewController: UIViewController {
 
@@ -25,7 +25,7 @@ final class PlaceholderViewController: UIViewController {
 
 		NSLayoutConstraint.activate([
 			textLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			textLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+			textLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
 		])
 
 		NotificationCenter.default.addObserver(self, selector: #selector(updateFont), name: .UIContentSizeCategoryDidChange, object: nil)

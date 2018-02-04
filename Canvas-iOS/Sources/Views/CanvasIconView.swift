@@ -1,5 +1,5 @@
-import UIKit
 import CanvasCore
+import UIKit
 
 final class CanvasIconView: TintableView {
 
@@ -7,7 +7,9 @@ final class CanvasIconView: TintableView {
 
 	var canvas: Canvas? {
 		didSet {
-			guard let canvas = canvas else { return }
+			guard let canvas = canvas else {
+            return
+        }
 
 			iconView.image = canvas.kind.icon.withRenderingMode(.alwaysTemplate)
 		}

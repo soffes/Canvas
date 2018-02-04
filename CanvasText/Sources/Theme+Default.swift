@@ -12,9 +12,9 @@ extension Theme {
 		return UIFont.preferredFont(forTextStyle: UIFontTextStyle.body).pointSize
 	}
 
-	fileprivate var listIndentation: CGFloat {
+	private var listIndentation: CGFloat {
 		let font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
-		return ("      " as NSString).size(withAttributes: [.font: font]).width
+		return ("     " as NSString).size(withAttributes: [.font: font]).width
 	}
 
 	public var baseAttributes: Attributes {
@@ -136,9 +136,7 @@ extension Theme {
 				attributes[.foregroundColor] = headingSixColor
 				attributes[.font] = TextStyle.headline.font(weight: .medium)
 			}
-		}
-
-		else if block is CodeBlock {
+		} else if block is CodeBlock {
 			attributes[.foregroundColor] = codeColor
 			attributes[.font] = TextStyle.body.monoSpaceFont()
 
@@ -146,9 +144,7 @@ extension Theme {
 			let paragraph = NSMutableParagraphStyle()
 			paragraph.headIndent = floor(fontSize * 1.2) + 0.5
 			attributes[.paragraphStyle] = paragraph
-		}
-
-		else if block is Blockquote {
+		} else if block is Blockquote {
 			attributes[.foregroundColor] = blockquoteColor
 		}
 
@@ -156,7 +152,9 @@ extension Theme {
 	}
 
 	public func attributes(for span: SpanNode, parentAttributes: Attributes) -> Attributes? {
-		guard let currentFont = parentAttributes[.font] as? X.Font else { return nil }
+		guard let currentFont = parentAttributes[.font] as? X.Font else {
+            return nil
+        }
 		var traits = currentFont.symbolicTraits
 		var attributes = parentAttributes
 
@@ -166,25 +164,17 @@ extension Theme {
 			attributes[.font] = font
 			attributes[.foregroundColor] = codeSpanColor
 			attributes[.backgroundColor] = codeSpanBackgroundColor
-		}
-
-		else if span is Strikethrough {
+		} else if span is Strikethrough {
 			attributes[.strikethroughStyle] = NSUnderlineStyle.styleThick.rawValue as Any
 			attributes[.strikethroughColor] = strikethroughColor
 			attributes[.foregroundColor] = strikethroughColor
-		}
-
-		else if span is DoubleEmphasis {
+		} else if span is DoubleEmphasis {
 			traits.insert(.traitBold)
 			attributes[.font] = applySymbolicTraits(traits, toFont: currentFont)
-		}
-
-		else if span is Emphasis {
+		} else if span is Emphasis {
 			traits.insert(.traitItalic)
 			attributes[.font] = applySymbolicTraits(traits, toFont: currentFont)
-		}
-
-		else if span is Link {
+		} else if span is Link {
 			attributes[.foregroundColor] = tintColor
 		}
 

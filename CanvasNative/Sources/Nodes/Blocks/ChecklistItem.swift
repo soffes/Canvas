@@ -2,7 +2,7 @@ import Foundation
 
 public struct ChecklistItem: Listable, Equatable {
 
-    // MARK: - Types
+	// MARK: - Types
 
 	public enum State: String {
 		case unchecked = " "
@@ -14,13 +14,15 @@ public struct ChecklistItem: Listable, Equatable {
 
 		public var opposite: State {
 			switch self {
-			case .unchecked: return .checked
-			case .checked: return .unchecked
+			case .unchecked:
+				return .checked
+			case .checked:
+				return .unchecked
 			}
 		}
 	}
 
-    // MARK: - Properties
+	// MARK: - Properties
 
 	public var range: NSRange
 	public var nativePrefixRange: NSRange
@@ -54,7 +56,7 @@ public struct ChecklistItem: Listable, Equatable {
 		]
 	}
 
-    // MARK: - Initializers
+	// MARK: - Initializers
 
 	public init?(string: String, range: NSRange) {
 		let scanner = Scanner(string: string)
@@ -71,7 +73,7 @@ public struct ChecklistItem: Listable, Equatable {
 			return nil
 		}
 
-		let indentationRange = NSRange(location:  range.location + indentationLocation, length: scanner.scanLocation - indentationLocation)
+		let indentationRange = NSRange(location: range.location + indentationLocation, length: scanner.scanLocation - indentationLocation)
 		guard indent != -1, let indentation = Indentation(rawValue: UInt(indent)) else {
 			return nil
 		}
@@ -84,7 +86,6 @@ public struct ChecklistItem: Listable, Equatable {
 		}
 
 		let nativePrefixRange = NSRange(location: range.location, length: scanner.scanLocation)
-
 
 		// Prefix
 		let startPrefix = scanner.scanLocation
@@ -122,7 +123,7 @@ public struct ChecklistItem: Listable, Equatable {
 		self.range = range
 	}
 
-    // MARK: - Node
+	// MARK: - Node
 
 	public mutating func offset(_ delta: Int) {
 		range.location += delta
@@ -144,15 +145,14 @@ public struct ChecklistItem: Listable, Equatable {
 		}
 	}
 
-    // MARK: - Native
+	// MARK: - Native
 
 	public static func nativeRepresentation(indentation: Indentation = .zero, state: State = .unchecked) -> String {
 		return "\(leadingNativePrefix)checklist-\(indentation.string)\(trailingNativePrefix)- [\(state.string)] "
 	}
 }
 
-
-public func ==(lhs: ChecklistItem, rhs: ChecklistItem) -> Bool {
+public func == (lhs: ChecklistItem, rhs: ChecklistItem) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
 		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
 		NSEqualRanges(lhs.visibleRange, rhs.visibleRange) &&

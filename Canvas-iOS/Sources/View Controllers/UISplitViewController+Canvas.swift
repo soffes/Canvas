@@ -11,7 +11,9 @@ extension UISplitViewController {
 	}
 
 	var detailViewController: UIViewController? {
-		guard viewControllers.count == 2 else { return nil }
+		guard viewControllers.count == 2 else {
+            return nil
+        }
 		return viewControllers.last
 	}
 }

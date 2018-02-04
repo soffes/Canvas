@@ -43,7 +43,9 @@ public struct OrderedListItem: Listable, Equatable {
 			range: range,
 			delimiter: "ordered-list",
 			prefix: "1. "
-		)else { return nil }
+		)else {
+            return nil
+        }
 
 		self.range = range
 		self.nativePrefixRange = nativePrefixRange.union(prefixRange)
@@ -80,8 +82,7 @@ public struct OrderedListItem: Listable, Equatable {
 	}
 }
 
-
-public func ==(lhs: OrderedListItem, rhs: OrderedListItem) -> Bool {
+public func == (lhs: OrderedListItem, rhs: OrderedListItem) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
 		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
 		NSEqualRanges(lhs.visibleRange, rhs.visibleRange) &&

@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 PROJECT = 'Canvas.xcodeproj'
-XCODE_VERSION = '9Q98q'
-XCODE_SHORT_VERSION = '9.3 beta 1'
-XCODEGEN_VERSION = '1.5.0'
-CARTHAGE_VERSION = '0.28.0'
 CARTHAGE_PLATFORM = 'iOS'
+CARTHAGE_VERSION = '0.28.0'
+SWIFTLINT_VERSION = '0.24.2'
+XCODE_SHORT_VERSION = '9.3 beta 1'
+XCODE_VERSION = '9Q98q'
+XCODEGEN_VERSION = '1.5.0'
 
 desc 'Generate the Xcode project'
 task project: :'check:xcodegen' do
@@ -26,14 +27,16 @@ task update: :'check:carthage' do
   sh %(carthage update --platform #{CARTHAGE_PLATFORM})
 end
 
+desc 'Run swiftlint'
+task :lint do
+  sh 'swiftlint'
+end
+
 desc 'Clean everything'
 task :clean do
   quit_xcode
   sh %(rm -rf #{PROJECT} Carthage)
 end
-
-desc 'Check build tools'
-task check: %i[check:xcode check:carthage check:xcodegen]
 
 namespace :check do
   desc 'Check Xcode version'
@@ -61,6 +64,13 @@ namespace :check do
   task :xcodegen do
     unless (version = `xcodegen -v`.chomp) == XCODEGEN_VERSION
       fail %(XcodeGen #{XCODEGEN_VERSION} isnt’t installed. You can install with `brew install xcodegen`. You may need to update Homebrew with `brew update` first.)
+    end
+  end
+
+  desc 'Check swiftlint version'
+  task :swiftlint do
+    unless (version = `swiftlint version`.chomp) == SWIFTLINT_VERSION
+      fail %(swiftline #{SWIFTLINT_VERSION} isnt’t installed. You can install with `brew install swiftlint`. You may need to update Homebrew with `brew update` first.)
     end
   end
 end

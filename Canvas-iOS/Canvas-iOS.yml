@@ -25,3 +25,6 @@ targets:
         - carthage: GradientView
         - carthage: Static
         - carthage: X
+      postbuildScripts:
+        - script: if which swiftlint >/dev/null; then swiftlint; fi
+          name: Swiftlint

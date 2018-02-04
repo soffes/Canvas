@@ -1,7 +1,7 @@
-import UIKit
-import Static
 import CanvasCore
 import CanvasText
+import Static
+import UIKit
 
 final class CanvasCell: UITableViewCell {
 
@@ -153,7 +153,6 @@ final class CanvasCell: UITableViewCell {
 		summaryLabel.font = TextStyle.subheadline.font()
 	}
 }
-
 
 extension CanvasCell: Cell {
 	func configure(row: Row) {

@@ -1,9 +1,8 @@
-import Foundation
 import Diff
+import Foundation
 
 typealias BlockChange = (range: CountableRange<Int>, replacement: [BlockNode])
 typealias StringChange = (range: NSRange, replacement: NSString)
-
 
 struct DocumentChange {
 
@@ -26,7 +25,6 @@ struct DocumentChange {
 		self.presentationStringChange = presentationStringChange
 	}
 }
-
 
 extension Document {
 	func replaceCharactersInRange(_ range: NSRange, withString string: String) -> DocumentChange {

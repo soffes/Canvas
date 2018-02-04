@@ -1,7 +1,7 @@
-import UIKit
 import CanvasCore
 import CanvasNative
 import CanvasText
+import UIKit
 
 protocol CanvasTextViewFormattingDelegate: class {
 	func textViewDidToggleBoldface(_ textView: CanvasTextView, sender: Any?)
@@ -14,7 +14,9 @@ final class CanvasTextView: TextView {
 
 	weak var textController: TextController? {
 		didSet {
-			guard let theme = textController?.theme else { return }
+			guard let theme = textController?.theme else {
+            return
+        }
 
 			var attributes = theme.titleAttributes
 			attributes[.foregroundColor] = theme.titlePlaceholderColor
@@ -104,7 +106,6 @@ final class CanvasTextView: TextView {
 		placeholderLabel.frame = frame
 	}
 }
-
 
 extension CanvasTextView: TextControllerAnnotationDelegate {
 	func textController(_ textController: TextController, willAddAnnotation annotation: Annotation) {

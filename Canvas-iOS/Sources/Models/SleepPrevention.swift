@@ -1,15 +1,19 @@
 import Foundation
 
 enum SleepPrevention: String, CustomStringConvertible {
-	case never
-	case whilePluggedIn
-	case always
+	case never = "Never"
+	case whilePluggedIn = "WhilePluggedIn"
+	case always = "Always"
 
+	// TODO: Localize
 	var description: String {
 		switch self {
-		case .never: return "System Default"
-		case .whilePluggedIn: return "While Plugged In"
-		case .always: return "Never Sleep"
+		case .never:
+			return "System Default"
+		case .whilePluggedIn:
+			return "While Plugged In"
+		case .always:
+			return "Never Sleep"
 		}
 	}
 
@@ -18,7 +22,10 @@ enum SleepPrevention: String, CustomStringConvertible {
 	static let defaultsKey = "PreventSleep"
 
 	static var currentPreference: SleepPrevention {
-		guard let string = UserDefaults.standard.string(forKey: defaultsKey) else { return .whilePluggedIn }
+		guard let string = UserDefaults.standard.string(forKey: defaultsKey) else {
+			return .whilePluggedIn
+		}
+
 		return SleepPrevention(rawValue: string) ?? .whilePluggedIn
 	}
 

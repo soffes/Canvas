@@ -40,7 +40,9 @@ public struct UnorderedListItem: Listable, Equatable {
 			range: range,
 			delimiter: "unordered-list",
 			prefix: "- "
-		) else { return nil }
+		) else {
+            return nil
+        }
 
 		self.range = range
 		self.nativePrefixRange = nativePrefixRange.union(prefixRange)
@@ -77,8 +79,7 @@ public struct UnorderedListItem: Listable, Equatable {
 	}
 }
 
-
-public func ==(lhs: UnorderedListItem, rhs: UnorderedListItem) -> Bool {
+public func == (lhs: UnorderedListItem, rhs: UnorderedListItem) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
 		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
 		NSEqualRanges(lhs.visibleRange, rhs.visibleRange) &&

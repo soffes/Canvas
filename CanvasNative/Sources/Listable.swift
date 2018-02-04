@@ -37,28 +37,26 @@ public enum Indentation: UInt {
 
 extension Indentation: Comparable {}
 
-public func <(lhs: Indentation, rhs: Indentation) -> Bool {
+public func < (lhs: Indentation, rhs: Indentation) -> Bool {
 	return lhs.rawValue < rhs.rawValue
 }
 
-public func <=(lhs: Indentation, rhs: Indentation) -> Bool {
+public func <= (lhs: Indentation, rhs: Indentation) -> Bool {
 	return lhs.rawValue <= rhs.rawValue
 }
 
-public func >=(lhs: Indentation, rhs: Indentation) -> Bool {
+public func >= (lhs: Indentation, rhs: Indentation) -> Bool {
 	return lhs.rawValue >= rhs.rawValue
 }
 
-public func >(lhs: Indentation, rhs: Indentation) -> Bool {
+public func > (lhs: Indentation, rhs: Indentation) -> Bool {
 	return lhs.rawValue > rhs.rawValue
 }
-
 
 public protocol Listable: ReturnCompletable, NativePrefixable, Positionable, NodeContainer, InlineMarkerContainer {
 	var indentation: Indentation { get }
 	var indentationRange: NSRange { get }
 }
-
 
 func parseListable(string: String, range: NSRange, delimiter: String, prefix: String) -> (nativePrefixRange: NSRange, indentationRange: NSRange, indentation: Indentation, prefixRange: NSRange, visibleRange: NSRange)? {
 	let scanner = Scanner(string: string)
@@ -73,7 +71,7 @@ func parseListable(string: String, range: NSRange, delimiter: String, prefix: St
 		return nil
 	}
 
-	let indentationRange = NSRange(location:  range.location + scanner.scanLocation, length: 1)
+	let indentationRange = NSRange(location: range.location + scanner.scanLocation, length: 1)
 	var indent = -1
 	if !scanner.scanInt(&indent) {
 		return nil

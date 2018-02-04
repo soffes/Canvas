@@ -14,16 +14,26 @@ public enum TextStyle {
 
 	public var textStyle: String {
 		switch self {
-		case .title1: return UIFontTextStyle.title1.rawValue
-		case .title2: return UIFontTextStyle.title2.rawValue
-		case .title3: return UIFontTextStyle.title3.rawValue
-		case .headline: return UIFontTextStyle.headline.rawValue
-		case .subheadline: return UIFontTextStyle.subheadline.rawValue
-		case .body: return UIFontTextStyle.body.rawValue
-		case .footnote: return UIFontTextStyle.footnote.rawValue
-		case .caption1: return UIFontTextStyle.caption1.rawValue
-		case .caption2: return UIFontTextStyle.caption2.rawValue
-		case .callout: return UIFontTextStyle.callout.rawValue
+		case .title1:
+			return UIFontTextStyle.title1.rawValue
+		case .title2:
+			return UIFontTextStyle.title2.rawValue
+		case .title3:
+			return UIFontTextStyle.title3.rawValue
+		case .headline:
+			return UIFontTextStyle.headline.rawValue
+		case .subheadline:
+			return UIFontTextStyle.subheadline.rawValue
+		case .body:
+			return UIFontTextStyle.body.rawValue
+		case .footnote:
+			return UIFontTextStyle.footnote.rawValue
+		case .caption1:
+			return UIFontTextStyle.caption1.rawValue
+		case .caption2:
+			return UIFontTextStyle.caption2.rawValue
+		case .callout:
+			return UIFontTextStyle.callout.rawValue
 		}
 	}
 
@@ -47,7 +57,6 @@ public enum TextStyle {
 		return applySymbolicTraits(traits, toFont: monoSpaceFont)
 	}
 }
-
 
 func applySymbolicTraits(_ traits: UIFontDescriptorSymbolicTraits, toFont font: UIFont, sanitize: Bool = true) -> UIFont {
 	var traits = traits

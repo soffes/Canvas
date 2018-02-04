@@ -11,7 +11,7 @@ public struct InlineMarker: Node {
 
     // MARK: - Properties
 
-	static let regularExpression: NSRegularExpression! = try? NSRegularExpression(pattern: "(☊(Ω)?([a-z]{2})\\|([a-zA-Z0-9]{22})☋)", options: [])
+	static let regularExpression = (try? NSRegularExpression(pattern: "(☊(Ω)?([a-z]{2})\\|([a-zA-Z0-9]{22})☋)", options: []))!
 
 	public var range: NSRange
 

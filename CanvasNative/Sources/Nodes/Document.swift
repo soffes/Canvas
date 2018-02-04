@@ -4,25 +4,25 @@
 	import UIKit
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
-    return l < r
+	return l < r
   case (nil, _?):
-    return true
+	return true
   default:
-    return false
+	return false
   }
 }
 
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
-    return l > r
+	return l > r
   default:
-    return rhs < lhs
+	return rhs < lhs
   }
 }
 
@@ -32,13 +32,13 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 /// calculations on the strings or nodes are provided.
 public struct Document {
 
-    // MARK: - Types
+	// MARK: - Types
 
 	public enum Direction: String {
 		case leading, trailing
 	}
 
-    // MARK: - Properties
+	// MARK: - Properties
 
 	/// Backing Canvas Native string
 	public let backingString: String
@@ -51,7 +51,9 @@ public struct Document {
 
 	/// The title of the document
 	public var title: String? {
-		guard let title = blocks.first as? Title else { return nil }
+		guard let title = blocks.first as? Title else {
+	    	return nil
+    	}
 
 		let titleDocument = Document(backingString: backingString, blocks: [title])
 		let renderer = PlainRenderer(document: titleDocument)
@@ -71,10 +73,10 @@ public struct Document {
 		return false
 	}
 
-	fileprivate let hiddenRanges: [NSRange]
-	fileprivate let blockRanges: [NSRange]
+	private let hiddenRanges: [NSRange]
+	private let blockRanges: [NSRange]
 
-    // MARK: - Initializers
+	// MARK: - Initializers
 
 	public init(backingString: String = "", blocks: [BlockNode]? = nil) {
 		self.backingString = backingString
@@ -82,7 +84,7 @@ public struct Document {
 		(presentationString, hiddenRanges, blockRanges) = Document.present(backingString: backingString, blocks: self.blocks)
 	}
 
-    // MARK: - Converting Backing Ranges to Presentation Ranges
+	// MARK: - Converting Backing Ranges to Presentation Ranges
 
 	public func presentationRange(backingRange: NSRange) -> NSRange {
 		var presentationRange = backingRange
@@ -104,7 +106,10 @@ public struct Document {
 	}
 
 	public func presentationRange(block: BlockNode) -> NSRange {
-		guard let index = indexOf(block: block) else { return block.visibleRange }
+		guard let index = indexOf(block: block) else {
+			return block.visibleRange
+		}
+
 		return presentationRange(blockIndex: index)
 	}
 
@@ -112,7 +117,7 @@ public struct Document {
 		return blockRanges[index]
 	}
 
-    // MARK: - Converting Presentation Ranges to Backing Ranges
+	// MARK: - Converting Presentation Ranges to Backing Ranges
 
 	public func backingRange(presentationLocation: UInt) -> NSRange {
 		var backingRange = preBackingRange(NSRange(location: Int(presentationLocation), length: 0))
@@ -160,7 +165,7 @@ public struct Document {
 		return output.ranges
 	}
 
-	fileprivate func preBackingRange(_ presentationRange: NSRange) -> NSRange {
+	private func preBackingRange(_ presentationRange: NSRange) -> NSRange {
 		var backingRange = presentationRange
 
 		// Account for all hidden ranges
@@ -198,28 +203,36 @@ public struct Document {
 		return backingRange
 	}
 
-    // MARK: - Querying Blocks
+	// MARK: - Querying Blocks
 
 	public func blockAt(backingLocation: Int) -> BlockNode? {
-		guard backingLocation >= 0  else { return nil }
+		guard backingLocation >= 0  else {
+	    	return nil
+    	}
 		return blockAt(backingLocation: UInt(backingLocation))
 	}
 
 	public func blockAt(backingLocation: UInt) -> BlockNode? {
-		guard backingLocation >= 0  else { return nil }
+		guard backingLocation >= 0  else {
+	    	return nil
+    	}
 		for (i, block) in blocks.enumerated() {
 			if Int(backingLocation) < block.range.location {
 				return blocks[i - 1]
 			}
 		}
 
-		guard let block = blocks.last else { return nil }
+		guard let block = blocks.last else {
+	    	return nil
+    	}
 
 		return block.range.contains(backingLocation) || block.range.max == Int(backingLocation) ? block : nil
 	}
 
 	public func blockAt(presentationLocation: Int, direction: Direction = .leading) -> BlockNode? {
-		guard presentationLocation >= 0  else { return nil }
+		guard presentationLocation >= 0  else {
+	    	return nil
+    	}
 		return blockAt(presentationLocation: UInt(presentationLocation), direction: direction)
 	}
 
@@ -242,7 +255,9 @@ public struct Document {
 			}
 		}
 
-		guard let block = blocks.last else { return nil }
+		guard let block = blocks.last else {
+	    	return nil
+    	}
 
 		let presentationRange = self.presentationRange(block: block)
 		return presentationRange.contains(presentationLocation) || presentationRange.max == location ? block : nil
@@ -265,16 +280,19 @@ public struct Document {
 	}
 
 	public func nodesIn(backingRange: NSRange) -> [Node] {
-		return nodesIn(backingRange: backingRange, nodes: blocks.map({ $0 as Node }))
+		return nodesIn(backingRange: backingRange, nodes: blocks.map { $0 as Node })
 	}
 
 	public func nodesIn(backingRanges: [NSRange]) -> [Node] {
-		guard let first = backingRanges.first else { return [] }
+		guard let first = backingRanges.first else {
+			return []
+		}
+
 		let range = backingRanges.reduce(first) { $0.union($1) }
-		return nodesIn(backingRange: range, nodes: blocks.map({ $0 as Node }))
+		return nodesIn(backingRange: range, nodes: blocks.map { $0 as Node })
 	}
 
-	fileprivate func nodesIn(backingRange: NSRange, nodes: [Node]) -> [Node] {
+	private func nodesIn(backingRange: NSRange, nodes: [Node]) -> [Node] {
 		var results = [Node]()
 
 		for node in nodes {
@@ -291,10 +309,10 @@ public struct Document {
 	}
 
 	public func indexOf(block: BlockNode) -> Int? {
-		return blocks.index(where: { NSEqualRanges($0.range, block.range) })
+		return blocks.index { NSEqualRanges($0.range, block.range) }
 	}
 
-    // MARK: - Presentation String
+	// MARK: - Presentation String
 
 	public func presentationString(block: BlockNode) -> String {
 		return presentationString(backingRange: block.range)
@@ -328,9 +346,9 @@ public struct Document {
 		return text as String
 	}
 
-    // MARK: - Private
+	// MARK: - Private
 
-	fileprivate static func present(backingString: String, blocks: [BlockNode]) -> (String, [NSRange], [NSRange]) {
+	private static func present(backingString: String, blocks: [BlockNode]) -> (String, [NSRange], [NSRange]) {
 		let text = backingString as NSString
 
 		var presentationString = ""

@@ -1,16 +1,18 @@
-import UIKit
 import CanvasCore
 import Static
+import UIKit
 
 extension Canvas {
 	enum Kind {
 		case document
 		case blank
 
-		var icon: UIImage! {
+		var icon: UIImage {
 			switch self {
-			case .document: return UIImage(named: "Document")
-			case .blank: return UIImage(named: "Document-Blank")
+			case .document:
+				return UIImage(named: "Document")!
+			case .blank:
+				return UIImage(named: "Document-Blank")!
 			}
 		}
 	}

@@ -1,12 +1,12 @@
-import UIKit
 import CanvasCore
+import UIKit
 
 final class SplitViewController: UISplitViewController {
 
-    // MARK: - Properties
+	// MARK: - Properties
 
 	private var lastSize: CGSize?
-    // MARK: - Initializers
+	// MARK: - Initializers
 
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nil, bundle: nil)
@@ -18,7 +18,7 @@ final class SplitViewController: UISplitViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-    // MARK: - UIViewController
+	// MARK: - UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -29,7 +29,9 @@ final class SplitViewController: UISplitViewController {
 		super.viewDidLayoutSubviews()
 
 		// Work around wrong automatic primary column calculatations by UISplitViewController
-		guard let window = view.window, lastSize != window.bounds.size else { return }
+		guard let window = view.window, lastSize != window.bounds.size else {
+			return
+		}
 
 		lastSize = window.bounds.size
 
@@ -55,7 +57,7 @@ final class SplitViewController: UISplitViewController {
 		}
 	}
 
-    // MARK: - Private
+	// MARK: - Private
 
 	@objc private func toggleSidebar() {
 		let mode: UISplitViewControllerDisplayMode = displayMode == .allVisible ? .primaryHidden : .allVisible
@@ -65,7 +67,6 @@ final class SplitViewController: UISplitViewController {
 		}
 	}
 }
-
 
 extension SplitViewController: UISplitViewControllerDelegate {
 	func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
@@ -83,7 +84,9 @@ extension SplitViewController: UISplitViewControllerDelegate {
 	}
 
 	func splitViewController(splitViewController: UISplitViewController, separateSecondaryViewControllerFromPrimaryViewController primaryViewController: UIViewController) -> UIViewController? {
-		guard let primaryViewController = primaryViewController as? UINavigationController else { return nil }
+		guard let primaryViewController = primaryViewController as? UINavigationController else {
+			return nil
+		}
 
 		var viewControllers = [UIViewController]()
 
@@ -132,8 +135,10 @@ extension SplitViewController: UISplitViewControllerDelegate {
 
 	func targetDisplayModeForActionInSplitViewController(splitViewController: UISplitViewController) -> UISplitViewControllerDisplayMode {
 		switch splitViewController.displayMode {
-		case .primaryOverlay, .primaryHidden: return .allVisible
-		default: return .primaryHidden
+		case .primaryOverlay, .primaryHidden:
+			return .allVisible
+		default:
+			return .primaryHidden
 		}
 	}
 

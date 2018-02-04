@@ -1,5 +1,5 @@
-import UIKit
 import CanvasNative
+import UIKit
 import X
 
 final class NumberView: ViewType, Annotation {
@@ -21,7 +21,9 @@ final class NumberView: ViewType, Annotation {
     // MARK: - Initializers
 
 	init?(block: Annotatable, theme: Theme) {
-		guard let orderedListItem = block as? OrderedListItem else { return nil }
+		guard let orderedListItem = block as? OrderedListItem else {
+            return nil
+        }
 		self.block = orderedListItem
 		self.theme = theme
 
@@ -39,7 +41,9 @@ final class NumberView: ViewType, Annotation {
     // MARK: - UIView
 
 	override func draw(_ rect: CGRect) {
-		guard let block = block as? OrderedListItem else { return }
+		guard let block = block as? OrderedListItem else {
+            return
+        }
 
 		let string = "\(block.number)." as NSString
 		let attributes: Attributes = [

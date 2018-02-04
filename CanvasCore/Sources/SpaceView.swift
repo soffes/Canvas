@@ -12,7 +12,7 @@ public final class SpaceView: View {
 
     // MARK: - Properties
 
-	fileprivate let contentSize: CGSize
+	private let contentSize: CGSize
 
     // MARK: - Initializers
 
@@ -58,13 +58,14 @@ public final class SpaceView: View {
 	#endif
 }
 
-
 #if os(OSX)
 	extension NSStackView {
 		public func addSpace(length: CGFloat) {
 			switch orientation {
-			case .Horizontal: addArrangedSubview(SpaceView(width: length))
-			case .vertical: addArrangedSubview(SpaceView(height: length))
+			case .horizontal:
+				addArrangedSubview(SpaceView(width: length))
+			case .vertical:
+				addArrangedSubview(SpaceView(height: length))
 			}
 		}
 	}
@@ -72,8 +73,10 @@ public final class SpaceView: View {
 	extension UIStackView {
 		public func addSpace(_ length: CGFloat) {
 			switch axis {
-			case .horizontal: addArrangedSubview(SpaceView(width: length))
-			case .vertical: addArrangedSubview(SpaceView(height: length))
+			case .horizontal:
+				addArrangedSubview(SpaceView(width: length))
+			case .vertical:
+				addArrangedSubview(SpaceView(height: length))
 			}
 		}
 	}

@@ -27,12 +27,14 @@ extension UIViewController {
 	}
 
 	func showBanner(text: String, style: BannerView.Style = .success) {
-		guard let rootViewController = UIApplication.shared.delegate?.window??.rootViewController as? RootViewController else { return }
+		guard let rootViewController = UIApplication.shared.delegate?.window??.rootViewController as? RootViewController else {
+			return
+		}
+
 		rootViewController._showBanner(text: text, style: style, inViewController: self)
 
 	}
 }
-
 
 extension UINavigationController {
 	override func dismissDetailViewController(_ sender: Any?) {
@@ -44,7 +46,6 @@ extension UINavigationController {
 		popViewController(animated: true)
 	}
 }
-
 
 extension UISplitViewController {
 	override func dismissDetailViewController(_ sender: Any?) {

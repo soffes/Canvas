@@ -36,7 +36,9 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 			range: range,
 			delimiter: "blockquote",
 			prefix: "> "
-		) else { return nil }
+		) else {
+            return nil
+        }
 
 		self.range = range
 		self.nativePrefixRange = nativePrefixRange.union(prefixRange)
@@ -70,8 +72,7 @@ public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, Nod
 	}
 }
 
-
-public func ==(lhs: Blockquote, rhs: Blockquote) -> Bool {
+public func == (lhs: Blockquote, rhs: Blockquote) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range) &&
 		NSEqualRanges(lhs.nativePrefixRange, rhs.nativePrefixRange) &&
 		NSEqualRanges(lhs.visibleRange, rhs.visibleRange) &&

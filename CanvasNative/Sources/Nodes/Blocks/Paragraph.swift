@@ -57,7 +57,6 @@ public struct Paragraph: BlockNode, NodeContainer, InlineMarkerContainer, Equata
 	}
 }
 
-
-public func ==(lhs: Paragraph, rhs: Paragraph) -> Bool {
+public func == (lhs: Paragraph, rhs: Paragraph) -> Bool {
 	return NSEqualRanges(lhs.range, rhs.range)
 }
