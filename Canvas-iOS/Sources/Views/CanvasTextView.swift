@@ -52,6 +52,7 @@ final class CanvasTextView: TextView {
 		alwaysBounceVertical = true
 		keyboardDismissMode = .interactive
 		backgroundColor = .clear
+		smartDashesType = .no
 
 		registerGestureRecognizers()
 

@@ -44,7 +44,7 @@ final class EditorViewController: UIViewController {
 
 	// MARK: - Initializers
 
-	init(canvas: Canvas) {
+	init(canvas: Canvas = Canvas()) {
 		self.canvas = canvas
 
 		textController = TextController(theme: LightTheme(tintColor: Swatch.brand))

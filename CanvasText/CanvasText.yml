@@ -13,6 +13,7 @@ targets:
         - CanvasTextTests
     dependencies:
       - target: CanvasNative
+        link: False
       - carthage: Cache
       - carthage: X
   CanvasTextTests:
@@ -31,5 +32,5 @@ targets:
     settings:
       CODE_SIGN_STYLE: Manual
       INFOPLIST_FILE: $(SRCROOT)/Support/ResourceBundle-Info.plist
-    # sources:
-    #   - CanvasText/Resources
+    sources:
+      - CanvasText/Resources

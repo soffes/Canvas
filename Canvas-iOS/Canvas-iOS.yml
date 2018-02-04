@@ -12,6 +12,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.usecanvas.canvas
         INFOPLIST_FILE: $(SRCROOT)/Canvas-iOS/Support/Info.plist
         CODE_SIGN_STYLE: Manual
+        OTHER_LDFLAGS: $(inherited) -all_load
       dependencies:
         - target: CanvasNative
         - target: CanvasText

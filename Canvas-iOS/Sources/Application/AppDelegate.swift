@@ -6,7 +6,6 @@ import UIKit
     // MARK: - Properties
 
 	var window: UIWindow?
-	let rootViewController = RootViewController()
 
     // MARK: - Private
 
@@ -53,7 +52,7 @@ extension AppDelegate: UIApplicationDelegate {
 		]
 
 		let window = UIWindow()
-		window.rootViewController = rootViewController
+		window.rootViewController = NavigationController(rootViewController: EditorViewController())
 		window.makeKeyAndVisible()
 		self.window = window
 
