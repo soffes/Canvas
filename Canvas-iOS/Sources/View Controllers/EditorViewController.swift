@@ -44,10 +44,10 @@ final class EditorViewController: UIViewController {
 
 	// MARK: - Initializers
 
-	init(canvas: Canvas = Canvas()) {
+	init(canvas: Canvas = Canvas(), content: String? = nil) {
 		self.canvas = canvas
 
-		textController = TextController(theme: LightTheme(tintColor: Swatch.brand))
+		textController = TextController(theme: LightTheme(tintColor: Swatch.brand), content: content)
 
 		let textView = CanvasTextView(frame: .zero, textContainer: textController.textContainer)
 		textView.translatesAutoresizingMaskIntoConstraints = false
@@ -375,17 +375,6 @@ extension EditorViewController: TextControllerDisplayDelegate {
 
 	func textController(_ textController: TextController, didUpdateTitle title: String?) {
 		update(title: title)
-	}
-
-	func textControllerWillProcessRemoteEdit(_ textController: TextController) {
-		guard !textView.isDragging, let position = textView.position(from: textView.beginningOfDocument, offset: textView.selectedRange.location) else {
-	    	return
-    	}
-		scrollOffset = textView.caretRect(for: position).minY
-	}
-
-	func textControllerDidProcessRemoteEdit(_ textController: TextController) {
-		updateAutoCompletion()
 	}
 
 	func textController(_ textController: TextController, urlForImage block: Image) -> URL? {
