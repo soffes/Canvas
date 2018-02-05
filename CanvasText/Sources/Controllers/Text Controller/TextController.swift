@@ -101,7 +101,7 @@ public final class TextController: NSObject {
 
 	private let imagesController: ImagesController
 
-	private let documentController: DocumentController
+	private let documentController = DocumentController()
 
 	public var currentDocument: Document {
 		return documentController.document
@@ -117,7 +117,6 @@ public final class TextController: NSObject {
 	public init(theme: Theme, content: String? = nil) {
 		self.theme = theme
 		imagesController = ImagesController(theme: theme)
-		documentController = DocumentController(backingString: content ?? Title.nativeRepresentation())
 		annotationsController = AnnotationsController(theme: theme)
 
 		super.init()
@@ -135,6 +134,10 @@ public final class TextController: NSObject {
 		textStorage.addLayoutManager(layoutManager)
 
 		documentController.delegate = self
+
+		// Initial state
+		let bounds = NSRange(location: 0, length: (documentController.document.backingString as NSString).length)
+		documentController.replaceCharactersInRange(bounds, withString: content ?? Title.nativeRepresentation())
 	}
 
 	// MARK: - Traits
