@@ -11,7 +11,7 @@ XCODEGEN_VERSION = '1.5.0'
 desc 'Generate the Xcode project'
 task project: :'check:xcodegen' do
   quit_xcode
-  sh 'xcodegen'
+  sh 'xcodegen --quiet'
 
   xcode = File.expand_path(File.join(`xcode-select -p`.chomp, '../..'))
 end
