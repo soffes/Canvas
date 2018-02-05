@@ -1,0 +1,29 @@
+⧙doc-heading⧘Test Canvas
+Inline elements: *italic*, **bold**, ~~strikethrough~~, `inline code`, [link](https://soff.es).
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6
+####### There is no heading 7
+⧙unordered-list-0⧘- Unordered list
+⧙unordered-list-1⧘- Yep
+⧙unordered-list-2⧘- Three
+⧙unordered-list-3⧘- Four
+⧙ordered-list-0⧘1. Ordered
+⧙ordered-list-1⧘1. B
+⧙ordered-list-2⧘1. C
+⧙ordered-list-3⧘1. D
+⧙ordered-list-2⧘1. C II
+⧙ordered-list-0⧘1. Two
+⧙checklist-0⧘- [ ] Task
+⧙checklist-1⧘- [ ] Sub thing
+⧙checklist-2⧘- [ ] Another
+⧙checklist-3⧘- [ ] Yep
+⧙checklist-0⧘- [x] Completed
+⧙blockquote⧘> Block quote
+⧙code-⧘code block
+⧙horizontal-rule⧘
+⧙image⧘https://scontent-sjc3-1.cdninstagram.com/vp/b8227a4a93d141a6310ebd0ca80d8365/5B203FCD/t51.2885-15/s750x750/sh0.08/e35/23507060_2015895682029544_1778923472014016512_n.jpg
+The end.

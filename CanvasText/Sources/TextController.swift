@@ -13,8 +13,6 @@ typealias Style = (range: NSRange, attributes: Attributes)
 public protocol TextControllerDisplayDelegate: class {
 	func textController(_ textController: TextController, didUpdateSelectedRange selectedRange: NSRange)
 	func textController(_ textController: TextController, didUpdateTitle title: String?)
-	func textControllerWillProcessRemoteEdit(_ textController: TextController)
-	func textControllerDidProcessRemoteEdit(_ textController: TextController)
 	func textController(_ textController: TextController, urlForImage block: CanvasNative.Image) -> URL?
 	func textControllerDidUpdateFolding(_ textController: TextController)
 	func textControllerDidLayoutText(_ textController: TextController)
@@ -116,10 +114,10 @@ public final class TextController: NSObject {
 
 	// MARK: - Initializers
 
-	public init(theme: Theme) {
+	public init(theme: Theme, content: String? = nil) {
 		self.theme = theme
 		imagesController = ImagesController(theme: theme)
-		documentController = DocumentController(backingString: Title.nativeRepresentation())
+		documentController = DocumentController(backingString: content ?? Title.nativeRepresentation())
 		annotationsController = AnnotationsController(theme: theme)
 
 		super.init()

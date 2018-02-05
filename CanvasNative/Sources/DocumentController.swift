@@ -30,11 +30,12 @@ public final class DocumentController {
     // MARK: - Initializers
 
 	public init(backingString: String, delegate: DocumentControllerDelegate? = nil) {
-		self.document = Document(backingString: backingString)
+		self.document = Document()
 		self.delegate = delegate
 
-		let change = Document().replaceCharactersInRange(NSRange(location: 0, length: 0), withString: document.backingString)
-		processChange(change)
+		if !backingString.isEmpty {
+			replaceCharactersInRange(NSRange(location: 0, length: 0), withString: backingString)
+		}
 	}
 
 	public init(document: Document? = nil, delegate: DocumentControllerDelegate? = nil) {
