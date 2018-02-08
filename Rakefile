@@ -10,10 +10,7 @@ XCODEGEN_VERSION = '1.5.0'
 
 desc 'Generate the Xcode project'
 task project: :'check:xcodegen' do
-  quit_xcode
   sh 'xcodegen --quiet'
-
-  xcode = File.expand_path(File.join(`xcode-select -p`.chomp, '../..'))
 end
 
 desc 'Bootstrap Carthage dependencies and generate the project'
@@ -73,14 +70,4 @@ namespace :check do
       fail %(swiftline #{SWIFTLINT_VERSION} isnt’t installed. You can install with `brew install swiftlint`. You may need to update Homebrew with `brew update` first.)
     end
   end
-end
-
-private
-
-def quit_xcode
-  sh %(osascript -e 'tell application "Xcode" to quit')
-end
-
-def open_project
-  sh %(open -a #{xcode} #{PROJECT})
 end
