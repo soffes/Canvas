@@ -15,7 +15,9 @@ public struct Canvas {
 		return summary?.isEmpty ?? true
 	}
 
-	public init(id: String = UUID().uuidString, title: String? = nil, summary: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil, archivedAt: Date? = nil) {
+	public init(id: String = UUID().uuidString, title: String? = nil, summary: String? = nil, createdAt: Date? = nil,
+				updatedAt: Date? = nil, archivedAt: Date? = nil)
+	{
 		self.id = id
 		self.title = title
 		self.summary = summary

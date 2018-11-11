@@ -9,7 +9,9 @@ struct HorizontalRuleAttachment {
 
 		// Create context
 		let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue).rawValue
-		guard let context = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8, bytesPerRow: 0, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: bitmapInfo) else {
+		guard let context = CGContext(data: nil, width: Int(width), height: Int(height), bitsPerComponent: 8,
+									  bytesPerRow: 0, space: CGColorSpaceCreateDeviceRGB(), bitmapInfo: bitmapInfo) else
+		{
 			return nil
 		}
 

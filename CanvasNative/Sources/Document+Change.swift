@@ -17,7 +17,9 @@ struct DocumentChange {
 
     // MARK: - Initializers
 
-	init(before: Document, after: Document, blockChange: BlockChange?, backingStringChange: StringChange, presentationStringChange: StringChange?) {
+	init(before: Document, after: Document, blockChange: BlockChange?, backingStringChange: StringChange,
+		 presentationStringChange: StringChange?)
+	{
 		self.before = before
 		self.after = after
 		self.blockChange = blockChange
@@ -46,22 +48,29 @@ extension Document {
 			}
 
 			// Check positionable
-			if let before = beforeBlock as? Positionable, let after = afterBlock as? Positionable, before.position != after.position {
+			if let before = beforeBlock as? Positionable, let after = afterBlock as? Positionable,
+				before.position != after.position
+			{
 				return false
 			}
 
 			// Check code block
-			if let before = beforeBlock as? CodeBlock, let after = afterBlock as? CodeBlock, before.lineNumber != after.lineNumber {
+			if let before = beforeBlock as? CodeBlock, let after = afterBlock as? CodeBlock,
+				before.lineNumber != after.lineNumber
+			{
 				return false
 			}
 
 			// Check ordered list
-			if let before = beforeBlock as? OrderedListItem, let after = afterBlock as? OrderedListItem, before.number != after.number {
+			if let before = beforeBlock as? OrderedListItem, let after = afterBlock as? OrderedListItem,
+				before.number != after.number
+			{
 				return false
 			}
 
 			// Compare their native representations
-			return (before.backingString as NSString).substring(with: beforeBlock.range) == (after.backingString as NSString).substring(with: afterBlock.range)
+			return (before.backingString as NSString).substring(with: beforeBlock.range) ==
+				(after.backingString as NSString).substring(with: afterBlock.range)
 		}
 
 		// Calculate presentation change

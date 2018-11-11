@@ -23,7 +23,8 @@ class CanvasesViewController: ModelsViewController {
 		title = "Canvas"
 
 		navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-		navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Compose"), style: .plain, target: self, action: #selector(create))
+		navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Compose"), style: .plain,
+															target: self, action: #selector(create))
 
 		tableView.rowHeight = 72
 	}
@@ -52,7 +53,8 @@ class CanvasesViewController: ModelsViewController {
 			return nil
 		}
 
-		return (splitViewController.viewControllers.last as? UINavigationController)?.topViewController as? EditorViewController
+		let top = (splitViewController.viewControllers.last as? UINavigationController)?.topViewController
+		return top as? EditorViewController
 	}
 
 	func row(for canvas: Canvas) -> Row {

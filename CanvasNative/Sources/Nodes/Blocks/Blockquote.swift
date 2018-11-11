@@ -1,6 +1,8 @@
 import Foundation
 
-public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, NodeContainer, InlineMarkerContainer, Equatable {
+public struct Blockquote: ReturnCompletable, NativePrefixable, Positionable, NodeContainer, InlineMarkerContainer,
+	Equatable
+{
 
     // MARK: - Properties
 

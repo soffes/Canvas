@@ -85,7 +85,9 @@ final class AnnotationsController {
 	}
 
 	func update(_ block: BlockNode, at index: Int) {
-		guard enabled && index < annotations.count, let block = block as? Annotatable, let annotation = annotations[index] else {
+		guard enabled && index < annotations.count, let block = block as? Annotatable,
+			let annotation = annotations[index] else
+		{
 	    	return
     	}
 		annotation.block = block
@@ -145,7 +147,9 @@ final class AnnotationsController {
 		}
 
 		// Expand to the top of the next block if neccessary
-		if annotation.placement.isExpanded, let positionable = annotation.block as? Positionable, !positionable.position.isBottom {
+		if annotation.placement.isExpanded, let positionable = annotation.block as? Positionable,
+			!positionable.position.isBottom
+		{
 			if let index = document.indexOf(block: annotation.block), index < document.blocks.count - 1 {
 				var nextRange = document.presentationRange(blockIndex: index + 1)
 				nextRange.length = min(presentationRange.length + 1, textController.textStorage.length - nextRange.location)

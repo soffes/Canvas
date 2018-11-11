@@ -50,7 +50,9 @@ final class NavigationController: UINavigationController {
 }
 
 extension NavigationController: UINavigationControllerDelegate {
-	func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+	func navigationController(_ navigationController: UINavigationController,
+							  willShow viewController: UIViewController, animated: Bool)
+	{
 		// Call didShow if the animation is canceled
 		transitionCoordinator?.notifyWhenInteractionChanges { [weak self] context in
 			guard context.isCancelled, let delegate = self, let from = context.viewController(forKey: .from) else {
@@ -68,7 +70,9 @@ extension NavigationController: UINavigationControllerDelegate {
 		updateTintColor(with: viewController)
 	}
 
-	func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+	func navigationController(_ navigationController: UINavigationController,
+							  didShow viewController: UIViewController, animated: Bool)
+	{
 		updateTintColor(with: viewController)
 	}
 }

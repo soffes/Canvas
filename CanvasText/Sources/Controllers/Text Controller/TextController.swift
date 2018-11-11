@@ -301,7 +301,9 @@ public final class TextController: NSObject {
 		}()
 
 		let foldableNodes = currentDocument.nodesIn(backingRange: selectedRange).filter { $0 is Foldable }
-		var foldableRanges = ArraySlice<NSRange>(foldableNodes.map { currentDocument.presentationRange(backingRange: $0.range) })
+		var foldableRanges = ArraySlice<NSRange>(foldableNodes.map {
+			currentDocument.presentationRange(backingRange: $0.range)
+		})
 
 		guard var range = foldableRanges.popFirst() else {
 	    	return nil
@@ -361,7 +363,9 @@ public final class TextController: NSObject {
 	}
 
 	// Returns an array of styles and an array of foldable ranges
-	private func styles(for spans: [SpanNode], parentAttributes: Attributes, onlyTintable: Bool = false) -> ([Style], [NSRange]) {
+	private func styles(for spans: [SpanNode], parentAttributes: Attributes, onlyTintable: Bool = false)
+		-> ([Style], [NSRange])
+	{
 		var styles = [Style]()
 		var foldableRanges = [NSRange]()
 
@@ -535,7 +539,10 @@ extension TextController: DocumentControllerDelegate {
 		textStorage.beginEditing()
 	}
 
-	public func documentController(_ controller: DocumentController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String) {
+	public func documentController(_ controller: DocumentController,
+								   didReplaceCharactersInPresentationStringInRange range: NSRange,
+								   withString string: String)
+	{
 		_layoutManager.removeFoldableRanges()
 		_layoutManager.invalidFoldingRange = range
 		_textStorage.actuallyReplaceCharacters(in: range, with: string)
@@ -649,7 +656,9 @@ extension TextController: AnnotationsControllerDelegate {
 }
 
 extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
-	public func canvasTextStorage(_ textStorage: CanvasTextStorage, willReplaceCharactersIn range: NSRange, with string: String) {
+	public func canvasTextStorage(_ textStorage: CanvasTextStorage, willReplaceCharactersIn range: NSRange,
+								  with string: String)
+	{
 		let document = currentDocument
 		var presentationRange = range
 

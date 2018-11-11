@@ -25,11 +25,18 @@ class TextContainer: NSTextContainer {
 
     // MARK: - NSTextContainer
 
-	override func lineFragmentRect(forProposedRect proposedRect: CGRect, at index: Int, writingDirection: NSWritingDirection, remaining remainingRect: UnsafeMutablePointer<CGRect>?) -> CGRect {
+	override func lineFragmentRect(forProposedRect proposedRect: CGRect, at index: Int,
+								   writingDirection: NSWritingDirection,
+								   remaining remainingRect: UnsafeMutablePointer<CGRect>?) -> CGRect
+	{
 		var rect = proposedRect
 
-		if let textController = textController, let block = textController.currentDocument.blockAt(presentationLocation: index) {
-			if block is Attachable, let attachment = layoutManager?.textStorage?.attribute(.attachment, at: index, effectiveRange: nil) as? NSTextAttachment {
+		if let textController = textController,
+			let block = textController.currentDocument.blockAt(presentationLocation: index)
+		{
+			if block is Attachable, let attachment = layoutManager?.textStorage?
+				.attribute(.attachment, at: index, effectiveRange: nil) as? NSTextAttachment
+			{
 				let imageSize = attachment.bounds.size
 				rect.origin.y = ceil(rect.origin.y)
 				rect.origin.x += floor((size.width - imageSize.width) / 2)
@@ -40,6 +47,7 @@ class TextContainer: NSTextContainer {
 			}
 		}
 
-		return super.lineFragmentRect(forProposedRect: rect, at: index, writingDirection: writingDirection, remaining: remainingRect)
+		return super.lineFragmentRect(forProposedRect: rect, at: index, writingDirection: writingDirection,
+									  remaining: remainingRect)
 	}
 }

@@ -107,7 +107,8 @@ extension CanvasTextView {
 		point.y -= contentInset.top
 		point.y -= textContainerInset.top
 
-		let location = layoutManager.characterIndex(for: point, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+		let location = layoutManager.characterIndex(for: point, in: textContainer,
+													fractionOfDistanceBetweenInsertionPoints: nil)
 
 		// Special case the last block
 		if location > (document.presentationString as NSString).length - 2 {

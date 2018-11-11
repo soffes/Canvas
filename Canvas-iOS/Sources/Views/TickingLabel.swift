@@ -19,7 +19,8 @@ final class TickingLabel: UILabel {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 
-		NotificationCenter.default.addObserver(self, selector: #selector(tick), name: type(of: self).tickNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(tick),
+											   name: type(of: self).tickNotification, object: nil)
 
 		type(of: self).setupTimer()
 	}

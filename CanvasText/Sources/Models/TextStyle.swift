@@ -58,7 +58,9 @@ public enum TextStyle {
 	}
 }
 
-func applySymbolicTraits(_ traits: UIFontDescriptor.SymbolicTraits, toFont font: UIFont, sanitize: Bool = true) -> UIFont {
+func applySymbolicTraits(_ traits: UIFontDescriptor.SymbolicTraits, toFont font: UIFont, sanitize: Bool = true)
+	-> UIFont
+{
 	var traits = traits
 
 	if sanitize && !traits.isEmpty {

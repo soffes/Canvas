@@ -16,7 +16,9 @@ public struct BlockSpacing {
 
     // MARK: - Initializers
 
-	public init(paddingTop: CGFloat = 0, paddingRight: CGFloat = 0, paddingBottom: CGFloat = 0, paddingLeft: CGFloat = 0, marginTop: CGFloat = 0, marginBottom: CGFloat = 0) {
+	public init(paddingTop: CGFloat = 0, paddingRight: CGFloat = 0, paddingBottom: CGFloat = 0,
+				paddingLeft: CGFloat = 0, marginTop: CGFloat = 0, marginBottom: CGFloat = 0)
+	{
 		self.paddingTop = paddingTop
 		self.paddingRight = paddingRight
 		self.paddingBottom = paddingBottom

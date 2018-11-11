@@ -23,7 +23,8 @@ public struct MarkdownRenderer: Renderer {
 
 		let output = lines.joined(separator: "\n").trimmingCharacters(in: .newlines)
 		let bounds = NSRange(location: 0, length: (output as NSString).length)
-		return InlineMarker.regularExpression.stringByReplacingMatches(in: output, options: [], range: bounds, withTemplate: "")
+		return InlineMarker.regularExpression.stringByReplacingMatches(in: output, options: [], range: bounds,
+																	   withTemplate: "")
 	}
 
 	// MARK: - Private

@@ -73,7 +73,8 @@ public struct ChecklistItem: Listable, Equatable {
 			return nil
 		}
 
-		let indentationRange = NSRange(location: range.location + indentationLocation, length: scanner.scanLocation - indentationLocation)
+		let indentationRange = NSRange(location: range.location + indentationLocation,
+									   length: scanner.scanLocation - indentationLocation)
 		guard indent != -1, let indentation = Indentation(rawValue: UInt(indent)) else {
 			return nil
 		}

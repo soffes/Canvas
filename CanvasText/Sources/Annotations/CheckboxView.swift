@@ -68,7 +68,8 @@ final class CheckboxView: UIButton, Annotation {
 
 			if let checkmark = UIImage(named: "CheckmarkSmall", in: resourceBundle) {
 				theme.backgroundColor.setFill()
-				checkmark.draw(at: CGPoint(x: rect.origin.x + (rect.width - checkmark.size.width) / 2, y: rect.origin.y + (rect.height - checkmark.size.height) / 2))
+				checkmark.draw(at: CGPoint(x: rect.origin.x + (rect.width - checkmark.size.width) / 2,
+										   y: rect.origin.y + (rect.height - checkmark.size.height) / 2))
 			}
 			return
 		}

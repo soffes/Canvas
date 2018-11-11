@@ -86,7 +86,8 @@ final class EditorViewController: UIViewController {
 	override var keyCommands: [UIKeyCommand] {
 		var commands: [UIKeyCommand] = [
 			UIKeyCommand(input: UIKeyCommand.inputEscape, modifierFlags: [], action: #selector(dismissKeyboard)),
-			UIKeyCommand(input: "w", modifierFlags: [.command], action: #selector(close), discoverabilityTitle: LocalizedString.closeCommand.string)
+			UIKeyCommand(input: "w", modifierFlags: [.command], action: #selector(close),
+						 discoverabilityTitle: LocalizedString.closeCommand.string)
 
 //			UIKeyCommand(input: "b", modifierFlags: [.command], action: #selector(bold), discoverabilityTitle: LocalizedString.boldCommand.string),
 //			UIKeyCommand(input: "i", modifierFlags: [.command], action: #selector(italic), discoverabilityTitle: LocalizedString.italicCommand.string),
@@ -95,13 +96,19 @@ final class EditorViewController: UIViewController {
 
 		if textController.focusedBlock is Listable {
 			commands += [
-				UIKeyCommand(input: "]", modifierFlags: [.command], action: #selector(indent), discoverabilityTitle: LocalizedString.indentCommand.string),
+				UIKeyCommand(input: "]", modifierFlags: [.command], action: #selector(indent),
+							 discoverabilityTitle: LocalizedString.indentCommand.string),
 				UIKeyCommand(input: "\t", modifierFlags: [], action: #selector(indent)),
-				UIKeyCommand(input: "[", modifierFlags: [.command], action: #selector(outdent), discoverabilityTitle: LocalizedString.outdentCommand.string),
+				UIKeyCommand(input: "[", modifierFlags: [.command], action: #selector(outdent),
+							 discoverabilityTitle: LocalizedString.outdentCommand.string),
 				UIKeyCommand(input: "\t", modifierFlags: [.shift], action: #selector(outdent)),
 
-				UIKeyCommand(input: UIKeyCommand.inputUpArrow, modifierFlags: [.command, .control], action: #selector(swapLineUp), discoverabilityTitle: LocalizedString.swapLineUpCommand.string),
-				UIKeyCommand(input: UIKeyCommand.inputDownArrow, modifierFlags: [.command, .control], action: #selector(swapLineDown), discoverabilityTitle: LocalizedString.swapLineDownCommand.string)
+				UIKeyCommand(input: UIKeyCommand.inputUpArrow, modifierFlags: [.command, .control],
+							 action: #selector(swapLineUp),
+							 discoverabilityTitle: LocalizedString.swapLineUpCommand.string),
+				UIKeyCommand(input: UIKeyCommand.inputDownArrow, modifierFlags: [.command, .control],
+							 action: #selector(swapLineDown),
+							 discoverabilityTitle: LocalizedString.swapLineDownCommand.string)
 			]
 		}
 
@@ -112,13 +119,17 @@ final class EditorViewController: UIViewController {
 			checkTitle = LocalizedString.markAsCheckedCommand.string
 		}
 
-		let check = UIKeyCommand(input: "u", modifierFlags: [.command, .shift], action: #selector(self.check), discoverabilityTitle: checkTitle)
+		let check = UIKeyCommand(input: "u", modifierFlags: [.command, .shift], action: #selector(self.check),
+								 discoverabilityTitle: checkTitle)
 		commands.append(check)
 
 		commands += [
-			UIKeyCommand(input: "k", modifierFlags: [.control, .shift], action: #selector(deleteLine), discoverabilityTitle: LocalizedString.deleteLineCommand.string),
-			UIKeyCommand(input: "\r", modifierFlags: [.command, .shift], action: #selector(insertLineBefore), discoverabilityTitle: LocalizedString.insertLineBeforeCommand.string),
-			UIKeyCommand(input: "\r", modifierFlags: [.command], action: #selector(insertLineAfter), discoverabilityTitle: LocalizedString.insertLineAfterCommand.string)
+			UIKeyCommand(input: "k", modifierFlags: [.control, .shift], action: #selector(deleteLine),
+						 discoverabilityTitle: LocalizedString.deleteLineCommand.string),
+			UIKeyCommand(input: "\r", modifierFlags: [.command, .shift], action: #selector(insertLineBefore),
+						 discoverabilityTitle: LocalizedString.insertLineBeforeCommand.string),
+			UIKeyCommand(input: "\r", modifierFlags: [.command], action: #selector(insertLineAfter),
+						 discoverabilityTitle: LocalizedString.insertLineAfterCommand.string)
 		]
 
 		return commands
@@ -179,9 +190,11 @@ final class EditorViewController: UIViewController {
 		}
 
 		let maxWidth: CGFloat = 640
-		let horizontalPadding = max(16 - textView.textContainer.lineFragmentPadding, (textView.bounds.width - maxWidth) / 2)
+		let horizontalPadding = max(16 - textView.textContainer.lineFragmentPadding,
+									(textView.bounds.width - maxWidth) / 2)
 		let topPadding = max(16, min(32, horizontalPadding - 4)) // Subtract 4 for title line height
-		textView.textContainerInset = UIEdgeInsets(top: topPadding, left: horizontalPadding, bottom: 32, right: horizontalPadding)
+		textView.textContainerInset = UIEdgeInsets(top: topPadding, left: horizontalPadding, bottom: 32,
+												   right: horizontalPadding)
 		textController.textContainerInset = textView.textContainerInset
 
 		// Update insertion point
@@ -277,7 +290,9 @@ extension EditorViewController: TintableEnvironment {
 }
 
 extension EditorViewController: UIViewControllerPreviewingDelegate {
-	func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+	func previewingContext(_ previewingContext: UIViewControllerPreviewing,
+						   viewControllerForLocation location: CGPoint) -> UIViewController?
+	{
 		guard let textRange = textView.characterRange(at: location) else {
 	    	return nil
     	}
@@ -305,7 +320,9 @@ extension EditorViewController: UIViewControllerPreviewingDelegate {
 		return WebViewController(url: url)
 	}
 
-	func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+	func previewingContext(_ previewingContext: UIViewControllerPreviewing,
+						   commit viewControllerToCommit: UIViewController)
+	{
 		present(viewControllerToCommit, animated: false, completion: nil)
 	}
 }
@@ -314,7 +331,7 @@ extension EditorViewController: UITextViewDelegate {
 	func textViewDidChangeSelection(_ textView: UITextView) {
 		scrollOffset = nil
 
-		let selection: NSRange? = !textView.isFirstResponder && textView.selectedRange.length == 0 ? nil : textView.selectedRange
+		let selection = !textView.isFirstResponder && textView.selectedRange.length == 0 ? nil : textView.selectedRange
 		textController.set(presentationSelectedRange: selection)
 		updateTitleTypingAttributes()
 		updateAutoCompletion()
@@ -358,7 +375,9 @@ extension EditorViewController: TextControllerDisplayDelegate {
 				textView.selectedRange = selectedRange
 			}
 
-			if let previousPositionY = self?.scrollOffset, let position = textView.position(from: textView.beginningOfDocument, offset: textView.selectedRange.location) {
+			if let previousPositionY = self?.scrollOffset, let position = textView.position(
+				from: textView.beginningOfDocument, offset: textView.selectedRange.location)
+			{
 				let currentPositionY = textView.caretRect(for: position).minY
 				textView.contentOffset = CGPoint(x: 0, y: textView.contentOffset.y + currentPositionY - previousPositionY)
 				self?.scrollOffset = nil

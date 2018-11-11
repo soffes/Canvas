@@ -48,7 +48,9 @@ final class ImagesController: Themeable {
 
     // MARK: - Accessing
 
-	func fetchImage(withID id: String, url: URL?, size: CGSize, scale: CGFloat, completion: @escaping Completion) -> Image? {
+	func fetchImage(withID id: String, url: URL?, size: CGSize, scale: CGFloat, completion: @escaping Completion)
+		-> Image?
+	{
 		if let image = memoryCache[id] {
 			return image
 		}
@@ -113,43 +115,43 @@ final class ImagesController: Themeable {
 	}
 
 	private func placeholderImage(size: CGSize, scale: CGFloat) -> Image? {
-		#if os(OSX)
-			// TODO: Implement
-			return nil
-		#else
-			let key = "\(size.width)x\(size.height)-\(scale)-\(theme.imagePlaceholderColor)-\(theme.imagePlaceholderBackgroundColor)"
-			if let image = placeholderCache[key] {
-				return image
-			}
-
-			guard let icon = Image(named: "PhotoLandscape", in: resourceBundle) else {
-            return nil
-        }
-
-			let rect = CGRect(origin: .zero, size: size)
-
-			UIGraphicsBeginImageContextWithOptions(size, true, scale)
-
-			// Background
-			theme.imagePlaceholderBackgroundColor.setFill()
-			UIBezierPath(rect: rect).fill()
-
-			// Icon
-			theme.imagePlaceholderColor.setFill()
-			let iconFrame = CGRect(
-				x: (size.width - icon.size.width) / 2,
-				y: (size.height - icon.size.height) / 2,
-				width: icon.size.width,
-				height: icon.size.height
-			)
-			icon.draw(in: iconFrame)
-
-			let image = UIGraphicsGetImageFromCurrentImageContext()
-			placeholderCache[key] = image
-
-			UIGraphicsEndImageContext()
-
+#if os(OSX)
+		// TODO: Implement
+		return nil
+#else
+		let key = "\(size.width)x\(size.height)-\(scale)-\(theme.imagePlaceholderColor)-\(theme.imagePlaceholderBackgroundColor)"
+		if let image = placeholderCache[key] {
 			return image
-		#endif
+		}
+
+		guard let icon = Image(named: "PhotoLandscape", in: resourceBundle) else {
+		return nil
+	}
+
+		let rect = CGRect(origin: .zero, size: size)
+
+		UIGraphicsBeginImageContextWithOptions(size, true, scale)
+
+		// Background
+		theme.imagePlaceholderBackgroundColor.setFill()
+		UIBezierPath(rect: rect).fill()
+
+		// Icon
+		theme.imagePlaceholderColor.setFill()
+		let iconFrame = CGRect(
+			x: (size.width - icon.size.width) / 2,
+			y: (size.height - icon.size.height) / 2,
+			width: icon.size.width,
+			height: icon.size.height
+		)
+		icon.draw(in: iconFrame)
+
+		let image = UIGraphicsGetImageFromCurrentImageContext()
+		placeholderCache[key] = image
+
+		UIGraphicsEndImageContext()
+
+		return image
+#endif
 	}
 }

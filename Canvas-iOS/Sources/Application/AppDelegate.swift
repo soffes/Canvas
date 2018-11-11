@@ -42,7 +42,9 @@ extension AppDelegate: UIApplicationDelegate {
 				SleepPrevention.defaultsKey: SleepPrevention.whilePluggedIn.rawValue
 			])
 
-			if let info = Bundle.main.infoDictionary, let version = info["CFBundleVersion"] as? String, let shortVersion = info["CFBundleShortVersionString"] as? String {
+			if let info = Bundle.main.infoDictionary, let version = info["CFBundleVersion"] as? String,
+				let shortVersion = info["CFBundleShortVersionString"] as? String
+			{
 				UserDefaults.standard.set("\(shortVersion) (\(version))", forKey: "HumanReadableVersion")
 				UserDefaults.standard.synchronize()
 			}
@@ -50,7 +52,10 @@ extension AppDelegate: UIApplicationDelegate {
 
 		// Shortcut items
 		application.shortcutItems = [
-			UIApplicationShortcutItem(type: "shortcut-new", localizedTitle: LocalizedString.newCanvasCommand.string, localizedSubtitle: nil, icon: UIApplicationShortcutIcon(templateImageName: "New Canvas Shortcut"), userInfo: nil)
+			UIApplicationShortcutItem(type: "shortcut-new", localizedTitle: LocalizedString.newCanvasCommand.string,
+									  localizedSubtitle: nil,
+									  icon: UIApplicationShortcutIcon(templateImageName: "New Canvas Shortcut"),
+									  userInfo: nil)
 		]
 
 		let window = UIWindow()

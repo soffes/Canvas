@@ -107,7 +107,10 @@ public struct Link: SpanNode, Foldable, NodeContainer {
 
 	// MARK: - Initializers
 
-	public init(range: NSRange, leadingTextDelimiterRange: NSRange, textRange: NSRange, trailingTextDelimiterRange: NSRange, leadingUrlDelimiterRange: NSRange, urlRange: NSRange, title: LinkTitle? = nil, trailingURLDelimiterRange: NSRange, subnodes: [SpanNode]) {
+	public init(range: NSRange, leadingTextDelimiterRange: NSRange, textRange: NSRange,
+				trailingTextDelimiterRange: NSRange, leadingUrlDelimiterRange: NSRange, urlRange: NSRange,
+				title: LinkTitle? = nil, trailingURLDelimiterRange: NSRange, subnodes: [SpanNode])
+	{
 		self.range = range
 		self.leadingTextDelimiterRange = leadingTextDelimiterRange
 		self.textRange = textRange

@@ -60,12 +60,18 @@ final class TitleView: UIView {
 	override func layoutSubviews() {
 		let size = bounds.size
 		let titleSize = titleLabel.sizeThatFits(size)
-		var titleFrame = CGRect(x: round((size.width - titleSize.width) / 2), y: round((size.height - titleSize.height) / 2), width: titleSize.width, height: titleSize.height)
+		var titleFrame = CGRect(x: round((size.width - titleSize.width) / 2),
+								y: round((size.height - titleSize.height) / 2),
+								width: titleSize.width,
+								height: titleSize.height)
 
 		if showsLock {
 			let lockSize = lockView.bounds.size
 			titleFrame.origin.x += round((lockSize.width + spacing) / 2)
-			lockView.frame = CGRect(x: titleFrame.origin.x - lockSize.width - spacing, y: round((size.height - lockSize.height) / 2), width: lockSize.width, height: lockSize.height)
+			lockView.frame = CGRect(x: titleFrame.origin.x - lockSize.width - spacing,
+									y: round((size.height - lockSize.height) / 2),
+									width: lockSize.width,
+									height: lockSize.height)
 		}
 
 		if titleFrame.maxX > bounds.width {

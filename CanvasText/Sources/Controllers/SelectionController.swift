@@ -21,7 +21,9 @@ struct SelectionController {
 
 			// Extend selection
 			else {
-				output.length += NSIntersectionRange(selection, NSRange(location: replacementRange.location, length: replacementLength - replacementRange.length)).length
+				let range = NSRange(location: replacementRange.location,
+									length: replacementLength - replacementRange.length)
+				output.length += NSIntersectionRange(selection, range).length
 			}
 		}
 

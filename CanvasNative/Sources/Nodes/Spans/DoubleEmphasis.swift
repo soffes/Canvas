@@ -39,7 +39,9 @@ public struct DoubleEmphasis: SpanNode, Foldable, NodeContainer {
 
     // MARK: - Initializers
 
-	public init(leadingDelimiterRange: NSRange, textRange: NSRange, trailingDelimiterRange: NSRange, subnodes: [SpanNode] = []) {
+	public init(leadingDelimiterRange: NSRange, textRange: NSRange, trailingDelimiterRange: NSRange,
+				subnodes: [SpanNode] = [])
+	{
 		self.leadingDelimiterRange = leadingDelimiterRange
 		self.textRange = textRange
 		self.trailingDelimiterRange = trailingDelimiterRange

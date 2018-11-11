@@ -83,12 +83,7 @@ class TextView: UITextView {
 			return [caretRect(for: start)]
 		}
 
-		// Selection
-		guard let end = position(from: start, offset: range.length),
-			let textRange = textRange(from: start, to: end),
-			let selectionRects = (super.selectionRects(for: textRange) as? [UITextSelectionRect])?.map({ $0.rect }),
-			let firstRect = selectionRects.first
-		else {
+		func extraLine() -> [CGRect] {
 			// Use extra line if there aren't any rects
 			var rect = layoutManager.extraLineFragmentUsedRect
 			rect.origin.x += textContainerInset.left
@@ -99,6 +94,18 @@ class TextView: UITextView {
 			}
 
 			return [rect]
+		}
+
+		// Selection
+		guard let end = position(from: start, offset: range.length),
+			let textRange = textRange(from: start, to: end) else
+		{
+			return extraLine()
+		}
+
+		let selectionRects = super.selectionRects(for: textRange).map { $0.rect }
+		guard let firstRect = selectionRects.first else {
+			return extraLine()
 		}
 
 		if !wasFirstResponder {

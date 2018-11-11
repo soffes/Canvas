@@ -9,7 +9,8 @@ public protocol DocumentControllerDelegate: class {
 	func documentControllerWillUpdateDocument(_ controller: DocumentController)
 
 	// This will be called before all other messages.
-	func documentController(_ controller: DocumentController, didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String)
+	func documentController(_ controller: DocumentController,
+							didReplaceCharactersInPresentationStringInRange range: NSRange, withString string: String)
 
 	func documentController(_ controller: DocumentController, didInsertBlock block: BlockNode, atIndex index: Int)
 
@@ -66,7 +67,9 @@ public final class DocumentController {
 
 		// Notify about presentation string change
 		if let presentationChange = change.presentationStringChange {
-			delegate?.documentController(self, didReplaceCharactersInPresentationStringInRange: presentationChange.range, withString: presentationChange.replacement as String)
+			delegate?.documentController(self,
+										 didReplaceCharactersInPresentationStringInRange: presentationChange.range,
+										 withString: presentationChange.replacement as String)
 		}
 
 		// Notify about AST changes

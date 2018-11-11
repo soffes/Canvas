@@ -69,7 +69,10 @@ final class SplitViewController: UISplitViewController {
 }
 
 extension SplitViewController: UISplitViewControllerDelegate {
-	func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
+	func splitViewController(splitViewController: UISplitViewController,
+							 collapseSecondaryViewController secondaryViewController: UIViewController,
+							 ontoPrimaryViewController primaryViewController: UIViewController) -> Bool
+	{
 		if !isEmpty(secondaryViewController: secondaryViewController) {
 			var target = secondaryViewController
 			if let top = (secondaryViewController as? UINavigationController)?.topViewController {
@@ -83,8 +86,11 @@ extension SplitViewController: UISplitViewControllerDelegate {
 		return true
 	}
 
-	func splitViewController(splitViewController: UISplitViewController, separateSecondaryViewControllerFromPrimaryViewController primaryViewController: UIViewController) -> UIViewController? {
-		guard let primaryViewController = primaryViewController as? UINavigationController else {
+	func splitViewController(splitViewController: UISplitViewController,
+							 separateSecondaryViewControllerFromPrimaryViewController primary: UIViewController)
+		-> UIViewController?
+	{
+		guard let primaryViewController = primary as? UINavigationController else {
 			return nil
 		}
 
@@ -109,13 +115,17 @@ extension SplitViewController: UISplitViewControllerDelegate {
 		primaryViewController.setViewControllers(viewControllers, animated: false)
 
 		if !(detailViewController is PlaceholderViewController) {
-			detailViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "SidebarLeft"), style: .plain, target: self, action: #selector(toggleSidebar))
+			let item = UIBarButtonItem(image: UIImage(named: "SidebarLeft"), style: .plain, target: self,
+									   action: #selector(toggleSidebar))
+			detailViewController.navigationItem.leftBarButtonItem = item
 		}
 
 		return NavigationController(rootViewController: detailViewController)
 	}
 
-	func splitViewController(splitViewController: UISplitViewController, showDetailViewController viewController: UIViewController, sender: Any?) -> Bool {
+	func splitViewController(splitViewController: UISplitViewController,
+							 showDetailViewController viewController: UIViewController, sender: Any?) -> Bool
+	{
 		var detail = viewController
 		if let top = (detail as? UINavigationController)?.topViewController {
 			detail = top
@@ -123,7 +133,9 @@ extension SplitViewController: UISplitViewControllerDelegate {
 
 		let isPlaceholder = detail is PlaceholderViewController
 		if !isPlaceholder && !isCollapsed {
-			detail.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "SidebarLeft"), style: .plain, target: self, action: #selector(toggleSidebar))
+			let item = UIBarButtonItem(image: UIImage(named: "SidebarLeft"), style: .plain, target: self,
+									   action: #selector(toggleSidebar))
+			detail.navigationItem.leftBarButtonItem = item
 		}
 
 		UIView.animate(withDuration: 0.2) {
