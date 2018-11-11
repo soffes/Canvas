@@ -7,6 +7,9 @@ final class CanvasResultsViewController: CanvasesViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		tableView.contentInsetAdjustmentBehavior = .never
+		tableView.contentInset = .zero
+
 		let line = LineView()
 		line.translatesAutoresizingMaskIntoConstraints = false
 		view.addSubview(line)

@@ -6,9 +6,9 @@ final class MyCanvasesViewController: CanvasesViewController {
 
 	// MARK: - Properties
 
-//	private let searchController: SearchController
+	private let searchController = SearchController()
 
-	private let searchViewController: UISearchController
+	private let searchViewController = UISearchController(searchResultsController: CanvasResultsViewController())
 
 	var ready: (() -> Void)?
 
@@ -17,24 +17,24 @@ final class MyCanvasesViewController: CanvasesViewController {
 	// MARK: - Initializers
 
 	init() {
-//		searchController = SearchController()
-
-		let results = CanvasResultsViewController()
-		searchViewController = UISearchController(searchResultsController: results)
-
 		super.init()
 
 		title = "Canvas"
 
 		searchViewController.searchBar.placeholder = "Search"
-//		searchViewController.searchResultsUpdater = searchController
+		searchViewController.searchResultsUpdater = searchController
 
-//		searchController.callback = { [weak self] canvases in
-//			guard let this = self, viewController = this.searchViewController.searchResultsController as? CanvasesViewController else { return }
-//			viewController.dataSource.sections = [
-//				Section(rows: canvases.map({ this.rowForCanvas($0) }))
-//			]
-//		}
+		searchController.callback = { [weak self] canvases in
+			guard let self = self,
+				let viewController = self.searchViewController.searchResultsController as? CanvasesViewController else
+			{
+				return
+			}
+
+			viewController.dataSource.sections = [
+				Section(rows: canvases.map(self.row))
+			]
+		}
 
 		NotificationCenter.default.addObserver(self, selector: #selector(willCloseEditor),
 											   name: EditorViewController.willCloseNotification, object: nil)
