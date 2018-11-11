@@ -59,8 +59,10 @@ extension AppDelegate: UIApplicationDelegate {
 		]
 
 		let window = UIWindow()
-		let testContent = (try? String(contentsOfFile: Bundle.main.path(forResource: "Test", ofType: "canvas")!))!
-		window.rootViewController = NavigationController(rootViewController: EditorViewController(content: testContent))
+		window.rootViewController = SplitViewController(
+			masterViewController: NavigationController(rootViewController: MyCanvasesViewController()),
+			detailViewController: NavigationController(rootViewController: PlaceholderViewController())
+		)
 		window.makeKeyAndVisible()
 		self.window = window
 

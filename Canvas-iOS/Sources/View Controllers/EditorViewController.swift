@@ -7,7 +7,7 @@ final class EditorViewController: UIViewController {
 
 	// MARK: - Properties
 
-	static let willCloseNotificationName = Notification.Name(rawValue: "EditorViewController.willCloseNotificationName")
+	static let willCloseNotification = Notification.Name(rawValue: "EditorViewController.willCloseNotification")
 
 	var canvas: Canvas
 

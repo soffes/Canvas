@@ -69,9 +69,9 @@ final class SplitViewController: UISplitViewController {
 }
 
 extension SplitViewController: UISplitViewControllerDelegate {
-	func splitViewController(splitViewController: UISplitViewController,
-							 collapseSecondaryViewController secondaryViewController: UIViewController,
-							 ontoPrimaryViewController primaryViewController: UIViewController) -> Bool
+	func splitViewController(_ splitViewController: UISplitViewController,
+							 collapseSecondary secondaryViewController: UIViewController,
+							 onto primaryViewController: UIViewController) -> Bool
 	{
 		if !isEmpty(secondaryViewController: secondaryViewController) {
 			var target = secondaryViewController
@@ -86,11 +86,10 @@ extension SplitViewController: UISplitViewControllerDelegate {
 		return true
 	}
 
-	func splitViewController(splitViewController: UISplitViewController,
-							 separateSecondaryViewControllerFromPrimaryViewController primary: UIViewController)
-		-> UIViewController?
+	func splitViewController(_ splitViewController: UISplitViewController,
+							 separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController?
 	{
-		guard let primaryViewController = primary as? UINavigationController else {
+		guard let primaryViewController = primaryViewController as? UINavigationController else {
 			return nil
 		}
 
@@ -123,8 +122,8 @@ extension SplitViewController: UISplitViewControllerDelegate {
 		return NavigationController(rootViewController: detailViewController)
 	}
 
-	func splitViewController(splitViewController: UISplitViewController,
-							 showDetailViewController viewController: UIViewController, sender: Any?) -> Bool
+	func splitViewController(_ splitViewController: UISplitViewController,
+							 showDetail viewController: UIViewController, sender: Any?) -> Bool
 	{
 		var detail = viewController
 		if let top = (detail as? UINavigationController)?.topViewController {
@@ -145,7 +144,7 @@ extension SplitViewController: UISplitViewControllerDelegate {
 		return false
 	}
 
-	func targetDisplayModeForActionInSplitViewController(splitViewController: UISplitViewController)
+	func targetDisplayModeForAction(in splitViewController: UISplitViewController)
 		-> UISplitViewController.DisplayMode
 	{
 		switch splitViewController.displayMode {

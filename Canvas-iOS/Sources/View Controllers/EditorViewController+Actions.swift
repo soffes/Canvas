@@ -7,7 +7,7 @@ extension EditorViewController {
 	}
 
 	@objc func close(_ sender: UIAlertAction? = nil) {
-		NotificationCenter.default.post(name: EditorViewController.willCloseNotificationName, object: nil)
+		NotificationCenter.default.post(name: EditorViewController.willCloseNotification, object: nil)
 		dismissDetailViewController(self)
 	}
 
