@@ -22,19 +22,19 @@ public final class SpaceView: View {
 	}
 
 	public convenience init(height: CGFloat) {
-		#if os(OSX)
-			self.init(size: CGSize(width: NSViewNoIntrinsicMetric, height: height))
-		#else
-			self.init(size: CGSize(width: UIViewNoIntrinsicMetric, height: height))
-		#endif
+#if os(OSX)
+		self.init(size: CGSize(width: NSViewNoIntrinsicMetric, height: height))
+#else
+		self.init(size: CGSize(width: UIView.noIntrinsicMetric, height: height))
+#endif
 	}
 
 	public convenience init(width: CGFloat) {
-		#if os(OSX)
-			self.init(size: CGSize(width: width, height: NSViewNoIntrinsicMetric))
-		#else
-			self.init(size: CGSize(width: width, height: UIViewNoIntrinsicMetric))
-		#endif
+#if os(OSX)
+		self.init(size: CGSize(width: width, height: NSViewNoIntrinsicMetric))
+#else
+		self.init(size: CGSize(width: width, height: UIView.noIntrinsicMetric))
+#endif
 	}
 
 	public required init?(coder aDecoder: NSCoder) {

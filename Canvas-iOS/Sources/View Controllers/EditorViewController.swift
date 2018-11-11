@@ -63,10 +63,14 @@ final class EditorViewController: UIViewController {
 
 		navigationItem.titleView = titleView
 
-		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: .UIKeyboardWillChangeFrame, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(updatePreventSleep), name: UserDefaults.didChangeNotification, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(updatePreventSleep), name: .UIApplicationDidBecomeActive, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(updatePreventSleep), name: .UIDeviceBatteryStateDidChange, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame),
+											   name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updatePreventSleep),
+											   name: UserDefaults.didChangeNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updatePreventSleep),
+											   name: UIApplication.didBecomeActiveNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updatePreventSleep),
+											   name: UIDevice.batteryStateDidChangeNotification, object: nil)
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -81,7 +85,7 @@ final class EditorViewController: UIViewController {
 
 	override var keyCommands: [UIKeyCommand] {
 		var commands: [UIKeyCommand] = [
-			UIKeyCommand(input: UIKeyInputEscape, modifierFlags: [], action: #selector(dismissKeyboard)),
+			UIKeyCommand(input: UIKeyCommand.inputEscape, modifierFlags: [], action: #selector(dismissKeyboard)),
 			UIKeyCommand(input: "w", modifierFlags: [.command], action: #selector(close), discoverabilityTitle: LocalizedString.closeCommand.string)
 
 //			UIKeyCommand(input: "b", modifierFlags: [.command], action: #selector(bold), discoverabilityTitle: LocalizedString.boldCommand.string),
@@ -96,8 +100,8 @@ final class EditorViewController: UIViewController {
 				UIKeyCommand(input: "[", modifierFlags: [.command], action: #selector(outdent), discoverabilityTitle: LocalizedString.outdentCommand.string),
 				UIKeyCommand(input: "\t", modifierFlags: [.shift], action: #selector(outdent)),
 
-				UIKeyCommand(input: UIKeyInputUpArrow, modifierFlags: [.command, .control], action: #selector(swapLineUp), discoverabilityTitle: LocalizedString.swapLineUpCommand.string),
-				UIKeyCommand(input: UIKeyInputDownArrow, modifierFlags: [.command, .control], action: #selector(swapLineDown), discoverabilityTitle: LocalizedString.swapLineDownCommand.string)
+				UIKeyCommand(input: UIKeyCommand.inputUpArrow, modifierFlags: [.command, .control], action: #selector(swapLineUp), discoverabilityTitle: LocalizedString.swapLineUpCommand.string),
+				UIKeyCommand(input: UIKeyCommand.inputDownArrow, modifierFlags: [.command, .control], action: #selector(swapLineDown), discoverabilityTitle: LocalizedString.swapLineDownCommand.string)
 			]
 		}
 
@@ -218,7 +222,7 @@ final class EditorViewController: UIViewController {
 
 	@objc private func keyboardWillChangeFrame(notification: NSNotification?) {
 		guard let notification = notification,
-			let value = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue else
+			let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else
 		{
 	    	return
     	}
@@ -252,11 +256,7 @@ final class EditorViewController: UIViewController {
 
 	private func updateTitleTypingAttributes() {
 		if textView.selectedRange.location == 0 {
-			var attributes = [String: Any]()
-			for (key, value) in textController.theme.titleAttributes {
-				attributes[key.rawValue] = value
-			}
-			textView.typingAttributes = attributes
+			textView.typingAttributes = textController.theme.titleAttributes
 		}
 	}
 
@@ -320,12 +320,7 @@ extension EditorViewController: UITextViewDelegate {
 		updateAutoCompletion()
 
 		if NSEqualRanges(textView.selectedRange, NSRange(location: 0, length: 0)) {
-			var attributes = [String: Any]()
-			for (key, value) in textController.theme.titleAttributes {
-				attributes[key.rawValue] = value
-			}
-
-			textView.typingAttributes = attributes
+			textView.typingAttributes = textController.theme.titleAttributes
 		}
 	}
 

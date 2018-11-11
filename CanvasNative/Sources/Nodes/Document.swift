@@ -363,11 +363,11 @@ public struct Document {
 
 			if block is Attachable {
 				// Special case for attachments
-				#if os(watchOS)
-					presentationString += "🖼"
-				#else
-					presentationString += String(Character(UnicodeScalar(NSAttachmentCharacter)!))
-				#endif
+#if os(watchOS)
+				presentationString += "🖼"
+#else
+				presentationString += String(Character(UnicodeScalar(NSTextAttachment.character)!))
+#endif
 
 				location += 1
 			} else {

@@ -7,7 +7,7 @@ class CanvasesViewController: ModelsViewController {
 
 	// MARK: - Initializers
 
-	override init(style: UITableViewStyle = .plain) {
+	override init(style: UITableView.Style = .plain) {
 		super.init(style: style)
 	}
 

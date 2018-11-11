@@ -767,7 +767,9 @@ extension TextController: CanvasTextStorageDelegate, NSTextStorageDelegate {
 		}
 	}
 
-	public func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorageEditActions, range editedRange: NSRange, changeInLength delta: Int) {
+	public func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorage.EditActions,
+							range editedRange: NSRange, changeInLength delta: Int)
+	{
 		if _textStorage.isEditing {
 			return
 		}

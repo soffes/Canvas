@@ -28,7 +28,8 @@ final class PlaceholderViewController: UIViewController {
 			textLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
 		])
 
-		NotificationCenter.default.addObserver(self, selector: #selector(updateFont), name: .UIContentSizeCategoryDidChange, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateFont),
+											   name: UIContentSizeCategory.didChangeNotification, object: nil)
 		updateFont()
 	}
 

@@ -58,7 +58,8 @@ class StackViewController: UIViewController {
 			stackView.widthAnchor.constraint(lessThanOrEqualToConstant: 400)
 		])
 
-		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: .UIKeyboardWillChangeFrame, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame),
+											   name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
 		keyboardFrameDidChange()
 	}
 
@@ -79,9 +80,9 @@ class StackViewController: UIViewController {
 
 	@objc private func keyboardWillChangeFrame(notification: NSNotification) {
 		guard let dictionary = notification.userInfo as? [String: Any],
-			let duration = dictionary[UIKeyboardAnimationDurationUserInfoKey] as? TimeInterval,
-			let curve = (dictionary[UIKeyboardAnimationCurveUserInfoKey] as? Int).flatMap(UIViewAnimationCurve.init),
-			let rect = (dictionary[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else
+			let duration = dictionary[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval,
+			let curve = (dictionary[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int).flatMap(UIView.AnimationCurve.init),
+			let rect = (dictionary[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else
 		{
 	    	return
     	}

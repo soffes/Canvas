@@ -21,7 +21,7 @@ final class LineView: UIView {
 	}
 
 	override var intrinsicContentSize: CGSize {
-		return CGSize(width: UIViewNoIntrinsicMetric, height: 1 / max(1, traitCollection.displayScale))
+		return CGSize(width: UIView.noIntrinsicMetric, height: 1 / max(1, traitCollection.displayScale))
 	}
 
 	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

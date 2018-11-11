@@ -20,7 +20,7 @@ class TableViewController: UIViewController {
 	}
     // MARK: - Initializers
 
-	init(style: UITableViewStyle) {
+	init(style: UITableView.Style) {
 		tableView = TableView(frame: .zero, style: style)
 		tableView.translatesAutoresizingMaskIntoConstraints = false
 		tableView.separatorColor = Swatch.border

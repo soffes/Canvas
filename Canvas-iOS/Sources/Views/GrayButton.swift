@@ -17,7 +17,8 @@ final class GrayButton: UIButton {
 		setTitleColor(Swatch.black, for: .highlighted)
 		setTitleColor(Swatch.extraLightGray, for: .disabled)
 
-		NotificationCenter.default.addObserver(self, selector: #selector(updateFont), name: .UIContentSizeCategoryDidChange, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateFont),
+											   name: UIContentSizeCategory.didChangeNotification, object: nil)
 		updateFont()
 	}
 

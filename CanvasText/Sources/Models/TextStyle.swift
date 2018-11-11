@@ -12,33 +12,33 @@ public enum TextStyle {
 	case caption2
 	case callout
 
-	public var textStyle: String {
+	public var textStyle: UIFont.TextStyle {
 		switch self {
 		case .title1:
-			return UIFontTextStyle.title1.rawValue
+			return .title1
 		case .title2:
-			return UIFontTextStyle.title2.rawValue
+			return .title2
 		case .title3:
-			return UIFontTextStyle.title3.rawValue
+			return .title3
 		case .headline:
-			return UIFontTextStyle.headline.rawValue
+			return .headline
 		case .subheadline:
-			return UIFontTextStyle.subheadline.rawValue
+			return .subheadline
 		case .body:
-			return UIFontTextStyle.body.rawValue
+			return .body
 		case .footnote:
-			return UIFontTextStyle.footnote.rawValue
+			return .footnote
 		case .caption1:
-			return UIFontTextStyle.caption1.rawValue
+			return .caption1
 		case .caption2:
-			return UIFontTextStyle.caption2.rawValue
+			return .caption2
 		case .callout:
-			return UIFontTextStyle.callout.rawValue
+			return .callout
 		}
 	}
 
-	public func font(traits: UIFontDescriptorSymbolicTraits = [], weight: FontWeight? = nil) -> UIFont {
-		var systemFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle(rawValue: textStyle))
+	public func font(traits: UIFontDescriptor.SymbolicTraits = [], weight: FontWeight? = nil) -> UIFont {
+		var systemFont = UIFont.preferredFont(forTextStyle: textStyle)
 
 		// Apply minimum weight
 		if let weight = weight {
@@ -51,18 +51,18 @@ public enum TextStyle {
 		return applySymbolicTraits(traits, toFont: systemFont, sanitize: false)
 	}
 
-	public func monoSpaceFont(traits: UIFontDescriptorSymbolicTraits = []) -> UIFont {
-		let systemFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle(rawValue: textStyle))
+	public func monoSpaceFont(traits: UIFontDescriptor.SymbolicTraits = []) -> UIFont {
+		let systemFont = UIFont.preferredFont(forTextStyle: textStyle)
 		let monoSpaceFont = UIFont(name: "Menlo", size: systemFont.pointSize * 0.9)!
 		return applySymbolicTraits(traits, toFont: monoSpaceFont)
 	}
 }
 
-func applySymbolicTraits(_ traits: UIFontDescriptorSymbolicTraits, toFont font: UIFont, sanitize: Bool = true) -> UIFont {
+func applySymbolicTraits(_ traits: UIFontDescriptor.SymbolicTraits, toFont font: UIFont, sanitize: Bool = true) -> UIFont {
 	var traits = traits
 
 	if sanitize && !traits.isEmpty {
-		var t = UIFontDescriptorSymbolicTraits()
+		var t = UIFontDescriptor.SymbolicTraits()
 
 		if traits.contains(.traitBold) {
 			t.insert(.traitBold)

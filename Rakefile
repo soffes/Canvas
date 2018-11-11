@@ -2,11 +2,11 @@
 
 PROJECT = 'Canvas.xcodeproj'
 CARTHAGE_PLATFORM = 'iOS'
-CARTHAGE_VERSION = '0.28.0'
+CARTHAGE_VERSION = '0.31.2'
 SWIFTLINT_VERSION = '0.24.2'
-XCODE_SHORT_VERSION = '9.3 beta 1'
-XCODE_VERSION = '9Q98q'
-XCODEGEN_VERSION = '1.5.0'
+XCODE_SHORT_VERSION = '10.1'
+XCODE_VERSION = '10B61'
+XCODEGEN_VERSION = '2.0.0'
 
 desc 'Generate the Xcode project'
 task project: :'check:xcodegen' do
@@ -16,7 +16,6 @@ end
 desc 'Bootstrap Carthage dependencies and generate the project'
 task bootstrap: %i[check:xcode check:carthage project] do
   sh %(carthage bootstrap --platform #{CARTHAGE_PLATFORM})
-  open_project
 end
 
 desc 'Update Carthage dependencies'

@@ -4,8 +4,8 @@ final class SafariActivity: WebActivity {
 
     // MARK: - UIActivity
 
-	override var activityType: UIActivityType? {
-		return UIActivityType(rawValue: "open-in-safari")
+	override var activityType: UIActivity.ActivityType? {
+		return UIActivity.ActivityType(rawValue: "open-in-safari")
 	}
 
 	override var activityTitle: String? {

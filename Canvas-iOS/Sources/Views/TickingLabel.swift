@@ -35,8 +35,10 @@ final class TickingLabel: UILabel {
 			return
 		}
 
-		NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive), name: .UIApplicationWillResignActive, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: .UIApplicationDidBecomeActive, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(applicationWillResignActive),
+											   name: UIApplication.willResignActiveNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive),
+											   name: UIApplication.didBecomeActiveNotification, object: nil)
 		applicationDidBecomeActive()
 
 		isTimerSetup = true
@@ -56,7 +58,7 @@ final class TickingLabel: UILabel {
 		timer.tolerance = 0.5
 		self.timer = timer
 
-		RunLoop.main.add(timer, forMode: .commonModes)
+		RunLoop.main.add(timer, forMode: RunLoop.Mode.common)
 	}
 
 	@objc private func tick() {

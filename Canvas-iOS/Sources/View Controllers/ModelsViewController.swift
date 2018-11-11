@@ -19,7 +19,7 @@ class ModelsViewController: TableViewController {
 			let backTitle = previousTitle.flatMap { "Back to \($0)" } ?? "Back"
 
 			commands += [
-				UIKeyCommand(input: UIKeyInputLeftArrow, modifierFlags: [], action: #selector(goBack), discoverabilityTitle: backTitle),
+				UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: [], action: #selector(goBack), discoverabilityTitle: backTitle),
 				UIKeyCommand(input: "w", modifierFlags: [.command], action: #selector(goBack))
 			]
 		}

@@ -19,7 +19,7 @@ final class IndicatorButton: PillButton {
 	}
 
 	let activityIndicator: UIActivityIndicatorView = {
-		let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+		let indicator = UIActivityIndicatorView(style: .gray)
 		indicator.translatesAutoresizingMaskIntoConstraints = false
 		indicator.isUserInteractionEnabled = false
 		indicator.hidesWhenStopped = true

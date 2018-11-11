@@ -3,7 +3,7 @@ import Static
 import UIKit
 
 final class ValueCell: UITableViewCell, Cell {
-	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .value1, reuseIdentifier: reuseIdentifier)
 		textLabel?.textColor = Swatch.black
 		detailTextLabel?.textColor = Swatch.darkGray

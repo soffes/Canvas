@@ -9,11 +9,11 @@ import X
 
 extension Theme {
 	public var fontSize: CGFloat {
-		return UIFont.preferredFont(forTextStyle: UIFontTextStyle.body).pointSize
+		return UIFont.preferredFont(forTextStyle: .body).pointSize
 	}
 
 	private var listIndentation: CGFloat {
-		let font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+		let font = UIFont.preferredFont(forTextStyle: .body)
 		return ("     " as NSString).size(withAttributes: [.font: font]).width
 	}
 
@@ -165,7 +165,7 @@ extension Theme {
 			attributes[.foregroundColor] = codeSpanColor
 			attributes[.backgroundColor] = codeSpanBackgroundColor
 		} else if span is Strikethrough {
-			attributes[.strikethroughStyle] = NSUnderlineStyle.styleThick.rawValue as Any
+			attributes[.strikethroughStyle] = NSUnderlineStyle.thick.rawValue
 			attributes[.strikethroughColor] = strikethroughColor
 			attributes[.foregroundColor] = strikethroughColor
 		} else if span is DoubleEmphasis {

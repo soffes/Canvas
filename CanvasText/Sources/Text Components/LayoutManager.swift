@@ -93,8 +93,11 @@ class LayoutManager: NSLayoutManager {
 		return rect
 	}
 
-	override func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorageEditActions, range: NSRange, changeInLength delta: Int, invalidatedRange: NSRange) {
-		super.processEditing(for: textStorage, edited: editMask, range: range, changeInLength: delta, invalidatedRange: invalidatedRange)
+	override func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorage.EditActions,
+								 range: NSRange, changeInLength delta: Int, invalidatedRange: NSRange)
+	{
+		super.processEditing(for: textStorage, edited: editMask, range: range, changeInLength: delta,
+							 invalidatedRange: invalidatedRange)
 		invalidateFoldingIfNeeded()
 	}
 

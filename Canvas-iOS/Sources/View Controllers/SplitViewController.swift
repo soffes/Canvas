@@ -60,7 +60,7 @@ final class SplitViewController: UISplitViewController {
 	// MARK: - Private
 
 	@objc private func toggleSidebar() {
-		let mode: UISplitViewControllerDisplayMode = displayMode == .allVisible ? .primaryHidden : .allVisible
+		let mode: UISplitViewController.DisplayMode = displayMode == .allVisible ? .primaryHidden : .allVisible
 
 		UIView.animate(withDuration: 0.2) {
 			self.preferredDisplayMode = mode
@@ -133,7 +133,9 @@ extension SplitViewController: UISplitViewControllerDelegate {
 		return false
 	}
 
-	func targetDisplayModeForActionInSplitViewController(splitViewController: UISplitViewController) -> UISplitViewControllerDisplayMode {
+	func targetDisplayModeForActionInSplitViewController(splitViewController: UISplitViewController)
+		-> UISplitViewController.DisplayMode
+	{
 		switch splitViewController.displayMode {
 		case .primaryOverlay, .primaryHidden:
 			return .allVisible

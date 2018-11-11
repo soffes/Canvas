@@ -73,7 +73,7 @@ final class CanvasCell: UITableViewCell {
 
     // MARK: - Initializers
 
-	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
 
 		let view = UIView()
@@ -108,7 +108,8 @@ final class CanvasCell: UITableViewCell {
 			timeLabel.widthAnchor.constraint(lessThanOrEqualToConstant: 100)
 		])
 
-		NotificationCenter.default.addObserver(self, selector: #selector(updateFonts), name: .UIContentSizeCategoryDidChange, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateFonts),
+											   name: UIContentSizeCategory.didChangeNotification, object: nil)
 		updateFonts()
 	}
 

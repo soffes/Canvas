@@ -4,8 +4,8 @@ final class ChromeActivity: WebActivity {
 
     // MARK: - UIActivity
 
-	override var activityType: UIActivityType? {
-		return UIActivityType(rawValue: "open-in-chrome")
+	override var activityType: UIActivity.ActivityType? {
+		return UIActivity.ActivityType(rawValue: "open-in-chrome")
 	}
 
 	override var activityTitle: String? {

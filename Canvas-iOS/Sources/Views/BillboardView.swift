@@ -42,7 +42,8 @@ final class BillboardView: UIStackView {
 		addSpace(8)
 		addArrangedSubview(subtitleLabel)
 
-		NotificationCenter.default.addObserver(self, selector: #selector(updateFonts), name: .UIContentSizeCategoryDidChange, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateFonts),
+											   name: UIContentSizeCategory.didChangeNotification, object: nil)
 		updateFonts()
 	}
 

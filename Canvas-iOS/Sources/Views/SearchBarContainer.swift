@@ -55,7 +55,7 @@ final class SearchBarContainer: UIView {
 		// UISearchController removes this view and then adds it back. Move it to the back when it's added so it stays
 		// below the borders.
 		if view == searchBar {
-			sendSubview(toBack: view)
+			sendSubviewToBack(view)
 		}
 	}
 
