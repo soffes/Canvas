@@ -1,5 +1,5 @@
 ⧙doc-heading⧘Test Canvas
-Inline elements: *italic*, **bold**, ~~strikethrough~~, `inline code`, [link](https://soff.es).
+Inline elements: *italic*, **bold**, ***bold italic***, ~~strikethrough~~, `inline code`, [link](https://soff.es).
 # Heading 1
 ## Heading 2
 ### Heading 3
