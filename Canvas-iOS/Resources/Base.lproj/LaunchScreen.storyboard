@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14087.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14075.4"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,12 +21,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5QW-KB-uhp" userLabel="Navigation Bar">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="64" translatesAutoresizingMaskIntoConstraints="NO" id="5QW-KB-uhp" userLabel="Navigation Bar">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="yyC-Zb-5Qw"/>
-                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QLA-b3-CC4" userLabel="Line">
                                 <rect key="frame" x="0.0" y="64" width="320" height="0.5"/>
@@ -41,6 +39,7 @@
                             <constraint firstItem="QLA-b3-CC4" firstAttribute="trailing" secondItem="5QW-KB-uhp" secondAttribute="trailing" id="9hu-bU-pdL"/>
                             <constraint firstItem="5QW-KB-uhp" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="LNf-hT-zTN"/>
                             <constraint firstAttribute="trailing" secondItem="5QW-KB-uhp" secondAttribute="trailing" id="OhJ-jR-yxe"/>
+                            <constraint firstItem="QLA-b3-CC4" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="44" id="Qrs-rn-Hd6"/>
                             <constraint firstItem="QLA-b3-CC4" firstAttribute="leading" secondItem="5QW-KB-uhp" secondAttribute="leading" id="WK5-kK-E8f"/>
                             <constraint firstItem="QLA-b3-CC4" firstAttribute="top" secondItem="5QW-KB-uhp" secondAttribute="bottom" id="tZT-NU-5sL"/>
                         </constraints>
@@ -48,7 +47,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="28.266666666666666" y="355"/>
+            <point key="canvasLocation" x="45.226666666666667" y="319.34032983508246"/>
         </scene>
     </scenes>
 </document>
