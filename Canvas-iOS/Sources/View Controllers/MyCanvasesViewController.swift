@@ -50,7 +50,7 @@ final class MyCanvasesViewController: CanvasesViewController {
 		var commands = super.keyCommands
 
 		commands += [
-			UIKeyCommand(input: "/", modifierFlags: [], action: #selector(search), discoverabilityTitle: LocalizedString.searchCommand.string),
+//			UIKeyCommand(input: "/", modifierFlags: [], action: #selector(search), discoverabilityTitle: LocalizedString.searchCommand.string),
 			UIKeyCommand(input: "n", modifierFlags: [.command], action: #selector(create), discoverabilityTitle: LocalizedString.newCanvasCommand.string)
 		]
 
@@ -74,8 +74,8 @@ final class MyCanvasesViewController: CanvasesViewController {
 		// http://stackoverflow.com/a/33734661/118631
 		searchViewController.loadViewIfNeeded()
 
-		let header = SearchBarContainer(searchBar: searchViewController.searchBar)
-		tableView.tableHeaderView = header
+//		let header = SearchBarContainer(searchBar: searchViewController.searchBar)
+//		tableView.tableHeaderView = header
 
 		navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Compose"), style: .plain,
 															target: self, action: #selector(create))
