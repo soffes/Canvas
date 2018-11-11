@@ -107,6 +107,16 @@ public final class TextController: NSObject {
 		return documentController.document
 	}
 
+	public var content: String {
+		get {
+			return documentController.document.backingString
+		}
+		set {
+			let bounds = NSRange(location: 0, length: (documentController.document.backingString as NSString).length)
+			documentController.replaceCharactersInRange(bounds, withString: newValue)
+		}
+	}
+
 	private var needsTitle = false
 	private var needsUnfoldUpdate = false
 	private var styles = [Style]()
@@ -136,8 +146,7 @@ public final class TextController: NSObject {
 		documentController.delegate = self
 
 		// Initial state
-		let bounds = NSRange(location: 0, length: (documentController.document.backingString as NSString).length)
-		documentController.replaceCharactersInRange(bounds, withString: content ?? Title.nativeRepresentation())
+		self.content = content ?? Title.nativeRepresentation()
 	}
 
 	// MARK: - Traits

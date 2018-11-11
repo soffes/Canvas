@@ -47,7 +47,7 @@ final class EditorViewController: UIViewController {
 	init(canvas: Canvas = Canvas(), content: String? = nil) {
 		self.canvas = canvas
 
-		textController = TextController(theme: LightTheme(tintColor: Swatch.brand), content: content)
+		textController = TextController(theme: LightTheme(tintColor: Swatch.brand))
 
 		let textView = CanvasTextView(frame: .zero, textContainer: textController.textContainer)
 		textView.translatesAutoresizingMaskIntoConstraints = false
@@ -71,6 +71,12 @@ final class EditorViewController: UIViewController {
 											   name: UIApplication.didBecomeActiveNotification, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(updatePreventSleep),
 											   name: UIDevice.batteryStateDidChangeNotification, object: nil)
+
+		if let content = content {
+			DispatchQueue.main.async { [weak self] in
+				self?.textController.content = content
+			}
+		}
 	}
 
 	required init?(coder aDecoder: NSCoder) {
