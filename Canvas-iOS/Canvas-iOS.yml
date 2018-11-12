@@ -8,11 +8,12 @@ targets:
         - Canvas-iOS/Sources
         - Canvas-iOS/Resources
       settings:
-        PRODUCT_NAME: Canvas
-        PRODUCT_BUNDLE_IDENTIFIER: com.nothingmagical.canvas
-        INFOPLIST_FILE: $(SRCROOT)/Canvas-iOS/Support/Info.plist
         CODE_SIGN_STYLE: Manual
+        DEVELOPMENT_TEAM: UP9C8XM22A
+        INFOPLIST_FILE: $(SRCROOT)/Canvas-iOS/Support/Info.plist
         OTHER_LDFLAGS: $(inherited) -all_load
+        PRODUCT_BUNDLE_IDENTIFIER: com.nothingmagical.canvas
+        PRODUCT_NAME: Canvas
       dependencies:
         - target: CanvasNative
         - target: CanvasText
