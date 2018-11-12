@@ -174,6 +174,12 @@ final class EditorViewController: UIViewController {
 		if traitCollection.forceTouchCapability == .available {
 			registerForPreviewing(with: self, sourceView: textView)
 		}
+
+		navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(save))
+	}
+
+	@objc private func save() {
+		document.save(to: document.fileURL, for: .forOverwriting, completionHandler: nil)
 	}
 
 	override func viewDidLayoutSubviews() {

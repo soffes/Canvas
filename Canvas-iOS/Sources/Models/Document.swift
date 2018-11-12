@@ -1,5 +1,6 @@
 import CanvasCore
 import CanvasNative
+import MobileCoreServices
 import UIKit
 
 final class Document: UIDocument {
@@ -9,16 +10,15 @@ final class Document: UIDocument {
 	enum Error: Swift.Error {
 		case invalidCanvas
 		case unsupportedVersion
+		case unableToSave
 	}
 
 	// MARK: - Properties
 
 	let version = "0.0.1"
-	private(set) var id: String
+	private(set) var id = ""
 	private(set) var title: String?
 	private(set) var summary: String?
-	private(set) var createdAt: Date
-	private (set) var updatedAt: Date
 
 	var isEmpty: Bool {
 		return summary?.isEmpty ?? true
@@ -34,6 +34,11 @@ final class Document: UIDocument {
 		}
 	}
 
+	static let uti: String = {
+		let utiDecs = Bundle.main.object(forInfoDictionaryKey: kUTExportedTypeDeclarationsKey as String) as? [[String: Any]]
+		return (utiDecs?.first?[kUTTypeIdentifierKey as String] as? String)!
+	}()
+
 	// MARK: - Initializers
 
 	@available(*, unavailable)
@@ -41,29 +46,28 @@ final class Document: UIDocument {
 		fatalError("Must call init(fileURL:) instead.")
 	}
 
-	init(id: String = UUID().uuidString, saveCompletion: ((Bool) -> Void)? = nil) throws {
-		self.id = id
-		createdAt = Date()
-		updatedAt = createdAt
-
+	convenience init(id: String = UUID().uuidString, saveCompletion: ((Bool) -> Void)? = nil) throws {
 		let documentsURL = try FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
 		let url = documentsURL.appendingPathComponent(id)
 			.appendingPathExtension("canvas")
 
-		super.init(fileURL: url)
+		self.init(fileURL: url)
+
+		self.id = id
 
 		save(to: url, for: .forCreating, completionHandler: saveCompletion)
+	}
+
+	override init(fileURL url: URL) {
+		super.init(fileURL: url)
 	}
 
 	// MARK: - UIDocument
 
 	override func contents(forType typeName: String) throws -> Any {
-		let dateFormatter = ISO8601DateFormatter()
 		var json: [String: Any] = [
 			"version": version,
 			"id": id,
-			"createdAt": dateFormatter.string(from: createdAt),
-			"updatedAt": dateFormatter.string(from: updatedAt),
 			"document": document.backingString
 		]
 
@@ -79,14 +83,10 @@ final class Document: UIDocument {
 	}
 
 	override func load(fromContents contents: Any, ofType typeName: String?) throws {
-		let dateFormatter = ISO8601DateFormatter()
 		guard let data = contents as? Data,
 			let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
 			let version = json["version"] as? String, let id = json["id"] as? String,
-			let createdAtString = json["createdAt"] as? String,
-			let createdAt = dateFormatter.date(from: createdAtString),
-			let updatedAtString = json["updatedAt"] as? String,
-			let updatedAt = dateFormatter.date(from: updatedAtString), let document = json["document"] as? String else
+			let document = json["document"] as? String else
 		{
 			throw Error.invalidCanvas
 		}
@@ -96,8 +96,18 @@ final class Document: UIDocument {
 		}
 
 		self.id = id
-		self.createdAt = createdAt
-		self.updatedAt = updatedAt
 		self.document = CanvasNative.Document(backingString: document)
+	}
+
+	override func fileNameExtension(forType typeName: String?, saveOperation: UIDocument.SaveOperation) -> String {
+		if typeName == type(of: self).uti {
+			return "canvas"
+		}
+
+		return super.fileNameExtension(forType: typeName, saveOperation: saveOperation)
+	}
+
+	override var localizedName: String {
+		return title ?? super.localizedName
 	}
 }
