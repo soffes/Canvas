@@ -27,5 +27,11 @@ targets:
         - carthage: Static
         - carthage: X
       postbuildScripts:
+        - script: |
+            git = `sh /etc/profile; which git`.chomp
+            app_build = `#{git} rev-list HEAD --count`.chomp.to_i
+            `/usr/libexec/PlistBuddy -c "Set :CFBundleVersion #{app_build}" "${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"`
+          name: Set Version
+          shell: /usr/bin/env ruby
         - script: if which swiftlint >/dev/null; then swiftlint; fi
           name: Swiftlint

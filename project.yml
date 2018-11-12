@@ -14,7 +14,9 @@ settings:
     CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF: YES
     SWIFT_INSTALL_OBJC_HEADER: NO
   configs:
+    release:
       SWIFT_COMPILATION_MODE: wholemodule
+      GCC_OPTIMIZATION_LEVEL: fast
 include:
   - Canvas-iOS/Canvas-iOS.yml
   - CanvasCore/CanvasCore.yml
