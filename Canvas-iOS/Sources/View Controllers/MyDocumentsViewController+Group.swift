@@ -1,7 +1,7 @@
 import CanvasCore
 import Foundation
 
-extension MyCanvasesViewController {
+extension MyDocumentsViewController {
 	enum Group: String {
 		case today
 		case recent

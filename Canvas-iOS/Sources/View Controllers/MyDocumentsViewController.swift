@@ -2,13 +2,13 @@ import CanvasCore
 import Static
 import UIKit
 
-final class MyCanvasesViewController: CanvasesViewController {
+final class MyDocumentsViewController: DocumentsViewController {
 
 	// MARK: - Properties
 
 	private let searchController = SearchController()
 
-	private let searchViewController = UISearchController(searchResultsController: CanvasResultsViewController())
+	private let searchViewController = UISearchController(searchResultsController: SearchResultsViewController())
 
 	var ready: (() -> Void)?
 
@@ -24,15 +24,15 @@ final class MyCanvasesViewController: CanvasesViewController {
 		searchViewController.searchBar.placeholder = "Search"
 		searchViewController.searchResultsUpdater = searchController
 
-		searchController.callback = { [weak self] canvases in
+		searchController.callback = { [weak self] documents in
 			guard let self = self,
-				let viewController = self.searchViewController.searchResultsController as? CanvasesViewController else
+				let viewController = self.searchViewController.searchResultsController as? DocumentsViewController else
 			{
 				return
 			}
 
 			viewController.dataSource.sections = [
-				Section(rows: canvases.map(self.row))
+				Section(rows: documents.map(self.row))
 			]
 		}
 
@@ -86,7 +86,7 @@ final class MyCanvasesViewController: CanvasesViewController {
 
 		// Deselect search results *sigh*
 		if let text = searchViewController.searchBar.text, !text.isEmpty,
-			let viewController = searchViewController.searchResultsController as? CanvasesViewController,
+			let viewController = searchViewController.searchResultsController as? DocumentsViewController,
 			let indexPath = viewController.tableView.indexPathForSelectedRow
 		{
 			viewController.tableView.deselectRow(at: indexPath, animated: animated)
@@ -106,14 +106,14 @@ final class MyCanvasesViewController: CanvasesViewController {
 
 	// MARK: - CanvasesViewController
 
-	override  func row(for canvas: Canvas) -> Row {
-		var row = super.row(for: canvas)
+	override func row(for document: Document) -> Row {
+		var row = super.row(for: document)
 
 		row.editActions = [
-			Row.EditAction(title: LocalizedString.archiveButton.string, style: .destructive,
+			Row.EditAction(title: "Delete", style: .destructive,
 						   backgroundColor: Swatch.destructive, backgroundEffect: nil)
 			{ [weak self] in
-				self?.archive(canvas)
+				self?.deleteDocument(document)
 			}
 		]
 
@@ -129,17 +129,27 @@ final class MyCanvasesViewController: CanvasesViewController {
 
 		creating = true
 
-		// TODO: Presist
-		open(Canvas())
+		let document: Document
+		do {
+			document = try Document()
+		} catch {
+			// TODO: Real error handling
+			fatalError("Failed to create document")
+		}
+
+		// TODO: Update list
+		open(document)
 	}
 
 	@objc func search() {
 		searchViewController.searchBar.becomeFirstResponder()
 	}
 
-	private func archive(_ canvas: Canvas) {
-		clearEditor(canvas: canvas)
-		remove(canvas)
+	private func deleteDocument(_ document: Document) {
+		// TODO: Add confirmation
+
+		clearEditor(document: document)
+		remove(document)
 
 		// TODO: Persist
 	}
@@ -147,22 +157,22 @@ final class MyCanvasesViewController: CanvasesViewController {
 	// MARK: - Private
 
 	// Clear the detail view controller if it contains the given canvas
-	private func clearEditor(canvas: Canvas) {
+	private func clearEditor(document: Document) {
 		guard let viewController = currentEditor(), let splitViewController = splitViewController,
 			!splitViewController.isCollapsed else
 		{
 			return
 		}
 
-		if viewController.canvas == canvas {
+		if viewController.document == document {
 			showDetailViewController(NavigationController(rootViewController: PlaceholderViewController()), sender: nil)
 		}
 	}
 
-	private func remove(_ canvas: Canvas) {
+	private func remove(_ document: Document) {
 		for (s, var section) in dataSource.sections.enumerated() {
 			for (r, row) in section.rows.enumerated() {
-				if let rowCanvas = row.context?["canvas"] as? Canvas, rowCanvas == canvas {
+				if let rowCanvas = row.context?["canvas"] as? Canvas, rowCanvas == document.canvas {
 					section.rows.remove(at: r)
 
 					if section.rows.isEmpty {
@@ -177,14 +187,14 @@ final class MyCanvasesViewController: CanvasesViewController {
 		}
 	}
 
-	private func updateCanvases(canvases: [Canvas]) {
-		var groups = [Group: [Canvas]]()
+	private func updateDocuments(_ documents: [Document]) {
+		var groups = [Group: [Document]]()
 
-		for canvas in canvases {
+		for document in documents {
 			for group in Group.all {
-				if group.contains(canvas.updatedAt) {
-					var list = groups[group] ?? [Canvas]()
-					list.append(canvas)
+				if group.contains(document.canvas.updatedAt) {
+					var list = groups[group] ?? [Document]()
+					list.append(document)
 					groups[group] = list
 					break
 				}
@@ -193,9 +203,9 @@ final class MyCanvasesViewController: CanvasesViewController {
 
 		var sections = [Section]()
 		for group in Group.all {
-			guard let canvases = groups[group] else { continue }
+			guard let documents = groups[group] else { continue }
 
-			let rows = canvases.map(self.row)
+			let rows = documents.map(self.row)
 
 			let headerView = SectionHeaderView()
 			headerView.textLabel.text = group.title

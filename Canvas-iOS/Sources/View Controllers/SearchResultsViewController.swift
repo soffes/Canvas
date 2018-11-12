@@ -1,6 +1,6 @@
 import UIKit
 
-final class CanvasResultsViewController: CanvasesViewController {
+final class SearchResultsViewController: DocumentsViewController {
 
 	// MARK: - UIViewController
 

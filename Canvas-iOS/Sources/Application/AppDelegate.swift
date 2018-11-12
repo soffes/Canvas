@@ -60,7 +60,7 @@ extension AppDelegate: UIApplicationDelegate {
 
 		let window = UIWindow()
 		window.rootViewController = SplitViewController(
-			masterViewController: NavigationController(rootViewController: MyCanvasesViewController()),
+			masterViewController: NavigationController(rootViewController: MyDocumentsViewController()),
 			detailViewController: NavigationController(rootViewController: PlaceholderViewController())
 		)
 		window.makeKeyAndVisible()

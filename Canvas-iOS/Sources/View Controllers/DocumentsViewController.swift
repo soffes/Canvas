@@ -3,7 +3,7 @@ import CanvasNative
 import Static
 import UIKit
 
-class CanvasesViewController: ModelsViewController {
+class DocumentsViewController: ModelsViewController {
 
 	// MARK: - Initializers
 
@@ -24,13 +24,19 @@ class CanvasesViewController: ModelsViewController {
 
 	// MARK: - ModelsViewController
 
-	func open(_ canvas: Canvas) {
-		if let editor = currentEditor(), editor.canvas == canvas {
+	func open(_ document: Document) {
+		if let editor = currentEditor(), editor.document == document {
 			return
 		}
 
-		let viewController = EditorViewController(canvas: canvas)
-		showDetailViewController(NavigationController(rootViewController: viewController), sender: self)
+		document.open { [weak self] opened in
+			if !opened {
+				fatalError("failed to open: \(document)")
+			}
+
+			let viewController = EditorViewController(document: document)
+			self?.showDetailViewController(NavigationController(rootViewController: viewController), sender: self)
+		}
 	}
 
 	// MARK: - Utilities
@@ -44,9 +50,9 @@ class CanvasesViewController: ModelsViewController {
 		return top as? EditorViewController
 	}
 
-	func row(for canvas: Canvas) -> Row {
-		var row = canvas.row
-		row.selection = { [weak self] in self?.open(canvas) }
+	func row(for document: Document) -> Row {
+		var row = document.canvas.row
+		row.selection = { [weak self] in self?.open(document) }
 		return row
 	}
 }

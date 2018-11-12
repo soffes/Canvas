@@ -9,7 +9,7 @@ final class EditorViewController: UIViewController {
 
 	static let willCloseNotification = Notification.Name(rawValue: "EditorViewController.willCloseNotification")
 
-	var canvas: Canvas
+	let document: CanvasApp.Document
 
 	let textController: TextController
 	let textView: CanvasTextView
@@ -44,8 +44,8 @@ final class EditorViewController: UIViewController {
 
 	// MARK: - Initializers
 
-	init(canvas: Canvas = Canvas(), content: String? = nil) {
-		self.canvas = canvas
+	init(document: CanvasApp.Document) {
+		self.document = document
 
 		textController = TextController(theme: LightTheme(tintColor: Swatch.brand))
 
@@ -72,7 +72,8 @@ final class EditorViewController: UIViewController {
 		NotificationCenter.default.addObserver(self, selector: #selector(updatePreventSleep),
 											   name: UIDevice.batteryStateDidChangeNotification, object: nil)
 
-		if let content = content {
+		let content = document.document.backingString
+		if !content.isEmpty {
 			DispatchQueue.main.async { [weak self] in
 				self?.textController.content = content
 			}
@@ -84,6 +85,10 @@ final class EditorViewController: UIViewController {
 	}
 
 	// MARK: - UIResponder
+
+	override var undoManager: UndoManager? {
+		return document.undoManager
+	}
 
 	override var canBecomeFirstResponder: Bool {
 		return true
@@ -230,6 +235,14 @@ final class EditorViewController: UIViewController {
 		super.viewWillDisappear(animated)
 		UIApplication.shared.isIdleTimerDisabled = false
 		textView.resignFirstResponder()
+	}
+
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		document.document = textController.currentDocument
+		document.save(to: document.fileURL, for: .forOverwriting) { [weak document] _ in
+			document?.close(completionHandler: nil)
+		}
 	}
 
 	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
