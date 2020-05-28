@@ -17,8 +17,10 @@ settings:
     release:
       SWIFT_COMPILATION_MODE: wholemodule
       GCC_OPTIMIZATION_LEVEL: fast
+fileGroups:
+  - Modules
 include:
-  - Canvas-iOS/Canvas-iOS.yml
-  - CanvasCore/CanvasCore.yml
-  - CanvasNative/CanvasNative.yml
-  - CanvasText/CanvasText.yml
+  - Modules/Canvas-iOS/Canvas-iOS.yml
+  - Modules/CanvasCore/CanvasCore.yml
+  - Modules/CanvasNative/CanvasNative.yml
+  - Modules/CanvasText/CanvasText.yml

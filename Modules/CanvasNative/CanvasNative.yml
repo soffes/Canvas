@@ -1,11 +1,9 @@
-fileGroups:
-  - CanvasNative
 targets:
   CanvasNative:
     type: library.static
     platform: iOS
     sources:
-      - CanvasNative/Sources
+      - Sources
     scheme:
       testTargets:
         - CanvasNativeTests
@@ -18,6 +16,6 @@ targets:
       INFOPLIST_FILE: Support/Tests-Info.plist
       TEST_HOST: $(BUILT_PRODUCTS_DIR)/Canvas.app/Canvas
     sources:
-      - CanvasNative/Tests
+      - Tests
     dependencies:
       - target: CanvasNative

@@ -1,11 +1,9 @@
-fileGroups:
-  - CanvasCore
 targets:
   CanvasCore:
     type: library.static
     platform: iOS
     sources:
-      - CanvasCore/Sources
+      - Sources
     dependencies:
       - target: CanvasNative
         link: False
@@ -18,4 +16,4 @@ targets:
       CODE_SIGN_STYLE: Manual
       INFOPLIST_FILE: $(SRCROOT)/Support/ResourceBundle-Info.plist
     sources:
-      - CanvasCore/Resources
+      - Resources

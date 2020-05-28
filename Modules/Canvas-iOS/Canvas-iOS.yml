@@ -1,12 +1,10 @@
-fileGroups:
-  - Canvas-iOS
 targets:
   Canvas-iOS:
       type: application
       platform: iOS
       sources:
-        - Canvas-iOS/Sources
-        - Canvas-iOS/Resources
+        - Sources
+        - Resources
       settings:
         CODE_SIGN_STYLE: Manual
         DEVELOPMENT_TEAM: UP9C8XM22A

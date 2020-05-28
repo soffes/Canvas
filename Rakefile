@@ -2,11 +2,11 @@
 
 PROJECT = 'Canvas.xcodeproj'
 CARTHAGE_PLATFORM = 'iOS'
-CARTHAGE_VERSION = '0.31.2'
-SWIFTLINT_VERSION = '0.24.2'
-XCODE_SHORT_VERSION = '10.1'
-XCODE_VERSION = '10B61'
-XCODEGEN_VERSION = '2.0.0'
+CARTHAGE_VERSION = '0.34.0'
+SWIFTLINT_VERSION = '0.39.2'
+XCODE_SHORT_VERSION = '11.5'
+XCODE_VERSION = '11E608c'
+XCODEGEN_VERSION = '2.15.1'
 
 desc 'Generate the Xcode project'
 task project: :'check:xcodegen' do
@@ -17,6 +17,8 @@ desc 'Bootstrap Carthage dependencies and generate the project'
 task bootstrap: %i[check:xcode check:carthage project] do
   sh %(carthage bootstrap --platform #{CARTHAGE_PLATFORM})
 end
+
+task :default => :bootstrap
 
 desc 'Update Carthage dependencies'
 task update: :'check:carthage' do
@@ -58,7 +60,7 @@ namespace :check do
 
   desc 'Check XcodeGen version'
   task :xcodegen do
-    unless (version = `xcodegen -v`.chomp) == XCODEGEN_VERSION
+    unless (version = `xcodegen version`.chomp.sub('Version: ', '')) == XCODEGEN_VERSION
       fail %(XcodeGen #{XCODEGEN_VERSION} isnt’t installed. You can install with `brew install xcodegen`. You may need to update Homebrew with `brew update` first.)
     end
   end
