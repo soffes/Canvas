@@ -15,7 +15,7 @@ There’s a lot of other things I’d like to do outside of the iOS & macOS apps
 
 ## Building
 
-You’ll need Xcode, [XcodeGen](https://github.com/yonaskolb/XcodeGen), and [Carthage](https://github.com/Carthage/Carthage) to build Canvas. Simply run the following command for instructions:
+You’ll need Xcode, [XcodeGen](https://github.com/yonaskolb/XcodeGen) to build Canvas. Simply run the following command for instructions:
 
     $ rake bootstrap
 
