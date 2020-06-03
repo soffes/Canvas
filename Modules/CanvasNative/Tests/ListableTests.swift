@@ -30,7 +30,6 @@ final class ListableTests: XCTestCase {
 		XCTAssertEqual(actual, expected)
 	}
 
-
 	func testIndentationPosition() {
 		let blocks = Parser.parse("⧙doc-heading⧘Positions\n⧙ordered-list-0⧘1. One\n⧙ordered-list-1⧘1. A\n⧙ordered-list-0⧘1. Two\n⧙ordered-list-1⧘1. Red\n⧙ordered-list-1⧘1. Green\n⧙ordered-list-1⧘1. Blue")
 		let actual = blocks.compactMap { ($0 as? OrderedListItem)?.number }

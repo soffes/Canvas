@@ -20,6 +20,8 @@ extension CanvasTextView {
 			dragEnded(applyAction: true)
 		case .cancelled, .failed:
 			dragEnded(applyAction: false)
+		@unknown default:
+			return
 		}
 	}
 

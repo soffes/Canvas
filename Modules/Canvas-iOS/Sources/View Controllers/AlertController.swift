@@ -56,10 +56,14 @@ final class AlertController: UIAlertController {
 	}
 
 	private func adjust(_ label: UILabel) {
+		guard let font = label.font else {
+			return
+		}
+
 		for action in actions {
 			if label.text == title {
 				label.attributedText = NSAttributedString(string: label.text ?? "", attributes: [
-					.font: label.font,
+					.font: font,
 					.foregroundColor: Swatch.darkGray
 				])
 				return
@@ -69,14 +73,16 @@ final class AlertController: UIAlertController {
 				switch action.style {
 				case .default, .cancel:
 					label.attributedText = NSAttributedString(string: label.text ?? "", attributes: [
-						.font: label.font,
+						.font: font,
 						.foregroundColor: Swatch.brand
 					])
 				case .destructive:
 					label.attributedText = NSAttributedString(string: label.text ?? "", attributes: [
-						.font: label.font,
+						.font: font,
 						.foregroundColor: Swatch.destructive
 					])
+				@unknown default:
+					return
 				}
 			}
 		}

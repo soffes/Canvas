@@ -6,9 +6,7 @@ targets:
       - Sources
     dependencies:
       - target: CanvasNative
-        link: False
       - target: CanvasText
-        link: False
   CanvasCoreResources:
     type: bundle
     platform: iOS

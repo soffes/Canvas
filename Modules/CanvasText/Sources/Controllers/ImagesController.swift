@@ -124,7 +124,7 @@ final class ImagesController: Themeable {
 			return image
 		}
 
-		guard let icon = Image(named: "PhotoLandscape", in: resourceBundle) else {
+		guard let icon = Image(named: "PhotoLandscape", in: resourceBundle, compatibleWith: nil) else {
 		return nil
 	}
 

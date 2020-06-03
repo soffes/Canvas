@@ -1,5 +1,5 @@
-import XCTest
 import CanvasNative
+import XCTest
 
 final class DocumentControllerReliabilityTests: XCTestCase {
 

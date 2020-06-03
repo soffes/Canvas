@@ -1,8 +1,7 @@
 included:
-  - Canvas-iOS/Sources
-  - CanvasCore/Sources
-  - CanvasNative/Sources
-  - CanvasText/Sources
+  - Modules
+excluded:
+  - Modules/*/Tests
 whitelist_rules:
   - array_init
   # - attributes
@@ -114,9 +113,9 @@ whitelist_rules:
   # - weak_delegate
   - xctfail_message
   - yoda_condition
-identifier_name:
-  excluded:
-    - id
-line_length: 120
+# identifier_name:
+#   excluded:
+#     - id
+# line_length: 120
 number_separator:
   minimum_length: 5

@@ -8,7 +8,7 @@ targets:
       settings:
         CODE_SIGN_STYLE: Manual
         DEVELOPMENT_TEAM: UP9C8XM22A
-        INFOPLIST_FILE: $(SRCROOT)/Canvas-iOS/Support/Info.plist
+        INFOPLIST_FILE: $(SRCROOT)/Modules/Canvas-iOS/Support/Info.plist
         OTHER_LDFLAGS: $(inherited) -all_load
         PRODUCT_BUNDLE_IDENTIFIER: com.nothingmagical.canvas
         PRODUCT_NAME: Canvas
@@ -20,11 +20,11 @@ targets:
         - target: CanvasCore
         - target: CanvasCoreResources
           embed: True
-        - carthage: Cache
-        - carthage: Diff
-        - carthage: GradientView
-        - carthage: Static
-        - carthage: X
+        - package: Cache
+        - package: Diff
+        - package: GradientView
+        - package: Static
+        - package: X
       postbuildScripts:
         - script: |
             git = `sh /etc/profile; which git`.chomp

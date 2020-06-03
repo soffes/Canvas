@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 PROJECT = 'Canvas.xcodeproj'
-CARTHAGE_PLATFORM = 'iOS'
-CARTHAGE_VERSION = '0.34.0'
 SWIFTLINT_VERSION = '0.39.2'
 XCODE_SHORT_VERSION = '11.5'
 XCODE_VERSION = '11E608c'
@@ -13,17 +11,9 @@ task project: :'check:xcodegen' do
   sh 'xcodegen --quiet'
 end
 
-desc 'Bootstrap Carthage dependencies and generate the project'
-task bootstrap: %i[check:xcode check:carthage project] do
-  sh %(carthage bootstrap --platform #{CARTHAGE_PLATFORM})
-end
-
+desc 'Bootstrap the project'
+task bootstrap: %i[check:xcode project]
 task :default => :bootstrap
-
-desc 'Update Carthage dependencies'
-task update: :'check:carthage' do
-  sh %(carthage update --platform #{CARTHAGE_PLATFORM})
-end
 
 desc 'Run swiftlint'
 task :lint do
@@ -32,8 +22,7 @@ end
 
 desc 'Clean everything'
 task :clean do
-  quit_xcode
-  sh %(rm -rf #{PROJECT} Carthage)
+  sh %(rm -rf #{PROJECT})
 end
 
 namespace :check do
@@ -48,13 +37,6 @@ namespace :check do
     info_path = File.expand_path path + '/../Version'
     unless (version = `defaults read #{info_path} ProductBuildVersion`.chomp) == XCODE_VERSION
       fail %(Xcode #{version} is installed. Xcode #{XCODE_VERSION} was expected. Please install Xcode #{XCODE_SHORT_VERSION} from https://developer.apple.com/download)
-    end
-  end
-
-  desc 'Check Carthage version'
-  task :carthage do
-    unless (version = `carthage version`.chomp) == CARTHAGE_VERSION
-      fail %(Carthage #{CARTHAGE_VERSION} isnt’t installed. You can install with `brew install carthage`. You may need to update Homebrew with `brew update` first.)
     end
   end
 

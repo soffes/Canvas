@@ -313,7 +313,7 @@ extension EditorViewController: UIViewControllerPreviewingDelegate {
 		// TODO: Update for inline-markers
 		let nodes = document.nodesIn(backingRange: document.backingRanges(presentationRange: range)[0])
 
-		guard let index = nodes.index(where: { $0 is Link }),
+		guard let index = nodes.firstIndex(where: { $0 is Link }),
 			let link = nodes[index] as? Link,
 			let url = link.URL(backingString: document.backingString),
 			url.scheme == "http" || url.scheme == "https" else

@@ -17,6 +17,22 @@ settings:
     release:
       SWIFT_COMPILATION_MODE: wholemodule
       GCC_OPTIMIZATION_LEVEL: fast
+packages:
+  Cache:
+    url: https://github.com/soffes/Cache
+    from: 0.3.2
+  Diff:
+    url: https://github.com/soffes/Diff
+    from: 0.2.5
+  GradientView:
+    url: https://github.com/soffes/GradientView
+    from: 2.3.4
+  Static:
+    url: https://github.com/soffes/Static
+    revision: 5ade77976d44d3158808783653136df5fc772220
+  X:
+    url: https://github.com/soffes/X
+    from: 0.5.0
 fileGroups:
   - Modules
 include:

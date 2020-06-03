@@ -73,9 +73,9 @@ final class SpanLevelTests: XCTestCase {
 				leadingUrlDelimiterRange: NSRange(location: 13, length: 1),
 				urlRange: NSRange(location: 14, length: 18),
 				title: LinkTitle(
-					leadingDelimiterRange:  NSRange(location: 33, length: 1),
-					textRange:  NSRange(location: 34, length: 7),
-					trailingDelimiterRange:  NSRange(location: 41, length: 1)
+					leadingDelimiterRange: NSRange(location: 33, length: 1),
+					textRange: NSRange(location: 34, length: 7),
+					trailingDelimiterRange: NSRange(location: 41, length: 1)
 				),
 				trailingURLDelimiterRange: NSRange(location: 42, length: 1),
 				subnodes: [
@@ -169,7 +169,7 @@ final class SpanLevelTests: XCTestCase {
 					Text(range: NSRange(location: 14, length: 5))
 				]
 			),
-			Text(range: NSRange(location: 21, length: 1)),
+			Text(range: NSRange(location: 21, length: 1))
 		])
 
 		XCTAssertEqual([paragraph].map { $0.dictionary as NSDictionary }, parse(markdown))
@@ -197,7 +197,7 @@ final class SpanLevelTests: XCTestCase {
 					Text(range: NSRange(location: 15, length: 5))
 				]
 			),
-			Text(range: NSRange(location: 21, length: 1)),
+			Text(range: NSRange(location: 21, length: 1))
 		])
 
 		XCTAssertEqual([paragraph].map { $0.dictionary as NSDictionary }, parse(markdown))

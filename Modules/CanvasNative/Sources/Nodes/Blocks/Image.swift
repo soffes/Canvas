@@ -111,8 +111,8 @@ public struct Image: Attachable, Equatable {
 }
 
 extension Image: Hashable {
-	public var hashValue: Int {
-		return identifier.hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(identifier)
 	}
 }
 

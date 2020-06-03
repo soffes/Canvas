@@ -61,6 +61,8 @@ final class NavigationBar: UINavigationBar {
     // MARK: - Private
 
 	private func updateTitleColor() {
+		let tintColor = self.tintColor ?? Swatch.brand
+
 		titleTextAttributes = [
 			.font: Font.sansSerif(weight: .medium),
 			.foregroundColor: tintAdjustmentMode == .dimmed ? tintColor : (titleColor ?? Swatch.darkGray)

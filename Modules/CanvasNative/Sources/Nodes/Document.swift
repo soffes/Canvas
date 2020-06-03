@@ -213,9 +213,6 @@ public struct Document {
 	}
 
 	public func blockAt(backingLocation: UInt) -> BlockNode? {
-		guard backingLocation >= 0  else {
-	    	return nil
-    	}
 		for (i, block) in blocks.enumerated() {
 			if Int(backingLocation) < block.range.location {
 				return blocks[i - 1]
@@ -309,7 +306,7 @@ public struct Document {
 	}
 
 	public func indexOf(block: BlockNode) -> Int? {
-		return blocks.index { NSEqualRanges($0.range, block.range) }
+		return blocks.firstIndex { NSEqualRanges($0.range, block.range) }
 	}
 
 	// MARK: - Presentation String

@@ -8,7 +8,7 @@ targets:
       testTargets:
         - CanvasNativeTests
     dependencies:
-      - carthage: Diff
+      - package: Diff
   CanvasNativeTests:
     type: bundle.unit-test
     platform: iOS

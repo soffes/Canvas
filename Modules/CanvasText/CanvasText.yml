@@ -3,7 +3,7 @@ targets:
     type: library.static
     platform: iOS
     settings:
-      SWIFT_OBJC_BRIDGING_HEADER: CanvasText/Support/Bridging.h
+      SWIFT_OBJC_BRIDGING_HEADER: $(SRCROOT)/Modules/CanvasText/Support/Bridging.h
     sources:
       - Sources
     scheme:
@@ -11,9 +11,8 @@ targets:
         - CanvasTextTests
     dependencies:
       - target: CanvasNative
-        link: False
-      - carthage: Cache
-      - carthage: X
+      - package: Cache
+      - package: X
   CanvasTextTests:
     type: bundle.unit-test
     platform: iOS

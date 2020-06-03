@@ -30,8 +30,8 @@ public struct Canvas {
 }
 
 extension Canvas: Hashable {
-	public var hashValue: Int {
-		return id.hashValue
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(id)
 	}
 
 	public static func == (lhs: Canvas, rhs: Canvas) -> Bool {

@@ -1,11 +1,11 @@
-import XCTest
 @testable import CanvasText
+import XCTest
 
 class SelectionControllerTests: XCTestCase {
 
     // MARK: - Properties
 
-	fileprivate let startingSelection = NSRange(location: 10, length: 9)
+	private let startingSelection = NSRange(location: 10, length: 9)
 
     // MARK: - Insert Tests
 

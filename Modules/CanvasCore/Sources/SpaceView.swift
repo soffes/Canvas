@@ -77,6 +77,8 @@ public final class SpaceView: View {
 				addArrangedSubview(SpaceView(width: length))
 			case .vertical:
 				addArrangedSubview(SpaceView(height: length))
+			@unknown default:
+				fatalError("I can’t believe this enum is open.")
 			}
 		}
 	}
